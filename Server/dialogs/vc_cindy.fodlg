@@ -1,0 +1,79 @@
+[comment]
+
+
+[data]
+lang=russ engl
+
+[dialog]
+&
+1 1000 NOT_ANSWER_CLOSE_DIALOG 1#
+2 1010d*_var p name_mem_player_npc = 0 r*_var p name_mem_player_npc = 1 #
+3 1020d*_var p name_mem_player_npc = 1 @
+2 2000 NOT_ANSWER_CLOSE_DIALOG 1#
+6 2010#
+4 2020#
+0 2030@
+3 3000 NOT_ANSWER_CLOSE_DIALOG 1#
+6 3010#
+4 3020#
+0 3030@
+4 4000 NOT_ANSWER_CLOSE_DIALOG 1#
+5 4010d*_item p PID_BOTTLE_CAPS > 4 r*_item p PID_BEER + 1 *_item p PID_BOTTLE_CAPS - 5 #
+0 4020@
+5 5000 NOT_ANSWER_CLOSE_DIALOG 1#
+4 5010#
+0 5020@
+6 6000 NOT_ANSWER_CLOSE_DIALOG 1#
+4 6010#
+0 6020&
+
+[russ]
+{100}{}{Синди}
+{200}{}{Вы видите: Синди}
+{210}{}{Симпатичная молодая женщина.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{Первый раз.}
+{1020}{}{Знаком.}
+{2000}{}{Привет. Я Синди. Добро пожаловать в мой бар. Чем могу помочь?}
+{2010}{}{Эй, а разве это не бар Кэссиди?}
+{2020}{}{Пива мне!}
+{2030}{}{Привет, Синди. Ничем, спасибо.}
+{3000}{}{Чем могу помочь?}
+{3010}{}{Эй, Синди, а разве это не бар Кэссиди?}
+{3020}{}{Пива мне!}
+{3030}{}{Просто заш@sex@|ёл||ла| поздороваться.}
+{4000}{}{С вас 5 долларов.}
+{4010}{}{Вот, возьми.}
+{4020}{}{Чёрт, у меня не хватает денег.}
+{5000}{}{Вот ваше пиво. Что-нибудь ещё?}
+{5010}{}{Ещё пива!}
+{5020}{}{Нет, спасибо.}
+{6000}{}{Кэссиди оставил свой бар на меня, когда уходил с Избранным четыре года назад. С тех пор от него ничего не было слышно.}
+{6010}{}{Ну, с Избранным ходить - не шутки шутить. Налей-ка мне пива.}
+{6020}{}{Уже четыре года? Дааа...}
+
+[engl]
+{100}{}{Cindy}
+{200}{}{You see: Cindy}
+{210}{}{A pretty young woman.}
+{1000}{}{Pre-dialogue options.}
+{1010}{}{First time.}
+{1020}{}{Familiar.}
+{2000}{}{Hi. I'm Cyndi. Welcome to my bar. How can I help you?}
+{2010}{}{I thought this bar belongs to Cassidy, doesn't it?}
+{2020}{}{Give me a beer!}
+{2030}{}{Hi, Cyndi. I'm fine, thant you.}
+{3000}{}{How may I help you?}
+{3010}{}{Hey, Cyndi. I thought this bar belongs to Cassidy, doesn't it?}
+{3020}{}{Give me a beer!}
+{3030}{}{Just wanted to say "Hello".}
+{4000}{}{It's five dollars.}
+{4010}{}{Here you are.}
+{4020}{}{Damn, I don't have enough money.}
+{5000}{}{Here's your beer. Anything else?}
+{5010}{}{More beer!}
+{5020}{}{No, thanks.}
+{6000}{}{He asked me to watch over his bar when he left with Chosen One four years ago. I didn't hear anything from him sice then.}
+{6010}{}{Well, journey with Chosen One is not so safe... Hey, gimme some beer.}
+{6020}{}{Four years you say? Heh...}
+

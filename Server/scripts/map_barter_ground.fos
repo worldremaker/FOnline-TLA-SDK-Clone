@@ -1,0 +1,151 @@
+// Copypaster: Dagnir, rifleman17
+#include "_macros.fos"
+#include "utils_for_array.fos"
+
+#define MSG_IM_HAVE_ILLEGAL_ITEMS     (129) // Номер сообщения, отсылаемого игроком, если у него в инвентаре есть запрещенные предметы
+#define STR_NO_ILLEGAL_ITEMS          (5200) // Номер строки "ты зачем принес сюда это!"
+
+import bool AddAttackPlane(Critter& npc, uint priority, uint critId) from "npc_planes";
+import bool AddPickPlane(Critter& npc, uint priority, Item@ item, uint useItemId, bool toOpen) from "npc_planes";
+import bool AddAttackPlane(Critter& npc, uint priority, Critter& target) from "npc_planes";
+import bool AddAttackPlane(Critter& npc, uint priority, Critter& target, int minHp) from "npc_planes";
+
+void _MapInit(Map &map, bool firstTime)
+{
+	map.SetEvent(MAP_EVENT_IN_CRITTER, "_MapInCritter");
+	
+    Critter @ [] critters;
+    map.GetCritters(0,FIND_LIFE|FIND_ONLY_NPC, critters);
+    
+    for(uint i = 0; i<critters.length();i++)
+    {
+            critters[i].StatBase[ST_REPLICATION_TIME] = 1;
+            critters[i].StatBase[ST_MELEE_DAMAGE] = 9999;
+            critters[i].StatBase[ST_ACTION_POINTS] = 300;
+            critters[i].StatBase[ST_ARMOR_CLASS] = 90;
+            critters[i].StatBase[ST_CRITICAL_CHANCE] = 95;
+            critters[i].StatBase[ST_BONUS_LOOK] = 300;
+            critters[i].SkillBase[SK_UNARMED] = 300;
+            critters[i].SkillBase[SK_ENERGY_WEAPONS] = 300;
+            critters[i].SkillBase[SK_BIG_GUNS] = 300;
+            critters[i].SkillBase[SK_SMALL_GUNS] = 300;
+            critters[i].ModeBase[MODE_NO_ENEMY_STACK] = 1;
+            critters[i].ModeBase[MODE_INVULNERABLE] = 1;
+            critters[i].ModeBase[MODE_UNLIMITED_AMMO] = 1;
+            critters[i].ModeBase[MODE_NO_PUSH] = 1;
+            critters[i].ModeBase[MODE_NO_STEAL] = 1;
+            critters[i].ModeBase[MODE_NO_DROP] = 1;
+            critters[i].ModeBase[MODE_NO_LOOT] = 1;
+    }
+
+}
+
+
+void _MapInCritter(Map& map, Critter& cr)
+{
+	if(HasIllegalItems(cr))
+		cr.SendMessage(MSG_IM_HAVE_ILLEGAL_ITEMS, cr.Id, MESSAGE_TO_ALL_ON_MAP);
+}
+
+void _GuardInit(Critter & cr, bool firstTime)
+{
+	cr.StatBase[ST_REPLICATION_TIME] = 1;
+	cr.StatBase[ST_MELEE_DAMAGE] = 9999;
+	cr.StatBase[ST_ACTION_POINTS] = 300;
+	cr.StatBase[ST_ARMOR_CLASS] = 90;
+        cr.StatBase[ST_CRITICAL_CHANCE] = 95;
+        cr.StatBase[ST_BONUS_LOOK] = 300;
+	cr.SkillBase[SK_SMALL_GUNS] = 300;
+	cr.SkillBase[SK_BIG_GUNS] = 300;
+	cr.SkillBase[SK_UNARMED] = 300;
+	cr.SkillBase[SK_ENERGY_WEAPONS] = 300;
+	cr.ModeBase[MODE_UNLIMITED_AMMO] = 1;
+	cr.ModeBase[MODE_NO_LOOT] = 1;
+	cr.ModeBase[MODE_NO_DROP] = 1;
+	cr.ModeBase[MODE_NO_STEAL] = 1;
+	cr.ModeBase[MODE_NO_PUSH] = 1;
+	cr.ModeBase[MODE_INVULNERABLE] = 1;
+	cr.ModeBase[MODE_NO_ENEMY_STACK] = 1;
+	cr.SetEvent(CRITTER_EVENT_SMTH_STEALING,"_GuardSmthStealing");
+	cr.SetEvent(CRITTER_EVENT_SMTH_ATTACK,"_GuardSmthAttack");
+	cr.SetEvent(CRITTER_EVENT_SMTH_USE_ITEM,"_GuardSmthUseItem");
+	cr.SetEvent(CRITTER_EVENT_SMTH_DROP_ITEM,"_GuardSmthDropItem");
+	cr.SetEvent(CRITTER_EVENT_MESSAGE,"_GuardMessage");
+}
+
+
+void _GuardMessage(Critter& cr, Critter& fromCr, int message, int value)
+{
+	if(message==MSG_IM_HAVE_ILLEGAL_ITEMS)
+	{
+		AddAttackPlane(cr, 0, value);
+		Critter @ target = GetCritter(value);
+		if(!valid(target)) return;
+		if(target.IsNpc()) return;
+		if(Random(0,4)==1) cr.SayMsg(SAY_SHOUT, TEXTMSG_TEXT, STR_NO_ILLEGAL_ITEMS, GetPlayerName(value));
+	}
+}
+
+void _GuardSmthStealing(Critter& guard, Critter& fromCr, Critter& thief, bool success, Item& item, uint count)
+{
+	if(thief.IsPlayer()&&guard.IsLife())
+	{
+		AddAttackPlane(guard,0,thief,1);
+	}
+}
+
+void _GuardSmthAttack(Critter& guard, Critter& attacker, Critter& target)
+{
+	if(attacker.IsPlayer()) AddAttackPlane(guard,0,attacker);
+}
+
+
+void _GuardSmthDropItem(Critter& npc, Critter& fromCr, Item& item)
+{
+	if(fromCr.IsPlayer()&&npc.IsLife())
+	{
+		uint pid = item.GetProtoId();
+		if(pid==PID_ACTIVE_PLASTIC_EXPLOSIVE||pid==PID_ACTIVE_MINE||pid==PID_ACTIVE_DYNAMITE)
+		{
+			AddAttackPlane(npc, 0, fromCr);
+		}
+	}
+	if(!npc.IsLife()) return;
+	if (!CheckItemIsIllegal(item)) return;
+	AddPickPlane(npc, AI_PLANE_ATTACK_PRIORITY, item, 0, true);	
+}
+
+void _GuardSmthUseItem(Critter& npc, Critter& fromCr, Item& item, Critter@ onCritter, Item@ onItem, Scenery@ onScenery)
+{
+	if(fromCr.IsPlayer()&&npc.IsLife())
+	{
+		uint pid = item.GetProtoId();
+		if(pid==PID_PLASTIC_EXPLOSIVES||pid==PID_MINE||pid==PID_TOGGLE_SWITCH||pid==PID_DYNAMITE)
+		{
+			AddAttackPlane(npc, 0, fromCr);
+		}
+	}
+}
+
+// Illegal items list and checks
+
+const uint16[] Pids_IllegalItems = {
+	 PID_ACTIVE_DYNAMITE, PID_ACTIVE_PLASTIC_EXPLOSIVE, PID_ACTIVE_MINE, PID_TOGGLE_SWITCH
+};
+
+bool HasIllegalItems(Critter & cr)
+{
+	Item@[] items;
+	if(cr.GetItems(-1, items)==0) return false;
+	for(uint i=0,l=items.length();i<l;i++)
+	{
+		if(CheckItemIsIllegal(items[i])) return true;		
+	}
+	return false;
+}
+
+bool CheckItemIsIllegal(Item @ item)
+{
+	if(!valid(item)) return false;
+	return Present(item.GetProtoId(), Pids_IllegalItems);
+}

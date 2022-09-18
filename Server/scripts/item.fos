@@ -1,0 +1,82 @@
+// Author: rifleman17
+#include "_macros.fos"
+
+// Дверь, которая зпкроется через 2 игровые минуты илии через некоторое число реальных секунд , указанное в val3
+void _DoorAutoCloseInit(Item& door, bool firstTime)
+{
+	door.SetEvent(ITEM_EVENT_SKILL,"e_UseAutoCloseDoor");
+}
+
+bool e_UseAutoCloseDoor(Item& door, Critter& cr, int skill)
+{
+	CreateTimeEvent(__FullSecond + REAL_MINUTE(door.Val3 == 0? 2 : door.Val3), "e_AutoCloseDoor", door, true);
+	return false;
+}
+
+uint e_AutoCloseDoor(uint[]@ val)
+{
+	Item@ door = GetItem(val[0]);
+	if(not valid(door))
+	{
+		return 0;
+	}
+	if(!FLAG(door.LockerCondition,LOCKER_ISOPEN)) return 0;
+	uint16 x = 0;
+	uint16 y = 0;
+	Map@ map = door.GetMapPosition(x, y);
+	if(not valid(map))
+	{
+		return 0;
+	}
+
+	Critter@ cr = map.GetCritter(x,y);
+	if(valid(cr))
+	{
+		if(cr.IsLife())
+		{
+			return REAL_MINUTE(3);
+		}else
+		{
+			// Попытка сдвинуть труп. Если не получится, дверь поверх трупа закроется
+			cr.TransitToMap(map.Id, x-1,y,cr.Dir);
+		}
+	}
+
+	if(door.LockerClose()) return 0;
+
+	return REAL_MINUTE(3);
+}
+
+// Дверь, которая не открывается стандартными способами
+void _ClosedDoorInit(Item& door, bool firstTime)
+{
+	door.SetEvent(ITEM_EVENT_SKILL,"_UseDoor");
+}
+
+bool _UseDoor(Item& door, Critter& cr, int skill)
+{
+	return true;
+}
+
+// Дверь, при использовании которой открывается диалог
+void _DialogDoorInit(Item& door, bool firstTime)
+{
+	door.SetEvent(ITEM_EVENT_SKILL,"_UseDialogDoor");
+}
+
+bool _UseDialogDoor(Item& door, Critter& cr, int skill)
+{
+	RunDialog(cr, door.Val3, door.HexX, door.HexY, false);
+	return true;
+}
+
+// Голодиск с номером, присвоенном в Val0
+void _HoloInit(Item & item, bool firstTime)
+{
+	if(item.GetProtoId()!=PID_HOLODISK) return;
+	item.HolodiskNumber = item.Val0;
+	item.SetScript("");
+	item.Update();
+	
+}
+

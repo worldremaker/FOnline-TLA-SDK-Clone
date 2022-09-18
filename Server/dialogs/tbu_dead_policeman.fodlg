@@ -1,0 +1,20 @@
+[comment]
+
+
+[data]
+lang=russ engl
+
+[dialog]
+&
+1 1000 None 1 &
+
+[russ]
+{100}{}{Полицейский}
+{200}{}{Вы видите одного из полицейских НКР.}
+{210}{}{Эти люди пришли сюда, чтобы арестовать мятежников. У них не получилось.}
+{1000}{}{Predialogue installations}
+
+[engl]
+{100}{}{Policeman}
+{1000}{}{Predialogue installations}
+

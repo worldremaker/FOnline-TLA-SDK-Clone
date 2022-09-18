@@ -1,0 +1,181 @@
+// Script for both use, in client and server, in start functions
+
+	/// Init global vars
+	__ScriptRunSuspendTimeout=10000; // In milliseconds
+	__ScriptRunMessageTimeout=5000; // In milliseconds
+	__LoggingVars=false;
+	__FreeExp=false;
+	__RegulatePvP=false;
+	__DisableTcpNagle=true;
+	__DisableZlibCompression=false;
+	__FloodSize=2048; // In bytes
+	__NoAnswerShuffle=false;
+	__FixBoyDefaultExperience=50;
+	__SneakDivider=6;
+	__LevelCap=36;
+	__LevelCapAddExperience=true;
+	__LookNormal=20;
+	__LookMinimum=3;
+	__CritterIdleTick=10000;
+	__TurnBasedTick=30000;
+	__Breaktime=1200;
+	__TimeoutTransfer=0;
+	__TimeoutBattle=REAL_SECOND(45);
+	__ApRegeneration=7000;
+	__RtApCostCritterWalk=0; // 1 AP == 100, maximim 255
+	__RtApCostCritterRun=0; // 1 AP == 100, maximim 255
+	__RtApCostMoveItemContainer=0;
+	__RtApCostMoveItemInventory=2;
+	__RtApCostPickItem=1;
+	__RtApCostDropItem=1;
+	__RtApCostReloadWeapon=2;
+	__RtApCostPickCritter=1;
+	__RtApCostUseItem=3;
+	__RtApCostUseSkill=2;
+	__RtAlwaysRun=false;
+	__TbApCostCritterMove=1;
+	__TbApCostMoveItemContainer=0;
+	__TbApCostMoveItemInventory=2;
+	__TbApCostPickItem=3;
+	__TbApCostDropItem=2;
+	__TbApCostReloadWeapon=2;
+	__TbApCostPickCritter=3;
+	__TbApCostUseItem=3;
+	__TbApCostUseSkill=3;
+	__TbAlwaysRun=false;
+	__ApCostAimEyes=1;
+	__ApCostAimHead=1;
+	__ApCostAimGroin=1;
+	__ApCostAimTorso=1;
+	__ApCostAimArms=1;
+	__ApCostAimLegs=1;
+	__HitAimEyes=60;
+	__HitAimHead=40;
+	__HitAimGroin=30;
+	__HitAimTorso=0;
+	__HitAimArms=30;
+	__HitAimLegs=20;
+	__RunOnCombat=false;
+	__RunOnTransfer=true;
+	__GlobalMapWidth=28; // max 100
+	__GlobalMapHeight=30; // max 100
+	__GlobalMapZoneLength=50; // max 500
+	__GlobalMapMaxGroupCount=10;
+	__UserInterface="";
+	__DeadHitPoints=-20;
+	__BagRefreshTime=60; // Real minutes
+	__WisperDist=2;
+	__ShoutDist=400;
+	__CustomItemCost=false;
+	__RegistrationTimeout=5*60; // In real seconds, 0 to disable
+	__AccountPlayTime=10*60; // In real seconds, 0 to disable
+	__TalkDistance=3;
+	__MinNameLength=4; // Minimum 1
+	__MaxNameLength=12; // Maximum 30
+	__PermanentDeath=0; // Disable
+
+	// Look modifiers
+	__LookChecks=0; // See Look checks in _defines.fos
+	// SETFLAG(__LookChecks,LOOK_CHECK_DIR); // Nerfe look by directions of look
+	__LookDir0=0; // Nerfe 0% of look radius with direct look
+	__LookDir1=20; // Nerfe 20% of look radius with front side look
+	__LookDir2=40; // Nerfe 40% of look radius with back side look
+	__LookDir3=60; // Nerfe 60% of look radius with back look
+	// SETFLAG(__LookChecks,LOOK_CHECK_SNEAK_DIR); // Nerfe opponent sneak by directions of look
+	__LookSneakDir0=90; // Nerfe 90% of opponent sneak with direct look
+	__LookSneakDir1=60; // Nerfe 60% of opponent sneak with front side look
+	__LookSneakDir2=30; // Nerfe 30% of opponent sneak with back side look
+	__LookSneakDir3=0; // Nerfe 0% of opponent sneak with back look
+	SETFLAG(__LookChecks,LOOK_CHECK_SNEAK_WEIGHT); // Nerfe sneak by current weight
+	__LookWeight=10; // Lost 1 sneak point per 200 gramm
+	// SETFLAG(__LookChecks,LOOK_CHECK_TRACE); // Tracing for wall aviablility
+	// SETFLAG(__LookChecks,LOOK_CHECK_SCRIPT); // Allow bool check_look(...) in main.fos, all other defines ignored
+
+	// Range of values for client engine
+	__AbsoluteOffsets=true;
+	__SkillBegin=200;
+	__SkillEnd=217;
+	__TimeoutBegin=230;
+	__TimeoutEnd=249;
+	__KillBegin=260;
+	__KillEnd=280;
+	__PerkBegin=300;
+	__PerkEnd=469;
+	__AddictionBegin=470;
+	__AddictionEnd=476;
+	__KarmaBegin=480;
+	__KarmaEnd=495;
+	__DamageBegin=500;
+	__DamageEnd=506;
+	__TraitBegin=550;
+	__TraitEnd=565;
+	__ReputationBegin=570;
+	__ReputationEnd=599;
+
+	// Compare with >=
+	__ReputationLoved=30;
+	__ReputationLiked=15;
+	__ReputationAccepted=1;
+	__ReputationNeutral=0;
+	__ReputationAntipathy=-14;
+	__ReputationHated=-29;
+	// Other is Vilified
+#ifdef FO2238
+	__ReputationLoved=1500;
+	__ReputationLiked=900;
+	__ReputationAccepted=300;
+	__ReputationNeutral=-300;
+	__ReputationAntipathy=-900;
+	__ReputationHated=-1500;
+#endif
+
+	/// Client specific definitions
+#ifdef __CLIENT
+	__RoofAlpha=200;
+	__HideCursor=false;
+	__DisableLMenu=false;
+	__DisableMouseEvents=false;
+	__DisableKeyboardEvents=false;
+	__PlayerOffAppendix="|0x44ffffff  (off)";
+	__SpritesZoomMax=2.5f;
+	__SpritesZoomMin=0.2f;
+
+	// Next vars defined in client config file, if you want override it, than uncomment need vars
+	// __Animation3dSmoothTime=250; // In milliseconds
+	// __Animation3dFPS=0; // Zero to disable and use Smoothing
+#endif
+
+	/// Parameters behavoiours
+	// for(uint i=STAT_BEGIN;i<=ST_POISON_RESISTANCE;i++) SetParameterGetBehaviour(i,"parameters@_StatGet");        Take hardcoded
+	// for(uint i=SKILL_BEGIN;i<=SKILL_END;i++) SetParameterGetBehaviour(i,"parameters@_SkillGet");                 Take hardcoded
+	// for(uint i=TIMEOUT_BEGIN;i<=TIMEOUT_END;i++) SetParameterGetBehaviour(i,"parameters@_TimeoutGet");           Take hardcoded
+	// for(uint i=REPUTATION_BEGIN;i<=REPUTATION_END;i++) SetParameterGetBehaviour(i,"parameters@_ReputationGet");  Take hardcoded
+
+#ifndef __CLIENT
+	SetParameterChangeBehaviour(ST_CURRENT_HP,"parameters@_StatHpChanged");
+	SetParameterChangeBehaviour(ST_EXPERIENCE,"parameters@_StatExperienceChanged");
+	for(uint i=PERK_BEGIN;i<=PERK_END;i++) SetParameterChangeBehaviour(i,"parameters@_PerkChanged");
+	SetParameterChangeBehaviour(MODE_HIDE,"parameters@_ModeHideChanged");
+#endif
+#ifdef __CLIENT
+	//for(uint i=GOOD_EVIL_LIST_BEGIN;i<=GOOD_EVIL_LIST_END;i++) SetParameterChangeBehaviour(i,"parameters@_GoodEvilListChanged"); (not used)
+#endif
+
+	/// Registration parameters
+	for(uint i=ST_STRENGTH;i<=ST_LUCK;i++) SetRegistrationParameter(i,true);
+	for(uint i=TAG_SKILL1;i<=TAG_SKILL3;i++) SetRegistrationParameter(i,true);
+	for(uint i=TRAIT_BEGIN;i<=TRAIT_END;i++) SetRegistrationParameter(i,true);
+	SetRegistrationParameter(ST_AGE,true);
+	SetRegistrationParameter(ST_GENDER,true);
+
+	/// New slots allow here
+	// AllowSlot(SLOT_HEAD,"InvWArmor2");
+
+
+
+
+
+
+
+
+

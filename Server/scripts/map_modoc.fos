@@ -1,0 +1,12 @@
+// Author: cvet
+#include "_macros.fos"
+
+#define ENTRANCE_SOUTH     (0)
+#define ENTRANCE_NORTH     (1)
+
+bool entrance_Modoc(Critter@[]& critters, uint8 entrance)
+{
+	Critter@ leader=critters[0];
+	if(entrance==ENTRANCE_NORTH) return leader.Skill[SK_OUTDOORSMAN]>=50;
+	return true;
+}

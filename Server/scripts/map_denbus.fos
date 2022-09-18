@@ -1,0 +1,18 @@
+// Author: cvet
+#include "_macros.fos"
+
+void _DenBusInit(Map& denBus, bool firstTime)
+{
+	denBus.SetEvent(MAP_EVENT_IN_CRITTER,"_DenBusInCritter");
+	denBus.SetEvent(MAP_EVENT_OUT_CRITTER,"_DenBusOutCritter");
+}
+
+void _DenBusInCritter(Map& denBus, Critter& player)
+{
+	if(player.IsPlayer()) player.Say(SAY_NETMSG,"Вы испытываете странное чувство полной разрухи.");
+}
+
+void _DenBusOutCritter(Map& denBus, Critter& player)
+{
+	if(player.IsPlayer()) player.Say(SAY_NETMSG,"Где-то в глубине души вы очень рады, что покинули это место.");
+}

@@ -1,0 +1,111 @@
+#ifndef __MACROS__
+#define __MACROS__
+
+#include "_defines.fos" // Generic constants
+#include "_math.fos" // Math macros
+#include "_vars.fos" // Game vars
+#include "_maps.fos" // Maps and locations
+#include "_dialogs.fos" // Dialogs
+#include "_itempid.fos" // Items pids
+
+//************** Other ***************************//
+
+// Pointer validation macro
+// Example: if(valid(ptr))... if(not valid(ptr))...
+#define valid #(ptr) (@ptr!=null)
+
+// Inserting element at the end of the array (works where ArrayPushBack doesn't...)
+#define push_back #(a,e)           { uint __l=a.length(); a.resize(__l+1); a[__l]=e; }
+// For handlers
+#define push_back_handle #(a,e)    { uint __l=a.length(); a.resize(__l+1); @a[__l]=e; }
+// Removing from array
+#define remove_from_array #(a,idx) { uint __l=a.length(); if(__l>0 && uint(idx)<__l-1) for(uint __i=idx;__i<__l-1;__i++) a[__i]=a[__i+1]; if(__l>0) a.resize(__l-1); }
+// Flags
+#define FLAG #(x,flag)      (((x)&(flag))!=0)
+#define SETFLAG #(x,flag)   (x=(x)|(flag))
+#define UNSETFLAG #(x,flag) (x=((x)&(~(flag))))
+
+// Time
+#define REAL_MS #(x)              ((x)*__TimeMultiplier/1000)
+#define REAL_SECOND #(x)          ((x)*__TimeMultiplier)
+#define REAL_MINUTE #(x)          ((x)*__TimeMultiplier*60)
+#define REAL_HOUR #(x)            ((x)*__TimeMultiplier*3600)
+#define REAL_DAY #(x)             ((x)*__TimeMultiplier*86400)
+#define REAL_MONTH #(x)           ((x)*__TimeMultiplier*2592000)
+#define REAL_YEAR #(x)            ((x)*__TimeMultiplier*31536000)
+
+//************** Critter *************************//
+// Move
+#define _NpcWalk #(npc,hexX,hexY) npc.MoveToHex(hexX,hexY,0xFF,false,0)
+#define _NpcRun #(npc,hexX,hexY) npc.MoveToHex(hexX,hexY,0xFF,true,0)
+
+// Items
+#define _CritCountItem #(cr,pid) cr.CountItem(pid)
+#define _CritAddItem #(cr,pid,count) cr.AddItem(pid,count)
+#define _CritDeleteItem #(cr,pid,count) cr.DeleteItem(pid,count)
+#define _CritGetItem #(cr,pid) cr.GetItem(pid,-1)
+#define _CritGetItemHand #(cr) cr.GetItem(0,SLOT_HAND1)
+#define _CritGetItemHandExt #(cr) cr.GetItem(0,SLOT_HAND2)
+#define _CritGetItemArmor #(cr) cr.GetItem(0,SLOT_ARMOR)
+#define _CritGetItemInv #(cr,pid) cr.GetItem(pid,SLOT_INV)
+#define _CritMoveItem #(cr,item,toSlot) cr.MoveItem(item.Id,item.GetCount(),toSlot)
+#define _CritDropItem #(cr,item) cr.MoveItem(item.Id,item.GetCount(),0xFF)
+#define _CritDropItemCount #(cr,item,count) cr.MoveItem(item.Id,count,0xFF)
+#define _CritChangeHand #(cr) do{Item@ item=cr.GetItem(0,SLOT_HAND1); if(valid(item)) _CritMoveItem(cr,item,SLOT_HAND2); else {@item=cr.GetItem(0,SLOT_HAND2); if(valid(item)) _CritMoveItem(cr,item,SLOT_HAND1);}}while(false)
+#define _IncItem #(item,count) item.SetCount(item.GetCount()+(count))
+#define _SubItem #(item,count) do{if(item.GetCount()>(count)) item.SetCount(item.GetCount()-(count)); else DeleteItem(item);}while(false)
+#define _CritCanDropItemsOnDead #(cr) (cr.Mode[MODE_NO_STEAL]==0 && cr.Mode[MODE_NO_DROP]==0)
+#define _ItemIsBroken #(item) (item.IsWeared() && FLAG(item.BrokenFlags,BI_BROKEN))
+
+// Parameters
+#define _CritIsInjured #(cr) (cr.Damage[DAMAGE_EYE]!=0 || cr.Damage[DAMAGE_RIGHT_ARM]!=0 || cr.Damage[DAMAGE_LEFT_ARM]!=0 || cr.Damage[DAMAGE_RIGHT_LEG]!=0 || cr.Damage[DAMAGE_LEFT_LEG]!=0)
+#define _CritFingersDoorId #(critterId) (0x80000000|(critterId))
+#define _CritEyesDoorId #(critterId) (0x40000000|(critterId))
+#define _CritIsTagSkill #(cr,skillNum) (cr.TagSkill[TAG_SKILL1]==int(skillNum) || cr.TagSkill[TAG_SKILL2]==int(skillNum) || cr.TagSkill[TAG_SKILL3]==int(skillNum) || cr.TagSkill[TAG_SKILL4]==int(skillNum))
+
+// Npc planes
+#define _NpcEraseFirstPlane #(npc) npc.ErasePlane(-1,false)
+#define _NpcEraseAllPlanes #(npc) npc.ErasePlane(-1,true)
+#define _NpcEraseFirstPlaneWalk #(npc) npc.ErasePlane(AI_PLANE_WALK,false)
+#define _NpcEraseAllPlanesWalk #(npc) npc.ErasePlane(AI_PLANE_WALK,true)
+#define _NpcEraseFirstPlaneAttack #(npc) npc.ErasePlane(AI_PLANE_ATTACK,false)
+#define _NpcEraseAllPlanesAttack #(npc) npc.ErasePlane(AI_PLANE_ATTACK,true)
+#define _NpcEraseFirstPlanePick #(npc) npc.ErasePlane(AI_PLANE_PICK,false)
+#define _NpcEraseAllPlanesPick #(npc) npc.ErasePlane(AI_PLANE_PICK,true)
+
+//************** Items ***************************//
+// Weapon
+#define _WeapIsPrimaryAviable #(protoWeap) ((protoWeap.Weapon_Uses&1)!=0)
+#define _WeapIsSecondaryAviable #(protoWeap) ((protoWeap.Weapon_Uses&2)!=0)
+#define _WeapIsThirdAviable #(protoWeap) ((protoWeap.Weapon_Uses&4)!=0)
+#define _WeapIsHtHAttack #(weap) (weap.Proto.Weapon_Skill==SK_UNARMED || weap.Proto.Weapon_Skill==SK_MELEE_WEAPONS)
+#define _WeapIsGunAttack #(weap) (weap.Proto.Weapon_Skill==SK_SMALL_GUNS || weap.Proto.Weapon_Skill==SK_BIG_GUNS || weap.Proto.Weapon_Skill==SK_ENERGY_WEAPONS)
+#define _WeapIsRangedAttack #(weap) (_WeapIsGunAttack(weap) || weap.Proto.Weapon_Skill==SK_THROWING)
+
+// Locker
+#define _LockerIsOpen #(door) ((door.LockerCondition&LOCKER_ISOPEN)!=0)
+#define _LockerIsClose #(door) (not _LockerIsOpen(door))
+
+// Car
+#define _CarGetCritCapacity #(car) (car.Proto.Car_CritCapacity)
+#define _CarGetFuelTank #(car) (car.Proto.Car_FuelTank)
+#define _CarGetRunToBreak #(car) (car.Proto.Car_RunToBreak)
+#define _CarIsBioEngine #(car) ((car.Val0&CAR_BIO_ENGINE)!=0)
+#define _CarSetBioEngine #(car) car.Val0|=CAR_BIO_ENGINE
+#define _CarIsNoLockpick #(car) ((car.Val0&CAR_NO_LOCKPICK)!=0)
+#define _CarSetNoLockpick #(car) car.Val0|=CAR_NO_LOCKPICK
+
+// Light
+#define _LightIsIgnoreDir #(lightItem,dir) (FLAG(lightItem.LightFlags,1<<CLAMP(dir,0,5)))
+#define _LightSetIgnoreDir #(lightItem,dir) (SETFLAG(lightItem.LightFlags,1<<CLAMP(dir,0,5)))
+#define _LightUnsetIgnoreDir #(lightItem) (UNSETFLAG(lightItem.LightFlags,1<<CLAMP(dir,0,5)))
+#define _LightIsGlobal #(lightItem) (FLAG(lightItem.LightFlags,1<<6))
+#define _LightSetGlobal #(lightItem) (SETFLAG(lightItem.LightFlags,1<<6))
+#define _LightUnsetGlobal #(lightItem) (UNSETFLAG(lightItem.LightFlags,1<<6))
+#define _LightIsInverse #(lightItem) (FLAG(lightItem.LightFlags,1<<7))
+#define _LightSetInverse #(lightItem) (SETFLAG(lightItem.LightFlags,1<<7))
+#define _LightUnsetInverse #(lightItem) (UNSETFLAG(lightItem.LightFlags,1<<7))
+
+//************************************************//
+
+#endif //__MACROS__

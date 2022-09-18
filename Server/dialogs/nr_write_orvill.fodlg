@@ -1,0 +1,31 @@
+[comment]
+Ваши комментарии / Your comments.
+
+[data]
+lang=russ engl
+
+[dialog]
+&
+1 1000 NOT_ANSWER_CLOSE_DIALOG 0#
+2 1010@
+2 2000 NOT_ANSWER_CLOSE_DIALOG 0#
+0 2010&
+
+[russ]
+{100}{}{Орвилл}
+{200}{}{Вы видите Орвилля Райта.}
+{210}{}{Вы видите хорошо одетого джентльмена. Он похоже постоянно чего-то опасается. Поэтому, наверное, его волосы поседели по краям.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{2}
+{2000}{}{Говори, дикарь. Кто ты и что тебе нужно?}
+{2010}{}{Эээ... Я уже ухожу.}
+
+[engl]
+{100}{}{Orville}
+{200}{}{You see Orville Wright.}
+{210}{}{You see a well-dressed gentleman. He looks very apprehensive. Could be the reason his hair tips turned grey.}
+{1000}{}{Predialogue installations}
+{1010}{}{2}
+{2000}{}{Говори, дикарь. Кто ты и что тебе нужно?}
+{2010}{}{Эээ... Я уже ухожу.}
+

@@ -1,0 +1,25 @@
+// Author: Tab10id
+#include "_macros.fos"
+#include "quest_trib_raiders_attack.fos"
+
+void _PrimalTribeInit(Map& map, bool firstTime)
+{
+	initQuest(map);
+//	initNaturResp(map);
+}
+
+void initNaturResp(Map& map)
+{
+	CreateTimeEvent(__FullSecond,"e_NaturResp",map.Id,false);
+}
+
+uint e_NaturResp(uint[]@ values)
+{
+	Map@ map = GetMap(values[0]);
+//272 120 82
+//272 108 81
+//271 127 87
+//271 107 83
+//117 118 84
+	return 60*60*12;
+}

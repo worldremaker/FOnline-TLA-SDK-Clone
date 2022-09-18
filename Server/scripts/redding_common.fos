@@ -1,0 +1,118 @@
+#include "_macros.fos"
+#include "_dialogs.fos"
+#include "guard_lib.fos"
+#include "guard_lib_events.fos"
+
+#define STR_GRAVE              (5425)
+
+// Скрипт охраны Hex'a
+
+class CGuardsManagerForNCR : CGuardsManager
+{
+	CGuardsManagerForNCR()
+	{
+		super();
+		dialog = DIALOG_redd_regulator;
+	}
+}
+
+// класс с алгоритмом
+CGuardsManagerForNCR grd;
+
+bool GuardItemTest(Item@ item) // export
+{
+	return grd.GuardItemTest(item);
+}
+
+// Усиление нпц
+void PowerNpc(Critter & cr)
+{
+	cr.StatBase[ST_STRENGTH]=Random(8,10);
+	cr.StatBase[ST_PERCEPTION]=Random(8,10);
+	cr.StatBase[ST_ENDURANCE]=Random(8,10);
+	cr.StatBase[ST_AGILITY]=Random(8,10);
+	cr.StatBase[ST_LEVEL]=Random(24,30);
+	cr.StatBase[ST_ACTION_POINTS]=Random(10,12);
+	cr.StatBase[ST_CRITICAL_CHANCE]=Random(20,30);
+	for(uint i=ST_NORMAL_RESIST;i<=ST_EXPLODE_RESIST;i++)
+	{
+		if(i!=ST_EMP_RESIST)
+		{
+			cr.StatBase[i]=Random(40,70);
+		}
+	}
+	uint type = Random(0,4);
+	switch(type)
+	{
+		case 1:
+			cr.PerkBase[PE_SNIPER]=1;
+			cr.PerkBase[PE_TERMINATOR]=0;
+			cr.PerkBase[PE_SLAYER]=0;
+			break;
+		case 2:
+			cr.PerkBase[PE_TERMINATOR]=1;
+			cr.PerkBase[PE_SNIPER]=0;
+			cr.PerkBase[PE_SLAYER]=0;
+			break;
+		case 3:
+			cr.PerkBase[PE_SLAYER]=1;
+			cr.PerkBase[PE_SNIPER]=0;
+			cr.PerkBase[PE_TERMINATOR]=0;
+			break;
+		case 4:
+			cr.PerkBase[PE_TERMINATOR]=1;
+			cr.PerkBase[PE_SLAYER]=1;
+			cr.PerkBase[PE_SNIPER]=0;
+			break;
+		default:
+			cr.PerkBase[PE_SNIPER]=0;
+			cr.PerkBase[PE_TERMINATOR]=0;
+			cr.PerkBase[PE_SLAYER]=0;
+			break;
+	}
+	cr.PerkBase[PE_BETTER_CRITICALS] = (Random(1,10)==1?1:0);
+	cr.PerkBase[PE_BONUS_RANGED_DAMAGE]=1;
+	cr.PerkBase[PE_LIFEGIVER]=Random(1,3);
+	cr.PerkBase[PE_BONUS_RATE_OF_FIRE]=1;
+	cr.PerkBase[PE_BONUS_HTH_DAMAGE]=1;
+	for(uint i=SK_SMALL_GUNS;i<=SK_SNEAK;i++)
+	{
+		cr.SkillBase[i]=Random(150,250);
+	}
+	cr.StatBase[ST_MAX_LIFE] = Random(250,500);
+	cr.StatBase[ST_CURRENT_HP] = cr.Stat[ST_MAX_LIFE];
+	
+}
+
+bool s_RooneyGrave(Critter& player, Scenery& scenery, int skill, Item@ item)
+{
+
+	if(!valid(item)) return true;
+	GameVar @ st = GetLocalVar(LVAR_redd_rooney_cemetery, player.Id);
+	if(!valid(st)) return true;
+	if(st<3&&st>0&&item.GetProtoId()==PID_FLOWER&&player.CountItem(PID_FLOWER)>1) 
+	{
+		st=3;
+		_CritDeleteItem (player,PID_FLOWER,2);
+		player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_GRAVE);
+		player.StatBase[ST_EXPERIENCE]+=200;
+	}
+	
+	return true;
+}
+
+void _PoisonedInit(Critter &cr, bool firstTime)
+{
+	
+	cr.ToKnockout(true, 1000, cr.HexX, cr.HexY);
+	cr.SetEvent(CRITTER_EVENT_SMTH_USE_ITEM,"_SmthUseItem");
+}
+
+void _SmthUseItem(Critter& cr, Critter& fromCr, Item& item, Critter@ onCritter, Item@ onItem, Scenery@ onScenery)
+{
+	if(!valid(onCritter)) return;
+	if(onCritter.Id==cr.Id&&item.GetProtoId()==PID_ANTIDOTE)
+	{
+		RunDialog(fromCr, 1353, cr.HexX, cr.HexY, false);
+	}
+}

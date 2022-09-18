@@ -1,0 +1,152 @@
+// Author: cvet
+
+//Изменил некоторые значения в рамках эксперимента с экономикой.
+//Dagnir, 23.03.2010
+
+#include "_macros.fos"
+#include "_msgstr.fos"
+
+
+bool TryRepairItem(Critter& cr, Item& item) // Export
+{
+	if(not item.IsWeared()) return true;
+
+	if(cr.Timeout[TO_BATTLE]>0)
+	{
+		cr.SayMsg(SAY_NETMSG,TEXTMSG_GAME,STR_TIMEOUT_BATTLE_WAIT);
+		return true;
+	}
+
+	if(cr.Timeout[TO_SK_REPAIR]>0)
+	{
+		cr.SayMsg(SAY_NETMSG,TEXTMSG_GAME,STR_SKILL_WEARINESS);
+		return true;
+	}
+
+	if(FLAG(item.BrokenFlags,BI_ETERNAL) || FLAG(item.BrokenFlags,BI_NOTRESC))
+	{
+		cr.SayMsg(SAY_NETMSG,TEXTMSG_GAME,STR_INV_WEAR_NO_RESC);
+		return true;
+	}
+
+	// Repair
+	int repair=cr.Skill[SK_REPAIR];
+	uint16 activePid=cr.GetSlotProto(SLOT_HAND1).GetProtoId();
+	if(activePid==PID_MULTI_TOOL)
+	{
+		repair+=25;
+		if(Random(0,30)==0) cr.DeleteItem(PID_MULTI_TOOL,1);
+	}
+	else if(activePid==PID_SUPER_TOOL_KIT)
+	{
+		repair+=50;
+		if(Random(0,30)==0) cr.DeleteItem(PID_SUPER_TOOL_KIT,1);
+	}
+
+	if(FLAG(item.BrokenFlags,BI_BROKEN))
+	{
+		if(FLAG(item.BrokenFlags,BI_HIGHBROKEN)) repair-=100; //было 150
+		else if(FLAG(item.BrokenFlags,BI_NORMBROKEN)) repair-=75; //было 100
+		else if(FLAG(item.BrokenFlags,BI_LOWBROKEN)) repair-=25; // было 50
+
+		repair-=item.BrokenCount*50/BROKEN_MAX; //было 100
+		repair=CLAMP(repair,6,95);
+
+		if(repair>=Random(1,100))
+		{
+			item.BrokenWear=0;
+			UNSETFLAG(item.BrokenFlags,BI_BROKEN);
+			cr.SayMsg(SAY_NETMSG,TEXTMSG_GAME,STR_INV_WEAR_REPAIR_SUCC);
+			cr.StatBase[ST_EXPERIENCE]+=40;
+		}
+		else
+		{
+			item.BrokenCount++;
+			if(item.BrokenCount>=BROKEN_MAX) SETFLAG(item.BrokenFlags,BI_NOTRESC);
+			cr.SayMsg(SAY_NETMSG,TEXTMSG_GAME,STR_INV_WEAR_REPAIR_FAIL);
+		}
+	}
+
+	// Service
+	else
+	{
+		if(FLAG(item.BrokenFlags,BI_SERVICE)) repair-=25; //было 50
+		repair-=item.BrokenCount*50/BROKEN_MAX; //было 100
+		repair=CLAMP(repair,6,95);
+
+		if(repair>=Random(1,100))
+		{
+			SETFLAG(item.BrokenFlags,BI_SERVICE);
+			if(activePid==PID_OIL_CAN)
+			{
+				item.BrokenWear=0;
+				cr.DeleteItem(PID_OIL_CAN,1);
+			}
+			else
+			{
+				int cnt=repair*WEAR_MAX/300;
+				if(cnt>item.BrokenWear) item.BrokenWear=0;
+				else item.BrokenWear-=cnt;
+			}
+			cr.SayMsg(SAY_NETMSG,TEXTMSG_GAME,STR_INV_WEAR_SERVICE_SUCC);
+			cr.StatBase[ST_EXPERIENCE]+=20;
+		}
+		else
+		{
+			WearItem(cr,item,WEAR_MAX/5);
+			cr.SayMsg(SAY_NETMSG,TEXTMSG_GAME,STR_INV_WEAR_SERVICE_FAIL);
+		}
+	}
+
+	item.Update();
+	cr.TimeoutBase[TO_SK_REPAIR]=REPAIR_TIMEOUT(cr);
+	return true;
+}
+
+void WearItem(Critter& cr, Item& item, int wearCount) // Export
+{
+	if(wearCount<=0 || not item.IsWeared() || FLAG(item.BrokenFlags,BI_ETERNAL) || FLAG(item.BrokenFlags,BI_BROKEN)) return;
+
+	item.BrokenWear+=wearCount;
+	if(item.BrokenWear>=WEAR_MAX)
+	{
+		item.BrokenWear=WEAR_MAX;
+		item.BrokenCount++;
+
+		int brokenLvl=Random(0,item.BrokenCount/(BROKEN_MAX/4));
+
+		if(item.BrokenCount>=BROKEN_MAX || brokenLvl>=3) SETFLAG(item.BrokenFlags,BI_NOTRESC);
+		else if(brokenLvl==2) SETFLAG(item.BrokenFlags,BI_HIGHBROKEN);
+		else if(brokenLvl==1) SETFLAG(item.BrokenFlags,BI_NORMBROKEN);
+		else SETFLAG(item.BrokenFlags,BI_LOWBROKEN);
+		cr.SayMsg(SAY_NETMSG,TEXTMSG_GAME,STR_INV_WEAR_WEAPON_BROKEN);
+	}
+
+	item.Update();
+}
+
+void SetWear(Item& item, int wearProcent) // Export
+{
+	if(not item.IsWeared()) return;
+	UNSETFLAG(item.BrokenFlags,BI_BROKEN);
+	wearProcent=CLAMP(wearProcent,0,100);
+	item.BrokenWear=WEAR_MAX*wearProcent/100;
+	item.BrokenCount=BROKEN_MAX*wearProcent/100;
+	if(wearProcent==100) SETFLAG(item.BrokenFlags,BI_BROKEN);
+	item.Update();
+}
+
+int GetWearProcent(Item& item) // Export
+{
+	if(not item.IsWeared()) return 0;
+	if(FLAG(item.BrokenFlags,BI_BROKEN)) return 100;
+	int value=item.BrokenWear*100/WEAR_MAX;
+	return CLAMP(value,0,100);
+}
+
+
+
+
+
+
+

@@ -1,0 +1,201 @@
+// Author: heX, cvet, Tab10id
+#include "_macros.fos"
+
+import void FlushScreen(Critter& cr, bool fadeOut, uint timeMs) from "effects";
+
+// Npc scan radius
+#define WARN_DIST                (10)
+
+// Roll vs skill
+#define ROLL_CRITICAL_FAILURE    (0)
+#define ROLL_FAILURE             (1)
+#define ROLL_SUCCESS             (2)
+#define ROLL_CRITICAL_SUCCESS    (3)
+
+int RollVsSkill(Critter& cr, uint skillIndex, int bonus)
+{
+	int skVal = cr.Skill[skillIndex];
+	int r = Random(1, 100);
+
+	if(skVal + bonus >= r)
+	{
+		if(Random(1, 100) <= (((skVal - r) / 10) + cr.StatBase[ST_CRITICAL_CHANCE]))
+			return ROLL_CRITICAL_SUCCESS;
+		else
+			return ROLL_SUCCESS;
+	}
+	else
+	{
+		if(Random(1, 100) <= (r - skVal) / 10)
+			return ROLL_CRITICAL_FAILURE;
+		else
+			return ROLL_FAILURE;
+	}
+}
+
+bool IsSuccessRvS(int val)
+{
+	return val == ROLL_CRITICAL_SUCCESS || val == ROLL_SUCCESS;
+}
+
+bool IsCriticalRvS(int val)
+{
+	return val == ROLL_CRITICAL_SUCCESS || val == ROLL_CRITICAL_FAILURE;
+}
+
+void HealCritter(Critter& player)
+{
+	if(player.IsDead()) player.ToLife();
+	player.StatBase[ST_CURRENT_HP] = player.Stat[ST_MAX_LIFE];
+}
+
+bool TransitToLoc(Critter& cr, uint16 locPid, uint mapIndex, uint entranceNum)
+{
+	Location@ loc = GetLocationByPid(locPid, 0);
+	if(not valid(loc)) return false;
+
+	Map@ map = loc.GetMapByIndex(mapIndex);
+	if(not valid(map)) return false;
+
+	FlushScreen(cr, true, 3000);
+	return cr.TransitToMap(map.Id, entranceNum);
+}
+
+bool TransitToMap(Critter& cr, uint16 mapPid, uint entranceNum)
+{
+	Map@ map = GetMapByPid(mapPid, 0);
+	if(not valid(map)) return false;
+
+	FlushScreen(cr, true, 3000);
+	return cr.TransitToMap(map.Id, entranceNum);
+}
+
+bool TransitToNewLocation(Critter& cr, uint16 locPid)
+{
+	Critter@[] group={cr};
+
+	uint locId=CreateLocation(locPid, cr.WorldX, cr.WorldY, group);
+	if(locId==0) return false;
+
+	Location@ loc = GetLocation(locId);
+	loc.Visible = false;
+	loc.GeckEnabled = false;
+	loc.AutoGarbage = true;
+
+	FlushScreen(cr, true, 3000);
+	return cr.TransitToMap(loc.GetMapByIndex(0).Id, 0);
+}
+
+void InfoMessage(Critter& player, Critter& npc, uint strNum)
+{
+	player.SayMsg(SAY_NETMSG, TEXTMSG_DLG, DLGSTR(npc.Stat[ST_DIALOG_ID], strNum) );
+}
+
+void NpcMessageNorm(Critter& npc, uint strNum)
+{
+	npc.SayMsg(SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR(npc.Stat[ST_DIALOG_ID], strNum));
+}
+
+void NpcMessageShout(Critter& npc, uint strNum)
+{
+	npc.SayMsg(SAY_SHOUT_ON_HEAD, TEXTMSG_DLG, DLGSTR(npc.Stat[ST_DIALOG_ID], strNum));
+}
+
+void NpcMessageWhisp(Critter& npc, uint strNum)
+{
+	npc.SayMsg(SAY_WHISP_ON_HEAD, TEXTMSG_DLG, DLGSTR(npc.Stat[ST_DIALOG_ID], strNum));
+}
+
+void NpcMessageEmo(Critter& npc, uint strNum)
+{
+	npc.SayMsg(SAY_EMOTE_ON_HEAD, TEXTMSG_DLG, DLGSTR(npc.Stat[ST_DIALOG_ID], strNum));
+}
+
+void TimeoutSet(Critter& npc, uint gameHours)
+{
+	GameVar@ t = GetLocalVar(LVAR_timeout, npc.Id);
+	t = __FullSecond + gameHours * 60 * 60;
+}
+
+void TimeoutSub(Critter& npc, uint gameHoursSub)
+{
+	GameVar@ t = GetLocalVar(LVAR_timeout, npc.Id);
+	t -= gameHoursSub * 60 * 60;
+}
+
+void TimeoutAdd(Critter& npc, uint gameHoursAdd)
+{
+	GameVar@ t = GetLocalVar(LVAR_timeout, npc.Id);
+	t += gameHoursAdd * 60 * 60;
+}
+
+void GroupSetVar(Critter& player, uint16 varId, int value)
+{
+	Critter@[] group={player};
+	player.GetFollowGroup(FIND_ALL, group);
+	for(uint i = 0, j= group.length(); i < j; i++)
+	{
+		GameVar@ var = GetLocalVar(varId, group[i].Id);
+		if(not valid(var)) return; // Wrong varId
+		var = value;
+		group[i].SendQuestVar(var);
+	}
+}
+
+void Warn(Critter& player, int npcRole)
+{
+	if(not player.IsPlayer()) return;
+
+	Critter@ npc=GetNearCritterWithRole(player.GetMap(), player.HexX, player.HexY, WARN_DIST, npcRole);
+	if(not valid(npc)) return;
+
+	npc.SayMsg(SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 1001);
+}
+
+void DoorControl(Critter& player, uint entireNum, bool toOpen)
+{
+	Map@ map = player.GetMap();
+	uint x = 0, y = 0;
+	if(valid(map) && map.GetEntireCoords(entireNum, 0, x, y))
+	{
+		Item@ door = map.GetDoor(x, y);
+		if(valid(door))
+		{
+			if(toOpen) door.LockerOpen();
+			else door.LockerClose();
+		}
+	}
+}
+
+bool DialogNpc(Critter& player, int role)
+{
+	if(not player.IsPlayer()) return false;
+
+	Critter@ npc = GetNearCritterWithRole(player.GetMap(), player.HexX, player.HexY, WARN_DIST, role);
+	if(not valid(npc)) return false;
+
+	player.Wait(0);
+ 	return RunDialog(player, npc, true);
+}
+
+Critter@ GetNearCritterWithRole(Map@ map, uint16 hexX, int hexY, uint radius, int role)
+{
+	Critter@[] critters;
+	uint count = map.GetCrittersHex(hexX, hexY, radius, FIND_LIFE, critters);
+	uint minDist = 10000;
+	Critter@ nearCrit=null;
+	for(uint i=0; i < count; i++)
+	{
+		if(critters[i].StatBase[ST_NPC_ROLE] == role)
+		{
+			 uint d=GetDistantion(hexX, hexY, critters[i].HexX, critters[i].HexY);
+			 if(d < minDist)
+			 {
+					minDist = d;
+					@nearCrit = critters[i];
+			 }
+		}
+	}
+	return nearCrit;
+}
+

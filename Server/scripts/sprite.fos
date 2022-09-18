@@ -1,0 +1,39 @@
+// Author: cvet
+// used in client
+
+#ifndef _SPRITE_
+#define _SPRITE_
+
+class Sprite
+{
+	Sprite()
+	{
+		Id=0;
+		Width=0;
+		Height=0;
+		FrmCount=0;
+	}
+
+	void Load(string& name, int path)
+	{
+		Id=LoadSprite(name,path);
+		Width=GetSpriteWidth(Id,0);
+		Height=GetSpriteHeight(Id,0);
+		FrmCount=GetSpriteCount(Id);
+	}
+
+	void Load(uint nameHash, uint8 dir)
+	{
+		Id=LoadSprite(nameHash,dir);
+		Width=GetSpriteWidth(Id,0);
+		Height=GetSpriteHeight(Id,0);
+		FrmCount=GetSpriteCount(Id);
+	}
+
+	uint Id;
+	int Width;
+	int Height;
+	uint FrmCount;
+}
+
+#endif // _SPRITE_

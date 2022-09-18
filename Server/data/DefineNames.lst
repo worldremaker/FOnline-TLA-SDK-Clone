@@ -1,0 +1,64 @@
+#
+# Some definitions
+# Letters before ~ truncated
+#
+
+*0
+0      ---LOCATIONS---
+1      LocDen
+2      LocKlamath
+3      LocModoc
+4      LocVaultCity
+5      LocGecko
+6      LocBrokenHills
+7      LocNewReno
+8      LocSierra
+9      LocVault15
+10     LocNCR
+11     LocCathedral
+12     LocMilitaryBase
+13     LocRedding
+14     LocSanFrancisco
+15     LocNavarro
+16     LocArroyo
+17     LocPrimalTribe
+18     LocRangers
+19     LocVault13
+40     LocReplication1
+41     LocReplication2
+42     LocReplication3
+43     LocReplication4
+44     LocReplicationHell
+
+*0
+0      ---STATS---
+0      StatStrength
+1      StatPerception
+2      StatEndurance
+3      StatCharisma
+4      StatIntellect
+5      StatAgility
+6      StatLuck
+
+*200
+0      ---SKILLS---
+0      SkillSmallGuns
+1      SkillBigGuns
+2      SkillEnergyWeapons
+3      SkillUnarmed
+4      SkillMeleeWeapons
+5      SkillThrowing
+6      SkillFirstAid
+7      SkillDoctor
+8      SkillSneak
+9      SkillLockpick
+10     SkillSteal
+11     SkillTraps
+12     SkillScience
+13     SkillRepair
+14     SkillSpeech
+15     SkillBarter
+16     SkillGambling
+17     SkillOutdoorsman
+
+
