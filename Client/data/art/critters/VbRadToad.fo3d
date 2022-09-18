@@ -1,0 +1,4 @@
+template=TemplateVBMob.txt anim CR_RadToad
+xfile=CR_RadToad.x
+scale=2000
+

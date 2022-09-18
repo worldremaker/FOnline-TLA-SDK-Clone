@@ -1,0 +1,10 @@
+template=TemplateVBMob.txt anim CR_Centipede
+xfile=CR_Centipede.x
+scale=500
+texture=CR_Centipede_default_LG.tga
+
+layer_0=
+1 root_texture CR_Centipede_Red_LG.tga,
+2 root_texture CR_Centipede_Green_LG.tga,
+3 root_texture CR_Centipede_Blue_LG.tga;
+

@@ -1,0 +1,4 @@
+template=TemplateVBMob.txt anim CR_Cow
+xfile=CR_Cow.x
+scale=700
+
