@@ -8,7 +8,7 @@ lang=russ
 [dialog]
 &
 1 1000 None 1 #
-2 1010 D _var p q_vc_hartman_fight = 0 D _var p q_vc_hartmann_clear_cave > 3 #
+2 1010 D _var p q_vc_hartman_fight = 0 #
 72 1020 D _param p ST_INTELLECT < 4 #
 70 1030 D _var p q_vc_hartman_fight = 1 D _var p vc_hartman_fight_status < 2 #
 11 1040 D _var p vc_hartman_fight_status > 1 D _var p q_vc_hartman_fight = 1 R _var p q_vc_hartman_fight = 2 R _param p REPUTATION_VAULT_CITY + 1 R _param p ST_EXPERIENCE + 250 #
