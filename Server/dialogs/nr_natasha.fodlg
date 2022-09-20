@@ -23,13 +23,12 @@ lang=russ
 7 6010 #
 8 6020 @
 7 7000 None 0 #
-9 7010 R _script merc@r_SaveMercId 1 4313 R _script merc@r_AddMerc2Player 0  R _script dialog@r_FadeOut 1 0 R _script dialog@r_SayMessageDelayed 3 1 20 1 R _script dialog@r_InfoMessage 1 2 R _script map_v15_village@r_DelayKarma 0  #
+9 7010 R _script merc@r_SaveMercId 1 4313 R _script merc@r_AddMerc2Player 0  R _script dialog@r_FadeOut 1 0 R _script dialog@r_SayMessageDelayed 3 1 20 1 R _script dialog@r_InfoMessage 1 2 R _script map_v15_village@r_DelayKarma 0  R _param p KARMA_PEDOBEAR = 1 #
 11 7020 D _var p q_redd_hubb_childkiller = 5 R _var p q_redd_hubb_childkiller = 6 #
 11 7030 D _var p q_redd_hubb_childkiller = 6 @
 8 8000 None 0 #
 10 8010 @
-9 9000 None 0 #
-0 9010 @
+9 9000 None 0 @
 10 10000 None 0 #
 0 10010 R _script merc@r_SaveMercId 1 4313 R _script merc@r_AddMerc2Player 0  #
 0 10020 @
@@ -65,7 +64,6 @@ lang=russ
 {8000}{}{Вы правду говорите? Потому что я очень хочу проституткой работать. Даже если придется в школе учиться.}
 {8010}{}{Конечно правду. Нужно хорошо учиться в школе, мыть руки перед едой, и чистить зубы два раза в день. Обещаю, когда ты вырастешь, я стану твоим постоянным клиентом! Ты заработаешь кучу денег!}
 {9000}{}{Господи, бедная мама. Как он это выдерживала. Пойдем-ка домой быстрее. Я должна извиниться перед ней за своё поведение.}
-{9010}{}{Да, пошли.}
 {10000}{}{Да? Вот здорово! Пойдем тогда домой быстрее!}
 {10010}{}{Да, идем.}
 {10020}{}{Не так быстро, девочка. Подожди меня здесь, у меня еще остались не законченные дела. Я вернусь.}
