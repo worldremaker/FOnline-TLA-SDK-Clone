@@ -16,7 +16,8 @@
 #define _MarchKey #(crId) ("MarchQueue_"+crId)
 #define _CommanderKey #(crId) ("MarchCommander_"+crId)
 #define PID_UNARMED              (0) //1000)
-#define DL #(s) (Log(s))
+//#define DL #(s) (Log(s))
+#define DL #(s)
 #define STR_LOOSE                     (5917) // Вы что-то сделали не так. Задание провалено.
 
 import bool AddWalkPlane(Critter& npc, uint priority, uint16 hexX, uint16 hexY, uint8 dir, bool run, uint cut) from "npc_planes";

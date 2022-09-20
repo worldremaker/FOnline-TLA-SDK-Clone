@@ -23,7 +23,7 @@ lang=russ
 28 1130 D _param p KARMA_VC_GUARDSMAN > 0 D _var p vc_patrol_counter < 3 D _script dialog@d_TimeoutOk 0  D _var p q_vc_shrim_patrol = 0 #
 31 1140 D _var p q_vc_shrim_patrol > 0 #
 36 1150 D _var p vc_patrol_counter > 2 D _var p vc_guard_rank = 1 #
-40 1160 D _var p vc_guard_rank = 2 D _script dialog@d_TimeoutOk 0  D _var p vc_patrol_counter < 4 D _var p q_vc_hartmann_recon = 0 #
+40 1160 D _var p vc_guard_rank = 2 D _script dialog@d_TimeoutOk 0  D _var p q_vc_hartmann_recon = 0 D _var p vc_caves_counter < 4 #
 43 1170 D _var p q_vc_hartmann_recon > 1 D _var p q_vc_hartmann_recon < 4 #
 46 1180 D _var p q_vc_hartmann_recon = 4 D _script dialog@d_TimeoutOk 0  D _var p q_vc_hartmann_clear_cave = 0 #
 49 1190 D _var p q_vc_hartmann_clear_cave > 0 D _var p q_vc_hartmann_clear_cave < 4 #
@@ -161,7 +161,7 @@ lang=russ
 52 52000 None 0 #
 0 52010 R _param p ST_EXPERIENCE + 3500 R _item p PID_BOTTLE_CAPS + 3000 R _item p PID_SUPER_STIMPAK + 2 R _item p PID_COMBAT_ARMOR + 1 R _param p REPUTATION_VAULT_CITY + 1 R _var p q_vc_hartmann_recon = 0 R _script dialog@r_SetUniqTO 1 4320 R _var p vc_caves_counter + 1 R _var p q_vc_hartmann_clear_cave = 4 @
 53 53000 None 0 #
-0 53010 R _param p ST_EXPERIENCE + 3500 R _item p PID_BOTTLE_CAPS + 3000 R _item p PID_SUPER_STIMPAK + 2 R _item p PID_COMBAT_ARMOR + 1 R _var p q_vc_hartmann_recon = 0 R _script dialog@r_SetUniqTO 1 4320 R _var p vc_caves_counter + 1 R _var p q_vc_hartmann_clear_cave = 4 @
+0 53010 R _param p ST_EXPERIENCE + 3500 R _item p PID_BOTTLE_CAPS + 3000 R _item p PID_SUPER_STIMPAK + 2 R _var p q_vc_hartmann_recon = 0 R _script dialog@r_SetUniqTO 1 4320 R _var p vc_caves_counter + 1 R _var p q_vc_hartmann_clear_cave = 4 @
 54 54000 None 0 #
 55 54010 R _var p vc_guard_rank = 3 @
 55 55000 None 0 #

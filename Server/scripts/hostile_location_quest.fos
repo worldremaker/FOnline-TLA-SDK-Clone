@@ -38,6 +38,9 @@
 #define _InfoFromMap #(map)         (HostileLocationInfo(_GetPlayerId(map), _GetVarNum(map)))
 #define _InfoFromCr  #(cr)          (valid(cr.GetMap()) ? HostileLocationInfo(_GetPlayerId(cr.GetMap()), _GetVarNum(cr.GetMap())) : null)
 
+//#define DL #(s) (Log(s))
+#define DL #(s)
+
 import bool AddAttackPlane(Critter& npc, uint priority, uint critId) from "npc_planes";
 import bool AddWalkPlane(Critter& npc, uint priority, uint16 hexX, uint16 hexY, uint8 dir, bool run, uint cut) from "npc_planes";
 import bool GetFreeHex(Map& map, uint radius, uint16& hx, uint16& hy) from "caravan";
@@ -154,7 +157,7 @@ class HostileLocationInfo
 	uint GetNpc(Critter@[]& critters, bool ally, int findType)
 	{
 		uint len = critters.length(); // Первоначальная длина массива
-		if (!this.LocCreated)
+		if (this.LocId == 0)
 			return 0;
 		Location@ loc = GetLocation(this.LocId);
 		if(!valid(loc))
@@ -170,6 +173,7 @@ class HostileLocationInfo
 					push_back_handle(critters, cr);
 			}
 		}
+		DL("array length"+(critters.length() - len));
 		return (critters.length() - len);
 	}
 	
@@ -178,7 +182,7 @@ class HostileLocationInfo
 		Critter@[] critters;
 		uint all = this.GetNpc(critters, ally, FIND_ALL|FIND_ONLY_NPC);
 		uint dead = this.GetNpc(critters, ally, FIND_KO_AND_DEAD|FIND_ONLY_NPC);
-		Log("perce" + (dead == 0? 0 : uint(100*dead/all)));
+		DL("perce" + (dead == 0? 0 : uint(100*dead/all))+"dead:"+dead + "; all:"+all);
 		return (dead == 0? 0 : uint(100*dead/all));
 	}
 	
@@ -206,7 +210,7 @@ class HostileLocationInfo
 	
 	void CompleteQuest()
 	{
-		Log("complete quest called");
+		DL("complete quest called");
 		GameVar@ qVar = GetLocalVar(this.QVarNum, this.PlayerId);
 		if(valid(qVar))
 		{
@@ -215,11 +219,11 @@ class HostileLocationInfo
 			if(valid(cr))
 				cr.SendQuestVar(qVar);
 		}
-			Log("counter quest called");
+			DL("counter quest called");
 		if(this.CVarNum != 0) // Установка счетчика, если назначен
 		{
 			GameVar@ status = GetLocalVar(this.CVarNum, this.PlayerId);
-			if(valid(status) && status.GetValue() != 0)
+			if(valid(status) && status.GetValue() == 0)
 			{
 				Critter@[] critters;
 				status = this.GetNpc(critters, true, FIND_DEAD|FIND_ONLY_NPC);		
@@ -250,6 +254,7 @@ uint e_ResetHostileLoc(uint[]@ values) // Очистка AnyData
 
 void _HostileMapInit(Map& map, bool firstTime)
 {
+	DL("map init. Pid:" + map.GetProtoId());
 	map.SetEvent(MAP_EVENT_CRITTER_DEAD, "_HostileMapCritterDead");
 	map.SetEvent(MAP_EVENT_IN_CRITTER, "_HostileMapInCritter");
 	HostileLocationInfo@ info = _InfoFromMap(map);
@@ -288,19 +293,19 @@ void _HostileMapCritterDead(Map& map, Critter& cr, Critter@ killer)
 	Critter@[] hostiles;
 	if(info.GetNpc(hostiles, false, FIND_LIFE_AND_KO|FIND_ONLY_NPC) == 0) // Все мобы мертвы
 	{
-		Log("completed");
+		DL("completed");
 		info.CompleteQuest();
 		map.SetScript("");
 		map.SetEvent(MAP_EVENT_CRITTER_DEAD, "");
 		map.SetEvent(MAP_EVENT_IN_CRITTER, "");
 		return;
 	}
-	for(uint i = 0, l = hostiles.length(); i < l; i++)
-	{
-		hostiles[i].DropPlanes();
-	}
 	if(cr.IsPlayer() && cr.Id == info.PlayerId) // Убит игрок. Союзники возвращаются на домашнюю позицию.
 	{
+		for(uint i = 0, l = hostiles.length(); i < l; i++)
+		{
+			hostiles[i].DropPlanes();
+		}
 		Critter@[] allies;
 		if(info.GetNpc(allies, true, FIND_LIFE_AND_KO|FIND_ONLY_NPC) > 0)
 		{
@@ -320,6 +325,7 @@ void _HostileMapCritterDead(Map& map, Critter& cr, Critter@ killer)
 // Скрипты союзника
 void _AllyInit(Critter& cr, bool firstTime)
 {
+	DL("Ally init");
 	cr.StatBase[ST_VAR0] = 0;
 	cr.ModeBase[MODE_NO_HOME] = 0;
 	cr.SetEvent(CRITTER_EVENT_IDLE, "_AllyIdle");
@@ -391,14 +397,17 @@ void _AllySmthAttacked(Critter& cr, Critter& fromCr, Critter& attacker)
 
 void _AllyShowCritter(Critter& cr, Critter& showCrit)
 {
+	DL("Show critter");
 	HostileLocationInfo@ info = _InfoFromCr(cr);
 	if(!valid(info))
 		return;	
 	info.Load();
+	DL("Info loaded");
 	if(cr.Stat[ST_VAR0] == 0)
 	{
 		if(showCrit.IsPlayer() && showCrit.Id == info.PlayerId)
 		{
+			DL("Player remembered");
 			cr.StatBase[ST_VAR0] = 1;
 			cr.ModeBase[MODE_NO_HOME] = 1;
 		}
@@ -461,8 +470,11 @@ void _HostileDead(Critter& cr, Critter@ killer)
 	bool toAll = false;
 	HostileLocationInfo@ info = _InfoFromCr(cr);
 	if(valid(info))
+	{
+		info.Load();
 		if(info.DeadPercent(false)>20)
 			toAll = true;
+	}
 	if(valid(killer))
 	{
 		cr.SendMessage(MSG_KILL_EM, killer.Id, (toAll ? MESSAGE_TO_ALL_ON_MAP : MESSAGE_TO_WHO_SEES_ME));
