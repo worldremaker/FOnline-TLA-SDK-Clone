@@ -1,0 +1,43 @@
+// Author: rifleman17
+// Скрипты для квестовой линии "Гвардеец Города-Убежища"
+#include "_macros.fos"
+
+#define ENTIRE_GUARDSMAN              (44) // номер энтайр гекса, на котором проводятся учения ~run debug ToMapEntire 16 44 0 
+
+import void SetWear(Item& item, int wearProcent)  from "repair";
+import int GetWearProcent(Item& item) from "repair";
+
+// квест Самоделкин 
+// Тренировка по надлежащему уходу за оружием
+// Выдача двух сломанных Штурмовых винтовок
+void r_GiveWearItems(Critter& player, Critter@ npc, int pid, int count, int wearPercent)
+{
+	Item@ item;
+	for(int i = 0; i < count; i++)
+	{
+		@item = player.AddItem(pid, 1);
+		if(!valid(item))
+			continue;
+		SetWear(item, wearPercent);
+	}
+}
+
+bool d_CheckWear(Critter& player, Critter@ npc, int pid, int count, int wearPercent)
+{
+	if(count == 0)
+		return false;
+	Item@ item;
+	Item@[] items;
+	if(player.GetItems(-1, items) == 0)
+		return false;
+	int num = 0;
+	for(uint i = 0, l = items.length(); i < l; i++)
+	{
+		@item = items[i];
+		if(!valid(item) || item.GetProtoId() != pid)
+			continue;
+		if(GetWearProcent(item) <= wearPercent)
+			num++;
+	}
+	return (num >= count);
+}

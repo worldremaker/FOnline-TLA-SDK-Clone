@@ -19,7 +19,7 @@ lang=russ engl
 0 4010 #
 5 4020 D _param p ST_LEVEL > 6 D _var p q_ncr_hub_book = 0 #
 25 4030 D _item p PID_HUBOLOGIST_BOOK > 2 D _var p q_ncr_hub_book = 1 R _script ncr_common@r_SetHubBookReset 0  #
-23 4040 D _var p q_ncr_hub_book = 2 D _script ncr_ratch@d_RatchTimeOutCheck 1 4285 R _var p q_ncr_hub_book = 0 @
+23 4040 D _script ncr_ratch@d_RatchTimeOutCheck 1 4285 D _var p q_ncr_hub_book > 0 R _var p q_ncr_hub_book = 0 @
 5 5000 None 0 #
 6 5010 @
 6 6000 None 0 #

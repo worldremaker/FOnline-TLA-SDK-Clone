@@ -173,7 +173,7 @@ lang=russ engl
 68 49010 @
 68 50000 None 0 #
 0 50010 #
-69 50020 D _param p SK_BARTER > 99 D _var p q_ncr_buster_brokenrifles = 2 D _var p q_ncr_buster_brokenrifles > 4999 R _var p q_ncr_buster_brokenrifles = 3 R _item p PID_BOTTLE_CAPS - 5000 R _param p ST_EXPERIENCE + 500 @
+69 50020 D _param p SK_BARTER > 99 D _var p q_ncr_buster_brokenrifles = 2 D _item p PID_BOTTLE_CAPS > 4999 R _var p q_ncr_buster_brokenrifles = 3 R _item p PID_BOTTLE_CAPS - 5000 R _param p ST_EXPERIENCE + 500 @
 69 51000 None 0 #
 0 51010 @
 70 52000 None 0 #
