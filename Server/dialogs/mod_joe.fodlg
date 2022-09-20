@@ -92,11 +92,11 @@ lang=russ engl
 25 24010 @
 25 25000 None 0 @
 26 26000 None 0 #
-0 26010 #
-28 26020 #
+0 26010 D _var p q_mod_joe_giant_wasp ! 2 #
+28 26020 D _var p q_mod_joe_giant_wasp ! 2 #
 27 26030 D _var p q_mod_joe_giant_wasp = 2 @
 27 27000 None 0 #
-0 27010 D _var p q_mod_joe_giant_wasp = 2 R _param p SK_BARTER + 7 R _item p PID_BOTTLE_CAPS + 1500 R _param p REPUTATION_MODOC + 1 R _param p ST_KARMA + 10 R _param p ST_EXPERIENCE + 2000 R _var p q_mod_joe_giant_wasp = 3 @
+0 27010 D _var p q_mod_joe_giant_wasp = 2 R _param p SK_BARTER + 7 R _item p PID_BOTTLE_CAPS + 1500 R _param p REPUTATION_MODOC + 1 R _param p ST_KARMA + 10 R _param p ST_EXPERIENCE + 2000 R _var p q_mod_joe_giant_wasp = 3 R _script dialog@r_InfoMessage 1 1 @
 28 28000 None 0 &
 
 [russ]

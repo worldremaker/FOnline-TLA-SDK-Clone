@@ -23,10 +23,10 @@ lang=russ engl
 0 4010 @
 5 5000 None 0 #
 0 5010 #
-0 5020 D _item p PID_BOTTLE_CAPS } 13000 R _param p KARMA_CHILDKILLER = 0 @
+0 5020 D _item p PID_BOTTLE_CAPS } 13000 R _param p KARMA_CHILDKILLER = 0 R _item p PID_BOTTLE_CAPS - 13000 @
 6 6000 None 0 #
 0 6010 #
-0 6020 D _item p PID_BOTTLE_CAPS } 30000 R _param p KARMA_CHILDKILLER = 0 &
+0 6020 D _item p PID_BOTTLE_CAPS } 30000 R _param p KARMA_CHILDKILLER = 0 R _item p PID_BOTTLE_CAPS - 30000 &
 
 [russ]
 {100}{}{Хаболог}
