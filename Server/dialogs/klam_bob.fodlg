@@ -32,7 +32,7 @@ lang=russ engl
 22 6010 D _var p q_den_leanna_wine = 1 #
 14 6020 D _var p q_den_jane_vodka = 1 D _item n PID_BOOZE > 49 #
 17 6030 D _var p q_den_jane_vodka = 1 D _item n PID_BOOZE < 50 #
-20 6040 D _var p q_klam_bob_water = 2 D _item p PID_WATER_FLASK > 19 R _var p q_klam_bob_water = 3 R _item p PID_WATER_FLASK - 20 R _item n PID_BOOZE + 200 R _item p PID_BOTTLE_CAPS + 400 R _item n PID_BOTTLE_CAPS - 400 R _param p ST_EXPERIENCE + 300 #
+20 6040 D _var p q_klam_bob_water = 2 D _item p PID_BOTTLE_FULL > 19 R _var p q_klam_bob_water = 3 R _item n PID_BOOZE + 200 R _item p PID_BOTTLE_CAPS + 400 R _item n PID_BOTTLE_CAPS - 400 R _param p ST_EXPERIENCE + 300 R _item p PID_BOTTLE_FULL - 20 #
 21 6050 D _var p q_den_leanna_buy = 1 #
 5 6060 #
 8 6070 @
@@ -60,11 +60,13 @@ lang=russ engl
 15 15000 None 0 @
 16 16000 None 0 @
 17 17000 None 0 #
-18 17010 @
+18 17010 D _var p q_klam_bob_water < 1 #
+0 17020 D _var p q_klam_bob_water = 1 #
+20 17030 D _var p q_klam_bob_water = 2 D _item p PID_BOTTLE_FULL > 19 R _var p q_klam_bob_water = 3 R _item n PID_BOOZE + 200 R _item p PID_BOTTLE_CAPS + 400 R _item n PID_BOTTLE_CAPS - 400 R _param p ST_EXPERIENCE + 300 R _item p PID_BOTTLE_FULL - 20 @
 18 18000 None 0 #
 19 18010 @
 19 19000 None 0 #
-0 19010 R _var p q_klam_bob_water = 1 #
+0 19010 D _var p q_klam_bob_water < 2 R _var p q_klam_bob_water = 1 #
 0 19020 @
 20 20000 None 0 @
 21 21000 None 0 #
@@ -72,11 +74,11 @@ lang=russ engl
 15 21020 D _item p PID_BOTTLE_CAPS < 49 #
 0 21030 @
 22 22000 None 0 #
-23 22010 D _var p q_den_leanna_wine > 9 R _item p PID_BOTTLE_CAPS - 10 #
-24 22020 D _var p q_den_leanna_wine < 10 @
+23 22010 D _item p PID_BOTTLE_CAPS > 9 R _item p PID_BOTTLE_CAPS - 10 #
+24 22020 D _item p PID_BOTTLE_CAPS < 9 @
 23 23000 None 0 #
-25 23010 D _var p q_den_leanna_wine > 9 R _item p PID_BOTTLE_CAPS - 10 R _item n PID_BOTTLE_CAPS + 10 #
-24 23020 D _var p q_den_leanna_wine < 10 @
+25 23010 D _item p PID_BOTTLE_CAPS > 9 R _item p PID_BOTTLE_CAPS - 10 R _item n PID_BOTTLE_CAPS + 10 #
+24 23020 D _item p PID_BOTTLE_CAPS < 9 @
 24 24000 None 0 @
 25 25000 None 0 #
 26 25010 D _param p SK_SPEECH < 65 D _item p PID_BOTTLE_CAPS > 9 R _item p PID_BOTTLE_CAPS - 10 #
@@ -158,6 +160,8 @@ lang=russ engl
 {16000}{}{Вот тебе выпивка.}
 {17000}{}{Как не прискорбно это говорить, но в данный момент я нуждаюсь в свежей кристальной воде, чтобы произвести хоть сколько-нибудь алкоголя.}
 {17010}{}{И чего где можно достать эту... воду?}
+{17020}{}{Точно, я же как раз этим занимаюсь.}
+{17030}{}{Ну вода это не проблема. Держи, как и обещал 20 фляг.}
 {18000}{}{Обычно я покупал такую воду в Арройо, но сейчас у них с этим проблемы и ближайшее место, где ее можно достать - Город Убежище.}
 {18010}{}{Сколько такой воды тебе нужно?}
 {19000}{}{Около 20 фляг. Если достанешь, я тебе заплачу монетами.}
@@ -255,6 +259,8 @@ lang=russ engl
 {16000}{}{Время:60000 Нет ответа:Завершить диалог / Close dialog}
 {17000}{}{Как не прискорбно это говорить, но в данный момент я нуждаюсь в свежей кристальной воде, чтобы произвести хоть сколько-нибудь алкоголя.}
 {17010}{}{И чего где можно достать эту... воду?}
+{17020}{}{Точно, я же как раз этим занимаюсь.}
+{17030}{}{Ну вода это не проблема. Держи, как и обещал 20 фляг.}
 {18000}{}{Обычно я покупал такую воду в Арройо, но сейчас у них с этим проблемы и ближайшее место, где ее можно достать - Город Убежище.}
 {18010}{}{Я посмотрю что можно сделать. Сколько такой воды тебе нужно?}
 {19000}{}{Около 20 фляг. Если достанешь, я тебе заплачу монетами.}

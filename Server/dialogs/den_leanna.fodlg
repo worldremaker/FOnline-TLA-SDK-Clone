@@ -11,8 +11,8 @@ lang=russ engl
 19 1010 D _param p ST_INTELLECT < 4 #
 2 1020 D _param p ST_INTELLECT > 3 @
 2 2000 None 0 #
-24 2010 D _var p q_den_leanna_thief = 0 D _param p ST_LEVEL > 2 D _var p den_leanna_thief = 0 D _param p ST_PERCEPTION > 6 #
-25 2020 D _var p q_den_leanna_thief = 3 R _var p q_den_leanna_wine = 4 R _param p ST_EXPERIENCE + 200 R _var p den_leanna_thief = 1 R _param p REPUTATION_DEN + 2 #
+24 2010 D _param p ST_LEVEL > 2 D _param p ST_PERCEPTION > 6 D _var p q_den_leanna_thief = 0 D _var p den_leanna_thief = 0 #
+25 2020 D _var p q_den_leanna_thief = 3 R _param p ST_EXPERIENCE + 200 R _var p den_leanna_thief = 1 R _param p REPUTATION_DEN + 2 R _var p q_den_leanna_thief = 4 #
 23 2030 D _var p q_den_leanna_wine = 3 R _item p PID_BOTTLE_CAPS + 300 R _item n PID_BOTTLE_CAPS - 300 R _param p ST_EXPERIENCE + 320 R _var p q_den_leanna_wine = 4 R _param p REPUTATION_DEN + 1 #
 8 2040 D _var p den_jane_trader_lean = 0 D _var p q_den_jane_dolg = 1 R _var p den_jane_trader_lean = 1 R _item p PID_BOTTLE_CAPS + 400 #
 7 2050 D _var p q_den_ghost = 2 R _var p q_den_ghost = 5 R _param p ST_EXPERIENCE + 25 #
@@ -66,7 +66,7 @@ lang=russ engl
 0 21020 R _var p q_den_leanna_wine = 2 @
 23 22000 None 0 @
 24 23000 None 0 #
-0 23010 R _var p den_leanna_thief = 1 #
+0 23010 R _var p q_den_leanna_thief = 1 #
 0 23020 R _var p den_leanna_thief = 2 @
 25 24000 None 0 @
 200 25000 dialog@dlg_ForSearching 0 #

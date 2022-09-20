@@ -560,14 +560,14 @@ DONE: All
 {3300102}{}{Find microfusion cells and an engine for Jose Ramirez.}
 
 # 3302
-# Buy gecko pelts from Smiley for Balthas, Modoc. 
+# Buy bramin pelts from Smiley for Balthas, Modoc. 
 
-{3302001}{}{Balthas asks you to bring him gecko pelts from Smiley.}
-{3302002}{}{You have bought gecko pelts.}
-{3302003}{}{You brought gecko pelts to Balthas.}
+{3302001}{}{Balthas asks you to bring him bramin pelts from Smiley.}
+{3302002}{}{You have bought bramin pelts.}
+{3302003}{}{You brought gecko bramin to Balthas.}
 
 {3302101}{}{Modoc}
-{3302102}{}{Gecko pelts for Balthas.}
+{3302102}{}{Bramin pelts for Balthas.}
 
 # 3303
 # Sell Balthas' armors in Den and Klamath, Den.

@@ -8,140 +8,140 @@ lang=russ engl
 
 [dialog]
 &
-1 1000 NOT_ANSWER_CLOSE_DIALOG 1#
-2 1010d*_var p q_klam_find_trappers < 2 *_param p ST_INTELLECT > 3 #
-15 1020d*_var p q_klam_find_trappers > 1 *_var p q_klam_find_trappers < 5 *_param p ST_INTELLECT > 3 #
-15 1030d*_var p q_klam_find_trappers = 6 *_param p ST_INTELLECT > 3 #
-25 1040d*_var p q_klam_find_trappers = 7 *_param p ST_INTELLECT > 3 #
-15 1050d*_var p q_klam_find_trappers = 8 *_param p ST_INTELLECT > 3 #
-28 1060d*_var p q_klam_find_trappers = 9 *_param p ST_INTELLECT > 3 #
-15 1070d*_var p q_klam_find_trappers = 5 *_param p ST_INTELLECT > 3 *_var p klam_trappers_radaway < 20 #
-26 1080d*_var p q_klam_find_trappers = 5 *_param p ST_INTELLECT > 3 *_var p klam_trappers_radaway = 20 #
-15 1090d*_var p q_klam_find_trappers = 10 *_param p ST_INTELLECT > 3 *_var p klam_trappers_radaway < 20 #
-26 1100d*_var p q_klam_find_trappers = 10 *_param p ST_INTELLECT > 3 *_var p klam_trappers_radaway = 20 #
-29 1110d*_var p q_klam_find_trappers < 2 *_param p ST_INTELLECT < 4 #
-32 1120d*_param p ST_INTELLECT < 4 *_var p q_klam_find_trappers > 1 *_var p q_klam_find_trappers < 5 #
-34 1130d*_var p q_klam_find_trappers = 5 *_param p ST_INTELLECT < 4 #
-35 1140d*_var p q_klam_find_trappers = 9 *_param p ST_INTELLECT < 4 @
-2 2000 NOT_ANSWER_CLOSE_DIALOG 1#
-3 2010#
-4 2020d*_var p q_klam_find_trappers = 1 #
-0 2030@
-3 3000 NOT_ANSWER_CLOSE_DIALOG 1#
-4 3010d*_var p q_klam_find_trappers = 1 #
-5 3020d*_var p q_klam_find_trappers = 0 #
-0 3030@
-4 4000 NOT_ANSWER_CLOSE_DIALOG 1#
-5 4010#
-12 4020@
-5 5000 NOT_ANSWER_CLOSE_DIALOG 1#
-7 5010#
-6 5020d*_param p SK_OUTDOORSMAN > 39 @
-6 6000 NOT_ANSWER_CLOSE_DIALOG 1#
-7 6010@
-7 7000 NOT_ANSWER_CLOSE_DIALOG 1#
-8 7010@
-8 8000 NOT_ANSWER_CLOSE_DIALOG 1#
-10 8010d*_var p q_klam_find_trappers = 0 *_var p klam_trappers_radaway < 20 r*_var p q_klam_find_trappers = 3 #
-9 8020d*_var p klam_trappers_radaway = 20 #
-11 8030d*_var p klam_trappers_radaway < 20 *_var p q_klam_find_trappers = 1 r*_var p q_klam_find_trappers = 2 @
-9 9000 NOT_ANSWER_CLOSE_DIALOG 1#
-10 9010d*_var p q_klam_find_trappers = 0 r*_var p q_klam_find_trappers = 3 #
-11 9020d*_var p q_klam_find_trappers = 1 r*_var p q_klam_find_trappers = 2 @
-10 10000 NOT_ANSWER_CLOSE_DIALOG 1#
-13 10010#
-0 10020#
-0 10030@
-11 11000 NOT_ANSWER_CLOSE_DIALOG 1#
-13 11010#
-0 11020#
-0 11030@
-12 12000 NOT_ANSWER_CLOSE_DIALOG 1#
-5 12010@
-13 13000 NOT_ANSWER_CLOSE_DIALOG 1#
-0 13010d*_param p ST_INTELLECT > 5 #
-0 13020@
-14 14000 NOT_ANSWER_CLOSE_DIALOG 0@
-15 15000 NOT_ANSWER_CLOSE_DIALOG 1#
-16 15010d*_var p q_klam_find_trappers = 4 r*_var p q_klam_find_trappers = 5 *_param p ST_KARMA + 5 *_var p q_klam_find_trappers = 5 *_param p ST_EXPERIENCE + 200 *_param p REPUTATION_KLAMATH + 1 #
-25 15020d*_var p q_klam_find_trappers = 6 r*_param p ST_KARMA - 5 *_var p q_klam_find_trappers = 7 *_param p ST_EXPERIENCE + 200 *_param p REPUTATION_KLAMATH - 1 #
-17 15030d*_param p ST_INTELLECT < 6 *_item p PID_STIMPAK > 0 *_var p klam_trappers_radaway < 20 r*_item p PID_STIMPAK - 1 #
-18 15040d*_param p ST_INTELLECT < 6 *_item p PID_ANTIDOTE > 0 *_var p klam_trappers_radaway < 20 r*_item p PID_ANTIDOTE - 1 #
-19 15050d*_item p PID_RADAWAY > 0 *_var p klam_trappers_radaway < 19 r*_var p klam_trappers_radaway + 1 *_var p klam_trappers_radaway + 1 *_var p name_mem_npc_player + 1 *_item p PID_RADAWAY - 1 *_param p ST_EXPERIENCE + 500 *_param p ST_KARMA + 10 #
-20 15060d*_var p klam_trappers_radaway = 19 *_item p PID_RADAWAY > 0 r*_var p klam_trappers_radaway + 1 *_var p name_mem_npc_player + 1 *_item p PID_RADAWAY - 1 *_param p ST_EXPERIENCE + 500 *_param p ST_KARMA + 10 #
-21 15070d*_param p ST_INTELLECT < 6 *_item p PID_RAD_X > 0 *_var p klam_trappers_radaway < 20 r*_item p PID_RAD_X - 1 #
-22 15080d*_param p ST_INTELLECT < 6 *_item p PID_BEER > 0 *_var p klam_trappers_radaway < 20 r*_item p PID_BEER - 1 #
-24 15090d*_var p name_mem_npc_player = 1 *_var p klam_trappers_radaway = 20 #
-23 15100d*_var p klam_trappers_radaway = 20 *_var p name_mem_npc_player = 0 #
-16 15110d*_var p klam_trappers_radaway = 0 *_param p SK_SPEECH > 49 r*_var p q_klam_find_trappers = 5 *_param p ST_KARMA - 10 *_param p ST_EXPERIENCE + 250 #
-27 15120d*_param p SK_SPEECH < 50 *_var p q_klam_find_trappers < 4 *_var p q_klam_find_trappers > 1 #
-0 15130@
-16 16000 NOT_ANSWER_CLOSE_DIALOG 1#
-0 16010r*_param p ST_KARMA + 5 #
-0 16020r*_item p PID_SHARP_SPEAR + 1 *_item p PID_GECKO_PELT + 5 *_item p PID_GOLDEN_GECKO_PELT + 8 @
-17 17000 NOT_ANSWER_CLOSE_DIALOG 1#
-0 17010#
-18 17020d*_item p PID_ANTIDOTE > 0 r*_item p PID_ANTIDOTE - 1 #
-19 17030d*_item p PID_RADAWAY > 0 *_var p klam_trappers_radaway < 19 r*_var p name_mem_npc_player + 1 *_item p PID_RADAWAY - 1 *_var p klam_trappers_radaway + 1 *_param p ST_EXPERIENCE + 500 *_param p ST_KARMA + 10 #
-20 17040d*_item p PID_RADAWAY > 0 *_var p klam_trappers_radaway = 19 r*_var p name_mem_npc_player + 1 *_item p PID_RADAWAY - 1 *_var p klam_trappers_radaway + 1 *_param p ST_EXPERIENCE + 500 *_param p ST_KARMA + 10 #
-21 17050d*_item p PID_RAD_X > 0 r*_item p PID_RAD_X - 1 #
-22 17060d*_item p PID_BEER > 0 r*_item p PID_BEER - 1 @
-18 18000 NOT_ANSWER_CLOSE_DIALOG 1#
-0 18010#
-17 18020d*_item p PID_STIMPAK > 0 r*_item p PID_STIMPAK - 1 #
-19 18030d*_item p PID_RADAWAY > 0 *_var p klam_trappers_radaway < 19 r*_var p name_mem_npc_player + 1 *_item p PID_RADAWAY - 1 *_param p ST_EXPERIENCE + 500 *_param p ST_KARMA + 10 #
-20 18040d*_item p PID_RADAWAY > 0 *_var p klam_trappers_radaway = 19 r*_var p name_mem_npc_player + 1 *_item p PID_RADAWAY - 1 *_param p ST_EXPERIENCE + 500 *_param p ST_KARMA + 10 #
-21 18050d*_item p PID_RAD_X > 0 r*_item p PID_RAD_X - 1 #
-22 18060d*_item p PID_BEER > 0 r*_item p PID_BEER - 1 @
-19 19000 NOT_ANSWER_CLOSE_DIALOG 1#
-19 19010d*_var p klam_trappers_radaway < 19 *_item p PID_RADAWAY > 0 r*_var p klam_trappers_radaway + 1 *_item p PID_RADAWAY - 1 *_param p ST_EXPERIENCE + 500 *_param p ST_KARMA + 10 #
-20 19020d*_var p klam_trappers_radaway = 19 *_item p PID_RADAWAY > 0 r*_var p klam_trappers_radaway + 1 *_item p PID_RADAWAY - 1 *_param p ST_EXPERIENCE + 500 *_param p ST_KARMA + 10 #
-0 19030@
-20 20000 NOT_ANSWER_CLOSE_DIALOG 1#
-0 20010#
-0 20020@
-21 21000 NOT_ANSWER_CLOSE_DIALOG 1#
-0 21010#
-17 21020d*_item p PID_STIMPAK > 0 r*_item p PID_STIMPAK - 1 #
-18 21030d*_item p PID_ANTIDOTE > 0 r*_item p PID_ANTIDOTE - 1 #
-19 21040d*_item p PID_RADAWAY > 0 *_var p klam_trappers_radaway < 19 r*_var p name_mem_npc_player + 1 *_item p PID_RADAWAY - 1 *_var p klam_trappers_radaway + 1 *_param p ST_EXPERIENCE + 500 *_param p ST_KARMA + 10 #
-20 21050d*_item p PID_RADAWAY > 0 *_var p klam_trappers_radaway = 19 r*_var p name_mem_npc_player + 1 *_item p PID_RADAWAY - 1 *_var p klam_trappers_radaway + 1 *_param p ST_EXPERIENCE + 500 *_param p ST_KARMA + 10 #
-22 21060d*_item p PID_BEER > 0 r*_item p PID_BEER - 1 @
-22 22000 NOT_ANSWER_CLOSE_DIALOG 1#
-0 22010#
-17 22020d*_item p PID_STIMPAK > 0 r*_item p PID_STIMPAK - 1 #
-18 22030d*_item p PID_ANTIDOTE > 0 r*_item p PID_ANTIDOTE - 1 #
-19 22040d*_item p PID_RADAWAY > 0 *_var p klam_trappers_radaway < 19 r*_var p name_mem_npc_player + 1 *_item p PID_RADAWAY - 1 *_var p klam_trappers_radaway + 1 *_param p ST_EXPERIENCE + 500 *_param p ST_KARMA + 10 #
-20 22050d*_item p PID_RADAWAY > 0 *_var p klam_trappers_radaway = 19 r*_var p name_mem_npc_player + 1 *_item p PID_RADAWAY - 1 *_var p klam_trappers_radaway + 1 *_param p ST_EXPERIENCE + 500 *_param p ST_KARMA + 10 #
-21 22060d*_item p PID_RAD_X > 0 r*_item p PID_RAD_X - 1 @
-23 23000 NOT_ANSWER_CLOSE_DIALOG 1#
-16 23010d*_var p q_klam_find_trappers = 4 r*_var p q_klam_find_trappers = 5 *_param p ST_EXPERIENCE + 200 *_param p REPUTATION_KLAMATH + 1 #
-25 23020d*_var p q_klam_find_trappers = 6 r*_var p q_klam_find_trappers = 7 *_param p ST_EXPERIENCE + 200 *_param p REPUTATION_KLAMATH - 1 #
-0 23030@
-24 24000 NOT_ANSWER_CLOSE_DIALOG 1#
-16 24010d*_var p q_klam_find_trappers = 4 r*_var p q_klam_find_trappers = 5 *_param p ST_EXPERIENCE + 200 *_param p REPUTATION_KLAMATH + 1 #
-0 24020@
-25 25000 NOT_ANSWER_BEGIN_BATTLE 1@
-26 26000 NOT_ANSWER_CLOSE_DIALOG 1@
-27 27000 NOT_ANSWER_CLOSE_DIALOG 0@
-28 28000 NOT_ANSWER_CLOSE_DIALOG 0@
-29 29000 NOT_ANSWER_CLOSE_DIALOG 1#
-30 29010d*_var p q_klam_find_trappers = 0 r*_var p q_klam_find_trappers = 3 #
-31 29020d*_var p q_klam_find_trappers = 1 r*_var p q_klam_find_trappers = 2 #
-0 29030@
-30 30000 NOT_ANSWER_CLOSE_DIALOG 1#
-0 30010#
-0 30020@
-31 31000 NOT_ANSWER_CLOSE_DIALOG 1#
-0 31010#
-0 31020@
-32 32000 NOT_ANSWER_CLOSE_DIALOG 1#
-33 32010d*_var p q_klam_find_trappers = 4 r*_var p q_klam_find_trappers = 5 *_item p PID_GECKO_PELT + 5 *_item p PID_GOLDEN_GECKO_PELT + 3 *_param p ST_EXPERIENCE + 200 *_param p ST_KARMA + 5 *_param p REPUTATION_KLAMATH + 1 #
-0 32020@
-33 33000 NOT_ANSWER_CLOSE_DIALOG 1#
-0 33010@
-34 34000 NOT_ANSWER_CLOSE_DIALOG 0@
-35 35000 NOT_ANSWER_CLOSE_DIALOG 0&
+1 1000 None 1 #
+2 1010 D _var p q_klam_find_trappers < 2 D _param p ST_INTELLECT > 3 #
+15 1020 D _var p q_klam_find_trappers > 1 D _var p q_klam_find_trappers < 5 D _param p ST_INTELLECT > 3 #
+15 1030 D _var p q_klam_find_trappers = 6 D _param p ST_INTELLECT > 3 #
+25 1040 D _var p q_klam_find_trappers = 7 D _param p ST_INTELLECT > 3 #
+15 1050 D _var p q_klam_find_trappers = 8 D _param p ST_INTELLECT > 3 #
+28 1060 D _var p q_klam_find_trappers = 9 D _param p ST_INTELLECT > 3 #
+15 1070 D _var p q_klam_find_trappers = 5 D _param p ST_INTELLECT > 3 D _var p klam_trappers_radaway < 20 #
+26 1080 D _var p q_klam_find_trappers = 5 D _param p ST_INTELLECT > 3 D _var p klam_trappers_radaway = 20 #
+15 1090 D _var p q_klam_find_trappers = 10 D _param p ST_INTELLECT > 3 D _var p klam_trappers_radaway < 20 #
+26 1100 D _var p q_klam_find_trappers = 10 D _param p ST_INTELLECT > 3 D _var p klam_trappers_radaway = 20 #
+29 1110 D _var p q_klam_find_trappers < 2 D _param p ST_INTELLECT < 4 #
+32 1120 D _param p ST_INTELLECT < 4 D _var p q_klam_find_trappers > 1 D _var p q_klam_find_trappers < 5 #
+34 1130 D _var p q_klam_find_trappers = 5 D _param p ST_INTELLECT < 4 #
+35 1140 D _var p q_klam_find_trappers = 9 D _param p ST_INTELLECT < 4 @
+2 2000 None 1 #
+3 2010 #
+4 2020 D _var p q_klam_find_trappers = 1 #
+0 2030 @
+3 3000 None 1 #
+4 3010 D _var p q_klam_find_trappers = 1 #
+5 3020 D _var p q_klam_find_trappers = 0 #
+0 3030 @
+4 4000 None 1 #
+5 4010 #
+12 4020 @
+5 5000 None 1 #
+7 5010 #
+6 5020 D _param p SK_OUTDOORSMAN > 39 @
+6 6000 None 1 #
+7 6010 @
+7 7000 None 1 #
+8 7010 @
+8 8000 None 1 #
+10 8010 D _var p q_klam_find_trappers = 0 D _var p klam_trappers_radaway < 20 R _var p q_klam_find_trappers = 3 #
+9 8020 D _var p klam_trappers_radaway = 20 #
+11 8030 D _var p klam_trappers_radaway < 20 D _var p q_klam_find_trappers = 1 R _var p q_klam_find_trappers = 2 @
+9 9000 None 1 #
+10 9010 D _var p q_klam_find_trappers = 0 R _var p q_klam_find_trappers = 3 #
+11 9020 D _var p q_klam_find_trappers = 1 R _var p q_klam_find_trappers = 2 @
+10 10000 None 1 #
+13 10010 D _var p klam_trappers_radaway < 20 #
+0 10020 #
+0 10030 @
+11 11000 None 1 #
+13 11010 #
+0 11020 #
+0 11030 @
+12 12000 None 1 #
+5 12010 @
+13 13000 None 1 #
+0 13010 D _param p ST_INTELLECT > 5 #
+0 13020 @
+14 14000 None 0 @
+15 15000 None 1 #
+16 15010 D _var p q_klam_find_trappers = 4 R _var p q_klam_find_trappers = 5 R _param p ST_KARMA + 5 R _var p q_klam_find_trappers = 5 R _param p ST_EXPERIENCE + 200 R _param p REPUTATION_KLAMATH + 1 #
+25 15020 D _var p q_klam_find_trappers = 6 R _param p ST_KARMA - 5 R _var p q_klam_find_trappers = 7 R _param p ST_EXPERIENCE + 200 R _param p REPUTATION_KLAMATH - 1 #
+17 15030 D _param p ST_INTELLECT < 6 D _item p PID_STIMPAK > 0 D _var p klam_trappers_radaway < 20 R _item p PID_STIMPAK - 1 #
+18 15040 D _param p ST_INTELLECT < 6 D _item p PID_ANTIDOTE > 0 D _var p klam_trappers_radaway < 20 R _item p PID_ANTIDOTE - 1 #
+19 15050 D _item p PID_RADAWAY > 0 D _var p klam_trappers_radaway < 19 R _var p klam_trappers_radaway + 1 R _var p klam_trappers_radaway + 1 R _var p name_mem_npc_player + 1 R _item p PID_RADAWAY - 1 R _param p ST_EXPERIENCE + 500 R _param p ST_KARMA + 10 #
+20 15060 D _var p klam_trappers_radaway = 19 D _item p PID_RADAWAY > 0 R _var p klam_trappers_radaway + 1 R _var p name_mem_npc_player + 1 R _item p PID_RADAWAY - 1 R _param p ST_EXPERIENCE + 500 R _param p ST_KARMA + 10 #
+21 15070 D _param p ST_INTELLECT < 6 D _item p PID_RAD_X > 0 D _var p klam_trappers_radaway < 20 R _item p PID_RAD_X - 1 #
+22 15080 D _param p ST_INTELLECT < 6 D _item p PID_BEER > 0 D _var p klam_trappers_radaway < 20 R _item p PID_BEER - 1 #
+24 15090 D _var p name_mem_npc_player = 1 D _var p klam_trappers_radaway = 20 #
+23 15100 D _var p klam_trappers_radaway = 20 D _var p name_mem_npc_player = 0 #
+16 15110 D _var p q_klam_find_trappers = 0 D _param p SK_SPEECH > 49 R _var p q_klam_find_trappers = 5 R _param p ST_KARMA - 10 R _param p ST_EXPERIENCE + 250 #
+27 15120 D _param p SK_SPEECH < 50 D _var p q_klam_find_trappers < 4 D _var p q_klam_find_trappers > 1 #
+0 15130 @
+16 16000 None 1 #
+0 16010 R _param p ST_KARMA + 5 #
+0 16020 R _item p PID_SHARP_SPEAR + 1 R _item p PID_GECKO_PELT + 5 R _item p PID_GOLDEN_GECKO_PELT + 8 @
+17 17000 None 1 #
+0 17010 #
+18 17020 D _item p PID_ANTIDOTE > 0 R _item p PID_ANTIDOTE - 1 #
+19 17030 D _item p PID_RADAWAY > 0 D _var p klam_trappers_radaway < 19 R _var p name_mem_npc_player + 1 R _item p PID_RADAWAY - 1 R _var p klam_trappers_radaway + 1 R _param p ST_EXPERIENCE + 500 R _param p ST_KARMA + 10 #
+20 17040 D _item p PID_RADAWAY > 0 D _var p klam_trappers_radaway = 19 R _var p name_mem_npc_player + 1 R _item p PID_RADAWAY - 1 R _var p klam_trappers_radaway + 1 R _param p ST_EXPERIENCE + 500 R _param p ST_KARMA + 10 #
+21 17050 D _item p PID_RAD_X > 0 R _item p PID_RAD_X - 1 #
+22 17060 D _item p PID_BEER > 0 R _item p PID_BEER - 1 @
+18 18000 None 1 #
+0 18010 #
+17 18020 D _item p PID_STIMPAK > 0 R _item p PID_STIMPAK - 1 #
+19 18030 D _item p PID_RADAWAY > 0 D _var p klam_trappers_radaway < 19 R _var p name_mem_npc_player + 1 R _item p PID_RADAWAY - 1 R _param p ST_EXPERIENCE + 500 R _param p ST_KARMA + 10 #
+20 18040 D _item p PID_RADAWAY > 0 D _var p klam_trappers_radaway = 19 R _var p name_mem_npc_player + 1 R _item p PID_RADAWAY - 1 R _param p ST_EXPERIENCE + 500 R _param p ST_KARMA + 10 #
+21 18050 D _item p PID_RAD_X > 0 R _item p PID_RAD_X - 1 #
+22 18060 D _item p PID_BEER > 0 R _item p PID_BEER - 1 @
+19 19000 None 1 #
+19 19010 D _var p klam_trappers_radaway < 19 D _item p PID_RADAWAY > 0 R _var p klam_trappers_radaway + 1 R _item p PID_RADAWAY - 1 R _param p ST_EXPERIENCE + 500 R _param p ST_KARMA + 10 #
+20 19020 D _var p klam_trappers_radaway = 19 D _item p PID_RADAWAY > 0 R _var p klam_trappers_radaway + 1 R _item p PID_RADAWAY - 1 R _param p ST_EXPERIENCE + 500 R _param p ST_KARMA + 10 #
+0 19030 @
+20 20000 None 1 #
+0 20010 #
+0 20020 @
+21 21000 None 1 #
+0 21010 #
+17 21020 D _item p PID_STIMPAK > 0 R _item p PID_STIMPAK - 1 #
+18 21030 D _item p PID_ANTIDOTE > 0 R _item p PID_ANTIDOTE - 1 #
+19 21040 D _item p PID_RADAWAY > 0 D _var p klam_trappers_radaway < 19 R _var p name_mem_npc_player + 1 R _item p PID_RADAWAY - 1 R _var p klam_trappers_radaway + 1 R _param p ST_EXPERIENCE + 500 R _param p ST_KARMA + 10 #
+20 21050 D _item p PID_RADAWAY > 0 D _var p klam_trappers_radaway = 19 R _var p name_mem_npc_player + 1 R _item p PID_RADAWAY - 1 R _var p klam_trappers_radaway + 1 R _param p ST_EXPERIENCE + 500 R _param p ST_KARMA + 10 #
+22 21060 D _item p PID_BEER > 0 R _item p PID_BEER - 1 @
+22 22000 None 1 #
+0 22010 #
+17 22020 D _item p PID_STIMPAK > 0 R _item p PID_STIMPAK - 1 #
+18 22030 D _item p PID_ANTIDOTE > 0 R _item p PID_ANTIDOTE - 1 #
+19 22040 D _item p PID_RADAWAY > 0 D _var p klam_trappers_radaway < 19 R _var p name_mem_npc_player + 1 R _item p PID_RADAWAY - 1 R _var p klam_trappers_radaway + 1 R _param p ST_EXPERIENCE + 500 R _param p ST_KARMA + 10 #
+20 22050 D _item p PID_RADAWAY > 0 D _var p klam_trappers_radaway = 19 R _var p name_mem_npc_player + 1 R _item p PID_RADAWAY - 1 R _var p klam_trappers_radaway + 1 R _param p ST_EXPERIENCE + 500 R _param p ST_KARMA + 10 #
+21 22060 D _item p PID_RAD_X > 0 R _item p PID_RAD_X - 1 @
+23 23000 None 1 #
+16 23010 D _var p q_klam_find_trappers = 4 R _var p q_klam_find_trappers = 5 R _param p ST_EXPERIENCE + 200 R _param p REPUTATION_KLAMATH + 1 #
+25 23020 D _var p q_klam_find_trappers = 6 R _var p q_klam_find_trappers = 7 R _param p ST_EXPERIENCE + 200 R _param p REPUTATION_KLAMATH - 1 #
+0 23030 @
+24 24000 None 1 #
+16 24010 D _var p q_klam_find_trappers = 4 R _var p q_klam_find_trappers = 5 R _param p ST_EXPERIENCE + 200 R _param p REPUTATION_KLAMATH + 1 #
+0 24020 @
+25 25000 Attack 1 @
+26 26000 None 1 @
+27 27000 None 0 @
+28 28000 None 0 @
+29 29000 None 1 #
+30 29010 D _var p q_klam_find_trappers = 0 R _var p q_klam_find_trappers = 3 #
+31 29020 D _var p q_klam_find_trappers = 1 R _var p q_klam_find_trappers = 2 #
+0 29030 @
+30 30000 None 1 #
+0 30010 #
+0 30020 @
+31 31000 None 1 #
+0 31010 #
+0 31020 @
+32 32000 None 1 #
+33 32010 D _var p q_klam_find_trappers = 4 R _var p q_klam_find_trappers = 5 R _item p PID_GECKO_PELT + 5 R _item p PID_GOLDEN_GECKO_PELT + 3 R _param p ST_EXPERIENCE + 200 R _param p ST_KARMA + 5 R _param p REPUTATION_KLAMATH + 1 #
+0 32020 @
+33 33000 None 1 #
+0 33010 @
+34 34000 None 0 @
+35 35000 None 0 &
 
 [russ]
 {100}{}{Джим}

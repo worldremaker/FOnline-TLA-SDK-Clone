@@ -20,7 +20,7 @@ lang=russ engl
 13 2070 D _param p ST_INTELLECT > 3 R _var n name_mem_npc_player = 1 @
 3 3000 None 0 @
 4 4000 None 0 #
-24 4010 D _var p q_mod_baltas_armor = 1 D _var p mod_baltas_armor2 = 0 D _item p PID_LEATHER_JACKET > 9 R _var n mod_baltas_armor2 = 1 R _item p PID_LEATHER_JACKET - 10 R _item n PID_LEATHER_JACKET + 10 R _item p PID_BOTTLE_CAPS + 2450 R _item n PID_BOTTLE_CAPS - 2450 #
+24 4010 D _var p q_mod_baltas_armor = 1 D _var p mod_baltas_armor2 = 0 D _item p PID_LEATHER_JACKET > 9 R _item p PID_LEATHER_JACKET - 10 R _item n PID_LEATHER_JACKET + 10 R _item p PID_BOTTLE_CAPS + 2450 R _item n PID_BOTTLE_CAPS - 2450 R _var p mod_baltas_armor2 = 1 #
 8 4020 #
 15 4030 #
 9 4040 #

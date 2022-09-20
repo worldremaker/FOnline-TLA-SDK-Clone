@@ -6,41 +6,41 @@ lang=russ engl
 
 [dialog]
 &
-1 1000 NOT_ANSWER_CLOSE_DIALOG 0#
-7 1010d*stat p ST_INTELLECT < 4#
-2 1020d*uvar n name_mem_npc_player = 0*stat p ST_INTELLECT > 3#
-5 1030d*uvar n name_mem_npc_player = 1*stat p ST_INTELLECT > 3@
-2 2000 NOT_ANSWER_CLOSE_DIALOG 0#
-3 2010d*item p 41 > 1r*item p 41 - 2#
-0 2020@
-3 3000 NOT_ANSWER_CLOSE_DIALOG 0#
-4 3010d*item p 41 > 1r*item p 41 - 2#
-0 3020@
-4 4000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 4010@
-5 5000 NOT_ANSWER_CLOSE_DIALOG 0#
-6 5010#
-10 5020d*lvar p q_den_leanna_thief = 1*skill p SK_STEAL > 65#
-11 5030d*stat p ST_PERCEPTION > 3*lvar p q_den_leanna_thief = 1#
-3 5040d*item p 41 > 1r*item p 41 - 2#
-0 5050@
-6 6000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 6010#
-8 6020d*item p 41 > 1r*item p 41 - 2@
-7 7000 NOT_ANSWER_CLOSE_DIALOG 0#
-8 7010d*item p 41 > 1r*item p 41 - 2#
-9 7020@
-8 8000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 8010@
-9 9000 NOT_ANSWER_CLOSE_DIALOG 0#
-65507 9010#
-0 9020@
-10 10000 NOT_ANSWER_CLOSE_DIALOG 0#
-11 10010@
-11 11000 NOT_ANSWER_CLOSE_DIALOG 0#
-12 11010r*lvar p q_den_leanna_wine = 3*item p 41 + 500*item n 41 - 500@
-12 12000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 12010&
+1 1000 None 0 #
+7 1010 D _param p ST_INTELLECT < 4 #
+2 1020 D _var n name_mem_npc_player = 0 D _param p ST_INTELLECT > 3 #
+5 1030 D _var n name_mem_npc_player = 1 D _param p ST_INTELLECT > 3 @
+2 2000 None 0 #
+3 2010 D _item p PID_BOTTLE_CAPS > 1 R _item p PID_BOTTLE_CAPS - 2 R _var n name_mem_npc_player = 1 #
+0 2020 @
+3 3000 None 0 #
+4 3010 D _item p PID_BOTTLE_CAPS > 1 R _item p PID_BOTTLE_CAPS - 2 #
+0 3020 @
+4 4000 None 0 #
+0 4010 @
+5 5000 None 0 #
+6 5010 #
+10 5020 D _param p SK_STEAL > 65 D _var p q_den_leanna_thief = 1 #
+11 5030 D _param p ST_PERCEPTION > 3 D _var p q_den_leanna_thief = 1 #
+3 5040 D _item p PID_BOTTLE_CAPS > 1 R _item p PID_BOTTLE_CAPS - 2 #
+0 5050 @
+6 6000 None 0 #
+0 6010 #
+8 6020 D _item p PID_BOTTLE_CAPS > 1 R _item p PID_BOTTLE_CAPS - 2 @
+7 7000 None 0 #
+8 7010 D _item p PID_BOTTLE_CAPS > 1 R _item p PID_BOTTLE_CAPS - 2 #
+9 7020 @
+8 8000 None 0 #
+0 8010 @
+9 9000 None 0 #
+65507 9010 #
+0 9020 @
+10 10000 None 0 #
+11 10010 @
+11 11000 None 0 #
+12 11010 R _item p PID_BOTTLE_CAPS + 500 R _item n PID_BOTTLE_CAPS - 500 R _var p q_den_leanna_thief = 3 @
+12 12000 None 0 #
+0 12010 &
 
 [russ]
 {100}{}{Постоянный клиент}
