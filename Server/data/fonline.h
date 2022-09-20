@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 29.08.2010
-// Server version 347, MSVS2008
+// Last update 06.09.2010
+// Server version 353, MSVS2008
 //
 
 #pragma pack(8)
@@ -397,6 +397,17 @@ typedef vector<Location*>::iterator LocVecIt;
 #define ACCESS_MODER                BIN8(00000100)
 #define ACCESS_ADMIN                BIN8(00001000)
 
+// GameOptions::ChangeLang
+#define CHANGE_LANG_CTRL_SHIFT  (0)
+#define CHANGE_LANG_ALT_SHIFT   (1)
+// GameOptions::IndicatorType
+#define INDICATOR_LINES         (0)
+#define INDICATOR_NUMBERS       (1)
+#define INDICATOR_BOTH          (2)
+// GameOptions::Zoom
+#define MIN_ZOOM                (0.2f)
+#define MAX_ZOOM                (10.0f)
+
 struct GameOptions
 {
 	uint16 YearStart;
@@ -518,13 +529,107 @@ struct GameOptions
 	int    ReputationHated;
 
 	// Client
+	bool   Quit;
+	int    ScrOx;
+	int    ScrOy;
+	bool   ShowTile;
+	bool   ShowRoof;
+	bool   ShowItem;
+	bool   ShowScen;
+	bool   ShowWall;
+	bool   ShowCrit;
+	bool   ShowFast;
+	bool   ShowPlayerNames;
+	bool   ShowNpcNames;
+	bool   ShowCritId;
+	bool   ScrollKeybLeft;
+	bool   ScrollKeybRight;
+	bool   ScrollKeybUp;
+	bool   ScrollKeybDown;
+	bool   ScrollMouseLeft;
+	bool   ScrollMouseRight;
+	bool   ScrollMouseUp;
+	bool   ScrollMouseDown;
+	bool   ShowGroups;
+	bool   HelpInfo;
+	bool   DebugInfo;
+	bool   DebugNet;
+	bool   DebugSprites;
+	bool   FullScreen;
+	bool   VSync;
+	int    FlushVal;
+	int    BaseTexture;
+	int    ScreenClear;
+	int    Light;
+	string Host;
+	int    HostRefCount;
+	uint   Port;
+	uint   ProxyType;
+	string ProxyHost;
+	int    ProxyHostRefCount;
+	uint   ProxyPort;
+	string ProxyUser;
+	int    ProxyUserRefCount;
+	string ProxyPass;
+	int    ProxyPassRefCount;
+	string Name;
+	int    NameRefCount;
+	string Pass;
+	int    PassRefCount;
+	int    ScrollDelay;
+	int    ScrollStep;
+	bool   ScrollCheck;
+	int    MouseSpeed;
+	bool   GlobalSound;
+	string MasterPath;
+	int    MasterPathRefCount;
+	string CritterPath;
+	int    CritterPathRefCount;
+	string FoPatchPath;
+	int    FoPatchPathRefCount;
+	string FoDataPath;
+	int    FoDataPathRefCount;
+	int    Sleep;
+	bool   MsgboxInvert;
+	int    ChangeLang;
+	uint8  DefaultCombatMode;
+	bool   MessNotify;
+	bool   SoundNotify;
+	bool   AlwaysOnTop;
+	uint   TextDelay;
+	uint   DamageHitDelay;
+	int    ScreenWidth;
+	int    ScreenHeight;
+	int    MultiSampling;
+	bool   SoftwareSkinning;
+	bool   MouseScroll;
+	int    IndicatorType;
+	uint   DoubleClickTime;
+	uint8  RoofAlpha;
+	bool   HideCursor;
+	bool   DisableLMenu;
+	bool   DisableMouseEvents;
+	bool   DisableKeyboardEvents;
+	string PlayerOffAppendix;
+	int    PlayerOffAppendixRefCount;
+	int    CombatMessagesType;
 	string UserInterface;
+	int    UserInterfaceRefCount;
 	bool   DisableDrawScreens;
 	uint   Animation3dSmoothTime;
 	uint   Animation3dFPS;
 	int    RunModMul;
 	int    RunModDiv;
 	int    RunModAdd;
+	float  SpritesZoom;
+	float  SpritesZoomMax;
+	float  SpritesZoomMin;
+
+	// Mapper
+	string ClientPath;
+	int    ClientPathRefCount;
+	string ServerPath;
+	int    ServerPathRefCount;
 };
 
 struct ScriptString
