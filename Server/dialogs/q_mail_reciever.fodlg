@@ -12,8 +12,8 @@ lang=russ engl
 3 2010 @
 3 3000 None 0 #
 4 3010 R _script ncr_postman@r_GrantPlayer 1 1 #
-0 3020 D _var p q_mail_delivery = 0 R _item p PID_POSTMAN_LETTER = 0 R _script ncr_postman@r_GrantPlayer 1 0 R _param p ST_KARMA + 20 #
-0 3030 D _var p q_mail_delivery > 0 R _item p PID_POSTMAN_LETTER = 0 R _var p q_mail_delivery = 3 R _script ncr_postman@r_GrantPlayer 1 0 R _param p ST_KARMA + 25 @
+0 3020 D _var p q_mail_delivery = 0 R _script ncr_postman@r_GrantPlayer 1 0 R _param p ST_KARMA + 20 #
+0 3030 D _var p q_mail_delivery > 0 R _var p q_mail_delivery = 3 R _script ncr_postman@r_GrantPlayer 1 0 R _param p ST_KARMA + 25 @
 4 4000 None 0 &
 
 [russ]

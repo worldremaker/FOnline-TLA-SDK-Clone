@@ -27,7 +27,7 @@ lang=russ engl
 10 5020 #
 15 5030 #
 0 5040 #
-16 5050 D _param p ST_INTELLECT > 5 D _param p SK_SPEECH > 79 D _param p SK_OUTDOORSMAN > 99 D _param p KILL_MEN > 79 D _var p q_bh_super_new_technology = 0 @
+16 5050 D _param p ST_INTELLECT > 5 D _param p SK_SPEECH > 79 D _param p SK_OUTDOORSMAN > 99 D _var p q_bh_super_new_technology = 0 D _param p KILL_MEN > 66 @
 6 6000 None 0 #
 0 6010 @
 9 7000 None 0 #

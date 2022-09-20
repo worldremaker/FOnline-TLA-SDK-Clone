@@ -120,7 +120,7 @@
 #define LOCATION_arroyo_mynoc_defence1              (210)
 #define LOCATION_arroyo_mynoc_defence2              (211)
 #define LOCATION_Quest_Sid_And_Nancy                (212)
-#define LOCATION_Quest_MirelurksLair                (213)
+#define LOCATION_Quest_ModocWaspFarm                (213)
 
 #define LOCATION_Warehouse                          (220)
 #define LOCATION_Warehouse1                         (221)

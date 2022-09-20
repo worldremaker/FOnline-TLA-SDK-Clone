@@ -6,61 +6,61 @@ lang=russ engl
 
 [dialog]
 &
-1 1000 NOT_ANSWER_CLOSE_DIALOG 0#
-12 1010d*_var p q_ncr_felix_save_brahmin > 0 *_var p q_ncr_felix_save_brahmin < 3 #
-2 1020d*_var p ncr_ranch_brahmin_ill = 0 #
-3 1030d*_var p ncr_ranch_brahmin_ill = 1 *_var p q_ncr_felix_save_brahmin = 0 #
-2 1040d*_var p ncr_ranch_brahmin_ill = 1 *_var p q_ncr_felix_save_brahmin = 3 @
-2 2000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 2010#
-14 2020d*_var p q_ncr_felix_find_brahmin = 0 #
-20 2030d*_var p q_ncr_felix_find_brahmin = 2 *_script ncr_common@d_HasBrahmins 0  @
-3 3000 NOT_ANSWER_CLOSE_DIALOG 0#
-4 3010#
-0 3020@
-4 4000 NOT_ANSWER_CLOSE_DIALOG 0#
-5 4010d*_param p SK_DOCTOR < 75 #
-6 4020d*_param p SK_DOCTOR > 74 @
-5 5000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 5010@
-6 6000 NOT_ANSWER_CLOSE_DIALOG 0#
-7 6010@
-7 7000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 7010#
-8 7020r*_var p q_ncr_felix_save_brahmin = 1 *_item p PID_FIRST_AID_KIT + 1 @
-8 8000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 8010#
-9 8020@
-9 9000 NOT_ANSWER_CLOSE_DIALOG 0#
-10 9010@
-10 10000 NOT_ANSWER_CLOSE_DIALOG 0#
-11 10010@
-11 11000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 11010@
-12 12000 NOT_ANSWER_CLOSE_DIALOG 0#
-13 12010d*_var p q_ncr_felix_save_brahmin = 2 r*_var p q_ncr_felix_save_brahmin = 3 *_param p ST_EXPERIENCE + 300 *_item p PID_BOTTLE_CAPS + 100 #
-13 12020d*_var p q_ncr_felix_save_brahmin = 2 r*_var p q_ncr_felix_save_brahmin = 3 *_param p ST_EXPERIENCE + 300 *_param p REPUTATION_NCR + 1 @
-13 13000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 13010@
-14 14000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 14010#
-15 14020@
-15 15000 NOT_ANSWER_CLOSE_DIALOG 0#
-16 15010@
-16 16000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 16010#
-17 16020@
-17 17000 NOT_ANSWER_CLOSE_DIALOG 0#
-18 17010@
-18 18000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 18010#
-19 18020r*_var p q_ncr_felix_find_brahmin = 1 *_script ncr_common@r_BeginBrahminFindQuest 0  @
-19 19000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 19010@
-20 20000 NOT_ANSWER_CLOSE_DIALOG 0#
-21 20010d*_script ncr_common@d_HasBrahmins 0  r*_script ncr_common@r_CompleteBrahminFindQuest 0  @
-21 21000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 21010&
+1 1000 None 0 #
+12 1010 D _var p q_ncr_felix_save_brahmin > 0 D _var p q_ncr_felix_save_brahmin < 3 #
+2 1020 D _var p ncr_ranch_brahmin_ill = 0 #
+3 1030 D _var p ncr_ranch_brahmin_ill = 1 D _var p q_ncr_felix_save_brahmin = 0 #
+2 1040 D _var p ncr_ranch_brahmin_ill = 1 D _var p q_ncr_felix_save_brahmin = 3 @
+2 2000 None 0 #
+0 2010 #
+14 2020 D _var p q_ncr_felix_find_brahmin = 0 #
+20 2030 D _var p q_ncr_felix_find_brahmin = 2 D _script ncr_common@d_HasBrahmins 0  @
+3 3000 None 0 #
+4 3010 #
+0 3020 @
+4 4000 None 0 #
+5 4010 D _param p SK_DOCTOR < 75 #
+6 4020 D _param p SK_DOCTOR > 74 @
+5 5000 None 0 #
+0 5010 @
+6 6000 None 0 #
+7 6010 @
+7 7000 None 0 #
+0 7010 #
+8 7020 R _var p q_ncr_felix_save_brahmin = 1 R _item p PID_FIRST_AID_KIT + 1 @
+8 8000 None 0 #
+0 8010 #
+9 8020 @
+9 9000 None 0 #
+10 9010 @
+10 10000 None 0 #
+11 10010 @
+11 11000 None 0 #
+0 11010 @
+12 12000 None 0 #
+13 12010 D _var p q_ncr_felix_save_brahmin = 2 R _var p q_ncr_felix_save_brahmin = 3 R _param p ST_EXPERIENCE + 300 R _item p PID_BOTTLE_CAPS + 100 #
+13 12020 D _var p q_ncr_felix_save_brahmin = 2 R _var p q_ncr_felix_save_brahmin = 3 R _param p ST_EXPERIENCE + 300 R _param p REPUTATION_NCR + 1 @
+13 13000 None 0 #
+0 13010 @
+14 14000 None 0 #
+0 14010 #
+15 14020 @
+15 15000 None 0 #
+16 15010 @
+16 16000 None 0 #
+0 16010 #
+17 16020 @
+17 17000 None 0 #
+18 17010 @
+18 18000 None 0 #
+0 18010 #
+19 18020 R _var p q_ncr_felix_find_brahmin = 1 R _script ncr_common@r_BeginBrahminFindQuest 0  @
+19 19000 None 0 #
+0 19010 @
+20 20000 None 0 #
+21 20010 D _script ncr_common@d_HasBrahmins 0  R _script ncr_common@r_CompleteBrahminFindQuest 0  @
+21 21000 None 0 #
+0 21010 R _param p REPUTATION_NCR + 1 &
 
 [russ]
 {100}{}{Феликс}

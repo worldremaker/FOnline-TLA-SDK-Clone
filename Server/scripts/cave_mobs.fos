@@ -8,17 +8,20 @@
 #include "_teams.fos"
 #include "entire.fos"
 
-#define ENTIRE_SPAWN   (99)
-#define ENTIRE_CHEST   (98)
+#define ENTIRE_SPAWN    (99)
+#define ENTIRE_CHEST    (98)
 
-#define SCRIPT_GECKO   ("mob@_MobInit")
-#define SCRIPT_SCORP   ("mob@_MobInit")
-#define SCRIPT_DCLAW   ("mob@_MobInit")
-#define SCRIPT_ECRAT   ("mob@_MobInit")
-#define SCRIPT_ROBBER  ("cave_mobs@_CaveNpcInit")
-#define MESSAGE_ATTACK (32) // Сообщение от игрока "атакуйте меня". Отсылается всем видимым мобам, см. encounter_npc.fos
-#define PID_CHEST      (PID_CHEST)
-#define ENTIRE_DIST    (Random(2,5)) // Дистанция от контрольного гекса до точки установки Криттера
+#define SCRIPT_GECKO    ("mob@_MobInit")
+#define SCRIPT_SCORP    ("mob@_MobInit")
+#define SCRIPT_DCLAW    ("mob@_MobInit")
+#define SCRIPT_ECRAT    ("mob@_MobInit")
+#define SCRIPT_ROBBER   ("cave_mobs@_CaveNpcInit")
+#define MESSAGE_ATTACK  (32) // Сообщение от игрока "атакуйте меня". Отсылается всем видимым мобам, см. encounter_npc.fos
+#define PID_CHEST       (PID_CHEST)
+#define ENTIRE_DIST     (Random(2,5)) // Дистанция от контрольного гекса до точки установки Криттера
+#define AI_ROBBERS      (AIPACKET_MERC_RAIDER) // Общий аи пакет для рейдеров в пещерах
+#define SEE_PLAYER_FROM (12020) // начало строк "увидел игрока
+#define SEE_PLAYER_TO   (12038) // конец строк "увидел игрока"
 
 import void _NpcInit(Critter& npc, bool firstTime) from "encounter_npc";
 import bool AddAttackPlane(Critter& npc, uint priority, Critter& target, bool run) from "npc_planes";
@@ -347,22 +350,22 @@ void SetupMobs(CCaveEncounterInfo & eInfo, uint8 maxLevel)
 			eInfo.IsSpecial = true;
 			if(maxLevel<10)
 			{
-				eInfo.AddCaveMobInfo(NPC_PID_CaveRobber_male_1, SCRIPT_ROBBER, BAG_CaveBanditLvl1, AIPACKET_MYSTERIOUS_STRANGER, TEAM_Bandit);
-				eInfo.AddCaveMobInfo(NPC_PID_CaveRobber_female_1, SCRIPT_ROBBER, BAG_CaveBanditLvl1, AIPACKET_MYSTERIOUS_STRANGER, TEAM_Bandit);
+				eInfo.AddCaveMobInfo(NPC_PID_CaveRobber_male_1, SCRIPT_ROBBER, BAG_CaveBanditLvl1, AI_ROBBERS, TEAM_Bandit);
+				eInfo.AddCaveMobInfo(NPC_PID_CaveRobber_female_1, SCRIPT_ROBBER, BAG_CaveBanditLvl1, AI_ROBBERS, TEAM_Bandit);
 				eInfo.MobsNum = Random(2, 3);
 				break;
 			}
 			if(maxLevel>9 && maxLevel<21)
 			{
-				eInfo.AddCaveMobInfo(NPC_PID_CaveRobber_male_2, SCRIPT_ROBBER, BAG_CaveBanditLvl2, AIPACKET_BOUNTY_HUNTER, TEAM_Bandit);
-				eInfo.AddCaveMobInfo(NPC_PID_CaveRobber_female_2, SCRIPT_ROBBER, BAG_CaveBanditLvl2, AIPACKET_BOUNTY_HUNTER, TEAM_Bandit);
+				eInfo.AddCaveMobInfo(NPC_PID_CaveRobber_male_2, SCRIPT_ROBBER, BAG_CaveBanditLvl2, AI_ROBBERS, TEAM_Bandit);
+				eInfo.AddCaveMobInfo(NPC_PID_CaveRobber_female_2, SCRIPT_ROBBER, BAG_CaveBanditLvl2, AI_ROBBERS, TEAM_Bandit);
 				eInfo.MobsNum = Random(3, 4);
 				break;
 			}
 			if(maxLevel>20)
 			{
-				eInfo.AddCaveMobInfo(NPC_PID_CaveRobber_male_3, SCRIPT_ROBBER, BAG_VaultCity_Guard, AIPACKET_BOUNTY_HUNTER, TEAM_Bandit);
-				eInfo.AddCaveMobInfo(NPC_PID_CaveRobber_female_3, SCRIPT_ROBBER, BAG_VaultCity_Guard, AIPACKET_BOUNTY_HUNTER, TEAM_Bandit);
+				eInfo.AddCaveMobInfo(NPC_PID_CaveRobber_male_3, SCRIPT_ROBBER, BAG_VaultCity_Guard, AI_ROBBERS, TEAM_Bandit);
+				eInfo.AddCaveMobInfo(NPC_PID_CaveRobber_female_3, SCRIPT_ROBBER, BAG_VaultCity_Guard, AI_ROBBERS, TEAM_Bandit);
 				eInfo.MobsNum = Random(3, 4);
 				break;
 			}
@@ -387,9 +390,19 @@ void _CaveInCritter(Map & map, Critter & cr)
 {
 	if(cr.IsPlayer())
 	{
+		CreateTimeEvent(__FullSecond+REAL_SECOND(8), "e_PlayerHere", cr.Id, false);
+	}
+}
+
+uint e_PlayerHere(uint[]@ values)
+{
+	Critter @ cr = GetCritter(values[0]);
+	if(valid(cr)&&cr.IsPlayer())
+	{
 		cr.SendMessage(MESSAGE_ATTACK, cr.Id, MESSAGE_TO_WHO_SEES_ME);
 		cr.SendMessage(MESSAGE_ATTACK, cr.Id, MESSAGE_TO_I_SEE);
 	}
+	return 0;
 }
 
 void _CaveNpcInit(Critter & cr, bool firstTime)
@@ -402,6 +415,8 @@ void _CaveNpcShowCritter(Critter & cr, Critter & showCrit)
 {
 	if(showCrit.IsPlayer())
 	{
+		if(Random(0,50)<100) 
+			cr.SayMsg(SAY_NORM_ON_HEAD,TEXTMSG_COMBAT,Random(SEE_PLAYER_FROM,SEE_PLAYER_TO)*10);
 		AddAttackPlane(cr, 0, showCrit, __RunOnCombat);
 	}
 }

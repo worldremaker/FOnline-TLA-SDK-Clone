@@ -1,7 +1,7 @@
 #ifndef __VARS__
 #define __VARS__
 /*************************************************************************************
-***  VARS  *****  COUNT: 00000426  ***************************************************
+***  VARS  *****  COUNT: 00000431  ***************************************************
 *************************************************************************************/
 
 
@@ -165,7 +165,10 @@
 #define LVAR_mod_baltas_armor1             (3304)
 #define LVAR_mod_baltas_armor2             (3305)
 #define LVAR_q_mod_joe_farm                (3306)
+#define LVAR_q_mod_joe_giant_wasp          (3307)
 #define LVAR_geck_garold_train             (3500)
+#define GVAR_geck_skitr_hired              (3501)
+#define LVAR_geck_skitr_transit            (3502)
 #define LVAR_q_bh_kit_caravan_escort       (3600)
 #define LVAR_bh_crv_reset_counter          (3601)
 #define LVAR_common_crv_reset_counter      (3602)
@@ -290,6 +293,8 @@
 #define LVAR_redd_rooney_cemetery          (4307)
 #define LVAR_redd_mining_to                (4308)
 #define LVAR_q_redd_doctor_poisoned        (4311)
+#define LVAR_q_redd_hubb_childkiller       (4312)
+#define LVAR_red_childkiller_merc_id       (4313)
 #define LVAR_repl_hell_turret_hack         (4400)
 #define GVAR_sf_zax366_status_global       (4401)
 #define LVAR_q_sf_eva_help_with_zax        (4402)
@@ -1806,12 +1811,32 @@ $	3306	1	q_mod_joe_farm	0	0	10	1
 3 - выполнен
 **********
 
+$	3307	1	q_mod_joe_giant_wasp	0	0	3	1
+**********
+1 - Взят квест, карта отображена
+2 - Игрок убил осу, карта удалена
+3 - игрок сдал квест
+**********
+
 $	3500	1	geck_garold_train	0	0	1	0
 **********
 Было ли обучение у Гарольда или нет.
 
 0 - не было
 1 - было
+**********
+
+$	3501	0	geck_skitr_hired	0	0	1	0
+**********
+Признак: нанят Скиттер для службы в ГЕКК или нет
+**********
+
+$	3502	1	geck_skitr_transit	0	0	3	0
+**********
+Локальная, стутс Скиттера для конкретного игрока
+1 - игрок отдал двигатель
+2 - игрок дождался взрыва двигателя
+3 - игрок взялся проводить Скиттера
 **********
 
 $	3600	1	q_bh_kit_caravan_escort	0	0	11	1
@@ -3040,6 +3065,22 @@ $	4308	1	redd_mining_to	0	0	0	4
 $	4311	1	q_redd_doctor_poisoned	0	0	3	1
 **********
 
+**********
+
+$	4312	1	q_redd_hubb_childkiller	0	0	7	1
+**********
+1 - Доступен квест привести мальчика
+2 - Получен квест привести мальчика
+3 - мальчик приведен
+4 - доступен квест привести девочку
+5 - получен квест привести девочку
+6 - c девочкой поговорил
+7 - девочку привел
+**********
+
+$	4313	1	red_childkiller_merc_id	0	0	0	4
+**********
+Локальная, без границ. Для определения Id нпц, следующего за игроком.
 **********
 
 $	4400	1	repl_hell_turret_hack	0	0	100	0

@@ -6,71 +6,71 @@ lang=russ engl
 
 [dialog]
 &
-1 1000 NOT_ANSWER_CLOSE_DIALOG 1#
-2 1010@
-2 2000 NOT_ANSWER_CLOSE_DIALOG 0#
-3 2010d*_param p ST_INTELLECT > 3 #
-21 2020d*_param p ST_INTELLECT < 4 #
-28 2030d*_param p ST_INTELLECT < 4 *_var p ncr_mic_guarantee_counter = 10 *_var p ncr_mic_q_status = 2 r*_var p ncr_mic_guarantee_counter = 11 *_param p ST_EXPERIENCE + 2500 *_script ncr_michael@r_PrepareComing 1 0 *_param p REPUTATION_NCR + 1 @
-3 3000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 3010#
-4 3020#
-5 3030#
-20 3040d*_var p ncr_mic_q_status = 2 *_var p ncr_mic_guarantee_counter = 10 r*_var p ncr_mic_guarantee_counter + 1 *_param p ST_EXPERIENCE + 2000 *_script ncr_michael@r_PrepareComing 1 0 *_param p REPUTATION_NCR + 1 @
-4 4000 NOT_ANSWER_CLOSE_DIALOG 0@
-5 5000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 5010#
-6 5020#
-8 5030#
-11 5040d*_var p ncr_mic_guarantee_counter < 10 *_script dialog@d_TimeoutCheck 0  r*_script dialog@r_TimeoutSet 1 60 @
-6 6000 NOT_ANSWER_CLOSE_DIALOG 0#
-65507 6010#
-7 6020@
-7 7000 NOT_ANSWER_CLOSE_DIALOG 0@
-8 8000 NOT_ANSWER_CLOSE_DIALOG 0#
-9 8010d*_param p ST_GENDER = 1 #
-10 8020@
-9 9000 NOT_ANSWER_CLOSE_DIALOG 0@
-10 10000 NOT_ANSWER_CLOSE_DIALOG 0@
-11 11000 NOT_ANSWER_CLOSE_DIALOG 0#
-12 11010#
-13 11020#
-14 11030@
-12 12000 NOT_ANSWER_CLOSE_DIALOG 0@
-13 13000 NOT_ANSWER_CLOSE_DIALOG 0@
-14 14000 NOT_ANSWER_CLOSE_DIALOG 0#
-15 14010@
-15 15000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 15010#
-16 15020@
-16 16000 NOT_ANSWER_CLOSE_DIALOG 0#
-17 16010#
-18 16020@
-17 17000 NOT_ANSWER_CLOSE_DIALOG 0@
-18 18000 NOT_ANSWER_CLOSE_DIALOG 0#
-19 18010r*_var p ncr_mic_q_status = 1 @
-19 19000 NOT_ANSWER_CLOSE_DIALOG 0@
-20 20000 NOT_ANSWER_CLOSE_DIALOG 0@
-21 21000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 21010#
-22 21020@
-22 22000 NOT_ANSWER_CLOSE_DIALOG 0#
-23 22010#
-23 22020#
-0 22030@
-23 23000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 23010#
-24 23020d*_param p ST_INTELLECT > 0 *_var p ncr_mic_guarantee_counter < 10 r*_script dialog@r_TimeoutSet 1 60 @
-24 24000 NOT_ANSWER_CLOSE_DIALOG 0#
-25 24010@
-25 25000 NOT_ANSWER_CLOSE_DIALOG 0#
-26 25010@
-26 26000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 26010#
-27 26020r*_var p ncr_mic_q_status = 1 @
-27 27000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 27010@
-28 28000 NOT_ANSWER_CLOSE_DIALOG 0&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 D _param p ST_INTELLECT > 3 #
+21 2020 D _param p ST_INTELLECT < 4 #
+28 2030 D _param p ST_INTELLECT < 4 D _var p ncr_mic_guarantee_counter = 10 D _var p ncr_mic_q_status = 2 R _var p ncr_mic_guarantee_counter = 11 R _param p ST_EXPERIENCE + 2500 R _script ncr_michael@r_PrepareComing 1 0 R _param p REPUTATION_NCR + 1 @
+3 3000 None 0 #
+0 3010 #
+4 3020 #
+5 3030 #
+20 3040 D _var p ncr_mic_q_status = 2 D _var p ncr_mic_guarantee_counter = 10 R _var p ncr_mic_guarantee_counter + 1 R _param p ST_EXPERIENCE + 2000 R _script ncr_michael@r_PrepareComing 1 0 R _param p REPUTATION_NCR + 1 @
+4 4000 None 0 @
+5 5000 None 0 #
+0 5010 #
+6 5020 #
+8 5030 #
+11 5040 D _var p ncr_mic_guarantee_counter < 10 D _script dialog@d_TimeoutCheck 0  R _script dialog@r_TimeoutSet 1 60 @
+6 6000 None 0 #
+65507 6010 #
+7 6020 @
+7 7000 None 0 @
+8 8000 None 0 #
+9 8010 D _param p ST_GENDER = 1 #
+10 8020 @
+9 9000 None 0 @
+10 10000 None 0 @
+11 11000 None 0 #
+12 11010 #
+13 11020 #
+14 11030 @
+12 12000 None 0 @
+13 13000 None 0 @
+14 14000 None 0 #
+15 14010 @
+15 15000 None 0 #
+0 15010 #
+16 15020 @
+16 16000 None 0 #
+17 16010 #
+18 16020 @
+17 17000 None 0 @
+18 18000 None 0 #
+19 18010 D _var p npc_story = 0 R _var p ncr_mic_q_status = 1 R _var p npc_story = 1 @
+19 19000 None 0 @
+20 20000 None 0 @
+21 21000 None 0 #
+0 21010 #
+22 21020 @
+22 22000 None 0 #
+23 22010 #
+23 22020 #
+0 22030 @
+23 23000 None 0 #
+0 23010 #
+24 23020 D _param p ST_INTELLECT > 0 D _var p ncr_mic_guarantee_counter < 10 R _script dialog@r_TimeoutSet 1 60 @
+24 24000 None 0 #
+25 24010 @
+25 25000 None 0 #
+26 25010 @
+26 26000 None 0 #
+0 26010 #
+27 26020 R _var p ncr_mic_q_status = 1 @
+27 27000 None 0 #
+0 27010 @
+28 28000 None 0 &
 
 [russ]
 {100}{}{Майкл}

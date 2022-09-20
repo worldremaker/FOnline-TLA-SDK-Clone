@@ -942,7 +942,8 @@ void critter_init(Critter& cr, bool firstTime)
 			SetStartLocation(cr);
 
 			// Main quest
-			if(!(__MainStoryLineActive && SetPlayerStoryLineLocation(cr))) SetStartLocation(cr);
+			//if(!(__MainStoryLineActive && SetPlayerStoryLineLocation(cr))) SetStartLocation(cr);
+			if(__MainStoryLineActive) SetPlayerStoryLineLocation(cr);
 		}
 		else
 		{

@@ -2399,6 +2399,8 @@ position=Surrounding, Spacing:2, distance:4*/
 	globalTable.AddEncounter( 15, 10033100).AddGroup(GROUP_Bounty_Hunter_High_Mid, 2, 4).AddGroup(GROUP_Player            , 0, 0).Fighting(0,1).CheckParam(ST_LEVEL,'>',12).CheckParam(ST_LEVEL,'<',19).CheckParam(ST_KARMA,'<',-500);
 	globalTable.AddEncounter( 15, 10033110).AddGroup(GROUP_Bounty_Hunter_High    , 2, 5).AddGroup(GROUP_Player            , 0, 0).Fighting(0,1).CheckParam(ST_LEVEL,'>',18).CheckParam(ST_KARMA,'<',-500);
 	globalTable.AddEncounter( 10, 10033120).AddGroup(GROUP_Morton_Brother        , 4, 7).CheckLVar(LVAR_redding_morton_brothers,'>',0).CheckLVar(LVAR_redding_morton_brothers,'<',6).AssignLVar(LVAR_redding_morton_brothers,'=',6);
+	globalTable.AddEncounter( 15, 10033070).AddGroup(GROUP_Bounty_Hunter_High    , 2, 6).AddGroup(GROUP_Player            , 0, 0).Fighting(0,1).CheckParam(KARMA_PEDOBEAR,'>',1);
+	
 	// Add yours special encounters here
 	AddTableToAllTables(globalTable);
 

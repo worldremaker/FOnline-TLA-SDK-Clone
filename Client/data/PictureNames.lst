@@ -64,6 +64,8 @@
 276    art\skilldex\KILLS.FRM     # Alien
 277    art\skilldex\KILLS.FRM     # Giant Ant
 278    art\skilldex\KILLS.FRM     # Big Bad Boss
+279    art\skilldex\KILLS.FRM     # Giant Beetle
+280    art\skilldex\KILLS.FRM     # Giant Wasp
 
 300    art\skilldex\SWFTLERN.FRM  # Bookworm
 301    art\skilldex\AWARENES.FRM  # Awareness
@@ -187,6 +189,7 @@
 493    art\skilldex\MADEMAN.FRM   # Made Man Rep
 494    art\skilldex\MADEMAN.FRM   # Made Man Rep
 495    art\skilldex\DIVORCED.FRM  # Divorced/Widowed
+496    art\skilldex\pbear.png     # Pedobear
 
 500    art\skilldex\POISONED.FRM  # Poisoned
 501    art\skilldex\RADIATED.FRM  # Radiated

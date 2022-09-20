@@ -1446,10 +1446,10 @@
 {102772}{}{The number of insectoids that you have exterminated in the wasteland.}
 {102781}{}{Big Bad Boss}
 {102782}{}{The count of genetically-engineered total homicidal maniac cyborg bodyguards you have wasted.}
-{102891}{}{Giant beetles}
-{102892}{}{A count of giant beetles slain by your hand.}
-{102901}{}{Giant Wasps}
-{102901}{}{A count of giant wasps by your hand.}
+{102791}{}{Giant beetles}
+{102792}{}{A count of giant beetles slain by your hand.}
+{102801}{}{Giant Wasps}
+{102802}{}{A count of giant wasps by your hand.}
 
 ####################################################################################################################################
 #
@@ -1821,6 +1821,9 @@
 # KARMA_SEPARATED
 {104951}{}{Separated}
 {104952}{}{Your spouse is no longer with you. I hope you're happy.}
+# KARMA_PEDOBEAR
+{104961}{}{Pedobear}
+{104962}{}{You've raped a little kid. How could you do that, you bastard. Now you've earned some problems for your ass for the rest of your miserable life.}
 
 
 # 105000

@@ -615,7 +615,7 @@
 // 376..379
 
 	/// Karma perks
-#pragma crdata "Karma 480 495"
+#pragma crdata "Karma 480 496"
 #define KARMA_BEGIN                (__KarmaBegin)
 #define KARMA_END                  (__KarmaEnd)
 #define KARMA_COUNT                (KARMA_END-KARMA_BEGIN+1)
@@ -635,7 +635,9 @@
 #define KARMA_MAN_MORDINO           (493)
 #define KARMA_MAN_WRIGHT            (494)
 #define KARMA_SEPARATED             (495)
-// 496..499
+#define KARMA_PEDOBEAR              (496)
+
+// 497..499
 
 	/// Damages
 #pragma crdata "Damage 500 506"

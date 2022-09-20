@@ -141,6 +141,7 @@ $	317	mod_girl
 $	318	mod_karl
 $	319	mod_brahmin_boy
 $	320	mod_farmer_q
+$	321 mod_maria
 $	400	vc_citizen
 $	401	vc_non_citizen
 $	402	vc_guard
@@ -247,7 +248,7 @@ $	636     bh_steve
 $	637     bh_sulvan
 $	639     bh_typhon
 $	640     bh_zaius
-$	641	bh_mutant_female
+$	641		bh_mutant_female
 $	642     bh_kit
 $	700	nr_kitty
 $	701	nr_casino_guard
@@ -325,6 +326,8 @@ $	772	nr_jessy
 $	773	nr_jessy_man
 $	774	nr_jeweller
 $	775	nr_barmen_desp
+$	776	nr_jowey
+$	777 nr_natasha
 $	1000	ncr_dufus
 $	1001	ncr_miky
 $	1002	ncr_trader_buster
@@ -460,6 +463,7 @@ $	1350	redd_mine_miner
 $	1351	redd_mine_regulator
 $	1352	redd_moore
 $	1353	redd_poisoned
+$	1354	redd_hubb
 $	1400	sf_citizen_shue
 $	1401	sf_guard_shue
 $	1402	sf_trader_chiang
@@ -658,7 +662,8 @@ $	3103	bos_ignat
 $	3104	bos_citizen
 $	3105	bos_paladin
 $	3106	bos_scriber
-$       3107    bos_jim
+$	3107	bos_jim
+$	3108	bos_sasha
 $	4000	repl_hubb
 $	4001	repl_hubb_oper
 $	4050    repl_bank_banker

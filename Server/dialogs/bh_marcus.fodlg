@@ -24,7 +24,7 @@ lang=russ engl
 11 4020 #
 8 4030 #
 0 4040 #
-36 4050 D _var p q_bh_marcus_escort = 0 D _param p ST_INTELLECT > 5 D _param p KILL_MEN > 79 D _param p SK_SPEECH > 79 D _param p SK_OUTDOORSMAN > 99 @
+36 4050 D _var p q_bh_marcus_escort = 0 D _param p SK_SPEECH > 79 D _param p SK_OUTDOORSMAN > 99 D _param p KILL_MEN > 66 D _param p ST_INTELLECT > 4 @
 5 5000 None 0 #
 10 5010 #
 11 5020 #
