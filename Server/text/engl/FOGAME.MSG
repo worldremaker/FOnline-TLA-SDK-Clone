@@ -289,6 +289,7 @@
 {483}{}{You can't trade with this person right now. Try again later.}
 {485}{}{Trading with %s. Your mode: %s, opponent's mode: %s.}
 {486}{}{%s is ready for deal.}
+{487}{}{No, i don't need it. Only cash, please.}
 
 ####################################################################################################################################
 #

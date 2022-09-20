@@ -1282,6 +1282,18 @@ uint item_cost(Item& item, Critter& cr, Critter& npc, bool sell)
 // Return false to cancel transaction.
 bool items_barter(Item@[]& saleItems, uint[]& saleItemsCount, Item@[]& buyItems, uint[]& buyItemsCount, Critter& player, Critter& npc)
 {
+	if(npc.Mode[MODE_BARTER_ONLY_CASH]>0)
+	{
+		for(uint i=0,j=saleItems.length();i<j;i++)
+		{
+			Item@ item=saleItems[i];
+			if(valid(item) && item.GetProtoId()!=PID_BOTTLE_CAPS)
+			{
+				npc.SayMsg(SAY_DIALOG,TEXTMSG_GAME,STR_BARTER_ONLY_CASH);
+				return false;
+			}
+		}
+	}
 	return true;
 }
 

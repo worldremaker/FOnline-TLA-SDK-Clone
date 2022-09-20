@@ -393,3 +393,91 @@ void _BoatInit(Item & boat, bool firstTime)
 	boat.SetScript(null);
 	boat.Update();
 }
+
+// Странствующий тоговец взрывчаткой Дэвин
+
+#define GAME_DAY  #(day)  (24*60*60*day)
+#define GAME_HOUR #(hour) (60*60*hour)
+#define CTE_NEW_TRAVEL    (12)
+#define ENTIRE_DEVIN      (23)
+// Присваевает скрипт для НПЦ и запускает его выполнение
+// crId - Id нпц
+// isTransit - признак, нпц перемещается телепортом
+// entireNum - номер гекса, на который будет перемещаться нпц при заходе в локацию
+// timeWaitLoc - время ожидания на локации до следующего путешествия
+// timeWaitEnc - время ожидания на энкаунтере после завершения боя до продолжения путешествия
+// locPids - массив кодов протоипов локаций, на которые может зайти НПЦ
+import void SetTraveller(uint crId, bool isTransit, uint entireNum, uint timeWaitLoc, uint timeWaitEnc, uint16[] locPids, bool visibleEncounters) from "traveller";
+import void CancelTraveller(uint crId) from "traveller";
+import void _TraderInit(Critter& trader, bool firstTime) from "trader";
+
+void _DevinInit(Critter& cr, bool firstTime)
+{
+	GameVar@ isHired = GetGlobalVar(GVAR_sf_devin_hired);
+	if(valid(isHired) && isHired == 0)
+	{
+		cr.SetEvent(CRITTER_EVENT_RESPAWN, "_DevinRespawn");
+		uint16[] locPids = {LOCATION_GeckCity, LOCATION_SanFrancisco, LOCATION_VaultCity, LOCATION_NCR, LOCATION_NewReno, LOCATION_Redding};
+		SetTraveller(cr.Id, true, ENTIRE_DEVIN, GAME_DAY(20), GAME_HOUR(2), locPids, false);
+	}
+	else
+	{
+		CancelTraveller(cr.Id);
+		cr.SetEvent(CRITTER_EVENT_RESPAWN, "");		
+	}
+	cr.ModeBase[MODE_BARTER_ONLY_CASH] = 1;
+	cr.SkillBase[SK_BARTER] = 180;
+	_TraderInit(cr, firstTime);
+}
+
+void _DevinRespawn(Critter& cr)
+{
+	CreateTimeEvent(__FullSecond + __TimeMultiplier * 3, "e_DevinSay", cr, false);
+}
+
+uint e_DevinSay(uint[]@ values)
+{
+	Critter@ cr = GetCritter(values[0]);
+	if(valid(cr))
+	{
+		GameVar@ isHired = GetGlobalVar(GVAR_sf_devin_hired);
+		if(valid(isHired) && isHired != 0)
+		{
+			cr.SayMsg(SAY_NORM, TEXTMSG_DLG, DLGSTR(cr.Stat[ST_DIALOG_ID], 2));
+			if(cr.GetTimeEvents(CTE_NEW_TRAVEL, null, null, null) != 0)
+			{
+				cr.EraseTimeEvents(CTE_NEW_TRAVEL);
+			}
+			cr.AddTimeEvent("traveller@cte_Travel", __TimeMultiplier * 2, CTE_NEW_TRAVEL);
+		}
+	}
+	return 0;
+}
+
+void r_HireDevin(Critter& player, Critter@ npc)
+{
+	if(!valid(npc))
+		return;
+	CancelTraveller(npc.Id);
+	npc.ModeBase[MODE_BARTER_ONLY_CASH] = 1;
+	npc.SkillBase[SK_BARTER] = 180;
+	npc.SetScript("trader@_TraderInit");
+}
+
+// Установка признака - может ли данный игрок нанять нпц
+// click_counter == 1? можно нанять
+// click_counter != 1 нельзя
+void r_SetCanHire(Critter& player, Critter@ npc)
+{
+	if(!valid(npc))
+		return;
+	GameVar@ status = GetUnicumVar(UVAR_click_counter, player.Id, npc.Id);
+	if(!valid(status))
+		return;
+	int roll = Random(250, 350);
+	if(roll > player.Skill[SK_TRAPS])
+		status = 2;
+	else
+		status = 1;
+}
+

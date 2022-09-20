@@ -93,6 +93,7 @@ import void Damage(Critter& player, int dmg, int type, int dir) from "stdlib";
 import void AttackStop(Critter& player, int npcRole) from "stdlib";
 
 import void Attack(Critter& player, int npcRole) from "stdlib";
+import bool TransitToMap(Critter& cr, int locPid, int mapIndex, int entranceNum) from "stdlib";
 
 // Импорты с других модулей.
 import void DropDrugEffects(Critter& cr) from "drugs";

@@ -684,7 +684,7 @@
 #define MODE_NO_LOOT                (532) // Нельзя лутать                                          Used in engine
 #define MODE_NO_SUPPLY              (533) // Не приходят охотники за головами при смерти нпц
 #define MODE_NO_KARMA_ON_KILL       (534) // При смерти не производится перерасчета кармы игрока-убийцы.
-// 535
+#define MODE_BARTER_ONLY_CASH       (535) // При бартере нпц принимает оплату только наличными.
 #define MODE_NO_PUSH                (536) // Can't be pushed                                        Used in engine
 #define MODE_NO_UNARMED             (537) // Not have unarmed attacks                               Used in engine
 // 538..549

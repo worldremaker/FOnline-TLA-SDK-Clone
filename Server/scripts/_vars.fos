@@ -1,7 +1,7 @@
 #ifndef __VARS__
 #define __VARS__
 /*************************************************************************************
-***  VARS  *****  COUNT: 00000458  ***************************************************
+***  VARS  *****  COUNT: 00000459  ***************************************************
 *************************************************************************************/
 
 
@@ -327,6 +327,7 @@
 #define LVAR_q_sf_slim_sidnancy            (4424)
 #define LVAR_sf_recipe_plasmagrenades      (4425)
 #define LVAR_sf_recipe_supersledge         (4426)
+#define GVAR_sf_devin_hired                (4427)
 #define LVAR_scen_enclave_soldier          (4500)
 #define LVAR_scen_enclave_scient           (4501)
 #define LVAR_scen_bos_soldier              (4502)
@@ -3354,6 +3355,11 @@ $	4426	1	sf_recipe_supersledge	0	0	1	0
 доступен рецепт на производство супермолота
 0 - нет
 1 - да
+**********
+
+$	4427	0	sf_devin_hired	0	0	1	0
+**********
+глобальная, признак: нанят ли Девин в ГЕКК или нет.
 **********
 
 $	4500	1	scen_enclave_soldier	0	0	10	0

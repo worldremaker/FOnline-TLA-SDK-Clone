@@ -202,6 +202,7 @@
 #define STR_BARTER_BEGIN_FAIL           (483)
 #define STR_BARTER_BEGIN                (485)
 #define STR_BARTER_READY_OFFER          (486)
+#define STR_BARTER_ONLY_CASH            (487)
 
 // Items info
 	// Wear
