@@ -93,17 +93,15 @@ bool d_IsNotRec(Critter& player, Critter@ npc, int val)
 //* Results                                                              */
 //************************************************************************/
 
-void r_TryRec(Critter& player, Critter@ npc, int val)
+uint r_TryRec(Critter& player, Critter@ npc, int val)
 {
 	if(not RecInAir())
 	{
 		BeginRec(player);
-		__ForceDialog=FORCE_DIALOG_REC_SUCC;
+		return FORCE_DIALOG_REC_SUCC;
 	}
-	else
-	{
-		__ForceDialog=FORCE_DIALOG_REC_FAIL;
-	}
+
+	return FORCE_DIALOG_REC_FAIL;
 }
 
 void r_BeginRec(Critter& player, Critter@ npc, int val)

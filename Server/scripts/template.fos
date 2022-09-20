@@ -15,10 +15,12 @@ bool s_FuncName(Critter& cr, Scenery& scen, int skill, Item@ item)
 void t_FuncName(Critter& cr, Scenery& trigger, bool entered, uint8 dir)
 	// Dialog
 void dlg_FuncName(Critter& player, Critter@ npc, string@ text)
+uint dlg_FuncName(Critter& player, Critter@ npc, string@ text)
 	// Dialog demand
-bool d_FuncName(Critter& master, Critter& slave, int val)
+bool d_FuncName(Critter& master, Critter& slave, int val, ...)
 	// Dialog result
-void r_FuncName(Critter& master, Critter& slave, int val)
+void r_FuncName(Critter& master, Critter& slave, int val, ...)
+uint r_FuncName(Critter& master, Critter& slave, int val, ...)
 	// Text listener
 void listen_FuncName(Critter& player, string& text)
 	// ~runscript command

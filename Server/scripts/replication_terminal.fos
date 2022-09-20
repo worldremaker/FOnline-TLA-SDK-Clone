@@ -17,7 +17,8 @@
 #define STR_NEGATIVE_BALANCE              (DLGSTR(DIALOG_repl_terminal,7))
 #define STR_OPERATION_SUCCESS             (DLGSTR(DIALOG_repl_terminal,10))
 
-#define SEND_ERROR_RETURN #(cr,error)     {cr.SayMsg(SAY_DIALOG,TEXTMSG_DLG,error);return;}
+#define SEND_ERROR_RETURN  #(cr,error)     {cr.SayMsg(SAY_DIALOG,TEXTMSG_DLG,error);return;}
+#define SEND_ERROR_RETURN0 #(cr,error)     {cr.SayMsg(SAY_DIALOG,TEXTMSG_DLG,error);return 0;}
 
 bool s_Terminal(Critter& player, Scenery& terminal, int skill, Item@ item)
 {
@@ -32,20 +33,20 @@ void r_PaySelf(Critter& player, Critter@ terminal)
 	var=player.Id;
 }
 
-void dlg_ChoosePlayer(Critter& player, Critter@ terminal, string@ playerName)
+uint dlg_ChoosePlayer(Critter& player, Critter@ terminal, string@ playerName)
 {
-	if(not IS_DIALOG_SAY_MODE(playerName)) return;
+	if(not IS_DIALOG_SAY_MODE(playerName)) return 0;
 
 	GameVar@ var=GetLocalVar(LVAR_terminal_player_id,player.Id);
-	if(not valid(var)) SEND_ERROR_RETURN(player,STR_GENERIC_ERROR);
+	if(not valid(var)) SEND_ERROR_RETURN0(player,STR_GENERIC_ERROR);
 	var=0;
 
 	Critter@ cr=GetPlayer(playerName);
-	if(not valid(cr)) SEND_ERROR_RETURN(player,STR_PLAYER_NOT_FOUND);
+	if(not valid(cr)) SEND_ERROR_RETURN0(player,STR_PLAYER_NOT_FOUND);
 
 	var=cr.Id;
-	if(cr.Id==player.Id) __ForceDialog=FORCE_DIALOG_PAY_SELF;
-	else __ForceDialog=FORCE_DIALOG_PAY_OTHER_NEXT;
+	if(cr.Id==player.Id) return FORCE_DIALOG_PAY_SELF;
+	return FORCE_DIALOG_PAY_OTHER_NEXT;
 }
 
 void dlg_TransferReal(Critter& player, Critter@ terminal, string@ moneyCount)

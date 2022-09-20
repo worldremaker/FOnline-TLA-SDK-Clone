@@ -11,7 +11,7 @@
 #define STR_ACCESS_MEMBER                           (5504) // Поздравляем! Ваши сведения записаны в базу данных Города. Вы получите расширенный доступ ко всем системам.
 #define STR_CREATION_END                            (5505) // Работа Генератора Эдемских Кущ Компактного завершена. Добро пожаловать в Город из Г.Э.К.К.а!
 #define STR_CANT_OPEN_DOOR                          (5506) // Электронный замок на этой двери невозможно открыть стандартными способами. От отмычек или динамита не будет никакого толку.
-#define STR_CITIZEN_ADDED                           (5507) //@lex leadername@ включил вас в списки жителей Города из Г.Э.К.К. 
+#define STR_CITIZEN_ADDED                           (5507) //@lex leadername@ включил вас в списки жителей Города из Г.Э.К.К.
 #define STR_CITIZEN_REMOVED                         (5508) //@lex leadername@ исключил вас из списка жителей Города из Г.Э.К.К.
 #define STR_GENERATOR_CHARGED                       (5509) // Генератор заряжен, всего зарядов:@lex charges@. Примерное время бесперебойной работы барьера, часов:@lex time@.
 #define STR_CONSOLE_OUT_OF_ORDER                    (5510) // Терминал не функционирует. Система перезагружается.
@@ -52,7 +52,7 @@
 #define CHARGES_MFC                                 (10) // Число зарядов генератора c одного реактора
 #define CHARGES_CEC                                 (1) // Число зарядов генератора c одной малой батареи
 #define MAX_CELLS                                   (100) // Максимальное число батареек за раз, которые можно загрузить в генератор
-#define GATES_NET_NUM                               (1) // Номер сети для барьера на входе. 
+#define GATES_NET_NUM                               (1) // Номер сети для барьера на входе.
 #define CITIZENS_TRADING_SKILL                      (10) // Навык бартера для нпц-торговца в ГизГ
 // energy_barrier.fos
 #define BM_OFF (1)
@@ -130,7 +130,7 @@ void CreateCity(Critter& player, Item& geck)
 		cr.StatBase[ST_EXPERIENCE]+=XP_CREATE_CITY;
 		cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 3480, "$exp" + XP_CREATE_CITY );
 	}
-	uint[] chief = {player.Id};	
+	uint[] chief = {player.Id};
 	player.SayMsg(SAY_NETMSG,TEXTMSG_TEXT,STR_CREATION_END);
 	leader.TransitToGlobal(grp);
 	player.AddItem(PID_USED_GECK, 1);
@@ -154,7 +154,7 @@ bool IsPlayerCitizen(Critter@ cr)
 	{
 		if(cr.Id == acceptedPlayers[i]) return true;
 	}
-	return false;	
+	return false;
 }
 
 // Проверка, является ли криттер лидером данного города из ГЕККА
@@ -170,7 +170,7 @@ bool IsPlayerLeader(Critter@ cr)
 	if(!IsAnyData(key)) return false;
 	uint[] chief;
 	if(!GetAnyData(key,chief)) return false;
-	return chief[0]==cr.Id;	
+	return chief[0]==cr.Id;
 }
 
 // Добавление игрока в списки жителей
@@ -194,8 +194,8 @@ bool AddCitizen(Critter& leader, Critter& player)
 	cityMember = loc.Id;
 	ArrayPushBack(acceptedPlayers, player.Id);
 	EraseAnyData(key);
-	SetAnyData(key, acceptedPlayers);	
-	return true;	
+	SetAnyData(key, acceptedPlayers);
+	return true;
 }
 
 // Исключение игрока из списков жителей
@@ -216,7 +216,7 @@ bool RemoveCitizen(Critter& leader, Critter& player)
 		{
 			remove_from_array(acceptedPlayers,i);
 			EraseAnyData(key);
-			SetAnyData(key, acceptedPlayers);	
+			SetAnyData(key, acceptedPlayers);
 			GameVar@ cityMember = GetLocalVar(VAR_CITIZEN, player.Id);
 			if(!valid(cityMember)) return true;
 			if(cityMember.GetValue()!=0) cityMember=0;
@@ -239,60 +239,54 @@ void ClearCitizens(Critter & leader)
 	uint[] acceptedPlayers;
 	ArrayPushBack(acceptedPlayers, leader.Id);
 	EraseAnyData(key);
-	SetAnyData(key, acceptedPlayers);	
+	SetAnyData(key, acceptedPlayers);
 }
 // Работа со списком жителей города
 bool d_IsPlayerLeader(Critter& player, Critter@ none)
 {
 	return IsPlayerLeader(player);
-}	
-
-void dlg_RemoveCitizen(Critter& player, Critter@ npc, string@ playerName)
-{
-	if(!IS_DIALOG_SAY_MODE(playerName)) return;
-	Critter@ cr=GetPlayer(playerName);
-	if(valid(cr))
-	{
-		if(cr.Id==player.Id)
-		{
-			__ForceDialog=FORCE_DIALOG_PLAYER_NOTFOUND;
-			return;
-		}
-		if(RemoveCitizen(player, cr))
-		{			
-			cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_CITIZEN_REMOVED, "$leadername"+GetPlayerName(player.Id));
-			__ForceDialog=FORCE_DIALOG_PLAYER_REMOVED;
-			return;
-		}else{
-			__ForceDialog=FORCE_DIALOG_ERROR;
-			return;
-		}
-	}
-	__ForceDialog=FORCE_DIALOG_PLAYER_NOTFOUND;
 }
 
-void dlg_AddCitizen(Critter& player, Critter@ npc, string@ playerName)
+uint dlg_RemoveCitizen(Critter& player, Critter@ npc, string@ playerName)
 {
-	if(!IS_DIALOG_SAY_MODE(playerName)) return;
+	if(!IS_DIALOG_SAY_MODE(playerName)) return 0;
 	Critter@ cr=GetPlayer(playerName);
 	if(valid(cr))
 	{
 		if(cr.Id==player.Id)
 		{
-			__ForceDialog=FORCE_DIALOG_PLAYER_NOTFOUND;
-			return;
+			return FORCE_DIALOG_PLAYER_NOTFOUND;
+		}
+		if(RemoveCitizen(player, cr))
+		{
+			cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_CITIZEN_REMOVED, "$leadername"+GetPlayerName(player.Id));
+			return FORCE_DIALOG_PLAYER_REMOVED;
+		}else{
+			return FORCE_DIALOG_ERROR;
+		}
+	}
+	return FORCE_DIALOG_PLAYER_NOTFOUND;
+}
+
+uint dlg_AddCitizen(Critter& player, Critter@ npc, string@ playerName)
+{
+	if(!IS_DIALOG_SAY_MODE(playerName)) return 0;
+	Critter@ cr=GetPlayer(playerName);
+	if(valid(cr))
+	{
+		if(cr.Id==player.Id)
+		{
+			return FORCE_DIALOG_PLAYER_NOTFOUND;
 		}
 		if(AddCitizen(player, cr))
-		{			
+		{
 			cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_CITIZEN_ADDED , "$leadername"+GetPlayerName(player.Id));
-			__ForceDialog=FORCE_DIALOG_PLAYER_ADDED;
-			return;
+			return FORCE_DIALOG_PLAYER_ADDED;
 		}else{
-			__ForceDialog=FORCE_DIALOG_ERROR;
-			return;
+			return FORCE_DIALOG_ERROR;
 		}
-	}	
-	__ForceDialog=FORCE_DIALOG_PLAYER_NOTFOUND;
+	}
+	return FORCE_DIALOG_PLAYER_NOTFOUND;
 }
 
 void r_ClearCitizens(Critter& player, Critter @ none)
@@ -336,7 +330,7 @@ void _DoorInit(Item& door, bool firstTime)
 
 bool _DoorSkill(Item& door, Critter& cr, int skill)
 {
-	if(FLAG(door.LockerCondition,LOCKER_ISOPEN)) return false;	
+	if(FLAG(door.LockerCondition,LOCKER_ISOPEN)) return false;
 	cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_CANT_OPEN_DOOR);
 	return true;
 }
@@ -345,8 +339,8 @@ void r_OpenDoor(Critter& player, Critter@ none)
 {
 	Item@ door = GetGeckDoor(player.GetMap());
 	if(!valid(door)) return;
-	door.LockerOpen();	
-	CreateTimeEvent(CLOSE_DOOR_TIME,"item@e_AutoCloseDoor", door , true);	
+	door.LockerOpen();
+	CreateTimeEvent(CLOSE_DOOR_TIME,"item@e_AutoCloseDoor", door , true);
 }
 
 void r_CloseDoor(Critter& player, Critter@ none)
@@ -365,11 +359,11 @@ Item@ GetGeckDoor(Map@ map)
 	if(!IsAnyData(key)) return null;
 	uint[] data;
 	if(!GetAnyData(key,data)) return null;
-	return GetItem(data[0]);	
+	return GetItem(data[0]);
 }
 
-// Найм НПЦ для службы в своем городе из ГЕККа. 
-// Нанимать можно только одного НПЦ за раз. 
+// Найм НПЦ для службы в своем городе из ГЕККа.
+// Нанимать можно только одного НПЦ за раз.
 // НПЦ будет следовать за игроком, пока тот не приведет его к месту назначения
 Location@ GetGeckLocation(Critter@ player)
 {
@@ -377,7 +371,7 @@ Location@ GetGeckLocation(Critter@ player)
 	GameVar@ location = GetLocalVar(VAR_CITIZEN, player.Id);
 	if(!valid(location)) return null;
 	if(location==0) return null;
-	return(GetLocation(location.GetValue()));	
+	return(GetLocation(location.GetValue()));
 }
 
 // Проверка, может ли игрок нанять НПЦ для службы в своем городе
@@ -389,13 +383,13 @@ bool d_CanHireNpc(Critter& player, Critter@ npc, int npcPid, int maxNum, int hom
 	if(maxNum<1) return false;
 	Location@ loc = GetGeckLocation(player);
 	if(!valid(loc)) return false;
-	// На данный момент, локация Город из ГЕККА состоит только из двух карт. 
+	// На данный момент, локация Город из ГЕККА состоит только из двух карт.
 	// НПЦ могут находиться только на первой из них.
 	Map@ map = loc.GetMapByIndex(0);
 	if(!valid(map)) return false;
 	uint count = map.GetCritters(uint16(npcPid), FIND_ALL, null);
 	if(count>=uint(maxNum)) return false;
-	return (map.CountEntire(uint8(homeEntire))>count);	
+	return (map.CountEntire(uint8(homeEntire))>count);
 }
 
 bool d_CanNotHireNpc(Critter& player, Critter@ npc, int npcPid, int maxNum, int homeEntire)
@@ -416,7 +410,7 @@ bool d_CanNotHireNpc(Critter& player, Critter@ npc, int maxNum, int homeEntire)
 }
 
 // Проверка, найдена ли новая домашняя позиция в Городе из ГЕККа для НПЦ
-// homeEntire - номер гекса с домашней позицией НПЦ 
+// homeEntire - номер гекса с домашней позицией НПЦ
 bool d_HomeFound(Critter& player, Critter@ npc, int homeEntire)
 {
 	if(!valid(npc)) return false;
@@ -434,7 +428,7 @@ bool d_HomeFound(Critter& player, Critter@ npc, int homeEntire)
 	{
 		if(GetDistantion(npc.HexX, npc.HexY, entires[i].HexX, entires[i].HexY)<=HOMEPOS_RADIUS) return true;
 	}
-	return false;	
+	return false;
 }
 
 bool d_NotHomeFound(Critter& player, Critter@ npc, int homeEntire)
@@ -454,7 +448,7 @@ void r_SetNewHome(Critter& player, Critter@ npc, int homeEntire)
 	if(count==0) return;
 	for(uint i=0, l=entires.length();i<l;i++)
 	{
-		if(GetDistantion(npc.HexX, npc.HexY, entires[i].HexX, entires[i].HexY)<=HOMEPOS_RADIUS) 
+		if(GetDistantion(npc.HexX, npc.HexY, entires[i].HexX, entires[i].HexY)<=HOMEPOS_RADIUS)
 		{
 			npc.SetHomePos(entires[i].HexX, entires[i].HexY, GetDirection(entires[i].HexX, entires[i].HexY, npc.HexX, npc.HexY));
 			return;
@@ -492,9 +486,9 @@ void _GeckMapLoop1(Map& map)
 // Жители сразу попадают в штабквартиру, если заходят на карту города из ГЕККа
 void _GeckMapInCritter(Map& map, Critter& cr)
 {
-	if(cr.IsPlayer()) 
+	if(cr.IsPlayer())
 	{
-		if(IsPlayerCitizen(cr)) 
+		if(IsPlayerCitizen(cr))
 		{
 			// Проверка, что игрок ближе к обычному гексу, чем к выходу для граждан
 			uint16 hx=0;
@@ -505,7 +499,7 @@ void _GeckMapInCritter(Map& map, Critter& cr)
 				distDefault = GetDistantion(cr.HexX, cr.HexY, hx, hy);
 			if (GetEntireFreeHex(map, ENTIRE_CITIZEN_EXIT, hx, hy))
 				distCitizen = GetDistantion(cr.HexX, cr.HexY, hx, hy);
-			if (distDefault>distCitizen) return;			
+			if (distDefault>distCitizen) return;
 			if (GetEntireFreeHex(map, ENTIRE_CITYHALL, hx, hy))
 			{
 				cr.TransitToHex(hx, hy, Random(0,5));
@@ -530,7 +524,7 @@ void TryMoveCar(Critter & cr, Map & map)
 			for(int i=0, j=entires.length(); i<j; i++)
 			{
 				Item@ car = map.GetCar(entires[i].HexX, entires[i].HexY);
-				if(valid(car) && car.LockerId == key.LockerId) 
+				if(valid(car) && car.LockerId == key.LockerId)
 				{
 					entires.resize(0);
 					ParseEntires(map, entires, ENTIRE_CITIZEN_CAR);
@@ -544,7 +538,7 @@ void TryMoveCar(Critter & cr, Map & map)
 						}
 					}
 				}
-			}		
+			}
 		}
 	}
 }
@@ -563,7 +557,7 @@ bool d_NoGeneratoreCharges(Critter& player, Critter@ npc)
 	if(!valid(map)) return false;
 	return (_GetCharges(map)<1);
 }
-	
+
 bool s_TerminalOuter(Critter& player, Scenery& terminal, int skill, Item@ item, int netNum, int hackBonus, int hitBonus)
 {
 	Map@ map = player.GetMap();
@@ -578,7 +572,7 @@ bool s_TerminalOuter(Critter& player, Scenery& terminal, int skill, Item@ item, 
 bool d_IsTerminalBroken(Critter& player, Critter@ npc)
 {
 	Map@ map = player.GetMap();
-	if(!valid(map)) 
+	if(!valid(map))
 		return false;
 	return (_GetTimeBroken(map)>__FullSecond);
 }
@@ -603,7 +597,7 @@ void r_BrakeTerminal(Critter& player, Critter@ npc)
 		{
 			AddMiscPlane(npc, 0, 20, "map_geck_city@plane_Brake");
 		}
-	}	
+	}
 }
 
 void plane_Brake(Critter& npc)
@@ -639,7 +633,7 @@ bool s_UseGenerator(Critter& cr, Scenery& scen, int skill, Item@ item)
 	if(charges==0) return false;
 	charges = _GetCharges(map)+charges;
 	_SetCharges(map, charges);
-	cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_GENERATOR_CHARGED, "$charges"+charges+"$time"+_GetUptime(charges));	
+	cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_GENERATOR_CHARGED, "$charges"+charges+"$time"+_GetUptime(charges));
 	_SubItem (item,itemCount);
 	return true;
 }
@@ -688,7 +682,7 @@ bool _GeckTraderBarter(Critter& cr, Critter& player, bool attach, uint barterCou
 	{
 		cr.SkillBase[SK_BARTER] = CITIZENS_TRADING_SKILL;
 	}else{
-		cr.SkillBase[SK_BARTER] = cr.Stat[ST_VAR0];		
+		cr.SkillBase[SK_BARTER] = cr.Stat[ST_VAR0];
 	}
 	return true;
 }

@@ -50,19 +50,18 @@ uint e_AnnouncementMorning(uint[]@ values)
 
 // Создание Хаммера. Ключ вручаем игроку.
 // Вызывается из диалога, в Результате.
-// При ошибке создания Хаммера диалоговая ветка отводится на №9 (__ForceDialog).
+// При ошибке создания Хаммера диалоговая ветка отводится на №9.
 // master - игрок
 // slave - нпц
 // Обойдемся одним игроком.
-void r_CreateHummer(Critter& player, Critter@ boy)
+uint r_CreateHummer(Critter& player, Critter@ boy)
 {
 	// Берем карту на которой находится игрок с нпц
 	Map@ map=player.GetMap();
 	if(not valid(map))
 	{
 		Log("Map nullptr.");
-		__ForceDialog=9;
-		return;
+		return 9;
 	}
 
 	int pos=Random(0,4);
@@ -73,11 +72,7 @@ void r_CreateHummer(Critter& player, Critter@ boy)
 
 	// Хаммер, комплексное создание всесте с багажником
 	Item@ car=map.AddItem(x[pos],y[pos],PID_HUMMER,1);
-	if(not valid(car))
-	{
-		__ForceDialog=9; //Перенаправляем на диалог №9
-		return;
-	}
+	if(not valid(car)) return 9;
 
 	car.LockerId=keyId;
 
@@ -93,6 +88,7 @@ void r_CreateHummer(Critter& player, Critter@ boy)
 
 	// Удаляем 10000 монет
 	player.DeleteItem(PID_BOTTLE_CAPS,10000);
+	return 0;
 }
 
 void _BoyRespawn(Critter& boy)

@@ -103,10 +103,11 @@ class SlayerPattern : CommonPattern
 		_SetRun(plane, cr);
 
 		if(target.IsKnockout()) return false;
-		ProtoItem @ weapon = cr.GetSlotProto(SLOT_HAND1);
+		uint8 mode=0;
+		ProtoItem @ weapon = cr.GetSlotProto(SLOT_HAND1,mode);
 		if(!valid(weapon)) return false;
 		if(weapon.GetType()!=ITEM_WEAPON) return false;
-		if(weapon.Weapon_Skill!=SK_MELEE_WEAPONS&&weapon.Weapon_Skill!=SK_UNARMED) return false;
+		if(weapon.Weapon_Skill_F!=SK_MELEE_WEAPONS && weapon.Weapon_Skill_F!=SK_UNARMED) return false;
 
 		Item @ weap = _CritGetItemHand(cr);
 		if(!valid(weap)) return false;
@@ -115,7 +116,7 @@ class SlayerPattern : CommonPattern
 
 		// Скопировано из основного обработчика
 		cr.TimeoutBase[TO_AGGRESSOR]=__FullSecond+REAL_MINUTE(1);
-		CombatAttack(cr, target, weapon, ammo, HIT_LOCATION_EYES);
+		CombatAttack(cr, target, weapon, _WeaponModeMake(0, HIT_LOCATION_EYES), ammo);
 
 		return true;
 	}

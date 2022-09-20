@@ -103,7 +103,8 @@ bool UseSkillOnLocker(Critter& cr, Item& locker, int skill) // Export
 		}
 
 		int base=cr.Skill[SK_LOCKPICK]-locker.LockerComplexity;
-		uint16 activePid=cr.GetSlotProto(SLOT_HAND1).GetProtoId();
+		uint8 mode=0;
+		uint16 activePid=cr.GetSlotProto(SLOT_HAND1,mode).GetProtoId();
 		if(activePid==PID_LOCKPICKS)
 		{
 			base+=25;

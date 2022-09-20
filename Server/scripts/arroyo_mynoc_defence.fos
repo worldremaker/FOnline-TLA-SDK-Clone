@@ -25,7 +25,7 @@
 
 // Проверка доступности квеста для группы этот квест можно взять если в группе емть НПС.
 // Так же могут участвовать игоки бравшие квест ранее, но квест они не выполняют и опыт не получают.
-void r_CheckQuest( Critter& player, Critter@ npc ) {
+uint r_CheckQuest( Critter& player, Critter@ npc ) {
 
 	// Находим группу в которой состоит игрок и лидера группы.
 	Critter@[] group;
@@ -46,15 +46,13 @@ void r_CheckQuest( Critter& player, Critter@ npc ) {
 		}
 	}
 	if ( GroupKarma <= -20 || ArroyoRep <= -10 ){
-		__ForceDialog = DIALOG_NUM_KARMA;
-		return;
+		return DIALOG_NUM_KARMA;
 	}
 
 	// Проверяем размер группы в которой состоит игрок берущий квест,
 	// если размер группы меньше необходимого - отправляем на вариант диалога DIALOG_NUM_COUNT
 	if ( group.length() < MIN_PLAYERS ) {
-		__ForceDialog = DIALOG_NUM_COUNT;
-		return;
+		return DIALOG_NUM_COUNT;
 	}
 
 	// Проверяем уровни группы в которой состоит игрок берущий квест
@@ -66,16 +64,15 @@ void r_CheckQuest( Critter& player, Critter@ npc ) {
 
 		// Если хоть один из участников группы не соответсвует требованиям - отправляем на вариант диалога DIALOG_NUM_LVL
 		if ( group[i].StatBase[ST_LEVEL] < MIN_LVL || group[i].StatBase[ST_LEVEL] > MAX_LVL ) {
-			__ForceDialog = DIALOG_NUM_LVL;
-			return;
+			return DIALOG_NUM_LVL;
 		}
 	}
 
 	// Если квест уже взят другой группой - отправляем на вариант диалога DIALOG_QUEST_USED
 	if ( ! TimeOutIsFree() ){
-		__ForceDialog = DIALOG_QUEST_USED;
-		return;
+		return DIALOG_QUEST_USED;
 	}
+	return 0;
 
 }
 
@@ -96,7 +93,7 @@ void r_StartQuest( Critter& player, Critter@ npc ) {
 
 
 // Запуск второй стадии квеста.
-void r_StartStage2( Critter& player, Critter@ npc ) {
+uint r_StartStage2( Critter& player, Critter@ npc ) {
 
 	// Находим группу в которой состоит игрок и лидера группы.
 	Critter@[] group;
@@ -107,12 +104,11 @@ void r_StartStage2( Critter& player, Critter@ npc ) {
 	// Проверяем размер группы в которой состоит игрок берущий квест,
 	// если размер группы меньше необходимого - отправляем на вариант диалога DIALOG_NUM_COUNT
 	if ( group.length() < MIN_PLAYERS ) {
-		__ForceDialog = DIALOG_NUM_COUNT;
-		return;
+		return DIALOG_NUM_COUNT;
 	} else {
 		StartQuest( player, 2 );
-		return;
 	}
+	return 0;
 
 }
 

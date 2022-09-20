@@ -40,7 +40,6 @@ void _GuardStealing(Critter& npc, Critter& thief, bool success, Item& item, uint
 	if(success==false)
 	{
 		npc.SendMessage(124,thief.Id,MESSAGE_TO_ALL_ON_MAP); //и сообщает об этом охране
-		//__ForceDialog=3;
 		npc.SayMsg(SAY_SHOUT_ON_HEAD,TEXTMSG_TEXT,STR_ALARM); //Ругань
 		_NpcEraseAllPlanesAttack(npc);
 		AddAttackPlane(npc,0,thief);

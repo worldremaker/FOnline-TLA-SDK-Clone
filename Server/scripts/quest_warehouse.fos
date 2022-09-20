@@ -121,20 +121,20 @@ bool CheckNewQuestValue(Critter& player, uint questLVar, int needVal)
 	return true;
 }
 
-void ProcessMainQuest(Critter& player, int newVal)
+uint ProcessMainQuest(Critter& player, int newVal)
 {
-	if(not CheckNewQuestValue(player,LVAR_q_warehouse,newVal)) FORCE_DIALOG(FD_GENERIC_ERROR);
+	if(not CheckNewQuestValue(player,LVAR_q_warehouse,newVal)) return FD_GENERIC_ERROR;
 
 	// Выдача квеста
 	if(newVal==MAINQUEST_GIVED)
 	{
 		Map@ map=player.GetMap();
-		if(not valid(map)) FORCE_DIALOG(FD_GENERIC_ERROR);
+		if(not valid(map)) return FD_GENERIC_ERROR;
 
 		Critter@[] critters;
 		ArrayPushBack(critters,player);
 		player.GetFollowGroup(FIND_LIFE,critters);
-		if(critters.length()<MIN_PLAYERS) FORCE_DIALOG(FD_LOW_PLAYERS);
+		if(critters.length()<MIN_PLAYERS) return FD_LOW_PLAYERS;
 
 		bool isMalePresent=false;
 		uint aproxLevel=0;
@@ -150,7 +150,7 @@ void ProcessMainQuest(Critter& player, int newVal)
 				GameVar@ crQuest=GetLocalVar(LVAR_q_warehouse,cr.Id);
 				if(valid(crQuest) && CheckNewQuestValue(cr,LVAR_q_warehouse,MAINQUEST_GIVED))
 				{
-					if(cr.Stat[ST_LEVEL]<MIN_EVERY_LEVEL) FORCE_DIALOG(FD_LOW_LEVEL);
+					if(cr.Stat[ST_LEVEL]<MIN_EVERY_LEVEL) return FD_LOW_LEVEL;
 
 					ArrayPushBack(questCr,cr);
 					ArrayPushBack(questData,cr.Id);
@@ -159,18 +159,18 @@ void ProcessMainQuest(Critter& player, int newVal)
 				}
 			}
 		}
-		if(not isMalePresent) FORCE_DIALOG(FD_LOW_PLAYERS);
+		if(not isMalePresent) return FD_LOW_PLAYERS;
 
 		// Проверка численности.
-		if(questCr.length()<MIN_PLAYERS) FORCE_DIALOG(FD_LOW_PLAYERS);
-		if(questCr.length()>MAX_PLAYERS) FORCE_DIALOG(FD_MANY_PLAYERS);
+		if(questCr.length()<MIN_PLAYERS) return FD_LOW_PLAYERS;
+		if(questCr.length()>MAX_PLAYERS) return FD_MANY_PLAYERS;
 
 		// Level check
 		aproxLevel/=questCr.length();
-		if(aproxLevel<MIN_APROX_LEVEL) FORCE_DIALOG(FD_LOW_LEVEL);
+		if(aproxLevel<MIN_APROX_LEVEL) return FD_LOW_LEVEL;
 
 		// Сохроняем данные о команде.
-		if(not SetAnyData("Warehouse_"+player.Id,questData)) FORCE_DIALOG(FD_GENERIC_ERROR);
+		if(not SetAnyData("Warehouse_"+player.Id,questData)) return FD_GENERIC_ERROR;
 
 		// Отмечаем квест.
 		for(uint i=0;i<questCr.length();i++)
@@ -182,7 +182,7 @@ void ProcessMainQuest(Critter& player, int newVal)
 			GameVar@ crQuestOther=GetLocalVar(LVAR_warehouse_other,cr.Id);
 			GameVar@ crQuestDataId=GetLocalVar(LVAR_warehouse_data_id,cr.Id);
 			if(not valid(crQuestMain) || not valid(crQuestSub1) || not valid(crQuestSub2) ||
-			   not valid(crQuestOther) || not valid(crQuestDataId)) FORCE_DIALOG(FD_GENERIC_ERROR);
+			   not valid(crQuestOther) || not valid(crQuestDataId)) return FD_GENERIC_ERROR;
 			crQuestMain=MAINQUEST_GIVED;
 			crQuestSub1=SUBQUEST1_FIND_DAUGHTER;
 			crQuestSub2=SUBQUEST2_GOLDEN_GLOBES;
@@ -197,7 +197,7 @@ void ProcessMainQuest(Critter& player, int newVal)
 	else
 	{
 		uint[] questCrIds;
-		if(not GetQuestCritters(player,questCrIds)) FORCE_DIALOG(FD_GENERIC_ERROR);
+		if(not GetQuestCritters(player,questCrIds)) return FD_GENERIC_ERROR;
 		ChangeCrittersQuest(questCrIds,LVAR_q_warehouse,newVal,MainQuestExperience[newVal]);
 
 		if(newVal==MAINQUEST_MARK_FAIL || newVal==MAINQUEST_MARK_DONE)
@@ -212,14 +212,16 @@ void ProcessMainQuest(Critter& player, int newVal)
 			if(valid(crQuestDataId) && crQuestDataId!=0) EraseAnyData("Warehouse_"+crQuestDataId.GetValue());
 		}
 	}
+
+	return 0;
 }
 
-void ProcessSubQuest1(Critter& player, int newVal)
+uint ProcessSubQuest1(Critter& player, int newVal)
 {
-	if(not CheckNewQuestValue(player,LVAR_q_warehouse_sub1,newVal)) FORCE_DIALOG(FD_GENERIC_ERROR);
+	if(not CheckNewQuestValue(player,LVAR_q_warehouse_sub1,newVal)) return FD_GENERIC_ERROR;
 
 	uint[] questCrIds;
-	if(not GetQuestCritters(player,questCrIds)) FORCE_DIALOG(FD_GENERIC_ERROR);
+	if(not GetQuestCritters(player,questCrIds)) return FD_GENERIC_ERROR;
 	ChangeCrittersQuest(questCrIds,LVAR_q_warehouse_sub1,newVal,SubQuest1Experience[newVal]);
 
 	if(newVal==SUBQUEST1_DONE)
@@ -232,14 +234,14 @@ void ProcessSubQuest1(Critter& player, int newVal)
 		}
 		uint16 locPid=Random(LOCATION_Warehouse_First,LOCATION_Warehouse_Last);
 		uint locId=CreateLocation(locPid,Random(810,990),Random(510,690),critters);
-		if(locId==0) FORCE_DIALOG(FD_GENERIC_ERROR);
+		if(locId==0) return FD_GENERIC_ERROR;
 		SetLocId(player,locId);
 		Location@ loc=GetLocation(locId);
-		if(not valid(loc)) return;
+		if(not valid(loc)) return FD_GENERIC_ERROR;
 		Map@ map=loc.GetMapByIndex(0);
-		if(not valid(map)) return;
+		if(not valid(map)) return FD_GENERIC_ERROR;
 		uint16 hexX=0,hexY=0;
-		if(not map.GetEntireCoords(ENTIRE_LOC_DOOR,0,hexX,hexY)) return;
+		if(not map.GetEntireCoords(ENTIRE_LOC_DOOR,0,hexX,hexY)) return FD_GENERIC_ERROR;
 		Item@ door=map.GetDoor(hexX,hexY);
 		if(valid(door))
 		{
@@ -247,27 +249,29 @@ void ProcessSubQuest1(Critter& player, int newVal)
 			door.Update();
 		}
 	}
+
+	return 0;
 }
 
-void ProcessSubQuest2(Critter& player, int newVal)
+uint ProcessSubQuest2(Critter& player, int newVal)
 {
-	if(not CheckNewQuestValue(player,LVAR_q_warehouse_sub2,newVal)) FORCE_DIALOG(FD_GENERIC_ERROR);
+	if(not CheckNewQuestValue(player,LVAR_q_warehouse_sub2,newVal)) return FD_GENERIC_ERROR;
 
 	uint[] questCrIds;
-	if(not GetQuestCritters(player,questCrIds)) FORCE_DIALOG(FD_GENERIC_ERROR);
+	if(not GetQuestCritters(player,questCrIds)) return FD_GENERIC_ERROR;
 	ChangeCrittersQuest(questCrIds,LVAR_q_warehouse_sub2,newVal,SubQuest2Experience[newVal]);
 
 	if(newVal==SUBQUEST2_DONE)
 	{
 		uint locId=GetLocId(player);
 		Location@ loc=GetLocation(locId);
-		if(not valid(loc)) return;
+		if(not valid(loc)) return FD_GENERIC_ERROR;
 		Map@ map=loc.GetMapByIndex(0);
-		if(not valid(map)) return;
+		if(not valid(map)) return FD_GENERIC_ERROR;
 		uint16 hexX=0,hexY=0;
-		if(not map.GetEntireCoords(ENTIRE_LOC_DOOR,0,hexX,hexY)) return;
+		if(not map.GetEntireCoords(ENTIRE_LOC_DOOR,0,hexX,hexY)) return FD_GENERIC_ERROR;
 		Item@ door=map.GetDoor(hexX,hexY);
-		if(not valid(door)) return;
+		if(not valid(door)) return FD_GENERIC_ERROR;
 		Item@ key=player.AddItem(PID_RED_PASS_KEY,1);
 		if(valid(key))
 		{
@@ -275,15 +279,20 @@ void ProcessSubQuest2(Critter& player, int newVal)
 			key.Update();
 		}
 	}
+
+	return 0;
 }
 
-void ProcessOther(Critter& player, int offset)
+uint ProcessOther(Critter& player, int offset)
 {
 	GameVar@ other=GetLocalVar(LVAR_warehouse_other,player.Id);
-	if(not valid(other)) return;
+	if(not valid(other)) return FD_GENERIC_ERROR;
+
 	int curVal=other.GetValue();
 	curVal|=1<<offset;
 	other=curVal;
+
+	return 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -313,18 +322,18 @@ bool d_Other_IsNotPornActresPay(Critter& player, Critter@ npc, int val)         
 bool d_Other_IsRecPorn(Critter& player, Critter@ npc, int val)                  {return CheckQuestValue(player,LVAR_warehouse_other,OTHER_REC_PORN);}
 bool d_Other_IsNotRecPorn(Critter& player, Critter@ npc, int val)               {return not CheckQuestValue(player,LVAR_warehouse_other,OTHER_REC_PORN);}
 /////////////////////////////////////////////////////////////////////////////////////////////
-void r_MainQuest_Give(Critter& player, Critter@ npc)                            {ProcessMainQuest(player,MAINQUEST_GIVED);}
-//void r_MainQuest_Done(Critter& player, Critter@ npc, int val)                   {ProcessMainQuest(player,MAINQUEST_DONE);} // See t_DoneHex
-void r_MainQuest_MarkDone(Critter& player, Critter@ npc, int val)               {ProcessMainQuest(player,MAINQUEST_MARK_DONE);}
-void r_MainQuest_MarkFail(Critter& player, Critter@ npc, int val)               {ProcessMainQuest(player,MAINQUEST_MARK_FAIL);}
-void r_SubQuest1_DaughterMadMax(Critter& player, Critter@ npc, int val)         {ProcessSubQuest1(player,SUBQUEST1_DAUGHTER_MADMAX);}
-void r_SubQuest1_DeliverInformation(Critter& player, Critter@ npc, int val)     {ProcessSubQuest1(player,SUBQUEST1_DELIVER_INFORMATION);}
-void r_SubQuest1_Done(Critter& player, Critter@ npc, int val)                   {ProcessSubQuest1(player,SUBQUEST1_DONE);}
-void r_SubQuest2_PornActres(Critter& player, Critter@ npc, int val)             {ProcessSubQuest2(player,SUBQUEST2_PORN_ACTRES);}
-void r_SubQuest2_Gambler(Critter& player, Critter@ npc, int val)                {ProcessSubQuest2(player,SUBQUEST2_GAMBLER);}
-void r_SubQuest2_Done(Critter& player, Critter@ npc, int val)                   {ProcessSubQuest2(player,SUBQUEST2_DONE);}
-void r_Other_PornActresPay(Critter& player, Critter@ npc, int val)              {ProcessOther(player,OTHER_PORN_ACTRES_PAY);}
-void r_Other_RecPorn(Critter& player, Critter@ npc, int val)                    {ProcessOther(player,OTHER_REC_PORN);}
+uint r_MainQuest_Give(Critter& player, Critter@ npc)                            {return ProcessMainQuest(player,MAINQUEST_GIVED);}
+//uint r_MainQuest_Done(Critter& player, Critter@ npc, int val)                   {return ProcessMainQuest(player,MAINQUEST_DONE);} // See t_DoneHex
+uint r_MainQuest_MarkDone(Critter& player, Critter@ npc, int val)               {return ProcessMainQuest(player,MAINQUEST_MARK_DONE);}
+uint r_MainQuest_MarkFail(Critter& player, Critter@ npc, int val)               {return ProcessMainQuest(player,MAINQUEST_MARK_FAIL);}
+uint r_SubQuest1_DaughterMadMax(Critter& player, Critter@ npc, int val)         {return ProcessSubQuest1(player,SUBQUEST1_DAUGHTER_MADMAX);}
+uint r_SubQuest1_DeliverInformation(Critter& player, Critter@ npc, int val)     {return ProcessSubQuest1(player,SUBQUEST1_DELIVER_INFORMATION);}
+uint r_SubQuest1_Done(Critter& player, Critter@ npc, int val)                   {return ProcessSubQuest1(player,SUBQUEST1_DONE);}
+uint r_SubQuest2_PornActres(Critter& player, Critter@ npc, int val)             {return ProcessSubQuest2(player,SUBQUEST2_PORN_ACTRES);}
+uint r_SubQuest2_Gambler(Critter& player, Critter@ npc, int val)                {return ProcessSubQuest2(player,SUBQUEST2_GAMBLER);}
+uint r_SubQuest2_Done(Critter& player, Critter@ npc, int val)                   {return ProcessSubQuest2(player,SUBQUEST2_DONE);}
+uint r_Other_PornActresPay(Critter& player, Critter@ npc, int val)              {return ProcessOther(player,OTHER_PORN_ACTRES_PAY);}
+uint r_Other_RecPorn(Critter& player, Critter@ npc, int val)                    {return ProcessOther(player,OTHER_REC_PORN);}
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 void t_DoneHex(Critter& player, Scenery& trigger, bool entered, uint8 dir)

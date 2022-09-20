@@ -205,7 +205,7 @@ void r_AllowAccess( Critter& player, Critter@ npc )
 
 
 // Разрешаем игроку пройти в убежище.
-void r_GuardDialog( Critter& player, Critter@ npc )
+uint r_GuardDialog( Critter& player, Critter@ npc )
 {
 
 	// Если есть пропуск и броня - не позволяем пронести только взрывчатку.
@@ -214,21 +214,20 @@ void r_GuardDialog( Critter& player, Critter@ npc )
 
 	// Если в руках игрока оружие.
 	/*if ( SearchWeapon( _CritGetItemHand(player) ) ){
-		__ForceDialog = 1;
+		return 1;
 	// Если в инвентаре запрещенные предметы - взрывчатка.
 	} else if ( EquipmentInspection( player, Pids_MiscExplosions ) || EquipmentInspection( player, Pids_MiscActiveExplosions ) ){
-		__ForceDialog = 2;
+		return 2;
 	}  else if ( EquipmentInspection( player, Pids_MiscExplosions ) || EquipmentInspection( player, Pids_MiscActiveExplosions ) ){
-		__ForceDialog = 2;
+		return 2;
 	}*/
 	if ( player.ModeBase[MODE_HIDE] == 1 ){
 		//player.ModeBase[MODE_HIDE] = 0;
-		__ForceDialog = 100;
+		return 100;
 	} else if ( SearchWeapon( _CritGetItemHand(player) ) ){
-		__ForceDialog = 101;
-	} else {
-		__ForceDialog = 2;
+		return 101;
 	}
+	return 2;
 
 }
 

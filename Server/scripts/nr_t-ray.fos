@@ -17,7 +17,6 @@ import uint GetCarCost(uint16 protoCar) from "car";
 #define FD_TAKE_KEY_IN_HAND              (101)
 #define FD_CAR_NOT_FOUND                 (102)
 #define FD_TAKE_KEY_IN_HAND2             (103)
-#define FORCE_DIALOG #(err)              {__ForceDialog=err; return;}
 
 #define STR_BUY_LIST                     (2100)
 #define STR_COST_HUMMER                  (2101)
@@ -55,35 +54,35 @@ void dlg_PrepareBuy(Critter& player, Critter@ tray, string@ lexems)
 	lexems+="$highwayman"+GetCarCost(PID_HIGHWAYMAN);
 }
 
-void r_BuyHummer(Critter& player, Critter@ tray, int val)
+uint r_BuyHummer(Critter& player, Critter@ tray, int val)
 {
-	TryCreateCar(player,PID_HUMMER);
+	return TryCreateCar(player,PID_HUMMER);
 }
 
-void r_BuyBuggy(Critter& player, Critter@ tray, int val)
+uint r_BuyBuggy(Critter& player, Critter@ tray, int val)
 {
-	TryCreateCar(player,PID_BUGGY);
+	return TryCreateCar(player,PID_BUGGY);
 }
 
-void r_BuyScout(Critter& player, Critter@ tray, int val)
+uint r_BuyScout(Critter& player, Critter@ tray, int val)
 {
-	TryCreateCar(player,PID_SCOUT);
+	return TryCreateCar(player,PID_SCOUT);
 }
 
-void r_BuyHighwayman(Critter& player, Critter@ tray, int val)
+uint r_BuyHighwayman(Critter& player, Critter@ tray, int val)
 {
-	TryCreateCar(player,PID_HIGHWAYMAN);
+	return TryCreateCar(player,PID_HIGHWAYMAN);
 }
 
-void TryCreateCar(Critter& player, uint16 protoCar)
+uint TryCreateCar(Critter& player, uint16 protoCar)
 {
-	if(protoCar!=PID_HUMMER && protoCar!=PID_BUGGY && protoCar!=PID_SCOUT && protoCar!=PID_HIGHWAYMAN) FORCE_DIALOG(FD_GENERIC_ERROR);
+	if(protoCar!=PID_HUMMER && protoCar!=PID_BUGGY && protoCar!=PID_SCOUT && protoCar!=PID_HIGHWAYMAN) return FD_GENERIC_ERROR;
 
 	uint cost=GetCarCost(protoCar);
-	if(_CritCountItem(player,PID_BOTTLE_CAPS)<cost) FORCE_DIALOG(FD_NO_MONEY);
+	if(_CritCountItem(player,PID_BOTTLE_CAPS)<cost) return FD_NO_MONEY;
 
 	Map@ map=player.GetMap();
-	if(not valid(map)) FORCE_DIALOG(FD_GENERIC_ERROR);
+	if(not valid(map)) return FD_GENERIC_ERROR;
 
 	Entire[] entires;
 	ParseEntires(map,entires,ENTIRE_WORKSHOP);
@@ -92,7 +91,7 @@ void TryCreateCar(Critter& player, uint16 protoCar)
 	uint16 hx,hy,entNum;
 	for(int i=0,j=entires.length();i<=j;i++)
 	{
-		if(i==j) FORCE_DIALOG(FD_NO_PLACES);
+		if(i==j) return FD_NO_PLACES;
 
 		Entire@ ent=entires[i];
 		if(map.CheckPlaceForCar(ent.HexX,ent.HexY,protoCar))
@@ -107,7 +106,7 @@ void TryCreateCar(Critter& player, uint16 protoCar)
 	uint keyId=Random(10000,50000);
 
 	Item@ car=map.AddItem(hx,hy,protoCar,1);
-	if(not valid(car)) FORCE_DIALOG(FD_GENERIC_ERROR);
+	if(not valid(car)) return FD_GENERIC_ERROR;
 	car.LockerId=keyId;
 	car.CarFuel=car.Proto.Car_FuelTank;
 	car.CarDeteoration=0;
@@ -129,8 +128,9 @@ void TryCreateCar(Critter& player, uint16 protoCar)
 	}
 
 	player.DeleteItem(PID_BOTTLE_CAPS,cost);
-	if(entNum==ENTIRE_WORKSHOP) __ForceDialog=FD_BUY_SUCCESS_WORKSHOP;
-	else __ForceDialog=FD_BUY_SUCCESS_CARSTOP;
+	if(entNum==ENTIRE_WORKSHOP) return FD_BUY_SUCCESS_WORKSHOP;
+
+	return FD_BUY_SUCCESS_CARSTOP;
 }
 
 Item@ GetPlayerKey(Critter@ player)
@@ -140,19 +140,19 @@ Item@ GetPlayerKey(Critter@ player)
 	return key;
 }
 
-Item@ GetPlayerCar(Critter@ player)
+Item@ GetPlayerCar(Critter@ player, uint& forceDialog)
 {
 	Map@ map=player.GetMap();
 	if(not valid(map))
 	{
-		__ForceDialog=FD_GENERIC_ERROR;
+		forceDialog=FD_GENERIC_ERROR;
 		return null;
 	}
 
 	Item@ key=GetPlayerKey(player);
 	if(not valid(key))
 	{
-		__ForceDialog=FD_TAKE_KEY_IN_HAND;
+		forceDialog=FD_TAKE_KEY_IN_HAND;
 		return null;
 	}
 
@@ -165,115 +165,133 @@ Item@ GetPlayerCar(Critter@ player)
 		if(valid(car) && car.LockerId==key.LockerId) return car;
 	}
 
-	__ForceDialog=FD_CAR_NOT_FOUND;
+	forceDialog=FD_CAR_NOT_FOUND;
 	return null;
 }
 
-void r_CheckCar(Critter& player, Critter@ tray, int val)
+uint r_CheckCar(Critter& player, Critter@ tray, int val)
 {
-	GetPlayerCar(player); // Force if fail.
+	uint forceDialog=0;
+	if(not valid(GetPlayerCar(player,forceDialog))) return forceDialog;
+	return 0;
 }
 
-void dlg_SellCar(Critter& player, Critter@ tray, string@ lexems)
+uint dlg_SellCar(Critter& player, Critter@ tray, string@ lexems)
 {
-	if(not IS_DIALOG_GENERATED(lexems)) return;
-
-	Item@ car=GetPlayerCar(player);
+	if(not IS_DIALOG_GENERATED(lexems)) return 0;
+	uint forceDialog=0;
+	Item@ car=GetPlayerCar(player,forceDialog);
 	if(not valid(car)) lexems="$sell_cost0";
 	else lexems="$sell_cost"+(GetCarCost(car.GetProtoId())/2);
+	return forceDialog;
 }
 
-void r_SellCar(Critter& player, Critter@ tray, int val)
+uint r_SellCar(Critter& player, Critter@ tray, int val)
 {
-	Item@ car=GetPlayerCar(player);
-	if(not valid(car)) return;
+	uint forceDialog=0;
+	Item@ car=GetPlayerCar(player,forceDialog);
+	if(not valid(car)) return forceDialog;
 	uint cost=GetCarCost(car.GetProtoId())/2;
 	Item@ key=_CritGetItemHand(player);
 	if(valid(key) && key.GetType()==ITEM_KEY && key.LockerId==car.LockerId) DeleteItem(key);
 	DeleteItem(car);
 	player.AddItem(PID_BOTTLE_CAPS,cost);
+	return 0;
 }
 
-void dlg_Fuel(Critter& player, Critter@ tray, string@ lexems)
+uint dlg_Fuel(Critter& player, Critter@ tray, string@ lexems)
 {
-	if(not IS_DIALOG_GENERATED(lexems)) return;
-	Item@ car=GetPlayerCar(player);
+	if(not IS_DIALOG_GENERATED(lexems)) return 0;
+	uint forceDialog=0;
+	Item@ car=GetPlayerCar(player,forceDialog);
 	if(not valid(car)) lexems="$fuel_cost0";
 	else lexems="$fuel_cost"+GetFuelCost(car);
+	return forceDialog;
 }
 
-void dlg_Wear(Critter& player, Critter@ tray, string@ lexems)
+uint dlg_Wear(Critter& player, Critter@ tray, string@ lexems)
 {
-	if(not IS_DIALOG_GENERATED(lexems)) return;
-	Item@ car=GetPlayerCar(player);
+	if(not IS_DIALOG_GENERATED(lexems)) return 0;
+	uint forceDialog=0;
+	Item@ car=GetPlayerCar(player,forceDialog);
 	if(not valid(car)) lexems="$wear_cost0";
 	else lexems="$wear_cost"+GetWearCost(car);
+	return forceDialog;
 }
 
-void dlg_Bio(Critter& player, Critter@ tray, string@ lexems)
+uint dlg_Bio(Critter& player, Critter@ tray, string@ lexems)
 {
-	if(not IS_DIALOG_GENERATED(lexems)) return;
-	Item@ car=GetPlayerCar(player);
+	if(not IS_DIALOG_GENERATED(lexems)) return 0;
+	uint forceDialog=0;
+	Item@ car=GetPlayerCar(player,forceDialog);
 	if(not valid(car)) lexems="$bio_cost0";
 	else lexems="$bio_cost"+GetBioCost(car);
+	return forceDialog;
 }
 
-void r_DoFuel(Critter& player, Critter@ tray, int val)
+uint r_DoFuel(Critter& player, Critter@ tray, int val)
 {
-	Item@ car=GetPlayerCar(player);
-	if(not valid(car)) return;
+	uint forceDialog=0;
+	Item@ car=GetPlayerCar(player,forceDialog);
+	if(not valid(car)) return forceDialog;
 
 	uint cost=GetFuelCost(car);
 	uint money=player.CountItem(PID_BOTTLE_CAPS);
-	if(cost>money) FORCE_DIALOG(FD_MODIFY_NO_MONEY);
+	if(cost>money) return FD_MODIFY_NO_MONEY;
 
-	if(car.CarFuel>=_CarGetFuelTank(car)) FORCE_DIALOG(FD_MODIFY_NO_NEED);
+	if(car.CarFuel>=_CarGetFuelTank(car)) return FD_MODIFY_NO_NEED;
 	car.CarFuel=car.Proto.Car_FuelTank;
 	player.DeleteItem(PID_BOTTLE_CAPS,cost);
+	return 0;
 }
 
-void r_DoWear(Critter& player, Critter@ tray, int val)
+uint r_DoWear(Critter& player, Critter@ tray, int val)
 {
-	Item@ car=GetPlayerCar(player);
-	if(not valid(car)) return;
+	uint forceDialog=0;
+	Item@ car=GetPlayerCar(player,forceDialog);
+	if(not valid(car)) return forceDialog;
 
 	uint cost=GetWearCost(car);
 	uint money=player.CountItem(PID_BOTTLE_CAPS);
-	if(cost>money) FORCE_DIALOG(FD_MODIFY_NO_MONEY);
+	if(cost>money) return FD_MODIFY_NO_MONEY;
 
-	if(car.CarDeteoration==0) FORCE_DIALOG(FD_MODIFY_NO_NEED);
+	if(car.CarDeteoration==0) return FD_MODIFY_NO_NEED;
 	car.CarDeteoration=0;
 	player.DeleteItem(PID_BOTTLE_CAPS,cost);
+	return 0;
 }
 
-void r_DoBio(Critter& player, Critter@ tray, int val)
+uint r_DoBio(Critter& player, Critter@ tray, int val)
 {
-	Item@ car=GetPlayerCar(player);
-	if(not valid(car)) return;
+	uint forceDialog=0;
+	Item@ car=GetPlayerCar(player,forceDialog);
+	if(not valid(car)) return forceDialog;
 
 	uint cost=GetBioCost(car);
 	uint money=player.CountItem(PID_BOTTLE_CAPS);
-	if(cost>money) FORCE_DIALOG(FD_MODIFY_NO_MONEY);
+	if(cost>money) return FD_MODIFY_NO_MONEY;
 
-	if(_CarIsBioEngine(car)) FORCE_DIALOG(FD_MODIFY_NO_NEED);
+	if(_CarIsBioEngine(car)) return FD_MODIFY_NO_NEED;
 	_CarSetBioEngine(car);
 	player.DeleteItem(PID_BOTTLE_CAPS,cost);
+	return 0;
 }
 
-void r_CopyKey(Critter& player, Critter@ tray, int val)
+uint r_CopyKey(Critter& player, Critter@ tray, int val)
 {
 	uint money=player.CountItem(PID_BOTTLE_CAPS);
-	if(money<KEY_COPY_COST) FORCE_DIALOG(FD_MODIFY_NO_MONEY);
+	if(money<KEY_COPY_COST) return FD_MODIFY_NO_MONEY;
 
 	Item@ key=GetPlayerKey(player);
-	if(not valid(key)) FORCE_DIALOG(FD_TAKE_KEY_IN_HAND2);
+	if(not valid(key)) return FD_TAKE_KEY_IN_HAND2;
 
 	Item@ keyCopy=player.AddItem(PID_KEY,1);
-	if(not valid(keyCopy)) FORCE_DIALOG(FD_GENERIC_ERROR);
+	if(not valid(keyCopy)) return FD_GENERIC_ERROR;
 	keyCopy.LockerId=key.LockerId;
 	keyCopy.Update();
 
 	player.DeleteItem(PID_BOTTLE_CAPS,KEY_COPY_COST);
+	return 0;
 }
 
 

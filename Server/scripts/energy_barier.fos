@@ -1079,7 +1079,7 @@ void r_GetAccessCard(Critter& master, Critter@ slave)
 	item.Val5=master.Id;
 }
 
-void r_Start(Critter& master, Critter@ slave)
+uint r_Start(Critter& master, Critter@ slave)
 {
 	Item@ card;
 	uint[] anyData;
@@ -1087,18 +1087,18 @@ void r_Start(Critter& master, Critter@ slave)
 	if(!valid(map))
 	{
 		Log("Map not valid");
-		return;
+		return 0;
 	}
 	Location@ loc = map.GetLocation();
 	if(!valid(loc))
 	{
 		Log("Error: location not valid");
-		return;
+		return 0;
 	}
 	CBariersNet@ net=GetBariersNet(master.StatBase[ST_VAR6],loc.Id);
 	if(!valid(net))
 	{
-		return;
+		return 0;
 	}
 	if(!net.TerminalsDisabled)
 	{
@@ -1108,23 +1108,19 @@ void r_Start(Critter& master, Critter@ slave)
 			{
 				if((anyData[2]!=0) and (anyData[2]>__FullSecond))
 				{
-					__ForceDialog=FD_TERM_BROKEN;
-					return;
+					return FD_TERM_BROKEN;
 				}
 				if((anyData[3]!=0) and (anyData[3]>__FullSecond))
 				{
-					__ForceDialog=FD_TERM_NOT_ACCESS;
-					return;
+					return FD_TERM_NOT_ACCESS;
 				}
 				if(BarierOpen(master))
 				{
-					__ForceDialog=FD_BARIER_OPEN;
-					return;
+					return FD_BARIER_OPEN;
 				}
 				if(anyData[0]==MODE_STANDART)
 				{
-					__ForceDialog=FD_NORMAL;
-					return;
+					return FD_NORMAL;
 				}
 				else
 				{
@@ -1134,29 +1130,27 @@ void r_Start(Critter& master, Critter@ slave)
 						if(!valid(card))
 						{
 							Log("Access card not valid");
-							return;
+							return 0;
 						}
 						if(not CheckCard(card, master))
 						{
-							__ForceDialog=FD_NOT_VALID_CARD;
-							return;
+							return FD_NOT_VALID_CARD;
 						}
 						else
 						{
-							__ForceDialog=FD_TURN_OFF_FIELD;
 							CBariersNet@ net=GetBariersNet(master.StatBase[ST_VAR6],loc.Id);
 							if(valid(net))
 							{
 								net.ChangeNetMode(BM_OFF,AE_DEFAULT);
 							}
-							return;
+							return FD_TURN_OFF_FIELD;
 						}
 					}
 					else
 					{
 						if(anyData[0]==MODE_HACK)
 						{
-							doHack(master, master.StatBase[ST_VAR4], master.StatBase[ST_VAR5]);
+							return doHack(master, master.StatBase[ST_VAR4], master.StatBase[ST_VAR5]);
 						}
 					}
 				}
@@ -1173,16 +1167,17 @@ void r_Start(Critter& master, Critter@ slave)
 	}
 	else
 	{
-		__ForceDialog=FD_DISABLED;
+		return FD_DISABLED;
 	}
+	return 0;
 }
 
-void r_doHack(Critter& master, Critter@ slave)
+uint r_doHack(Critter& master, Critter@ slave)
 {
-	doHack(master,master.StatBase[ST_VAR4],master.StatBase[ST_VAR5]);
+	return doHack(master,master.StatBase[ST_VAR4],master.StatBase[ST_VAR5]);
 }
 
-void doHack(Critter& master, int hexX, int hexY)
+uint doHack(Critter& master, int hexX, int hexY)
 {
 	Critter@[] npcs;
 	bool guardNotFound = true;
@@ -1190,13 +1185,13 @@ void doHack(Critter& master, int hexX, int hexY)
 	if(not valid(map))
 	{
 		Log("Map not valid");
-		return;
+		return 0;
 	}
 	Location@ loc = map.GetLocation();
 	if(!valid(loc))
 	{
 		Log("Error: location not valid");
-		return;
+		return 0;
 	}
 	CBariersNet@ net=GetBariersNet(master.StatBase[ST_VAR6],loc.Id);
 	map.GetCrittersHex(master.HexX, master.HexY, RADIUS, FIND_LIFE|FIND_ONLY_NPC, npcs);
@@ -1219,7 +1214,7 @@ void doHack(Critter& master, int hexX, int hexY)
 		CGuards@ g=GetGuards(npcs, master.StatBase[ST_VAR6], 0);
 		if(!valid(g))
 		{
-			return;
+			return 0;
 		}
 		if(not g.CritIsAccessible(master))
 		{
@@ -1232,11 +1227,7 @@ void doHack(Critter& master, int hexX, int hexY)
 
 	uint mapId=master.GetMapId();
 	uint8 hRoll=HackRoll(master);
-	if(IsSuccessRvS(hRoll))
-	{
-		__ForceDialog=FD_HACK_SUCC;
-	}
-	else
+	if(not IsSuccessRvS(hRoll))
 	{
 		if(IsCriticalRvS(hRoll))
 		{
@@ -1247,33 +1238,36 @@ void doHack(Critter& master, int hexX, int hexY)
 			{
 				Log("AnyData not saved");
 			}
-			__ForceDialog=FD_TERM_NOT_ACCESS;
-			return;
+
+			return FD_TERM_NOT_ACCESS;
 		}
-		__ForceDialog=FD_HACK_NOT_SUCC;
+
+		return FD_HACK_NOT_SUCC;
 	}
+
+	return FD_HACK_SUCC;
 }
 
-void r_TurnOfBarier(Critter& master, Critter@ slave)
+uint r_TurnOfBarier(Critter& master, Critter@ slave)
 {
 	Map@ map = master.GetMap();
 	if(!valid(map))
 	{
 		Log("map not valid");
-		return;
+		return 0;
 	}
 	Location@ loc = map.GetLocation();
 	if(!valid(loc))
 	{
 		Log("Error: location not valid");
-		return;
+		return 0;
 	}
 	CBariersNet@ net=GetBariersNet(master.StatBase[ST_VAR6],loc.Id);
 	if(valid(net))
 	{
 		net.ChangeNetMode(BM_OFF,AE_DEFAULT);
 	}
-	__ForceDialog=FD_TURN_OFF_FIELD;
+	return FD_TURN_OFF_FIELD;
 }
 
 void r_CheckHit(Critter& master, Critter@ slave) // TODO
@@ -1281,7 +1275,7 @@ void r_CheckHit(Critter& master, Critter@ slave) // TODO
 
 }
 
-void r_CheckAccessCard(Critter& master, Critter@ slave)
+uint r_CheckAccessCard(Critter& master, Critter@ slave)
 {
 	if(CheckInven(master))
 	{
@@ -1289,13 +1283,13 @@ void r_CheckAccessCard(Critter& master, Critter@ slave)
 		if(!valid(map))
 		{
 			Log("map not valid");
-			return;
+			return 0;
 		}
 		Location@ loc = map.GetLocation();
 		if(!valid(loc))
 		{
 			Log("Error: location not valid");
-			return;
+			return 0;
 		}
 		CBariersNet@ net=GetBariersNet(master.StatBase[ST_VAR6],loc.Id);
 		if(valid(net))
@@ -1303,7 +1297,7 @@ void r_CheckAccessCard(Critter& master, Critter@ slave)
 			net.ChangeNetMode(BM_OFF,AE_DEFAULT);
 		}
 	}
-	__ForceDialog=FD_TURN_OFF_FIELD;
+	return FD_TURN_OFF_FIELD;
 }
 
 uint e_TurnOnBariers(uint[]@ values)

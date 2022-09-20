@@ -201,34 +201,30 @@ bool IsCanEnter(Critter& player, Critter& banker)
 	return banker.StatBase[ST_VAR0]!=0?true:false;
 }
 
-void r_TryEnter(Critter& player, Critter@ banker)
+uint r_TryEnter(Critter& player, Critter@ banker)
 {
 	// Прверим можно ли войти в комнату.
 	if(IsCanEnter(banker,player)==false)
 	{
-		__ForceDialog=FORCE_DIALOG_ROOM_BUSY;
-		return;
+		return FORCE_DIALOG_ROOM_BUSY;
 	}
 
 	// Достаточно ли у игрока денег.
 	if(_CritCountItem(player,PID_BOTTLE_CAPS)<ENTER_MONEY_NEED)
 	{
-		__ForceDialog=FORCE_DIALOG_NO_MONEY;
-		return;
+		return FORCE_DIALOG_NO_MONEY;
 	}
 
 	// Перемещаем итемы игрока в видимый контейнер.
 	if(TransferItems(banker,player.Id,false)==false)
 	{
-		__ForceDialog=FORCE_DIALOG_MOVE_ITEMS_ERROR;
-		return;
+		return FORCE_DIALOG_MOVE_ITEMS_ERROR;
 	}
 
 	CBank@ bank=GetBank(banker);
 	if(not valid(bank))
 	{
-		__ForceDialog=FORCE_DIALOG_MOVE_ITEMS_ERROR;
-		return;
+		return FORCE_DIALOG_MOVE_ITEMS_ERROR;
 	}
 
 	// Пропускаем игрока.
@@ -238,6 +234,8 @@ void r_TryEnter(Critter& player, Critter@ banker)
 	bank.PlayerNotify=false;
 	bank.PlayerEntered=false;
 	banker.SendMessage(MESSAGE_BEGIN_PASS_PLAYER,int(player.Id),MESSAGE_TO_ALL_ON_MAP);
+
+	return 0;
 }
 
 // Условие и результат на завершение работы с контейнерами.
@@ -539,15 +537,14 @@ void _KeeperOnMessage(Critter& keeper, Critter& banker, int num, int val)
 	}
 }
 
-void dlg_TalkAboutGagPlayer(Critter& player, Critter@ npc, string@ playerName)
+uint dlg_TalkAboutGagPlayer(Critter& player, Critter@ npc, string@ playerName)
 {
-	if(!IS_DIALOG_SAY_MODE(playerName)) return;
+	if(!IS_DIALOG_SAY_MODE(playerName)) return 0;
 
-	if(!valid(npc)) return;
-	if(npc.IsDead()) return;
+	if(!valid(npc)) return 0;
+	if(npc.IsDead()) return 0;
 
 	Critter@ cr=GetPlayer(playerName);
-
 	if(valid(cr))
 	{
 		if (!cr.IsDead())
@@ -558,13 +555,13 @@ void dlg_TalkAboutGagPlayer(Critter& player, Critter@ npc, string@ playerName)
 			{
 				if(AddCheckPlayerPosition(npc, cr))
 				{
-					__ForceDialog=FORCE_DIALOG_PLAYER_FOUND;
-					return;
+					return FORCE_DIALOG_PLAYER_FOUND;
 				}
 			}
 		}
 	}
-	__ForceDialog=FORCE_DIALOG_PLAYER_NOTFOUND;
+
+	return FORCE_DIALOG_PLAYER_NOTFOUND;
 }
 
 bool AddCheckPlayerPosition(Critter & guard, Critter & player)

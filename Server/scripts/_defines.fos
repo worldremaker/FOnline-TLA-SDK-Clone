@@ -10,7 +10,7 @@
 // To set start value use '=' after var name.
 // This vars works like engine global vars.
 // Also recommended use "__" prefix in var name.
-#pragma globalvar "bool __MainStoryLineActive = false"
+#pragma globalvar "bool __MainStoryLineActive = true"
 #pragma globalvar "uint __PermanentDeath = 0" // Number of deaths to account blocking, zero to disable
 
 // Say types
@@ -400,7 +400,7 @@
 #define ST_VAR9                     (99)
 #define ST_PLAYER_KARMA             (100)
 #define ST_BONUS_LOOK               (101) // Used in engine
-#define ST_RATE_ITEM                (102) // Used in engine
+#define ST_HANDS_ITEM_AND_MODE      (102) // Used in engine
 #define ST_FREE_BARTER_PLAYER       (103) // Used in engine
 #define ST_DIALOG_ID                (104) // Used in engine
 #define ST_AI_ID                    (105) // Used in engine

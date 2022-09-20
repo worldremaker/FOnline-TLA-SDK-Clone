@@ -13,7 +13,7 @@ import void SetWear(Item& item, int wearProcent) from "repair";
 #define PLANE_LOOT              (30)
 
 uint LastDeadId=0;
-Critter@[] CollectedNpc;
+uint[] CollectedNpcIds;
 
 void _NpcInit(Critter& npc, bool firstTime)
 {
@@ -58,12 +58,12 @@ Critter@ GetCritterForLooting(Critter& lootCr)
 	// Collect npc
 	Critter@ result=null;
 	lootCr.SendMessage(MESSAGE_COLLECT_NPC,0,MESSAGE_TO_WHO_SEES_ME);
-	if(CollectedNpc.length()>0)
+	if(CollectedNpcIds.length()>0)
 	{
 		// Find better looter
-		for(uint i=0,j=CollectedNpc.length();i<j;i++)
+		for(uint i=0,j=CollectedNpcIds.length();i<j;i++)
 		{
-			Critter@ cr=CollectedNpc[i];
+			Critter@ cr=GetCritter(CollectedNpcIds[i]);
 			if(cr.GetPlanes(PLANE_LOOT,null)==0)
 			{
 				@result=cr;
@@ -71,19 +71,19 @@ Critter@ GetCritterForLooting(Critter& lootCr)
 			}
 		}
 		// Get random npc
-		if(not valid(result)) @result=CollectedNpc[Random(0,CollectedNpc.length()-1)];
+		if(not valid(result)) @result=GetCritter(CollectedNpcIds[Random(0,CollectedNpcIds.length()-1)]);
 		// Free handles
-		CollectedNpc.resize(0);
+		CollectedNpcIds.resize(0);
 	}
 	return result;
 }
 
 void _NpcSmthUseItem(Critter& npc, Critter& fromCr, Item& item, Critter@ onCritter, Item@ onItem, Scenery@ onScenery)
 {
-	if(fromCr.IsPlayer()&&npc.IsLife())
+	if(fromCr.IsPlayer() && npc.IsLife())
 	{
 		uint pid = item.GetProtoId();
-		if(pid==PID_PLASTIC_EXPLOSIVES||pid==PID_MINE||pid==PID_TOGGLE_SWITCH||pid==PID_DYNAMITE)
+		if(pid==PID_PLASTIC_EXPLOSIVES || pid==PID_MINE || pid==PID_TOGGLE_SWITCH || pid==PID_DYNAMITE)
 		{
 			AddAttackPlane(npc, 0, fromCr,__RunOnCombat);
 			npc.SendMessage(MESSAGE_ATTACK_HIM, fromCr.Id, MESSAGE_TO_ALL_ON_MAP);
@@ -93,10 +93,10 @@ void _NpcSmthUseItem(Critter& npc, Critter& fromCr, Item& item, Critter@ onCritt
 
 void _NpcSmthDropItem(Critter& npc, Critter& fromCr, Item& item)
 {
-	if(fromCr.IsPlayer()&&npc.IsLife())
+	if(fromCr.IsPlayer() && npc.IsLife())
 	{
 		uint pid = item.GetProtoId();
-		if(pid==PID_ACTIVE_PLASTIC_EXPLOSIVE||pid==PID_ACTIVE_MINE||pid==PID_ACTIVE_DYNAMITE)
+		if(pid==PID_ACTIVE_PLASTIC_EXPLOSIVE || pid==PID_ACTIVE_MINE || pid==PID_ACTIVE_DYNAMITE)
 		{
 			AddAttackPlane(npc, 0, fromCr,__RunOnCombat);
 			npc.SendMessage(MESSAGE_ATTACK_HIM, fromCr.Id, MESSAGE_TO_ALL_ON_MAP);
@@ -108,7 +108,7 @@ void _NpcMessage(Critter& npc, Critter& fromCr, int message, int value)
 {
 	if(message==MESSAGE_COLLECT_NPC)
 	{
-		if(not npc.IsDead()) push_back_handle(CollectedNpc,npc);
+		if(not npc.IsDead()) ArrayPushBack(CollectedNpcIds,npc.Id);
 	}
 	else if(message==MESSAGE_ATTACK_HIM)
 	{

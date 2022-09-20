@@ -265,15 +265,16 @@ void Guard_on_pick_item(Critter& guard, Item& hideItem, bool removed, Critter@ p
 	}
 }
 
-void r_searching(Critter& player, Critter@ guard, int val)
+uint r_searching(Critter& player, Critter@ guard, int val)
 {
 	if (Searching(guard, player)==0)
 	{ // окей
 		if (not Present(player.Id, player_ok))
 			AddToArray(player_ok, player.Id);
-		__ForceDialog=9;
-	} else // не пускаем
-		__ForceDialog=10;
+		return 9;
+	}
+	// не пускаем
+	return 10;
 }
 
 // constructor [ heX ]

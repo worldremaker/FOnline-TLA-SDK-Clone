@@ -10,8 +10,7 @@
 import bool AddAttackPlane(Critter& npc, uint priority, Critter& target) from "npc_planes";
 import bool AddMiscPlane(Critter& npc, uint priority, uint waitSecond, string@ funcName) from "npc_planes";
 
-Critter@[] Turrets;
-
+uint[] TurretIds;
 
 void _TurretInit(Critter& turret, bool firstTime)
 {
@@ -37,7 +36,7 @@ void _TurretInit(Critter& turret, bool firstTime)
 	if(turret.CountItem(PID_HEAVY_DUAL_MINIGUN_LONG_RANGE)==0)
 		turret.AddItem(PID_HEAVY_DUAL_MINIGUN_LONG_RANGE,1);
 
-	ArrayPushBack(Turrets,turret);
+	ArrayPushBack(TurretIds,turret.Id);
 }
 
 uint cte_KillTurret(Critter& cr, int identifier, uint& rate)
@@ -62,10 +61,10 @@ void t_Electro(Critter& cr, Scenery& trigger, bool entered, uint8 dir)
 
 	if(attack)
 	{
-		for(uint i=0,j=Turrets.length();i<j;i++)
+		for(uint i=0,j=TurretIds.length();i<j;i++)
 		{
-			Critter@ turret=Turrets[i];
-			if(not turret.IsNotValid && not turret.IsDead()) AddAttackPlane(turret,0,cr);
+			Critter@ turret=GetCritter(TurretIds[i]);
+			if(valid(turret) && not turret.IsDead()) AddAttackPlane(turret,0,cr);
 		}
 	}
 }

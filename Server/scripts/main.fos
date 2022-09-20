@@ -16,7 +16,7 @@ import void InviteToEncounter(Critter@[]& group, Item@ car, uint encounterDescri
 import void SetStartLocation(Critter& cr) from "replication";
 import void SetReplicationTime(Critter& cr) from "replication";
 import void ReplicateCritter(Critter& cr) from "replication";
-import void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, ProtoItem@ ammo, uint8 aim) from "combat";
+import void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, uint8 weaponMode, ProtoItem@ ammo) from "combat";
 import bool TryRepairItem(Critter& cr, Item& item) from "repair";
 import bool WantedSignSet(Item& wantedSign, string& name, uint cost) from "wanted";
 import bool IsReadableBook(uint16 pid) from "books";
@@ -92,7 +92,7 @@ bool start()
 	// Dialog id
 	SetSendParameter(ST_DIALOG_ID,true);
 	// To see pid of unarmed attack
-	SetSendParameter(ST_RATE_ITEM,true);
+	SetSendParameter(ST_HANDS_ITEM_AND_MODE,true);
 	// Scale factor
 	SetSendParameter(ST_SCALE_FACTOR,true);
 
@@ -315,10 +315,10 @@ void global_invite(Critter@[]& group, Item@ car, uint encounterDescriptor, int c
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Call on something critter attack another.
-void critter_attack(Critter& cr, Critter& target, ProtoItem& weapon, ProtoItem@ ammo, uint8 aim)
+void critter_attack(Critter& cr, Critter& target, ProtoItem& weapon, uint8 weaponMode, ProtoItem@ ammo)
 {
 	cr.TimeoutBase[TO_AGGRESSOR]=__FullSecond+REAL_MINUTE(1);
-	CombatAttack(cr,target,weapon,ammo,aim);
+	CombatAttack(cr,target,weapon,weaponMode,ammo);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -701,7 +701,8 @@ bool critter_use_skill(Critter& cr, int skill, Critter@ targetCr, Item@ targetIt
 			}
 
 			int sk=cr.Skill[SK_FIRST_AID];
-			uint16 activePid=cr.GetSlotProto(SLOT_HAND1).GetProtoId();
+			uint8 mode=0;
+			uint16 activePid=cr.GetSlotProto(SLOT_HAND1,mode).GetProtoId();
 			if(activePid==PID_FIRST_AID_KIT)
 			{
 				sk+=25;
@@ -768,7 +769,8 @@ bool critter_use_skill(Critter& cr, int skill, Critter@ targetCr, Item@ targetIt
 
 			int uninjured=0;
 			int sk=cr.Skill[SK_DOCTOR];
-			uint16 activePid=cr.GetSlotProto(SLOT_HAND1).GetProtoId();
+			uint8 mode=0;
+			uint16 activePid=cr.GetSlotProto(SLOT_HAND1,mode).GetProtoId();
 			if(activePid==PID_DOCTORS_BAG)
 			{
 				sk+=25;

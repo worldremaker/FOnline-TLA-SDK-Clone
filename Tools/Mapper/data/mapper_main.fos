@@ -182,8 +182,8 @@ void start()
 	if(!LoadDataFile("longhairdude.dat")) Message("File longhairdude.dat with Long Hair Dude animations not found. Run Updater.exe.");
 	if(!LoadDataFile("vaultboy.dat")) Message("File vaultboy.dat with Vault Boy animations not found. Run Updater.exe.");
 	if(!LoadDataFile("cablack.dat")) Message("File cablack.dat with Black Combat Armor animations not found. Run Updater.exe.");
-	//if(!LoadDataFile("fonline006.dat")) Message("File fonline006.dat with patched files not found. Run Updater.exe.");
-	//if(!LoadDataFile("fonline007.zip")) Message("File fonline007.zip with patched files not found. Run Updater.exe.");
+	if(!LoadDataFile("fonline006.dat")) Message("File fonline006.dat with patched files not found. Run Updater.exe.");
+	if(!LoadDataFile("fonline007.zip")) Message("File fonline007.zip with patched files not found. Run Updater.exe.");
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -290,7 +290,217 @@ string SetTerrain(string str)
 	return "Done.";
 }
 
+// Graphic statistics
+string ShowGraphic(string str)
+{
+	MapperMap@[] maps;
+	int cur=::GetLoadedMaps(maps);
+	if(cur==-1) return "Map not loaded.";
+	return ShowGraphic(maps[cur],str)+".";
+}
 
+string ShowAllGraphic(string str)
+{
+	string@[] mapNames;
+	::GetMapFileNames(null,mapNames);
+	uint count=0;
+
+	file f;
+	f.open(".\\GraphicAll.txt","w");
+
+	for(uint i=0,j=mapNames.length();i<j;i++)
+	{
+		MapperMap@ map=::LoadMap(mapNames[i],PT_SERVER_MAPS);
+		if(not (map is null))
+		{
+			string@ stat=ShowGraphic(map,mapNames[i]);
+			::UnloadMap(map);
+			count++;
+
+			f.writeString(count+") Map "+mapNames[i]+". "+stat+".\n");
+		}
+	}
+
+	f.close();
+	return "Done, maps "+count+".";
+}
+
+string ShowGraphic(MapperMap& map, string& name)
+{
+	string@[] wallNames;
+	string@[] sceneryNames;
+	string@[] itemNames;
+	string@[] tileNames;
+
+	// Walls
+	{
+		MapperObject@[] objects;
+		map.GetObjects(0,0,uint(-1),MAP_OBJECT_SCENERY,0,objects);
+
+		for(uint i=0,j=objects.length();i<j;i++)
+		{
+			MapperObject@ obj=objects[i];
+
+			ProtoItem@ proto=::GetProtoItem(obj.ProtoId);
+			if(proto.GetType()!=12) continue; // ITEM_WALL
+
+			bool exists=false;
+			for(uint k=0,l=wallNames.length();k<l;k++)
+			{
+				if(wallNames[k]==obj.PicMap)
+				{
+					exists=true;
+					break;
+				}
+			}
+
+			if(not exists)
+			{
+				uint len=wallNames.length();
+				wallNames.resize(len+1);
+				@wallNames[len]=obj.PicMap;
+			}
+		}
+	}
+
+	// Scenery
+	{
+		MapperObject@[] objects;
+		map.GetObjects(0,0,uint(-1),MAP_OBJECT_SCENERY,0,objects);
+
+		for(uint i=0,j=objects.length();i<j;i++)
+		{
+			MapperObject@ obj=objects[i];
+
+			ProtoItem@ proto=::GetProtoItem(obj.ProtoId);
+			if(proto.GetType()==12) continue; // ITEM_WALL
+
+			bool exists=false;
+			for(uint k=0,l=sceneryNames.length();k<l;k++)
+			{
+				if(sceneryNames[k]==obj.PicMap)
+				{
+					exists=true;
+					break;
+				}
+			}
+
+			if(not exists)
+			{
+				uint len=sceneryNames.length();
+				sceneryNames.resize(len+1);
+				@sceneryNames[len]=obj.PicMap;
+			}
+		}
+	}
+
+	// Item
+	{
+		MapperObject@[] objects;
+		map.GetObjects(0,0,uint(-1),MAP_OBJECT_ITEM,0,objects);
+
+		for(uint i=0,j=objects.length();i<j;i++)
+		{
+			MapperObject@ obj=objects[i];
+
+			bool exists=false;
+			for(uint k=0,l=itemNames.length();k<l;k++)
+			{
+				if(itemNames[k]==obj.PicMap)
+				{
+					exists=true;
+					break;
+				}
+			}
+
+			if(not exists)
+			{
+				uint len=itemNames.length();
+				itemNames.resize(len+1);
+				@itemNames[len]=obj.PicMap;
+			}
+		}
+	}
+
+	// Tiles
+	{
+		for(uint x=0;x<map.Width/2;x++)
+		{
+			for(uint y=0;y<map.Height/2;y++)
+			{
+				string@ name=map.GetTileName(x,y,false);
+				bool exists=false;
+				if(name!="")
+				{
+					for(uint k=0,l=tileNames.length();k<l;k++)
+					{
+						if(tileNames[k]==name)
+						{
+							exists=true;
+							break;
+						}
+					}
+
+					if(not exists)
+					{
+						uint len=tileNames.length();
+						tileNames.resize(len+1);
+						@tileNames[len]=name;
+					}
+				}
+
+				@name=map.GetTileName(x,y,true);
+				exists=false;
+				if(name!="")
+				{
+					for(uint k=0,l=tileNames.length();k<l;k++)
+					{
+						if(tileNames[k]==name)
+						{
+							exists=true;
+							break;
+						}
+					}
+
+					if(not exists)
+					{
+						uint len=tileNames.length();
+						tileNames.resize(len+1);
+						@tileNames[len]=name;
+					}
+				}
+			}
+		}
+	}
+
+	// Statistics
+	string stat="All "+(wallNames.length()+sceneryNames.length()+itemNames.length()+tileNames.length())+", walls "+
+		wallNames.length()+", scenery "+sceneryNames.length()+", items "+itemNames.length()+", tiles "+tileNames.length();
+
+	// Save
+	if(name!="")
+	{
+		file f;
+		f.open(".\\Graphic_"+name+".txt","w");
+		f.writeString("Map "+name+"\n");
+		f.writeString(stat+"\n");
+		f.writeString("\nWALLS\n");
+		for(uint i=0,j=wallNames.length();i<j;i++)
+			f.writeString(wallNames[i]+"\n");
+		f.writeString("\nSCENERY\n");
+		for(uint i=0,j=sceneryNames.length();i<j;i++)
+			f.writeString(sceneryNames[i]+"\n");
+		f.writeString("\nITEMS\n");
+		for(uint i=0,j=itemNames.length();i<j;i++)
+			f.writeString(itemNames[i]+"\n");
+		f.writeString("\nTILES\n");
+		for(uint i=0,j=tileNames.length();i<j;i++)
+			f.writeString(tileNames[i]+"\n");
+		f.close();
+	}
+
+	return stat;
+}
 
 
 

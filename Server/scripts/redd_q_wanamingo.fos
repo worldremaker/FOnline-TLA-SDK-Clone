@@ -42,8 +42,7 @@ import bool AddWalkPlane(Critter& npc, uint priority, uint16 hexX, uint16 hexY, 
 import bool AddMiscPlane(Critter& npc, uint priority, uint waitSecond, string@ funcName) from "npc_planes";
 import void ActivateMobScript(Map& map) from "mob";
 
-// отладка включенна!
-#define debag
+//#define debag
 
 #ifdef debag
 #define MIN_PLAYERS (1)
@@ -71,7 +70,7 @@ import void ActivateMobScript(Map& map) from "mob";
 //---> r17
 
 // надо часть этих данных хранить в базе - на случай перезагрузки.
-Critter@[] GlobalGroups;
+uint[] GlobalGroupsIds;
 uint GlobalMapId;
 int GlobalWanMax;
 int GlobalWanCount;
@@ -143,10 +142,9 @@ void DeleteWanMap()
 				DL("Invalid Wanamingo location");
 			}else{
 				// ищем игроков из списка, которые все еще могут находиться на локации
-				for(uint i = 0; i<GlobalGroups.length();i++)
+				for(uint i = 0; i<GlobalGroupsIds.length();i++)
 				{
-
-					Critter @player = GetCritter(GlobalGroups[i].Id);
+					Critter @player = GetCritter(GlobalGroupsIds[i]);
 					if (!valid(player)){continue;}
 					Map @ player_map = player.GetMap();
 					if(valid(player_map))
@@ -163,7 +161,6 @@ void DeleteWanMap()
 					}
 					// забываем где оно
 					if(player.IsKnownLoc (true, loc.Id)){player.UnsetKnownLoc(true,loc.Id);DL("Player id "+player.Id + "UnsetKnownLoc");}
-
 				}
 				// удаление локации
 				DeleteLocation(loc.Id);
@@ -171,8 +168,9 @@ void DeleteWanMap()
 			}
 		}
 	}
+
 	//однозначная очистка и инициализация переменных
-	GlobalGroups.resize(0);
+	GlobalGroupsIds.resize(0);
 	GlobalMapId = 0;
 	GlobalWanMax = 0;
 	GlobalWanCount = 0;
@@ -386,11 +384,8 @@ void r_GotoHunter(Critter& player, Critter@ npc, int val)
 		}
 	}
 
-
 	////////////////////////////////////
-
 	// создали позицию
-
 
 	GameVar@ game_map=GetGlobalVar(GVAR_redd_marion_wan_location);
 	GameVar@ game_time=GetGlobalVar(GVAR_redd_marion_wan_timeout);
@@ -447,7 +442,8 @@ void r_GotoHunter(Critter& player, Critter@ npc, int val)
 	GlobalWanMax=wan;
 	GlobalWanSpawn=wan;
 	GlobalHumanCount=0;
-	GlobalGroups=groups;
+	GlobalGroupsIds.resize(groups.length());
+	for(uint i=0,j=groups.length();i<j;i++) GlobalGroupsIds[i]=groups[i].Id;
 
 	DL("Quest started successful. Location added");
 }
@@ -507,19 +503,21 @@ bool SpawnWan2()
 	if (not valid(map)) return false;
 	for(int i=1; i<=5; i++)
 	{
-		Critter@ cr = SpawnWan(map, i+10, CLAMP(GlobalGroups[Random(0,GlobalGroups.length()-1)].Stat[ST_LEVEL],10,20));
+		Critter@ globalCr=GetCritter(GlobalGroupsIds[Random(0,GlobalGroupsIds.length()-1)]);
+		if(not valid(globalCr)) continue;
+		Critter@ cr = SpawnWan(map, i+10, CLAMP(globalCr.Stat[ST_LEVEL],10,20));
 		if(not valid(cr)) continue;
 		uint x=0,y=0;
 		bool r = map.GetEntireCoords(i+20, 0, x, y);
 		if(not r) continue;
 		cr.SetHomePos(x,y,Random(0,5));
 		AddWalkPlane(cr, AI_PLANE_ATTACK_PRIORITY+20, x,y, Random(0,5), false, 0);
-		AddAttackPlane(cr, AI_PLANE_ATTACK_PRIORITY+10, GlobalGroups[Random(0,GlobalGroups.length()-1)]);
+		AddAttackPlane(cr, AI_PLANE_ATTACK_PRIORITY+10, globalCr);
 		GlobalWanSpawn--;
 		//BREAK!!!
 		// все игроки враги
-		for(uint i2=0;i2<GlobalGroups.length();i2++)
-			cr.AddEnemyInStack(GlobalGroups[i2].Id);
+		for(uint i2=0;i2<GlobalGroupsIds.length();i2++)
+			cr.AddEnemyInStack(GlobalGroupsIds[i2]);
 	}
 	return true;
 }
@@ -536,27 +534,33 @@ uint e_Spawn(uint[]@ values)
 // Алерт
 uint e_Alert(uint[]@ values)
 {
-	for(uint i=0;i<GlobalGroups.length();i++)
-		GlobalGroups[i].Say(SAY_NETMSG, "Вы слышите шорох...");
+	for(uint i=0;i<GlobalGroupsIds.length();i++)
+	{
+		Critter@ cr=GetCritter(GlobalGroupsIds[i]);
+		if(valid(cr)) cr.Say(SAY_NETMSG, "Вы слышите шорох...");
+	}
 	return 0;
 }
 
 // Алерт
 uint e_Alert2(uint[]@ values)
 {
-	for(uint i=0;i<GlobalGroups.length();i++)
-		GlobalGroups[i].Say(SAY_NETMSG, "Кажется у вас проблемы!");
+	for(uint i=0;i<GlobalGroupsIds.length();i++)
+	{
+		Critter@ cr=GetCritter(GlobalGroupsIds[i]);
+		if(valid(cr)) cr.Say(SAY_NETMSG, "Кажется у вас проблемы!");
+	}
 	return 0;
 }
 
 // начать спавн ванаминго!
 void BeginSpawn()
 {
-	if(CreateTimeEvent(__FullSecond+3*60, "e_Spawn", GlobalGroups[0], false)==0)
+	if(CreateTimeEvent(__FullSecond+3*60, "e_Spawn", false)==0)
 		Log("Time event create fail, "+GetLastError());
-	if(CreateTimeEvent(__FullSecond+1*60, "e_Alert", GlobalGroups[0], false)==0)
+	if(CreateTimeEvent(__FullSecond+1*60, "e_Alert", false)==0)
 		Log("Time event create fail, "+GetLastError());
-	if(CreateTimeEvent(__FullSecond+5*60, "e_Alert2", GlobalGroups[0], false)==0)
+	if(CreateTimeEvent(__FullSecond+5*60, "e_Alert2", false)==0)
 		Log("Time event create fail, "+GetLastError());
 }
 
@@ -703,11 +707,12 @@ void player_dead_r_17(Critter& player, Critter@ killer)
 }
 bool _MapHasPlayers(Map & map)
 {
-	for(uint i = 0; i<GlobalGroups.length();i++)
+	for(uint i = 0; i<GlobalGroupsIds.length();i++)
 	{
-		if (valid(GlobalGroups[i]))
+		Critter@ cr=GetCritter(GlobalGroupsIds[i]);
+		if (valid(cr))
 		{
-			if (valid(map.GetCritter(GlobalGroups[i].Id)))
+			if (valid(map.GetCritter(cr.Id)))
 			{
 				return true;
 			}
@@ -720,8 +725,11 @@ void map_deleting_r17(Map& map, bool deleted)
 {
 	DL("Map finish started");
 	Location@ loc = map.GetLocation();
-	for(uint i=0;i<GlobalGroups.length();i++)
-		GlobalGroups[i].UnsetKnownLoc(true, loc.Id);
+	for(uint i=0;i<GlobalGroupsIds.length();i++)
+	{
+		Critter@ cr=GetCritter(GlobalGroupsIds[i]);
+		if(valid(cr)) cr.UnsetKnownLoc(true, loc.Id);
+	}
 
 	// чтобы без проблем можно было взять новый квест
 	GameVar@ mapid=GetGlobalVar(GVAR_redd_marion_wan_location);
@@ -782,8 +790,11 @@ void player_dead(Critter& player, Critter@ killer)
 void map_deleting(Map& map, bool deleted)
 {
 	Location@ loc = map.GetLocation();
-	for(uint i=0;i<GlobalGroups.length();i++)
-		GlobalGroups[i].UnsetKnownLoc(true, loc.Id);
+	for(uint i=0;i<GlobalGroupsIds.length();i++)
+	{
+		Critter@ cr=GetCritter(GlobalGroupsIds[i]);
+		if(valid(cr)) cr.UnsetKnownLoc(true, loc.Id);
+	}
 
 	GameVar@ mapid=GetGlobalVar(GVAR_redd_marion_wan_location);
 	mapid=0;
@@ -816,13 +827,19 @@ void wan_dead(Critter& crit, Critter@ killer)
 		killer.VarKills++;
 	GlobalWanCount--;
 	// если гекко кончились
-	if(GlobalWanCount==0) {
+	if(GlobalWanCount==0)
+	{
 		// квест выполнен!
 		// нужно уведомить участников
-		for(uint i=0;i<GlobalGroups.length();i++)
-			QuestCompleteNotify(GlobalGroups[i]);
+		for(uint i=0;i<GlobalGroupsIds.length();i++)
+		{
+			Critter@ cr=GetCritter(GlobalGroupsIds[i]);
+			if(valid(cr)) QuestCompleteNotify(cr);
+		}
+
 		GameVar@ mapid=GetGlobalVar(GVAR_redd_marion_wan_location);
-		if (valid(mapid) && mapid.GetValue() != 0) {
+		if (valid(mapid) && mapid.GetValue() != 0)
+		{
 			Location@ loc=GetLocation(mapid.GetValue());
 			loc.AutoGarbage=true; // разрешаем сбор карты мусорщиком (на всякий случай)
 			mapid=0; // снимаем метку

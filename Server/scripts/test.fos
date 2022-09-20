@@ -271,187 +271,6 @@ void DLog(string& str)
 // global value, but we can change it to be different per-npc
 #define ENT #(i)	(50+i)
 
-//
-// Room info
-//
-class CRoom
-{
-	// id of the door/container lock
-	uint lockId;
-	// expiration date (full minutes)
-	uint expirationDate;
-	// room doors
-	Item@ doors;
-	// container
-	Item@ container;
-
-	CRoom(Item@ doors, Item@ container)
-	{
-		this.doors.LockerCondition = this.container.LockerCondition = LOCKER_LOCKED;
-
-	//	@this.doors = doors;
-	//	@this.container = container;
-	}
-
-	//
-	// Initializes locks for doors and container.
-	//
-	void InitLocks()
-	{
-		doors.LockerCondition = container.LockerCondition = LOCKER_LOCKED;
-		lockId = Random(1, 1000000);
-		doors.LockerId = container.LockerId = lockId;
-	}
-
-	//
-	// Rents a room for a given player for specified period of time
-	//
-	void Rent(Critter& player, uint days)
-	{
-		Item@ key = player.AddItem(PID_KEY, 1);
-		key.LockerId = lockId;
-		expirationDate = __FullSecond + days*24*60*60 - 1;
-	}
-	//
-	// Changes locks and transfers container' items to owner
-	//
-	void Expire(Critter& npc)
-	{
-		InitLocks();
-
-		//MoveItemsContToCritter(container, npc, 0);
-	}
-}
-
-class CHotel
-{
-	// hotel owner
-	Critter@ owner;
-	// list of rooms in the hotel
-	CRoom[] rooms;
-
-	CHotel(Critter& npc)
-	{
-		@this.owner = npc;
-		InitRooms();
-	}
-
-	//
-	// Hotel id - id of the owner
-	//
-	uint GetId()
-	{
-		return owner.Id;
-	}
-
-	//
-	// Initializes rooms to be managed by given npc
-	// it just looks for specified locks in the map
-	//
-	void InitRooms()
-	{
-		DLog("Initializing hotel rooms");
-		Map@ map = owner.GetMap();
-
-		for(uint8 i = 0; ;i++)
-		{
-			Item@ doors, container;
-			Entire[] entires;
-			uint n = ParseEntires(map, entires, ENT(i));
-			if(n == 0)
-				break;
-			DLog("Ent(" + ENT(i) + "):" + n);
-			for(uint j = 0; j < n; j++)
-			{
-				Item@[] items;
-				uint num = map.GetItems(entires[j].HexX, entires[j].HexY, items);
-				DLog("Items found: " + num);
-				for(uint k = 0; k < num; k++)
-				{
-					if(items[k].GetType() == ITEM_DOOR)
-						@doors = items[k];
-					if(items[k].GetType() == ITEM_CONTAINER)
-						@container = items[k];
-				}
-			}
-			if(not valid(doors))
-				Log("ERR: Couldn't find doors for room: " + i);
-			if(not valid(container))
-				Log("ERR: Couldn't find container for room: " + i);
-			else
-			{
-				push_back(rooms, CRoom(doors, container));
-				DLog("Room found");
-			}
-		}
-	}
-
-	//
-	// Gets unoccupied room in the hotel
-	//
-	CRoom@ GetFreeRoom()
-	{
-		for(uint i = 0; i < rooms.length(); i++)
-		{
-			if(rooms[i].expirationDate < __FullSecond)
-				return rooms[i];
-		}
-		return null;
-	}
-}
-
-CHotel@[] Hotels;
-
-//
-// Adds hotel for a given owner
-//
-CHotel@ AddHotel(Critter& npc)
-{
-	push_back_handle(Hotels, @CHotel(npc));
-    return Hotels[Hotels.length() - 1];
-}
-
-//
-// Gets hotel object for given npc
-//
-CHotel@ GetHotel(Critter& npc)
-{
-	for(uint i = 0; i < Hotels.length(); i++)
-	{
-		if(npc.Id == Hotels[i].GetId())
-		{
-			return Hotels[i];
-		}
-	}
-	// create new on demand
-	return CHotel(npc);
-}
-
-//
-// Checks if there is free room for rent
-//
-bool d_IsRoomFree(Critter& player, Critter@ npc, int val)
-{
-	CHotel@ hotel = GetHotel(npc);
-
-	return valid(hotel.GetFreeRoom());
-}
-
-//
-// Rents room for a player (for a week), val denotes node where to go when there is no free room
-//
-void r_RentRoom(Critter& player, Critter@ npc, int val)
-{
-	CHotel@ hotel = GetHotel(npc);
-	CRoom@ room = hotel.GetFreeRoom();
-
-	if(valid(room))
-		// for a week
-		room.Rent(player, 7);
-	else
-		__ForceDialog = val;
-}
-
 
 
 class SomeClassA
@@ -1292,6 +1111,44 @@ void Test3()
 	while(ggg!=0);
 }
 
+void TestNullptr(Critter&,int,int,int)
+{
+	Critter@ cr;
+	Log("begin");
+	uint id=cr.Id;
+	Log("end");
+}
+
+Synchronizer TestLocker;
+void TestScriptConcurrent(Critter& cr, int test, int, int)
+{
+	TestLocker.Lock();
+
+	Synchronize();
+	Map@ map=cr.GetMap();
+	Resynchronize();
+
+	if(test==1) Resynchronize(); // Invalid call
+	else if(test==2) Synchronize(); // Call without Resynchronize
+
+	if(test==5)
+	{
+		for(int i=0;i<1000;i++)
+			CreateTimeEvent(0,"e_TestScriptConcurrent",false);
+	}
+}
+
+int Data=0;
+uint e_TestScriptConcurrent(uint[]@ values)
+{
+	//TestLocker.Lock();
+
+	if(Data == 0) Data++;
+	else if(Data == 1) Data--;
+	else Log("Fail!");
+	return 1;
+}
+
 void TestLog(Critter&cr,int,int,int)
 {
 	for(uint i=0;i<10000;i++) Log("Test message "+i);
@@ -1537,6 +1394,12 @@ void DeleteNpc(Critter& cr, int crId, int, int)
 	DeleteNpc(GetCritter(crId));
 }
 
+void EndTB(Critter& cr, int, int, int)
+{
+	Map@ map=cr.GetMap();
+	map.SetTurnBasedAvailability(false);
+	map.EndTurnBased();
+}
 
 
 

@@ -85,10 +85,12 @@ class SniperPattern : CommonPattern
 		if(target.IsNpc()) return false;
 		if(target.IsKnockout()) return false;
 		cr.SendMessage(MSG_ATTACK_TARGET, target.Id, MESSAGE_TO_I_SEE );
+
 		// В активном слоте - оружие?
-		ProtoItem @ weapon = cr.GetSlotProto(SLOT_HAND1);
+		uint8 mode = 0;
+		ProtoItem @ weapon = cr.GetSlotProto(SLOT_HAND1, mode);
 		if(!valid(weapon)) return false;
-		if(weapon.GetType()!=ITEM_WEAPON||weapon.Weapon_Skill!=SK_SMALL_GUNS) return false;
+		if(weapon.GetType()!=ITEM_WEAPON || _WeaponSkill(weapon,_WeaponModeUse(mode))!=SK_SMALL_GUNS) return false;
 
 		Item @ weap = _CritGetItemHand(cr);
 		if(!valid(weap)) return false;
@@ -99,7 +101,7 @@ class SniperPattern : CommonPattern
 
 		// Скопировано из основного обработчика
 		cr.TimeoutBase[TO_AGGRESSOR]=__FullSecond+REAL_MINUTE(1);
-		CombatAttack(cr, target, weapon, ammo, HIT_LOCATION_EYES);
+		CombatAttack(cr, target, weapon, _WeaponModeMake(0, HIT_LOCATION_EYES), ammo);
 		this._SetOnAfterAttackEvent(cr, target);
 		return true;
 	}
@@ -210,13 +212,14 @@ class SniperPattern : CommonPattern
 		// Игрок жив, ранен, осталось мало здоровья или хватает АП на выстрел
 		if(player.IsLife()&&!player.IsKnockout())
 		{
-			ProtoItem @ weapon = sniper.GetSlotProto(SLOT_HAND1);
+			uint8 mode = 8;
+			ProtoItem @ weapon = sniper.GetSlotProto(SLOT_HAND1, mode);
 			if(valid(weapon))
 			{
 				if(weapon.GetType()==ITEM_WEAPON)
 				{
-					if(player.Stat[ST_CURRENT_HP]>30&&
-					   sniper.Stat[ST_CURRENT_AP]<weapon.Weapon_ApCost&&
+					if(player.Stat[ST_CURRENT_HP]>30 &&
+					   sniper.Stat[ST_CURRENT_AP]<_WeaponApCost(weapon, _WeaponModeUse(mode)) &&
 					   player.Stat[ST_MAX_LIFE]>player.Stat[ST_CURRENT_HP])
 					{
 						return true;

@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 06.09.2010
-// Server version 353, MSVS2008
+// Last update 28.09.2010
+// Server version 357, MSVS2008
 //
 
 #pragma pack(8)
@@ -29,6 +29,7 @@ using namespace std;
 class asIScriptEngine;
 
 struct ScriptString;
+struct SyncObj;
 struct ProtoItem;
 struct GameVar;
 struct TemplateVar;
@@ -46,7 +47,6 @@ struct MapEntire;
 struct SceneryToClient;
 struct ProtoMap;
 struct Map;
-struct GlobalMapZone;
 struct ProtoLocation;
 struct Location;
 
@@ -429,7 +429,6 @@ struct GameOptions
 	bool   FreeExp;
 	bool   RegulatePvP;
 	bool   NoAnswerShuffle;
-	uint   ForceDialog;
 	bool   DialogDemandRecheck;
 	uint   FixBoyDefaultExperience;
 	uint   SneakDivider;
@@ -638,6 +637,11 @@ struct ScriptString
 	int    RefCount;
 };
 
+struct SyncObj
+{
+	void*  CurMngr;
+};
+
 struct ProtoItem
 {
 	uint16 Pid;
@@ -719,10 +723,10 @@ struct ProtoItem
 			uint8  MinSt;
 			uint8  Perk;
 
-			uint8  CountAttack;
-			uint8  Skill[MAX_USES];
-			uint8  DmgType[MAX_USES];
-			uint8  Anim2[MAX_USES];
+			uint8  Uses;
+			uint16 Skill[MAX_USES];
+			uint16 DmgType[MAX_USES];
+			uint16 Anim2[MAX_USES];
 			uint16 PicDeprecated[MAX_USES];
 			uint   PicHash[MAX_USES];
 			uint16 DmgMin[MAX_USES];
@@ -730,24 +734,10 @@ struct ProtoItem
 			uint16 MaxDist[MAX_USES];
 			uint16 Effect[MAX_USES];
 			uint16 Round[MAX_USES];
-			uint   Time[MAX_USES];
+			uint16 ApCost[MAX_USES];
 			bool   Aim[MAX_USES];
 			bool   Remove[MAX_USES];
 			uint8  SoundId[MAX_USES];
-
-			uint8  Weapon_CurrentUse;
-			uint16 Weapon_MaxDist;
-			uint16 Weapon_DmgMin;
-			uint16 Weapon_DmgMax;
-			uint8  Weapon_Skill;
-			uint8  Weapon_DmgType;
-			uint8  Weapon_Anim2;
-			uint8  Weapon_ApCost;
-			uint8  Weapon_SoundId;
-			bool   Weapon_Remove;
-			uint16 Weapon_Round;
-			uint16 Weapon_Effect;
-			bool   Weapon_Aim;
 		} Weapon;
 
 		struct
@@ -780,13 +770,13 @@ struct ProtoItem
 				uint8  WalkType;
 				uint8  FuelConsumption;
 
-				uint8  Bag0[CAR_MAX_BAG_POSITION/2]; // 6
-				uint8  Bag1[CAR_MAX_BAG_POSITION/2]; // 6
-				uint8  Blocks[CAR_MAX_BLOCKS/2]; // 40
+				uint8  Bag0[CAR_MAX_BAG_POSITION / 2];
+				uint8  Bag1[CAR_MAX_BAG_POSITION / 2];
+				uint8  Blocks[CAR_MAX_BLOCKS / 2];
 
-				uint8  GetBag0Dir(int num)  {return ((num % 2) ? (Bag0  [num / 2] & 0xF) : (Bag0  [num / 2] >> 4));}
-				uint8  GetBag1Dir(int num)  {return ((num % 2) ? (Bag1  [num / 2] & 0xF) : (Bag1  [num / 2] >> 4));}
-				uint8  GetBlockDir(int num) {return ((num % 2) ? (Blocks[num / 2] & 0xF) : (Blocks[num / 2] >> 4));}
+				uint8  GetBag0Dir(int num)  {return ((num & 1) ? (Bag0  [num / 2] & 0xF) : (Bag0  [num / 2] >> 4));}
+				uint8  GetBag1Dir(int num)  {return ((num & 1) ? (Bag1  [num / 2] & 0xF) : (Bag1  [num / 2] >> 4));}
+				uint8  GetBlockDir(int num) {return ((num & 1) ? (Blocks[num / 2] & 0xF) : (Blocks[num / 2] >> 4));}
 			} Car;
 		} MiscEx;
 
@@ -841,24 +831,6 @@ struct ProtoItem
 	bool   WeapIsGrouped()     {return Weapon.NoWear;}
 	bool   IsCanPickUp()       {return FLAG(Flags, ITEM_CAN_PICKUP);}
 
-	void   Weapon_SetUse(uint8 use)
-	{
-		if(use >= MAX_USES) use = USE_PRIMARY;
-		Weapon.Weapon_CurrentUse = use;
-		Weapon.Weapon_Skill      = Weapon.Skill[use];
-		Weapon.Weapon_DmgType    = Weapon.DmgType[use];
-		Weapon.Weapon_Anim2      = Weapon.Anim2[use];
-		Weapon.Weapon_DmgMin     = Weapon.DmgMin[use];
-		Weapon.Weapon_DmgMax     = Weapon.DmgMax[use];
-		Weapon.Weapon_MaxDist    = Weapon.MaxDist[use];
-		Weapon.Weapon_Effect     = Weapon.Effect[use];
-		Weapon.Weapon_Round      = Weapon.Round[use];
-		Weapon.Weapon_ApCost     = Weapon.Time[use];
-		Weapon.Weapon_SoundId    = Weapon.SoundId[use];
-		Weapon.Weapon_Remove     = Weapon.Remove[use];
-		Weapon.Weapon_Aim        = Weapon.Aim[use];
-	}
-
 	bool   Container_IsGroundLevel()
 	{
 		bool is_ground = true;
@@ -886,12 +858,13 @@ struct TemplateVar
 
 struct GameVar
 {
-	uint64 VarId;
-	int    VarValue;
+	uint64       VarId;
+	int          VarValue;
 	TemplateVar* VarTemplate;
-	uint   QuestVarIndex;
-	uint16 Type;
-	int16  RefCount;
+	uint         QuestVarIndex;
+	uint16       Type;
+	int16        RefCount;
+	SyncObj      Sync;
 
 	int    GetValue()    {return VarValue;}
 	int    GetMin()      {return VarTemplate->MinVal;}
@@ -1081,6 +1054,7 @@ struct Item
 	Critter* ViewByCritter;
 	ItemVec* ChildItems;
 	int8*    Lexems;
+	SyncObj  Sync;
 
 	uint   GetId()      {return Id;}
 	uint16 GetProtoId() {return Proto->GetPid();}
@@ -1143,7 +1117,7 @@ struct Item
 	bool   WeapIsEffect(int use)     {return Proto->Weapon.Effect[use] != 0;}
 	uint16 WeapGetEffectPid(int use) {return Proto->Weapon.Effect[use];}
 	int    WeapGetNeedStrength()     {return Proto->Weapon.MinSt;}
-	bool   WeapIsUseAviable(int use) {uint8 ca = Proto->Weapon.CountAttack; if(use == USE_PRIMARY) return FLAG(ca, 1); if(use == USE_SECONDARY) return FLAG(ca, 2); if(use == USE_THIRD) return FLAG(ca, 4); return false;}
+	bool   WeapIsUseAviable(int use) {return use >= USE_PRIMARY && use <= USE_THIRD ? (((Proto->Weapon.Uses >> use) & 1) != 0) : false;}
 	bool   WeapIsCanAim(int use)     {return use < MAX_USES && Proto->Weapon.Aim[use];}
 	bool   WeapIsFastReload()        {return Proto->Weapon.Perk == WEAPON_PERK_FAST_RELOAD;}
 
@@ -1336,10 +1310,11 @@ struct Critter
 		uint   Reserved25[100];
 	} *DataExt;
 
-	bool   CritterIsNpc;
-	uint   Flags;
-	string NameStr;
-	int    NameStrRefCounter;
+	SyncObj Sync;
+	bool    CritterIsNpc;
+	uint    Flags;
+	string  NameStr;
+	int     NameStrRefCounter;
 
 	struct
 	{
@@ -1629,10 +1604,12 @@ struct ProtoMap
 
 struct Map
 {
+	SyncObj   Sync;
 	uint8*    HexFlags;
 	CrVec     MapCritters;
 	ClVec     MapPlayers;
 	PcVec     MapNpcs;
+	ItemVec   HexItems;
 	Location* MapLocation;
 
 	struct 
@@ -1649,14 +1626,13 @@ struct Map
 		int    UserData[MAP_MAX_DATA];
 	} Data;
 
+	ProtoMap* Proto;
+
 	bool      NeedProcess;
 	uint      FuncId[MAP_EVENT_MAX];
 	uint      LoopEnabled[MAP_LOOP_FUNC_MAX];
 	uint      LoopLastTick[MAP_LOOP_FUNC_MAX];
 	uint      LoopWaitTick[MAP_LOOP_FUNC_MAX];
-
-	ItemVec   HexItems;
-	ProtoMap* Proto;
 
 	bool      IsTurnBasedOn;
 	uint      TurnBasedEndTick;
@@ -1683,14 +1659,6 @@ struct Map
 	bool   IsHexRaked(uint16 hx, uint16 hy)   {return !FLAG(GetHexFlags(hx, hy), FH_NOSHOOT);}
 };
 
-struct GlobalMapZone
-{
-	LocVec Locations;
-	uint16 ZoneX;
-	uint16 ZoneY;
-	uint   Reserved;
-};
-
 struct ProtoLocation
 {
 	bool        IsInit;
@@ -1711,8 +1679,8 @@ struct ProtoLocation
 
 struct Location
 {
+	SyncObj        Sync;
 	MapVec         LocMaps;
-	GlobalMapZone* LocZone;
 
 	struct
 	{
@@ -1793,35 +1761,34 @@ int GetDistantion(int x1, int y1, int x2, int y2)
 
 void static_asserts()
 {
-	STATIC_ASSERT(sizeof(uint)    == 4);
-	STATIC_ASSERT(sizeof(uint16)  == 2);
-	STATIC_ASSERT(sizeof(uint8)   == 1);
-	STATIC_ASSERT(sizeof(int)     == 4);
-	STATIC_ASSERT(sizeof(int16)   == 2);
-	STATIC_ASSERT(sizeof(int8)    == 1);
-	STATIC_ASSERT(sizeof(bool)    == 1);
-	STATIC_ASSERT(sizeof(string)  == 28);
-	STATIC_ASSERT(sizeof(IntVec)  == 16);
-	STATIC_ASSERT(sizeof(IntMap)  == 12);
-	STATIC_ASSERT(sizeof(IntSet)  == 12);
-	STATIC_ASSERT(sizeof(IntPair) == 8);
+	STATIC_ASSERT(sizeof(uint)      == 4);
+	STATIC_ASSERT(sizeof(uint16)    == 2);
+	STATIC_ASSERT(sizeof(uint8)     == 1);
+	STATIC_ASSERT(sizeof(int)       == 4);
+	STATIC_ASSERT(sizeof(int16)     == 2);
+	STATIC_ASSERT(sizeof(int8)      == 1);
+	STATIC_ASSERT(sizeof(bool)      == 1);
+	STATIC_ASSERT(sizeof(string)    == 28);
+	STATIC_ASSERT(sizeof(IntVec)    == 16);
+	STATIC_ASSERT(sizeof(IntMap)    == 12);
+	STATIC_ASSERT(sizeof(IntSet)    == 12);
+	STATIC_ASSERT(sizeof(IntPair)   == 8);
+	STATIC_ASSERT(sizeof(GameVar)   == 32);
+	STATIC_ASSERT(sizeof(ProtoItem) == 168);
 
-	STATIC_ASSERT(offsetof(ProtoItem,Weapon.Weapon_Aim)     == 182);
-	STATIC_ASSERT(offsetof(GameVar, RefCount)               == 22);
 	STATIC_ASSERT(offsetof(TemplateVar, Flags)              == 76);
 	STATIC_ASSERT(offsetof(NpcPlane, RefCounter)            == 88);
 	STATIC_ASSERT(offsetof(GlobalMapGroup, EncounterForce)  == 84);
 	STATIC_ASSERT(offsetof(Item, Lexems)                    == 160);
 	STATIC_ASSERT(offsetof(CritterTimeEvent, Identifier)    == 12);
-	STATIC_ASSERT(offsetof(Critter, RefCounter)             == 9768);
-	STATIC_ASSERT(offsetof(Client, LanguageMsg)             == 9836);
-	STATIC_ASSERT(offsetof(Npc, Reserved)                   == 9800);
+	STATIC_ASSERT(offsetof(Critter, RefCounter)             == 9784);
+	STATIC_ASSERT(offsetof(Client, LanguageMsg)             == 9852);
+	STATIC_ASSERT(offsetof(Npc, Reserved)                   == 9816);
 	STATIC_ASSERT(offsetof(Scenery, RunTime.RefCounter)     == 244);
 	STATIC_ASSERT(offsetof(MapEntire, Dir)                  == 8);
 	STATIC_ASSERT(offsetof(SceneryToClient, Reserved1)      == 30);
 	STATIC_ASSERT(offsetof(ProtoMap, HexFlags)              == 320);
-	STATIC_ASSERT(offsetof(Map, RefCounter)                 == 766);
-	STATIC_ASSERT(offsetof(GlobalMapZone, Reserved)         == 20);
+	STATIC_ASSERT(offsetof(Map, RefCounter)                 == 770);
 	STATIC_ASSERT(offsetof(ProtoLocation, GeckEnabled)      == 92);
 	STATIC_ASSERT(offsetof(Location, RefCounter)            == 286);
 }

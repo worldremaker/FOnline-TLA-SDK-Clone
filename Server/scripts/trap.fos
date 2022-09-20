@@ -189,8 +189,8 @@ void TrapDamagePlayer(Item & trap, Critter & player)
 		ProtoItem@ weap = GetProtoItem(weapPid);
 		if(!valid(weap)) return;
 
-		uint damage = Random(weap.Weapon_DmgMin, weap.Weapon_DmgMax);
-		uint damageType = weap.Weapon_DmgType;
+		uint damage = Random(weap.Weapon_DmgMin_F, weap.Weapon_DmgMax_F);
+		uint damageType = weap.Weapon_DmgType_F;
 		Map @ map = player.GetMap();
 		if(valid(map))
 		{

@@ -91,56 +91,45 @@ void DeleteGeckoMap()
 //////////////////////////////////////////////////
 
 // тотальная проверка группы
-void r_CheckGroup(Critter& player, Critter@ npc, int val)
+uint r_CheckGroup(Critter& player, Critter@ npc, int val)
 {
 	Critter@[] groups;
 	ArrayPushBack(groups,player);
 	player.GetFollowGroup(FIND_ALL,groups);
 
 	// проверка на способность быть лидером
-	if(player.Stat[ST_CHARISMA]<MIN_PLAYERS) {
-		__ForceDialog=61; // "Ну и рожа у тебя... С твоим обаянием мало кто за тобой пойдет. Найди лучше лидера поприятнее."
-		return;
-	}
+	if(player.Stat[ST_CHARISMA]<MIN_PLAYERS) return 61; // "Ну и рожа у тебя... С твоим обаянием мало кто за тобой пойдет. Найди лучше лидера поприятнее."
 
 #ifndef debag
 	// проверка на пустую группу
 	if(groups.length()==1)
 	{
-		__ForceDialog=57; // "А я вот вижу только тебя. У тебя нет никакой группы.  Идиот!"
-		return;
+		return 57; // "А я вот вижу только тебя. У тебя нет никакой группы.  Идиот!"
 		// нужна еще проверка на близость его лидера - если подошел не лидер, а участник группы
-		//__ForceDialog=60; // "Так, где лидер вашей группы?"
+		//return 60; // "Так, где лидер вашей группы?"
 	}
 #endif
 
 	// мало людей
-	if(groups.length()<MIN_PLAYERS)
-		{ __ForceDialog=58; return; }
+	if(groups.length()<MIN_PLAYERS) return 58;
 
 	// много людей
-	if(groups.length()>MAX_PLAYERS)
-		{ __ForceDialog=59; return; }
+	if(groups.length()>MAX_PLAYERS) return 59;
 
 	// тут будет проверка на уровень
 	// и еще проверка на наличия крутого снаряжения
 	for(uint i=0;i<groups.length();i++)
-		if((groups[i].Stat[ST_LEVEL]>MAX_LEVEL))
-		{
-			__ForceDialog=56;// вы слишком круты
-			return;
-		}
+		if((groups[i].Stat[ST_LEVEL]>MAX_LEVEL)) return 56; // вы слишком круты
 
 	// проверка на колво и видимость
 	for(uint i=0;i<groups.length();i++)
 		if (GetDistantion(npc.HexX, npc.HexY, groups[i].HexX, groups[i].HexY)>7)
 		{ // ктото ходит слишком далеко от НПС
-			__ForceDialog=55;
-			return;
+			return 55;
 		}
 	// цикл прошел - значит все стоят рядом.
 
-	__ForceDialog=53; // все окей. Поехали!
+	return 53; // все окей. Поехали!
 }
 
 // группа очень плоха?

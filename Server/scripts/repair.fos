@@ -31,7 +31,8 @@ bool TryRepairItem(Critter& cr, Item& item) // Export
 
 	// Repair
 	int repair=cr.Skill[SK_REPAIR];
-	uint16 activePid=cr.GetSlotProto(SLOT_HAND1).GetProtoId();
+	uint8 mode=0;
+	uint16 activePid=cr.GetSlotProto(SLOT_HAND1,mode).GetProtoId();
 	if(activePid==PID_MULTI_TOOL)
 	{
 		repair+=25;

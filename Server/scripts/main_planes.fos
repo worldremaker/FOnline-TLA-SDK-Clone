@@ -1,6 +1,6 @@
 // Authors: cvet, Atom
 #include "tracing_util.fos"
-import int RawToHit(Critter &cr, Critter &target, ProtoItem@ weapon, ProtoItem@ ammo) from "combat";
+import int RawToHit(Critter &cr, Critter &target, ProtoItem@ weapon, uint8 weaponUse, ProtoItem@ ammo) from "combat";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Called on some plane added.
@@ -292,12 +292,11 @@ bool npc_plane_run(Critter& npc, NpcPlane& plane, int reason, uint& r0, uint& r1
 
 				for(int u=0;u<3;u++)
 				{
-					if((u==0 && not _WeapIsPrimaryAviable(weapon.Proto))
-					|| (u==1 && not _WeapIsSecondaryAviable(weapon.Proto))
-					|| (u==2 && not _WeapIsThirdAviable(weapon.Proto))) continue;
+					if((u==0 && not _WeaponIsPrimaryAviable(weapon.Proto))
+					|| (u==1 && not _WeaponIsSecondaryAviable(weapon.Proto))
+					|| (u==2 && not _WeaponIsThirdAviable(weapon.Proto))) continue;
 
-					weapon.Proto.Weapon_SetUse(uint8(u));
-					if(weapon.Proto.Weapon_Skill==skill)
+					if(_WeaponSkill(weapon.Proto,u)==skill)
 					{
 						npc.StatBase[ST_LAST_WEAPON_ID]=weapon.Id;
 						npc.StatBase[ST_LAST_WEAPON_USE]=u;
@@ -315,9 +314,11 @@ bool npc_plane_run(Critter& npc, NpcPlane& plane, int reason, uint& r0, uint& r1
 	else if(reason==REASON_ATTACK_DISTANTION)
 	{
 		Critter@ target=GetCritter(r0);
-		ProtoItem@ weapon=npc.GetSlotProto(SLOT_HAND1);
+		uint8 mode=0;
+		ProtoItem@ weapon=npc.GetSlotProto(SLOT_HAND1,mode);
+		int use=_WeaponModeUse(mode);
 		ProtoItem@ ammo=(weapon.Weapon_VolumeHolder>0 && weapon.Weapon_Caliber!=0?GetProtoItem(_CritGetItemHand(npc).WeaponAmmoPid):null);
-		int wpnDist=weapon.Weapon_MaxDist;
+		int wpnDist=_WeaponMaxDist(weapon,use);
 		int multihex=npc.GetMultihex()+target.GetMultihex();
 
 		if (not npc.IsCanWalk())
@@ -330,10 +331,11 @@ bool npc_plane_run(Critter& npc, NpcPlane& plane, int reason, uint& r0, uint& r1
 		}
 
 		// non-ranged weapons:
-		if (weapon.Weapon_Skill == SK_UNARMED || weapon.Weapon_Skill == SK_MELEE_WEAPONS)
+		int skill=_WeaponSkill(weapon,use);
+		if (skill == SK_UNARMED || skill == SK_MELEE_WEAPONS)
 		{
 			int base =
-				npc.Skill[weapon.Weapon_Skill]-
+				npc.Skill[skill]-
 				MAX(0,target.Stat[ST_ARMOR_CLASS]+(valid(ammo)?ammo.Ammo_AcMod:0))+
 				(target.IsKnockout()?40:0)-
 				(npc.Damage[DAMAGE_EYE]!=0?25:0);
@@ -363,13 +365,13 @@ bool npc_plane_run(Critter& npc, NpcPlane& plane, int reason, uint& r0, uint& r1
 		else
 		// ranged weapons:
 		{
-			if (weapon.Weapon_Skill == SK_THROWING)
+			if (skill == SK_THROWING)
 				if (npc.Stat[ST_STRENGTH]*3 < wpnDist) wpnDist = npc.Stat[ST_STRENGTH]*3;
 			// set the minimum safe distance, 3 for grenades, 4 for rockets:
 			r1=0;
-			if (weapon.Weapon_Skill == SK_THROWING)
+			if (skill == SK_THROWING)
 			{
-				uint dmgType=weapon.Weapon_DmgType;
+				uint dmgType=_WeaponDmgType(weapon,use);;
 				if (dmgType==DAMAGE_PLASMA || dmgType==DAMAGE_EMP || dmgType==DAMAGE_EXPLODE)
 					r0=3;
 			}
@@ -396,7 +398,7 @@ bool npc_plane_run(Critter& npc, NpcPlane& plane, int reason, uint& r0, uint& r1
 				return true;
 			}
 
-			int base = npc.Skill[weapon.Weapon_Skill] -
+			int base = npc.Skill[skill] -
 					   MAX(0,target.Stat[ST_ARMOR_CLASS]+(valid(ammo)?ammo.Ammo_AcMod:0)) +
 					   (target.IsKnockout()?40:0) -
 					   (npc.Damage[DAMAGE_EYE]!=0?25:0) + (weapon.Weapon_Perk==WEAPON_PERK_ACCURATE?20:0);
@@ -448,8 +450,7 @@ bool npc_plane_run(Critter& npc, NpcPlane& plane, int reason, uint& r0, uint& r1
 
 			if (npc.IsCanAim())
 			{
-				weapon.Weapon_SetUse(0);
-				if (weapon.Weapon_Aim)
+				if (weapon.Weapon_Aim_F)
 				{
 					uint reduction = (r0*3*npc.Stat[ST_INTELLECT])/100;
 					reduction = MIN(15,reduction);
@@ -464,7 +465,7 @@ bool npc_plane_run(Critter& npc, NpcPlane& plane, int reason, uint& r0, uint& r1
 			// right clamp
 			if (wpnDist<int(r2))
 			{
-				r2=weapon.Weapon_MaxDist;
+				r2=_WeaponMaxDist(weapon,use);
 				if (r0>r2) r0=r2;
 			}
 
@@ -483,8 +484,9 @@ bool npc_plane_run(Critter& npc, NpcPlane& plane, int reason, uint& r0, uint& r1
 			r1=(npc.IsCanAim() && Random(0,5)==0?Random(HIT_LOCATION_HEAD,HIT_LOCATION_GROIN):0);
 		}
 
-		ProtoItem@ weapon=npc.GetSlotProto(SLOT_HAND1);
-		int ap = valid(weapon) ? weapon.Weapon_ApCost : 3;
+		uint8 mode=0;
+		ProtoItem@ weapon=npc.GetSlotProto(SLOT_HAND1,mode);
+		int ap = valid(weapon) ? _WeaponApCost(weapon,r0) : 3;
 		switch(r1)
 		{
 		case HIT_LOCATION_EYES:
@@ -535,7 +537,7 @@ bool CogitateFiring(Critter& cr, uint& mode, uint& aim) // in: targetId, 0; out:
   {
     mode = 0;
     if (cr.IsCanAim())
-      aim = ChooseAim(cr, target, null, null);
+      aim = ChooseAim(cr, target, null, 0, null);
     else
       aim=0;
 
@@ -546,11 +548,11 @@ bool CogitateFiring(Critter& cr, uint& mode, uint& aim) // in: targetId, 0; out:
   ProtoItem@ protoWeapon = GetProtoItem(weapon.GetProtoId());
   ProtoItem@ protoAmmo = null;
   if (weapon.WeaponAmmoPid!=0) @protoAmmo = GetProtoItem(weapon.WeaponAmmoPid);
-  if (protoWeapon.Weapon_Skill == SK_UNARMED || protoWeapon.Weapon_Skill == SK_MELEE_WEAPONS) // assuming all modes melee
+  if (protoWeapon.Weapon_Skill_F == SK_UNARMED || protoWeapon.Weapon_Skill_F == SK_MELEE_WEAPONS) // assuming all modes melee
   {
     mode = 0;
     if (cr.IsCanAim())
-      aim = ChooseAim(cr, target, protoWeapon, protoAmmo);
+      aim = ChooseAim(cr, target, protoWeapon, mode, protoAmmo);
     else
       aim=0;
 
@@ -559,8 +561,7 @@ bool CogitateFiring(Critter& cr, uint& mode, uint& aim) // in: targetId, 0; out:
   else // assuming all modes ranged
   {
     bool forceBurst = false;
-    protoWeapon.Weapon_SetUse(0);
-    if (protoWeapon.Weapon_Round > 1)
+    if (protoWeapon.Weapon_Round_F > 1)
     {
       //cr.Say(SAY_NORM, "Burst is the only mode");
       forceBurst = true;
@@ -568,17 +569,15 @@ bool CogitateFiring(Critter& cr, uint& mode, uint& aim) // in: targetId, 0; out:
     }
     else
     {
-      protoWeapon.Weapon_SetUse(1);
-      if (protoWeapon.Weapon_DmgType == DAMAGE_UNCALLED)
+      if (protoWeapon.Weapon_DmgType_S == DAMAGE_UNCALLED)
       {
         //cr.Say(SAY_NORM, "Single shot is the only mode");
-        protoWeapon.Weapon_SetUse(0);
         mode = 0;
       }
       else
       {
         //cr.Say(SAY_NORM, "Second mode available");
-        if (ValidateBurst(cr, target, protoWeapon))
+        if (ValidateBurst(cr, target, protoWeapon, mode))
         {
           //cr.Say(SAY_NORM, "Burst forced by check");
           forceBurst = true;
@@ -587,7 +586,6 @@ bool CogitateFiring(Critter& cr, uint& mode, uint& aim) // in: targetId, 0; out:
         else
         {
           //cr.Say(SAY_NORM, "Single shot forced by check");
-          protoWeapon.Weapon_SetUse(0);
           mode = 0;
         }
       }
@@ -599,20 +597,21 @@ bool CogitateFiring(Critter& cr, uint& mode, uint& aim) // in: targetId, 0; out:
       return true;
     }
 
-    if (!cr.IsCanAim() || !protoWeapon.Weapon_Aim) { aim=0; return true; }
-    aim = ChooseAim(cr, target, protoWeapon, protoAmmo);
+    if (!cr.IsCanAim() || !_WeaponAim(protoWeapon,mode)) { aim=0; return true; }
+    aim = ChooseAim(cr, target, protoWeapon, mode, protoAmmo);
     return true;
   }
 }
 
-int ChooseAim(Critter& cr, Critter& target, ProtoItem@ weapon, ProtoItem@ ammo)
+int ChooseAim(Critter& cr, Critter& target, ProtoItem@ weapon, uint8 mode, ProtoItem@ ammo)
 {
-  int tohit = RawToHit(cr, target, weapon, ammo);
+  int tohit = RawToHit(cr, target, weapon, mode, ammo);
   //cr.Say(SAY_NORM, "choose aim, tohit="+tohit+", ap: "+cr.Stat[ST_CURRENT_AP]+" of "+cr.Stat[ST_ACTION_POINTS]);
   if (tohit < 26) return 0;
 
-  int ap = valid(weapon) ? weapon.Weapon_ApCost : 3;
-  int pendiv = valid(weapon) ? (weapon.Weapon_Skill == SK_MELEE_WEAPONS || weapon.Weapon_Skill == SK_UNARMED ? 2 : 1) : 2;
+  int ap = valid(weapon) ? _WeaponApCost(weapon, mode) : 3;
+  uint skill = valid(weapon) ? _WeaponSkill(weapon, mode) : 0;
+  int pendiv = valid(weapon) ? (skill == SK_MELEE_WEAPONS || skill == SK_UNARMED ? 2 : 1) : 2;
   bool isTB = cr.GetMap().IsTurnBasedAvailability();
   int maxap = isTB ? cr.Stat[ST_CURRENT_AP] : cr.Stat[ST_ACTION_POINTS];
 
@@ -669,18 +668,20 @@ int ChooseAim(Critter& cr, Critter& target, ProtoItem@ weapon, ProtoItem@ ammo)
   return HIT_LOCATION_UNCALLED;
 }
 
-bool ValidateBurst(Critter& cr, Critter& target, ProtoItem@ weapon)
+bool ValidateBurst(Critter& cr, Critter& target, ProtoItem@ weapon, uint mode)
 {
   //cr.Say(SAY_NORM, "validating burst, ap: "+cr.Stat[ST_CURRENT_AP]+" of "+cr.Stat[ST_ACTION_POINTS]+", needed "+weapon.Weapon_ApCost);
   if (Random(0,2) == 0) return false; // force normal shot, for a little diversity
   Map@ map = cr.GetMap();
-  if ((map.IsTurnBasedAvailability() ? cr.Stat[ST_CURRENT_AP] : cr.Stat[ST_ACTION_POINTS]) < weapon.Weapon_ApCost) return false;
+  if ((map.IsTurnBasedAvailability() ? cr.Stat[ST_CURRENT_AP] : cr.Stat[ST_ACTION_POINTS]) < _WeaponApCost(weapon, mode)) return false;
+
+  uint maxDist = _WeaponMaxDist(weapon, mode);
 
   uint16 hx = cr.HexX;
   uint16 hy = cr.HexY;
   uint16 tx = target.HexX;
   uint16 ty = target.HexY;
-  Critter@ blocker = TraceFirstCritter(hx, hy, tx, ty, map, weapon.Weapon_MaxDist, hx, hy, 0);
+  Critter@ blocker = TraceFirstCritter(hx, hy, tx, ty, map, maxDist, hx, hy, 0);
   if (valid(blocker) && !cr.CheckEnemyInStack(blocker.Id)) { /*blocker.Say(SAY_NORM, "I blocked the burst check");*/ return false; }
 
   uint16 sx=hx;
@@ -690,7 +691,7 @@ bool ValidateBurst(Critter& cr, Critter& target, ProtoItem@ weapon)
   uint8 dir=GetOffsetDir(hx,hy,tx,ty,89.0f);
   map.MoveHexByDir(sx,sy,dir,1);
   map.MoveHexByDir(ex,ey,dir,1);
-  @blocker = TraceFirstCritter(sx, sy, ex, ey, map, weapon.Weapon_MaxDist, hx, hy, 3);
+  @blocker = TraceFirstCritter(sx, sy, ex, ey, map, maxDist, hx, hy, 3);
   if (valid(blocker) && !cr.CheckEnemyInStack(blocker.Id)) { /*blocker.Say(SAY_NORM, "I blocked the burst check");*/ return false; }
 
   sx=hx;
@@ -700,7 +701,7 @@ bool ValidateBurst(Critter& cr, Critter& target, ProtoItem@ weapon)
   dir=GetOffsetDir(hx,hy,tx,ty,-89.0f);
   map.MoveHexByDir(sx,sy,dir,1);
   map.MoveHexByDir(ex,ey,dir,1);
-  @blocker = TraceFirstCritter(sx, sy, ex, ey, map, weapon.Weapon_MaxDist, hx, hy, 3);
+  @blocker = TraceFirstCritter(sx, sy, ex, ey, map, maxDist, hx, hy, 3);
   if (valid(blocker) && !cr.CheckEnemyInStack(blocker.Id)) { /*blocker.Say(SAY_NORM, "I blocked the burst check");*/ return false; }
 
   return true;

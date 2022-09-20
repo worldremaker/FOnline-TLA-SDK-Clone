@@ -62,7 +62,6 @@ uint[] SubQuest2Experience={0,0,1000,3000,5000};
 #define FD_LOW_PLAYERS                   (101)
 #define FD_MANY_PLAYERS                  (102)
 #define FD_LOW_LEVEL                     (103)
-#define FORCE_DIALOG #(err)              {__ForceDialog=err; return;}
 
 // Разное.
 #define ADVERTISMAN_WAIT                 (Random(10000,15000))

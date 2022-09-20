@@ -70,12 +70,14 @@ class AttackStruct
   }
 };
 
-void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, ProtoItem@ ammo, uint8 aim) // Export
+void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, uint8 weaponMode, ProtoItem@ ammo) // Export
 {
+  uint8 use=_WeaponModeUse(weaponMode);
+  uint8 aim=_WeaponModeAim(weaponMode);
   Item@ realWeapon=_CritGetItemHand(cr);
   Map@ map=cr.GetMap();
-  int wpnMaxDist=weapon.Weapon_MaxDist;
-  int skillNum=weapon.Weapon_Skill;
+  int wpnMaxDist=_WeaponMaxDist(weapon,use);
+  int skillNum=_WeaponSkill(weapon,use);
   if (skillNum == SK_THROWING) wpnMaxDist = MIN(wpnMaxDist, 3 * MIN(int(10), (cr.Stat[ST_STRENGTH] + 2*cr.Perk[PE_HEAVE_HO])));
   int skillVal=cr.Skill[skillNum];
   uint8 weaponSubtype=
@@ -83,8 +85,8 @@ void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, ProtoItem@ am
   bool isRanged=(weaponSubtype == WS_THROWING || weaponSubtype == WS_GUN);
   bool isUnarmed=weapon.Weapon_IsUnarmed;
   bool isHthAttack=(weaponSubtype==WS_MELEE || weaponSubtype==WS_UNARMED);
-  uint16 ammoRound=weapon.Weapon_Round;
-  bool wpnIsRemoved=weapon.Weapon_Remove;
+  uint16 ammoRound=_WeaponRound(weapon,use);
+  bool wpnIsRemoved=_WeaponRemove(weapon,use);
   uint16 hx=cr.HexX;
   uint16 hy=cr.HexY;
   uint16 tx=target.HexX;
@@ -94,7 +96,7 @@ void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, ProtoItem@ am
   if (valid(ammo)) ammoPid=ammo.GetProtoId();
   bool isBurst=(ammoRound>1); // will suffice for now
   if (isBurst) aim=HIT_LOCATION_UNCALLED;
-  int dmgType=weapon.Weapon_DmgType;
+  int dmgType=_WeaponDmgType(weapon,use);
 
   bool isGrenade=weaponSubtype == WS_THROWING && (dmgType==DAMAGE_PLASMA || dmgType==DAMAGE_EMP || dmgType==DAMAGE_EXPLODE); // like in fo2
   bool isFlamethrower=(weapPid==PID_FLAMER) || (weapPid==PID_IMPROVED_FLAMETHROWER) || (weapPid==PID_FIRE_GECKO_FLAME_WEAPON);
@@ -186,8 +188,8 @@ void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, ProtoItem@ am
   attack.scoreUnarmed=(weaponSubtype==WS_UNARMED);
   attack.WeaponPerk=(isUnarmed && weapon.Weapon_UnarmedArmorPiercing)?WEAPON_PERK_PENETRATE:weaponPerk;
   attack.WeaponSubtype=weaponSubtype;
-  attack.DmgMin=weapon.Weapon_DmgMin;
-  attack.DmgMax=weapon.Weapon_DmgMax;
+  attack.DmgMin=_WeaponDmgMin(weapon,use);
+  attack.DmgMax=_WeaponDmgMax(weapon,use);
   attack.DmgType=dmgType;
   attack.BonusDmg=0;
 
@@ -307,7 +309,7 @@ void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, ProtoItem@ am
     @realTarget=target;
 
   // initial animations
-  cr.Action(ACTION_USE_WEAPON,(((!isHit && isCritical && !hitRandomly)?1:0)<<8)|(aim<<4)|weapon.Weapon_CurrentUse,realWeapon);
+  cr.Action(ACTION_USE_WEAPON,(((!isHit && isCritical && !hitRandomly)?1:0)<<8)|(aim<<4)|use,realWeapon);
 
   // animations are now played, and we're updating the hit randomly status now
   bool changedTarget = (hitRandomly && (@realTarget!=null));
@@ -315,7 +317,7 @@ void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, ProtoItem@ am
   // commencing critical failures
   if (!isHit && isCritical && (!hitRandomly  || @realTarget==null))
   {
-    CriticalFailure(cr, weapon, ammo, critfailFlags, results);
+    CriticalFailure(cr, weapon, use, ammo, critfailFlags, results);
     return;
   }
 
@@ -1005,12 +1007,12 @@ void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, ProtoItem@ am
   // stuff like animations, effects
 
   // Shoot
-  if (weapon.Weapon_Effect!=0)
+  if (_WeaponEffect(weapon,use)!=0)
   {
     if (useHex)
-      map.RunFlyEffect(weapon.Weapon_Effect,cr,null,hx,hy,tx,ty); // yeah, the target can be null (see: grenades, rocket launcher)
+      map.RunFlyEffect(_WeaponEffect(weapon,use),cr,null,hx,hy,tx,ty); // yeah, the target can be null (see: grenades, rocket launcher)
     else
-      map.RunFlyEffect(weapon.Weapon_Effect,cr,(useNormal?normalTarget:realTarget),hx,hy,tx,ty);
+      map.RunFlyEffect(_WeaponEffect(weapon,use),cr,(useNormal?normalTarget:realTarget),hx,hy,tx,ty);
   }
 
   if(ammoRound>0 && valid(realWeapon) && cr.Mode[MODE_UNLIMITED_AMMO]==0)
@@ -1646,7 +1648,7 @@ void CommenceExplosion(AttackStruct &attack, Map@ map, uint16 tx, uint16 ty, Cri
 }
 
 
-void CriticalFailure(Critter &cr, ProtoItem& weapon, ProtoItem@ ammo, uint eff, CombatRes[]& results)
+void CriticalFailure(Critter &cr, ProtoItem& weapon, uint8 weaponUse, ProtoItem@ ammo, uint eff, CombatRes[]& results)
 {
 
   // 0x00000100 hit self OK
@@ -1668,7 +1670,7 @@ void CriticalFailure(Critter &cr, ProtoItem& weapon, ProtoItem@ ammo, uint eff, 
   int totalDmg=0;
   bool tookDamage=false;
   Item@ realWeapon=_CritGetItemHand(cr);
-  bool wpnIsRemoved=weapon.Weapon_Remove;
+  bool wpnIsRemoved=_WeaponRemove(weapon,weaponUse);
   Map@ map=cr.GetMap();
 
   if (cr.Mode[MODE_NO_DROP]!=0) UNSETFLAG(eff,MF_WEAPON_DROPPED);
@@ -1676,7 +1678,7 @@ void CriticalFailure(Critter &cr, ProtoItem& weapon, ProtoItem@ ammo, uint eff, 
   if (FLAG(eff,MF_HIT_SELF) || FLAG(eff,MF_WEAPON_EXPLODED)) // only one bullet because burst weapons do not have the ability
   {
     bool validAmmo=valid(ammo);
-    int dmgType=weapon.Weapon_DmgType;
+    int dmgType=_WeaponDmgType(weapon,weaponUse);
     int targetDR=GetDamageResistance(cr,dmgType);
     int targetDT=GetDamageThreshold(cr,dmgType);
 
@@ -1685,8 +1687,8 @@ void CriticalFailure(Critter &cr, ProtoItem& weapon, ProtoItem@ ammo, uint eff, 
     targetDR+=(cr.Trait[TRAIT_FINESSE]!=0?30:0);
     targetDR+=validAmmo?ammo.Ammo_DrMod:0;
     targetDR=CLAMP(targetDR,0,100);
-    int dmgMin=weapon.Weapon_DmgMin;
-    int dmgMax=weapon.Weapon_DmgMax;
+    int dmgMin=_WeaponDmgMin(weapon,weaponUse);
+    int dmgMax=_WeaponDmgMax(weapon,weaponUse);
     int dmgMul=validAmmo?ammo.Ammo_DmgMult:1; // technically, should be *2
     int dmgDiv=validAmmo?ammo.Ammo_DmgDiv:1;  // technically, should be *2
     totalDmg=Random(dmgMin,dmgMax) + 2*cr.Perk[PE_BONUS_RANGED_DAMAGE];
@@ -1701,7 +1703,7 @@ void CriticalFailure(Critter &cr, ProtoItem& weapon, ProtoItem@ ammo, uint eff, 
     tookDamage=true;
   }
 
-  uint16 ammoRound=weapon.Weapon_Round;
+  uint16 ammoRound=_WeaponRound(weapon,weaponUse);
   if(ammoRound>0 && valid(realWeapon) && cr.Mode[MODE_UNLIMITED_AMMO]==0)
   {
     if(realWeapon.WeaponAmmoCount<=ammoRound || FLAG(eff,MF_LOST_REST_OF_AMMO)) realWeapon.WeaponAmmoCount=0;
@@ -1971,8 +1973,9 @@ uint GetHitAim(int hitLocation)
 
 
 // client only, possible use by AI
-int RawToHit(Critter &cr, Critter &target, ProtoItem@ weapon, ProtoItem@ ammo) {
-  int skillNum = valid(weapon) ? weapon.Weapon_Skill : SK_UNARMED;
+int RawToHit(Critter &cr, Critter &target, ProtoItem@ weapon, uint8 weaponUse, ProtoItem@ ammo)
+{
+  int skillNum = valid(weapon) ? _WeaponSkill(weapon,weaponUse) : SK_UNARMED;
   int toHit=cr.Skill[skillNum];
   int weaponPerk = valid(weapon) ? weapon.Weapon_Perk : 0;
   int blockers=0;
