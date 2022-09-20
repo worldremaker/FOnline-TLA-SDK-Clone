@@ -21,6 +21,41 @@ int DFGroupCount(Critter& player, Critter@ npc)
 	return groups.length();
 }
 
+//!/ Размер группы больше >=VAL
+bool d_GroupCountMore(Critter& player, Critter@ npc, int val)
+{
+	return DFGroupCount(player, npc)>=val;
+}
+
+bool d_GroupCountLess(Critter& player, Critter@ npc, int val)
+{
+	return DFGroupCount(player, npc)<val;
+}
+
+//!/ У всех уровень больше >=VAL
+// Проверка что все игроки в группе больше или равны указанному уровню.
+bool d_GroupLevelMore(Critter& player, Critter@ npc, int val)
+{
+	Critter@[] groups;
+	ArrayPushBack(groups,player);
+	player.GetFollowGroup(FIND_LIFE,groups);
+	for(uint i=0;i<groups.length();i++)
+		if(groups[i].Stat[ST_LEVEL]<val) // если хотябы один из них меньше требуемого уровня
+			return false;
+	return true;
+}
+
+bool d_GroupLevelLess(Critter& player, Critter@ npc, int val)
+{
+	Critter@[] groups;
+	ArrayPushBack(groups,player);
+	player.GetFollowGroup(FIND_LIFE,groups);
+	for(uint i=0;i<groups.length();i++)
+		if(groups[i].Stat[ST_LEVEL]>val) // если хотябы один из них меньше требуемого уровня
+			return false;
+	return true;
+}
+
 // Игрок нуждаеться в лечении?
 bool d_IsToHeal(Critter& player, Critter@ npc)
 {

@@ -9,7 +9,7 @@
 #include "_ai.fos"
 #include "time.fos"
 
-#define BOLO_PID                   (Random(NPC_PID_MirelurkWeak, NPC_PID_MirelurkTough)) // прототип криттера Болотник.
+#define BOLO_PID                   (Random(NPC_PID_GiantWasp, NPC_PID_GiantBeetle)) // прототип криттера Болотник.
 #define BOLO_TEAM                  (TEAM_Slaver) // команда болотников.
 
 #define ENTIRE_BARRICADES          (154) // Обязательные баррикады
@@ -172,7 +172,7 @@ void _Dead(Critter& cr, Critter@ killer)
 	{
 		if(killer.IsNpc()) return;
 		uint pid = cr.GetProtoId();
-		if(pid==NPC_PID_MirelurkWeak||pid==NPC_PID_MirelurkTough)
+		if(pid==NPC_PID_GiantWasp||pid==NPC_PID_GiantBeetle)
 		{
 			GameVar @ qVar = GetLocalVar(LVAR_q_sf_invasion_mirelurk_kills,killer.Id);
 			if(valid(qVar))
@@ -336,8 +336,8 @@ void StopInvasion()
 
 	Critter @[] crits;
 
-	map.GetCritters (NPC_PID_MirelurkWeak, FIND_ALL|FIND_ONLY_NPC, crits);
-	map.GetCritters (NPC_PID_MirelurkTough, FIND_ALL|FIND_ONLY_NPC, crits);
+	map.GetCritters (NPC_PID_GiantWasp, FIND_ALL|FIND_ONLY_NPC, crits);
+	map.GetCritters (NPC_PID_GiantBeetle, FIND_ALL|FIND_ONLY_NPC, crits);
 	map.GetCritters (NPC_PID_BOS_CORPORAL, FIND_ALL|FIND_ONLY_NPC, crits);
 	map.GetCritters (NPC_PID_BOS_PRIVATE, FIND_ALL|FIND_ONLY_NPC, crits);
 

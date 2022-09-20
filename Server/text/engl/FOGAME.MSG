@@ -1824,6 +1824,9 @@
 # KARMA_PEDOBEAR
 {104961}{}{Pedobear}
 {104962}{}{You've raped a little kid. How could you do that, you bastard. Now you've earned some problems for your ass for the rest of your miserable life.}
+# KARMA_VC_GUARDSMAN
+{104971}{}{Guardsman}
+{104972}{}{Вы гвардеец Города-убежища, гордость и краса вооруженных сил. Вы можете носить одежду форменных цветов. Вам даже немного стыдно вашей собственной улётности и неотразимости.}
 
 
 # 105000

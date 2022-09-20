@@ -113,7 +113,9 @@ void GenerateItems(Map & map, Critter @[]@  grp)
 					{
 						if(items[j].GetType()==ITEM_CONTAINER)
 						{
-							items[j].AddItem(_GetPid(idx), _GetQty(idx),0);
+							uint qty = _GetQty(idx);
+							if(qty>0)
+								items[j].AddItem(_GetPid(idx), qty, 0);
 							found = true;
 							break;
 						}

@@ -13,6 +13,7 @@ CaravanInfo@[] Caravans;
 void CaravansInit()
 {
 	#include "caravans_init.fos"
+	
 }
 
 /* **************************************** Основные методы ***************************************** */
@@ -24,9 +25,10 @@ CaravanInfo @ _GetCaravan(uint idCaravan)
 
 	for(uint i = 0; i< Caravans.length(); i++)
 	{
-
+		DL("i =="+i+"id"+Caravans[i].CaravanId+"needed idcrv"+idCaravan);
 		if (Caravans[i].CaravanId == idCaravan)
 		{
+			DL("ok");
 			return Caravans[i];
 		}
 	}
@@ -277,7 +279,7 @@ uint e_PrepareCaravan(uint[]@ values)
 		}
 	}
 
-	uint time = ((prepareDay==startDay||startDay==0)&&startHour>prepareHour?__FullSecond+60*60*(startHour-prepareHour):GetNearFullSecond(0, 0, startDay, startHour, 0, 0));
+	uint time = GetNearFullSecond(0, 0, startDay, startHour, 0, 0);
 	DL("time to start:" +time);
 	if(CreateTimeEvent(time,"e_BeginCaravan",values, false)==0)
 	{
@@ -1174,6 +1176,18 @@ void r_ContinueCaravan(Critter& player, Critter@ npc)
 	if(d_HasPlayerRequest(player, npc))
 	{
 		_ContinueCaravan(npc);
+	}
+}
+
+// Мгновенно запускает караван, вне расписания
+void r_StartCaravan(Critter& player, Critter@ npc)
+{
+	CaravanInfo@ ci = _GetCaravan(npc.CrvId);
+	if(valid(ci))
+	{
+		r_PutPlayerRequest2Info(player, npc);
+		DL("time start");
+		StartCaravan(npc.CrvId);
 	}
 }
 

@@ -293,6 +293,7 @@ bool _GuardAttacked(Critter& guard, Critter& attacker)
 
 	return false;
 }
+
 // охранник обворован
 void _GuardStealing(Critter& cr, Critter& thief, bool success, Item& item, uint count)
 {
@@ -300,6 +301,28 @@ void _GuardStealing(Critter& cr, Critter& thief, bool success, Item& item, uint 
 	{
 		AddAttackPlane(cr,0,thief);
 		if(!cr.CheckEnemyInStack(thief.Id)) cr.AddEnemyInStack(thief.Id);
+	}
+}
+
+// убит патрульный ГУ
+void _VCPatrolDead (Critter& cr, Critter@ killer)
+{
+	CaravanInfo@ ci = _GetCaravan(cr.CrvId);
+	if(valid(ci))
+	{
+		if(ci.CaravanStatus==CRV_STATUS_ON_ENCOUNTER)
+		{
+			for(uint i=0, l=ci.Caravaneers.length(); i<l; i++)
+			{
+				Critter@ player = GetCritter(ci.Caravaneers[i]);
+				if(valid(player) && player.IsPlayer())
+				{
+					GameVar@ counter = GetLocalVar(LVAR_vc_dead_patrollers, player.Id);
+					if(valid(counter))
+						counter = counter.GetValue() + 1;
+				}
+			}
+		}
 	}
 }
 /*-------------------------специфические обработки-------------------------*/
@@ -361,26 +384,23 @@ void _DefaultGuardInit(Critter& guard, bool firstTime)
 	guard.ModeBase[MODE_NO_STEAL]=1;
 	// торговать они не будут
 	guard.ModeBase[MODE_NO_BARTER]=1;
-	guard.ModeBase[MODE_NO_LOOT] = 1;
+	guard.ModeBase[MODE_NO_LOOT] = 0;
 	// из мертвых не встанут
 	guard.StatBase[ST_REPLICATION_TIME]=-1;
-	//CRITTER_EVENT_IDLE
-	//CRITTER_EVENT_DEAD
-	//CRITTER_EVENT_ATTACKED
-	//CRITTER_EVENT_STEALING
-	//CRITTER_EVENT_ATTACK
-	//CRITTER_EVENT_SHOW_CRITTER - Вызывается при появлении нового криттера в поле зрения.
-	//CRITTER_EVENT_HIDE_CRITTER - Вызывается при пропаже криттера из поля зрения.
-	//CRITTER_EVENT_SMTH_DEAD - Вызывается, когда криттер в области видимости умирает. См. CRITTER_EVENT_DEAD.
-	//CRITTER_EVENT_SMTH_DROP_ITEM - Вызывается, когда криттер в области видимости выкидывает итем. См. CRITTER_EVENT_DROP_ITEM.
-
-	//CRITTER_EVENT_PLANE_END - Вызывается перед удалением плана (который ещё присутствует в списках планов). Если возвратить false, то план станет последним по текущей приоритетности; если true, то удалится.
 }
+
 // тоже, но бесконечные патроны
 void _DefaultGuardInitUnlimAmmo(Critter& guard, bool firstTime)
 {
 	guard.ModeBase[MODE_UNLIMITED_AMMO] = 1;
 	_DefaultGuardInit(guard, firstTime);
+}
+
+void _VCPatrolInit(Critter& guard, bool firstTime)
+{
+	guard.ModeBase[MODE_UNLIMITED_AMMO] = 1;
+	_DefaultGuardInit(guard, firstTime);
+	guard.SetEvent(CRITTER_EVENT_DEAD, "_VCPatrolDead");
 }
 
 // Патрульные для квеста Патруль Рейнджеров

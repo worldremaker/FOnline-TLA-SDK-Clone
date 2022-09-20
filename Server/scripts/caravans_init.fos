@@ -232,3 +232,19 @@
 	_AddRoutePoint(PATROL_HATE_NCR, 1125, 1425);//ncr
 	_AddGuardInfo(PATROL_HATE_NCR,  NPC_PID_VaultCityPatrolMale, DIALOG_crvg_ncr_patroller, "caravan@_NcrRangerPatrolInit", AIPACKET_BOUNTY_HUNTER, BAG_SF_Caravan_VaultCityPatrolMale, TEAM_QuestNpc, 15, 0, 0, 100, false);
 	_SheduleCaravan(PATROL_HATE_NCR, 0, 21, 0, 22);
+	
+//PATROL_SHRIM_VC
+	_SetupCaravan(PATROL_SHRIM_VC, CRV_TYPE_ONEWAY_DELETELEADER, 2, LVAR_q_vc_shrim_patrol, 5);
+	_SetupCaravanLeader(PATROL_SHRIM_VC, DIALOG_vc_shrim, NPC_PID_BlackArmoredRebel, BAG_All_BountyHunters_10, TEAM_QuestNpc, AIPACKET_VAULT_GUARD, 50);
+	_SetupCaravanLiderPosition(PATROL_SHRIM_VC, LOCATION_VaultCity, MAP_vcity_courtyard, 58, 86, true); 
+	_SetupCaravanLiderPosition(PATROL_SHRIM_VC, LOCATION_VaultCity, MAP_vcity_courtyard, 58, 86, false); 
+	_AddRoutePoint(PATROL_SHRIM_VC, 1225, 325);//vc
+	_AddRoutePoint(PATROL_SHRIM_VC, 1207, 383);
+	_AddRoutePoint(PATROL_SHRIM_VC, 1154, 303);
+	_AddRoutePoint(PATROL_SHRIM_VC, 1186, 263);
+	_AddRoutePoint(PATROL_SHRIM_VC, 1253, 245);
+	_AddRoutePoint(PATROL_SHRIM_VC, 1279, 309);
+	_AddRoutePoint(PATROL_SHRIM_VC, 1265, 414);
+	_AddRoutePoint(PATROL_SHRIM_VC, 1225, 325);//vc
+	_AddGuardInfo(PATROL_SHRIM_VC,  NPC_PID_VCGuardsman, DIALOG_vc_patroller, "caravan@_VCPatrolInit", AIPACKET_VAULT_GUARD, BAG_SF_Caravan_VaultCityPatrolMale, TEAM_QuestNpc, 15, 0, 0, 100, false);
+	_SheduleCaravan(PATROL_SHRIM_VC, 0, 1, 0, 23);

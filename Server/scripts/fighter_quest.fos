@@ -143,8 +143,14 @@ class FighterQuest
 				lex = "$npcname@msg DLG " + STR_NPC_NAME(npc.Stat[ST_DIALOG_ID], npc.GetProtoId()) + "@";
 			Critter@ cr = GetCritter(this.PlayerId);
 			if(valid(cr))
+			{
+				cr.Wait(0);
 				cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_FIGHT_WIN, lex);
+				cr.ShowScreen(SCREEN_DIALOGBOX,0,"answer_None");
+				cr.SayMsg(SAY_DIALOGBOX_TEXT,TEXTMSG_TEXT,STR_FIGHT_WIN, lex);
+			}
 		}
+		
 		this.CancelFigther();
 	}
 	
@@ -263,3 +269,8 @@ void r_BeginFight(Critter& player, Critter@npc, int newTeam, int hpPercent, int 
 	fq.StartFight();
 }
 
+
+void answer_None(Critter& player, uint answerI, string& answerS)
+{
+	// заглушка для диалогового окна
+}

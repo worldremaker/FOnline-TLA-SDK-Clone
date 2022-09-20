@@ -687,7 +687,7 @@ void r_EndQuest(Critter& player, Critter@ npc, int noAward)
 	qVar = QST_END;
 	player.SendQuestVar(qVar);
 	player.StatBase[ST_EXPERIENCE]+=GET_XP(sumCost,XP_BASE(player.Stat[ST_LEVEL]));
-	if(counter==6&&noAward>0)
+	if(counter>5&&noAward>0)
 	{
 		player.ReputationBase[REPUTATION_NCR]+=1;
 		return;

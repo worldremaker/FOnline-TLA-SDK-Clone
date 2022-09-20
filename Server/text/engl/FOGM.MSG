@@ -354,6 +354,21 @@
 {955}{}{07desert}
 {956}{}{gustwind:20, gustwin1:20, rattle:15, rattle1:15, vulture:15, vulture1:15}
 
+# Map 95, base 960
+{960}{}{Mutants cave}
+{965}{}{07desert}
+{966}{}{gntlwin1:25, gntlwind:25, gustwind:10, rattle:15, rattle1:15, vulture:10}
+
+# Map 96, base 970
+{970}{}{Mutants cave outdoor}
+{975}{}{07desert}
+{976}{}{gntlwin1:25, gntlwind:25, gustwind:10, rattle:15, rattle1:15, vulture:10}
+
+# Map 97, base 980
+{980}{}{Mutants cave outdoor}
+{985}{}{07desert}
+{986}{}{gntlwin1:25, gntlwind:25, gustwind:10, rattle:15, rattle1:15, vulture:10}
+
 # Map 99, base 1000
 {1000}{}{Wanamingo carvern}
 {1005}{}{13carvrn.acm}
@@ -1561,13 +1576,21 @@
 {311000}{}{Raiders' camp}
 {311005}{}{Тут в последний раз были замечены основные силы рейдеров.}
 
-# Raiders camp, pid 211, base 312000
+# Nanci and Sid quest, pid 211, base 312000
 {312000}{}{Палатка наркодилеров}
 {312005}{}{Вы нашли то место, о котором вам сообщила Нэнси по рации.}
 
-# Raiders camp, pid 213, base 313000
+# Modoc Farm, pid 213, base 313000
 {313000}{}{Ферма}
 {313005}{}{Ферма, на которой, по словам Джо завелась гигантская хищная оса.}
+
+# Mutants cave, pid 214, base 314000
+{314000}{}{Пещера мутантов}
+{314005}{}{Логово мутантов обнаружено. Необходимо срочно сообщить о находке капитану Хартманну, пока мутанты не изменили место дислокации.}
+
+# Mutants cave, pid 215, base 315000
+{315000}{}{Пещера мутантов}
+{315005}{}{В этом месте вас ожидают гвардейцы Города-Убежища. Зачистите пещеры от оборзевших мутантов.}
 
 # Warehouse, pid 220, base 320000
 {320000}{}{Warehouse}
@@ -2224,6 +2247,7 @@
 {10042270}{}{King Arthur's Knights}
 {10042280}{}{A tin woodsman}
 {10042290}{}{The Unwashed Villagers hunting a spammer}
+{10042300}{}{секретное логово супермутантов}
 
 # Encounter Table 25
 {10042500}{}{Some mutated molerats}

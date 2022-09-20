@@ -3566,6 +3566,7 @@ enc_28=Chance:1%,Counter:1,Special,Map:Special Unwashed Encounter,Enc:Special1, 
 	table.AddEncounter(  1, 10042270).Special(true).LocationPid(LOCATION_SpecialHolyEncounter1).CheckParam(ST_LEVEL,'>',9).CheckLVar(LVAR_special_encounter_holy1,'<',1).AssignLVar(LVAR_special_encounter_holy1,'=',1);
 	table.AddEncounter(  1, 10042280).Special(true).LocationPid(LOCATION_SpecialWoodsmanEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_woodsman,'<',1).AssignLVar(LVAR_special_encounter_woodsman,'=',1);
 	table.AddEncounter(  1, 10042290).Special(true).LocationPid(LOCATION_SpecialUnwashedEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_unwashed,'<',1).AssignLVar(LVAR_special_encounter_unwashed,'=',1);
+	table.AddEncounter( 30, 10042300).Special(true).LocationPid(LOCATION_Quest_VCity_Recon_Cave).CheckLVar(LVAR_q_vc_hartmann_recon,'=',1).AssignLVar(LVAR_q_vc_hartmann_recon,'=',2);
 /*lookup_name=Wild2_D                                                               ; Wilderness North of Vault City
 maps=Desert Encounter 1, Desert Encounter 3, Desert Encounter 8, Desert Encounter 10
 enc_00=Chance:2%,Counter:1,Special,Map:Special Toxic Encounter,Enc:Special1, If(Player(Level) > 5) , If(Global(607) < 1)
@@ -3661,6 +3662,7 @@ enc_21=Chance:1%,Counter:1,Special,Map:Special Holy Encounter 2,Enc:Special1, If
 	table.AddEncounter( 10, 10043180).AddGroup(GROUP_VPAT_Patrol           , 5, 8);
 	table.AddEncounter(  5, 10043190).Special(true).LocationPid(LOCATION_SpecialBridgeEncounter).CheckParam(ST_LEVEL,'>',9).CheckLVar(LVAR_special_encounter_bridge,'<',1).AssignLVar(LVAR_special_encounter_bridge,'=',1);
 	table.AddEncounter(  1, 10043200).Special(true).LocationPid(LOCATION_SpecialHolyEncounter2).CheckLVar(LVAR_special_encounter_holy1,'>',0).CheckLVar(LVAR_special_encounter_holy2,'<',1).AssignLVar(LVAR_special_encounter_holy2,'=',1);
+	table.AddEncounter( 30, 10042300).Special(true).LocationPid(LOCATION_Quest_VCity_Recon_Cave).CheckLVar(LVAR_q_vc_hartmann_recon,'=',1).AssignLVar(LVAR_q_vc_hartmann_recon,'=',2);
 /*lookup_name=VPat_M
 maps=Mountain Encounter 5, Mountain Encounter 6, Mountain Encounter 2, Mountain Encounter 3
 enc_00=Chance:10%,Enc:(3-6) VPAT_Strong_Slavers AND (3-4) DVMV_Wild_Dogs AMBUSH Player

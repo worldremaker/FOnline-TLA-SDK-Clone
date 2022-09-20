@@ -47,7 +47,7 @@
 #define BAG_All_BountyHunters_7                    (240)
 #define BAG_All_BountyHunters_8                    (241)
 #define BAG_All_BountyHunters_9                    (242)
-#define BAG_All_BountyHunters_10                   (243)
+#define BAG_All_BountyHunters_10                   (243) // Plasma Rifle
 
 //Military base holdup.
 

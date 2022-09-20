@@ -10,7 +10,7 @@
 // To set start value use '=' after var name.
 // This vars works like engine global vars.
 // Also recommended use "__" prefix in var name.
-#pragma globalvar "bool __MainStoryLineActive = true"
+#pragma globalvar "bool __MainStoryLineActive = false"
 #pragma globalvar "uint __PermanentDeath = 0" // Number of deaths to account blocking, zero to disable
 
 // Say types
@@ -615,7 +615,7 @@
 // 376..379
 
 	/// Karma perks
-#pragma crdata "Karma 480 496"
+#pragma crdata "Karma 480 497"
 #define KARMA_BEGIN                (__KarmaBegin)
 #define KARMA_END                  (__KarmaEnd)
 #define KARMA_COUNT                (KARMA_END-KARMA_BEGIN+1)
@@ -636,6 +636,7 @@
 #define KARMA_MAN_WRIGHT            (494)
 #define KARMA_SEPARATED             (495)
 #define KARMA_PEDOBEAR              (496)
+#define KARMA_VC_GUARDSMAN          (497)
 
 // 497..499
 

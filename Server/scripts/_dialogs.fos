@@ -193,6 +193,8 @@
 #define DIALOG_vc_citizen_closet                       (444)
 #define DIALOG_vc_vault_guard                          (445)
 #define DIALOG_vc_walles                               (446)
+#define DIALOG_vc_shrim                                (454)
+#define DIALOG_vc_patroller                            (455)
 #define DIALOG_gecko_garold                            (501)
 #define DIALOG_gecko_citizen                           (502)
 #define DIALOG_gecko_citizen_glow                      (503)
