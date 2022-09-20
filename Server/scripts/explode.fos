@@ -32,7 +32,9 @@ bool OnUseExplode(Critter& cr, Item& explode, Critter@ targetCr, Item@ targetIte
 	int trapsSkill=cr.Skill[SK_TRAPS];
 	if(trapsSkill<0) trapsSkill=0;
 
-	timer*=60;
+	if(timer<TIMER_MIN_VALUE) timer=TIMER_MIN_VALUE;
+	if(timer>TIMER_MAX_VALUE) timer=TIMER_MAX_VALUE;
+	timer*=60; // Convert to game seconds
 
 	// Activate dynamite explosion
 	if(pid==PID_DYNAMITE)
@@ -42,17 +44,14 @@ bool OnUseExplode(Critter& cr, Item& explode, Critter@ targetCr, Item@ targetIte
 
 		if(not isExpert) timer=timer*Random(80,120)/100;
 
-		if(int(timer)<TIMER_MIN_VALUE) timer=TIMER_MIN_VALUE;
-		if(int(timer)>TIMER_MAX_VALUE) timer=TIMER_MAX_VALUE;
-
-		uint numEvent=CreateTimeEvent(__FullSecond+timer*60,"explode@e_Explode",activateExpl,true);
+		uint numEvent=CreateTimeEvent(__FullSecond+timer,"explode@e_Explode",activateExpl,true);
 		SETFLAG(activateExpl.Flags,ITEM_TRAP);
 		_ExplodeSetNumEvent(activateExpl,numEvent);
 		_ExplodeSetOwner(activateExpl,cr.Id);
 		activateExpl.TrapValue=TRAPS_HIDE(cr.Skill[SK_TRAPS]);
 		_ExplodeSetBonusDamage(activateExpl,trapsSkill);
 		_ExplodeSetBonusRadius(activateExpl,isExpert?1:0);
-		if(cr.Timeout[TO_REMOVE_FROM_GAME]<int(timer)+5*60) cr.TimeoutBase[TO_REMOVE_FROM_GAME]=__FullSecond+timer+5*60;
+		if(cr.Timeout[TO_REMOVE_FROM_GAME]<int(timer)+REAL_MINUTE(5)) cr.TimeoutBase[TO_REMOVE_FROM_GAME]=__FullSecond+timer+REAL_MINUTE(5);
 	}
 	// Activate plastic explosion
 	else if(pid==PID_PLASTIC_EXPLOSIVES)
@@ -240,19 +239,19 @@ void ExplodeEx(Map& map, uint16 hexX, uint16 hexY, uint16 effectPid, uint effect
 	поскольку Val1 - используется только для динамита пока
 	!работает только для предмета Активированная мина
 	все параметры:
-	Val1 - время респавна мины после активации
+	Val1 - время респавна мины после активации, в игровых минутах
 	Val2 - Id сапера, поставившего мину
 	TrapValue- сложность мины
 	Val3 - дополнительный урон
 	Val4 - дополнительный радиус(базовый радиус = 3)
 */
-void _TimerMineInit(Item & mine, bool firstTime)
+void _TimerMineInit(Item& mine, bool firstTime)
 {
 	if(mine.GetProtoId()==PID_ACTIVE_MINE)
 	{
 		mine.SetEvent(ITEM_EVENT_WALK,"_TimerMineWalk");
 		mine.SetEvent(ITEM_EVENT_SKILL,"_OnSkillTimerMine");
-		mine.Val4 = CLAMP(mine.Val4,1,5);
+		mine.Val4=CLAMP(mine.Val4,1,5);
 		SETFLAG(mine.Flags,ITEM_TRAP);
 		mine.Update();
 	}
@@ -268,8 +267,8 @@ void _TimerMineWalk(Item& mine, Critter& cr, bool entered, uint8 dir)
 		// Respawn
 		if(mine.Val1>0)
 		{
-			uint[] values = {mine.MapId, mine.HexX, mine.HexY, mine.GetProtoId() , mine.Val1, mine.Val2, mine.TrapValue, mine.Val3, mine.Val4}; // 9 элементов массива
-			CreateTimeEvent(__FullSecond + mine.Val1 * 60,"e_RespawnTimerMine",values,true);
+			uint[] values={mine.MapId,mine.HexX,mine.HexY,mine.GetProtoId(),mine.Val1,mine.Val2,mine.TrapValue,mine.Val3,mine.Val4}; // 9 элементов массива
+			CreateTimeEvent(__FullSecond+mine.Val1*60,"e_RespawnTimerMine",values,true);
 		}
 	}
 }
@@ -278,17 +277,17 @@ uint e_RespawnTimerMine(uint[]@ values)
 {
 	if(values.length()<9) return 0;
 
-	Map@ map = GetMap(values[0]);
+	Map@ map=GetMap(values[0]);
 	if(valid(map))
 	{
-		Item @ mine = map.AddItem(values[1],values[2],values[3],1);
+		Item @ mine=map.AddItem(values[1],values[2],values[3],1);
 		if(valid(mine))
 		{
-			mine.Val1 = values[4];
-			mine.Val2 = values[5];
-			mine.TrapValue = (values[6]==0?Random(30,50):values[6]);
-			mine.Val3 = values[7];
-			mine.Val4 = CLAMP(values[8],1,5);
+			mine.Val1=values[4];
+			mine.Val2=values[5];
+			mine.TrapValue=(values[6]==0?Random(30,50):values[6]);
+			mine.Val3=values[7];
+			mine.Val4=CLAMP(values[8],1,5);
 			mine.Update();
 			mine.SetScript("_TimerMineInit");
 		}
@@ -297,7 +296,7 @@ uint e_RespawnTimerMine(uint[]@ values)
 	return 0;
 }
 
-bool _OnSkillTimerMine (Item& mine, Critter& cr, int skill)
+bool _OnSkillTimerMine(Item& mine, Critter& cr, int skill)
 {
 	uint16 pid=mine.GetProtoId();
 	if(pid!=PID_ACTIVE_MINE) return false;
@@ -312,7 +311,6 @@ bool _OnSkillTimerMine (Item& mine, Critter& cr, int skill)
 	// Success
 	if(chance>Random(1,100))
 	{
-		//if(pid==PID_ACTIVE_MINE) cr.AddItem(PID_MINE,1); Для исключения источника бесконечных мин
 		cr.StatBase[ST_EXPERIENCE]+=EXPLODE_CLEARANCE_EXPERIENCE;
 	}
 	// Fail
@@ -324,8 +322,8 @@ bool _OnSkillTimerMine (Item& mine, Critter& cr, int skill)
 
 	if(mine.Val1>0)
 	{
-		uint[] values = {mine.MapId, mine.HexX, mine.HexY, mine.GetProtoId() , mine.Val1, mine.Val2, mine.TrapValue, mine.Val3, mine.Val4}; // 9 элементов массива
-		CreateTimeEvent(__FullSecond + mine.Val1 * 60 + Random(120, 240) * 60,"e_RespawnTimerMine",values,true);
+		uint[] values={mine.MapId,mine.HexX,mine.HexY,mine.GetProtoId(),mine.Val1,mine.Val2,mine.TrapValue,mine.Val3,mine.Val4}; // 9 элементов массива
+		CreateTimeEvent(__FullSecond+mine.Val1*60+Random(120,240)*60,"e_RespawnTimerMine",values,true);
 	}
 
 	_SubItem(mine,1);
