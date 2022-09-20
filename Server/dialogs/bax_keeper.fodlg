@@ -27,7 +27,7 @@ lang=russ
 8 6030 @
 8 7000 None 0 @
 5 8000 None 0 #
-9 8010 D _item p PID_FIREWOOD } 6 R _var p name_mem_player_npc = 1 R _item p PID_BOTTLE_CAPS + 75 R _item p PID_FIREWOOD - 6 R _param p ST_EXPERIENCE + 100 #
+9 8010 D _item p PID_FIREWOOD } 3 R _var p name_mem_player_npc = 1 R _item p PID_BOTTLE_CAPS + 75 R _param p ST_EXPERIENCE + 100 R _item p PID_FIREWOOD - 3 #
 0 8020 @
 9 9000 None 0 @
 6 10000 None 0 @

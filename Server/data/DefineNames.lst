@@ -61,4 +61,12 @@
 16     SkillGambling
 17     SkillOutdoorsman
 
+*0
+0      ---HOLODISKS---
+100    HoloBaxMainInfo
+101    HoloBaxSermonDead
+102    HoloBaxSermonCharacter
+103    HoloBaxSermonNasty
+104    HoloBaxSermonBehavior
+105    HoloBaxMythNeutral
 
