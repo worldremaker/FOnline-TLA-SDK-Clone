@@ -15,7 +15,7 @@ lang=russ engl
 6 2030 D _param p ST_INTELLECT < 4 D _param p KARMA_CHILDKILLER > 0 #
 3 2040 D _param p ST_INTELLECT > 3 D _var p q_redd_hubb_childkiller = 0 D _var p chance_one_from_two = 0 D _param p KARMA_CHILDKILLER > 0 D _param p ST_GENDER = 0 D or D _var p q_redd_hubb_childkiller = 1 D _param p ST_INTELLECT > 3 D _param p KARMA_CHILDKILLER > 0 D _var p chance_one_from_two = 0 D _param p ST_GENDER = 0 R _var p q_redd_hubb_childkiller = 1 #
 4 2050 D _param p ST_INTELLECT > 3 D _var p chance_one_from_two ! 0 D _var p q_redd_hubb_childkiller = 0 D _param p KARMA_CHILDKILLER > 0 D _param p ST_GENDER = 0 D or D _var p q_redd_hubb_childkiller = 4 D _param p ST_INTELLECT > 3 D _param p KARMA_CHILDKILLER > 0 D _var p chance_one_from_two ! 0 D _param p ST_GENDER = 0 R _var p q_redd_hubb_childkiller = 4 #
-5 2060 D _param p ST_INTELLECT > 3 D _param p KARMA_CHILDKILLER > 0 D _var p q_redd_hubb_childkiller = 3 D or D _var p q_redd_hubb_childkiller = 6 D _param p ST_INTELLECT > 3 D _param p KARMA_CHILDKILLER > 0 #
+5 2060 D _param p ST_INTELLECT > 3 D _param p KARMA_CHILDKILLER > 0 D _var p q_redd_hubb_childkiller = 3 D or D _param p ST_INTELLECT > 3 D _param p KARMA_CHILDKILLER > 0 D _var p q_redd_hubb_childkiller = 7 #
 3 2070 D _param p KARMA_CHILDKILLER > 0 D _param p ST_GENDER = 1 D _var p q_redd_hubb_childkiller = 0 @
 3 3000 None 0 #
 0 3010 @
