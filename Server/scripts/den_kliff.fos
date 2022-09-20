@@ -10,7 +10,7 @@ int currentMsg;
 void _KliffInit(Critter& npc, bool firstTime)
 {
 	currentMsg=1;
-	CreateTimeEvent(GetNearFullSecond(0,0,0,18,0,0),"e_Say",npc,false);
+	CreateTimeEvent(GetNearFullSecond(0,0,0,18,0,0),"e_Say",npc.Id,false);
 }
 
 uint e_Say(uint[]@ values)

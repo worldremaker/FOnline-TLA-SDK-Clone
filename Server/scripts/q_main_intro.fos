@@ -119,9 +119,9 @@ void t_KillPlayerOnIntro(Critter& player, Scenery& trigger, bool entered, uint8 
 {
 	FlushScreen(player, COLOR_BLACK, COLOR_BLACK, 5000);
 
-	CreateTimeEvent(__FullSecond+REAL_MS(750), "e_KillPlayer", player, true);
-	CreateTimeEvent(__FullSecond+REAL_MS(1000), "e_OnPlayerDead", player, true);
-	CreateTimeEvent(__FullSecond+REAL_SECOND(5), "e_ReplicateCritter", player, true);
+	CreateTimeEvent(__FullSecond+REAL_MS(750), "e_KillPlayer", player.Id, true);
+	CreateTimeEvent(__FullSecond+REAL_MS(1000), "e_OnPlayerDead", player.Id, true);
+	CreateTimeEvent(__FullSecond+REAL_SECOND(5), "e_ReplicateCritter", player.Id, true);
 	SetMainQuest(player.Id, MAINQ_ST_INTRO_COMPLETE);
 }
 
@@ -150,7 +150,7 @@ uint e_ReplicateCritter(uint[]@ values )
 	player.ChangeCrType(crType);
 	player.StatBase[ST_BASE_CRTYPE] = 0;
 	player.AddHolodiskInfo(HOLODISK_INFO_INTRO);
-	CreateTimeEvent(__FullSecond+REAL_SECOND(3), "e_ShowMessage", player, true);
+	CreateTimeEvent(__FullSecond+REAL_SECOND(3), "e_ShowMessage", player.Id, true);
 	ReplicateCritter(player);
 	return 0;
 }

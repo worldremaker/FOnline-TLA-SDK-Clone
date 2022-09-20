@@ -285,7 +285,7 @@ bool _TrappedDoorSkill(Item& door, Critter& cr, int skill)
 			uint time = door.Val5;
 			if(time>0)
 			{
-				CreateTimeEvent(__FullSecond+time*60,"e_RespawnTrap", door, true);
+				CreateTimeEvent(__FullSecond+time*60,"e_RespawnTrap", door.Id, true);
 			}
 		}
 		return true;

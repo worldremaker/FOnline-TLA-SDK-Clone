@@ -8,7 +8,7 @@ int currentMsg;
 void _CooldudeInit(Critter& npc, bool firstTime)
 {
 	currentMsg=0;
-	CreateTimeEvent(__FullSecond+10*60,"e_Sing",npc,false);
+	CreateTimeEvent(__FullSecond+10*60,"e_Sing",npc.Id,false);
 }
 
 uint e_Sing(uint[]@ values)

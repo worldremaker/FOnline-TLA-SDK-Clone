@@ -44,10 +44,10 @@ void _WestinInit(Critter& westin, bool firstTime)
 	if(firstTime)
 	{
 		// каждые игровые сутки Вейстин уходит с работы до своего Ранчо в 21:00
-		westin.StatBase[ST_VAR4]=CreateTimeEvent(GetNearFullSecond(0,0,0,21,0,0),"e_EveryEvening", westin, true);
+		westin.StatBase[ST_VAR4]=CreateTimeEvent(GetNearFullSecond(0,0,0,21,0,0),"e_EveryEvening", westin.Id, true);
 
 		// каждые игровые сутки Вейстин пытается дойти до здания правительства в 07:00
-		westin.StatBase[ST_VAR5]=CreateTimeEvent(GetNearFullSecond(0,0,0,7,0,0),"e_EveryMorning", westin, true);
+		westin.StatBase[ST_VAR5]=CreateTimeEvent(GetNearFullSecond(0,0,0,7,0,0),"e_EveryMorning", westin.Id, true);
 	}
 	westin.StatBase[ST_NPC_ROLE] = NPC_ROLE_WESTIN;
 	westin.SetEvent(CRITTER_EVENT_FINISH,"_WestinFinish");

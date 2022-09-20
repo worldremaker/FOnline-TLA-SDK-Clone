@@ -340,7 +340,7 @@ void r_OpenDoor(Critter& player, Critter@ none)
 	Item@ door = GetGeckDoor(player.GetMap());
 	if(!valid(door)) return;
 	door.LockerOpen();
-	CreateTimeEvent(CLOSE_DOOR_TIME,"item@e_AutoCloseDoor", door , true);
+	CreateTimeEvent(CLOSE_DOOR_TIME, "item@e_AutoCloseDoor", door.Id, true);
 }
 
 void r_CloseDoor(Critter& player, Critter@ none)

@@ -257,7 +257,7 @@ void CancelMerc(Critter & merc)
 	merc.SetEvent(CRITTER_EVENT_SMTH_ATTACKED, "");
 	merc.SetEvent(CRITTER_EVENT_GLOBAL_PROCESS, "");
 
-	CreateTimeEvent(RELEASE_TIME, "e_ReleaseMerc", merc, true);
+	CreateTimeEvent(RELEASE_TIME, "e_ReleaseMerc", merc.Id, true);
 }
 
 uint e_ReleaseMerc(uint[]@ val)

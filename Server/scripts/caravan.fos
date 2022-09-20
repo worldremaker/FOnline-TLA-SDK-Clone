@@ -13,7 +13,7 @@ CaravanInfo@[] Caravans;
 void CaravansInit()
 {
 	#include "caravans_init.fos"
-	
+
 }
 
 /* **************************************** Основные методы ***************************************** */
@@ -239,7 +239,7 @@ bool _SheduleCaravan(uint idCaravan, uint prepareDay, uint prepareHour, uint sta
 
 	uint time = GetNearFullSecond(0, 0, prepareDay, prepareHour, 0, 0);
 
-	return (CreateTimeEvent(time,"e_PrepareCaravan",values, false)>0);
+	return (CreateTimeEvent(time, "e_PrepareCaravan", values, false)>0);
 
 }
 
@@ -281,7 +281,7 @@ uint e_PrepareCaravan(uint[]@ values)
 
 	uint time = GetNearFullSecond(0, 0, startDay, startHour, 0, 0);
 	DL("time to start:" +time);
-	if(CreateTimeEvent(time,"e_BeginCaravan",values, false)==0)
+	if(CreateTimeEvent(time, "e_BeginCaravan", values, false)==0)
 	{
 		Log("Create BeginCaravan time event fail...");
 		return 0;
@@ -321,7 +321,7 @@ uint e_BeginCaravan(uint[]@ values)
 
 	uint time = GetNearFullSecond(0, 0, prepareDay, prepareHour, 0, 0);
 
-	CreateTimeEvent(time,"e_PrepareCaravan",values, false);
+	CreateTimeEvent(time, "e_PrepareCaravan", values, false);
 	return 0;
 }
 
@@ -478,7 +478,7 @@ bool _CaravanLeaderOnInvite(Critter& leader, Critter@[]& group, Item@ car, uint 
 		if(ci.Type==CRV_TYPE_ONEWAY_DELETELEADER||ci.Type==CRV_TYPE_ONEWAY_DELETELEADER_BOTH)
 		{
 			ci.CaravanStatus==CRV_STATUS_END;
-			CreateTimeEvent(__FullSecond+TIME_TO_DELETE_LEADER,"e_DeleteLeader",leader,true);
+			CreateTimeEvent(__FullSecond+TIME_TO_DELETE_LEADER,"e_DeleteLeader",leader.Id,true);
 			// Обязательно сохраняем эвент. Иначе можно оказаться с двумя начлаьниками караванов.
 		}
 		ci.TerminateCaravan();
@@ -656,7 +656,7 @@ void _CaravanLeaderOnDead(Critter& leader, Critter@ killer)
 	if(ci.Type==CRV_TYPE_ONEWAY_DELETELEADER||ci.Type==CRV_TYPE_ONEWAY_DELETELEADER_BOTH)
 	{
 		DL("leader will be deleted");
-		CreateTimeEvent(__FullSecond+TIME_TO_DELETE_LEADER,"e_DeleteLeader",leader,true);
+		CreateTimeEvent(__FullSecond+TIME_TO_DELETE_LEADER,"e_DeleteLeader",leader.Id,true);
 		// Обязательно сохраняем эвент. Иначе можно оказаться с двумя начлаьниками караванов.
 	}
 }
@@ -978,12 +978,12 @@ bool _EndCaravan(Critter & leader)
 	}
 	if(ci.Type==CRV_TYPE_ONEWAY_TRANSITLEADER)
 	{
-		CreateTimeEvent(__FullSecond+TIME_TO_WAIT_AT_ENDPOINT,"e_TransitToStartPos",leader,false);
+		CreateTimeEvent(__FullSecond+TIME_TO_WAIT_AT_ENDPOINT,"e_TransitToStartPos",leader.Id,false);
 	}
 	if(ci.Type==CRV_TYPE_ONEWAY_DELETELEADER||ci.Type==CRV_TYPE_ONEWAY_DELETELEADER_BOTH)
 	{
 		ci.CaravanStatus==CRV_STATUS_END;
-		CreateTimeEvent(__FullSecond+TIME_TO_DELETE_LEADER+TIME_TO_WAIT_AT_ENDPOINT,"e_DeleteLeader",leader,true);
+		CreateTimeEvent(__FullSecond+TIME_TO_DELETE_LEADER+TIME_TO_WAIT_AT_ENDPOINT,"e_DeleteLeader",leader.Id,true);
 		// Обязательно сохраняем эвент. Иначе можно оказаться с двумя начлаьниками караванов.
 	}
 	DL("End Caravan success");

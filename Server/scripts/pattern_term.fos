@@ -334,7 +334,7 @@ void TryCatchSneakers(Critter & term)
 			term.SetDir(GetDirection(term.HexX, term.HexY, player.HexX, player.HexY));
 			_CritAnimateThrow(term);
 			map.RunFlyEffect(4024 , term, player, term.HexX, term.HexY, player.HexX, player.HexY);
-			CreateTimeEvent(__FullSecond+60, "e_UnsneakPlayer", player, false);
+			CreateTimeEvent(__FullSecond+60, "e_UnsneakPlayer", player.Id, false);
 
 			return;
 		}
@@ -361,7 +361,7 @@ uint e_UnsneakPlayer(uint[]@ values)
 				flare.LightIntensity = 100;
 				SETFLAG(flare.Flags,ITEM_ALWAYS_VIEW);
 				player.TimeoutBase[TO_SNEAK] = SNEAK_TIMEOUT(player);
-				CreateTimeEvent(__FullSecond+10*60, "e_DeleteFlare", flare, false);
+				CreateTimeEvent(__FullSecond+10*60, "e_DeleteFlare", flare.Id, false);
 			}
 		}
 	}

@@ -44,7 +44,7 @@ bool OnUseExplode(Critter& cr, Item& explode, Critter@ targetCr, Item@ targetIte
 
 		if(not isExpert) timer=timer*Random(80,120)/100;
 
-		uint numEvent=CreateTimeEvent(__FullSecond+timer,"explode@e_Explode",activateExpl,true);
+		uint numEvent=CreateTimeEvent(__FullSecond+timer,"explode@e_Explode",activateExpl.Id,true);
 		SETFLAG(activateExpl.Flags,ITEM_TRAP);
 		_ExplodeSetNumEvent(activateExpl,numEvent);
 		_ExplodeSetOwner(activateExpl,cr.Id);
@@ -140,7 +140,7 @@ void _MineWalk(Item& mine, Critter& cr, bool entered, uint8 dir)
 {
 	if(entered && cr.Stat[ST_LOCOMOTION_TYPE]!=LOCOMOTION_FLY && (cr.Perk[PE_LIGHT_STEP]==0 || Random(0,1)==0))
 	{
-		CreateTimeEvent(__FullSecond,"e_Explode",mine,false);
+		CreateTimeEvent(__FullSecond,"e_Explode",mine.Id,false);
 	}
 }
 
@@ -262,7 +262,7 @@ void _TimerMineWalk(Item& mine, Critter& cr, bool entered, uint8 dir)
 	// Cкопировано из _MineWalk
 	if(entered && cr.Stat[ST_LOCOMOTION_TYPE]!=LOCOMOTION_FLY && (cr.Perk[PE_LIGHT_STEP]==0 || Random(0,1)==0))
 	{
-		CreateTimeEvent(__FullSecond,"e_Explode",mine,false);
+		CreateTimeEvent(__FullSecond,"e_Explode",mine.Id,false);
 
 		// Respawn
 		if(mine.Val1>0)

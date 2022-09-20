@@ -1119,10 +1119,10 @@ void TestNullptr(Critter&,int,int,int)
 	Log("end");
 }
 
-Synchronizer TestLocker;
+//Synchronizer TestLocker;
 void TestScriptConcurrent(Critter& cr, int test, int, int)
 {
-	TestLocker.Lock();
+	//TestLocker.Lock();
 
 	Synchronize();
 	Map@ map=cr.GetMap();
@@ -1400,6 +1400,79 @@ void EndTB(Critter& cr, int, int, int)
 	map.SetTurnBasedAvailability(false);
 	map.EndTurnBased();
 }
+
+void TestVar(Critter& cr, int i, int, int)
+{
+	/*GameVar@ var=GetLocalVar(LMVAR_test_local_map,cr.GetMapId());
+	Log("var="+var.GetValue());
+
+	if(i!=0) var=i;
+
+	Log("var="+var.GetValue());
+
+	Log("begin vars generating");
+	for(int i=1;i<1000000;i++)
+	{
+		GameVar@ var=GetLocalVar(LIVAR_test_local_item,i);
+		var=Random(0,10);
+		var=7;
+	}
+	Log("end vars generating");
+*/
+//	GVAR_test_global
+//	LVAR_test_local
+//	UVAR_test_unicum
+//	LLVAR_test_local_loc
+//	LMVAR_test_local_map
+//	LIVAR_test_local_item
+}
+
+void TestTE(Critter& cr, int set, int, int)
+{
+	uint num=CreateTimeEvent(__FullSecond+REAL_SECOND(10),"e_TestTE",-8,false);
+	Log("created "+num);
+
+	uint duration=0;
+	uint[] values;
+	if(GetTimeEvent(num,duration,values))
+	{
+		Log("get ok+ duration "+duration);
+		for(uint i=0;i<values.length();i++) Log(i+") "+values[i]);
+		Log("get ok-");
+
+		if(set!=0)
+		{
+			values[0]=123;
+			uint value=456;
+			ArrayPushBack(values,value);
+			if(SetTimeEvent(num,duration,values))
+			{
+				Log("set ok+");
+				for(uint i=0;i<values.length();i++) Log(i+") "+values[i]);
+				Log("set ok-");
+			}
+		}
+	}
+}
+
+uint e_TestTE(int[]@ values)
+{
+	Log("e_TestTE+");
+	for(uint i=0;i<values.length();i++) Log(i+") "+values[i]);
+	Log("e_TestTE-");
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

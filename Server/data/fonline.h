@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 28.09.2010
-// Server version 357, MSVS2008
+// Last update 01.10.2010
+// Server version 363, MSVS2008
 //
 
 #pragma pack(8)
@@ -858,7 +858,8 @@ struct TemplateVar
 
 struct GameVar
 {
-	uint64       VarId;
+	uint         MasterId;
+	uint         SlaveId;
 	int          VarValue;
 	TemplateVar* VarTemplate;
 	uint         QuestVarIndex;
@@ -871,8 +872,7 @@ struct GameVar
 	int    GetMax()      {return VarTemplate->MaxVal;}
 	bool   IsQuest()     {return VarTemplate->IsQuest();}
 	uint   GetQuestStr() {return VAR_CALC_QUEST(VarTemplate->TempId, VarValue);}
-	uint   GetMasterId() {return (uint)((VarId >> 24) & 0xFFFFFF);}
-	uint   GetSlaveId()  {return (uint)(VarId & 0xFFFFFF);}
+	uint64 GetUid()      {return (((uint64) SlaveId) << 32) | ((uint64) MasterId);}
 };
 
 struct NpcPlane
@@ -1356,6 +1356,8 @@ struct Critter
 	int      FuncId[CRITTER_EVENT_MAX];
 	uint     KnockoutAp;
 	uint     LastHealTick;
+	uint     NextIntellectCachingTick;
+	uint16   IntellectCacheValue;
 	uint     StartBreakTime;
 	int	     BreakTime;
 	uint     WaitEndTick;
@@ -1773,7 +1775,7 @@ void static_asserts()
 	STATIC_ASSERT(sizeof(IntMap)    == 12);
 	STATIC_ASSERT(sizeof(IntSet)    == 12);
 	STATIC_ASSERT(sizeof(IntPair)   == 8);
-	STATIC_ASSERT(sizeof(GameVar)   == 32);
+	STATIC_ASSERT(sizeof(GameVar)   == 28);
 	STATIC_ASSERT(sizeof(ProtoItem) == 168);
 
 	STATIC_ASSERT(offsetof(TemplateVar, Flags)              == 76);
@@ -1781,9 +1783,9 @@ void static_asserts()
 	STATIC_ASSERT(offsetof(GlobalMapGroup, EncounterForce)  == 84);
 	STATIC_ASSERT(offsetof(Item, Lexems)                    == 160);
 	STATIC_ASSERT(offsetof(CritterTimeEvent, Identifier)    == 12);
-	STATIC_ASSERT(offsetof(Critter, RefCounter)             == 9784);
-	STATIC_ASSERT(offsetof(Client, LanguageMsg)             == 9852);
-	STATIC_ASSERT(offsetof(Npc, Reserved)                   == 9816);
+	STATIC_ASSERT(offsetof(Critter, RefCounter)             == 9792);
+	STATIC_ASSERT(offsetof(Client, LanguageMsg)             == 9860);
+	STATIC_ASSERT(offsetof(Npc, Reserved)                   == 9824);
 	STATIC_ASSERT(offsetof(Scenery, RunTime.RefCounter)     == 244);
 	STATIC_ASSERT(offsetof(MapEntire, Dir)                  == 8);
 	STATIC_ASSERT(offsetof(SceneryToClient, Reserved1)      == 30);

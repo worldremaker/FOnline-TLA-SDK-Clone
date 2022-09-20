@@ -140,7 +140,7 @@ uint e_DeleteDeadRaider(uint[]@ values)
 void _RaiderDead(Critter& cr, Critter@ killer)
 {
 	// добавляем событие удаления трупа
-	CreateTimeEvent(__FullSecond + TIME_TO_DELETE_DEAD, "e_DeleteDeadRaider", cr, true);
+	CreateTimeEvent(__FullSecond + TIME_TO_DELETE_DEAD, "e_DeleteDeadRaider", cr.Id, true);
 	//
 	if(!valid(killer)) return;
 	cr.SendMessage(MSG_RAIDER_KILLED, killer.Id, MESSAGE_TO_ALL_ON_MAP);

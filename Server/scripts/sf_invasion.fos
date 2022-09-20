@@ -167,7 +167,7 @@ void SpawnBos(Map & map)
 // invasion critter OnDead
 void _Dead(Critter& cr, Critter@ killer)
 {
-	CreateTimeEvent(__FullSecond+REAL_MINUTE(10),"e_DeleteCritter", cr, true);
+	CreateTimeEvent(__FullSecond+REAL_MINUTE(10),"e_DeleteCritter", cr.Id, true);
 	if(valid(killer))
 	{
 		if(killer.IsNpc()) return;
@@ -199,7 +199,7 @@ void _BosInit(Critter & cr, bool firstTime)
 {
 	cr.SetEvent(CRITTER_EVENT_DEAD,"_Dead");
 	cr.SetEvent(CRITTER_EVENT_PLANE_END, "_BosPlaneEnd");
-	
+
 }
 
 int _BosPlaneEnd(Critter& cr, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem)
@@ -210,7 +210,7 @@ int _BosPlaneEnd(Critter& cr, NpcPlane& plane, int reason, Critter@ someCr, Item
 	}
 	return PLANE_RUN_GLOBAL;
 }
-	
+
 // * Расписание глобальных эвентов и нападения на Доки ******************************** //
 
 #define FIRST_SIEGE_TIME         (GetNearFullSecond(0, 1, 1, 0, 0, 0))

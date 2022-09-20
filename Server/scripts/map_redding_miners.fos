@@ -35,7 +35,7 @@ void r_PrepareCaravan(Critter & player, Critter @ npc)
 	if(npc.IsDead()) return;
 	if(d_IsCaravanStatus(player, npc, 1)) return;
 	PrepareCaravan(3);
-	CreateTimeEvent(__FullSecond+4*60*60, "e_StartCaravan", npc, true);
+	CreateTimeEvent(__FullSecond+4*60*60, "e_StartCaravan", npc.Id, true);
 
 }
 

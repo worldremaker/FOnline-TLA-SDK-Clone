@@ -393,7 +393,7 @@ Critter @ GetGatesGuard(Critter & smit)
 
 void SetupRadioComm(Critter & smit)
 {
-	CreateTimeEvent(GetNearFullSecond(0,0,0,1,0,0),"e_BeginRadioComm", smit, true);
+	CreateTimeEvent(GetNearFullSecond(0,0,0,1,0,0),"e_BeginRadioComm", smit.Id, true);
 }
 
 uint e_BeginRadioComm(uint[]@ values)

@@ -346,7 +346,7 @@ void _VCityMapInit(Map & map, bool firstTime)
 	Critter @ maclure = map.GetNpc(ROLE_MACLUR, FIND_LIFE_AND_KO|FIND_ONLY_NPC, 0);
 	if(!valid(maclure)) return;
 
-	if(CreateTimeEvent(GetNearFullSecond(0,0,0,18,0,0),"e_BeginReport",maclure,false)==0)
+	if(CreateTimeEvent(GetNearFullSecond(0,0,0,18,0,0),"e_BeginReport",maclure.Id,false)==0)
 	{
 		Log("Time event begin report for spy mission create fail, "+GetLastError());
 	}
@@ -372,7 +372,7 @@ uint e_BeginReport(uint []@ values)
 
 	AddWalkPlane(maclure, 0, PLANE_ID_MOVE, 0, hX, hY, Random(0,5), false, 3);
 
-	CreateTimeEvent(GetNearFullSecond(0,0,0,18,0,0),"e_BeginReport",maclure,false);
+	CreateTimeEvent(GetNearFullSecond(0,0,0,18,0,0),"e_BeginReport",maclure.Id,false);
 	return 0;
 }
 

@@ -137,7 +137,7 @@ void r_SFMerc2Player(Critter & player, Critter @ npc)
 	if(!valid(masterId)) return;
 	masterId = player.Id;
 
-	CreateTimeEvent(__FullSecond+CONTRACT_TIME, "e_CancelContract", npc, true); // Окончание контракта через полгода
+	CreateTimeEvent(__FullSecond+CONTRACT_TIME, "e_CancelContract", npc.Id, true); // Окончание контракта через полгода
 
 	Merc2Player(player,npc, true, false, 0, MMDistMedium, MERC_GUARD_DEFAULT, true, false);
 	npc.SetScript("sf_common@_SFMercInit");
@@ -423,7 +423,7 @@ void _DevinInit(Critter& cr, bool firstTime)
 	else
 	{
 		CancelTraveller(cr.Id);
-		cr.SetEvent(CRITTER_EVENT_RESPAWN, "");		
+		cr.SetEvent(CRITTER_EVENT_RESPAWN, "");
 	}
 	cr.ModeBase[MODE_BARTER_ONLY_CASH] = 1;
 	cr.SkillBase[SK_BARTER] = 180;
@@ -432,7 +432,7 @@ void _DevinInit(Critter& cr, bool firstTime)
 
 void _DevinRespawn(Critter& cr)
 {
-	CreateTimeEvent(__FullSecond + __TimeMultiplier * 3, "e_DevinSay", cr, false);
+	CreateTimeEvent(__FullSecond + __TimeMultiplier * 3, "e_DevinSay", cr.Id, false);
 }
 
 uint e_DevinSay(uint[]@ values)

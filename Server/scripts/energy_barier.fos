@@ -139,7 +139,7 @@ void InitBariers(Item& barier)
 
 	if(barier.MapId==0)
 	{
-		CreateTimeEvent(__FullSecond,"e_InitBarier",barier,false);
+		CreateTimeEvent(__FullSecond,"e_InitBarier",barier.Id,false);
 		return;
 	}
 	Map@ map=GetMap(barier.MapId);

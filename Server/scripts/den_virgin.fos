@@ -24,7 +24,7 @@ void _VirginInit(Critter& virgin, bool firstTime)
 	virgin.SetEvent(CRITTER_EVENT_SHOW_CRITTER, "_VirginShowCritter");
 	virgin.SetEvent(CRITTER_EVENT_TALK, "_VirginTalk");
 
-	if (CreateTimeEvent(__FullSecond+Random(1, 60)*60, "e_Check", virgin, false) == 0)
+	if (CreateTimeEvent(__FullSecond+Random(1, 60)*60, "e_Check", virgin.Id, false) == 0)
         Log("Time event Check create fail, "+GetLastError());
 
 	virgin.StatBase[ST_VAR0] = 0;

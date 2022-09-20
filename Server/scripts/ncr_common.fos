@@ -39,7 +39,7 @@ void _BeggarInit(Critter & npc, bool firstTime)
 	npc.StatBase[ST_VAR1] = PHRASE_NUM_FIRST;
 	if(firstTime)
 	{
-		npc.StatBase[ST_VAR0]=CreateTimeEvent(__FullSecond+MAIN_INTERVAL, "e_BeggarTimeEvent", npc, true);
+		npc.StatBase[ST_VAR0]=CreateTimeEvent(__FullSecond+MAIN_INTERVAL, "e_BeggarTimeEvent", npc.Id, true);
 	}
 }
 
@@ -63,11 +63,11 @@ uint e_BeggarTimeEvent(uint[]@ values)
 	switch(npc.StatBase[ST_VAR1])
 	{
 		case PHRASE_NUM_LAST:
-			npc.StatBase[ST_VAR0]=CreateTimeEvent(__FullSecond+MAIN_INTERVAL,"e_BeggarTimeEvent", npc, true);
+			npc.StatBase[ST_VAR0]=CreateTimeEvent(__FullSecond+MAIN_INTERVAL,"e_BeggarTimeEvent", npc.Id, true);
 			npc.StatBase[ST_VAR1] = PHRASE_NUM_FIRST;
 			break;
 		default:
-			npc.StatBase[ST_VAR0]=CreateTimeEvent(__FullSecond+SINGLE_INTERVAL,"e_BeggarTimeEvent", npc, true);
+			npc.StatBase[ST_VAR0]=CreateTimeEvent(__FullSecond+SINGLE_INTERVAL,"e_BeggarTimeEvent", npc.Id, true);
 			npc.StatBase[ST_VAR1]++;
 			break;
 	}
@@ -86,7 +86,7 @@ void r_CountMoney(Critter& player, Critter @ npc)
 	}
 	if (npc.CountItem(PID_BOTTLE_CAPS)>MONEY_TO_HIDE)
 	{
-		npc.StatBase[ST_VAR2] = CreateTimeEvent(__FullSecond+HIDE_INTERVAL,"e_TimeToHideMoney", npc, true);
+		npc.StatBase[ST_VAR2] = CreateTimeEvent(__FullSecond+HIDE_INTERVAL,"e_TimeToHideMoney", npc.Id, true);
 	}
 
 }
@@ -462,7 +462,7 @@ void answer_CureBrahmin(Critter& player, uint answerI, string& answerS)
 	Item @ item = player.AddItem(pids[Random(0,pids.length()-1)],1);
 	if (item.GetProtoId()==PID_ACTIVE_DYNAMITE)
 	{
-		CreateTimeEvent(__FullSecond+10*60,"explode@e_Explode",item,false);
+		CreateTimeEvent(__FullSecond+10*60,"explode@e_Explode",item.Id,false);
 	}
 	Ill2Healthy(brahmin);
 	GameVar @ status = GetGlobalVar(GVAR_ncr_ranch_brahmin_ill);

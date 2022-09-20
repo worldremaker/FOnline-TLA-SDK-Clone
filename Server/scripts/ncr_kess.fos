@@ -18,7 +18,7 @@ void r_SetKessArmourChange(Critter& player, Critter@ npc, int val)
 		return;
 	}
 	// создаем событие "кесса в рейнджеры!"
-	if (CreateTimeEvent(__FullSecond+60*60*3,"e_KessRanger", npc, false)==0)
+	if (CreateTimeEvent(__FullSecond+60*60*3,"e_KessRanger", npc.Id, false)==0)
 	{
 		Log("Time event e_EveryEvening create fail, "+GetLastError());
 		return;
@@ -38,7 +38,7 @@ uint e_KessRanger(uint[]@ values)
 	}
 	// создаем событие "кесса обратно в полицейского"
 	// произойдет оно через 5 игровых часов
-	if (CreateTimeEvent(__FullSecond+60*60*5,"e_KessPoliceman", kess, false)==0)
+	if (CreateTimeEvent(__FullSecond+60*60*5,"e_KessPoliceman", kess.Id, false)==0)
 	{
 		Log("Time event e_EveryEvening create fail, "+GetLastError());
 		return 0 ;

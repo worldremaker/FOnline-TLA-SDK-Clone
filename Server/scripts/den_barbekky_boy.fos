@@ -14,10 +14,10 @@ void _BoyInit(Critter& boy, bool firstTime)
 	boy.SetEvent(CRITTER_EVENT_STEALING,"_BoyStealing");
 	boy.SetEvent(CRITTER_EVENT_RESPAWN,"_BoyRespawn");
 	// Создаем событие, где мальчик зазывает покупать у него рации
-	if(CreateTimeEvent(__FullSecond+Random(10,50)*60,"e_Announcement",boy,false)==0)
+	if(CreateTimeEvent(__FullSecond+Random(10,50)*60,"e_Announcement",boy.Id,false)==0)
 		Log("Time event Announcement create fail, "+GetLastError());
 	// Создаем событие, где мальчик приветсвует с добрым утром
-	if(CreateTimeEvent(GetNearFullSecond(0,0,0,8,0,0),"e_AnnouncementMorning",boy,false)==0)
+	if(CreateTimeEvent(GetNearFullSecond(0,0,0,8,0,0),"e_AnnouncementMorning",boy.Id,false)==0)
 		Log("Time event AnnouncementMorning create fail, "+GetLastError());
 }
 

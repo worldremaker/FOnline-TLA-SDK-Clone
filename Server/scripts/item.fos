@@ -9,7 +9,7 @@ void _DoorAutoCloseInit(Item& door, bool firstTime)
 
 bool e_UseAutoCloseDoor(Item& door, Critter& cr, int skill)
 {
-	CreateTimeEvent(__FullSecond + REAL_MINUTE(door.Val3 == 0? 2 : door.Val3), "e_AutoCloseDoor", door, true);
+	CreateTimeEvent(__FullSecond + REAL_MINUTE(door.Val3 == 0? 2 : door.Val3), "e_AutoCloseDoor", door.Id, true);
 	return false;
 }
 
@@ -77,6 +77,6 @@ void _HoloInit(Item & item, bool firstTime)
 	item.HolodiskNumber = item.Val0;
 	item.SetScript("");
 	item.Update();
-	
+
 }
 

@@ -371,7 +371,7 @@ class WaveStep
 		DL("_DoActionDeleteMob called");
 		Critter @ mob = mi.Mob();
 		if(!valid(mob)) return;
-		CreateTimeEvent(__FullSecond+TIME_TO_DELETE_MOBS,"e_DeleteSpawnedMob",mob,false);
+		CreateTimeEvent(__FullSecond+TIME_TO_DELETE_MOBS,"e_DeleteSpawnedMob",mob.Id,false);
 		DL("Delete Event created");
 	}
 

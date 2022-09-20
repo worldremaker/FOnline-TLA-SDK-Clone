@@ -4,6 +4,7 @@
 // Общие
 	// Time event
 uint e_FuncName(uint[]@ values)
+uint e_FuncName(int[]@ values)
 // Возвращается кол-во игровых секунд, когда событие вызовется опять, при 0 событие удаляется.
 	// Critter time event
 uint cte_FuncName(Critter& cr, int identifier, uint& rate)

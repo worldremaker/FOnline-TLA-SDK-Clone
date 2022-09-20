@@ -68,7 +68,7 @@ void _GhostDead(Critter& ghost, Critter@ killeer)
 	if (GetGhostIsDead() != GHOST_DEAD)
 	{
 		// ressurect ghost
-		CreateTimeEvent(__FullSecond + 60, "e_RessurectGhost", ghost, false);
+		CreateTimeEvent(__FullSecond + 60, "e_RessurectGhost", ghost.Id, false);
 	}
 }
 
@@ -116,7 +116,7 @@ void r_KillGhost(Critter& player, Critter@ ghost, int val)
 	// kill ghost
 	ghost.ToDead(COND_DEAD_BURN_RUN,null);
 	// run new dialog through time event
-	CreateTimeEvent(__FullSecond + 60, "e_RunTreasureDialog", player, false);
+	CreateTimeEvent(__FullSecond + 60, "e_RunTreasureDialog", player.Id, false);
 }
 
 //

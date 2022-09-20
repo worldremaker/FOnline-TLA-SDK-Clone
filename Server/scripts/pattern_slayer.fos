@@ -50,7 +50,7 @@ class SlayerPattern : CommonPattern
 
 		if(plane.Type==AI_PLANE_ATTACK)
 		{
-			CreateTimeEvent(SNEAK_TIMEOUT(cr)-__FullSecond,"e_SneakWhileAttack",cr,false);
+			CreateTimeEvent(SNEAK_TIMEOUT(cr)-__FullSecond,"e_SneakWhileAttack",cr.Id,false);
 		}
 
 		return PLANE_RUN_GLOBAL;

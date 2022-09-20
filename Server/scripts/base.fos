@@ -162,7 +162,7 @@ void CreateSupplyCar(Map@ map, int base, uint playerId, int org)
 		}
 	}
 
-	CreateTimeEvent(__FullSecond+CAR_WAIT_TIME,"e_DeleteCar",car,true);
+	CreateTimeEvent(__FullSecond+CAR_WAIT_TIME,"e_DeleteCar",car.Id,true);
 }
 
 void FillBag(Item@ bag, uint16[]& pids, uint min, uint max, int chance)
