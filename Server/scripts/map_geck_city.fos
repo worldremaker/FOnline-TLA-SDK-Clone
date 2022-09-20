@@ -515,10 +515,11 @@ void _GeckMapInCritter(Map& map, Critter& cr)
 	}
 }
 
+// Отключено до момента, когда будет решена проблема с багажниками
 void TryMoveCar(Critter & cr, Map & map)
 {
 	Item@[] items;
-	if (cr.GetItemsByType(ITEM_KEY, items)>0)
+	if (cr.GetItemsByType(ITEM_KEY, items) == 666)//>0)
 	{
 		for( int k=0, l=items.length(); k<l; k++)
 		{
