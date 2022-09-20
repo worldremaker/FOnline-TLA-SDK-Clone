@@ -558,6 +558,25 @@
 # Map 175, base 1760
 {1760}{}{Knight Of The Wasteland base. Third level}
 {1765}{}{07desert}
+# Map 176, base 1770
+{1770}{}{Strange house. Ground}
+{1775}{}{07desert}
+# Map 177, base 1780
+{1780}{}{Strange house. Bunker}
+{1785}{}{08vats}
+{1786}{}{electri1:15, electric:15, elevator:20, elevato1:15, steam:20, steam:15}
+# Map 178, base 1790
+{1790}{}{Trapper house. Ground}
+{1795}{}{07desert}
+# Map 179, base 1800
+{1800}{}{Trapper house. Basement}
+{1805}{}{07desert}
+# Map 180, base 1810
+{1810}{}{Doll holodisk cave. Ground}
+{1815}{}{07desert}
+# Map 181, base 1820
+{1820}{}{Doll holodisk cave. Cave}
+{1825}{}{07desert}
 
 # Map 190, base 1910
 {1910}{}{City Encounter 1}
@@ -1793,6 +1812,8 @@
 {10034770}{}{A tin woodsman}
 {10034780}{}{The Unwashed Villagers hunting a spammer}
 {10034790}{}{Wasteland Children shelter}
+{10034800}{}{заброшенный аванпост Рыцарей Пустоши}
+{10034810}{}{пещеру}
 
 # Encounter Table 10
 {10035000}{}{A band of outcasts}
@@ -1964,6 +1985,7 @@
 {10037300}{}{King Arthur's Knights}
 {10037310}{}{A tin woodsman}
 {10037320}{}{The Unwashed Villagers hunting a spammer}
+{10037330}{}{развалины дома}
 
 # Encounter Table 15
 {10037500}{}{A band of highwaymen}
@@ -2810,6 +2832,7 @@
 {10053170}{}{A swarm of floaters}
 {10053180}{}{A man guarding a bridge}
 {10053190}{}{King Arthur's Knights fighting a rat}
+{10053200}{}{strange alone house}
 
 # Encounter Table 47
 {10053500}{}{Some aliens and deathclaws}

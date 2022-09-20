@@ -1,7 +1,7 @@
 #ifndef __VARS__
 #define __VARS__
 /*************************************************************************************
-***  VARS  *****  COUNT: 00000449  ***************************************************
+***  VARS  *****  COUNT: 00000458  ***************************************************
 *************************************************************************************/
 
 
@@ -70,6 +70,12 @@
 #define UVAR_den_kliff_bless_was           (2100)
 #define UVAR_den_virginia_sex_was          (2101)
 #define UVAR_klam_dogs_potion_givven       (2200)
+#define LVAR_can_repair_weapons            (2201)
+#define LVAR_can_repair_weapons_special    (2202)
+#define LVAR_can_repair_armour             (2203)
+#define LVAR_can_repair_armour_special     (2204)
+#define UVAR_repair_complete_time          (2205)
+#define UVAR_repair_item_pid               (2206)
 #define LVAR_terminal_player_id            (3029)
 #define LVAR_sex_exp                       (3030)
 #define LVAR_scen_fraction                 (3031)
@@ -388,6 +394,9 @@
 #define LVAR_special_encounter_teleport    (5621)
 #define LVAR_special_wasteland_children    (5622)
 #define LVAR_special_encounter_kotw        (5623)
+#define LVAR_special_soldier_holo          (5624)
+#define LVAR_special_trapper_holo          (5625)
+#define LVAR_special_doll_holo             (5626)
 #define LVAR_fixboy_power_armor            (6000)
 #define LVAR_timeout                       (6160)
 #define LVAR_timeout1                      (6161)
@@ -866,6 +875,36 @@ $	2200	2	klam_dogs_potion_givven	0	0	1	0
 **********
 0- не давали яд собаке.
 1- дали яд собаке.
+**********
+
+$	2201	1	can_repair_weapons	0	0	1	0
+**********
+Переменная для НПЦ - ремонтника. Признак - может ремонтировать обычное оружие.
+**********
+
+$	2202	1	can_repair_weapons_special	0	0	1	0
+**********
+Переменная для НПЦ - ремонтника. Признак - может ремонтировать специальное оружие.
+**********
+
+$	2203	1	can_repair_armour	0	0	1	0
+**********
+Переменная для НПЦ - ремонтника. Признак - может ремонтировать обычную броню.
+**********
+
+$	2204	1	can_repair_armour_special	0	0	1	0
+**********
+Переменная для НПЦ - ремонтника. Признак - может ремонтировать редкую броню.
+**********
+
+$	2205	2	repair_complete_time	0	0	0	4
+**********
+Переменная для НПЦ - ремонтника. Время в игровых секундах, когда будет готов ремонт
+**********
+
+$	2206	2	repair_item_pid	0	0	0	4
+**********
+Переменная для НПЦ - ремонтника. Код ремонтируемого предмета
 **********
 
 $	3029	1	terminal_player_id	0	0	0	4
@@ -3815,6 +3854,21 @@ $	5623	1	special_encounter_kotw	0	0	3	0
 1 - посетил
 2 - открыл первую дверь
 3 - открыл вторую дверь
+**********
+
+$	5624	1	special_soldier_holo	0	0	1	0
+**********
+Признак, игрок нашел локацию с первым голодиском
+**********
+
+$	5625	1	special_trapper_holo	0	0	1	0
+**********
+Признак, игрок нашел локацию со вторым голодиском
+**********
+
+$	5626	1	special_doll_holo	0	0	1	0
+**********
+Признак, игрок нашел локацию c третьим голодиском
 **********
 
 $	6000	1	fixboy_power_armor	0	0	1	0

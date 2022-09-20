@@ -41,6 +41,16 @@ void t_AttackStop(Critter& player, Scenery& trigger, bool entered, uint8 dir ,in
 	}
 }
 
+void t_Kill(Critter& player, Scenery& trigger, bool entered, uint8 dir ,int type)
+{
+	Kill(player, type);
+}
+
+void t_Damage(Critter& player, Scenery& trigger, bool entered, uint8 dir , int dmg, int type)
+{
+	Damage(player, dmg, type, dir);
+}
+
 void t_DoorOpen(Critter& player, Scenery& trigger, bool entered, uint8 dir ,int entireNum)
 {
 	DoorControl(player,entireNum,true);

@@ -86,9 +86,15 @@ import bool DialogNpc(Critter& player, int role) from "stdlib";
 */
 import Critter@ GetNearCritterWithRole(Map@ map, uint16 hexX, int hexY, uint radius, int role) from "stdlib";
 
+import void Kill(Critter& player, int type) from "stdlib";
+
+import void Damage(Critter& player, int dmg, int type, int dir) from "stdlib";
+
+import void AttackStop(Critter& player, int npcRole) from "stdlib";
+
+import void Attack(Critter& player, int npcRole) from "stdlib";
 
 // Импорты с других модулей.
 import void DropDrugEffects(Critter& cr) from "drugs";
 import void DropRadiation(Critter& cr) from "radiation";
-
 

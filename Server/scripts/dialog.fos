@@ -601,6 +601,25 @@ void r_GiveHolodisk(Critter& player, Critter@ npc, int holodiskNum)
 	holo.Update();
 }
 
+void r_Attack(Critter& player, Critter@ npc, int npcRole)
+{
+	Attack(player, npcRole);
+}
+
+void r_AttackStop(Critter& player, Critter@ npc, int npcRole)
+{
+	AttackStop(player, npcRole);
+}
+
+void r_Kill(Critter& player, Critter@ npc, int type)
+{
+	Kill(player, type);
+}
+
+void r_Damage(Critter& player, Critter@ npc,int dmg, int type, int dir)
+{
+	Damage(player, dmg, type, dir);
+}
 
 
 
