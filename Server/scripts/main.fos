@@ -1015,7 +1015,6 @@ void critter_finish(Critter& cr, bool toDelete)
 		if(valid(block)) DeleteItem(block);
 		cr.StatBase[ST_DEAD_BLOCKER_ID]=0;
 	}
-	// if(toDelete) DeleteVars(cr.Id); used engine vars garbager
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
