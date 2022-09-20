@@ -55,8 +55,10 @@
 #define GATES_NET_NUM                               (1) // Номер сети для барьера на входе. 
 #define CITIZENS_TRADING_SKILL                      (10) // Навык бартера для нпц-торговца в ГизГ
 // energy_barrier.fos
-#define BM_OFF                                      (1)
-#define BM_ON                                       (0)
+#define BM_OFF (1)
+#define BM_ON (0)
+#define BM_HALF_ON (2)
+#define BM_OFF_NO_GUARD (3)
 
 import uint8 GetNetState(uint locId, uint netNum) from "energy_barier";
 import bool s_Terminal(Critter& player, Scenery& terminal, int skill, Item@ item, int netNum, int hackBonus, int hitBonus) from "energy_barier";
@@ -656,7 +658,8 @@ bool d_BarrierOff(Critter& player, Critter@ npc)
 	if(!valid(map)) return false;
 	Location @ loc = map.GetLocation();
 	if(!valid(loc)) return false;
-	return (GetNetState(loc.Id,GATES_NET_NUM)==BM_OFF);
+	uint8 state = GetNetState(loc.Id,GATES_NET_NUM);
+	return (state == BM_OFF || state == BM_OFF_NO_GUARD);
 }
 
 void r_SwitchBarrierMode(Critter& player, Critter@ npc, int mode)
