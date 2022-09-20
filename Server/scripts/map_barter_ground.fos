@@ -120,7 +120,7 @@ void _GuardSmthUseItem(Critter& npc, Critter& fromCr, Item& item, Critter@ onCri
 	if(fromCr.IsPlayer()&&npc.IsLife())
 	{
 		uint pid = item.GetProtoId();
-		if(pid==PID_PLASTIC_EXPLOSIVES||pid==PID_MINE||pid==PID_TOGGLE_SWITCH||pid==PID_DYNAMITE)
+		if(pid==PID_PLASTIC_EXPLOSIVES||pid==PID_MINE||pid==PID_TOGGLE_SWITCH||pid==PID_DYNAMITE||pid==PID_ACTIVE_DYNAMITE||pid==PID_ACTIVE_PLASTIC_EXPLOSIVE||pid==PID_ACTIVE_MINE)
 		{
 			AddAttackPlane(npc, 0, fromCr);
 		}
