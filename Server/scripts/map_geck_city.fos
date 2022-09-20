@@ -189,7 +189,6 @@ bool AddCitizen(Critter& leader, Critter& player)
 	}
 	GameVar@ cityMember = GetLocalVar(VAR_CITIZEN, player.Id);
 	if(!valid(cityMember)) return false;
-	if(cityMember.GetValue()!=0) return false;
 	cityMember = loc.Id;
 	ArrayPushBack(acceptedPlayers, player.Id);
 	EraseAnyData(key);
