@@ -51,6 +51,7 @@
 #define PT_VIDEO               (20)
 #define PT_TEXTS               (21)
 #define PT_SAVE                (22)
+#define PT_FONTS               (23)
 	// Server paths
 #define PT_SERVER_ROOT         (30)
 #define PT_SERVER_DATA         (31)
@@ -65,6 +66,7 @@
 #define PT_SERVER_BANS         (40)
 
 // Fonts
+	// Standart fonts, loaded automatically
 #define FONT_OLD_FO            (0)
 #define FONT_NUM               (1)
 #define FONT_BIG_NUM           (2)
@@ -74,6 +76,8 @@
 #define FONT_THIN              (6)
 #define FONT_FAT               (7)
 #define FONT_BIG               (8)
+	// User fonts, created in Bitmap Font Generator
+#define FONT_COURIER_NEW_SMALL (10)
 
 // Font flags
 #define FT_NOBREAK             (0x0001)
