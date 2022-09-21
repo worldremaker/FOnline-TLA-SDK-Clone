@@ -271,7 +271,7 @@ EXPORT int getParam_DamageResistance(CritterMutual& cr, uint index)
 
 EXPORT int getParam_DamageThreshold(CritterMutual& cr, uint index)
 {
-	int dmgType = index - ST_NORMAL_RESIST + 1;
+	int dmgType = index - ST_NORMAL_ABSORB + 1;
 
 	Item* armor = cr.ItemSlotArmor;
 	int val = 0;
