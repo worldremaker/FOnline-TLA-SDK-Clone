@@ -6,7 +6,8 @@
 //************************************************************************/
 
 
-#define LOCATION_IS_CITY #(locPid)                  (((locPid)>=LOCATION_Den && (locPid)<=LOCATION_Vault13 && (locPid)!=LOCATION_Cathedral && (locPid)!=LOCATION_MilitaryBase && (locPid)!=LOCATION_Sierra ) ||(locPid)==LOCATION_ReplicationHell)
+#define LOCATION_IS_CITY  #(locPid)                 (((locPid)>=LOCATION_Den && (locPid)<=LOCATION_Vault13 && (locPid)!=LOCATION_Cathedral && (locPid)!=LOCATION_MilitaryBase && (locPid)!=LOCATION_Sierra ) ||(locPid)==LOCATION_ReplicationHell)
+#define LOCATION_IS_OCEAN #(locPid)                 ((locPid)>=LOCATION_Den && (locPid)<=LOCATION_OceanTrader)
 
 #define LOCATION_Den                                (1)
 #define LOCATION_Klamath                            (2)

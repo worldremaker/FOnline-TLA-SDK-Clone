@@ -181,15 +181,15 @@ void global_process(int type, Critter& cr, Item@ car, uint& x, uint& y, uint& to
 		}
 
 		// Try find encounter
-		if(::GetGlobalMapRelief(x,y)!=GM_RELIEF_WATER)
-			FindEncounter(group,car,x,y,encounterDescriptor,waitForAnswer,false);
+		FindEncounter(group,car,x,y,encounterDescriptor,waitForAnswer,false);
 	}
 	else if(type==GLOBAL_PROCESS_ENTER)
 	{
 		// Enter to empty encounter
-		if(walkType==GM_WALK_WATER)
+		if(walkType==GM_WALK_WATER && GetGlobalMapRelief(x,y)==GM_RELIEF_WATER)
 		{
 			// Find land
+			bool landFounded=false;
 			const int maxx=__GlobalMapWidth*__GlobalMapZoneLength;
 			const int maxy=__GlobalMapHeight*__GlobalMapZoneLength;
 			for(int ox=-1;ox<=1;ox++)
@@ -200,13 +200,16 @@ void global_process(int type, Critter& cr, Item@ car, uint& x, uint& y, uint& to
 					int yy=y+oy;
 					if(xx>=0 && xx<maxx && yy>=0 && yy<maxy && GetGlobalMapRelief(xx,yy)!=GM_RELIEF_WATER)
 					{
-						FindEncounter(cr.GetGlobalGroup(),car,x,y,encounterDescriptor,waitForAnswer,true);
+						FindEncounter(cr.GetGlobalGroup(),car,xx,yy,encounterDescriptor,waitForAnswer,true);
 						ox=oy=2; // Exit from loop
+						landFounded=true;
 					}
 				}
 			}
+
+			if(not landFounded) FindEncounter(cr.GetGlobalGroup(),car,x,y,encounterDescriptor,waitForAnswer,true);
 		}
-		else if(GetGlobalMapRelief(x,y)!=GM_RELIEF_WATER)
+		else
 		{
 			FindEncounter(cr.GetGlobalGroup(),car,x,y,encounterDescriptor,waitForAnswer,true);
 		}

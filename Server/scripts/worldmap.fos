@@ -38,7 +38,7 @@ import void GenerateCavernEncounter(Map@ map, Critter@[]@ critters) from "cave_m
 #define TERRAIN_Desert                         (0)
 #define TERRAIN_Mountain                       (1)
 #define TERRAIN_City                           (2)
-#define TERRAIN_Ocean                          (3)
+#define TERRAIN_Coast                          (3)
 #define TERRAIN_Water                          (4)
 
 #define FILL_No_Fill                           (0)
@@ -479,7 +479,6 @@ class CZone
 {
 	int Difficulty;
 	uint Terrain;
-	uint Fill;
 	uint MorningChance;
 	uint AfternoonChance;
 	uint NightChance;
@@ -489,7 +488,6 @@ class CZone
 	{
 		Difficulty=0;
 		Terrain=0;
-		Fill=0;
 		MorningChance=0;
 		AfternoonChance=0;
 		NightChance=0;
@@ -499,27 +497,32 @@ class CZone
 
 CEncounterGroup[] EncounterGroups(GROUP_MAX);
 CEncounterTable[] EncounterTables(TABLE_MAX);
-CZone[] Worldmap(ZONE_COUNT_X*ZONE_COUNT_Y);
+CZone@[] WorldmapGround(ZONE_COUNT_X*ZONE_COUNT_Y);
+CZone@[] WorldmapWater(ZONE_COUNT_X*ZONE_COUNT_Y);
 
 //
 // Zone
 //
 
-void SetZone(uint zx, uint zy, uint table, int difficulty, uint terrain, uint fill, uint morningChance, uint afternoonChance, uint nightChance)
+void SetZone(uint zx, uint zy, uint table, int difficulty, uint terrain, uint morningChance, uint afternoonChance, uint nightChance)
 {
-	CZone@ zone=Worldmap[zy*ZONE_COUNT_X+zx];
+	CZone@ zone=CZone();
 	@zone.Table=EncounterTables[table];
 	zone.Difficulty=difficulty;
 	zone.Terrain=terrain;
-	zone.Fill=fill;
 	zone.MorningChance=morningChance;
 	zone.AfternoonChance=afternoonChance;
 	zone.NightChance=nightChance;
+
+	if(terrain!=TERRAIN_Water)
+		@WorldmapGround[zy*ZONE_COUNT_X+zx]=zone;
+	else
+		@WorldmapWater[zy*ZONE_COUNT_X+zx]=zone;
 }
 
-void SetZone(uint zx, uint zy, uint table, int difficulty, uint terrain, uint fill, uint chance)
+void SetZone(uint zx, uint zy, uint table, int difficulty, uint terrain, uint chance)
 {
-	SetZone(zx,zy,table,difficulty,terrain,fill,chance,chance,chance);
+	SetZone(zx,zy,table,difficulty,terrain,chance,chance,chance);
 }
 
 //
@@ -645,6 +648,7 @@ class CFoundedEncounter
 	bool OwnerGroup;
 	bool TurnBased;
 	uint LocationId;
+	bool IsWater;
 	uint16 StartHexX;
 	uint16 StartHexY;
 	bool[] DirBusy;
@@ -662,6 +666,7 @@ class CFoundedEncounter
 		OwnerGroup=false;
 		TurnBased=false;
 		LocationId=0;
+		IsWater=false;
 		StartHexX=0;
 		StartHexY=0;
 		DirBusy.resize(6);
@@ -671,7 +676,7 @@ class CFoundedEncounter
 CFoundedEncounter[] FoundedEncounters(1000);
 uint FoundedEncountersLastIndex=0;
 
-CFoundedEncounter@ CreateFoundedEncounter(uint x, uint y, CEncounter@ encounter, uint16[]& locationPids, uint ownerId, bool ownerGroup)
+CFoundedEncounter@ CreateFoundedEncounter(bool isWater, uint x, uint y, CEncounter@ encounter, uint16[]& locationPids, uint ownerId, bool ownerGroup)
 {
 	for(int i=0,j=FoundedEncounters.length();i<j;i++)
 	{
@@ -689,6 +694,7 @@ CFoundedEncounter@ CreateFoundedEncounter(uint x, uint y, CEncounter@ encounter,
 			ge.OwnerId=ownerId;
 			ge.OwnerGroup=ownerGroup;
 			ge.LocationId=0;
+			ge.IsWater=isWater;
 			for(uint k=0;k<6;k++) ge.DirBusy[k]=false;
 			return ge;
 		}
@@ -696,7 +702,7 @@ CFoundedEncounter@ CreateFoundedEncounter(uint x, uint y, CEncounter@ encounter,
 
 	// Grow buffer and refind
 	FoundedEncounters.resize(FoundedEncounters.length()*2);
-	return CreateFoundedEncounter(x,y,encounter,locationPids,ownerId,ownerGroup);
+	return CreateFoundedEncounter(isWater,x,y,encounter,locationPids,ownerId,ownerGroup);
 }
 
 CFoundedEncounter@ GetFoundedEncounter(uint index)
@@ -709,7 +715,7 @@ CFoundedEncounter@ GetFoundedEncounter(uint index)
 	return null;
 }
 
-CFoundedEncounter@ GetNearFoundedEncounter(Critter@[]@ group, uint x, uint y, uint radius)
+CFoundedEncounter@ GetNearFoundedEncounter(bool isWater, Critter@[]@ group, uint x, uint y, uint radius)
 {
 	int combatMode=group[0].Mode[MODE_DEFAULT_COMBAT];
 	for(int i=0,j=FoundedEncounters.length();i<j;i++)
@@ -718,14 +724,15 @@ CFoundedEncounter@ GetNearFoundedEncounter(Critter@[]@ group, uint x, uint y, ui
 		if(ge.Index==0) continue;
 		if(ge.TurnBased && combatMode==COMBAT_MODE_REAL_TIME) continue;
 		if(not ge.TurnBased && combatMode==COMBAT_MODE_TURN_BASED) continue;
-		if(__FullSecond-ge.FullSecond<FOUNDED_ENCOUNTER_LIVE_TIME && ge.IsGenerated &&
-			(not valid(ge.Encounter) || (not ge.Encounter.Special && CheckChecks(ge.Encounter.Checks,group))) &&
-			uint(sqrt(float(POW2(ge.PositionX-x)+POW2(ge.PositionY-y))))<=radius &&
-			group[0].Id!=ge.OwnerId &&
-			valid(GetLocation(ge.LocationId)))
-		{
-			return ge;
-		}
+		if(ge.IsWater!=isWater) continue;
+		if(__FullSecond-ge.FullSecond>=FOUNDED_ENCOUNTER_LIVE_TIME) continue;
+		if(not ge.IsGenerated) continue;
+		if(valid(ge.Encounter) && ge.Encounter.Special && not CheckChecks(ge.Encounter.Checks,group)) continue;
+		if(uint(sqrt(float(POW2(ge.PositionX-x)+POW2(ge.PositionY-y))))>radius) continue;
+		if(group[0].Id==ge.OwnerId) continue;
+		if(not valid(GetLocation(ge.LocationId))) continue;
+
+		return ge;
 	}
 	return null;
 }
@@ -1076,13 +1083,19 @@ void FindEncounter(Critter@[]& group, Item@ car, uint x, uint y, uint& encounter
 		return;
 	}
 
-	CZone@ zone=Worldmap[zy*ZONE_COUNT_X+zx];
+	bool isWater=(GetGlobalMapRelief(x,y)==GM_RELIEF_WATER);
+	int walkType=(valid(car)?car.Proto.Car_WalkType:GM_WALK_GROUND);
+	bool walkWaterOrFly=(walkType==GM_WALK_WATER || walkType==GM_WALK_FLY);
+	if(walkType==GM_WALK_GROUND && isWater) return;
+
+	CZone@ zone=(isWater?WorldmapWater[zy*ZONE_COUNT_X+zx]:WorldmapGround[zy*ZONE_COUNT_X+zx]);
+	if(not valid(zone)) return;
 	Critter@ leader=group[0];
 
 	// Create empty map
 	if(empty)
 	{
-		CFoundedEncounter@ fe=CreateFoundedEncounter(x,y,null,zone.Table.LocationPids,leader.Id,group.length()>1);
+		CFoundedEncounter@ fe=CreateFoundedEncounter(isWater,x,y,null,zone.Table.LocationPids,leader.Id,group.length()>1);
 		if(not valid(fe)) return;
 		waitForAnswer=false;
 		encounterDescriptor=fe.Index;
@@ -1097,12 +1110,12 @@ void FindEncounter(Critter@[]& group, Item@ car, uint x, uint y, uint& encounter
 	if(uint(Random(1,100))>chance) return;
 
 	// Try find already founded encounter
-	CFoundedEncounter@ feAlready=GetNearFoundedEncounter(group,x,y,ZONE_LENGTH/2);
+	CFoundedEncounter@ feAlready=GetNearFoundedEncounter(isWater,group,x,y,ZONE_LENGTH/2);
 	if(valid(feAlready))
 	{
 		int outdoorsman=leader.Skill[SK_OUTDOORSMAN]+zone.Difficulty;
 		outdoorsman=CLAMP(outdoorsman,6,95);
-		if(outdoorsman>=Random(1,100))
+		if(outdoorsman>=Random(1,100) || walkWaterOrFly)
 		{
 			uint8 say=feAlready.TurnBased?SAY_ENCOUNTER_TB:SAY_ENCOUNTER_RT;
 			if(valid(feAlready.Encounter))
@@ -1116,8 +1129,12 @@ void FindEncounter(Critter@[]& group, Item@ car, uint x, uint y, uint& encounter
 					"$player"+GetPlayerName(feAlready.OwnerId));
 			}
 			waitForAnswer=true;
-			if(leader.Skill[SK_OUTDOORSMAN]<=95) leader.StatBase[ST_EXPERIENCE]+=100-leader.Skill[SK_OUTDOORSMAN]-zone.Difficulty;
-			else leader.StatBase[ST_EXPERIENCE]+=5-zone.Difficulty;
+
+			if(not walkWaterOrFly)
+			{
+				if(leader.Skill[SK_OUTDOORSMAN]<=95) leader.StatBase[ST_EXPERIENCE]+=100-leader.Skill[SK_OUTDOORSMAN]-zone.Difficulty;
+				else leader.StatBase[ST_EXPERIENCE]+=5-zone.Difficulty;
+			}
 		}
 
 		for(uint i=0,j=group.length();i<j;i++) group[i].Say(SAY_FLASH_WINDOW,"");
@@ -1162,17 +1179,21 @@ void FindEncounter(Critter@[]& group, Item@ car, uint x, uint y, uint& encounter
 			continue;
 		}
 
-		CFoundedEncounter@ fe=CreateFoundedEncounter(x,y,enc,zone.Table.LocationPids,leader.Id,group.length()>1);
+		CFoundedEncounter@ fe=CreateFoundedEncounter(isWater,x,y,enc,zone.Table.LocationPids,leader.Id,group.length()>1);
 		if(not valid(fe)) return;
 
 		int outdoorsman=leader.Skill[SK_OUTDOORSMAN]+zone.Difficulty;
 		outdoorsman=CLAMP(outdoorsman,6,95);
-		if(outdoorsman>=Random(1,100))
+		if(outdoorsman>=Random(1,100) || walkWaterOrFly)
 		{
 			leader.SayMsg(SAY_ENCOUNTER_ANY,TEXTMSG_GM,STR_QUESTION,"$who @msg gm "+enc.StrNum+"@");
 			waitForAnswer=true;
-			if(leader.Skill[SK_OUTDOORSMAN]<=95) leader.StatBase[ST_EXPERIENCE]+=100-leader.Skill[SK_OUTDOORSMAN]-zone.Difficulty;
-			else leader.StatBase[ST_EXPERIENCE]+=5-zone.Difficulty;
+
+			if(not walkWaterOrFly)
+			{
+				if(leader.Skill[SK_OUTDOORSMAN]<=95) leader.StatBase[ST_EXPERIENCE]+=100-leader.Skill[SK_OUTDOORSMAN]-zone.Difficulty;
+				else leader.StatBase[ST_EXPERIENCE]+=5-zone.Difficulty;
+			}
 		}
 
 		for(uint i=0,j=group.length();i<j;i++) group[i].Say(SAY_FLASH_WINDOW,"");
