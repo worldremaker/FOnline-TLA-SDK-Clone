@@ -14,7 +14,7 @@ lang=russ
 2 2000 None 0 #
 0 2010 D _param p ST_INTELLECT > 3 #
 6 2020 D _param p ST_INTELLECT > 3 #
-3 2030 D _param p ST_INTELLECT > 3 D _var p q_arroyo_mynoc_oil = 0 D _param p ST_PERCEPTION > 7 #
+3 2030 D _param p ST_INTELLECT > 3 D _var p q_arroyo_mynoc_oil = 0 #
 4 2040 D _param p ST_INTELLECT > 3 D _item p PID_OIL_CAN > 0 D _var p q_arroyo_mynoc_oil = 1 R _var p q_arroyo_mynoc_oil = 2 R _item p PID_OIL_CAN - 1 R _param p ST_KARMA + 10 R _param p ST_EXPERIENCE + 500 R _param p REPUTATION_ARROYO + 1 R _item p PID_BOTTLE_CAPS + 300 #
 5 2050 D _param p ST_INTELLECT > 3 D _var p q_arroyo_mynoc_oil = 1 R _var p q_arroyo_mynoc_oil = 3 #
 17 2060 D _param p ST_INTELLECT > 3 D _var p q_arroyo_mynoc_defence = 2 #
