@@ -1,0 +1,37 @@
+/** \~russian @page manual Учебник
+
+Подразделы:
+
+@subpage about
+
+@subpage server_gui
+
+@subpage terms
+
+@subpage tools
+
+@subpage commands
+
+@subpage code_style
+
+@subpage data_types
+
+@subpage specialized_functions
+
+@subpage time_events
+
+@subpage critters_time_events
+
+@subpage events
+
+@subpage critters_interaction
+
+@subpage dialogs_scripts
+
+@subpage page_content
+@subpage page_cartography
+@subpage page_dialoguewriting
+@subpage page_manuals
+
+
+ */

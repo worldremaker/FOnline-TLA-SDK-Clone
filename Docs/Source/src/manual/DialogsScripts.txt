@@ -1,0 +1,82 @@
+/**
+
+\~russian @page dialogs_scripts Скрипты: Работа с диалогом
+\~english @page dialogs_scripts Scripts: Working with dialogs
+\~
+
+\~russian @section dialogs_scripts_info Общая информация
+\~english @section dialogs_scripts_info Main information
+\~
+Функиции скриптов могут вызываться на различных этапах работы диалога.\n
+Различают 3 типа диалоговых функций
+
+\~russian @section d_funcs Функции-условия
+\~english @section d_funcs Dialog demand
+\~
+
+Данные функции применяются как условия для появления реплик, доступных игроку.\n
+Если функция возвращает true, значит реплика доступна игроку и наоборот.\n
+Для установки скриптового условия выберите в редакторе диалогов реплику, на которую необходимо поставить условие, перейдите на вкладку "Условия",\n
+выберите пункт "Скрипт (модуль@функция)", установите количество параметров, которые необходимо передать в функцию и заполните их, нажмите кнопку "добавить".\n
+\n
+Возможные варианты функций
+@code
+bool d_FuncName(Critter& master, Critter@ slave)
+bool d_FuncName(Critter& master, Critter@ slave, int val)
+bool d_FuncName(Critter& master, Critter@ slave, int val0, int val1,)
+bool d_FuncName(Critter& master, Critter@ slave, int val0, int val1, int val2)
+bool d_FuncName(Critter& master, Critter@ slave, int val0, int val1, int val2, int val3)
+bool d_FuncName(Critter& master, Critter@ slave, int val0, int val1, int val2, int val3, int val4)
+@endcode
+\n
+Количество параметров типа int в функции выбирается в зависимости от количества параметров указанных при добавлении условия в редакторе диалогов.\n
+По умолчанию функция вызывается 2 раза, в первый раз перед показом диалога, а второй раз при выборе игроков реплики с заданным в условиях скриптом.\n
+Сделано это для защиты, например, на случай, если кто-то украдет у игрока все деньги после того, как ему высветился вариант ответа, но до того, как он на него нажал.\n
+По этим причинам, желательно избегать выполнения каких либо действий, кроме проверки рвзличных условий, внутри функции проверки условия.\n
+Однако, для тех случаев, когда внутри функции условия необходимо единожды выполнить какое-либо действие, повторную проверку можно отключить (установка флага на условие производится в редакторе диалогов).\n
+Так же, можно воспользоваться глобальной переменной bool __DialogDemandRecheck, при повторной проверке, значение переменной будет равно true.
+
+\~russian @section r_funcs Функции-результаты
+\~english @section r_funcs Dialog result
+\~
+
+Данные функции выполняются один раз, после выбора игроком реплики, для которой в результате указана данная функция.\n
+Добавление происходит по тому же принципу, что добавление функций для проверки условий.\n
+\n
+Возможные варианты функций\n
+@code
+bool r_FuncName(Critter& master, Critter@ slave)
+bool r_FuncName(Critter& master, Critter@ slave, int val)
+bool r_FuncName(Critter& master, Critter@ slave, int val0, int val1,)
+bool r_FuncName(Critter& master, Critter@ slave, int val0, int val1, int val2)
+bool r_FuncName(Critter& master, Critter@ slave, int val0, int val1, int val2, int val3)
+bool r_FuncName(Critter& master, Critter@ slave, int val0, int val1, int val2, int val3, int val4)
+@endcode
+
+Количество параметров типа int в функции так эе выбирается в зависимости от количества параметров указанных при добавлении функции в редакторе диалогов.
+
+\~russian @section dlg_funcs Функции диалога
+\~english @section dlg_funcs Dialog functions
+\~
+
+Данные функции вызывается в трех случаях:\n
+1. При формировании ветки диалога, к которой привязан скрипт\n
+2. При уходе из ветки диалога, к которой привязан скрипт\n
+3. При использовании функции "Сказать о" в ветке диалога, к которой привязан скрипт.\n
+\n
+Спецификация функции\n
+@code
+void dlg_FuncName(Critter& player, Critter@ npc, string@ text)
+@endcode
+
+Для проверки в каком из случаев запущена данная функция, существует 3 макроса
+@code
+#define IS_DIALOG_END #(str)        (not valid(str))
+#define IS_DIALOG_GENERATED #(str)  (valid(str) && str.length()==0)
+#define IS_DIALOG_SAY_MODE #(str)   (valid(str) && str.length()>0)
+@endcode
+
+Если была использована функция "Сказать о", то строка text будет содержать текст сказанный игроком.\n
+В случае, если функция вызвана при генерации диалога, в строку text можно будет поместить текст для определения @ref term_lexem "лексем" использованых в текущем диалоге (как для самого диалога, так и для реплик игрока)
+
+ */

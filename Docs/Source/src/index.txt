@@ -1,0 +1,26 @@
+/** \~english \mainpage FOnline SDK Documentation
+ *
+ * \image html logo.jpg
+ *
+ * \section manual_sec Manual
+ *
+ * \section reference_sec Reference
+ *
+ * \section other_formats Other help formats:
+ * - <a href="./FOnline.chm.zip">Microsoft Compiled HTML Help (.chm)</a>
+ *
+ */
+
+/** \~russian \mainpage FOnline SDK Documentation
+ *
+ * \image html logo.jpg
+ *
+ * \section manual_sec Учебник
+ *
+ * \section reference_sec Справочник
+ *
+ * \section other_formats Другие форматы:
+ * - <a href="./FOnline.chm.zip">Microsoft Compiled HTML Help (.chm)</a>
+ *
+ */
+
