@@ -141,6 +141,7 @@
 // uint16  Scenery_ToMapX
 // uint16  Scenery_ToMapY
 // uint8   Scenery_ToDir
+// uint8   Scenery_SpriteCut
 //
 // void    Update() const
 // uint    GetChilds(MapperObject@[]@+ objects) const
@@ -182,8 +183,14 @@ void start()
 	if(!LoadDataFile("longhairdude.dat")) Message("File longhairdude.dat with Long Hair Dude animations not found. Run Updater.exe.");
 	if(!LoadDataFile("vaultboy.dat")) Message("File vaultboy.dat with Vault Boy animations not found. Run Updater.exe.");
 	if(!LoadDataFile("cablack.dat")) Message("File cablack.dat with Black Combat Armor animations not found. Run Updater.exe.");
-	if(!LoadDataFile("fonline006.dat")) Message("File fonline006.dat with patched files not found. Run Updater.exe.");
-	if(!LoadDataFile("fonline007.zip")) Message("File fonline007.zip with patched files not found. Run Updater.exe.");
+	//if(!LoadDataFile("fonline006.dat")) Message("File fonline006.dat with patched files not found. Run Updater.exe.");
+	//if(!LoadDataFile("fonline007.zip")) Message("File fonline007.zip with patched files not found. Run Updater.exe.");
+
+	// Wall corners
+	uint16[] pids;
+	GetFastPrototypes(pids);
+	for(uint i=6800;i<=6805;i++) pids.insertLast(i);
+	SetFastPrototypes(pids);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

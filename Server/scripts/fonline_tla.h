@@ -15,7 +15,7 @@
 #include "angelscript.h"
 
 // Script global variables
-struct
+struct _GlobalVars
 {
 	uint* HitAimEyes;
 	uint* HitAimHead;
@@ -23,6 +23,6 @@ struct
 	uint* HitAimTorso;
 	uint* HitAimArms;
 	uint* HitAimLegs;
-} GlobalVars;
+} extern GlobalVars;
 
 #endif // __FONLINE_TLA__

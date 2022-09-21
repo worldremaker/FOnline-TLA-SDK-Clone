@@ -32,6 +32,7 @@
 #define PT_TEXTS               (21)
 #define PT_SAVE                (22)
 #define PT_FONTS               (23)
+#define PT_CACHE               (24)
 	// Server paths
 #define PT_SERVER_ROOT         (30)
 #define PT_SERVER_DATA         (31)
@@ -236,6 +237,11 @@
 #define DRAW_PRIMITIVE_TRIANGLELIST  (3)
 #define DRAW_PRIMITIVE_TRIANGLESTRIP (4)
 #define DRAW_PRIMITIVE_TRIANGLEFAN   (5)
+
+// Sprite cut type
+#define SPRITE_CUT_NONE        (0)
+#define SPRITE_CUT_HORIZONTAL  (1)
+#define SPRITE_CUT_VERTICAL    (2)
 
 #endif // __MAPPER_DEFINES__
 

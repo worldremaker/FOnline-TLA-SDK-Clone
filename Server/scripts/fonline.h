@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 11.11.2010
-// Server version 376, MSVS2008
+// Last update 17.11.2010
+// Server version 377, MSVS2008
 // Default calling convention - cdecl
 //
 
@@ -187,6 +187,10 @@ typedef vector<Location*>::iterator LocVecIt;
 // Events
 #define MAP_LOOP_FUNC_MAX           (5)
 #define MAP_MAX_DATA                (100)
+
+// Sprites cutting
+#define SPRITE_CUT_HORIZONTAL       (1)
+#define SPRITE_CUT_VERTICAL         (2)
 
 // Map blocks
 #define FH_BLOCK                              BIN8(00000001)
@@ -439,6 +443,9 @@ struct GameOptions
 	int    ClientPathRefCount;
 	string ServerPath;
 	int    ServerPathRefCount;
+	bool   ShowCorners;
+	bool   ShowCuttedSprites;
+	bool   ShowDrawOrder;
 
 	// Engine data
 	void (*CritterChangeParameter)(Critter& cr, uint index); // Call for correct changing critter parameter
@@ -485,7 +492,7 @@ struct CritterType
 	bool CanArmor;
 	bool CanRotate;
 
-	bool Anim1[21];
+	bool Anim1[37]; // _ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
 };
 
 struct ProtoItem
@@ -518,7 +525,10 @@ struct ProtoItem
 	uint8  AnimStay[2];
 	uint8  AnimShow[2];
 	uint8  AnimHide[2];
+	int16  OffsetX;
+	int16  OffsetY;
 	int8   DrawPosOffsY;
+	uint8  SpriteCut;
 
 	// Radio
 	uint16 RadioChannel;
@@ -1585,7 +1595,7 @@ struct Location
 };
 
 
-int GetDirection(int x1, int y1, int x2, int y2)
+inline int GetDirection(int x1, int y1, int x2, int y2)
 {
 	float hx = (float)x1;
 	float hy = (float)y1;
@@ -1603,7 +1613,7 @@ int GetDirection(int x1, int y1, int x2, int y2)
 	return 0;
 }
 
-int GetDistantion(int x1, int y1, int x2, int y2)
+inline int GetDistantion(int x1, int y1, int x2, int y2)
 {
 	int dx = (x1 > x2 ? x1 - x2 : x2 - x1);
 	if(x1%2 == 0)
@@ -1635,7 +1645,7 @@ int GetDistantion(int x1, int y1, int x2, int y2)
 }
 
 
-void static_asserts()
+inline void static_asserts()
 {
 	STATIC_ASSERT(sizeof(uint)        == 4  );
 	STATIC_ASSERT(sizeof(uint16)      == 2  );
@@ -1650,7 +1660,7 @@ void static_asserts()
 	STATIC_ASSERT(sizeof(IntSet)      == 12 );
 	STATIC_ASSERT(sizeof(IntPair)     == 8  );
 	STATIC_ASSERT(sizeof(GameVar)     == 28 );
-	STATIC_ASSERT(sizeof(ProtoItem)   == 180);
+	STATIC_ASSERT(sizeof(ProtoItem)   == 184);
 	STATIC_ASSERT(sizeof(Mutex)       == 24 );
 	STATIC_ASSERT(sizeof(Spinlock)    == 4  );
 	STATIC_ASSERT(sizeof(GameOptions) == 1088);

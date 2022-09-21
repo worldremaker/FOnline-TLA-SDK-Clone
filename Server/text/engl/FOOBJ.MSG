@@ -6352,6 +6352,18 @@
 {677400}{}{Стена}
 {677500}{}{Стена}
 {677600}{}{Стальные перила}
+{680000}{}{WestEast wall}
+{680001}{}{Wall blocker}
+{680100}{}{NorthSouth wall}
+{680101}{}{Wall blocker}
+{680200}{}{West wall}
+{680201}{}{Wall blocker}
+{680300}{}{North wall}
+{680301}{}{Wall blocker}
+{680400}{}{East wall}
+{680401}{}{Wall blocker}
+{680500}{}{South wall}
+{680501}{}{Wall blocker}
 {800100}{}{Tile Eraser}
 {800200}{}{ }
 {800300}{}{ }

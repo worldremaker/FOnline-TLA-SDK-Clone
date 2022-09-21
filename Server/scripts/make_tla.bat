@@ -21,3 +21,4 @@ del ".\\fonline_tla_client.lib"
 del ".\\vc80.idb"
 copy ".\\fonline_tla_client.dll" "..\\..\\client\\data\\scripts\\fonline_tla_client.dll"
 
+@pause

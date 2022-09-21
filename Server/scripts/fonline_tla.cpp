@@ -5,6 +5,9 @@ EXPORT GameOptions* GameOpt = NULL;
 EXPORT asIScriptEngine* ASEngine = NULL;
 EXPORT void (*Log)(const char* frmt, ...) = NULL;
 
+// Extern data definition
+_GlobalVars GlobalVars;
+
 // Slot/parameters allowing
 EXPORT bool allowSlot_Hand1(uint8, Item&, Critter&, Critter& toCr);
 
