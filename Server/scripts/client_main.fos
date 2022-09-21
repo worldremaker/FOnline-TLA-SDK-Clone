@@ -26,6 +26,8 @@ import void CritterGenerate(int[]& data) from "parameters";
 import bool CritterGenerateCheck(int[]& data) from "parameters";
 import void InitNameColorizing() from "name_colorizing";
 import bool TryColorizeCritter(CritterCl& cr) from "name_colorizing";
+import void InitChosenTabs() from "chosen_tabs";
+import void DrawChosenTabs() from "chosen_tabs";
 
 int MouseX=0;
 int MouseY=0;
@@ -54,6 +56,7 @@ bool start()
 	InitNameColorizing();
 	//InitTestScreen();
 	InitRadioScreen();
+	InitChosenTabs();
 	return true;
 }
 
@@ -96,7 +99,11 @@ void screen_change(bool show, int screen, int p0, int p1, int p2)
 //    5
 void render_iface(uint layer)
 {
-	if(layer==3) GUI_Render();
+	if(layer==3)
+	{
+		DrawChosenTabs();
+		GUI_Render();
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

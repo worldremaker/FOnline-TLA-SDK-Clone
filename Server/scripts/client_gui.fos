@@ -547,6 +547,16 @@ void GUI_Init()
 	@KbData[DIK_TAB]=			KeybData('\t','\t','\t','\t');
 }
 
+int GUI_GetActiveMainScreen()
+{
+	return ActiveScreens.length() > 0 ? ActiveScreens.first().Index : CLIENT_SCREEN_NONE;
+}
+
+int GUI_GetActiveScreen()
+{
+	return ActiveScreens.length() > 0 ? ActiveScreens.last().Index : CLIENT_SCREEN_NONE;
+}
+
 void GUI_GetActiveScreens(int[]& result)
 {
 	result.resize(ActiveScreens.length());

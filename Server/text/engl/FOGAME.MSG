@@ -250,9 +250,9 @@
 {444}{}{Radiated}
 {445}{}{Injured}
 {446}{}{Addict}
-{447}{}{Timeout %u}
+{447}{}{Timeout VALUE}
 {448}{}{Oversize}
-{449}{}{You turn %u}
+{449}{}{You turn VALUE}
 {450}{}{Turn-based}
 
 ####################################################################################################################################
@@ -614,7 +614,7 @@
 #  Experience-gain messages
 #
 {4090}{}{You moved up to the next level.}
-{4091}{}{You gained %d exp.}
+{4091}{}{You gained VALUE exp.}
 {4092}{}{You gain %d experience points for killing: %s.}
 {4093}{}{%s you earn %d exp. points.}
 {4094}{}{For defeating your enemies, }  # 622-626 prepend to line 621

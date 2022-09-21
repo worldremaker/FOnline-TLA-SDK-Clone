@@ -57,9 +57,9 @@
 	__HitAimLegs=20;
 	__RunOnCombat=false;
 	__RunOnTransfer=true;
-	__GlobalMapWidth=28; // max 100
-	__GlobalMapHeight=30; // max 100
-	__GlobalMapZoneLength=50; // max 500
+	__GlobalMapWidth=28; // Maximum 100
+	__GlobalMapHeight=30; // Maximum 100
+	__GlobalMapZoneLength=50; // Maximum 500
 	__GlobalMapMaxGroupCount=10;
 	__UserInterface="";
 	__DeadHitPoints=-20;
@@ -73,6 +73,8 @@
 	__MinNameLength=4; // Minimum 1
 	__MaxNameLength=12; // Maximum 30
 	__PermanentDeath=0; // Disable
+	__DlgTalkMinTime=100000;
+	__DlgBarterMinTime=50000;
 
 	// Look modifiers
 	__LookChecks=0; // See Look checks in _defines.fos
@@ -146,19 +148,51 @@
 #endif
 
 	/// Parameters behavoiours
-	// for(uint i=STAT_BEGIN;i<=ST_POISON_RESISTANCE;i++) SetParameterGetBehaviour(i,"parameters@_StatGet");        Take hardcoded
-	// for(uint i=SKILL_BEGIN;i<=SKILL_END;i++) SetParameterGetBehaviour(i,"parameters@_SkillGet");                 Take hardcoded
-	// for(uint i=TIMEOUT_BEGIN;i<=TIMEOUT_END;i++) SetParameterGetBehaviour(i,"parameters@_TimeoutGet");           Take hardcoded
-	// for(uint i=REPUTATION_BEGIN;i<=REPUTATION_END;i++) SetParameterGetBehaviour(i,"parameters@_ReputationGet");  Take hardcoded
-
 #ifndef __CLIENT
-	SetParameterChangeBehaviour(ST_CURRENT_HP,"parameters@_StatHpChanged");
-	SetParameterChangeBehaviour(ST_EXPERIENCE,"parameters@_StatExperienceChanged");
-	for(uint i=PERK_BEGIN;i<=PERK_END;i++) SetParameterChangeBehaviour(i,"parameters@_PerkChanged");
-	SetParameterChangeBehaviour(MODE_HIDE,"parameters@_ModeHideChanged");
+	string dllName="fonline_tla.dll@";
 #endif
 #ifdef __CLIENT
-	//for(uint i=GOOD_EVIL_LIST_BEGIN;i<=GOOD_EVIL_LIST_END;i++) SetParameterChangeBehaviour(i,"parameters@_GoodEvilListChanged"); (not used)
+	string dllName="fonline_tla_client.dll@";
+#endif
+	SetParameterGetBehaviour(ST_STRENGTH,dllName+"getParam_Strength");
+	SetParameterGetBehaviour(ST_PERCEPTION,dllName+"getParam_Perception");
+	SetParameterGetBehaviour(ST_ENDURANCE,dllName+"getParam_Endurance");
+	SetParameterGetBehaviour(ST_CHARISMA,dllName+"getParam_Charisma");
+	SetParameterGetBehaviour(ST_INTELLECT,dllName+"getParam_Intellegence");
+	SetParameterGetBehaviour(ST_AGILITY,dllName+"getParam_Agility");
+	SetParameterGetBehaviour(ST_LUCK,dllName+"getParam_Luck");
+	SetParameterGetBehaviour(ST_CURRENT_HP,dllName+"getParam_Hp");
+	SetParameterGetBehaviour(ST_MAX_LIFE,dllName+"getParam_MaxLife");
+	SetParameterGetBehaviour(ST_ACTION_POINTS,dllName+"getParam_MaxAp");
+	SetParameterGetBehaviour(ST_CURRENT_AP,dllName+"getParam_Ap");
+	SetParameterGetBehaviour(ST_MAX_MOVE_AP,dllName+"getParam_MaxMoveAp");
+	SetParameterGetBehaviour(ST_MOVE_AP,dllName+"getParam_MoveAp");
+	SetParameterGetBehaviour(ST_CARRY_WEIGHT,dllName+"getParam_MaxWeight");
+	SetParameterGetBehaviour(ST_MELEE_DAMAGE,dllName+"getParam_MeleeDmg");
+	SetParameterGetBehaviour(ST_SEQUENCE,dllName+"getParam_Sequence");
+	SetParameterGetBehaviour(ST_HEALING_RATE,dllName+"getParam_HealingRate");
+	SetParameterGetBehaviour(ST_CRITICAL_CHANCE,dllName+"getParam_CriticalChance");
+	SetParameterGetBehaviour(ST_MAX_CRITICAL,dllName+"getParam_MaxCritical");
+	SetParameterGetBehaviour(ST_ARMOR_CLASS,dllName+"getParam_Ac");
+	SetParameterGetBehaviour(ST_RADIATION_RESISTANCE,dllName+"getParam_RadiationResist");
+	SetParameterGetBehaviour(ST_POISON_RESISTANCE,dllName+"getParam_PoisonResist");
+	for(uint i=ST_NORMAL_RESIST;i<=ST_EXPLODE_RESIST;i++) SetParameterGetBehaviour(i,dllName+"getParam_DamageResistance");
+	for(uint i=ST_NORMAL_ABSORB;i<=ST_EXPLODE_ABSORB;i++) SetParameterGetBehaviour(i,dllName+"getParam_DamageThreshold");
+	for(uint i=TIMEOUT_BEGIN;i<=TIMEOUT_END;i++) SetParameterGetBehaviour(i,dllName+"getParam_Timeout");
+	for(uint i=REPUTATION_BEGIN;i<=REPUTATION_END;i++) SetParameterGetBehaviour(i,dllName+"getParam_Reputation");
+
+#ifndef __CLIENT
+	SetParameterChangeBehaviour(ST_CURRENT_HP,"parameters@changedParam_Hp");
+	SetParameterChangeBehaviour(ST_EXPERIENCE,"parameters@changedParam_Experience");
+	for(uint i=PERK_BEGIN;i<=PERK_END;i++) SetParameterChangeBehaviour(i,"parameters@changedParam_Perks");
+	SetParameterChangeBehaviour(MODE_HIDE,"parameters@changedParam_Hide");
+	SetParameterChangeBehaviour(TRAIT_FAST_SHOT,"parameters@changedParam_FastShot");
+#endif
+#ifdef __CLIENT
+	//for(uint i=GOOD_EVIL_LIST_BEGIN;i<=GOOD_EVIL_LIST_END;i++) SetParameterChangeBehaviour(i,"parameters@changedParam_GoodEvilList"); (not used)
+	SetParameterChangeBehaviour(ST_LEVEL,"parameters@changedParam_Level");
+	SetParameterChangeBehaviour(ST_EXPERIENCE,"parameters@changedParam_Experience");
+	SetParameterChangeBehaviour(ST_UNSPENT_PERKS,"parameters@changedParam_UnspentPerks");
 #endif
 
 	/// Registration parameters

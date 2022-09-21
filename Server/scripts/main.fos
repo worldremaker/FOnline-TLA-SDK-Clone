@@ -79,13 +79,14 @@ bool start()
 	SetSendParameter(DAMAGE_RIGHT_LEG,true);
 	SetSendParameter(DAMAGE_LEFT_LEG,true);
 	// Item slots, passed with -
-	SetSendParameter(-SLOT_HAND1,true,"fonline_tla.dll@_AllowSlotHand1");
+	SetSendParameter(-SLOT_HAND1,true,"fonline_tla.dll@allowSlot_Hand1");
 	SetSendParameter(-SLOT_ARMOR,true);
 	// Some flags for correct client working
 	SetSendParameter(MODE_NO_BARTER,true);
 	SetSendParameter(MODE_NO_STEAL,true);
 	SetSendParameter(MODE_NO_LOOT,true);
 	SetSendParameter(MODE_NO_FLATTEN,true);
+	SetSendParameter(MODE_NO_AIM,true);
 	// 3d animation layers
 	//for(uint i=ST_ANIM3D_LAYERS;i<=ST_ANIM3D_LAYERS+15;i++) SetSendParameter(i,true); // From Skin to Backpack
 	// Npc talk distance
@@ -1020,6 +1021,9 @@ void critter_init(Critter& cr, bool firstTime)
 
 		// Erase zero time events
 		cr.EraseTimeEvents(0);
+
+		// TRAIT_FAST_SHOT migration, delete in future
+		if(cr.Trait[TRAIT_FAST_SHOT]!=0) cr.ModeBase[MODE_NO_AIM]=1;
 	}
 }
 
@@ -1421,6 +1425,31 @@ void turn_based_end(Map& map)
 // Call on every begin and end turn
 void turn_based_process(Map& map, Critter& cr, bool beginTurn)
 {
+	if(beginTurn)
+	{
+		cr.StatBase[ST_MOVE_AP]=cr.Stat[ST_MAX_MOVE_AP];
+		cr.StatBase[ST_TURN_BASED_AC]=0;
+	}
+	else
+	{
+		bool hthEvade=false;
+		if(cr.Perk[PE_HTH_EVADE]!=0)
+		{
+			// In hands only HtH weapons
+			Item@ hand1=cr.GetItem(0,SLOT_HAND1);
+			Item@ hand2=cr.GetItem(0,SLOT_HAND2);
+			if((not valid(hand1) || hand1.GetType()!=ITEM_WEAPON || not hand1.Weapon_IsHtHAttack(0)) &&
+				(not valid(hand1) || hand1.GetType()!=ITEM_WEAPON || not hand1.Weapon_IsHtHAttack(0)))
+			{
+				hthEvade=true;
+			}
+		}
+
+		cr.StatBase[ST_TURN_BASED_AC]=cr.Stat[ST_CURRENT_AP]*(hthEvade?2:1);
+		if(cr.Stat[ST_TURN_BASED_AC]<0) cr.StatBase[ST_TURN_BASED_AC]=0;
+		if(hthEvade && cr.Skill[SK_UNARMED]>0) cr.StatBase[ST_TURN_BASED_AC]+=cr.Stat[SK_UNARMED]/12;
+		cr.StatBase[ST_MOVE_AP]=0;
+	}
 }
 
 // Call on world saving

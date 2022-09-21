@@ -11,8 +11,6 @@
 import void WearItem(Critter& cr, Item& item, int wearCount) from "repair";
 import void AffectPoison(Critter& cr, int value) from "poison";
 import void AffectRadiation(Critter& cr, int value) from "radiation";
-import int GetDamageResistance(Critter& cr, int dmgType) from "parameters";
-import int GetDamageThreshold(Critter& cr, int dmgType) from "parameters";
 import void QuakeScreen(Map& map) from "effects";
 
 class AttackStruct
@@ -1204,8 +1202,8 @@ void ApplyDamage(AttackStruct &attack, Critter &target, uint rounds, bool isCrit
   } // not messaged
 
   int dmgType=attack.DmgType;
-  int targetDR=GetDamageResistance(target,dmgType);
-  int targetDT=GetDamageThreshold(target,dmgType);
+  int targetDR=target.Stat[ST_NORMAL_RESIST+dmgType-1];
+  int targetDT=target.Stat[ST_NORMAL_ABSORB+dmgType-1];
 
   if (FLAG(eff,HF_BYPASS_ARMOR) && dmgType!=DAMAGE_EMP)
   {
@@ -1382,7 +1380,7 @@ void ApplyDamage(AttackStruct &attack, Critter &target, uint rounds, bool isCrit
   uint dir=GetDirection(attack.Hx,attack.Hy,target.HexX,target.HexY);
   if ((dir == target.Dir || ((dir+1)%6)==target.Dir || ((dir+5)%6)==target.Dir)) attackFront=false;
 
-  int armorDr=GetDamageResistance(target,dmgType);
+  int armorDr=target.Stat[ST_NORMAL_RESIST+dmgType-1];
   Item@ armor=_CritGetItemArmor(target);
   if(valid(armor) && targetIsPlayer) WearItem(target,armor,(100-armorDr)*rounds+totalDmg);
 
@@ -1679,8 +1677,8 @@ void CriticalFailure(Critter &cr, ProtoItem& weapon, uint8 weaponUse, ProtoItem@
   {
     bool validAmmo=valid(ammo);
     int dmgType=_WeaponDmgType(weapon,weaponUse);
-    int targetDR=GetDamageResistance(cr,dmgType);
-    int targetDT=GetDamageThreshold(cr,dmgType);
+    int targetDR=cr.Stat[ST_NORMAL_RESIST+dmgType-1];
+    int targetDT=cr.Stat[ST_NORMAL_ABSORB+dmgType-1];
 
     if (weapon.Weapon_Perk == WEAPON_PERK_PENETRATE) targetDT/=5;
 

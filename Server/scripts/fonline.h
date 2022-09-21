@@ -3,8 +3,9 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 16.10.2010
-// Server version 367, MSVS2008
+// Last update 11.11.2010
+// Server version 376, MSVS2008
+// Default calling convention - cdecl
 //
 
 #pragma pack(8)
@@ -19,6 +20,8 @@
 #define _SECURE_SCL 0
 #define _HAS_EXCEPTIONS 0
 
+#define EXPORT extern "C" __declspec(dllexport)
+
 #include <math.h>
 #include <string>
 #include <vector>
@@ -32,13 +35,13 @@ struct Mutex;
 struct Spinlock;
 struct ScriptString;
 struct SyncObj;
+struct CritterType;
 struct ProtoItem;
 struct GameVar;
 struct TemplateVar;
 struct NpcPlane;
 struct GlobalMapGroup;
 struct Item;
-struct ItemCl;
 struct CritterTimeEvent;
 struct Critter;
 struct Client;
@@ -51,6 +54,12 @@ struct ProtoMap;
 struct Map;
 struct ProtoLocation;
 struct Location;
+
+#ifdef __SERVER
+typedef Critter CritterMutual;
+#else
+typedef CritterCl CritterMutual;
+#endif
 
 typedef unsigned __int64 uint64;
 typedef unsigned int uint;
@@ -94,26 +103,19 @@ typedef vector<Map*>::iterator MapVecIt;
 typedef vector<Location*> LocVec;
 typedef vector<Location*>::iterator LocVecIt;
 
-#define STATIC_ASSERT(a)              {static int arr[(a)?1:-1];}
-#define BIN__N(x)                     (x) | x>>3 | x>>6 | x>>9
-#define BIN__B(x)                     (x) & 0xf | (x)>>12 & 0xf0
-#define BIN8(v)                       (BIN__B(BIN__N(0x##v)))
-#define BIN16(bin16,bin8)             ((BIN8(bin16)<<8)|(BIN8(bin8)))
-#define BIN32(bin32,bin24,bin16,bin8) ((BIN8(bin32)<<24)|(BIN8(bin24)<<16)|(BIN8(bin16)<<8)|(BIN8(bin8)))
+// Generic
+#define STATIC_ASSERT(a)            {static int arr[(a)?1:-1];}
+#define BIN__N(x)                   (x) | x>>3 | x>>6 | x>>9
+#define BIN__B(x)                   (x) & 0xf | (x)>>12 & 0xf0
+#define BIN8(v)                     (BIN__B(BIN__N(0x##v)))
+#define BIN16(bin16,bin8)           ((BIN8(bin16)<<8)|(BIN8(bin8)))
 
 #define FLAG(x,y)                   (((x)&(y))!=0)
 #define CLAMP(x,low,high)           (((x)>(high))?(high):(((x)<(low))?(low):(x)))
 #define SQRT3T2_FLOAT               (3.4641016151f)
 #define SQRT3_FLOAT                 (1.732050807568877f)
 #define RAD2DEG                     (57.29577951f)
-
-#define VAR_CALC_QUEST(tid,val)     ((tid)*1000+(val))
-#define VAR_GLOBAL                  (0)
-#define VAR_LOCAL                   (1)
-#define VAR_UNICUM                  (2)
-#define VAR_FLAG_QUEST              (0x1)
-#define VAR_FLAG_RANDOM             (0x2)
-#define VAR_FLAG_NO_CHECK           (0x4)
+#define CONVERT_GRAMM(x)            ((x)*453)
 
 #define LEXEMS_SIZE                 (128)
 #define MAX_HOLO_INFO               (250)
@@ -129,38 +131,23 @@ typedef vector<Location*>::iterator LocVecIt;
 #define MAX_PARAMETERS_ARRAYS       (100)
 #define MAX_NAME                    (30)
 #define MAX_STORED_IP               (20)
+#define MAX_HEX_OFFSET              (50)
+#define AP_DIVIDER                  (100)
+#define MAX_CRIT_TYPES              (1000)
 
-#define CAR_MAX_BLOCKS              (80)
-#define CAR_MAX_BAG_POSITION        (12)
+// Vars
+#define VAR_CALC_QUEST(tid,val)     ((tid)*1000+(val))
+#define VAR_GLOBAL                  (0)
+#define VAR_LOCAL                   (1)
+#define VAR_UNICUM                  (2)
+#define VAR_LOCAL_LOCATION          (3)
+#define VAR_LOCAL_MAP               (4)
+#define VAR_LOCAL_ITEM              (5)
+#define VAR_FLAG_QUEST              (0x1)
+#define VAR_FLAG_RANDOM             (0x2)
+#define VAR_FLAG_NO_CHECK           (0x4)
 
-#define WEAR_MAX                    (30000)
-#define BI_LOWBROKEN                (0x01)
-#define BI_NORMBROKEN               (0x02)
-#define BI_HIGHBROKEN               (0x04)
-#define BI_NOTRESC                  (0x08)
-#define BI_BROKEN                   (0x0F)
-#define BI_SERVICE                  (0x10)
-#define BI_SERVICE_EXT              (0x20)
-#define BI_ETERNAL                  (0x40)
-
-#define LOCKER_ISOPEN               (0x01)
-#define LOCKER_BROKEN               (0x08)
-#define LOCKER_NOOPEN               (0x10)
-
-#define ITEM_TILE                   (0)
-#define ITEM_ARMOR                  (1)
-#define ITEM_DRUG                   (2)
-#define ITEM_WEAPON                 (3)
-#define ITEM_AMMO                   (4)
-#define ITEM_MISC                   (5)
-#define ITEM_MISC_EX                (6)
-#define ITEM_KEY                    (7)
-#define ITEM_CONTAINER              (8)
-#define ITEM_DOOR                   (9)
-#define ITEM_GRID                   (10)
-#define ITEM_GENERIC                (11)
-#define ITEM_WALL                   (12)
-
+// Items
 #define USE_PRIMARY                 (0)
 #define USE_SECONDARY               (1)
 #define USE_THIRD                   (2)
@@ -169,255 +156,71 @@ typedef vector<Location*>::iterator LocVecIt;
 #define MAX_USES					(3)
 #define USE_NONE                    (15)
 
-#define ITEM_HIDDEN                 (0x00000001)
-#define ITEM_FLAT                   (0x00000002)
-#define ITEM_NO_BLOCK               (0x00000004)
-#define ITEM_SHOOT_THRU             (0x00000008)
-#define ITEM_LIGHT_THRU             (0x00000010)
-#define ITEM_MULTI_HEX              (0x00000020)
-#define ITEM_WALL_TRANS_END         (0x00000040)
-#define ITEM_TWO_HANDS              (0x00000080)
-#define ITEM_BIG_GUN                (0x00000100)
-#define ITEM_ALWAYS_VIEW            (0x00000200)
-#define ITEM_HAS_TIMER              (0x00000400)
-#define ITEM_BAD_ITEM               (0x00000800)
-#define ITEM_NO_HIGHLIGHT           (0x00001000)
-#define ITEM_SHOW_ANIM              (0x00002000)
-#define ITEM_SHOW_ANIM_EXT          (0x00004000)
-#define ITEM_GECK                   (0x00010000)
-#define ITEM_TRAP                   (0x00020000)
-#define ITEM_NO_LIGHT_INFLUENCE     (0x00040000)
-#define ITEM_NO_LOOT                (0x00080000)
-#define ITEM_NO_STEAL               (0x00100000)
-#define ITEM_GAG                    (0x00200000)
-#define ITEM_LIGHT                  (0x00400000)
-#define ITEM_COLORIZE               (0x00800000)
-#define ITEM_CAN_USE_ON_SMTH        (0x01000000)
-#define ITEM_CAN_LOOK               (0x02000000)
-#define ITEM_CAN_TALK               (0x04000000)
-#define ITEM_CAN_PICKUP             (0x08000000)
-#define ITEM_CAN_USE                (0x10000000)
-#define ITEM_CACHED                 (0x80000000)
+#define CAR_MAX_BLOCKS              (80)
+#define CAR_MAX_BAG_POSITION        (12)
 
-#define RADIO_DISABLE_SEND          (0x01)
-#define RADIO_DISABLE_RECV          (0x02)
-#define RADIO_BROADCAST_FORCE_ALL   (0)
-#define RADIO_BROADCAST_MAP         (20)
-#define RADIO_BROADCAST_LOCATION    (40)
-#define RADIO_BROADCAST_ZONE(x)     (100+CLAMP(x,1,100))
-#define RADIO_BROADCAST_WORLD       (250)
-
-#define WEAPON_PERK_FAST_RELOAD     (6)
-
-#define PID_HOLODISK                (58)
-#define PID_RADIO                   (100)
-
+// Parameters
 #define MAX_PARAMS                  (1000)
-#define ST_STRENGTH                 (0)
-#define ST_PERCEPTION               (1)
-#define ST_ENDURANCE                (2)
-#define ST_CHARISMA                 (3)
-#define ST_INTELLECT                (4)
-#define ST_AGILITY                  (5)
-#define ST_LUCK                     (6)
-#define ST_MAX_LIFE                 (7)
-#define ST_ACTION_POINTS            (8)
-#define ST_ARMOR_CLASS              (9)
-#define ST_MELEE_DAMAGE             (10)
-#define ST_CARRY_WEIGHT             (11)
-#define ST_SEQUENCE                 (12)
-#define ST_HEALING_RATE             (13)
-#define ST_CRITICAL_CHANCE          (14)
-#define ST_MAX_CRITICAL             (15)
-#define ST_NORMAL_ABSORB            (16)
-#define ST_LASER_ABSORB             (17)
-#define ST_FIRE_ABSORB              (18)
-#define ST_PLASMA_ABSORB            (19)
-#define ST_ELECTRO_ABSORB           (20)
-#define ST_EMP_ABSORB               (21)
-#define ST_EXPLODE_ABSORB           (22)
-#define ST_NORMAL_RESIST            (23)
-#define ST_LASER_RESIST             (24)
-#define ST_FIRE_RESIST              (25)
-#define ST_PLASMA_RESIST            (26)
-#define ST_ELECTRO_RESIST           (27)
-#define ST_EMP_RESIST               (28)
-#define ST_EXPLODE_RESIST           (29)
-#define ST_RADIATION_RESISTANCE     (30)
-#define ST_POISON_RESISTANCE        (31)
-#define ST_STRENGTH_EXT             (32)
-#define ST_PERCEPTION_EXT           (33)
-#define ST_ENDURANCE_EXT            (34)
-#define ST_CHARISMA_EXT             (35)
-#define ST_INTELLECT_EXT            (36)
-#define ST_AGILITY_EXT              (37)
-#define ST_LUCK_EXT                 (38)
-#define ST_MAX_LIFE_EXT             (39)
-#define ST_ACTION_POINTS_EXT        (40)
-#define ST_ARMOR_CLASS_EXT          (41)
-#define ST_MELEE_DAMAGE_EXT         (42)
-#define ST_CARRY_WEIGHT_EXT         (43)
-#define ST_SEQUENCE_EXT             (44)
-#define ST_HEALING_RATE_EXT         (45)
-#define ST_CRITICAL_CHANCE_EXT      (46)
-#define ST_MAX_CRITICAL_EXT         (47)
-#define ST_NORMAL_ABSORB_EXT        (48)
-#define ST_LASER_ABSORB_EXT         (49)
-#define ST_FIRE_ABSORB_EXT          (50)
-#define ST_PLASMA_ABSORB_EXT        (51)
-#define ST_ELECTRO_ABSORB_EXT       (52)
-#define ST_EMP_ABSORB_EXT           (53)
-#define ST_EXPLODE_ABSORB_EXT       (54)
-#define ST_NORMAL_RESIST_EXT        (55)
-#define ST_LASER_RESIST_EXT         (56)
-#define ST_FIRE_RESIST_EXT          (57)
-#define ST_PLASMA_RESIST_EXT        (58)
-#define ST_ELECTRO_RESIST_EXT       (59)
-#define ST_EMP_RESIST_EXT           (60)
-#define ST_EXPLODE_RESIST_EXT       (61)
-#define ST_RADIATION_RESISTANCE_EXT (62)
-#define ST_POISON_RESISTANCE_EXT    (63)
-#define ST_AGE                      (70)
-#define ST_GENDER					(71)
-#define ST_CURRENT_HP				(72)
-#define ST_POISONING_LEVEL          (73)
-#define ST_RADIATION_LEVEL          (74)
-#define ST_CURRENT_AP				(75)
-#define ST_EXPERIENCE				(76)
-#define ST_LEVEL                    (77)
-#define ST_UNSPENT_SKILL_POINTS     (78)
-#define ST_UNSPENT_PERKS            (79)
-#define ST_KARMA                    (80)
-#define ST_FOLLOW_CRIT              (81)
-#define ST_REPLICATION_MONEY        (82)
-#define ST_REPLICATION_COUNT        (83)
-#define ST_REPLICATION_TIME         (84)
-#define ST_REPLICATION_COST         (85)
-#define ST_TURN_BASED_AC            (86)
-#define ST_MAX_MOVE_AP              (87)
-#define ST_MOVE_AP                  (88)
-#define ST_NPC_ROLE                 (89)
-#define ST_BONUS_LOOK               (101)
-#define ST_RATE_OBJECT              (102)
-#define ST_FREE_BARTER_PLAYER       (103)
-#define ST_DIALOG_ID                (104)
-#define ST_AI_ID                    (105)
-#define ST_TEAM_ID                  (106)
-#define ST_BAG_ID                   (107)
-#define ST_BASE_CRTYPE              (112)
-#define ST_TALK_DISTANCE            (115)
-#define ST_SCALE_FACTOR             (116)
-#define ST_ANIM3D_LAYER_BEGIN       (150)
-#define ST_ANIM3D_LAYER_END         (179)
-#define MAX_SKILL_VAL               (300)
-#define SK_SMALL_GUNS               (200)
-#define SK_BIG_GUNS                 (201)
-#define SK_ENERGY_WEAPONS           (202)
-#define SK_UNARMED                  (203)
-#define SK_MELEE_WEAPONS            (204)
-#define SK_THROWING                 (205)
-#define SK_FIRST_AID                (206)
-#define SK_DOCTOR                   (207)
-#define SK_SNEAK                    (208)
-#define SK_LOCKPICK                 (209)
-#define SK_STEAL                    (210)
-#define SK_TRAPS                    (211)
-#define SK_SCIENCE                  (212)
-#define SK_REPAIR                   (213)
-#define SK_SPEECH                   (214)
-#define SK_BARTER                   (215)
-#define SK_OUTDOORSMAN              (217)
-#define TAG_SKILL1                  (226)
-#define TAG_SKILL2                  (227)
-#define TAG_SKILL3                  (228)
-#define TAG_SKILL4                  (229)
-#define TO_SK_REPAIR                (232)
-#define TO_SK_SCIENCE               (233)
-#define TO_BATTLE                   (238)
-#define TO_TRANSFER                 (239)
-#define TO_REMOVE_FROM_GAME         (240)
-#define TO_KARMA_VOTING             (242)
-#define TB_BATTLE_TIMEOUT           (10000000)
-#define TB_BATTLE_TIMEOUT_CHECK(to) ((to)>100000)
-#define PE_BONUS_HTH_ATTACKS        (302)
-#define PE_BONUS_RATE_OF_FIRE       (306)
-#define PE_SILENT_RUNNING           (316)
-#define PE_MASTER_TRADER            (318)
-#define PE_HEAVE_HO                 (336)
-#define PE_PATHFINDER               (344)
-#define PE_SCOUT                    (346)
-#define PE_QUICK_POCKETS            (349)
-#define PE_SMOOTH_TALKER            (350)
-#define PE_ADRENALINE_RUSH          (380)
-#define PE_HTH_EVADE                (394)
-#define DAMAGE_POISONED             (500)
-#define DAMAGE_RADIATED             (501)
-#define DAMAGE_EYE                  (502)
-#define DAMAGE_RIGHT_ARM            (503)
-#define DAMAGE_LEFT_ARM             (504)
-#define DAMAGE_RIGHT_LEG            (505)
-#define DAMAGE_LEFT_LEG             (506)
-#define MODE_HIDE                   (510)
-#define MODE_NO_STEAL               (511)
-#define MODE_NO_BARTER              (512)
-#define MODE_NO_ENEMY_STACK         (513)
-#define MODE_NO_PVP                 (514)
-#define MODE_END_COMBAT             (515)
-#define MODE_DEFAULT_COMBAT         (516)
-#define MODE_NO_HOME                (517)
-#define MODE_GECK                   (518)
-#define MODE_NO_FAVORITE_ITEM       (519)
-#define MODE_NO_ITEM_GARBAGER       (520)
-#define MODE_DLG_SCRIPT_BARTER      (521)
-#define MODE_UNLIMITED_AMMO         (522)
-#define MODE_NO_HEAL                (526)
-#define MODE_INVULNERABLE           (527)
-#define MODE_NO_FLATTEN             (528)
-#define MODE_RANGE_HTH              (530)
-#define MODE_NO_LOOT                (532)
-#define TRAIT_SMALL_FRAME           (552)
-#define TRAIT_FAST_SHOT             (557)
-#define TRAIT_SEX_APPEAL            (563)
-#define TRAIT_NIGHT_PERSON          (565)
+#define SKILL_OFFSET(skill)         ((skill) + (GameOpt->AbsoluteOffsets ? 0 : SKILL_BEGIN))
+#define PERK_OFFSET(perk)           ((perk)  + (GameOpt->AbsoluteOffsets ? 0 : PERK_BEGIN ))
+#define TB_BATTLE_TIMEOUT           (100000000)
+#define TB_BATTLE_TIMEOUT_CHECK(to) ((to)>10000000)
+#define SKILL_BEGIN                 (GameOpt->SkillBegin)
+#define SKILL_END                   (GameOpt->SkillEnd)
+#define TIMEOUT_BEGIN               (GameOpt->TimeoutBegin)
+#define TIMEOUT_END                 (GameOpt->TimeoutEnd)
+#define KILL_BEGIN                  (GameOpt->KillBegin)
+#define KILL_END                    (GameOpt->KillEnd)
+#define PERK_BEGIN                  (GameOpt->PerkBegin)
+#define PERK_END                    (GameOpt->PerkEnd)
+#define ADDICTION_BEGIN             (GameOpt->AddictionBegin)
+#define ADDICTION_END               (GameOpt->AddictionEnd)
+#define KARMA_BEGIN                 (GameOpt->KarmaBegin)
+#define KARMA_END                   (GameOpt->KarmaEnd)
+#define DAMAGE_BEGIN                (GameOpt->DamageBegin)
+#define DAMAGE_END                  (GameOpt->DamageEnd)
+#define TRAIT_BEGIN                 (GameOpt->TraitBegin)
+#define TRAIT_END                   (GameOpt->TraitEnd)
+#define REPUTATION_BEGIN            (GameOpt->ReputationBegin)
+#define REPUTATION_END              (GameOpt->ReputationEnd)
 
-#define ITEM_EVENT_MAX              (8)
-#define CRITTER_EVENT_MAX           (42)
-
-#define MAP_EVENT_MAX               (12)
+// Events
 #define MAP_LOOP_FUNC_MAX           (5)
 #define MAP_MAX_DATA                (100)
 
-#define FH_BLOCK                       BIN8(00000001)
-#define FH_NOTRAKE                     BIN8(00000010)
-#define FH_WALL                        BIN8(00000100)
-#define FH_SCEN                        BIN8(00001000)
-#define FH_SCEN_GRID                   BIN8(00010000)
-#define FH_TRIGGER                     BIN8(00100000)
-#define FH_CRITTER            BIN8(00000001)
-#define FH_DEAD_CRITTER       BIN8(00000010)
-#define FH_ITEM               BIN8(00000100)
-#define FH_BLOCK_ITEM         BIN8(00010000)
-#define FH_NRAKE_ITEM         BIN8(00100000)
-#define FH_WALK_ITEM          BIN8(01000000)
-#define FH_GAG_ITEM           BIN8(10000000)
-#define FH_NOWAY             BIN16(00010001,00000001)
-#define FH_NOSHOOT           BIN16(00100000,00000010)
+// Map blocks
+#define FH_BLOCK                              BIN8(00000001)
+#define FH_NOTRAKE                            BIN8(00000010)
+#define FH_WALL                               BIN8(00000100)
+#define FH_SCEN                               BIN8(00001000)
+#define FH_SCEN_GRID                          BIN8(00010000)
+#define FH_TRIGGER                            BIN8(00100000)
+#define FH_CRITTER                   BIN8(00000001)
+#define FH_DEAD_CRITTER              BIN8(00000010)
+#define FH_ITEM                      BIN8(00000100)
+#define FH_BLOCK_ITEM                BIN8(00010000)
+#define FH_NRAKE_ITEM                BIN8(00100000)
+#define FH_WALK_ITEM                 BIN8(01000000)
+#define FH_GAG_ITEM                  BIN8(10000000)
+#define FH_NOWAY                    BIN16(00010001,00000001)
+#define FH_NOSHOOT                  BIN16(00100000,00000010)
 
-#define ACCESS_CLIENT               BIN8(00000001)
-#define ACCESS_TESTER               BIN8(00000010)
-#define ACCESS_MODER                BIN8(00000100)
-#define ACCESS_ADMIN                BIN8(00001000)
+// Game access (not same as in scripts)
+#define ACCESS_CLIENT               (0x1)
+#define ACCESS_TESTER               (0x2)
+#define ACCESS_MODER                (0x4)
+#define ACCESS_ADMIN                (0x8)
 
 // GameOptions::ChangeLang
-#define CHANGE_LANG_CTRL_SHIFT  (0)
-#define CHANGE_LANG_ALT_SHIFT   (1)
+#define CHANGE_LANG_CTRL_SHIFT      (0)
+#define CHANGE_LANG_ALT_SHIFT       (1)
 // GameOptions::IndicatorType
-#define INDICATOR_LINES         (0)
-#define INDICATOR_NUMBERS       (1)
-#define INDICATOR_BOTH          (2)
+#define INDICATOR_LINES             (0)
+#define INDICATOR_NUMBERS           (1)
+#define INDICATOR_BOTH              (2)
 // GameOptions::Zoom
-#define MIN_ZOOM                (0.2f)
-#define MAX_ZOOM                (10.0f)
+#define MIN_ZOOM                    (0.2f)
+#define MAX_ZOOM                    (10.0f)
 
 struct GameOptions
 {
@@ -482,12 +285,6 @@ struct GameOptions
 	uint   ApCostAimTorso;
 	uint   ApCostAimArms;
 	uint   ApCostAimLegs;
-	uint   HitAimEyes;
-	uint   HitAimHead;
-	uint   HitAimGroin;
-	uint   HitAimTorso;
-	uint   HitAimArms;
-	uint   HitAimLegs;
 	bool   RunOnCombat;
 	bool   RunOnTransfer;
 	uint   GlobalMapWidth;
@@ -510,6 +307,8 @@ struct GameOptions
 	uint   TalkDistance;
 	uint   MinNameLength;
 	uint   MaxNameLength;
+	uint   DlgTalkMinTime;
+	uint   DlgBarterMinTime;
 
 	bool   AbsoluteOffsets;
 	uint   SkillBegin;
@@ -640,6 +439,14 @@ struct GameOptions
 	int    ClientPathRefCount;
 	string ServerPath;
 	int    ServerPathRefCount;
+
+	// Engine data
+	void (*CritterChangeParameter)(Critter& cr, uint index); // Call for correct changing critter parameter
+	CritterType* CritterTypes; // Array of critter types, maximum is MAX_CRIT_TYPES
+
+	// Callbacks
+	uint (*GetUseApCost)(CritterMutual& cr, Item& item, uint8 mode);
+	uint (*GetAttackDistantion)(CritterMutual& cr, Item& item, uint8 mode);
 };
 
 struct Mutex
@@ -661,6 +468,24 @@ struct ScriptString
 struct SyncObj
 {
 	void*  CurMngr;
+};
+
+struct CritterType
+{
+	bool Enabled;
+	int8 Name[64];
+	int8 SoundName[64];
+	uint Alias;
+	uint Multihex;
+
+	bool Is3d;
+	bool CanWalk;
+	bool CanRun;
+	bool CanAim;
+	bool CanArmor;
+	bool CanRotate;
+
+	bool Anim1[21];
 };
 
 struct ProtoItem
@@ -1081,14 +906,19 @@ struct Item
 
 	int16 RefCounter;
 	bool  IsNotValid;
-	bool  Reserved1;
 
-	// Used only in server
+#ifdef __SERVER
 	int      FuncId[ITEM_EVENT_MAX];
 	Critter* ViewByCritter;
 	ItemVec* ChildItems;
 	int8*    Lexems;
 	SyncObj  Sync;
+#endif
+
+#ifdef __CLIENT
+	string   Lexems;
+	int      LexemsRefCounter;
+#endif
 
 	uint   GetId()      {return Id;}
 	uint16 GetProtoId() {return Proto->GetPid();}
@@ -1153,7 +983,6 @@ struct Item
 	int    WeapGetNeedStrength()     {return Proto->Weapon.MinSt;}
 	bool   WeapIsUseAviable(int use) {return use >= USE_PRIMARY && use <= USE_THIRD ? (((Proto->Weapon.Uses >> use) & 1) != 0) : false;}
 	bool   WeapIsCanAim(int use)     {return use < MAX_USES && Proto->Weapon.Aim[use];}
-	bool   WeapIsFastReload()        {return Proto->Weapon.Perk == WEAPON_PERK_FAST_RELOAD;}
 
 	// Container
 	bool   IsContainer()          {return Proto->IsContainer();}
@@ -1198,11 +1027,6 @@ struct Item
 	int    LightGetFlags()     {return Data.LightFlags ? Data.LightFlags : Proto->LightFlags;}
 	uint   LightGetColor()     {return (Data.LightColor ? Data.LightColor : Proto->LightColor) & 0xFFFFFF;}
 
-	// Radio
-	bool   IsRadio()                    {return GetProtoId() == PID_RADIO;}
-	uint16 RadioGetChannel()            {return Data.Radio.Channel;}
-	void   RadioSetChannel(uint16 chan) {Data.Radio.Channel = chan;}
-
 	// Car
 	bool   IsCar()                 {return Proto->IsCar();}
 	uint   CarGetDoorId()          {return Data.Car.DoorId;}
@@ -1215,20 +1039,9 @@ struct Item
 	uint   CarGetSpeed()           {return Proto->MiscEx.Car.Speed;}
 	uint8  CarGetCritCapacity()    {return Proto->MiscEx.Car.CritCapacity;}
 
-	// Holodisk
-	bool   IsHolodisk()            {return GetProtoId() == PID_HOLODISK;}
-	uint   HolodiskGetNum()        {return Data.Holodisk.Number;}
-
 	// Trap
 	bool   IsTrap()                {return FLAG(Data.Flags, ITEM_TRAP);}
 	int    TrapGetValue()          {return Data.TrapValue;}
-};
-
-struct ItemCl
-{
-	Item   Main;
-	string Lexems;
-	int    LexemsRefCounter;
 };
 
 struct GlobalMapGroup
@@ -1383,10 +1196,9 @@ struct Critter
 	GlobalMapGroup* GroupSelf;
 	GlobalMapGroup* GroupMove;
 
-	Item     DefItemSlotMain;
-	Item     DefItemSlotExt;
-	Item     DefItemSlotArmor;
 	ItemVec  InvItems;
+	Item*    DefItemSlotHand;
+	Item*    DefItemSlotArmor;
 	Item*    ItemSlotMain;
 	Item*    ItemSlotExt;
 	Item*    ItemSlotArmor;
@@ -1445,18 +1257,41 @@ struct Npc : Critter
 {
 	uint        NextRefreshBagTick;
 	NpcPlaneVec AiPlanes;
-	uint        LastBattleWeaponId;
-	uint        LastBattleWeaponUse;
 	uint        Reserved;
 };
 
 struct CritterCl
 {
-	uint   Id;
-	uint16 Pid;
-	uint16 HexX,HexY;
-	uint8  CrDir;
-	int    Params[MAX_PARAMS];
+	uint      Id;
+	uint16    Pid;
+	uint16    HexX,HexY;
+	uint8     Dir;
+	int       Params[MAX_PARAMS];
+	uint      NameColor;
+	uint      ContourColor;
+	Uint16Vec LastHexX,LastHexY;
+	uint8     Cond;
+	uint8     CondExt;
+	uint      Flags;
+	uint      BaseType,BaseTypeAlias;
+	uint      ApRegenerationTick;
+	int16     Multihex;
+
+	string    Name;
+	int       NameRefCounter;
+	string    NameOnHead;
+	int       NameOnHeadRefCounter;
+	string    Lexems;
+	int       LexemsRefCounter;
+	string    Avatar;
+	int8      Password[MAX_NAME+1];
+
+	ItemVec   InvItems;
+	Item*     DefItemSlotHand;
+	Item*     DefItemSlotArmor;
+	Item*     ItemSlotMain;
+	Item*     ItemSlotExt;
+	Item*     ItemSlotArmor;
 };
 
 struct Scenery
@@ -1802,31 +1637,33 @@ int GetDistantion(int x1, int y1, int x2, int y2)
 
 void static_asserts()
 {
-	STATIC_ASSERT(sizeof(uint)      == 4  );
-	STATIC_ASSERT(sizeof(uint16)    == 2  );
-	STATIC_ASSERT(sizeof(uint8)     == 1  );
-	STATIC_ASSERT(sizeof(int)       == 4  );
-	STATIC_ASSERT(sizeof(int16)     == 2  );
-	STATIC_ASSERT(sizeof(int8)      == 1  );
-	STATIC_ASSERT(sizeof(bool)      == 1  );
-	STATIC_ASSERT(sizeof(string)    == 28 );
-	STATIC_ASSERT(sizeof(IntVec)    == 16 );
-	STATIC_ASSERT(sizeof(IntMap)    == 12 );
-	STATIC_ASSERT(sizeof(IntSet)    == 12 );
-	STATIC_ASSERT(sizeof(IntPair)   == 8  );
-	STATIC_ASSERT(sizeof(GameVar)   == 28 );
-	STATIC_ASSERT(sizeof(ProtoItem) == 180);
-	STATIC_ASSERT(sizeof(Mutex)     == 24 );
-	STATIC_ASSERT(sizeof(Spinlock)  == 4  );
+	STATIC_ASSERT(sizeof(uint)        == 4  );
+	STATIC_ASSERT(sizeof(uint16)      == 2  );
+	STATIC_ASSERT(sizeof(uint8)       == 1  );
+	STATIC_ASSERT(sizeof(int)         == 4  );
+	STATIC_ASSERT(sizeof(int16)       == 2  );
+	STATIC_ASSERT(sizeof(int8)        == 1  );
+	STATIC_ASSERT(sizeof(bool)        == 1  );
+	STATIC_ASSERT(sizeof(string)      == 28 );
+	STATIC_ASSERT(sizeof(IntVec)      == 16 );
+	STATIC_ASSERT(sizeof(IntMap)      == 12 );
+	STATIC_ASSERT(sizeof(IntSet)      == 12 );
+	STATIC_ASSERT(sizeof(IntPair)     == 8  );
+	STATIC_ASSERT(sizeof(GameVar)     == 28 );
+	STATIC_ASSERT(sizeof(ProtoItem)   == 180);
+	STATIC_ASSERT(sizeof(Mutex)       == 24 );
+	STATIC_ASSERT(sizeof(Spinlock)    == 4  );
+	STATIC_ASSERT(sizeof(GameOptions) == 1088);
 
 	STATIC_ASSERT(offsetof(TemplateVar, Flags)              == 76  );
 	STATIC_ASSERT(offsetof(NpcPlane, RefCounter)            == 88  );
 	STATIC_ASSERT(offsetof(GlobalMapGroup, EncounterForce)  == 84  );
-	STATIC_ASSERT(offsetof(Item, Lexems)                    == 160 );
+	STATIC_ASSERT(offsetof(Item, IsNotValid)                == 118 );
 	STATIC_ASSERT(offsetof(CritterTimeEvent, Identifier)    == 12  );
-	STATIC_ASSERT(offsetof(Critter, RefCounter)             == 9800);
-	STATIC_ASSERT(offsetof(Client, LanguageMsg)             == 9868);
-	STATIC_ASSERT(offsetof(Npc, Reserved)                   == 9832);
+	STATIC_ASSERT(offsetof(Critter, RefCounter)             == 9304);
+	STATIC_ASSERT(offsetof(Client, LanguageMsg)             == 9372);
+	STATIC_ASSERT(offsetof(Npc, Reserved)                   == 9328);
+	STATIC_ASSERT(offsetof(CritterCl, ItemSlotArmor)        == 4264);
 	STATIC_ASSERT(offsetof(Scenery, RunTime.RefCounter)     == 244 );
 	STATIC_ASSERT(offsetof(MapEntire, Dir)                  == 8   );
 	STATIC_ASSERT(offsetof(SceneryToClient, Reserved1)      == 30  );

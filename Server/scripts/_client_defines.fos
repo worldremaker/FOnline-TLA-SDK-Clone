@@ -85,6 +85,7 @@
 #define FT_NOBREAK_LINE        (0x0002)
 #define FT_CENTERX             (0x0004)
 #define FT_CENTERY             (0x0008)
+#define FT_CENTERXY            (0x000C)
 #define FT_CENTERR             (0x0010)
 #define FT_BOTTOM              (0x0020)
 #define FT_UPPER               (0x0040)

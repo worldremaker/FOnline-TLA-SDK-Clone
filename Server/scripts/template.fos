@@ -43,9 +43,13 @@ void FuncName(Critter& player, int param0, int param1, int param2, string@ param
 	// void RunServerScriptUnsafe function, without access checks, "unsafe_" prefix required
 void unsafe_FuncName(Critter& player, int param0, int param1, int param2, string@ param3, int[]@ param4)
 	// Critter param get behaviour
-int _FuncName(Critter& cr, uint index)
-	// Critter param change behaviour
-void _FuncName(Critter& cr, uint index, int oldValue)
+int getParam_FuncName(Critter& cr, uint index)
+	// Critter param changed behaviour
+void changedParam_FuncName(Critter& cr, uint index, int oldValue)
+	// Critter param send behaviour
+bool allowParam_FuncName(uint index, Critter& fromCr, Critter& toCr)
+	// Critter slot send behaviour
+bool allowSlot_FuncName(uint8 slot, Item& item, Critter& fromCr, Critter& toCr)
 
 // Critter
 	// CRITTER_EVENT_IDLE
