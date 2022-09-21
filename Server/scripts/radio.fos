@@ -12,7 +12,7 @@ void EditRadioSettings(Critter& player, Item& radio) // Export
 
 void unsafe_ChangeChannel(Critter& player, int radioId, int radioChannel, int, string@, int[]@)
 {
-	Item@ radio=GetItem(radioId);
+	Item@ radio=player.GetItemById(radioId);
 	if(not valid(radio) || not FLAG(radio.Flags,ITEM_RADIO)) return;
 	if(FLAG(radio.RadioFlags,RADIO_DISABLE_SHIFT_CHANNEL)) return;
 
@@ -22,7 +22,7 @@ void unsafe_ChangeChannel(Critter& player, int radioId, int radioChannel, int, s
 
 void unsafe_ChangeActivity(Critter& player, int radioId, int isSend, int, string@, int[]@)
 {
-	Item@ radio=GetItem(radioId);
+	Item@ radio=player.GetItemById(radioId);
 	if(not valid(radio) || not FLAG(radio.Flags,ITEM_RADIO)) return;
 
 	if(isSend!=0)
@@ -45,7 +45,7 @@ void unsafe_ChangeActivity(Critter& player, int radioId, int isSend, int, string
 
 void unsafe_ChangeBroadcast(Critter& player, int radioId, int broadcastSend, int broadcastRecv, string@, int[]@)
 {
-	Item@ radio=GetItem(radioId);
+	Item@ radio=player.GetItemById(radioId);
 	if(not valid(radio) || not FLAG(radio.Flags,ITEM_RADIO)) return;
 
 	// Change send
