@@ -484,7 +484,7 @@ void LocInfo(Critter& cr, int isRad, int value, int p2)
 	cr.Say(SAY_NETMSG,"MapPid "+cr.GetMap().GetProtoId());
 	cr.Say(SAY_NETMSG,"LocPid "+loc.GetProtoId());
 	cr.Say(SAY_NETMSG,"Visible "+(loc.Visible?"true":"false"));
-	cr.Say(SAY_NETMSG,"GeckEnabled "+(loc.GeckEnabled?"true":"false"));
+	cr.Say(SAY_NETMSG,"GeckVisible "+(loc.GeckVisible?"true":"false"));
 	cr.Say(SAY_NETMSG,"AutoGarbage "+(loc.AutoGarbage?"true":"false"));
 	cr.Say(SAY_NETMSG,"GeckCount "+loc.GeckCount);
 	cr.Say(SAY_NETMSG,"Radius "+loc.Radius);
@@ -1189,7 +1189,7 @@ void patchBunker(Critter & cr, int, int, int)
 	}
 
 	loc.Visible=false;
-	loc.GeckEnabled=false;
+	loc.GeckVisible=false;
 	loc.AutoGarbage=false;
 	loc.Radius = 6;
 }

@@ -81,7 +81,7 @@ bool TransitToNewLocation(Critter& cr, uint16 locPid)
 
 	Location@ loc = GetLocation(locId);
 	loc.Visible = false;
-	loc.GeckEnabled = false;
+	loc.GeckVisible = false;
 	loc.AutoGarbage = true;
 
 	FlushScreen(cr, true, 3000);

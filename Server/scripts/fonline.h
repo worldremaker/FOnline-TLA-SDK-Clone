@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 22.11.2010
-// Server version 384, MSVS2008
+// Last update 28.11.2010
+// Server version 388, MSVS2008
 // Default calling convention - cdecl
 //
 
@@ -1482,11 +1482,11 @@ struct ProtoMap
 	string Name;
 	uint16 Pid;
 
-	uint   GetTilesSize()                            {return (Header.MaxHexX/2)*(Header.MaxHexY/2)*sizeof(uint);}
-	uint16 GetTile(uint16 tx, uint16 ty)             {return Tiles[ty*(Header.MaxHexX/2)+tx]>>16;}
-	uint16 GetRoof(uint16 tx, uint16 ty)             {return Tiles[ty*(Header.MaxHexX/2)+tx]&0xFFFF;}
-	void   SetTile(uint16 tx, uint16 ty, uint16 pic) {((uint16*)&Tiles[ty*(Header.MaxHexX/2)+tx])[1]=pic;}
-	void   SetRoof(uint16 tx, uint16 ty, uint16 pic) {((uint16*)&Tiles[ty*(Header.MaxHexX/2)+tx])[0]=pic;}
+	uint GetTilesSize()                              {return (Header.MaxHexX / 2) * (Header.MaxHexY / 2) * sizeof(uint) * 2;}
+	uint GetTile(uint16 tx, uint16 ty)               {return Tiles[ty * (Header.MaxHexX / 2) * 2 + tx * 2];}
+	uint GetRoof(uint16 tx, uint16 ty)               {return Tiles[ty * (Header.MaxHexX / 2) * 2 + tx * 2 + 1];}
+	void SetTile(uint16 tx, uint16 ty, uint picHash) {Tiles[ty * (Header.MaxHexX / 2) * 2 + tx * 2] = picHash;}
+	void SetRoof(uint16 tx, uint16 ty, uint picHash) {Tiles[ty * (Header.MaxHexX / 2) * 2 + tx * 2 + 1] = picHash;}
 };
 
 struct Map
@@ -1562,7 +1562,7 @@ struct ProtoLocation
 	uint16      Radius;
 	bool        Visible;
 	bool        AutoGarbage;
-	bool        GeckEnabled;
+	bool        GeckVisible;
 };
 
 struct Location
@@ -1578,7 +1578,7 @@ struct Location
 		uint16 WY;
 		uint16 Radius;
 		bool   Visible;
-		bool   GeckEnabled;
+		bool   GeckVisible;
 		bool   AutoGarbage;
 		bool   ToGarbage;
 		uint   Color;
@@ -1592,8 +1592,7 @@ struct Location
 	int16  RefCounter;
 
 	bool   IsToGarbage()   {return Data.AutoGarbage || Data.ToGarbage;}
-	bool   IsVisible()     {return Data.Visible || IsGeckAviable();}
-	bool   IsGeckAviable() {return Data.GeckEnabled && GeckCount>0;}
+	bool   IsVisible()     {return Data.Visible || (Data.GeckVisible && GeckCount > 0);}
 };
 
 
@@ -1681,7 +1680,7 @@ inline void static_asserts()
 	STATIC_ASSERT(offsetof(SceneryToClient, Reserved1)      == 30  );
 	STATIC_ASSERT(offsetof(ProtoMap, HexFlags)              == 320 );
 	STATIC_ASSERT(offsetof(Map, RefCounter)                 == 794 );
-	STATIC_ASSERT(offsetof(ProtoLocation, GeckEnabled)      == 92  );
+	STATIC_ASSERT(offsetof(ProtoLocation, GeckVisible)      == 92  );
 	STATIC_ASSERT(offsetof(Location, RefCounter)            == 286 );
 }
 
