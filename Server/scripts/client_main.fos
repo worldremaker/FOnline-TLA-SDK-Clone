@@ -128,13 +128,21 @@ void mouse_move(int x, int y)
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Keyboard behaviours. Key codes look in _client_defines.fos DirectInput keyboard scan codes.
 // Return true to disable engine events.
+bool AltDown=false;
 bool key_down(uint8 key)
 {
+	// Effect example, temporary
+	if(key==DIK_LMENU || key==DIK_RMENU) AltDown=true;
+	if(AltDown && key==DIK_Q) SetEffect(EFFECT_2D,-1,"2D_Default.fx");
+	if(AltDown && key==DIK_W) SetEffect(EFFECT_2D,-1,"2D_BlackWhite.fx");
+
 	return GUI_KeyDown(key);
 }
 
 bool key_up(uint8 key)
 {
+	if(key==DIK_LMENU || key==DIK_RMENU) AltDown=false;
+
 	return GUI_KeyUp(key);
 }
 

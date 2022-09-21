@@ -52,6 +52,7 @@
 #define PT_TEXTS               (21)
 #define PT_SAVE                (22)
 #define PT_FONTS               (23)
+#define PT_CACHE               (24)
 	// Server paths
 #define PT_SERVER_ROOT         (30)
 #define PT_SERVER_DATA         (31)
@@ -389,6 +390,17 @@
 // HIT = 4, CRIT = 2, AIMED = 1
 // DEAD = +4
 // any type of hit: >=4, <=11
+
+// Effect types and subtypes
+#define EFFECT_2D              (0)  // 2D_Default.fx
+#define EFFECT_2D_GENERIC       (1)
+#define EFFECT_2D_TILE          (2)
+#define EFFECT_2D_ROOF          (4)
+#define EFFECT_3D              (1)  // 3D_Default.fx
+#define EFFECT_INTERFACE       (2)  // Interface_Default.fx
+#define EFFECT_FONT            (3)  // Font_Default.fx
+	// Subtype for fonts used font type
+#define EFFECT_PRIMITIVE       (4)  // Primitive_Default.fx
 
 #endif // __CLIENT_DEFINES__
 
