@@ -40,6 +40,7 @@
 #define ENTIRE_BAR                                  (23) // Кафе. Гекс для посетителей
 #define ENTIRE_CELLAR_ENTRANCE                      (24) // Штабквартира. Гекс перед входом
 #define ENTIRE_CITIZEN_CAR                          (100) // Два гекса для машин жителей
+#define ENTANCE_CITYHALL                            (1) // Порядковый номер входа "штабквартира"
 #define ENTIRE_CITIZEN_EXIT                         (2) // Специальный закрытый выход для жителей
 #define MAPLOOP_0                                   (65000) // Период, на который тратится 1 батарейка в генераторе, при расчете: активен барьер на входе или нет
 #define CHARGES_INDEX                               (0) // Индекс в map.Data, в котором хранится число заряженных в генератор батареек
@@ -483,8 +484,24 @@ void _GeckMapLoop1(Map& map)
 	}
 }
 
+bool entrance_Geck(Critter@[]& critters, uint8 entrance)
+{
+	if(entrance == ENTANCE_CITYHALL)
+	{
+		for(int k=0, l=critters.length(); k<l; k++)
+		{
+			Critter@ cr = critters[k];
+			if(valid(cr) && !IsPlayerCitizen(cr))
+			{	
+				return false;	
+			}
+		}
+	}
+	return true;
+}
+
 // Жители сразу попадают в штабквартиру, если заходят на карту города из ГЕККа
-void _GeckMapInCritter(Map& map, Critter& cr)
+void _GeckMapInCritter(Map& map, Critter& cr) 
 {
 	if(cr.IsPlayer())
 	{

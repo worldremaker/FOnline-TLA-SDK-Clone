@@ -48,7 +48,7 @@ lang=russ
 15 14030 D _item p PID_PARAMEDICS_BAG > 0 D _item p PID_SUPER_STIMPAK > 2 D _param p SK_DOCTOR } 40 #
 0 14040 @
 15 15000 None 0 #
-17 15010 R _item p PID_PARAMEDICS_BAG - 1 R _item p PID_SUPER_STIMPAK - 3 R _script q_modoc_vampire@r_TryCureVampire 0  R _script dialog@r_FadeOut 1 0 @
+0 15010 R _item p PID_SUPER_STIMPAK - 3 R _script dialog@r_FadeOut 1 0 R _script q_modoc_vampire@r_TryCureVampire 1 0 @
 16 16000 None 0 #
 18 16010 R _var p mod_vampire_reaction = 2 @
 17 17000 None 0 #
