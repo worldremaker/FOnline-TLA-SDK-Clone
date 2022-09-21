@@ -12919,7 +12919,6 @@ Pid=6769
 Type=12
 PicMapName=art\walls\vltwd001.frm
 PicInvName=art\inven\reserved.frm
-Corner=5
 Flags=33554432
 
 [Proto]
@@ -12927,7 +12926,6 @@ Pid=6770
 Type=12
 PicMapName=art\walls\vltwd002.frm
 PicInvName=art\inven\reserved.frm
-Corner=5
 Flags=33554440
 
 [Proto]
@@ -12935,7 +12933,6 @@ Pid=6771
 Type=12
 PicMapName=art\walls\vltwd003.frm
 PicInvName=art\inven\reserved.frm
-Corner=5
 Flags=33554440
 
 [Proto]
@@ -12943,7 +12940,6 @@ Pid=6772
 Type=12
 PicMapName=art\walls\vltwd004.frm
 PicInvName=art\inven\reserved.frm
-Corner=5
 Flags=33554440
 
 [Proto]
@@ -12951,7 +12947,6 @@ Pid=6773
 Type=12
 PicMapName=art\walls\vltwd005.frm
 PicInvName=art\inven\reserved.frm
-Corner=5
 Flags=33554440
 
 [Proto]
@@ -12959,7 +12954,6 @@ Pid=6774
 Type=12
 PicMapName=art\walls\vltwd006.frm
 PicInvName=art\inven\reserved.frm
-Corner=5
 Flags=33554440
 
 [Proto]
@@ -12967,7 +12961,6 @@ Pid=6775
 Type=12
 PicMapName=art\walls\vltwd007.frm
 PicInvName=art\inven\reserved.frm
-Corner=5
 Flags=33554432
 
 [Proto]

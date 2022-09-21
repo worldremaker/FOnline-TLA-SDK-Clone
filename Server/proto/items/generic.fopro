@@ -5351,7 +5351,7 @@ Pid=2585
 Type=11
 PicMapName=art\scenery\mach01.frm
 PicInvName=art\inven\reserved.frm
-Flags=33554448
+Flags=33554456
 SoundId=48
 Material=1
 
@@ -5360,7 +5360,7 @@ Pid=2586
 Type=11
 PicMapName=art\scenery\mach02.frm
 PicInvName=art\inven\reserved.frm
-Flags=33554448
+Flags=33554456
 SoundId=48
 Material=1
 
@@ -17545,7 +17545,6 @@ Pid=4281
 Type=11
 PicMapName=art\scenery\manufact_lathe.fofrm
 PicInvName=art\inven\reserved.frm
-Corner=5
 Flags=301989912
 DisableEgg=1
 Weight=500000

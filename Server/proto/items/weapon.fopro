@@ -4246,25 +4246,18 @@ Weapon.Skill_1=200
 Weapon.Skill_2=200
 Weapon.DmgType_0=1
 Weapon.DmgType_1=1
-Weapon.DmgType_2=256
+Weapon.DmgType_2=1
 Weapon.Anim2_0=10
-Weapon.Anim2_1=11
 Weapon.PicName_0=art\intrface\single.frm
 Weapon.PicName_1=art\intrface\burst.frm
 Weapon.PicName_2=art\intrface\blank.frm
 Weapon.DmgMin_0=38
-Weapon.DmgMin_1=8
 Weapon.DmgMax_0=48
-Weapon.DmgMax_1=16
 Weapon.MaxDist_0=30
-Weapon.MaxDist_1=38
 Weapon.Round_0=1
-Weapon.Round_1=8
 Weapon.Time_0=7
-Weapon.Time_1=6
 Weapon.Aim_0=1
 Weapon.SoundId_0=66
-Weapon.SoundId_1=72
 
 [Proto]
 Pid=1000

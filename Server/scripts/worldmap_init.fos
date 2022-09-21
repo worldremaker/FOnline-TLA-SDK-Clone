@@ -3014,7 +3014,7 @@ enc_34=Chance:1%,Counter:1,Special,Map:Special Unwashed Encounter,Enc:Special1, 
 	table.AddLocationPid(LOCATION_DesertEncounter10);
 	table.AddEncounter(  2, 10037000).Special(true).LocationPid(LOCATION_SpecialToxicEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_toxic,'<',1).AssignLVar(LVAR_special_encounter_toxic,'=',1);
 	table.AddEncounter(  2, 10037010).Special(true).LocationPid(LOCATION_SpecialPariahsEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_pariah,'<',1).AssignLVar(LVAR_special_encounter_pariah,'=',1);
-	table.AddEncounter(  2, 10037020).Special(true).LocationPid(LOCATION_SpecialMadBrahminEncounter).CheckParam(ST_LEVEL,'>',7).CheckLVar(LVAR_special_encounter_pariah,'<',1).AssignLVar(LVAR_special_encounter_pariah,'=',1);
+	table.AddEncounter(  2, 10037020).Special(true).LocationPid(LOCATION_SpecialMadBrahminEncounter).CheckParam(ST_LEVEL,'>',7).CheckLVar(LVAR_special_encounter_brahmin,'<',1).AssignLVar(LVAR_special_encounter_pariah,'=',1);
 	table.AddEncounter(  7, 10037030).AddGroup(GROUP_DMRV_Highwaymen       , 2, 5).AddGroup(GROUP_Player         , 0, 0).Fighting(0,1);
 	table.AddEncounter(  7, 10037130).AddGroup(GROUP_DMRV_Robbers          , 2, 5).AddGroup(GROUP_Player         , 0, 0).Fighting(0,1);
 	table.AddEncounter(  2, 10037140).AddGroup(GROUP_DMRV_Robbers          , 2, 4).AddGroup(GROUP_DMRV_Highwaymen, 2, 4).AddGroup(GROUP_Player, 0, 0).Fighting(0,2).Fighting(1,2);
@@ -3155,7 +3155,8 @@ enc_24=Chance:1%,Counter:1,Special,Map:Special Holy Encounter 2,Enc:Special1, If
 	table.AddEncounter(  1, 10038310).Special(true).LocationPid(LOCATION_SpecialUnwashedEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_unwashed,'<',1).AssignLVar(LVAR_special_encounter_unwashed,'=',1);
 	table.AddEncounter(  1, 10034790).Special(true).LocationPid(LOCATION_SpecialWastelandChildren).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_wasteland_children,'<',1).AssignLVar(LVAR_special_wasteland_children,'=',1);
 	table.AddEncounter(  1, 10034800).Special(true).LocationPid(LOCATION_SpecialKotW).CheckParam(ST_LEVEL,'>',12).CheckLVar(LVAR_special_encounter_kotw,'<',1).AssignLVar(LVAR_special_encounter_kotw,'=',1);	
-	table.AddEncounter(  1, 10034810).Special(true).LocationPid(LOCATION_SpecialDollHolo).CheckParam(SK_OUTDOORSMAN,'>',119).CheckLVar(LVAR_special_doll_holo,'<',1).AssignLVar(LVAR_special_doll_holo,'=',1);/*lookup_name=Den_D                                                       ; Areas around the Den
+	table.AddEncounter(  1, 10034810).Special(true).LocationPid(LOCATION_SpecialDollHolo).CheckParam(SK_OUTDOORSMAN,'>',119).CheckLVar(LVAR_special_doll_holo,'<',1).AssignLVar(LVAR_special_doll_holo,'=',1);
+	/*lookup_name=Den_D                                                       ; Areas around the Den
 maps=Desert Encounter 8, Desert Encounter 9, Desert Encounter 10, Desert Encounter 7
 enc_00=Chance:2%,Counter:1,Special,Map:Special Toxic Encounter,Enc:Special1, If(Player(Level) > 5) , If(Global(607) < 1)
 enc_01=Chance:2%,Counter:1,Special,Map:Special Pariahs Encounter,Enc:Special1, If(Player(Level) > 5) , If(Global(608) < 1)
@@ -5020,9 +5021,9 @@ enc_15=Chance:10%,Enc:(1-2) NEW_Traveller*/
 	table.AddLocationPid(LOCATION_DesertEncounter9);
 	table.AddLocationPid(LOCATION_DesertEncounter10);
 	table.AddLocationPid(LOCATION_DesertEncounter11);
-	table.AddEncounter(  2, 10058000).Special(true).LocationPid(LOCATION_SpecialToxicEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_holy2,'<',1).AssignLVar(LVAR_special_encounter_holy2,'=',1);
-	table.AddEncounter(  2, 10058010).Special(true).LocationPid(LOCATION_SpecialPariahsEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_toxic,'<',1).AssignLVar(LVAR_special_encounter_toxic,'=',1);
-	table.AddEncounter(  2, 10058020).Special(true).LocationPid(LOCATION_SpecialMadBrahminEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_pariah,'<',1).AssignLVar(LVAR_special_encounter_pariah,'=',1);
+	table.AddEncounter(  2, 10058000).Special(true).LocationPid(LOCATION_SpecialToxicEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_toxic,'<',1).AssignLVar(LVAR_special_encounter_holy2,'=',1);
+	table.AddEncounter(  2, 10058010).Special(true).LocationPid(LOCATION_SpecialPariahsEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_pariah,'<',1).AssignLVar(LVAR_special_encounter_toxic,'=',1);
+	table.AddEncounter(  2, 10058020).Special(true).LocationPid(LOCATION_SpecialMadBrahminEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_brahmin,'<',1).AssignLVar(LVAR_special_encounter_pariah,'=',1);
 	table.AddEncounter( 10, 10058030).AddGroup(GROUP_BROK_Rogues           , 2, 6).AddGroup(GROUP_RED_Wolves , 3, 5).AddGroup(GROUP_Player, 0, 0).Fighting(0,2).Fighting(1,2);
 	table.AddEncounter( 20, 10058130).AddGroup(GROUP_BROK_Rogues           , 4, 8).AddGroup(GROUP_Player     , 0, 0).Fighting(0,1);
 	table.AddEncounter( 10, 10058140).AddGroup(GROUP_RED_Wolves            , 6,10).AddGroup(GROUP_Player     , 0, 0).Fighting(0,1);
@@ -5555,6 +5556,8 @@ enc_16=Chance:1%,Counter:1,Special,Map:Special Holy Encounter 2,Enc:Special1, If
 	table.AddEncounter( 33, 10064000).AddGroup(GROUP_RED_Wolves       , 8,12).AddGroup(GROUP_Player, 0, 0).Fighting(0,1);
 	table.AddEncounter( 33, 10064010).AddGroup(GROUP_DVMV_Mantis_Swarm, 8,12).AddGroup(GROUP_Player, 0, 0).Fighting(0,1);
 	table.AddEncounter( 33, 10064020).AddGroup(GROUP_DMRV_Scorpions   , 8,12).AddGroup(GROUP_Player, 0, 0).Fighting(0,1);
+	table.AddEncounter(  5, 10064120).Special(true).LocationPid(LOCATION_SpecialBridgeEncounter).CheckParam(ST_LEVEL,'>',9).CheckLVar(LVAR_special_encounter_bridge,'<',1).AssignLVar(LVAR_special_encounter_bridge,'=',1);
+	table.AddEncounter(  1, 10064130).Special(true).LocationPid(LOCATION_SpecialHolyEncounter2).CheckLVar(LVAR_special_encounter_holy1,'>',0).CheckLVar(LVAR_special_encounter_holy2,'<',1).AssignLVar(LVAR_special_encounter_holy2,'=',1);
 /*lookup_name=Wild6_M                                                                        ; Area between New Reno and NCR
 maps=Mountain Encounter 1, Mountain Encounter 2, Cavern Encounter 0
 enc_00=Chance:33%,Enc:(8-12) RED_Wolves AMBUSH Player

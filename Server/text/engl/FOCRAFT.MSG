@@ -120,8 +120,9 @@
 {918}{}{PID_THROWING_KNIFE@Сбалансируйте и дополнительно заточите эту железку.@SK_THROWING 40@SK_THROWING 50&SK_REPAIR 30@PID_KNIFE 1@PID_MULTI_TOOL 1@PID_THROWING_KNIFE 1@exp 50 }
 {919}{}{PID_SHOVEL@Приладьте лопату к черенку и прибейте гвоздями.@@SK_OUTDOORSMAN 30@PID_METAL_TRASH 1&PID_SHARPENED_POLE 1@@PID_SHOVEL 1@exp 50 }
 {920}{}{PID_AXE@Найдите какую-нибудь ветку, насадите на неё железяку поострее.@@SK_OUTDOORSMAN 30@PID_METAL_TRASH 1@@PID_AXE 1@exp 50 }
-{921}{}{PID_SANDBAG_EMPTY@Сшейте мешок из кусков ткани.@@SK_OUTDOORSMAN 20@PID_RAGS 4&PID_POCKET_LINT 1@PID_SHIV 1@PID_SANDBAG_EMPTY 1@exp 25 }
-{922}{}{PID_SANDBAG_1@Если наполнить этот мешок песком, получится... мешок с песком!@@@PID_SANDBAG_EMPTY 1@PID_SHOVEL 1@PID_SANDBAG_1 1@exp 1 }
+{921}{}{PID_SANDBAG_EMPTY@Сшейте мешок из кусков ткани.@@SK_OUTDOORSMAN 20@PID_RAGS 4&PID_POCKET_LINT 1@PID_SHIV 1@PID_SANDBAG_EMPTY 1@exp 30 }
+{922}{}{PID_SANDBAG_1@Если наполнить этот мешок песком, получится... мешок с песком!@@@PID_SANDBAG_EMPTY 1@PID_SHOVEL 1@PID_SANDBAG_1 1@exp 10 }
+{923}{}{PID_SANDBAG_EMPTY@Если вдруг понадобился пустой мешок, то можно просто взять заполненный и освободить его от содержимого.@@@PID_SANDBAG_1 1@@PID_SANDBAG_EMPTY 1@}
 
 
 #Уникальное оружие
