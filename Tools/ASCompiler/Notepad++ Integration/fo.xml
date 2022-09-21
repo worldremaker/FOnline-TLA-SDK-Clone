@@ -407,6 +407,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name="Color" />
+		<KeyWord name="COLOR_TEXT" />
 		<KeyWord name="combat_result" func="yes">
 			<Overload retVal="void">
 				<Param name="uint[]&amp; data" />
@@ -521,25 +522,6 @@
 				<Param name="int[]&amp; values" />
 				<Param name="bool save" />
 			</Overload>
-			<Overload retVal="uint">
-				<Param name="uint beginSecond" />
-				<Param name="string&amp; funcName" />
-				<Param name="Critter&amp; cr" />
-				<Param name="bool save" />
-			</Overload>
-			<Overload retVal="uint">
-				<Param name="uint beginSecond" />
-				<Param name="string&amp; funcName" />
-				<Param name="Item&amp; item" />
-				<Param name="bool save" />
-			</Overload>
-			<Overload retVal="uint">
-				<Param name="uint beginSecond" />
-				<Param name="string&amp; funcName" />
-				<Param name="Critter@[]@ critters" />
-				<Param name="Item@[]@ items" />
-				<Param name="bool save" />
-			</Overload>
 		</KeyWord>
 		<KeyWord name="CritId" />
 		<KeyWord name="CritSlot" />
@@ -558,8 +540,8 @@
 				<Param name="Critter&amp; cr" />
 				<Param name="Critter&amp; target" />
 				<Param name="ProtoItem&amp; weapon" />
+				<Param name="uint8 weaponMode" />
 				<Param name="ProtoItem@ ammo" />
-				<Param name="uint8 aim" />
 			</Overload>
 		</KeyWord>
 		<KeyWord name="critter_attacked" func="yes">
@@ -738,16 +720,6 @@
 		<KeyWord name="DeleteNpc" func="yes">
 			<Overload retVal="void">
 				<Param name="Critter@ npc" />
-			</Overload>
-		</KeyWord>
-		<KeyWord name="DeleteNpcForce" func="yes">
-			<Overload retVal="void">
-				<Param name="Critter@ npc" />
-			</Overload>
-		</KeyWord>
-		<KeyWord name="DeleteVars" func="yes">
-			<Overload retVal="uint">
-				<Param name="uint id" />
 			</Overload>
 		</KeyWord>
 		<KeyWord name="DIALOG_ATTACK" />
@@ -959,7 +931,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name="EraseTimeEvent" func="yes">
-			<Overload retVal="void">
+			<Overload retVal="bool">
 				<Param name="uint index" />
 			</Overload>
 		</KeyWord>
@@ -1027,7 +999,7 @@
 		</KeyWord>
 		<KeyWord name="EventGlobalInvite" func="yes">
 			<Overload retVal="bool">
-				<Param name="Critter@[]&amp; group" />
+				<Param name="Critter&amp; leader" />
 				<Param name="Item@ car" />
 				<Param name="uint encounterDescriptor" />
 				<Param name="int combatMode" />
@@ -1040,7 +1012,7 @@
 		<KeyWord name="EventGlobalProcess" func="yes">
 			<Overload retVal="bool">
 				<Param name="int type" />
-				<Param name="Critter@[]&amp; group" />
+				<Param name="Critter&amp; cr" />
 				<Param name="Item@ car" />
 				<Param name="uint&amp; x" />
 				<Param name="uint&amp; y" />
@@ -1397,6 +1369,8 @@
 		<KeyWord name="FOMB_GAME" />
 		<KeyWord name="FOMB_TALK" />
 		<KeyWord name="FOMB_VIEW" />
+		<KeyWord name="FONT_COURIER_NEW_SMALL" />
+		<KeyWord name="FONT_FALLOUT" />
 		<KeyWord name="FormatTags" func="yes">
 			<Overload retVal="string@">
 				<Param name="const string&amp; text" />
@@ -2096,7 +2070,7 @@
 		</KeyWord>
 		<KeyWord name="GetMaps" func="yes">
 			<Overload retVal="uint">
-				<Param name="Map@[]&amp; maps" />
+				<Param name="Map@[]@ maps" />
 			</Overload>
 		</KeyWord>
 		<KeyWord name="GetMapWidth" func="yes">
@@ -2363,6 +2337,7 @@
 		<KeyWord name="GetSlotProto" func="yes">
 			<Overload retVal="ProtoItem@">
 				<Param name="int slot" />
+				<Param name="uint8&amp; mode" />
 			</Overload>
 		</KeyWord>
 		<KeyWord name="GetSpriteCount" func="yes">
@@ -2448,6 +2423,16 @@
 				<Param name="uint[]@ indexes" />
 				<Param name="uint[]@ durations" />
 				<Param name="uint[]@ rates" />
+			</Overload>
+			<Overload retVal="bool">
+				<Param name="uint num" />
+				<Param name="uint&amp; duration" />
+				<Param name="uint[]@ values" />
+			</Overload>
+			<Overload retVal="bool">
+				<Param name="uint num" />
+				<Param name="uint&amp; duration" />
+				<Param name="int[]@ values" />
 			</Overload>
 		</KeyWord>
 		<KeyWord name="GetTurnBased" func="yes">
@@ -2546,6 +2531,7 @@
 				<Param name="uint length" />
 			</Overload>
 		</KeyWord>
+		<KeyWord name="Height" />
 		<KeyWord name="HexX" />
 		<KeyWord name="HexY" />
 		<KeyWord name="HideScreen" func="yes">
@@ -2556,6 +2542,7 @@
 				<Param name="int p2" />
 			</Overload>
 		</KeyWord>
+		<KeyWord name="HolodiskNum" />
 		<KeyWord name="HolodiskNumber" />
 		<KeyWord name="Id" />
 		<KeyWord name="Identifier" />
@@ -2563,6 +2550,9 @@
 		<KeyWord name="import" />
 		<KeyWord name="in" />
 		<KeyWord name="include" />
+		<KeyWord name="Indicator" />
+		<KeyWord name="IndicatorMax" />
+		<KeyWord name="IndicatorStart" />
 		<KeyWord name="Info" />
 		<KeyWord name="InjureCritter" func="yes">
 			<Overload retVal="void">
@@ -2976,6 +2966,12 @@
 				<Param name="string&amp; dataFileName" />
 			</Overload>
 		</KeyWord>
+		<KeyWord name="LoadFont" func="yes">
+			<Overload retVal="bool">
+				<Param name="int font" />
+				<Param name="string&amp; fontFileName" />
+			</Overload>
+		</KeyWord>
 		<KeyWord name="LoadSprite" func="yes">
 			<Overload retVal="uint">
 				<Param name="string&amp; name" />
@@ -3090,6 +3086,8 @@
 		</KeyWord>
 		<KeyWord name="Misc_ScriptId" />
 		<KeyWord name="Misc_WaitSecond" />
+		<KeyWord name="Mode" />
+		<KeyWord name="MODE_BARTER_ONLY_CASH" />
 		<KeyWord name="MODE_DEAD_AGES" />
 		<KeyWord name="MODE_DEFAULT_COMBAT" />
 		<KeyWord name="MODE_DLG_SCRIPT_BARTER" />
@@ -3214,6 +3212,7 @@
 		<KeyWord name="MyParam" />
 		<KeyWord name="MyParamBase" />
 		<KeyWord name="NameColor" />
+		<KeyWord name="NameOnHead" />
 		<KeyWord name="not" />
 		<KeyWord name="npc_plane_begin" func="yes">
 			<Overload retVal="bool">
@@ -3397,7 +3396,26 @@
 				<Param name="uint ms" />
 			</Overload>
 		</KeyWord>
+		<KeyWord name="RadioBroadcastRecv" />
+		<KeyWord name="RadioBroadcastSend" />
 		<KeyWord name="RadioChannel" />
+		<KeyWord name="RadioFlags" />
+		<KeyWord name="RADIO_BROADCAST_FORCE_ALL" />
+		<KeyWord name="RADIO_BROADCAST_LOCATION" />
+		<KeyWord name="RADIO_BROADCAST_MAP" />
+		<KeyWord name="RADIO_BROADCAST_WORLD" />
+		<KeyWord name="RADIO_BROADCAST_ZONE" func="yes">
+			<Overload retVal="uint">
+				<Param name="Radius" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="RADIO_DISABLE_RECV" />
+		<KeyWord name="RADIO_DISABLE_SEND" />
+		<KeyWord name="RADIO_DISABLE_SHIFT_BC_RECV" />
+		<KeyWord name="RADIO_DISABLE_SHIFT_BC_SEND" />
+		<KeyWord name="RADIO_DISABLE_SHIFT_CHANNEL" />
+		<KeyWord name="RADIO_DISABLE_SHIFT_RECV" />
+		<KeyWord name="RADIO_DISABLE_SHIFT_SEND" />
 		<KeyWord name="Radius" />
 		<KeyWord name="Random" func="yes">
 			<Overload retVal="void">
@@ -3405,8 +3423,34 @@
 				<Param name="int maximum" />
 			</Overload>
 		</KeyWord>
+		<KeyWord name="readData" func="yes">
+			<Overload retVal="uint">
+				<Param name="uint count" />
+				<Param name="uint8[]&amp; data" />
+			</Overload>
+		</KeyWord>
 		<KeyWord name="readNumber" func="yes">
 			<Overload retVal="int">
+				<Param name="void" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="readUint8" func="yes">
+			<Overload retVal="uint8">
+				<Param name="void" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="readUint16" func="yes">
+			<Overload retVal="uint16">
+				<Param name="void" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="readUint32" func="yes">
+			<Overload retVal="uint32">
+				<Param name="void" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="readUint64" func="yes">
+			<Overload retVal="uint64">
 				<Param name="void" />
 			</Overload>
 		</KeyWord>
@@ -3484,6 +3528,13 @@
 		<KeyWord name="RefreshItemsCollection" func="yes">
 			<Overload retVal="void">
 				<Param name="int collection" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="RefreshMap" func="yes">
+			<Overload retVal="void">
+				<Param name="bool onlyTiles" />
+				<Param name="bool onlyRoof" />
+				<Param name="bool onlyLight" />
 			</Overload>
 		</KeyWord>
 		<KeyWord name="RefreshVisib" func="yes">
@@ -3598,6 +3649,7 @@
 				<Param name="string&amp; name" />
 			</Overload>
 		</KeyWord>
+		<KeyWord name="Width" />
 		<KeyWord name="world_save" func="yes">
 			<Overload retVal="void">
 				<Param name="uint currentIndex" />
@@ -3884,6 +3936,12 @@
 				<Param name="int param" />
 			</Overload>
 		</KeyWord>
+		<KeyWord name="SetDefaultFont" func="yes">
+			<Overload retVal="void">
+				<Param name="int font" />
+				<Param name="uint color" />
+			</Overload>
+		</KeyWord>
 		<KeyWord name="SetDialogId" func="yes">
 			<Overload retVal="void">
 				<Param name="uint dialogId" />
@@ -3892,6 +3950,13 @@
 		<KeyWord name="SetDir" func="yes">
 			<Overload retVal="void">
 				<Param name="uint8 dir" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetEffect" func="yes">
+			<Overload retVal="void">
+				<Param name="int effectType" />
+				<Param name="int effectSubtype" />
+				<Param name="string@ effectName" />
 			</Overload>
 		</KeyWord>
 		<KeyWord name="SetEvent" func="yes">
@@ -4092,6 +4157,18 @@
 				<Param name="int time" />
 			</Overload>
 		</KeyWord>
+		<KeyWord name="SetTimeEvent" func="yes">
+			<Overload retVal="bool">
+				<Param name="uint num" />
+				<Param name="uint duration" />
+				<Param name="uint[]@ values" />
+			</Overload>
+			<Overload retVal="bool">
+				<Param name="uint num" />
+				<Param name="uint duration" />
+				<Param name="int[]@ values" />
+			</Overload>
+		</KeyWord>
 		<KeyWord name="SetTurnBasedAvailability" func="yes">
 			<Overload retVal="void">
 				<Param name="bool value" />
@@ -4230,6 +4307,7 @@
 		<KeyWord name="ST_FOLLOW_CRIT" />
 		<KeyWord name="ST_FREE_BARTER_PLAYER" />
 		<KeyWord name="ST_GENDER" />
+		<KeyWord name="ST_HANDS_ITEM_AND_MODE" />
 		<KeyWord name="ST_HEALING_RATE" />
 		<KeyWord name="ST_HEALING_RATE_EXT" />
 		<KeyWord name="ST_INTELLECT" />
@@ -4274,7 +4352,6 @@
 		<KeyWord name="ST_RADIATION_RESISTANCE" />
 		<KeyWord name="ST_RADIATION_RESISTANCE_EXT" />
 		<KeyWord name="ST_RADIOACTIVE" />
-		<KeyWord name="ST_RATE_ITEM" />
 		<KeyWord name="ST_REPLICATION_COST" />
 		<KeyWord name="ST_REPLICATION_COUNT" />
 		<KeyWord name="ST_REPLICATION_MONEY" />
@@ -4456,6 +4533,11 @@
 				<Param name="uint ms" />
 			</Overload>
 		</KeyWord>
+		<KeyWord name="WaitPing" func="yes">
+			<Overload retVal="void">
+				<Param name="void" />
+			</Overload>
+		</KeyWord>
 		<KeyWord name="Walk_Cut" />
 		<KeyWord name="Walk_Dir" />
 		<KeyWord name="Walk_HexX" />
@@ -4464,14 +4546,48 @@
 		<KeyWord name="WeaponAmmoCount" />
 		<KeyWord name="WeaponAmmoPid" />
 		<KeyWord name="WeaponDamage" />
-		<KeyWord name="Weapon_Aim" />
+		<KeyWord name="Weapon_Aim_F" />
+		<KeyWord name="Weapon_Aim_S" />
+		<KeyWord name="Weapon_Aim_T" />
 		<KeyWord name="Weapon_AmmoCount" />
 		<KeyWord name="Weapon_AmmoPid" />
+		<KeyWord name="Weapon_Anim2_F" />
+		<KeyWord name="Weapon_Anim2_S" />
+		<KeyWord name="Weapon_Anim2_T" />
+		<KeyWord name="Weapon_ApCost_F" />
+		<KeyWord name="Weapon_ApCost_S" />
+		<KeyWord name="Weapon_ApCost_T" />
+		<KeyWord name="Weapon_CurrentUse_F" />
+		<KeyWord name="Weapon_CurrentUse_S" />
+		<KeyWord name="Weapon_CurrentUse_T" />
+		<KeyWord name="Weapon_DmgMax_F" />
+		<KeyWord name="Weapon_DmgMax_S" />
+		<KeyWord name="Weapon_DmgMax_T" />
+		<KeyWord name="Weapon_DmgMin_F" />
+		<KeyWord name="Weapon_DmgMin_S" />
+		<KeyWord name="Weapon_DmgMin_T" />
+		<KeyWord name="Weapon_DmgType_F" />
+		<KeyWord name="Weapon_DmgType_S" />
+		<KeyWord name="Weapon_DmgType_T" />
+		<KeyWord name="Weapon_Effect_F" />
+		<KeyWord name="Weapon_Effect_S" />
+		<KeyWord name="Weapon_Effect_T" />
+		<KeyWord name="Weapon_MaxDist_F" />
+		<KeyWord name="Weapon_MaxDist_S" />
+		<KeyWord name="Weapon_MaxDist_T" />
+		<KeyWord name="Weapon_Remove_F" />
+		<KeyWord name="Weapon_Remove_S" />
+		<KeyWord name="Weapon_Remove_T" />
+		<KeyWord name="Weapon_Round_F" />
+		<KeyWord name="Weapon_Round_S" />
+		<KeyWord name="Weapon_Round_T" />
 		<KeyWord name="Weapon_SetUse" func="yes">
 			<Overload retVal="void">
 				<Param name="uint8 use" />
 			</Overload>
 		</KeyWord>
+		<KeyWord name="Weapon_Skill" />
+		<KeyWord name="Weapon_SoundId" />
 		<KeyWord name="Weather" />
 		<KeyWord name="Weight" />
 		<KeyWord name="while" />
@@ -4482,6 +4598,32 @@
 		</KeyWord>
 		<KeyWord name="WorldX" />
 		<KeyWord name="WorldY" />
+		<KeyWord name="writeData" func="yes">
+			<Overload retVal="bool">
+				<Param name="uint8[]&amp; data" />
+				<Param name="uint count" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="writeUint8" func="yes">
+			<Overload retVal="bool">
+				<Param name="uint8 data" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="writeUint16" func="yes">
+			<Overload retVal="bool">
+				<Param name="uint16 data" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="writeUint32" func="yes">
+			<Overload retVal="bool">
+				<Param name="uint32 data" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="writeUint64" func="yes">
+			<Overload retVal="bool">
+				<Param name="uint64 data" />
+			</Overload>
+		</KeyWord>
 		<KeyWord name="xor" />
 		<KeyWord name="_CarGetCritCapacity" func="yes">
 			<Overload retVal="int">
@@ -4774,6 +4916,108 @@
 				<Param name="protoWeap" />
 			</Overload>
 		</KeyWord>
+		<KeyWord name="_WeaponAim" func="yes">
+			<Overload retVal="uint">
+				<Param name="proto" />
+				<Param name="use" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="_WeaponAnim2" func="yes">
+			<Overload retVal="uint">
+				<Param name="proto" />
+				<Param name="use" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="_WeaponApCost" func="yes">
+			<Overload retVal="uint">
+				<Param name="proto" />
+				<Param name="use" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="_WeaponDmgMax" func="yes">
+			<Overload retVal="uint">
+				<Param name="proto" />
+				<Param name="use" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="_WeaponDmgMin" func="yes">
+			<Overload retVal="uint">
+				<Param name="proto" />
+				<Param name="use" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="_WeaponDmgType" func="yes">
+			<Overload retVal="uint">
+				<Param name="proto" />
+				<Param name="use" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="_WeaponEffect" func="yes">
+			<Overload retVal="uint">
+				<Param name="proto" />
+				<Param name="use" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="_WeaponIsPrimaryAviable" func="yes">
+			<Overload retVal="bool">
+				<Param name="proto" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="_WeaponIsSecondaryAviable" func="yes">
+			<Overload retVal="bool">
+				<Param name="proto" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="_WeaponIsThirdAviable" func="yes">
+			<Overload retVal="bool">
+				<Param name="proto" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="_WeaponMaxDist" func="yes">
+			<Overload retVal="uint">
+				<Param name="proto" />
+				<Param name="use" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="_WeaponModeAim" func="yes">
+			<Overload retVal="uint">
+				<Param name="uint8 mode" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="_WeaponModeMake" func="yes">
+			<Overload retVal="uint">
+				<Param name="uint8 mode" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="_WeaponModeUse" func="yes">
+			<Overload retVal="uint">
+				<Param name="uint8 mode" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="_WeaponRemove" func="yes">
+			<Overload retVal="uint">
+				<Param name="proto" />
+				<Param name="use" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="_WeaponRound" func="yes">
+			<Overload retVal="uint">
+				<Param name="proto" />
+				<Param name="use" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="_WeaponSkill" func="yes">
+			<Overload retVal="uint">
+				<Param name="proto" />
+				<Param name="use" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="_WeaponSoundId" func="yes">
+			<Overload retVal="uint">
+				<Param name="proto" />
+				<Param name="use" />
+			</Overload>
+		</KeyWord>
 		<KeyWord name="__AbsoluteOffsets" />
 		<KeyWord name="__AccountPlayTime" />
 		<KeyWord name="__AddictionBegin" />
@@ -4787,6 +5031,7 @@
 		<KeyWord name="__ApCostAimTorso" />
 		<KeyWord name="__BagRefreshTime" />
 		<KeyWord name="__Breaktime" />
+		<KeyWord name="__ClientPath" />
 		<KeyWord name="__CritterIdleTick" />
 		<KeyWord name="__CustomItemCost" />
 		<KeyWord name="__DamageBegin" />
@@ -4867,7 +5112,18 @@
 		<KeyWord name="__RunOnTransfer" />
 		<KeyWord name="__ScriptRunMessageTimeout" />
 		<KeyWord name="__ScriptRunSuspendTimeout" />
+		<KeyWord name="__ServerPath" />
 		<KeyWord name="__ShoutDist" />
+		<KeyWord name="__ShowCrit" />
+		<KeyWord name="__ShowCritId" />
+		<KeyWord name="__ShowFast" />
+		<KeyWord name="__ShowItem" />
+		<KeyWord name="__ShowNpcNames" />
+		<KeyWord name="__ShowPlayerNames" />
+		<KeyWord name="__ShowRoof" />
+		<KeyWord name="__ShowScen" />
+		<KeyWord name="__ShowTile" />
+		<KeyWord name="__ShowWall" />
 		<KeyWord name="__SkillBegin" />
 		<KeyWord name="__SkillEnd" />
 		<KeyWord name="__SneakDivider" />
