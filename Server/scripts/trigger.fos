@@ -99,3 +99,10 @@ void t_Elevator(Critter& player, Scenery& trigger, bool entered, uint8 dir ,int 
 		}
 	}
 }
+
+// Диалог с НПЦ рядом с триггером,  с определенной ролью. 1 параметр - роль НПЦ.
+void t_DialogNpc(Critter& player,Scenery& trigger, bool entered, uint8 dir, int npcRole)
+{
+	player.Wait(0);
+	DialogNpc(player, npcRole);
+}

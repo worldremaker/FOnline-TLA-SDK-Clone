@@ -826,7 +826,9 @@ void StartCaravan(uint CaravanId)
 		Critter @ player = GetCritter(ci.PlayersRequested[i]);
 		if(!valid(player)) continue;
 		if(player.IsDead()) continue;
-		if(leader.IsSee(player))
+		Map@ playerMap = player.GetMap();
+		if(!valid(player.GetMap())) continue;
+		if(GetDistantion(leader.HexX, leader.HexY, player.HexX, player.HexY)<=LEADER_SEARCH_RADIUS)
 		{
 			ci.RequstedToGuard(player.Id);
 			push_back_handle(caravanGroup, player);
@@ -999,19 +1001,18 @@ uint e_DeleteLeader(uint[]@ values)
 		CaravanInfo@ ci = _GetCaravan(leader.CrvId);
 		if(valid(ci ))
 		{
-				CaravanLeaderInfo @ li = ci.Leader;
-				if(valid(li))
+			ci.CaravanReset();
+			CaravanLeaderInfo @ li = ci.Leader;
+			if(valid(li))
+			{
+				if(li.CritterId != leader.Id)
 				{
-					if(li.CritterId == leader.Id)
-					{
-						Log("Cannot delete leader. Caravan not ended");
-						return 0;
-					}
-
+					Log("Wrong eader id");
+					return 0;
 				}
+			}
 		}
 		if(leader.IsNpc()) DeleteNpc(leader);
-		ci.CaravanReset();
 	}
 	DL("success");
 	return 0;

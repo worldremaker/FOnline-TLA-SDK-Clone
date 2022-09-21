@@ -38,8 +38,8 @@ lang=russ
 3 3000 None 0 #
 4 3010 @
 4 4000 None 0 #
-5 4010 D _var p q_vc_hartman_fight = 0 D _param p KILL_MEN < 48 D or D _param p SK_OUTDOORSMAN < 91 D _var p q_vc_hartman_fight = 0 #
-6 4020 D _param p SK_OUTDOORSMAN } 91 D _param p KILL_MEN } 48 D _var p q_vc_hartman_fight = 0 #
+5 4010 D _var p q_vc_hartman_fight = 0 D _param p KILL_MEN < 48 D or D _param p SK_OUTDOORSMAN < 91 D _var p q_vc_hartman_fight = 0 D or D _param p ST_LEVEL < 10 D _var p q_vc_hartman_fight = 0 #
+6 4020 D _param p SK_OUTDOORSMAN } 91 D _param p KILL_MEN } 48 D _var p q_vc_hartman_fight = 0 D _param p ST_LEVEL } 10 #
 0 4030 @
 5 5000 None 0 #
 0 5010 @
@@ -105,7 +105,7 @@ lang=russ
 32 31010 D _var p q_vc_shrim_patrol = 8 D _var p vc_dead_patrollers = 0 R _var p q_vc_shrim_patrol = 0 R _var p vc_patrol_counter + 1 R _var p vc_dead_patrollers = 0 R _script dialog@r_SetUniqTO 1 2880 #
 33 31020 D _var p q_vc_shrim_patrol = 8 D _var p vc_dead_patrollers = 1 R _var p q_vc_shrim_patrol = 0 R _var p vc_patrol_counter + 1 R _var p vc_dead_patrollers = 0 R _script dialog@r_SetUniqTO 1 2880 #
 34 31030 D _var p q_vc_shrim_patrol = 8 D _var p vc_dead_patrollers > 1 R _var p q_vc_shrim_patrol = 0 R _var p vc_patrol_counter + 1 R _var p vc_dead_patrollers = 0 R _script dialog@r_SetUniqTO 1 2880 #
-35 31040 D _var p q_vc_shrim_patrol > 1 D _var p q_vc_shrim_patrol < 8 R _var p q_vc_shrim_patrol = 0 R _var p vc_patrol_counter + 1 R _var p vc_dead_patrollers = 0 R _script dialog@r_SetUniqTO 1 10080 #
+35 31040 D _var p q_vc_shrim_patrol > 1 D _var p q_vc_shrim_patrol < 8 R _var p q_vc_shrim_patrol = 0 R _var p vc_dead_patrollers = 0 R _script dialog@r_SetUniqTO 1 10080 #
 0 31050 @
 32 32000 None 0 #
 0 32010 R _param p ST_EXPERIENCE + 1800 R _param p REPUTATION_VAULT_CITY + 2 @
@@ -419,7 +419,7 @@ lang=russ
 {73010}{}{Есть, сэр...}
 {74000}{}{Все бы так служили Городу-Убежищу, как ты. Я горжусь тобой!@@Эй, обезьяны, смотрите, с кого нужно брать пример!@@Старший сержант, ты заслужил@sex@|||а| свое звание. Пока такие ребята в Гвардии, Город может спать спокойно.}
 {75000}{}{Все бы так служили Городу-Убежищу, как ты. Я горжусь тобой!@@Эй, обезьяны, смотрите, с кого нужно брать пример!@@Лейтенант. Приветствую.}
-{100000000}{}{Гвардейцы! Слушай мою команду. Равнение на меня!}
+{100000000}{}{Гвардейцы! Слушай мою команду. Равнение на середину!}
 {100000001}{}{Три шага вперед, шагом. Марш!}
 {100000002}{}{Кру-у-у-угом!}
 {100000003}{}{Оружие на-грудь}
@@ -429,6 +429,6 @@ lang=russ
 {100000007}{}{Два шага вперед, шагом. Марш}
 {100000008}{}{Вольно!}
 {100000009}{}{Это чучело безнадежно. Я так и думал.@@ @@ Строй не ломай, ты!@@Дубьё, сороконожки! @@ Наберут по объявлению! @@ Чё-то я не понял, вы вообще ходить умеете?}
-{100000010}{}{Неплохо... Неплохо. Не ожидал.}
+{100000010}{}{Вольно. Разойдись.}
 {100000011}{}{Служба в рядах Гвардии закалила вас, вы научились действовать в  бою решительно и без промедлений. Никакому штатскому это недоступно . Вы получаете 1 единицу действия.}
 

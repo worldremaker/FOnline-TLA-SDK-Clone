@@ -24,3 +24,8 @@ bool s_DoorControl(Critter& player, Scenery& scenery, int skill, Item@ item, int
 	}
 	return true;
 }
+
+bool s_TransitToMap(Critter& player, Scenery& scenery, int skill, Item@ item, int locPid, int mapIndex, int entire)
+{
+	return TransitToMap(player, locPid, mapIndex, entire);
+}
