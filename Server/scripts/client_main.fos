@@ -1184,7 +1184,8 @@ bool get_elevator(uint type, uint[]& data)
 	uint currentLevel=(type>>16);
 
 	if(index>8) return false;
-	data=elevators[index];
+	data.resize(elevators[index].length());
+	for(uint i=0;i<data.length();i++) data[i]=elevators[index][i];
 	data[0]=currentLevel;
 	return true;
 }
