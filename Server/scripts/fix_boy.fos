@@ -210,7 +210,7 @@ void SetWorkbenchCharges(Critter & player, int pidWorkbench, int chargesMax)
 		}
 		data.resize(0);
 	}
-	ArrayPushBack(data, charges);
+	data.insertLast(charges);
 	SetAnyData(key, data);
 }
 

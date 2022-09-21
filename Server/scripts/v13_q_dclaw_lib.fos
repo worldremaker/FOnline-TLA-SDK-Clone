@@ -22,7 +22,7 @@ void SetGroupQuestStage( Critter& player, int[] fromStages, int toStage )
 
 	Critter@[] group;
 	Critter@ leader = GetCritter( GetLeaderId( player ) );
-	ArrayPushBack( group, leader );
+	group.insertLast(@leader);
 	leader.GetFollowGroup( FIND_ALL, group );
 	Log( "Set quest" );
 	for( uint i=0; i < group.length(); i++ ){

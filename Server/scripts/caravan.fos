@@ -52,10 +52,8 @@ void _SetupCaravan(uint idCaravan, uint8 crvType, uint8 speed, uint16 qVar, uint
 	}
 	else
 	{
-
-		@ ci = CaravanInfo();
-
-		push_back_handle(Caravans, ci);
+		@ci = CaravanInfo();
+		Caravans.insertLast(@ci);
 		ci.CaravanId = idCaravan;
 	}
 	ci.Type = crvType;
@@ -142,7 +140,7 @@ void _SetupCaravanCabs(uint idCaravan, uint8 numCabs )
 
 	for(uint8 i=0; i<numCabs; i++)
 	{
-		push_back_handle(ci.Cabs, CaravanCabInfo());
+		ci.Cabs.insertLast(@CaravanCabInfo());
 	}
 }
 
@@ -193,7 +191,7 @@ void _AddGuardInfo(uint idCaravan, uint16 pid, uint dialogId, string scriptId, u
 
 	CaravanInfo @ ci = _GetCaravan(idCaravan);
 	if(!valid(ci)) return;
-	push_back_handle(ci.CaravanGuards, CaravanGuardInfo(idCaravan, pid, dialogId, scriptId, aiPack, bagId, teamId, level, reaction, isNervous, chanceJoin, isUnique));
+	ci.CaravanGuards.insertLast(@CaravanGuardInfo(idCaravan, pid, dialogId, scriptId, aiPack, bagId, teamId, level, reaction, isNervous, chanceJoin, isUnique));
 
 }
 
@@ -231,11 +229,11 @@ bool _SheduleCaravan(uint idCaravan, uint prepareDay, uint prepareHour, uint sta
 {
 	uint[] values;
 
-	ArrayPushBack(values, idCaravan);
-	ArrayPushBack(values, prepareDay);
-	ArrayPushBack(values, prepareHour);
-	ArrayPushBack(values, startDay);
-	ArrayPushBack(values, startHour);
+	values.insertLast(idCaravan);
+	values.insertLast(prepareDay);
+	values.insertLast(prepareHour);
+	values.insertLast(startDay);
+	values.insertLast(startHour);
 
 	uint time = GetNearFullSecond(0, 0, prepareDay, prepareHour, 0, 0);
 
@@ -434,10 +432,10 @@ void FindCabPlace(Map& map, uint[] & x, uint[]& y, uint maxCabs )
 				{
 					// вторая точка тоже найдена
 					// помещаем координаты в массивы
-					ArrayPushBack(x,oX1);
-					ArrayPushBack(y,oY1);
-					ArrayPushBack(x,oX2);
-					ArrayPushBack(y,oY2);
+					x.insertLast(oX1);
+					y.insertLast(oY1);
+					x.insertLast(oX2);
+					y.insertLast(oY2);
 					if(maxCabs>0&&x.length()>maxCabs) break;
 				}
 			}
@@ -512,7 +510,7 @@ bool _CaravanLeaderOnInvite(Critter& leader, Item@ car, uint encounterDescriptor
 
 		if(valid(cab))
 		{
-			push_back_handle(cabItems, cab);
+			cabItems.insertLast(@cab);
 			cab.Val5 = leader.Id;
 			cab.SetEvent( ITEM_EVENT_SKILL, "_OnTryOpenCabs");
 			UNSETFLAG(cab.Flags, ITEM_NO_BLOCK);
@@ -822,7 +820,7 @@ void StartCaravan(uint CaravanId)
 	// группа караванщиков
 	DL("efore push");
 	Critter @[] caravanGroup;
-	push_back_handle(caravanGroup, leader);
+	caravanGroup.insertLast(@leader);
 	DL("atfer push");
 	// всех игроков в группу, сколько разрешено
 	for(uint i=0; i<ci.PlayersRequested.length(); i++)
@@ -835,7 +833,7 @@ void StartCaravan(uint CaravanId)
 		if(GetDistantion(leader.HexX, leader.HexY, player.HexX, player.HexY)<=LEADER_SEARCH_RADIUS)
 		{
 			ci.RequstedToGuard(player.Id);
-			push_back_handle(caravanGroup, player);
+			caravanGroup.insertLast(@player);
 			curPlayersInGrp++;
 		}
 		if(curPlayersInGrp>=ci.MaxPlayers) break;
@@ -861,10 +859,9 @@ void StartCaravan(uint CaravanId)
 		idx = (idx+1<ci.CaravanGuards.length()?idx+1:0);
 		if(valid(guard))
 		{
-			ArrayPushBack(ci.Caravaneers, guard.Id);
-			push_back_handle(caravanGroup, guard);
+			ci.Caravaneers.insertLast(guard.Id);
+			caravanGroup.insertLast(@guard);
 		}
-
 	}
 
 	// основной скрипт проводника
@@ -889,7 +886,7 @@ void _ContinueCaravan(Critter & leader)
 	if(!valid(map_leader)) return;
 
 	Critter @[] caravanGroup;
-	push_back_handle(caravanGroup, leader);
+	caravanGroup.insertLast(@leader);
 	DL("try find caravaneers");
 	uint[] deadGuardIds;
 	for(uint i = 0; i< ci.Caravaneers.length(); i++)
@@ -897,26 +894,26 @@ void _ContinueCaravan(Critter & leader)
 		Critter @ guard = GetCritter(ci.Caravaneers[i]);
 		if(!valid(guard))
 		{
-			ArrayPushBack(deadGuardIds, ci.Caravaneers[i]);// охранника нужно убрать из списка
-			//TODO: добавить установку значения переменной для инвалидных охранников
+			deadGuardIds.insertLast(ci.Caravaneers[i]); // охранника нужно убрать из списка
+			// TODO: добавить установку значения переменной для инвалидных охранников
 			continue;
 		}
 		// охранник найден
 		Map @ map = guard.GetMap();
 		if(!valid(map))
 		{
-			ArrayPushBack(deadGuardIds, ci.Caravaneers[i]);// охранника нужно убрать из списка
+			deadGuardIds.insertLast(ci.Caravaneers[i]); // охранника нужно убрать из списка
 			if(guard.IsPlayer()) _SetPlayerAbandoned(guard, ci);
 			continue;
 		}
 		if(guard.IsDead()||map.Id!=map_leader.Id)
 		{
-			ArrayPushBack(deadGuardIds, ci.Caravaneers[i]);// охранника нужно убрать из списка
+			deadGuardIds.insertLast(ci.Caravaneers[i]); // охранника нужно убрать из списка
 			if(guard.IsPlayer()) _SetPlayerAbandoned(guard, ci);
 			continue;
 		}
 
-		push_back_handle(caravanGroup, guard);
+		caravanGroup.insertLast(@guard);
 	}
 	for(uint j=0; j<deadGuardIds.length(); j++)
 	{
@@ -1163,7 +1160,7 @@ void r_PutPlayerRequest2Info(Critter& player, Critter@ caravaneer)
 	}
 	if(!d_HasPlayerRequest(player, caravaneer))
 	{
-		ArrayPushBack(crv.PlayersRequested, player.Id);
+		crv.PlayersRequested.insertLast(player.Id);
 	}
 }
 

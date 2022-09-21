@@ -16,7 +16,7 @@ int DFGroupCount(Critter& player, Critter@ npc)
 		@leader = player.GetFollowLeader(); // иначе берем лидера
 
 	Critter@[] groups;
-	ArrayPushBack(groups,leader);
+	groups.insertLast(@leader);
 	leader.GetFollowGroup(FIND_LIFE,groups);
 	return groups.length();
 }
@@ -37,7 +37,7 @@ bool d_GroupCountLess(Critter& player, Critter@ npc, int val)
 bool d_GroupLevelMore(Critter& player, Critter@ npc, int val)
 {
 	Critter@[] groups;
-	ArrayPushBack(groups,player);
+	groups.insertLast(@player);
 	player.GetFollowGroup(FIND_LIFE,groups);
 	for(uint i=0;i<groups.length();i++)
 		if(groups[i].Stat[ST_LEVEL]<val) // если хотябы один из них меньше требуемого уровня
@@ -48,7 +48,7 @@ bool d_GroupLevelMore(Critter& player, Critter@ npc, int val)
 bool d_GroupLevelLess(Critter& player, Critter@ npc, int val)
 {
 	Critter@[] groups;
-	ArrayPushBack(groups,player);
+	groups.insertLast(@player);
 	player.GetFollowGroup(FIND_LIFE,groups);
 	for(uint i=0;i<groups.length();i++)
 		if(groups[i].Stat[ST_LEVEL]>val) // если хотябы один из них меньше требуемого уровня

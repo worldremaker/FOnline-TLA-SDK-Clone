@@ -12,13 +12,6 @@
 // Example: if(valid(ptr))... if(not valid(ptr))...
 #define valid #(ptr) (@ptr!=null)
 
-// Inserting element at the end of the array (works where ArrayPushBack doesn't...)
-#define push_back         #(a,e)   { uint __l=a.length(); a.resize(__l+1); a[__l]=e; }
-// For handlers
-#define push_back_handle  #(a,e)   { uint __l=a.length(); a.resize(__l+1); @a[__l]=e; }
-// Removing from array
-#define remove_from_array #(a,idx) { uint __l=a.length(); if(__l>0 && uint(idx)<__l-1) for(uint __i=idx;__i<__l-1;__i++) a[__i]=a[__i+1]; if(__l>0) a.resize(__l-1); }
-
 // Flags
 #define FLAG      #(x,flag) (((x)&(flag))!=0)
 #define SETFLAG   #(x,flag) (x=(x)|(flag))

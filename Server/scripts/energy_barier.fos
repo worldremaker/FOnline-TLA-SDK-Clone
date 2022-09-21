@@ -23,10 +23,6 @@
 #define BS_OFF_TIMED (1)
 #define BS_OFF_PERMA (2)
 
-#define REMOVE_FROM_ARRAY #(a,idx)       { if (a.length() > 0 && uint(idx) < a.length()) for (uint iter=idx; iter<a.length()-1; iter++) { @a[iter]=@a[iter+1]; }; a.resize(a.length()-1); }
-#define add_element #(a)	{ a.resize(a.length()+1); }
-#define add_elements #(a)	{ a.resize(a.length()+2); }
-
 #define MODE_STANDART (1)
 #define MODE_HACK (2)
 #define MODE_USE_CARD (3)
@@ -151,7 +147,7 @@ void InitBariers(Item& barier)
 	{
 		case PID_EB_LONG_HOR:
 			LogEx("Горизонтальный барьер");
-			add_elements(blockers);
+			blockers.grow(2);
 			push_back_array(blockers[0],EBBlockers[0][0]);
 			push_back_array(blockers[1],EBBlockers[0][1]);
 			trigDir=5;
@@ -169,7 +165,7 @@ void InitBariers(Item& barier)
 			break;
 		case PID_EB_LONG_VERT:
 			LogEx("Вертикальный барьер");
-			add_elements(blockers);
+			blockers.grow(2);
 			push_back_array(blockers[0],EBBlockers[1][0]);
 			push_back_array(blockers[1],EBBlockers[1][1]);
 			trigDir=5;
@@ -187,7 +183,7 @@ void InitBariers(Item& barier)
 		case PID_EB_SHORT_HOR1:
 		case PID_EB_SHORT_HOR2:
 		case PID_EB_SHORT_HOR3:
-			add_elements(blockers);
+			blockers.grow(2);
 			trigDir=5;
 			trigDest=2;
 			if(barier.Val3!=0)
@@ -214,7 +210,7 @@ void InitBariers(Item& barier)
 		case PID_EB_SHORT_VERT1:
 		case PID_EB_SHORT_VERT2:
 		case PID_EB_SHORT_VERT3:
-			add_elements(blockers);
+			blockers.grow(2);
 			trigDir=0;
 			trigDest=2;
 			if(barier.Val3!=0)
@@ -288,7 +284,7 @@ class CBarier
 		baseY=barier.HexY;
 		@Barier=barier;
 		Guarded=guarded;
-		push_back_handle(Blockers,barier);
+		Blockers.insertLast(@barier);
 		if(barier.MapId>0)
 		{
 			@map=GetMap(barier.MapId);
@@ -312,7 +308,7 @@ class CBarier
 					if(not valid(temp) or temp.Val1!=Barier.Val1)
 					{
 						@temp=map.AddItem(newX,newY,PID_EB_BLOCKER,1);
-						push_back_handle(Blockers,temp);
+						Blockers.insertLast(@temp);
 					}
 				}
 			}
@@ -333,7 +329,7 @@ class CBarier
 					if(not valid(temp) or temp.Val1!=Barier.Val1)
 					{
 						@temp=map.AddItem(newX,newY,PID_EB_TRIGGER,1);
-						push_back_handle(Triggers,temp);
+						Triggers.insertLast(@temp);
 					}
 				}
 			}
@@ -355,7 +351,7 @@ class CBarier
 				Log("ForceField not created!");
 				return;
 			}
-			push_back_handle(BariersNets,net);
+			BariersNets.insertLast(@net);
 		}
 		net.AddBarier(this);
 	}
@@ -469,7 +465,7 @@ class CBariersNet
 	}
 	void AddBarier(CBarier@ barier)
 	{
-		push_back_handle(Bariers,barier);
+		Bariers.insertLast(@barier);
 	}
 	void ChangeNetMode(uint8 mode, uint8 autoEnable)
 	{
@@ -484,9 +480,9 @@ class CBariersNet
 			if(((((mode==BM_OFF) and (autoOn)) or ((mode==BM_HALF_ON) and (autoOnHalf))) or (autoEnable==AE_ON)) and (autoEnable!=AE_OFF))
 			{
 				uint[] values;
-				push_back(values,LocId);
-				push_back(values,NetNum);
-				push_back(values,BM_ON);
+				values.insertLast(LocId);
+				values.insertLast(NetNum);
+				values.insertLast(BM_ON);
 				CreateTimeEvent(__FullSecond+TIME_BARIER_OPEN,"e_TurnOnBariers",values,true);
 			}
 			barier.ChangeMode(mode);
@@ -533,7 +529,7 @@ void push_back_array(uint8[]& arr, uint8[]& target)
 {
 	for(uint i=0;i<target.length();i++)
 	{
-		push_back(arr,target[i]);
+		arr.insertLast(target[i]);
 	}
 }
 
@@ -699,7 +695,7 @@ void _WalkOnTrigg(Item& item, Critter& cr, bool entered, uint8 dir) // TODO
 		{
 			if(npcs[i].StatBase[ST_NPC_ROLE]!=item.Val1)
 			{
-				REMOVE_FROM_ARRAY(npcs,i);
+				npcs.removeAt(i);
 			}
 		}
 		if(npcs.length()!=0)
@@ -841,7 +837,7 @@ bool _UseEmitter(Item& item, Critter& cr, int skill)
 				{
 					LogEx("Автовключение");
 					uint[] values;
-					push_back(values,field.Blockers[0].Id);
+					values.insertLast(field.Blockers[0].Id);
 					CreateTimeEvent(__FullSecond+TIME_BARIER_OPEN,"e_TurnOnBarier",values,true);
 				}
 				field.ChangeMode(BM_OFF);
@@ -935,7 +931,7 @@ bool ObjectUse(Critter& cr, Item& item, uint16 proto)
 			{
 				LogEx("Автовключение");
 				uint[] values;
-				push_back(values,field.Blockers[0].Id);
+				values.insertLast(field.Blockers[0].Id);
 				CreateTimeEvent(__FullSecond+TIME_BARIER_OPEN,"e_TurnOnBarier",values,true);
 			}
 			field.ChangeMode(BM_OFF);
@@ -1060,10 +1056,10 @@ bool s_Terminal(Critter& player, Scenery& terminal, int skill, Item@ item, int n
 			timeAccessDenied=adTermInfo[1];
 		}
 	}
-	push_back(anyData,mode);
-	push_back(anyData,itemId);
-	push_back(anyData,timeBrocken);
-	push_back(anyData,timeAccessDenied);
+	anyData.insertLast(mode);
+	anyData.insertLast(itemId);
+	anyData.insertLast(timeBrocken);
+	anyData.insertLast(timeAccessDenied);
 	if(not SetAnyData("EnergyBarierTerminal_"+mapId+"_"+terminal.HexX+"_"+terminal.HexY+"_"+netNum,anyData))
 	{
 		Log("AnyData not created");
@@ -1206,7 +1202,7 @@ uint doHack(Critter& master, int hexX, int hexY)
 		}
 		if(guardNotFound)
 		{
-			REMOVE_FROM_ARRAY(npcs,i);
+			npcs.removeAt(i);
 		}
 	}
 	if(npcs.length()!=0)
@@ -1232,8 +1228,8 @@ uint doHack(Critter& master, int hexX, int hexY)
 		if(IsCriticalRvS(hRoll))
 		{
 			uint[] adTermInfo;
-			push_back(adTermInfo,0);
-			push_back(adTermInfo,__FullSecond+TIME_NOT_ACCESS);
+			adTermInfo.insertLast(0);
+			adTermInfo.insertLast(__FullSecond+TIME_NOT_ACCESS);
 			if(not SetAnyData("EnergyBarierTerminalInfo_"+mapId+"_"+hexX+"_"+hexY,adTermInfo))
 			{
 				Log("AnyData not saved");

@@ -7,15 +7,6 @@
 // функции перегружаються по мере необходимости поэтому многих типов тут может небыть.
 // функции типа int, uint есть всегда.
 
-// добавление элементов из массив (добавляет значение в конец массива)
-#define AddToArray #(A,V) ArrayPushBack(A,V)
-// #define AddToArray #(A,V) {A.resize(A.length()+1); A[A.length()-1]=V;}
-
-// удаление по индексу
-// RemoveFromArrayPtr - тоже но для массивов типа Critter@[]   (блин, тупежка...)
-// #define RemoveFromArray #(A,I) ArrayErase(A,I); - неработает =(
-#define RemoveFromArray #(A,I)    do{ uint __c__=A.length(); if (__c__!=0 && I<uint(__c__)) {for (uint __i__=uint(I); __i__<__c__-1; __i__++)  A[__i__] = A[__i__+1]; A.resize(__c__-1); }}while(false)
-#define RemoveFromArrayPtr #(A,I) do{ uint __c__=A.length(); if (__c__!=0 && I<uint(__c__)) {for (uint __i__=uint(I); __i__<__c__-1; __i__++) @A[__i__] =@A[__i__+1]; A.resize(__c__-1); }}while(false)
 
 // ищет значение в массиве ///////////////////////////
 
@@ -140,7 +131,7 @@ void MergeArrays(uint16[]& arrayTo, uint16[]& arrayFrom)
 {
 	for(uint i = 0, l=arrayFrom.length();i<l;i++)
 	{
-		ArrayPushBack(arrayTo, arrayFrom[i]);
+		arrayTo.insertLast(arrayFrom[i]);
 	}
 }
 
@@ -148,8 +139,8 @@ void MergeArrays(int[]& arrayTo, int[]& arrayFrom)
 {
 	for(uint i = 0, l=arrayFrom.length();i<l;i++)
 	{
-		ArrayPushBack(arrayTo, arrayFrom[i]);
-		ArrayPushBack(arrayTo, arrayFrom[i]);
+		arrayTo.insertLast(arrayFrom[i]);
+		arrayTo.insertLast(arrayFrom[i]);
 	}
 }
 #endif // __UTILS_FOR_ARRAY__

@@ -13,34 +13,34 @@
 // string GetStrCard(uint8 num) возвращает строковое наименование карты
 // uint8 GetCombo(uint8 plNum) возвращает комбинацию и ранг высшей карты
 
-#define PLAYERS_COUNT (4)
-#define CARD_COUNT (5) //В некоторых видах покера раздается по 7 карт
-#define GAMEVAR_COUNT (16+(PLAYERS_COUNT*(CARD_COUNT+3))) // 48 для PLAYERS_COUNT = 4
-//Масти
-#define CARD_SPADES	(0)	//пики
-#define CARD_HEARTS	(1)	//чирвы
-#define CARD_DIAMONDS	(2)	//бубны
-#define CARD_CLUBS	(3)	//крести
-#define NPC_ROLE_START_VALUE (1600) // Минимальное значение NpcRole (указывает на номер настроек покера)
-#define STR_INVALID_MONEY_COUNT           (DLGSTR(DIALOG_all_poker,43))
-#define STR_OPERATION_SUCCESS             (DLGSTR(DIALOG_all_poker,44))
-#define STR_CHEAT_DEFAULT                 (DLGSTR(DIALOG_all_poker,47))
-#define STR_CHEAT_1                       (DLGSTR(DIALOG_all_poker,48))
+#define PLAYERS_COUNT           (4)
+#define CARD_COUNT              (5) // В некоторых видах покера раздается по 7 карт
+#define GAMEVAR_COUNT           (16+(PLAYERS_COUNT*(CARD_COUNT+3))) // 48 для PLAYERS_COUNT = 4
+// Масти
+#define CARD_SPADES	            (0) // пики
+#define CARD_HEARTS	            (1) // чирвы
+#define CARD_DIAMONDS           (2) // бубны
+#define CARD_CLUBS              (3) // крести
+#define NPC_ROLE_START_VALUE    (1600) // Минимальное значение NpcRole (указывает на номер настроек покера)
+#define STR_INVALID_MONEY_COUNT (DLGSTR(DIALOG_all_poker,43))
+#define STR_OPERATION_SUCCESS   (DLGSTR(DIALOG_all_poker,44))
+#define STR_CHEAT_DEFAULT       (DLGSTR(DIALOG_all_poker,47))
+#define STR_CHEAT_1             (DLGSTR(DIALOG_all_poker,48))
 
-//Ранги
-#define CARD_2	(0)
-#define CARD_3	(1)
-#define CARD_4	(2)
-#define CARD_5	(3)
-#define CARD_6	(4)
-#define CARD_7	(5)
-#define CARD_8	(6)
-#define CARD_9	(7)
-#define CARD_10	(8)
-#define CARD_JACK	(9)  //Валет
-#define CARD_LADY	(10) //Дама
-#define CARD_KING	(11) //Король
-#define CARD_ACE	(12) //Туз
+// Ранги
+#define CARD_2      (0)
+#define CARD_3      (1)
+#define CARD_4      (2)
+#define CARD_5      (3)
+#define CARD_6      (4)
+#define CARD_7      (5)
+#define CARD_8      (6)
+#define CARD_9      (7)
+#define CARD_10     (8)
+#define CARD_JACK   (9)  // Валет
+#define CARD_LADY   (10) // Дама
+#define CARD_KING   (11) // Король
+#define CARD_ACE    (12) // Туз
 
 //////////////////////////////КОМБИНАЦИИ:///////////////////////////////////////////////////////////////////////////
 // 0 - Старшая карта /High Card/ (5-12) старшая карта от 7 до туза (7) - низшая категория					//
@@ -69,13 +69,13 @@
 #define D_VA_BANK	(1)
 #define D_PRIN	(2)
 
-//Этап игры
+// Этап игры
 #define GAME_E_BETROUND1    (0)
 #define GAME_E_REPLACECARD  (1)
 #define GAME_E_BETROUND2    (2)
 #define GAME_E_END          (3)
 
-//Состояние игроков
+// Состояние игроков
 #define PLST_WAIT           (0)
 #define PLST_RAISE          (1)
 #define PLST_PASS           (2)
@@ -84,61 +84,61 @@
 #define PL_START_GAME       (1)
 #define PL_RESUME_GAME      (0)
 
-#define DID (DIALOG_all_poker)
-#define STR_DLGREPLY (41)
-#define STR_CARDS (0)
-#define STR_COMBO (1)
-#define STR_BANK (2)
-#define STR_BET (3)
-#define STR_MBET (4)
-#define STR_FOLD (5)
-#define STR_RAISE (6)
-#define STR_WAIT (7)
-#define STR_CALL (8)
-#define STR_PL (9)
-#define STR_WINCOMBO (10)
-#define STR_WINERS (11)
-#define STR_YOUWIN (12)
-#define STR_WINPLNUM (13)
-#define STR_CARD_SPADES	(14)
-#define STR_CARD_HEARTS	(15)
-#define STR_CARD_DIAMONDS(16)
-#define STR_CARD_CLUBS (17)
-#define STR_CARD_2 (18)
-#define STR_CARD_3 (19)
-#define STR_CARD_4 (20)
-#define STR_CARD_5 (21)
-#define STR_CARD_6 (22)
-#define STR_CARD_7 (23)
-#define STR_CARD_8 (24)
-#define STR_CARD_9 (25)
-#define STR_CARD_10 (26)
-#define STR_CARD_JACK (27)
-#define STR_CARD_LADY (28)
-#define STR_CARD_KING (29)
-#define STR_CARD_ACE (30)
-#define STR_COMBO_HIGHCARD (31)
-#define STR_COMBO_ONEPAIR (32)
-#define STR_COMBO_TWOPAIR (33)
-#define STR_COMBO_SET (34)
-#define STR_COMBO_STRAIGHT (35)
-#define STR_COMBO_FLUSH (36)
-#define STR_COMBO_FULLHOUSE (37)
-#define STR_COMBO_FOAK (38)
-#define STR_COMBO_STRFLUSH (39)
+#define DID                  (DIALOG_all_poker)
+#define STR_DLGREPLY         (41)
+#define STR_CARDS            (0)
+#define STR_COMBO            (1)
+#define STR_BANK             (2)
+#define STR_BET              (3)
+#define STR_MBET             (4)
+#define STR_FOLD             (5)
+#define STR_RAISE            (6)
+#define STR_WAIT             (7)
+#define STR_CALL             (8)
+#define STR_PL               (9)
+#define STR_WINCOMBO         (10)
+#define STR_WINERS           (11)
+#define STR_YOUWIN           (12)
+#define STR_WINPLNUM         (13)
+#define STR_CARD_SPADES      (14)
+#define STR_CARD_HEARTS	     (15)
+#define STR_CARD_DIAMONDS    (16)
+#define STR_CARD_CLUBS       (17)
+#define STR_CARD_2           (18)
+#define STR_CARD_3           (19)
+#define STR_CARD_4           (20)
+#define STR_CARD_5           (21)
+#define STR_CARD_6           (22)
+#define STR_CARD_7           (23)
+#define STR_CARD_8           (24)
+#define STR_CARD_9           (25)
+#define STR_CARD_10          (26)
+#define STR_CARD_JACK        (27)
+#define STR_CARD_LADY        (28)
+#define STR_CARD_KING        (29)
+#define STR_CARD_ACE         (30)
+#define STR_COMBO_HIGHCARD   (31)
+#define STR_COMBO_ONEPAIR    (32)
+#define STR_COMBO_TWOPAIR    (33)
+#define STR_COMBO_SET        (34)
+#define STR_COMBO_STRAIGHT   (35)
+#define STR_COMBO_FLUSH      (36)
+#define STR_COMBO_FULLHOUSE  (37)
+#define STR_COMBO_FOAK       (38)
+#define STR_COMBO_STRFLUSH   (39)
 #define STR_COMBO_ROYALFLUSH (40)
-#define STR_ACCEPT (42)
-#define STR_CARDS_PL (45)
-#define STR_COMBO_PL (46)
-#define STR_FRAUD_ON (49)
-#define STR_FRAUD_OFF (50)
-#define STR_CARD_IN_SLEEVE (51)
-#define STR_SELECT (52)
-#define STR_UNSELECT (53)
-#define STR_MANYWINS_ON (54)
-#define STR_MANYWINS_OFF (55)
+#define STR_ACCEPT           (42)
+#define STR_CARDS_PL         (45)
+#define STR_COMBO_PL         (46)
+#define STR_FRAUD_ON         (49)
+#define STR_FRAUD_OFF        (50)
+#define STR_CARD_IN_SLEEVE   (51)
+#define STR_SELECT           (52)
+#define STR_UNSELECT         (53)
+#define STR_MANYWINS_ON      (54)
+#define STR_MANYWINS_OFF     (55)
 
-#define D_MANYWINS (19)
+#define D_MANYWINS           (19)
 
 
 int8 GetBit(int64 digit, uint8 bnum)
@@ -162,10 +162,10 @@ uint8 SetBit5(uint8 digit, uint8 bnum, bool value)
 
 uint8 GetSuit(uint8 CNum)
 {
-	//0 - пики (Spades)
-	//1 - чирвы  (Hearts)
-	//2 - бубны  (Diamonds)
-	//3 - крести  (Clubs)
+	// 0 - пики (Spades)
+	// 1 - чирвы  (Hearts)
+	// 2 - бубны  (Diamonds)
+	// 3 - крести  (Clubs)
 	if(CNum<=13)
 	{
 		return CARD_SPADES;
@@ -192,11 +192,11 @@ uint8 GetSuit(uint8 CNum)
 
 uint8 GetRank(uint8 CNum)
 {
-	//0-8 - 2-10
-	//9 - валет
-	//10 - дама
-	//11 - король
-	//12 - туз
+	// 0-8 - 2-10
+	// 9 - валет
+	// 10 - дама
+	// 11 - король
+	// 12 - туз
 	return (CNum-1)%13;
 }
 

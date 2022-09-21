@@ -27,14 +27,14 @@ void CountDeadSaboteurs(Critter & cr, Map @ map, Critter @ killer)
 	Critter @[] grp;
 	Critter @ leader = killer.GetFollowLeader();
 	if(!valid(leader)) @leader = killer;
-	ArrayPushBack(grp,leader);
+	grp.insertLast(@leader);
 	leader.GetFollowGroup(FIND_LIFE,grp);
 	for(uint i=0,l=grp.length();i<l;i++)
 	{
 		Critter @ player = grp[i];
 		if(!valid(player)) continue;
 		if(!player.IsPlayer()) continue;
-		
+
 		GameVar @ qVar = GetLocalVar(LVAR_q_bh_super_new_technology, player.Id);
 		if(!valid(qVar)) continue;
 		if(qVar!=2) continue;
@@ -111,7 +111,7 @@ bool _GhoulBarter(Critter& cr, Critter& player, bool attach, uint barterCount)
 				if(hasDiscount.GetValue()==1) setDisc = true;
 			}
 		}
-	}	
+	}
 	SedUraniumCost(cr,(setDisc?100-URANIUM_DISCOUNT:100));
 	return true;
 }

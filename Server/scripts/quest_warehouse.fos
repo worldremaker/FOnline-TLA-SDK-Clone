@@ -132,7 +132,7 @@ uint ProcessMainQuest(Critter& player, int newVal)
 		if(not valid(map)) return FD_GENERIC_ERROR;
 
 		Critter@[] critters;
-		ArrayPushBack(critters,player);
+		critters.insertLast(@player);
 		player.GetFollowGroup(FIND_LIFE,critters);
 		if(critters.length()<MIN_PLAYERS) return FD_LOW_PLAYERS;
 
@@ -152,8 +152,8 @@ uint ProcessMainQuest(Critter& player, int newVal)
 				{
 					if(cr.Stat[ST_LEVEL]<MIN_EVERY_LEVEL) return FD_LOW_LEVEL;
 
-					ArrayPushBack(questCr,cr);
-					ArrayPushBack(questData,cr.Id);
+					questCr.insertLast(@cr);
+					questData.insertLast(cr.Id);
 					aproxLevel+=cr.Stat[ST_LEVEL];
 					if(not isMalePresent && cr.Stat[ST_GENDER]==GENDER_MALE) isMalePresent=true;
 				}
@@ -230,7 +230,7 @@ uint ProcessSubQuest1(Critter& player, int newVal)
 		for(uint i=0,j=questCrIds.length();i<j;i++)
 		{
 			Critter@ cr=GetCritter(questCrIds[i]);
-			if(valid(cr)) ArrayPushBack(critters,cr);
+			if(valid(cr)) critters.insertLast(@cr);
 		}
 		uint16 locPid=Random(LOCATION_Warehouse_First,LOCATION_Warehouse_Last);
 		uint locId=CreateLocation(locPid,Random(810,990),Random(510,690),critters);

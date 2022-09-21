@@ -7,10 +7,6 @@
 
 // В этом файле хранятся настройки игры для различных НПЦ (минимальные/максимальные ставки и тп)
 // Для того чтобы заставить нпц играть с теми или иными настойкам, необходимо указать ему соответствующее значение NpcRole
-#define add_element #(a)	{ a.resize(a.length()+1); }
-#define add_element2 #(a,b)	{ a.resize(a.length()+b); }
-#define push_back #(a,e)    { a.resize(a.length()+1); a[a.length()-1] = e; }
-#define push_back_handle #(a,e) { a.resize(a.length()+1); @a[a.length()-1] = e; }
 #define NPC_ROLE_START_VALUE (71600)
 
 import bool AddAttackPlane(Critter& npc, uint priority, Critter& target) from "npc_planes";
@@ -60,8 +56,8 @@ Starter aStarter;
 
 void InitPGemers()
 {
-	push_back_handle(PGamers, PokerGamer(120, 20, 750, 20, 50, 100, 1, 0, 0, 1, 3000, 2));
-	push_back_handle(PGamers, PokerGamer(130, 30, 850, 30, 60, 200, 1, 0, 0, 3, 6000, 3));
+	PGamers.insertLast(@PokerGamer(120, 20, 750, 20, 50, 100, 1, 0, 0, 1, 3000, 2));
+	PGamers.insertLast(@PokerGamer(130, 30, 850, 30, 60, 200, 1, 0, 0, 3, 6000, 3));
 }
 
 void RunCheatScript(uint16 funcNum,Critter& player, Critter& pokerMan)

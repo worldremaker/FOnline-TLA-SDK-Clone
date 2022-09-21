@@ -264,9 +264,6 @@ void DLog(string& str)
 #include "_macros.fos"
 #include "entire.fos"
 
-#define push_back #(a,e) { a.resize(a.length()+1); a[a.length()-1] = e; }
-#define push_back_handle #(a,e) { a.resize(a.length()+1); @a[a.length()-1] = e; }
-
 // ent number for i-th room
 // global value, but we can change it to be different per-npc
 #define ENT #(i)	(50+i)
@@ -1444,7 +1441,7 @@ void TestTE(Critter& cr, int set, int, int)
 		{
 			values[0]=123;
 			uint value=456;
-			ArrayPushBack(values,value);
+			values.insertLast(value);
 			if(SetTimeEvent(num,duration,values))
 			{
 				Log("set ok+");

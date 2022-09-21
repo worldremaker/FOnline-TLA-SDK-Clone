@@ -126,7 +126,7 @@ class GatesControl // Описание и методы охраняемых ворот
 					Critter @ guard = map.GetNpc(npcRole,findType,i);
 					if(valid(guard))
 					{
-						push_back_handle(guards, guard);
+						guards.insertLast(@guard);
 					}
 				}
 			}
@@ -205,7 +205,7 @@ class GatesControl // Описание и методы охраняемых ворот
 	void SetPlayerIsBad(Critter & player)  // Заносит игрока в список нарушителей
 	{
 		if(CheckPlayerIsBad(player)) return; // Занесен в списки ранее
-		ArrayPushBack(this.badList,player.Id);
+		this.badList.insertLast(player.Id);
 		SaveBadList();
 	}
 
@@ -214,9 +214,9 @@ class GatesControl // Описание и методы охраняемых ворот
 		if(!CheckPlayerIsBad(player)) return;
 		for(uint i=0,l=this.badList.length();i<l;i++)
 		{
-			if (player.Id==this.badList[i])
+			if(player.Id==this.badList[i])
 			{
-				remove_from_array(this.badList,i);
+				this.badList.removeAt(i);
 				break;
 			}
 		}
@@ -279,7 +279,7 @@ class GatesControl // Описание и методы охраняемых ворот
 		pass.GatesId = this.GatesId;
 		if(pass.CancelTime*60>__FullSecond)
 		{
-			push_back(this.goodList, pass);
+			this.goodList.insertLast(pass);
 			SaveGoodList();
 		}
 	}
@@ -306,7 +306,7 @@ class GatesControl // Описание и методы охраняемых ворот
 			if(pass.CancelTime*60>__FullSecond) // Время пропуска еще не прошло
 			{
 				DL("pUUUUUSH!");
-				push_back(this.goodList, pass);
+				this.goodList.insertLast(pass);
 			}
 		}
 		DL("loaded."+goodPlayers);
@@ -328,10 +328,10 @@ class GatesControl // Описание и методы охраняемых ворот
 		{
 			PassAccept @ pass = this.goodList[i];
 			if(!valid(pass)) continue;
-			ArrayPushBack(data, pass.PlayerId);
-			ArrayPushBack(data, pass.PassType);
-			ArrayPushBack(data, pass.CancelTime);
-			ArrayPushBack(data, pass.GatesId);
+			data.insertLast(pass.PlayerId);
+			data.insertLast(pass.PassType);
+			data.insertLast(pass.CancelTime);
+			data.insertLast(pass.GatesId);
 		}
 		if(IsAnyData( ANYDATA_GOOD_LIST_KEY(this.GatesId)))EraseAnyData(ANYDATA_GOOD_LIST_KEY(this.GatesId));
 		SetAnyData(ANYDATA_GOOD_LIST_KEY(this.GatesId), data);

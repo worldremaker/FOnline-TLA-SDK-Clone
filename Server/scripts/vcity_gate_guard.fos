@@ -33,8 +33,8 @@ void Guard_on_add_critter(Critter& npc, Critter& player)
 {
 	if (not player.IsPlayer()) return;
 	//Log("Add OK.");
-	RemoveFromArray(player_ok, uint(FindInArray(player_ok, player.Id)));
-	RemoveFromArray(player_warned, uint(FindInArray(player_warned, player.Id)));
+	player_ok.removeAt(uint(FindInArray(player_ok, player.Id)));
+	player_warned.removeAt(uint(FindInArray(player_warned, player.Id)));
 }
 
 // ¬ызываетс€, когда из пол€ зрени€ NPC исчезает криттер.
@@ -42,8 +42,8 @@ void Guard_on_remove_critter(Critter& npc, Critter& player)
 {
 	if (not player.IsPlayer()) return;
 	//Log("remove OK.");
-	RemoveFromArray(player_ok, uint(FindInArray(player_ok, player.Id)));
-	RemoveFromArray(player_warned, uint(FindInArray(player_warned, player.Id)));
+	player_ok.removeAt(uint(FindInArray(player_ok, player.Id)));
+	player_warned.removeAt(uint(FindInArray(player_warned, player.Id)));
 }
 
 // тестирование предмета на разрешонность
@@ -101,7 +101,7 @@ void Guard_OnMessage(Critter& guard, Critter& player, int num, int val)
 	{ // ѕредупреждаем игрока
 		if (Present(player.Id, player_warned))
 			return; // значит мы его уже предупредили - дважды повтор€ть не будем
-		AddToArray(player_warned, player.Id);
+		player_warned.insertLast(player.Id);
 		Item@ itm=_CritGetItemArmor(player);
 		if (valid(itm))
 			if(Present(itm.GetProtoId(), Pids_ArmorHeavy))
@@ -137,7 +137,7 @@ void Guard_OnMessage(Critter& guard, Critter& player, int num, int val)
 			{ // все окей
 				//guard.Say(SAY_NORM_ON_HEAD, "ƒаже отобрать нечего, топай дальше");
 				guard.SayMsg(SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR(DIALOG_vc_gate_guard,2));
-				AddToArray(player_ok, player.Id);
+				player_ok.insertLast(player.Id);
 			} else {
 				if (searchResult==5) // нету пропуска
 					guard.SayMsg(SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR(DIALOG_vc_gate_guard,7));
@@ -145,7 +145,7 @@ void Guard_OnMessage(Critter& guard, Critter& player, int num, int val)
 				{ // плохие предметы
 					//guard.Say(SAY_NORM_ON_HEAD, "ќ! да у теб€ тут јлкоголь и Ќаркотики. Ќе уходи от нас братец!");
 					guard.SayMsg(SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR(DIALOG_vc_gate_guard,3));
-					RemoveFromArray(player_ok, uint(FindInArray(player_ok, player.Id)));
+					player_ok.removeAt(uint(FindInArray(player_ok, player.Id)));
 				}
 			}
 			return;
@@ -172,8 +172,8 @@ void Guard_OnMessage(Critter& guard, Critter& player, int num, int val)
 	if(num==MESSAGE_PLAYER_ON_PRE_ENTER) {
 		// это не честный обыск, но зато надежный.
 		if (Searching(guard, player) != 0) {
-			RemoveFromArray(player_ok, uint(FindInArray(player_ok, player.Id)));
-			RemoveFromArray(player_warned, uint(FindInArray(player_ok, player.Id)));
+			player_ok.removeAt(uint(FindInArray(player_ok, player.Id)));
+			player_warned.removeAt(uint(FindInArray(player_ok, player.Id)));
 			guard.SayMsg(SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR(DIALOG_vc_gate_guard,1));
 		}
 	}
@@ -193,7 +193,7 @@ void t_incoming(Critter& player, Scenery& trigger, bool entered, uint8 dir)
 	{ // вышел из города дальше зоны предупреждени€
 		// удал€ем из листов
 		//grd.DelObserving(player);//!!!
-		//RemoveFromArray(player_ok, uint(FindInArray(player_ok, player.Id)));
+		//player_ok.removeAt(uint(FindInArray(player_ok, player.Id)));
 		return;
 	}
 
@@ -259,7 +259,7 @@ void Guard_on_pick_item(Critter& guard, Item& hideItem, bool removed, Critter@ p
 	if (not ItemTest(hideItem.GetProtoId())) {
 		uint i=0;
 		if (FindInArray(player_ok, picker.Id, i)) {
-			RemoveFromArray(player_ok, i);
+			player_ok.removeAt(i);
 			guard.SayMsg(SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR(DIALOG_vc_gate_guard,1));
 		}
 	}
@@ -270,7 +270,7 @@ uint r_searching(Critter& player, Critter@ guard, int val)
 	if (Searching(guard, player)==0)
 	{ // окей
 		if (not Present(player.Id, player_ok))
-			AddToArray(player_ok, player.Id);
+			player_ok.insertLast(player.Id);
 		return 9;
 	}
 	// не пускаем

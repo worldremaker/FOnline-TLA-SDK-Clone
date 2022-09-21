@@ -36,7 +36,7 @@ void ShowElevator(Critter & player, uint8 elevatorType, uint[] mapPids, uint ent
 		{
 			curLevel+=i;
 		}
-		ArrayPushBack(data, mapPids[i]);
+		data.insertLast(mapPids[i]);
 	}
 	// cохраняем описание лифта в anydata
 	SetAnyData(AnyDataKey(player.Id, playerMap.Id), data);
@@ -83,7 +83,7 @@ void answer_SelectLevel(Critter& player, uint answerI, string& answerS)
 					{
 						player.TransitToMap(newMap.Id, entNum);
 						return;
-					}				
+					}
 				}
 				return;
 			}

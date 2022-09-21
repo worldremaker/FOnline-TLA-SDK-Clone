@@ -258,7 +258,7 @@ class TextboxChannel : IGUIElementCallbackInit, IGUIElementCallbackKeyPress
 
 		if((Instance.RadioFlags&RADIO_DISABLE_SHIFT_CHANNEL)==0)
 		{
-			if(text[text.length()-1]=='\n')  text.resize(text.length()-1);
+			if(text.length()>0 && text[text.length()-1]=='\n') text.resize(text.length()-1);
 
 			int channel=0;
 			StrToInt(text,channel);

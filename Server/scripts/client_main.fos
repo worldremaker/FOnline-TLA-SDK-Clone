@@ -592,41 +592,41 @@ void combat_result(uint[]& data)
       offset-=306;
       if(mode>CMSG_CRIT_MISS_DAMAGE) // hit flags
       {
-        if(FLAG(effect,HF_KNOCKOUT)) push_back_handle(ext,GetMsgStr(TEXTMSG_COMBAT,offset));
-        if(FLAG(effect,HF_KNOCKDOWN)) push_back_handle(ext,GetMsgStr(TEXTMSG_COMBAT,offset+1));
-        if(FLAG(effect,HF_CRIPPLED_LEFT_LEG)) push_back_handle(ext,GetMsgStr(TEXTMSG_COMBAT,offset+2));
-        if(FLAG(effect,HF_CRIPPLED_RIGHT_LEG)) push_back_handle(ext,GetMsgStr(TEXTMSG_COMBAT,offset+3));
-        if(FLAG(effect,HF_CRIPPLED_LEFT_ARM)) push_back_handle(ext,GetMsgStr(TEXTMSG_COMBAT,offset+4));
-        if(FLAG(effect,HF_CRIPPLED_RIGHT_ARM)) push_back_handle(ext,GetMsgStr(TEXTMSG_COMBAT,offset+5));
-        if(FLAG(effect,HF_BLINDED)) push_back_handle(ext,GetMsgStr(TEXTMSG_COMBAT,offset+6));
-        // if(FLAG(effect,HF_DEATH)) push_back_handle(ext,GetMsgStr(TEXTMSG_COMBAT,offset)); // this is handled elsewhere
-        // if(FLAG(effect,HF_ON_FIRE)) push_back_handle(ext,GetMsgStr(TEXTMSG_COMBAT,offset+10)); // not used
-        if(FLAG(effect,HF_BYPASS_ARMOR)) push_back_handle(ext,GetMsgStr(TEXTMSG_COMBAT,offset+11));
-        if(FLAG(effect,HF_DROPPED_WEAPON)) push_back_handle(ext,GetMsgStr(TEXTMSG_COMBAT,offset+14)); // not used
-        if(FLAG(effect,HF_LOST_NEXT_TURN)) push_back_handle(ext,GetMsgStr(TEXTMSG_COMBAT,offset+15));
-        if(FLAG(effect,HF_RANDOM)) push_back_handle(ext,GetMsgStr(TEXTMSG_COMBAT,offset+21));
+        if(FLAG(effect,HF_KNOCKOUT)) ext.insertLast(@GetMsgStr(TEXTMSG_COMBAT,offset));
+        if(FLAG(effect,HF_KNOCKDOWN)) ext.insertLast(@GetMsgStr(TEXTMSG_COMBAT,offset+1));
+        if(FLAG(effect,HF_CRIPPLED_LEFT_LEG)) ext.insertLast(@GetMsgStr(TEXTMSG_COMBAT,offset+2));
+        if(FLAG(effect,HF_CRIPPLED_RIGHT_LEG)) ext.insertLast(@GetMsgStr(TEXTMSG_COMBAT,offset+3));
+        if(FLAG(effect,HF_CRIPPLED_LEFT_ARM)) ext.insertLast(@GetMsgStr(TEXTMSG_COMBAT,offset+4));
+        if(FLAG(effect,HF_CRIPPLED_RIGHT_ARM)) ext.insertLast(@GetMsgStr(TEXTMSG_COMBAT,offset+5));
+        if(FLAG(effect,HF_BLINDED)) ext.insertLast(@GetMsgStr(TEXTMSG_COMBAT,offset+6));
+        // if(FLAG(effect,HF_DEATH)) ext.insertLast(@GetMsgStr(TEXTMSG_COMBAT,offset)); // this is handled elsewhere
+        // if(FLAG(effect,HF_ON_FIRE)) ext.insertLast(@GetMsgStr(TEXTMSG_COMBAT,offset+10)); // not used
+        if(FLAG(effect,HF_BYPASS_ARMOR)) ext.insertLast(@GetMsgStr(TEXTMSG_COMBAT,offset+11));
+        if(FLAG(effect,HF_DROPPED_WEAPON)) ext.insertLast(@GetMsgStr(TEXTMSG_COMBAT,offset+14)); // not used
+        if(FLAG(effect,HF_LOST_NEXT_TURN)) ext.insertLast(@GetMsgStr(TEXTMSG_COMBAT,offset+15));
+        if(FLAG(effect,HF_RANDOM)) ext.insertLast(@GetMsgStr(TEXTMSG_COMBAT,offset+21));
       }
       else
       {
-        if(FLAG(effect,MF_KNOCKED_DOWN)) push_back_handle(ext,GetMsgStr(TEXTMSG_COMBAT,offset+1));
-        // if(FLAG(effect,MF_ON_FIRE)) push_back_handle(ext,GetMsgStr(TEXTMSG_COMBAT,offset+10)); // not used
-        if(FLAG(effect,MF_WEAPON_EXPLODED)) push_back_handle(ext,GetMsgStr(TEXTMSG_COMBAT,offset+12));
-        if(FLAG(effect,MF_WEAPON_DESTROYED)) push_back_handle(ext,GetMsgStr(TEXTMSG_COMBAT,offset+13));
-        if(FLAG(effect,MF_WEAPON_DROPPED)) push_back_handle(ext,GetMsgStr(TEXTMSG_COMBAT,offset+14));
-        if(FLAG(effect,MF_LOST_NEXT_TURN)) push_back_handle(ext,GetMsgStr(TEXTMSG_COMBAT,offset+15));
-        if(FLAG(effect,MF_HIT_SELF)) push_back_handle(ext,GetMsgStr(TEXTMSG_COMBAT,offset+16));
-        if(FLAG(effect,MF_LOST_REST_OF_AMMO)) push_back_handle(ext,GetMsgStr(TEXTMSG_COMBAT,offset+17));
-        if(FLAG(effect,MF_FIRED_DUD_SHOT)) push_back_handle(ext,GetMsgStr(TEXTMSG_COMBAT,offset+18));
-        if(FLAG(effect,MF_HURT_SELF)) push_back_handle(ext,GetMsgStr(TEXTMSG_COMBAT,offset+19));
-        // if(FLAG(effect,MF_HIT_RANDOMLY)) push_back_handle(ext,GetMsgStr(TEXTMSG_COMBAT,offset+20)); // this is handled elsewhere
-        if(FLAG(effect,MF_CRIPPLED_RANDOM_LIMB)) push_back_handle(ext,GetMsgStr(TEXTMSG_COMBAT,offset+21));
-        if(FLAG(effect,MF_WAS_KILLED)) push_back_handle(ext,GetMsgStr(TEXTMSG_COMBAT,offset+7));
+        if(FLAG(effect,MF_KNOCKED_DOWN)) ext.insertLast(@GetMsgStr(TEXTMSG_COMBAT,offset+1));
+        // if(FLAG(effect,MF_ON_FIRE)) ext.insertLast(@GetMsgStr(TEXTMSG_COMBAT,offset+10)); // not used
+        if(FLAG(effect,MF_WEAPON_EXPLODED)) ext.insertLast(@GetMsgStr(TEXTMSG_COMBAT,offset+12));
+        if(FLAG(effect,MF_WEAPON_DESTROYED)) ext.insertLast(@GetMsgStr(TEXTMSG_COMBAT,offset+13));
+        if(FLAG(effect,MF_WEAPON_DROPPED)) ext.insertLast(@GetMsgStr(TEXTMSG_COMBAT,offset+14));
+        if(FLAG(effect,MF_LOST_NEXT_TURN)) ext.insertLast(@GetMsgStr(TEXTMSG_COMBAT,offset+15));
+        if(FLAG(effect,MF_HIT_SELF)) ext.insertLast(@GetMsgStr(TEXTMSG_COMBAT,offset+16));
+        if(FLAG(effect,MF_LOST_REST_OF_AMMO)) ext.insertLast(@GetMsgStr(TEXTMSG_COMBAT,offset+17));
+        if(FLAG(effect,MF_FIRED_DUD_SHOT)) ext.insertLast(@GetMsgStr(TEXTMSG_COMBAT,offset+18));
+        if(FLAG(effect,MF_HURT_SELF)) ext.insertLast(@GetMsgStr(TEXTMSG_COMBAT,offset+19));
+        // if(FLAG(effect,MF_HIT_RANDOMLY)) ext.insertLast(@GetMsgStr(TEXTMSG_COMBAT,offset+20)); // this is handled elsewhere
+        if(FLAG(effect,MF_CRIPPLED_RANDOM_LIMB)) ext.insertLast(@GetMsgStr(TEXTMSG_COMBAT,offset+21));
+        if(FLAG(effect,MF_WAS_KILLED)) ext.insertLast(@GetMsgStr(TEXTMSG_COMBAT,offset+7));
       }
       offset+=306;
 		}
 
 		if (8<=mode && mode<=11 && (!isVerbose || message==-1))
-		  push_back_handle(ext,GetMsgStr(TEXTMSG_COMBAT,offset+7-306));
+		  ext.insertLast(@GetMsgStr(TEXTMSG_COMBAT,offset+7-306));
 
     for(uint m=0,n=ext.length();m<n;m++)
 		{

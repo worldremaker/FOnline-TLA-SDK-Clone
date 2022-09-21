@@ -60,7 +60,7 @@ class EncSpawnHexDescr
 		// уже назначен такой тип в разрешенных
 		if(this.CheckSTypeAllow(sType)){return;}
 
-		push_back(this.SlaverTypes, sType);
+		this.SlaverTypes.insertLast(sType);
 
 	}
 	// проверка, можно ли поставить работорговца выбранного типа на данный гекс
@@ -113,47 +113,47 @@ EncSlaversDescr @ Desert06Enc()
 	EncSlaversDescr eDescr = EncSlaversDescr();
 	eDescr.MapPid = LOCATION_DesertEncounter6;
 
-	push_back(eDescr.Hexes,EncSpawnHexDescr(60,38));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(60,38));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_SNIPE);
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	//71/43
-	push_back(eDescr.Hexes,EncSpawnHexDescr(71,43));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(71,43));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_HEALER);
 	//75/43
-	push_back(eDescr.Hexes,EncSpawnHexDescr(75,43));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(75,43));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	//72/44
-	push_back(eDescr.Hexes,EncSpawnHexDescr(72,44));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(72,44));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	//42/58 +h
-	push_back(eDescr.Hexes,EncSpawnHexDescr(42,58));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(42,58));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_HEALER);
 	//41/65
-	push_back(eDescr.Hexes,EncSpawnHexDescr(41,65));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(41,65));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	//46/63 +h
-	push_back(eDescr.Hexes,EncSpawnHexDescr(46,63));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(46,63));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_HEALER);
 	//29/53 +s
-	push_back(eDescr.Hexes,EncSpawnHexDescr(29,53));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(29,53));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_SNIPE);
 	//32/66
-	push_back(eDescr.Hexes,EncSpawnHexDescr(32,66));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(32,66));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	//30/45
-	push_back(eDescr.Hexes,EncSpawnHexDescr(30,45));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(30,45));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	//39/42 +h +s
-	push_back(eDescr.Hexes,EncSpawnHexDescr(39,42));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(39,42));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_SNIPE);
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_HEALER);
 	//110/74
-	push_back(eDescr.Hexes,EncSpawnHexDescr(110,74));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(110,74));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 
 	return eDescr;
@@ -164,38 +164,38 @@ EncSlaversDescr @ Desert11Enc()
 	EncSlaversDescr eDescr = EncSlaversDescr();
 	eDescr.MapPid = LOCATION_DesertEncounter11;
 	//59/42
-	push_back(eDescr.Hexes,EncSpawnHexDescr(59,42));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(59,42));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_HEALER);
 	//57/47
-	push_back(eDescr.Hexes,EncSpawnHexDescr(57,47));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(57,47));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	//65/41
-	push_back(eDescr.Hexes,EncSpawnHexDescr(65,41));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(65,41));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	//64/49 +h
-	push_back(eDescr.Hexes,EncSpawnHexDescr(64,49));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(64,49));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_HEALER);
 	//39/45
-	push_back(eDescr.Hexes,EncSpawnHexDescr(39,45));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(39,45));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	//41/46 +s
-	push_back(eDescr.Hexes,EncSpawnHexDescr(41,46));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(41,46));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_SNIPE);
 	//41/53
-	push_back(eDescr.Hexes,EncSpawnHexDescr(41,53));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(41,53));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	//84/62
-	push_back(eDescr.Hexes,EncSpawnHexDescr(84,62));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(84,62));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	//97/57 +s
-	push_back(eDescr.Hexes,EncSpawnHexDescr(97,57));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(97,57));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_SNIPE);
 	//98/53 +h
-	push_back(eDescr.Hexes,EncSpawnHexDescr(98,53));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(98,53));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_HEALER);
 	return eDescr;
@@ -206,42 +206,42 @@ EncSlaversDescr @ Desert12Enc ()
 	EncSlaversDescr eDescr = EncSlaversDescr();
 	eDescr.MapPid = LOCATION_DesertEncounter12;
 	//70/22 +s
-	push_back(eDescr.Hexes,EncSpawnHexDescr(70,22));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(70,22));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_SNIPE);
 	//52/34 s
-	push_back(eDescr.Hexes,EncSpawnHexDescr(52,34));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(52,34));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_SNIPE);
 	//65/32 s
-	push_back(eDescr.Hexes,EncSpawnHexDescr(65,32));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(65,32));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_SNIPE);
 	//72/50
-	push_back(eDescr.Hexes,EncSpawnHexDescr(72,50));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(72,50));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	//73/49
-	push_back(eDescr.Hexes,EncSpawnHexDescr(73,49));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(73,49));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	//84/30
-	push_back(eDescr.Hexes,EncSpawnHexDescr(84,30));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(84,30));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	//88/33h
-	push_back(eDescr.Hexes,EncSpawnHexDescr(88,33));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(88,33));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_HEALER);
 	//92/33
-	push_back(eDescr.Hexes,EncSpawnHexDescr(92,33));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(92,33));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	//102/44
-	push_back(eDescr.Hexes,EncSpawnHexDescr(102,44));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(102,44));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	//112/55 s
-	push_back(eDescr.Hexes,EncSpawnHexDescr(112,55));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(112,55));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_SNIPE);
 	//103/44 h
-	push_back(eDescr.Hexes,EncSpawnHexDescr(103,44));
+	eDescr.Hexes.insertLast(EncSpawnHexDescr(103,44));
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_COMBAT);
 	eDescr.Hexes[eDescr.Hexes.length()-1].PushSlaverType(SLAVER_TYPE_HEALER);
 	return eDescr;

@@ -1,13 +1,13 @@
 #ifndef _SQUAD_MARCH_
 #define _SQUAD_MARCH_
 
-// Система отдачи приказов, выполнения для нпц и контроля выполнения для игроков 
+// Система отдачи приказов, выполнения для нпц и контроля выполнения для игроков
 //  Приказы на перемещения по карте
 
 #include "_macros.fos"
 #include "serializator.fos"
 
-#define ORDER_TYPE_POS           (0) 
+#define ORDER_TYPE_POS           (0)
 #define ORDER_TYPE_MOVE          (1)
 #define ORDER_TYPE_DIR           (2)
 #define ORDER_TYPE_ARM           (3)
@@ -77,8 +77,8 @@ class MarchOrder                 // Вспомогательный класс. Приказ криттеру на вы
 	string ToString()
 	{
 		string s = "MarchOrder";
-		s += "\n type     : " +(this.Type == ORDER_TYPE_POS ? "ORDER_TYPE_POS" : 
-									(this.Type == ORDER_TYPE_MOVE ? "ORDER_TYPE_MOVE" : 
+		s += "\n type     : " +(this.Type == ORDER_TYPE_POS ? "ORDER_TYPE_POS" :
+									(this.Type == ORDER_TYPE_MOVE ? "ORDER_TYPE_MOVE" :
 										(this.Type == ORDER_TYPE_DIR ? "ORDER_TYPE_DIR" : "ORDER_TYPE_ARM")));
 		s += "\n HexX     : " + this.HexX;
 		s += "\n HexY     : " + this.HexY;
@@ -144,7 +144,7 @@ MarchOrder @ DefineArmWeapon(bool armed, uint timeCheck, uint timeNext)
 
 // Класс для реализации строевой подготовки. Несколько последовательных приказов для каждого криттера.
 // Определяющий параметр - Id криттера, у одного криттера - только одна очередь приказов
-class MarchQueue                
+class MarchQueue
 {
 	MarchQueue(Critter& cr)
 	{
@@ -152,14 +152,14 @@ class MarchQueue
 		this.CritterId = cr.Id;
 		this.Auto = false;
 	}
-	
+
 	MarchQueue(uint crId)
 	{
 		this.OrderCurrent = -1;
 		this.CritterId = crId;
 		this.Auto = false;
 	}
-	
+
 	bool         Auto;          // Признак: все приказы назначаются автоматически, с помощью time_events
 	uint         CritterId;     // Исполнитель приказа
 	int8         OrderCurrent;  // Текущий номер приказа
@@ -169,10 +169,10 @@ class MarchQueue
 	{
 		if(valid(order))
 		{
-			push_back(this.Orders, order);
+			this.Orders.insertLast(order);
 		}
 	}
-	
+
 	void Save()
 	{
 		if(this.CritterId == 0)
@@ -189,7 +189,7 @@ class MarchQueue
 		{
 			this.Orders[i].Save(key+i);
 		}
-		save.Save(key);	
+		save.Save(key);
 	}
 
 	void Load()
@@ -230,8 +230,8 @@ class MarchQueue
 		if(valid(cr) && cr.IsNpc())
 			cr.ModeBase[MODE_NO_HOME] = 0;
 	}
-	
-	// Подтверждает выполнение текущего приказа неким криттером. В результате подтверждения координаты 
+
+	// Подтверждает выполнение текущего приказа неким криттером. В результате подтверждения координаты
 	//  предыдущего приказа приравниваются к текущему положению криттера
 	void ConfirmOrder()
 	{
@@ -363,13 +363,13 @@ class MarchQueue
 					{
 						if(cr.GetItemsByType(ITEM_WEAPON, weapons) > 0)
 						{
-							
+
 							for(uint i = 0, l = weapons.length(); i < l; i++)
 							{
 								if(weapons[i].GetType() == ITEM_WEAPON && !weapons[i].Proto.Weapon_IsUnarmed)
 									pid2 = weapons[i].GetProtoId();
-							}	
-						}						
+							}
+						}
 					}
 					cr.SetFavoriteItem(SLOT_HAND1, pid2);
 					cr.SetFavoriteItem(SLOT_HAND2, pid1);
@@ -394,7 +394,7 @@ class MarchQueue
 				break;
 		}
 	}
-	
+
 	void NextOrder()
 	{
 		if (this.Orders.length() == 0)
@@ -407,7 +407,7 @@ class MarchQueue
 			if(order.TimeNext == 0)
 			{
 				this.Erase(); // Выполнение всех приказов закончено
-				return; 
+				return;
 			}
 			else
 			{
@@ -426,21 +426,21 @@ class MarchQueue
 				CreateTimeEvent(__FullSecond + order.TimeNext,  "e_NextOrder",  values, false);
 			}
 		}
-	}	
+	}
 }
 
  // Атоматическая проверка, что приказ выполнен для НПЦ с очередью приказов с установленным флагом Auto
  // Проверяется, что план выполнен, у НПЦ нет других планов, если это верно, отдается следующий приказ
  // иначе делается MAX_EXECUTE_TRIES попыток выполнить приказ
- // если приказ не выполним, очередь приказов отменяется 
+ // если приказ не выполним, очередь приказов отменяется
 uint e_NextOrder( uint[]@ values )
 {
 	DL("next order");
-	Critter@ cr = GetCritter(values[0]);	
+	Critter@ cr = GetCritter(values[0]);
 	if(!valid(cr) || values[1]>=MAX_EXECUTE_TRIES || !cr.IsNpc())
 	{
 		return 0;
-	}	
+	}
 	MarchQueue@ march = MarchQueue(cr);
 	values[1]++;
 	if(cr.IsNoPlanes() && valid(march) && march.CheckOrderCompleted())
@@ -458,10 +458,10 @@ class SquadCommander
 	{
 		this.CommanderId = cr.Id;
 	}
-	
+
 	uint CommanderId;
 	uint[] Squad;
-	
+
 	void Save()
 	{
 		string key = _CommanderKey(this.CommanderId);
@@ -470,7 +470,7 @@ class SquadCommander
 		save.Set(this.Squad);
 		save.Save(key);
 	}
-	
+
 	void Load()
 	{
 		string key = _CommanderKey(this.CommanderId);
@@ -484,7 +484,7 @@ class SquadCommander
 		load.Get(this.CommanderId);
 		load.Get(this.Squad);
 	}
-	
+
 	void Erase()
 	{
 		string key = _CommanderKey(this.CommanderId);
@@ -497,7 +497,7 @@ class SquadCommander
 		if(IsAnyData(key))
 			EraseAnyData(key);
 	}
-	
+
 	bool CheckCommandExecuted() // Проверка только для игроков
 	{
 		for(uint i = 0, l = this.Squad.length(); i < l; i++)
@@ -513,12 +513,12 @@ class SquadCommander
 			{
 				cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_LOOSE);
 				return false;
-				
+
 			}
 		}
 		return true;
 	}
-	
+
 	void Command(uint strNum) // strNum - номер строки из диалога
 	{
 		Critter@ cr = GetCritter(this.CommanderId);

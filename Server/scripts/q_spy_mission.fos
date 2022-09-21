@@ -37,7 +37,7 @@ bool BeginSpyControl(Critter & catcher, uint catchRadius, uint minSneak, uint ch
 		for(uint i = 0; i<critters.length(); i++)
 		{
 			DL("before pushback");
-			ArrayPushBack(sc.sneakerIds, critters[i].Id);
+			sc.sneakerIds.insertLast(critters[i].Id);
 			DL("after pushback");
 			GameVar @qVar = GetLocalVar(sc.QuestVar, critters[i].Id);
 			if(valid(qVar))
@@ -129,7 +129,7 @@ SpyControl @ GetSpyConFromArgs(uint [] values )
 	{
 		for (uint i = 7; i<values.length(); i++)
 		{
-			ArrayPushBack(sc.sneakerIds, values[i]);
+			sc.sneakerIds.insertLast(values[i]);
 		}
 	}
 
@@ -169,7 +169,7 @@ class SpyControl
 
 		for(uint i=0;i<this.sneakerIds.length(); i++)
 		{
-			ArrayPushBack(values, this.sneakerIds[i]);
+			values.insertLast(this.sneakerIds[i]);
 		}
 		return CreateTimeEvent(__FullSecond+this.SpyCheckTime, "q_spy_mission@e_DefaultHandler", values, false);
 	}

@@ -5,14 +5,14 @@ void _MapInit(Map & bazaar, bool firstTime)
 {
 	uint16 year=0,month=0,day=0,dayOfWeek=0,hour=0,minute=0,second=0;
 	uint[] values;
-	push_back(values,1);
+	values.insertLast(1);
 	Location@ loc = bazaar.GetLocation();
 	if(!valid(loc))
 	{
 		Log("Error: location not valid");
 		return;
 	}
-	push_back(values,loc.Id);
+	values.insertLast(loc.Id);
 	if(CreateTimeEvent(GetNearFullSecond(0,0,0,6,0,0),"e_DisableForceField",values,false)==0)
 	{
 		Log("Time event DisableForceField create fail, "+GetLastError());

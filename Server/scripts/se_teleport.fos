@@ -1,5 +1,5 @@
 // Author: rifleman17
-/* Специальный энкаунтер "Телепортатор". 
+/* Специальный энкаунтер "Телепортатор".
 Положить в шкаф некоторое количество предметов и обменять их на что-то случайное такого же веса.
 Если в шкафу - игрок, он обменяется координатами со случайным игроком в одном из городов.
 Если в шкафу - нпц, нпц будет удален, вместо него появится агрессивный робот, Мистер Handy
@@ -30,16 +30,16 @@ uint CountWeight(Map @ map, uint16 x, uint16 y)                          // Подс
 	uint weight = 0;
 	for(uint i=0,l=items.length();i<l;i++)
 	{
-		weight+=items[i].Proto.Weight;	
+		weight+=items[i].Proto.Weight;
 	}
 	DeleteItems(items); // удаление всех итемов
-	return CLAMP(weight,0,MAX_WEIGHT);	
+	return CLAMP(weight,0,MAX_WEIGHT);
 }
 
 void AddRandomItems(Map @map, uint16 x, uint16 y, uint maxWeight)       // добавление случайного набора итемов на карту в указанные координаты
 {
 	if(!valid(map)) return;
-	uint16[] pids;	
+	uint16[] pids;
 	// Сбор всех массивов в один
 	MergeArrays(pids, Pids_WeaponSmallGuns);
 	MergeArrays(pids, Pids_WeaponMelee);
@@ -57,7 +57,7 @@ void AddRandomItems(Map @map, uint16 x, uint16 y, uint maxWeight)       // добав
 	MergeArrays(pids, Pids_MiscPartsBasic); //4х шанс
 	MergeArrays(pids, Pids_MiscAllTools);
 	MergeArrays(pids, Pids_MiscOther);
-	MergeArrays(pids, Pids_MiscOther); // удвоенный шанс	
+	MergeArrays(pids, Pids_MiscOther); // удвоенный шанс
 	uint curWeight = 0;
 	int16 triesNum = 150; // максимум 150 попыток
 	uint idx = 0;
@@ -65,35 +65,35 @@ void AddRandomItems(Map @map, uint16 x, uint16 y, uint maxWeight)       // добав
 	ProtoItem @ proto;
 	uint len = pids.length();
 	uint weight=0;
-	uint itemCount=0;	
+	uint itemCount=0;
 	while(triesNum>0&&curWeight<maxWeight)
 	{
 		triesNum--;
 		itemCount=1;
 		len = pids.length(); // Длина массива могла измениться
 		idx = Random(0,len-1);
-		pid = pids[idx];		
+		pid = pids[idx];
 		if(Present(pid, Pids_ArmorHeavy)) // Тяжелая броня только в единственном экземпляре, не зависимо от прототипа и факта, влезет или нет
 		{
 			for(uint i=0, l=Pids_ArmorHeavy.length();i<l;i++)
 			{
-				remove_from_array(pids, FindInArray(pids, Pids_ArmorHeavy[i]));
+				pids.removeAt(FindInArray(pids, Pids_ArmorHeavy[i]));
 			}
-		}		
+		}
 		@ proto = GetProtoItem(pid);
 		weight = CLAMP(proto.Weight, 200, proto.Weight); // Если предмет ничего не весит, считаем, что он весит 200 грамм
 		if(Present(pid, Pids_Ammo))
 		{
 			itemCount = Random(1,120); // Патроны не должны быть в количестве = 1
 			weight*=itemCount;
-		}		
+		}
 		if(curWeight+weight<=maxWeight) // Подходит по весу
 		{
-			remove_from_array(pids, FindInArray(pids, pid)); // Предметы только по одному разу попадаются
+			pids.removeAt(FindInArray(pids, pid)); // Предметы только по одному разу попадаются
 			curWeight+=weight;
 			map.AddItem(x, y, pid, itemCount);
-		}		
-	}	
+		}
+	}
 }
 
 Critter @ GetCritterInPlace(Critter & player, int x, int y)                    // Поиск криттера на гексе карты
@@ -128,7 +128,7 @@ Critter @ GetRandomPlayer()                                                     
 		l=players.length();
 		if (l>0)
 		{
-			return	players[Random(0,l-1)];	
+			return	players[Random(0,l-1)];
 		}
 	}
 	return null;
@@ -157,22 +157,22 @@ bool d_CheckIsNotAnyCritterInPlace(Critter & player, Critter @ npc, int x, int y
 void r_ChangeItems(Critter & cr, Critter @ npc, int hexX, int hexY, int canOverweight) // Замена итемов на некоем гексе карты на случайные итемы такого же веса
 {
 	Map@ map = cr.GetMap();
-	if(!valid(map)) return;	
+	if(!valid(map)) return;
 	uint weight = CountWeight(map, hexX, hexY);
 	if(canOverweight<1) weight = CLAMP(weight, 0, LIMIT_WEIGHT);
-	QuakeScreen(map);	// Спецэффекты	
+	QuakeScreen(map);	// Спецэффекты
 	AddRandomItems(map, hexX, hexY, weight);
 }
 
 // Обмен координатами между игроком в указанных координатах и случайным другим игроком. Либо удаление нпц и добавление агрессивного боевого робота, если в координатах нпц.
 // Внимание - нет проверки, что нпц=мерк. Могут пропадать в неизвестном направлении.
-void r_SwapCritters(Critter & player, Critter @ npc, int hexX, int hexY) 
+void r_SwapCritters(Critter & player, Critter @ npc, int hexX, int hexY)
 {
 	if(d_CheckIsNotAnyCritterInPlace(player, npc, hexX, hexY)) return;
 	Critter @ cr = GetCritterInPlace(player, hexX, hexY);
 	if(!valid(cr)) return;
 	Map @ map = cr.GetMap();
-	if(!valid(map)) return;	
+	if(!valid(map)) return;
 	if(cr.IsNpc())
 	{
 		DeleteNpc(cr);

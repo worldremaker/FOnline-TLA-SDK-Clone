@@ -94,7 +94,7 @@ void DeleteGeckoMap()
 uint r_CheckGroup(Critter& player, Critter@ npc, int val)
 {
 	Critter@[] groups;
-	ArrayPushBack(groups,player);
+	groups.insertLast(@player);
 	player.GetFollowGroup(FIND_ALL,groups);
 
 	// проверка на способность быть лидером
@@ -136,7 +136,7 @@ uint r_CheckGroup(Critter& player, Critter@ npc, int val)
 bool d_GroupLevelIsBad(Critter& player, Critter@ npc, int val)
 {
 	Critter@[] groups;
-	ArrayPushBack(groups,player);
+	groups.insertLast(@player);
 	player.GetFollowGroup(FIND_ALL,groups);
 	for(uint i=0;i<groups.length();i++)
 		if(groups[i].Cond==COND_LIFE)
@@ -149,7 +149,7 @@ bool d_GroupLevelIsBad(Critter& player, Critter@ npc, int val)
 bool d_GroupLevelIsOk(Critter& player, Critter@ npc, int val)
 {
 	Critter@[] groups;
-	ArrayPushBack(groups,player);
+	groups.insertLast(@player);
 	player.GetFollowGroup(FIND_ALL,groups);
 	for(uint i=0;i<groups.length();i++)
 		if(groups[i].Cond==COND_LIFE)
@@ -235,7 +235,7 @@ bool r_CheckQuestIsRun(Critter& player, Critter@ npc, int val)
 void r_GotoHunter(Critter& player, Critter@ npc, int val)
 {
 	Critter@[] groups;
-	ArrayPushBack(groups,player);
+	groups.insertLast(@player);
 	player.GetFollowGroup(FIND_ALL,groups);
 
 	// инициализирует квест!

@@ -311,7 +311,7 @@ class CaravanCabInfo
 		li.ItemAppearChance = chanceAppear;
 		li.IsReversedRouteItem = isReversLoot;
 
-		push_back(this.CabItems, li);
+		this.CabItems.insertLast(li);
 		DL("cab items:"+this.CabItems.length());
 	}
 	// размещение повозки с лутом на энкаунтере
@@ -368,7 +368,7 @@ class GlobalRouteCurve
 	// добавление нового узла в маршрут
 	void AddPoint(GlobalPoint @ point)
 	{
-		push_back(Points,point);
+		Points.insertLast(point);
 	}
 	// массив координат узлов ломанного маршрута
 	// должен включать и начальную с конечной точкой
@@ -602,7 +602,7 @@ class CaravanInfo
 		{
 			if(id==this.Caravaneers[i])
 			{
-				remove_from_array(this.Caravaneers, i);
+				this.Caravaneers.removeAt(i);
 				return true;
 			}
 		}
@@ -610,7 +610,7 @@ class CaravanInfo
 		{
 			if(id==this.PlayersRequested[i])
 			{
-				remove_from_array(this.PlayersRequested, i);
+				this.PlayersRequested.removeAt(i);
 				return true;
 			}
 		}
@@ -638,7 +638,7 @@ class CaravanInfo
 			// уже есть в списках
 			if (id == this.Caravaneers[i]) return;
 		}
-		ArrayPushBack(this.Caravaneers, id);
+		this.Caravaneers.insertLast(id);
 	}
 
 	CaravanCabInfo @GetCab(int8 idx)
@@ -705,7 +705,7 @@ uint GetCrittersByDialogId(Map @ map, int dialog, uint pid, Critter @[]@ critter
 		if(foundCrits[i].StatBase[ST_DIALOG_ID]==dialog)
 		{
 			num++;
-			push_back_handle(critters, foundCrits[i]);
+			critters.insertLast(@foundCrits[i]);
 		}
 	}
 	return num;

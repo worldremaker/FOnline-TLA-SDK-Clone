@@ -161,10 +161,10 @@ class CGuardsManager
 		if (i==-1)
 		{
 			int8 zero=0;
-			AddToArray(observing, player.Id);
-			AddToArray(alertCount, zero);
-			AddToArray(alertType, zero);
-			AddToArray(timeOut, zero);
+			observing.insertLast(player.Id);
+			alertCount.insertLast(zero);
+			alertType.insertLast(zero);
+			timeOut.insertLast(zero);
 			return observing.length()-1;
 		} else
 			return i;
@@ -173,10 +173,10 @@ class CGuardsManager
 	// удаляем игрока из Observing
 	void DelObserving(uint index)
 	{
-		RemoveFromArray(observing, index);
-		RemoveFromArray(alertCount, index);
-		RemoveFromArray(alertType, index);
-		RemoveFromArray(timeOut, index);
+		observing.removeAt(index);
+		alertCount.removeAt(index);
+		alertType.removeAt(index);
+		timeOut.removeAt(index);
 	}
 
 	// удаляем игрока из Observing

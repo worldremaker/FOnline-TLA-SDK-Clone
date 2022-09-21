@@ -30,7 +30,7 @@ uint r_CheckQuest( Critter& player, Critter@ npc ) {
 	// Находим группу в которой состоит игрок и лидера группы.
 	Critter@[] group;
 	Critter@ leader = GetCritter( GetLeaderId( player ) );
-	ArrayPushBack( group, leader );
+	group.insertLast(@leader);
 	leader.GetFollowGroup( FIND_ALL, group );
 
 	// Проверяем карму группы в которой состоит игрок берущий квест,
@@ -98,7 +98,7 @@ uint r_StartStage2( Critter& player, Critter@ npc ) {
 	// Находим группу в которой состоит игрок и лидера группы.
 	Critter@[] group;
 	Critter@ leader = GetCritter( GetLeaderId( player ) );
-	ArrayPushBack( group, leader );
+	group.insertLast(@leader);
 	leader.GetFollowGroup( FIND_ALL, group );
 
 	// Проверяем размер группы в которой состоит игрок берущий квест,
@@ -123,7 +123,7 @@ void StartQuest( Critter& player, uint stage )
 	// Находим группу в которой состоит игрок и лидера группы.
 	Critter@[] group;
 	Critter@ leader = GetCritter( GetLeaderId( player ) );
-	ArrayPushBack( group, leader );
+	group.insertLast(@leader);
 	leader.GetFollowGroup( FIND_ALL, group );
 
 	// Проверяем размер группы в которой состоит игрок берущий квест,

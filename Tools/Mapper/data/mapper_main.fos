@@ -354,12 +354,7 @@ string ShowGraphic(MapperMap& map, string& name)
 				}
 			}
 
-			if(not exists)
-			{
-				uint len=wallNames.length();
-				wallNames.resize(len+1);
-				@wallNames[len]=obj.PicMap;
-			}
+			if(not exists) wallNames.insertLast(obj.PicMap);
 		}
 	}
 
@@ -385,12 +380,7 @@ string ShowGraphic(MapperMap& map, string& name)
 				}
 			}
 
-			if(not exists)
-			{
-				uint len=sceneryNames.length();
-				sceneryNames.resize(len+1);
-				@sceneryNames[len]=obj.PicMap;
-			}
+			if(not exists) sceneryNames.insertLast(obj.PicMap);
 		}
 	}
 
@@ -413,12 +403,7 @@ string ShowGraphic(MapperMap& map, string& name)
 				}
 			}
 
-			if(not exists)
-			{
-				uint len=itemNames.length();
-				itemNames.resize(len+1);
-				@itemNames[len]=obj.PicMap;
-			}
+			if(not exists) itemNames.insertLast(obj.PicMap);
 		}
 	}
 
@@ -441,12 +426,7 @@ string ShowGraphic(MapperMap& map, string& name)
 						}
 					}
 
-					if(not exists)
-					{
-						uint len=tileNames.length();
-						tileNames.resize(len+1);
-						@tileNames[len]=name;
-					}
+					if(not exists) tileNames.insertLast(name);
 				}
 
 				@name=map.GetTileName(x,y,true);
@@ -462,12 +442,7 @@ string ShowGraphic(MapperMap& map, string& name)
 						}
 					}
 
-					if(not exists)
-					{
-						uint len=tileNames.length();
-						tileNames.resize(len+1);
-						@tileNames[len]=name;
-					}
+					if(not exists) tileNames.insertLast(name);
 				}
 			}
 		}

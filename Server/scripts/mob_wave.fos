@@ -173,7 +173,7 @@ class TargetInfo
 		{
 			if(this.MobsAttack[i]==mob.Id) return;
 		}
-		ArrayPushBack(this.MobsAttack, mob.Id);
+		this.MobsAttack.insertLast(mob.Id);
 		DL("Attacking! Id Target"+this.TargetId);
 	}
 
@@ -503,7 +503,7 @@ class MobWave
 			{
 				WaveStep @ ws = WaveStep();
 				ws.Load(key+i);
-				push_back(this.Steps,ws);
+				this.Steps.insertLast(ws);
 			}
 		}
 		DL("loading targets");
@@ -514,7 +514,7 @@ class MobWave
 			{
 				TargetInfo @ti = TargetInfo();
 				ti.Load(key+i);
-				push_back(this.Targets,ti);
+				this.Targets.insertLast(ti);
 			}
 		}
 		DL("loading mobs");
@@ -525,7 +525,7 @@ class MobWave
 			{
 				MobInfo @mi = MobInfo();
 				mi.Load(key+i);
-				push_back(this.Mobs,mi);
+				this.Mobs.insertLast(mi);
 			}
 		}
 		load.Get(this.MapId);
@@ -547,13 +547,13 @@ class MobWave
 		}
 		MobInfo @ mi = MobInfo();
 		mi.MobId = mobId;
-		push_back(this.Mobs, mi);
+		this.Mobs.insertLast(mi);
 	}
 
 	void _AddMob2Wave(MobInfo @ mi)
 	{
 		if(!valid(mi)) return;
-		push_back(this.Mobs, mi);
+		this.Mobs.insertLast(mi);
 	}
 
 	void _AddTarget2Wave(Critter @ target, uint priority) // Добавление описания цели в волну
@@ -582,12 +582,12 @@ class MobWave
 		TargetInfo @ ti = TargetInfo();
 		ti.TargetId = targetId;
 		ti.Priority = priority;
-		push_back(this.Targets, ti);
+		this.Targets.insertLast(ti);
 	}
 
 	void _AddWaveStep(WaveStep & ws)
 	{
-		push_back(this.Steps, ws);
+		this.Steps.insertLast(ws);
 	}
 
 	void RepeatStep()

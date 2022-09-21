@@ -36,7 +36,7 @@ void _TurretInit(Critter& turret, bool firstTime)
 	if(turret.CountItem(PID_HEAVY_DUAL_MINIGUN_LONG_RANGE)==0)
 		turret.AddItem(PID_HEAVY_DUAL_MINIGUN_LONG_RANGE,1);
 
-	ArrayPushBack(TurretIds,turret.Id);
+	TurretIds.insertLast(turret.Id);
 }
 
 uint cte_KillTurret(Critter& cr, int identifier, uint& rate)

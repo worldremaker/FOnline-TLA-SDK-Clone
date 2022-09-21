@@ -106,7 +106,7 @@ void CreateCity(Critter& player, Item& geck)
 	Critter@[] grp;
 	Critter@ leader = player.GetFollowLeader();
 	if(!valid(leader))@leader = player;
-	ArrayPushBack(grp,leader);
+	grp.insertLast(@leader);
 	leader.GetFollowGroup(FIND_LIFE, grp);
 	uint locId = CreateLocation(LOC_PID_GECK_CITY, player.WorldX, player.WorldY, grp);
 	if(locId==0) return;
@@ -124,7 +124,7 @@ void CreateCity(Critter& player, Item& geck)
 		GameVar@ geckCitizen = GetLocalVar(VAR_CITIZEN, cr.Id);
 		if(geckCitizen>0) continue; // Невозможно быть жителем двух городов одновременно
 		geckCitizen = loc.Id;
-		ArrayPushBack(acceptedPlayers, cr.Id);
+		acceptedPlayers.insertLast(cr.Id);
 		leader.SayMsg(SAY_NETMSG,TEXTMSG_TEXT,STR_ACCESS_LEADER, "$pname"+GetPlayerName(cr.Id));
 		cr.SayMsg(SAY_NETMSG,TEXTMSG_TEXT,STR_ACCESS_MEMBER);
 		cr.StatBase[ST_EXPERIENCE]+=XP_CREATE_CITY;
@@ -192,7 +192,7 @@ bool AddCitizen(Critter& leader, Critter& player)
 	GameVar@ cityMember = GetLocalVar(VAR_CITIZEN, player.Id);
 	if(!valid(cityMember)) return false;
 	cityMember = loc.Id;
-	ArrayPushBack(acceptedPlayers, player.Id);
+	acceptedPlayers.insertLast(player.Id);
 	EraseAnyData(key);
 	SetAnyData(key, acceptedPlayers);
 	return true;
@@ -214,7 +214,7 @@ bool RemoveCitizen(Critter& leader, Critter& player)
 	{
 		if(player.Id == acceptedPlayers[i])
 		{
-			remove_from_array(acceptedPlayers,i);
+			acceptedPlayers.removeAt(i);
 			EraseAnyData(key);
 			SetAnyData(key, acceptedPlayers);
 			GameVar@ cityMember = GetLocalVar(VAR_CITIZEN, player.Id);
@@ -237,7 +237,7 @@ void ClearCitizens(Critter & leader)
 	string key = GECK_CITY_KEY(loc.Id);
 	if(!IsAnyData(key)) return;
 	uint[] acceptedPlayers;
-	ArrayPushBack(acceptedPlayers, leader.Id);
+	acceptedPlayers.insertLast(leader.Id);
 	EraseAnyData(key);
 	SetAnyData(key, acceptedPlayers);
 }

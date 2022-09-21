@@ -64,54 +64,54 @@ string DialStrPl="@msg dlg "+DLGSTR(DID,STR_PL)+"@ "; // Игрок
 
 void _PokermanInit(Critter& pokerMan, bool firstTime)
 {
-	add_element(Koloda);
-	add_element(GameCards);
-	add_element2(GameCards[GameCards.length()-1],PLAYERS_COUNT*CARD_COUNT);
-	add_element(ReplCards);
-	add_element2(ReplCards[ReplCards.length()-1],PLAYERS_COUNT);
-	add_element(PlState);
-	add_element2(PlState[PlState.length()-1],PLAYERS_COUNT);
-	add_element(PlBet);
-	add_element2(PlBet[PlBet.length()-1],PLAYERS_COUNT);
-	add_element(InGamePl);
-	add_element(GameAnyData);
-	add_element2(GameAnyData[GameAnyData.length()-1],GAMEVAR_COUNT);
-	add_element(AnyDataTemp);
-	add_element2(AnyDataTemp[AnyDataTemp.length()-1],GAMEVAR_COUNT);
-	add_element(MoneyForStartGame);
-	add_element(MinBet);
-	add_element(Raise_1);
-	add_element(Raise_2);
-	add_element(Raise_3);
-	add_element(MaxBet);
-	add_element(App);
-	add_element(PMLevel);
-	add_element(StartGameMoney);
-	add_element(StopGameMoney);
-	add_element(WaitForGame);
+	Koloda.grow(1);
+	GameCards.grow(1);
+	GameCards[GameCards.length()-1].grow(PLAYERS_COUNT*CARD_COUNT);
+	ReplCards.grow(1);
+	ReplCards[ReplCards.length()-1].grow(PLAYERS_COUNT);
+	PlState.grow(1);
+	PlState[PlState.length()-1].grow(PLAYERS_COUNT);
+	PlBet.grow(1);
+	PlBet[PlBet.length()-1].grow(PLAYERS_COUNT);
+	InGamePl.grow(1);
+	GameAnyData.grow(1);
+	GameAnyData[GameAnyData.length()-1].grow(GAMEVAR_COUNT);
+	AnyDataTemp.grow(1);
+	AnyDataTemp[AnyDataTemp.length()-1].grow(GAMEVAR_COUNT);
+	MoneyForStartGame.grow(1);
+	MinBet.grow(1);
+	Raise_1.grow(1);
+	Raise_2.grow(1);
+	Raise_3.grow(1);
+	MaxBet.grow(1);
+	App.grow(1);
+	PMLevel.grow(1);
+	StartGameMoney.grow(1);
+	StopGameMoney.grow(1);
+	WaitForGame.grow(1);
 
-	push_back(Stroy,0);
-	push_back(BetEnd,0);
-	push_back(Bank,0);
-	push_back(Bet,0);
-	push_back(GameStage,0);
-	push_back(FirstGame,false);
-	push_back(MHod,0);
-	push_back(InGame,false);
-	push_back(PlayerCardsInDial,false);
-	push_back(WinKoef,100);
-	push_back(DlgTxt,"");
-	push_back(DlgTxtNet,"");
-	push_back(DlgTxt2,"");
-	push_back(FraudMode,0);
-	push_back(OnCheat1,0);
-	push_back(OnCheat2,0);
-	push_back(OnCheat3,0);
-	push_back(CardInSleeve,0);
-	push_back(Fraud2Succ,0);
-	push_back(VarRiseSucc,0);
-	push_back(GameNum,0);
-	push_back(ModChFr,0);
+	Stroy.insertLast(0);
+	BetEnd.insertLast(0);
+	Bank.insertLast(0);
+	Bet.insertLast(0);
+	GameStage.insertLast(0);
+	FirstGame.insertLast(false);
+	MHod.insertLast(0);
+	InGame.insertLast(false);
+	PlayerCardsInDial.insertLast(false);
+	WinKoef.insertLast(100);
+	DlgTxt.insertLast("");
+	DlgTxtNet.insertLast("");
+	DlgTxt2.insertLast("");
+	FraudMode.insertLast(0);
+	OnCheat1.insertLast(0);
+	OnCheat2.insertLast(0);
+	OnCheat3.insertLast(0);
+	CardInSleeve.insertLast(0);
+	Fraud2Succ.insertLast(0);
+	VarRiseSucc.insertLast(0);
+	GameNum.insertLast(0);
+	ModChFr.insertLast(0);
 
 	pokerMan.StatBase[ST_VAR9]=NumOfNpc++;
 	if(IsAnyData("Poker_"+pokerMan.Id))
@@ -829,8 +829,7 @@ void r_Replace(Critter& master, Critter@ pokerMan) // замена карт
 	{
 		if(GetBit(Koloda[pokerMan.StatBase[ST_VAR9]],i)==1)
 		{
-			add_element(cardsInPack);
-			cardsInPack[cardsInPack.length()-1]=i;
+			cardsInPack.insertLast(i);
 		}
 	}
 	NpcReplaceCards(pokerMan);

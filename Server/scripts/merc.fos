@@ -310,7 +310,7 @@ uint GetPlayerMercs(Critter & player, Critter@ []& mercs)
 			{
 				if (uint(globalGrp[i].MasterId)==player.Id)
 				{
-					push_back_handle(mercs, globalGrp[i]);
+					mercs.insertLast(@globalGrp[i]);
 				}
 			}
 		}
@@ -326,7 +326,7 @@ uint GetPlayerMercs(Critter & player, Critter@ []& mercs)
 			{
 				if (uint(critters[i].MasterId)==player.Id)
 				{
-					push_back_handle(mercs, critters[i]);
+					mercs.insertLast(@critters[i]);
 				}
 			}
 		}
@@ -349,7 +349,7 @@ uint GetPlayerMercs(Critter & player, Critter@ []& mercs, int mercRole)
 
 			if(merc.Stat[ST_NPC_ROLE]==mercRole)
 			{
-				push_back_handle(mercs, merc);
+				mercs.insertLast(@merc);
 			}
 		}
 		return mercs.length();

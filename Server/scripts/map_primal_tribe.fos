@@ -136,14 +136,14 @@ void r_StartQuest(Critter& master, Critter@ npc)
 	globStart=1;
 	raidersKilled=0;
 	NotCome=true;
-	push_back(QuestPlayers,master.Id);
+	QuestPlayers.insertLast(master.Id);
 	master.SendQuestVar(quest);
 	StartAttackTE=CreateTimeEvent(__FullSecond+TIME_FOR_START,"e_StartAttack",true);
 }
 
 void r_PushQuestPl(Critter& master, Critter@ npc)
 {
-	push_back(QuestPlayers,master.Id);
+	QuestPlayers.insertLast(master.Id);
 }
 
 void r_GetExp(Critter& master, Critter@ npc)
@@ -402,8 +402,7 @@ uint GetCritters(Map@ map, Critter@[]@ arr, int npcRole, int findType)
 		Critter@ cr = map.GetNpc(npcRole, findType, i);
 		if(not valid(cr)) continue;
 		findCount++;
-		arr.resize(arr.length() + 1);
-		@arr[arr.length() - 1] = cr;
+		arr.insertLast(@cr);
 	}
 	return findCount;
 }

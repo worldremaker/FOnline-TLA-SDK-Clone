@@ -15,8 +15,6 @@
 // 8. Запрет на повторение ставки на то же поле.
 // 9. Всплывающие фразы над крупье во время игры.
 
-#define add_element #(a)	{ a.resize(a.length()+1); }
-
 #define GAMEVAR_COUNT (1) //ToDo
 #define ANSWER_COUNT_PER_PAGE (5)
 #define NAV_BACK (0)
@@ -74,27 +72,27 @@ void _RouletteInit(Critter& croupier, bool firstTime)
 
 void AddElements()
 {
-	add_element(Bets);
-	add_element(CurBetType);
-	add_element(DialogAnswerPageIndex);
-	add_element(DialogAnswerNum);
-	add_element(AnyDataTemp);
-	add_element(GameAnyData);
-	//add_element(InGame);
-	add_element(MinBet);
-	add_element(MaxBet);
-	add_element(Bet1);
-	add_element(Bet2);
-	add_element(Bet3);
-	add_element(Bet4);
-	add_element(AllBetSize);
-	add_element(OnCheat1);
-	add_element(OnCheat2);
-	add_element(OnCheat3);
-	add_element(CLevel);
-	add_element(StopGameMoney);
-	add_element(WaitForGame);
-	add_element(GameCurrency);
+	Bets.grow(1);
+	CurBetType.grow(1);
+	DialogAnswerPageIndex.grow(1);
+	DialogAnswerNum.grow(1);
+	AnyDataTemp.grow(1);
+	GameAnyData.grow(1);
+	//InGame.grow(1);
+	MinBet.grow(1);
+	MaxBet.grow(1);
+	Bet1.grow(1);
+	Bet2.grow(1);
+	Bet3.grow(1);
+	Bet4.grow(1);
+	AllBetSize.grow(1);
+	OnCheat1.grow(1);
+	OnCheat2.grow(1);
+	OnCheat3.grow(1);
+	CLevel.grow(1);
+	StopGameMoney.grow(1);
+	WaitForGame.grow(1);
+	GameCurrency.grow(1);
 }
 
 void dlg_MakeBet(Critter& master, Critter@ croupier, string@ str) // Ветка выбора координат ставки

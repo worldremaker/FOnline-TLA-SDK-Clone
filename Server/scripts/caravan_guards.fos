@@ -41,7 +41,7 @@ CaravanGuardInfo [] GetNpcGuards(uint guardsNum)
 {
 	CaravanGuardInfo[] availableGuards;
 	 // Отец Петреску
-	push_back(availableGuards, CaravanGuardInfo(
+	availableGuardsю.insertLast(CaravanGuardInfo(
 			NPC_PID_ElronologistMale//NPC_PID_HolyMan //Pid
 		,	DIALOG_crvg_petresku	//dialogId
 		,	"caravan@_PetreskuInit" //scriptId
@@ -53,7 +53,7 @@ CaravanGuardInfo [] GetNpcGuards(uint guardsNum)
 		,	0//isNervous
 	));//
 		 // Mazzy
-	push_back(availableGuards, CaravanGuardInfo(
+	availableGuards.insertLast(CaravanGuardInfo(
 			NPC_PID_Nightkin //Pid
 		,	DIALOG_crvg_mazzy	//dialogId
 		,	"caravan@_MazzyInit" //scriptId
@@ -65,7 +65,7 @@ CaravanGuardInfo [] GetNpcGuards(uint guardsNum)
 		,	0//isNervous
 	));//
 		 // Бомбермен
-	push_back(availableGuards, CaravanGuardInfo(
+	availableGuards.insertLast(CaravanGuardInfo(
 			NPC_PID_ToughMaleThug//NPC_PID_MaleTrapper //Pid
 		,	DIALOG_crvg_bomberman	//dialogId
 		,	"caravan@_BomberInit" //scriptId
@@ -77,7 +77,7 @@ CaravanGuardInfo [] GetNpcGuards(uint guardsNum)
 		,	3//isNervous
 	));//
 			 // Анаферон
-	push_back(availableGuards, CaravanGuardInfo(
+	availableGuards.insertLast(CaravanGuardInfo(
 			NPC_PID_FemaleHunter//NPC_PID_PrimitiveFemale //Pid
 		,	DIALOG_crvg_anaferon	//dialogId
 		,	"caravan@_AnaferonInit" //scriptId
@@ -90,7 +90,7 @@ CaravanGuardInfo [] GetNpcGuards(uint guardsNum)
 	));//
 
 		 // Находчивый Василий
-	push_back(availableGuards, CaravanGuardInfo(
+	availableGuards.insertLast(CaravanGuardInfo(
 			NPC_PID_ToughMaleThug//NPC_PID_MaleTrapper //Pid
 		,	DIALOG_crvg_vasiliy	//dialogId
 		,	"caravan@_VasyaInit" //scriptId
@@ -103,7 +103,7 @@ CaravanGuardInfo [] GetNpcGuards(uint guardsNum)
 	));//
 
 		 // Киллелпролол
-	push_back(availableGuards, CaravanGuardInfo(
+	availableGuards.insertLast(CaravanGuardInfo(
 			NPC_PID_NCRRangerMale //Pid
 		,	DIALOG_crvg_killerlolpro	//dialogId
 		,	"caravan@_KillerInit" //scriptId
@@ -116,7 +116,7 @@ CaravanGuardInfo [] GetNpcGuards(uint guardsNum)
 	));//
 
 		 // Зомби
-	push_back(availableGuards, CaravanGuardInfo(
+	availableGuards.insertLast(CaravanGuardInfo(
 			NPC_PID_ToughGhoul //Pid
 		,	DIALOG_crvg_zombie	//dialogId
 		,	"caravan@_ZombieInit" //scriptId
@@ -128,7 +128,7 @@ CaravanGuardInfo [] GetNpcGuards(uint guardsNum)
 		,	0//isNervous
 	));//
 		 // Рэт
-	push_back(availableGuards, CaravanGuardInfo(
+	availableGuards.insertLast(CaravanGuardInfo(
 			NPC_PID_ToughFemaleThug//NPC_PID_PressGangFemale //Pid
 		,	DIALOG_crvg_rat	//dialogId
 		,	"caravan@_RatInit" //scriptId
@@ -146,9 +146,8 @@ CaravanGuardInfo [] GetNpcGuards(uint guardsNum)
 	for (uint i = 1; i<=guardsNum; i++)
 	{
 		chosenOne = Random(0, availableGuards.length()-1);
-		push_back(chosenGuards,availableGuards[chosenOne]);
-		remove_from_array(availableGuards, chosenOne);
-
+		chosenGuardsю.insertLast(availableGuards[chosenOne]);
+		availableGuards.removeAt(chosenOne);
 	}
 	return chosenGuards;
 }*/

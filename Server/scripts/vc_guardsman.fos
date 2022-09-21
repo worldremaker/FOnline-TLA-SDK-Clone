@@ -55,7 +55,7 @@ bool d_CheckWear(Critter& player, Critter@ npc, int pid, int count, int wearPerc
 #define LAST_ORDER                    (7)    // Последний приказ
 
 // Обработка наступания игроком на триггер перед началом тренировки
-// Служит сигналом к началу 
+// Служит сигналом к началу
 void t_Enter(Critter& player, Scenery& trigger, bool entered, uint8 dir)
 {
 	if(!player.IsPlayer() || !entered)
@@ -78,7 +78,7 @@ void t_Enter(Critter& player, Scenery& trigger, bool entered, uint8 dir)
 	player.SendQuestVar(qVar);
 	CreateTimeEvent(__FullSecond + REAL_SECOND(3), "e_TimeToStart", values, false);
 	CreateTimeEvent(__FullSecond + REAL_MINUTE(15), "e_ResetCommander", values, true);
-	
+
 }
 
 // Контрольная очистка переменных через 15 реальных минут, если что-то пошло не так, и все данные не удалились
@@ -87,12 +87,12 @@ uint e_ResetCommander( uint[]@ values )
 	Critter@ cr = GetCritter(values[0]);
 	uint idPlayer = values[1];
 	if(!valid(cr) || uint(cr.Stat[ST_VAR9]) != idPlayer)
-		return 0; // Если уже другой персонаж занимается строевой подготовкой, для него будет персональный эвент	
+		return 0; // Если уже другой персонаж занимается строевой подготовкой, для него будет персональный эвент
 	SquadCommander@ cmdr = SquadCommander(cr);
 	if(valid(cmdr))
 	{
 		cmdr.Load();
-		cmdr.Erase();	
+		cmdr.Erase();
 	}
 	ResetCommander(cr);
 	return 0;
@@ -104,12 +104,12 @@ void ResetCommander(Critter& cr)
 	cr.StatBase[ST_VAR9] = 0;
 	GameVar@ status = GetGlobalVar(GVAR_vc_hartman_march_status);
 	if(valid(status))
-		status = 0;	
+		status = 0;
 }
 
 // Проверка, что игрок в нужной позиции и запуск очереди приказов
 uint e_TimeToStart( uint[]@ values )
-{	
+{
 	Critter@ npc    = GetCritter(values[0]);
 	Critter@ player = GetCritter(values[1]);
 	if(!valid(npc) || !valid(player))
@@ -137,7 +137,7 @@ uint e_TimeToStart( uint[]@ values )
 	uint num = map.GetNpcCount(ROLE_MARCH, FIND_LIFE|FIND_ONLY_NPC);
 	uint[] values_new = {0, npc.Id, player.Id};
 	SquadCommander@ cmdr = SquadCommander(npc);
-	ArrayPushBack(cmdr.Squad, player.Id);
+	cmdr.Squad.insertLast(player.Id);
 	for(uint i = 0; i < num; i++)
 	{
 		Critter@ cr = map.GetNpc(ROLE_MARCH, FIND_LIFE|FIND_ONLY_NPC, i);
@@ -154,7 +154,7 @@ uint e_TimeToStart( uint[]@ values )
 			q.AddOrder(DefineDirection(5, 0, 0));
 			q.AddOrder(DefineMove(2, 5, false, 0, 0));
 			q.Save();
-			ArrayPushBack(cmdr.Squad, cr.Id);
+			cmdr.Squad.insertLast(cr.Id);
 		}
 	}
 	cmdr.Save();
@@ -169,8 +169,8 @@ uint e_TimeToStart( uint[]@ values )
 	q.AddOrder(DefineDirection(5, 0, 0));
 	q.AddOrder(DefineMove(2, 5, false, 0, 0));
 	q.Save();
-	CreateTimeEvent(__FullSecond + REAL_SECOND(3), "e_NextGuardOrder", values_new, false);	
-	return 0;	
+	CreateTimeEvent(__FullSecond + REAL_SECOND(3), "e_NextGuardOrder", values_new, false);
+	return 0;
 }
 
 // Время отдавать новый приказ
@@ -206,7 +206,7 @@ uint e_NextGuardOrder( uint[]@ values )
 			if(valid(player))
 				player.SendQuestVar(qVar);
 		}
-			
+
 		return 0;
 	}
 	return REAL_SECOND(6);
@@ -256,7 +256,7 @@ uint cte_GuardsmanSalary(Critter& cr, int identifier, uint& rate)
 			break;
 		case RANK_LEUTENANT:
 			money = LEUTENANT_MONEY;
-			break;		
+			break;
 		default:
 			break;
 	}
@@ -326,7 +326,7 @@ void _OutGroundInCritter(Map& map, Critter& cr)
 		idLoc = loc.Id;
 		loc.AutoGarbage = false;
 		cr.SetKnownLoc(true,loc.Id);
-		
+
 	}
 }
 
@@ -346,7 +346,7 @@ void r_ShowCave(Critter& player, Critter@ npc)
 	if(valid(loc) && loc.GetProtoId() == LOCATION_Quest_VCity_Recon_Cave)
 	{
 		uint16 x = loc.WorldX;
-		uint16 y = loc.WorldY;	
+		uint16 y = loc.WorldY;
 		DeleteLocation(loc.Id);
 		r_ShowLocation(player, npc, LVAR_q_vc_hartmann_clear_cave, LVAR_vc_dead_ally_counter, LOCATION_Quest_VCity_Attack_Cave, x, y);
 	}

@@ -211,7 +211,7 @@ void anim(Critter& player, int param0, int param1, int param2)
 void testmap(Critter& player, int param0, int param1, int param2)
 {
 	Critter@[] groups;
-	ArrayPushBack(groups, player);
+	groups.insertLast(@player);
 	uint locid = CreateLocation(
 		def(param1,400),player.WorldX,player.WorldY,groups);
 	Location@ loc=GetLocation(locid);
@@ -463,7 +463,7 @@ void GetCritParam(Critter & player, int id, int param, int value)
 void ShowLocation(Critter & player, int, int, int)
 {
 	Map @ map = player.GetMap();
-	if(valid(map)) 
+	if(valid(map))
 	{
 		Location @ loc = map.GetLocation();
 		if(valid(loc) && !loc.Visible)

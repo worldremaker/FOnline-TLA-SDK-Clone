@@ -193,7 +193,7 @@ bool _GetRandomMaxIndex(uint[] arr, uint& maxIndex)
 	{
 		if (arr[i]==max)
 		{
-			ArrayPushBack(maxes, i);
+			maxes.insertLast(i);
 		}
 	}
 	maxIndex = maxes[Random(0, maxes.length()-1)];

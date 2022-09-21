@@ -96,7 +96,7 @@ class Traveller
 			if(locPid ==this.LocationPids[i])
 				return;
 		}
-		ArrayPushBack(this.LocationPids, locPid);
+		this.LocationPids.insertLast(locPid);
 	}
 
 	void AddFollower(uint crId)
@@ -106,7 +106,7 @@ class Traveller
 			if(crId ==this.Followers[i])
 				return;
 		}
-		ArrayPushBack(this.Followers, crId);
+		this.Followers.insertLast(crId);
 		this.Save();
 	}
 
@@ -235,21 +235,21 @@ class Traveller
 			return false;
 		Critter@[] grp;
 		uint[] confirmedIds;
-		push_back_handle(grp, cr);
+		grp.insertLast(@cr);
 		uint ch = cr.Stat[ST_CHARISMA];
 		for(uint i = 0, l = this.Followers.length(); i < l && confirmedIds.length() < ch; i++)
 		{
 			Critter@ follower = GetCritter(this.Followers[i]);
 			if(valid(follower) && valid(follower.GetMap()) && (follower.GetMap().Id == map.Id) && (GetCrittersDistantion(cr, follower) <= DIST_MAX))
 			{
-				push_back_handle(grp, follower);
-				ArrayPushBack(confirmedIds, follower.Id);
+				grp.insertLast(@follower);
+				confirmedIds.insertLast(follower.Id);
 			}
 		}
 		this.Followers.resize(0);
 		for(uint i = 0, l = confirmedIds.length(); i < l; i++)
 		{
-			ArrayPushBack(this.Followers, confirmedIds[i]);
+			this.Followers.insertLast(confirmedIds[i]);
 		}
 		cr.TransitToGlobal(grp);
 		return true;

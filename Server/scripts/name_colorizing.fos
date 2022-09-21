@@ -46,9 +46,8 @@ void InitNameColorizing() // Export
 		{
 			if(f.readWord()==NAME_TOKEN)
 			{
-				uint len=Records.length();
-				Records.resize(len+1);
-				Record@ r=Records[len];
+				Records.grow(1);
+				Record@ r=Records.last();
 
 				r.NameStr=strlwr(f.readWord());
 				r.NameColor=GetColor(colors,f.readWord(),COLOR_CRITTER_NAME);

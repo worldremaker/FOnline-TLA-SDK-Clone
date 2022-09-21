@@ -191,7 +191,7 @@ uint GetCrittersByRole(Map& map, uint x, uint y, uint radius, int role, Critter@
 	uint count=map.GetCrittersHex(x, y, radius, FIND_LIFE|FIND_ONLY_NPC, cTmp);
 	for(uint i=0; i<count; i++)
 		if(cTmp[i].Stat[ST_NPC_ROLE]==role)
-			ArrayPushBack(critters, cTmp[i]);
+			critters.insertLast(cTmp[i]);
 	return critters.length();
 }
 
@@ -236,10 +236,8 @@ bool r_CheckQuestIsRun(Critter& player, Critter@ npc, int val)
 /* вариант Hexor'a
 void r_GotoHunter(Critter& player, Critter@ npc, int val)
 {
-
-
 	Critter@[] groups;
-	ArrayPushBack(groups,player);
+	groups.insertLast(@player);
 	player.GetFollowGroup(FIND_ALL,groups);
 
 	// инициализирует квест!
@@ -364,14 +362,14 @@ void r_GotoHunter(Critter& player, Critter@ npc, int val)
 	DeleteWanMap();
 
 	Critter@[] groups;
-	ArrayPushBack(groups,player);
+	groups.insertLast(@player);
 	Critter@[] realGrp;
 	player.GetFollowGroup(FIND_ALL,realGrp);
 	for(uint i=0,l=realGrp.length();i<l;i++)
 	{
 		if(GetQuestState(realGrp[i])==0)
 		{
-			ArrayPushBack(groups,realGrp[i]);
+			groups.insertLast(@realGrp[i]);
 		}
 	}
 

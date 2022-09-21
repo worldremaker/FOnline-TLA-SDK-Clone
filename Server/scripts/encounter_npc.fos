@@ -106,7 +106,7 @@ void _NpcMessage(Critter& npc, Critter& fromCr, int message, int value)
 {
 	if(message==MESSAGE_COLLECT_NPC)
 	{
-		if(not npc.IsDead()) ArrayPushBack(CollectedNpcIds,npc.Id);
+		if(not npc.IsDead()) CollectedNpcIds.insertLast(npc.Id);
 	}
 	else if(message==MESSAGE_ATTACK_HIM)
 	{

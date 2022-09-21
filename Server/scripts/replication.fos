@@ -45,7 +45,7 @@ void AddPermanentDeath(uint id)
 
 	if(not IsPermanentDeath(id))
 	{
-		push_back(PermanentDeath,id);
+		PermanentDeath.insertLast(id);
 		SetAnyData("PermanentDeath",PermanentDeath);
 	}
 }

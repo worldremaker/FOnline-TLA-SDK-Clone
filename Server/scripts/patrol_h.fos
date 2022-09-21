@@ -109,7 +109,7 @@ class PatrolRoute
 	void AddPoint(PatrolPoint& p)
 	{
 		this.curIndex = 0;
-		push_back(this.points, p);
+		this.points.insertLast(p);
 	}
 
 
@@ -156,7 +156,7 @@ class PatrolInfo
 		p.AiPacket = ai;
 		p.PowerLvl = lvl;
 
-		push_back(this.Patrollers, p);
+		this.Patrollers.insertLast(p);
 	}
 
 	void MovePatrol()
@@ -275,7 +275,7 @@ class PatrolInfo
 				return;//уже записан
 			}
 		}
-		ArrayPushBack(this.AcceptedPlayers, player.Id);
+		this.AcceptedPlayers.insertLast(player.Id);
 	}
 
 	// игроку разрешили тут находиться

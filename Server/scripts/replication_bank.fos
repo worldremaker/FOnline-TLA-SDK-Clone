@@ -102,10 +102,9 @@ void ParseBank(Critter& cr)
 	Map@ map=cr.GetMap();
 	if(valid(map) && not valid(GetBank(cr)))
 	{
-		BanksMapId.resize(BanksMapId.length()+1);
-		BanksMapId[BanksMapId.length()-1]=map.Id;
-		Banks.resize(Banks.length()+1);
-		Banks[Banks.length()-1].Init(map);
+		BanksMapId.insertLast(map.Id);
+		Banks.grow(1);
+		Banks.last().Init(map);
 	}
 }
 

@@ -144,9 +144,8 @@ class CCaveEncounterInfo
 
 	void AddCaveMobInfo(uint16 pid, string script, uint16 bag, uint16 ai, uint16 team)
 	{
-		uint len=this.Mobs.length();
-		this.Mobs.resize(len+1);
-		Mobs[len].Set(pid, script, bag, ai, team);
+		Mobs.grow(1);
+		Mobs.last().Set(pid, script, bag, ai, team);
 	}
 
 	void AddCaveChestInfo(uint16 pid, uint16 entire, uint8 trapValue, uint8 lockerCompl)
@@ -158,9 +157,8 @@ class CCaveEncounterInfo
 	void AddCaveItemInfo(uint16 pid, uint8 min, uint8 max)
 	{
 		if(!valid(this.Container)) return;
-		uint len=this.Container.Items.length();
-		this.Container.Items.resize(len+1);
-		this.Container.Items[len].Set(pid, min, max);
+		this.Container.Items.grow(1);
+		this.Container.Items.last().Set(pid, min, max);
 	}
 
 	void FillMap(Map@ map,Critter @[]@ group)
@@ -415,7 +413,7 @@ void _CaveNpcShowCritter(Critter & cr, Critter & showCrit)
 {
 	if(showCrit.IsPlayer())
 	{
-		if(Random(0,50)<100) 
+		if(Random(0,50)<100)
 			cr.SayMsg(SAY_NORM_ON_HEAD,TEXTMSG_COMBAT,Random(SEE_PLAYER_FROM,SEE_PLAYER_TO)*10);
 		AddAttackPlane(cr, 0, showCrit, __RunOnCombat);
 	}

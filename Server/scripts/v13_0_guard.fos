@@ -53,7 +53,7 @@ void e_GuardIdle( Critter& guard )
 						guard.SayMsg( SAY_SHOUT_ON_HEAD, TEXTMSG_DLG, DLGSTR( guard.Stat[ST_DIALOG_ID], 1) );
 						//guard.AddEnemyInStack( players[i].Id );
 					} else {
-						RemoveFromArray( player_ban, uint( FindInArray( player_ban, players[i].Id ) ) );
+						player_ban.removeAt( uint( FindInArray( player_ban, players[i].Id ) ) );
 						guard.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR( guard.Stat[ST_DIALOG_ID], 3) );
 					}
 				}
@@ -61,14 +61,14 @@ void e_GuardIdle( Critter& guard )
 				if ( FindInArray( player_warned, players[i].Id ) >= 0 && FindInArray( player_ban, players[i].Id ) < 0 ){
 					if ( SearchWeapon( _CritGetItemHand(players[i]) ) ){
 						guard.SayMsg( SAY_SHOUT_ON_HEAD, TEXTMSG_DLG, DLGSTR( guard.Stat[ST_DIALOG_ID], 2) );
-						AddToArray( player_ban, players[i].Id );
+						player_ban.insertLast( players[i].Id );
 					} else {
-						RemoveFromArray( player_warned, uint( FindInArray( player_warned, players[i].Id ) ) );
+						player_warned.removeAt( uint( FindInArray( player_warned, players[i].Id ) ) );
 						guard.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR( guard.Stat[ST_DIALOG_ID], 3) );
 					}
 				} else if ( FindInArray( player_warned, players[i].Id ) < 0 && FindInArray( player_ban, players[i].Id ) < 0 ){
 					if ( SearchWeapon( _CritGetItemHand(players[i]) ) ){
-						AddToArray( player_warned, players[i].Id );
+						player_warned.insertLast( players[i].Id );
 						guard.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR( guard.Stat[ST_DIALOG_ID], 2) );
 					}
 				}
@@ -87,8 +87,8 @@ void e_GuardHide(Critter& npc, Critter& player)
 {
 
 	if (not player.IsPlayer()) return;
-	RemoveFromArray( player_ban, uint(FindInArray( player_ban, player.Id )) );
-	RemoveFromArray( player_warned, uint(FindInArray( player_warned, player.Id )) );
+	player_ban.removeAt( uint( FindInArray( player_ban, player.Id ) ) );
+	player_warned.removeAt( uint( FindInArray( player_warned, player.Id ) ) );
 	return;
 
 }
@@ -104,7 +104,7 @@ void e_GuardMined(Critter& guard, Critter& dropper, Item& item)
 	if ( !dropper.IsLife() ) return;
 	// Заминировать нас не так-то просто, нужно быть действительно мастером и удачливым ловкачем.
 	if ( IsMined( guard, item, dropper, guard.StatBase[ST_PERCEPTION] * 20, Pids_MiscActiveExplosions ) ) {
-		//AddToArray( player_ban, dropper.Id );
+		//player_ban.insertLast( dropper.Id );
 		guard.SendMessage( MSG_V13_GUARD_KILL, dropper.Id, MESSAGE_TO_WHO_SEES_ME );
 		guard.SayMsg( SAY_SHOUT_ON_HEAD, TEXTMSG_DLG, DLGSTR( guard.Stat[ST_DIALOG_ID], 1) );
 	}
@@ -182,7 +182,7 @@ void t_Entrance( Critter& player, Scenery& trigger, bool entered, uint8 dir )
 	if ( !entered ) return;
 	if ( dir == 2 || dir == 3 ) {
 		if ( FindInArray( player_done, player.Id ) < 0 ){
-			AddToArray( player_done, player.Id );
+			player_done.insertLast( player.Id );
 		}
 	}
 
@@ -255,7 +255,7 @@ void r_QuestDone( Critter& player, Critter@ npc )
 
 	Critter@[] group;
 	Critter@ leader = GetCritter( GetLeaderId( player ) );
-	ArrayPushBack( group, leader );
+	group.insertLast( @leader );
 	leader.GetFollowGroup( FIND_ALL, group );
 
 	for( uint i=0; i < group.length(); i++ )
@@ -367,7 +367,7 @@ bool d_QuestCheck( Critter& player, Critter@ npc )
 	// Находим группу в которой состоит игрок и лидера этой группы.
 	Critter@[] group;
 	Critter@ leader = GetCritter( GetLeaderId( player ) );
-	ArrayPushBack( group, leader );
+	group.insertLast( @leader );
 	leader.GetFollowGroup( FIND_ALL, group );
 	uint QuestDone = 0;
 	for( uint i=0; i < group.length(); i++ )
@@ -411,7 +411,7 @@ bool d_QuestDone( Critter& player, Critter@ npc )
 
 	Critter@[] group;
 	Critter@ leader = GetCritter( GetLeaderId( player ) );
-	ArrayPushBack( group, leader );
+	group.insertLast( @leader );
 	leader.GetFollowGroup( FIND_ALL, group );
 	for( uint i=0; i < group.length(); i++ )
 	{
@@ -445,7 +445,7 @@ bool GroupCheck( Critter& player )
 	// Находим группу в которой состоит игрок и лидера этой группы.
 	Critter@[] group;
 	Critter@ leader = GetCritter( GetLeaderId( player ) );
-	ArrayPushBack( group, leader );
+	group.insertLast( @leader );
 	leader.GetFollowGroup( FIND_ALL, group );
 
 	// Проверяем размер группы в которой состоит игрок берущий квест. Если игроков менее minPlayers возвращаем false.
@@ -479,7 +479,7 @@ void AllowAccess( Critter& player )
 {
 
 	if ( !HaveAccess(player) ){
-		ArrayPushBack( player_done, player.Id );
+		player_done.insertLast( player.Id );
 	}
 	return;
 
@@ -491,7 +491,7 @@ void DenyAccess( Critter& player )
 {
 
 	if ( !HaveAccess(player) ){
-		RemoveFromArray( player_done, uint( GetAccessId( player ) ) );
+		player_done.removeAt( uint( GetAccessId( player ) ) );
 	}
 	return;
 

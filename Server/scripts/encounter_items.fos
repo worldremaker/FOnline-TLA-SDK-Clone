@@ -28,7 +28,7 @@ uint16[]@ GetItemsInfo(uint8 eType, uint8 hex)
 		if ((_GetType(i) == eType || _GetType(i) == ETYPE_ANY) && _GetGex(i) == hex)
 		{
 			//Log("eType:"+eType+"_GetType:"+_GetType(i));
-			ArrayPushBack(infos, i);
+			infos.insertLast(i);
 		}
 	}
 
@@ -86,7 +86,7 @@ void GenerateItems(Map & map, Critter @[]@  grp)
 		cur=Random(0,len-1);
 		if(!Present(cur, foundedEntires))
 		{
-			ArrayPushBack(foundedEntires, cur);
+			foundedEntires.insertLast(cur);
 		}
 		if(foundedEntires.length()>itemz) break;
 		tries--;
