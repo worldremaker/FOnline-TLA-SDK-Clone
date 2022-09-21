@@ -1410,10 +1410,13 @@
 {110005}{}{This town belongs to the one of new states originated after US breakdown. Created by people from vaults 13 and 15. Full of aristocracy.}
 {110020}{}{art\intrface\twnncr.frm}
 {110030}{}{art\intrface\WM_NCR.FRM}
-{110090}{}{1}
+{110090}{}{2}
 {110101}{}{Bazaar}
 {110102}{}{240}
 {110103}{}{210}
+{110111}{}{Suburb}
+{110112}{}{100}
+{110113}{}{100}
 
 # Cathedral, pid 11, base 111000
 {111000}{}{Cathedral}
@@ -1439,16 +1442,13 @@
 {113005}{}{A miners town.}
 {113020}{}{art\intrface\twnredng.frm}
 {113030}{}{art\intrface\WM_RED.FRM}
-{113090}{}{3}
+{113090}{}{2}
 {113101}{}{Downtown}
 {113102}{}{200}
 {113103}{}{255}
 {113111}{}{Wanamingo mine}
 {113112}{}{160}
 {113113}{}{231}
-{113121}{}{Mine}
-{113122}{}{225}
-{113123}{}{200}
 
 # SF, pid 14, base 114000
 {114000}{}{San Francisco}

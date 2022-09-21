@@ -36,19 +36,17 @@ void _NpcInit(Critter& npc, bool firstTime)
 		for(uint i=0,j=items.length();i<j;i++)
 		{
 			SetWear(items[i],Random(80,95));
-			if(items[i].GetType()==ITEM_AMMO&&!favrtAmmoSet)
-			{
-				npc.SetFavoriteItem(SLOT_HAND2, items[i].GetProtoId());
-				favrtAmmoSet = true;
-				continue;
-			}
-
 			if(items[i].GetType()==ITEM_WEAPON&&!favrtWpnSet)
 			{
 				npc.SetFavoriteItem(SLOT_HAND1, items[i].GetProtoId());
 				favrtWpnSet = true;
 			}
-
+		/*	if(items[i].GetType()==ITEM_AMMO&&!favrtAmmoSet)
+			{
+				npc.SetFavoriteItem(SLOT_HAND2, items[i].GetProtoId());
+				favrtAmmoSet = true;
+				continue;
+			} */
 		}
 	}
 }
