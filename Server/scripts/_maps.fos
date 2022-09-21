@@ -127,6 +127,8 @@
 #define LOCATION_Quest_ModocWaspFarm                (213)
 #define LOCATION_Quest_VCity_Recon_Cave             (214)
 #define LOCATION_Quest_VCity_Attack_Cave            (215)
+#define LOCATION_Quest_ModocVampireFarm             (216)
+#define LOCATION_Quest_ModocVampireCave             (217)
 
 #define LOCATION_Warehouse                          (220)
 #define LOCATION_Warehouse1                         (221)

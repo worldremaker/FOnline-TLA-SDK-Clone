@@ -369,6 +369,11 @@
 {985}{}{07desert}
 {986}{}{gntlwin1:25, gntlwind:25, gustwind:10, rattle:15, rattle1:15, vulture:10}
 
+# Map 98, base 990
+{990}{}{Modoc vampire farm}
+{995}{}{07desert}
+{996}{}{gustwind:20, gustwin1:20, rattle:15, rattle1:15, vulture:15, vulture1:15}
+
 # Map 99, base 1000
 {1000}{}{Wanamingo carvern}
 {1005}{}{13carvrn.acm}
@@ -435,6 +440,11 @@
 {1130}{}{Navarro Sub2}
 {1135}{}{14necro}
 {1136}{}{gntlwin1:25, gntlwind:25, gustwind:10, blank:40}
+
+# Map 113, base 1140
+{1140}{}{Modoc vampire cave}
+{1145}{}{08vats}
+{1146}{}{gustwind:20, gustwin1:20, rattle:15, rattle1:15, vulture:15, vulture1:15}
 
 # Map 115, base 1160
 {1160}{}{Broken Hills}
@@ -1631,6 +1641,14 @@
 {315000}{}{Пещера мутантов}
 {315005}{}{В этом месте вас ожидают гвардейцы Города-Убежища. Зачистите пещеры от оборзевших мутантов.}
 
+# Vampire cave, pid 216, base 316000
+{316000}{}{Ранчо с браминами}
+{316005}{}{На этой ферме по ночам что-то происходит с браминами. Разберитесь в чем дело и сообщите Гришему в Модок.}
+
+# Vampire cave, pid 217, base 317000
+{317000}{}{Странная пещера}
+{317005}{}{У вас появился уникальный шанс исцелить вампира. Но ждать он будет недолго.}
+
 # Warehouse, pid 220, base 320000
 {320000}{}{Warehouse}
 {320005}{}{You see an abandoned warehouse.}
@@ -2007,6 +2025,7 @@
 {10037310}{}{A tin woodsman}
 {10037320}{}{The Unwashed Villagers hunting a spammer}
 {10037330}{}{развалины дома}
+{10037331}{}{странную пещеру}
 
 # Encounter Table 15
 {10037500}{}{A band of highwaymen}

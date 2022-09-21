@@ -3560,6 +3560,7 @@ enc_20=Chance:1%,Counter:1,Special,Map:Special Holy Encounter 2,Enc:Special1, If
 	table.AddEncounter(  1, 10041780).Special(true).LocationPid(LOCATION_SpecialUnwashedEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_unwashed,'<',1).AssignLVar(LVAR_special_encounter_unwashed,'=',1);
 	table.AddEncounter(  1, 10037330).Special(true).LocationPid(LOCATION_SpecialTrapperHolo).CheckParam(SK_OUTDOORSMAN,'>',119).CheckLVar(LVAR_special_trapper_holo,'<',1).AssignLVar(LVAR_special_trapper_holo,'=',1);
 	table.AddEncounter(  1, 10034820).Special(true).LocationPid(LOCATION_SpecialZergEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_zerg_laboratory,'<',1).AssignLVar(LVAR_special_zerg_laboratory,'=',1);
+	table.AddEncounter( 40, 10037331).Special(true).LocationPid(LOCATION_Quest_ModocVampireCave).CheckParam(SK_OUTDOORSMAN,'>',99).CheckLVar(LVAR_q_mod_joe_vampire,'=',5).AssignLVar(LVAR_q_mod_joe_vampire,'=',6);
 /*lookup_name=Wild1_D                                                             ; Wilderness North of Modoc
 maps=Desert Encounter 12, Desert Encounter 8, Desert Encounter 10, Desert Encounter 6
 enc_00=Chance:2%,Counter:1,Special,Map:Special Toxic Encounter,Enc:Special1, If(Player(Level) > 5) , If(Global(607) < 1)
