@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 01.10.2010
-// Server version 363, MSVS2008
+// Last update 16.10.2010
+// Server version 367, MSVS2008
 //
 
 #pragma pack(8)
@@ -28,6 +28,8 @@ using namespace std;
 
 class asIScriptEngine;
 
+struct Mutex;
+struct Spinlock;
 struct ScriptString;
 struct SyncObj;
 struct ProtoItem;
@@ -126,6 +128,7 @@ typedef vector<Location*>::iterator LocVecIt;
 #define MAPOBJ_CRITTER_PARAMS       (15)
 #define MAX_PARAMETERS_ARRAYS       (100)
 #define MAX_NAME                    (30)
+#define MAX_STORED_IP               (20)
 
 #define CAR_MAX_BLOCKS              (80)
 #define CAR_MAX_BAG_POSITION        (12)
@@ -195,6 +198,14 @@ typedef vector<Location*>::iterator LocVecIt;
 #define ITEM_CAN_PICKUP             (0x08000000)
 #define ITEM_CAN_USE                (0x10000000)
 #define ITEM_CACHED                 (0x80000000)
+
+#define RADIO_DISABLE_SEND          (0x01)
+#define RADIO_DISABLE_RECV          (0x02)
+#define RADIO_BROADCAST_FORCE_ALL   (0)
+#define RADIO_BROADCAST_MAP         (20)
+#define RADIO_BROADCAST_LOCATION    (40)
+#define RADIO_BROADCAST_ZONE(x)     (100+CLAMP(x,1,100))
+#define RADIO_BROADCAST_WORLD       (250)
 
 #define WEAPON_PERK_FAST_RELOAD     (6)
 
@@ -631,6 +642,16 @@ struct GameOptions
 	int    ServerPathRefCount;
 };
 
+struct Mutex
+{
+	 int   Locker[6]; // CRITICAL_SECTION, include Windows.h
+};
+
+struct Spinlock
+{
+	long   Locker;
+};
+
 struct ScriptString
 {
 	string Buffer;
@@ -673,6 +694,19 @@ struct ProtoItem
 	uint8  AnimShow[2];
 	uint8  AnimHide[2];
 	int8   DrawPosOffsY;
+
+	// Radio
+	uint16 RadioChannel;
+	uint16 RadioFlags;
+	uint8  RadioBroadcastSend;
+	uint8  RadioBroadcastRecv;
+
+	// Indicator
+	uint8  IndicatorStart;
+	uint8  IndicatorMax;
+
+	// Holodisk
+	uint   HolodiskId;
 
 	union
 	{
@@ -989,7 +1023,7 @@ struct Item
 	{
 		uint16 SortValue;
 		uint8  Info;
-		uint8  Reserved0;
+		uint8  Indicator;
 		uint   PicMapHash;
 		uint   PicInvHash;
 		uint16 AnimWaitBase;
@@ -1307,7 +1341,9 @@ struct Critter
 		uint16 Reserved24;
 		uint16 LocationsCount;
 		uint   LocationsId[MAX_STORED_LOCATIONS];
-		uint   Reserved25[100];
+		uint   Reserved25[40];
+		uint   PlayIp[MAX_STORED_IP]; // 0 - registration ip
+		uint   Reserved26[40];
 	} *DataExt;
 
 	SyncObj Sync;
@@ -1338,6 +1374,7 @@ struct Critter
 	CrVec    VisCrSelf;
 	UintSet  VisCr1,VisCr2,VisCr3;
 	UintSet  VisItem;
+	Spinlock VisItemLocker;
 	uint     ViewMapId;
 	uint16   ViewMapPid,ViewMapLook,ViewMapHx,ViewMapHy;
 	uint8    ViewMapDir;
@@ -1358,6 +1395,7 @@ struct Critter
 	uint     LastHealTick;
 	uint     NextIntellectCachingTick;
 	uint16   IntellectCacheValue;
+	uint     LookCacheValue;
 	uint     StartBreakTime;
 	int	     BreakTime;
 	uint     WaitEndTick;
@@ -1607,6 +1645,7 @@ struct ProtoMap
 struct Map
 {
 	SyncObj   Sync;
+	Mutex     DataLocker;
 	uint8*    HexFlags;
 	CrVec     MapCritters;
 	ClVec     MapPlayers;
@@ -1763,36 +1802,38 @@ int GetDistantion(int x1, int y1, int x2, int y2)
 
 void static_asserts()
 {
-	STATIC_ASSERT(sizeof(uint)      == 4);
-	STATIC_ASSERT(sizeof(uint16)    == 2);
-	STATIC_ASSERT(sizeof(uint8)     == 1);
-	STATIC_ASSERT(sizeof(int)       == 4);
-	STATIC_ASSERT(sizeof(int16)     == 2);
-	STATIC_ASSERT(sizeof(int8)      == 1);
-	STATIC_ASSERT(sizeof(bool)      == 1);
-	STATIC_ASSERT(sizeof(string)    == 28);
-	STATIC_ASSERT(sizeof(IntVec)    == 16);
-	STATIC_ASSERT(sizeof(IntMap)    == 12);
-	STATIC_ASSERT(sizeof(IntSet)    == 12);
-	STATIC_ASSERT(sizeof(IntPair)   == 8);
-	STATIC_ASSERT(sizeof(GameVar)   == 28);
-	STATIC_ASSERT(sizeof(ProtoItem) == 168);
+	STATIC_ASSERT(sizeof(uint)      == 4  );
+	STATIC_ASSERT(sizeof(uint16)    == 2  );
+	STATIC_ASSERT(sizeof(uint8)     == 1  );
+	STATIC_ASSERT(sizeof(int)       == 4  );
+	STATIC_ASSERT(sizeof(int16)     == 2  );
+	STATIC_ASSERT(sizeof(int8)      == 1  );
+	STATIC_ASSERT(sizeof(bool)      == 1  );
+	STATIC_ASSERT(sizeof(string)    == 28 );
+	STATIC_ASSERT(sizeof(IntVec)    == 16 );
+	STATIC_ASSERT(sizeof(IntMap)    == 12 );
+	STATIC_ASSERT(sizeof(IntSet)    == 12 );
+	STATIC_ASSERT(sizeof(IntPair)   == 8  );
+	STATIC_ASSERT(sizeof(GameVar)   == 28 );
+	STATIC_ASSERT(sizeof(ProtoItem) == 180);
+	STATIC_ASSERT(sizeof(Mutex)     == 24 );
+	STATIC_ASSERT(sizeof(Spinlock)  == 4  );
 
-	STATIC_ASSERT(offsetof(TemplateVar, Flags)              == 76);
-	STATIC_ASSERT(offsetof(NpcPlane, RefCounter)            == 88);
-	STATIC_ASSERT(offsetof(GlobalMapGroup, EncounterForce)  == 84);
-	STATIC_ASSERT(offsetof(Item, Lexems)                    == 160);
-	STATIC_ASSERT(offsetof(CritterTimeEvent, Identifier)    == 12);
-	STATIC_ASSERT(offsetof(Critter, RefCounter)             == 9792);
-	STATIC_ASSERT(offsetof(Client, LanguageMsg)             == 9860);
-	STATIC_ASSERT(offsetof(Npc, Reserved)                   == 9824);
-	STATIC_ASSERT(offsetof(Scenery, RunTime.RefCounter)     == 244);
-	STATIC_ASSERT(offsetof(MapEntire, Dir)                  == 8);
-	STATIC_ASSERT(offsetof(SceneryToClient, Reserved1)      == 30);
-	STATIC_ASSERT(offsetof(ProtoMap, HexFlags)              == 320);
-	STATIC_ASSERT(offsetof(Map, RefCounter)                 == 770);
-	STATIC_ASSERT(offsetof(ProtoLocation, GeckEnabled)      == 92);
-	STATIC_ASSERT(offsetof(Location, RefCounter)            == 286);
+	STATIC_ASSERT(offsetof(TemplateVar, Flags)              == 76  );
+	STATIC_ASSERT(offsetof(NpcPlane, RefCounter)            == 88  );
+	STATIC_ASSERT(offsetof(GlobalMapGroup, EncounterForce)  == 84  );
+	STATIC_ASSERT(offsetof(Item, Lexems)                    == 160 );
+	STATIC_ASSERT(offsetof(CritterTimeEvent, Identifier)    == 12  );
+	STATIC_ASSERT(offsetof(Critter, RefCounter)             == 9800);
+	STATIC_ASSERT(offsetof(Client, LanguageMsg)             == 9868);
+	STATIC_ASSERT(offsetof(Npc, Reserved)                   == 9832);
+	STATIC_ASSERT(offsetof(Scenery, RunTime.RefCounter)     == 244 );
+	STATIC_ASSERT(offsetof(MapEntire, Dir)                  == 8   );
+	STATIC_ASSERT(offsetof(SceneryToClient, Reserved1)      == 30  );
+	STATIC_ASSERT(offsetof(ProtoMap, HexFlags)              == 320 );
+	STATIC_ASSERT(offsetof(Map, RefCounter)                 == 794 );
+	STATIC_ASSERT(offsetof(ProtoLocation, GeckEnabled)      == 92  );
+	STATIC_ASSERT(offsetof(Location, RefCounter)            == 286 );
 }
 
 #endif // __FONLINE__

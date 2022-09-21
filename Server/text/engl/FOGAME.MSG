@@ -80,20 +80,20 @@
 ####################################################################################################################################
 
 # On head messages
-{100}{}{|4294506899 %s}                  # Normal
-{102}{}{|4294901760 !!!%s!!!}            # Shout
-{104}{}{|4294902015 **%s**}              # Emote
-{106}{}{|4278255615 ...%s...}            # Whisp
-{108}{}{|4294967295 %s}                  # Social
+{100}{}{|0xF8F993 %s}                     # Normal
+{102}{}{|0xFF0000 !!!%s!!!}               # Shout
+{104}{}{|0xFF00FF **%s**}                 # Emote
+{106}{}{|0x00FFFF ...%s...}               # Whisp
+{108}{}{|0xFFFFFF %s}                     # Social
 
 # Message box
-{120}{}{%s: |4294506899 %s}              # Normal
-{122}{}{%s: |4294901760 !!!%s!!!}        # Shout
-{124}{}{%s: |4294902015 **%s**}          # Emote
-{126}{}{%s: |4278255615 ...%s...}        # Whisp
-{128}{}{%s: |4294967295 %s}              # Social
-{130}{}{Radio> |4294967295 ss..%s..ss}   # Radio
-{132}{}{%s}                              # NetMsg
+{120}{}{%s: |0xF8F993 %s}                 # Normal
+{122}{}{%s: |0xFF0000 !!!%s!!!}           # Shout
+{124}{}{%s: |0xFF00FF **%s**}             # Emote
+{126}{}{%s: |0x00FFFF ...%s...}           # Whisp
+{128}{}{%s: |0xFFFFFF %s}                 # Social
+{130}{}{Radio %u> |0xFFFFFE ..%s..}       # Radio
+{132}{}{%s}                               # NetMsg
 
 ####################################################################################################################################
 #
@@ -171,8 +171,6 @@
 # Perk
 {340}{}{Take}
 {341}{}{Back}
-# Radio
-{345}{}{Channel}
 # Global map
 {350}{}{You cannot lead this group.}
 {351}{}{Coords: %d : %d\nZone: %d : %d}
@@ -263,11 +261,29 @@
 #
 ####################################################################################################################################
 
-{460}{}{Broadcasting has begun.}
-{461}{}{Broadcasting has ended.}
-{462}{}{Channel changed.}
-{463}{}{There is no portable radio set.}
-{464}{}{Battery is low.}
+{455}{}{Radio}
+{456}{}{Channel}
+{457}{}{Refresh}
+{458}{}{Broadcast}
+{459}{}{Reception}
+{460}{}{Everywhere}
+{461}{}{5 zones}
+{462}{}{2 zones}
+{463}{}{Location}
+{464}{}{Map}
+{465}{}{Broadcasting has begun.}
+{466}{}{Broadcasting has ended.}
+{467}{}{Broadcasting has changed.}
+{468}{}{Radioreception has begun.}
+{469}{}{Radioreception has ended.}
+{470}{}{Radioreception has changed.}
+{471}{}{Channel changed.}
+{474}{}{Unable switch channel.}
+{475}{}{Unable switch broadcast.}
+{476}{}{Unable switch reception.}
+{477}{}{Unable switch broadcast type.}
+{478}{}{Unable switch reception type.}
+{479}{}{You do not have the radio tuned to the transmission.}
 
 ####################################################################################################################################
 #
@@ -275,21 +291,20 @@
 #
 ####################################################################################################################################
 
-{470}{}{Ok, that's a good trade.}
-{471}{}{No, your offer is not good enough.}
-{472}{}{Sorry, you cannot carry that much.}
-{473}{}{Sorry, that's too much to carry.}
-{474}{}{No item was selected at the moment of deal.}
-{475}{}{Sorry, but I've already sold some of the selected items.}
-{476}{}{You can't trade right now.}
-{477}{}{You can't trade with this person.}
-{480}{}{%s wants to trade with you. Trade mode : %s.}
-{481}{}{open}
-{482}{}{hidden}
-{483}{}{You can't trade with this person right now. Try again later.}
-{485}{}{Trading with %s. Your mode: %s, opponent's mode: %s.}
-{486}{}{%s is ready for deal.}
-{487}{}{No, i don't need it. Only cash, please.}
+{480}{}{Ok, that's a good trade.}
+{481}{}{No, your offer is not good enough.}
+{482}{}{Sorry, you cannot carry that much.}
+{483}{}{Sorry, that's too much to carry.}
+{484}{}{No item was selected at the moment of deal.}
+{485}{}{Sorry, but I've already sold some of the selected items.}
+{486}{}{You can't trade right now.}
+{487}{}{You can't trade with this person.}
+{490}{}{%s wants to trade with you. Trade mode : %s.}
+{491}{}{open}
+{492}{}{hidden}
+{493}{}{You can't trade with this person right now. Try again later.}
+{495}{}{Trading with %s. Your mode: %s, opponent's mode: %s.}
+{496}{}{%s is ready for deal.}
 
 ####################################################################################################################################
 #
@@ -824,7 +839,6 @@
 {10916}{}{4.7mm caseless}
 {10917}{}{HN needler}
 {10918}{}{7.62mm}
-{10919}{}{.700 cal}
 
 ####################################################################################################################################
 #

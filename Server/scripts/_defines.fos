@@ -106,8 +106,8 @@
 #define ITEM_NO_BLOCK               (0x00000004)
 #define ITEM_SHOOT_THRU             (0x00000008)
 #define ITEM_LIGHT_THRU             (0x00000010)
-#define ITEM_MULTI_HEX              (0x00000020)
-#define ITEM_WALL_TRANS_END         (0x00000040)
+#define ITEM_MULTI_HEX              (0x00000020) // Not used
+#define ITEM_WALL_TRANS_END         (0x00000040) // Not used
 #define ITEM_TWO_HANDS              (0x00000080)
 #define ITEM_BIG_GUN                (0x00000100)
 #define ITEM_ALWAYS_VIEW            (0x00000200)
@@ -130,7 +130,9 @@
 #define ITEM_CAN_TALK               (0x04000000)
 #define ITEM_CAN_PICKUP             (0x08000000)
 #define ITEM_CAN_USE                (0x10000000)
-#define ITEM_CACHED                 (0x80000000)
+#define ITEM_HOLODISK               (0x20000000)
+#define ITEM_RADIO                  (0x40000000)
+#define ITEM_CACHED                 (0x80000000) // Not used
 
 // Damage types
 #define DAMAGE_UNCALLED             (0)
@@ -224,7 +226,7 @@
 #define WEAPON_PERK_PENETRATE         (3)
 #define WEAPON_PERK_KNOCKBACK         (4)
 #define WEAPON_PERK_SCOPE_RANGE       (5)
-#define WEAPON_PERK_FAST_RELOAD       (6) // Used in engine
+#define WEAPON_PERK_FAST_RELOAD       (6) // Hardcoded
 #define WEAPON_PERK_NIGHT_SIGHT       (7)
 #define WEAPON_PERK_FLAMEBOY          (8)
 #define WEAPON_PERK_ENHANCED_KNOCKOUT (9)
@@ -298,96 +300,96 @@
 #define STAT_COUNT                 (STAT_END-STAT_BEGIN+1)
 #define STAT_EXT_BEGIN             (32)
 #define STAT_EXT_END               (63)
-#define ST_STRENGTH                 (0) // Used in engine +++
-#define ST_PERCEPTION               (1)
-#define ST_ENDURANCE                (2)
-#define ST_CHARISMA                 (3)
-#define ST_INTELLECT                (4)
-#define ST_AGILITY                  (5)
-#define ST_LUCK                     (6)
-#define ST_MAX_LIFE                 (7)
-#define ST_ACTION_POINTS            (8)
-#define ST_ARMOR_CLASS              (9)
-#define ST_MELEE_DAMAGE             (10)
-#define ST_CARRY_WEIGHT             (11)
-#define ST_SEQUENCE                 (12)
-#define ST_HEALING_RATE             (13)
-#define ST_CRITICAL_CHANCE          (14)
-#define ST_MAX_CRITICAL             (15)
-#define ST_NORMAL_ABSORB            (16)
-#define ST_LASER_ABSORB             (17)
-#define ST_FIRE_ABSORB              (18)
-#define ST_PLASMA_ABSORB            (19)
-#define ST_ELECTRO_ABSORB           (20)
-#define ST_EMP_ABSORB               (21)
-#define ST_EXPLODE_ABSORB           (22)
-#define ST_NORMAL_RESIST            (23)
-#define ST_LASER_RESIST             (24)
-#define ST_FIRE_RESIST              (25)
-#define ST_PLASMA_RESIST            (26)
-#define ST_ELECTRO_RESIST           (27)
-#define ST_EMP_RESIST               (28)
-#define ST_EXPLODE_RESIST           (29)
-#define ST_RADIATION_RESISTANCE     (30)
-#define ST_POISON_RESISTANCE        (31)
-#define ST_STRENGTH_EXT             (32)
-#define ST_PERCEPTION_EXT           (33)
-#define ST_ENDURANCE_EXT            (34)
-#define ST_CHARISMA_EXT             (35)
-#define ST_INTELLECT_EXT            (36)
-#define ST_AGILITY_EXT              (37)
-#define ST_LUCK_EXT                 (38)
-#define ST_MAX_LIFE_EXT             (39)
-#define ST_ACTION_POINTS_EXT        (40)
-#define ST_ARMOR_CLASS_EXT          (41)
-#define ST_MELEE_DAMAGE_EXT         (42)
-#define ST_CARRY_WEIGHT_EXT         (43)
-#define ST_SEQUENCE_EXT             (44)
-#define ST_HEALING_RATE_EXT         (45)
-#define ST_CRITICAL_CHANCE_EXT      (46)
-#define ST_MAX_CRITICAL_EXT         (47)
-#define ST_NORMAL_ABSORB_EXT        (48)
-#define ST_LASER_ABSORB_EXT         (49)
-#define ST_FIRE_ABSORB_EXT          (50)
-#define ST_PLASMA_ABSORB_EXT        (51)
-#define ST_ELECTRO_ABSORB_EXT       (52)
-#define ST_EMP_ABSORB_EXT           (53)
-#define ST_EXPLODE_ABSORB_EXT       (54)
-#define ST_NORMAL_RESIST_EXT        (55)
-#define ST_LASER_RESIST_EXT         (56)
-#define ST_FIRE_RESIST_EXT          (57)
-#define ST_PLASMA_RESIST_EXT        (58)
-#define ST_ELECTRO_RESIST_EXT       (59)
-#define ST_EMP_RESIST_EXT           (60)
-#define ST_EXPLODE_RESIST_EXT       (61)
-#define ST_RADIATION_RESISTANCE_EXT (62)
-#define ST_POISON_RESISTANCE_EXT    (63) // Used in engine ---
+#define ST_STRENGTH                 (0) // Hardcoded
+#define ST_PERCEPTION               (1) // Hardcoded
+#define ST_ENDURANCE                (2) // Hardcoded
+#define ST_CHARISMA                 (3) // Hardcoded
+#define ST_INTELLECT                (4) // Hardcoded
+#define ST_AGILITY                  (5) // Hardcoded
+#define ST_LUCK                     (6) // Hardcoded
+#define ST_MAX_LIFE                 (7) // Hardcoded
+#define ST_ACTION_POINTS            (8) // Hardcoded
+#define ST_ARMOR_CLASS              (9) // Hardcoded
+#define ST_MELEE_DAMAGE             (10) // Hardcoded
+#define ST_CARRY_WEIGHT             (11) // Hardcoded
+#define ST_SEQUENCE                 (12) // Hardcoded
+#define ST_HEALING_RATE             (13) // Hardcoded
+#define ST_CRITICAL_CHANCE          (14) // Hardcoded
+#define ST_MAX_CRITICAL             (15) // Hardcoded
+#define ST_NORMAL_ABSORB            (16) // Hardcoded
+#define ST_LASER_ABSORB             (17) // Hardcoded
+#define ST_FIRE_ABSORB              (18) // Hardcoded
+#define ST_PLASMA_ABSORB            (19) // Hardcoded
+#define ST_ELECTRO_ABSORB           (20) // Hardcoded
+#define ST_EMP_ABSORB               (21) // Hardcoded
+#define ST_EXPLODE_ABSORB           (22) // Hardcoded
+#define ST_NORMAL_RESIST            (23) // Hardcoded
+#define ST_LASER_RESIST             (24) // Hardcoded
+#define ST_FIRE_RESIST              (25) // Hardcoded
+#define ST_PLASMA_RESIST            (26) // Hardcoded
+#define ST_ELECTRO_RESIST           (27) // Hardcoded
+#define ST_EMP_RESIST               (28) // Hardcoded
+#define ST_EXPLODE_RESIST           (29) // Hardcoded
+#define ST_RADIATION_RESISTANCE     (30) // Hardcoded
+#define ST_POISON_RESISTANCE        (31) // Hardcoded
+#define ST_STRENGTH_EXT             (32) // Hardcoded
+#define ST_PERCEPTION_EXT           (33) // Hardcoded
+#define ST_ENDURANCE_EXT            (34) // Hardcoded
+#define ST_CHARISMA_EXT             (35) // Hardcoded
+#define ST_INTELLECT_EXT            (36) // Hardcoded
+#define ST_AGILITY_EXT              (37) // Hardcoded
+#define ST_LUCK_EXT                 (38) // Hardcoded
+#define ST_MAX_LIFE_EXT             (39) // Hardcoded
+#define ST_ACTION_POINTS_EXT        (40) // Hardcoded
+#define ST_ARMOR_CLASS_EXT          (41) // Hardcoded
+#define ST_MELEE_DAMAGE_EXT         (42) // Hardcoded
+#define ST_CARRY_WEIGHT_EXT         (43) // Hardcoded
+#define ST_SEQUENCE_EXT             (44) // Hardcoded
+#define ST_HEALING_RATE_EXT         (45) // Hardcoded
+#define ST_CRITICAL_CHANCE_EXT      (46) // Hardcoded
+#define ST_MAX_CRITICAL_EXT         (47) // Hardcoded
+#define ST_NORMAL_ABSORB_EXT        (48) // Hardcoded
+#define ST_LASER_ABSORB_EXT         (49) // Hardcoded
+#define ST_FIRE_ABSORB_EXT          (50) // Hardcoded
+#define ST_PLASMA_ABSORB_EXT        (51) // Hardcoded
+#define ST_ELECTRO_ABSORB_EXT       (52) // Hardcoded
+#define ST_EMP_ABSORB_EXT           (53) // Hardcoded
+#define ST_EXPLODE_ABSORB_EXT       (54) // Hardcoded
+#define ST_NORMAL_RESIST_EXT        (55) // Hardcoded
+#define ST_LASER_RESIST_EXT         (56) // Hardcoded
+#define ST_FIRE_RESIST_EXT          (57) // Hardcoded
+#define ST_PLASMA_RESIST_EXT        (58) // Hardcoded
+#define ST_ELECTRO_RESIST_EXT       (59) // Hardcoded
+#define ST_EMP_RESIST_EXT           (60) // Hardcoded
+#define ST_EXPLODE_RESIST_EXT       (61) // Hardcoded
+#define ST_RADIATION_RESISTANCE_EXT (62) // Hardcoded
+#define ST_POISON_RESISTANCE_EXT    (63) // Hardcoded
 #define ST_TOXIC                    (64)
 #define ST_RADIOACTIVE              (65)
 #define ST_KILL_EXPERIENCE          (66)
 #define ST_BODY_TYPE                (67)
 #define ST_LOCOMOTION_TYPE          (68) // See Locomotion types
 #define ST_DAMAGE_TYPE              (69)
-#define ST_AGE                      (70) // Used in engine
-#define ST_GENDER                   (71) // Used in engine
-#define ST_CURRENT_HP               (72) // Used in engine
-#define ST_POISONING_LEVEL          (73) // Used in engine
-#define ST_RADIATION_LEVEL          (74) // Used in engine
-#define ST_CURRENT_AP               (75) // Used in engine
-#define ST_EXPERIENCE               (76) // Used in engine
-#define ST_LEVEL                    (77) // Used in engine
-#define ST_UNSPENT_SKILL_POINTS     (78) // Used in engine
-#define ST_UNSPENT_PERKS            (79) // Used in engine
-#define ST_KARMA                    (80) // Used in engine
-#define ST_FOLLOW_CRIT              (81) // Used in engine
-#define ST_REPLICATION_MONEY        (82) // Used in engine
-#define ST_REPLICATION_COUNT        (83) // Used in engine
-#define ST_REPLICATION_TIME         (84) // Used in engine
-#define ST_REPLICATION_COST         (85) // Used in engine
-#define ST_TURN_BASED_AC            (86) // Used in engine
-#define ST_MAX_MOVE_AP              (87) // Used in engine
-#define ST_MOVE_AP                  (88) // Used in engine
-#define ST_NPC_ROLE                 (89) // Used in engine
+#define ST_AGE                      (70) // Hardcoded
+#define ST_GENDER                   (71) // Hardcoded
+#define ST_CURRENT_HP               (72) // Hardcoded
+#define ST_POISONING_LEVEL          (73) // Hardcoded
+#define ST_RADIATION_LEVEL          (74) // Hardcoded
+#define ST_CURRENT_AP               (75) // Hardcoded
+#define ST_EXPERIENCE               (76) // Hardcoded
+#define ST_LEVEL                    (77) // Hardcoded
+#define ST_UNSPENT_SKILL_POINTS     (78) // Hardcoded
+#define ST_UNSPENT_PERKS            (79) // Hardcoded
+#define ST_KARMA                    (80) // Hardcoded
+#define ST_FOLLOW_CRIT              (81) // Hardcoded
+#define ST_REPLICATION_MONEY        (82) // Hardcoded
+#define ST_REPLICATION_COUNT        (83) // Hardcoded
+#define ST_REPLICATION_TIME         (84) // Hardcoded
+#define ST_REPLICATION_COST         (85) // Hardcoded
+#define ST_TURN_BASED_AC            (86) // Hardcoded
+#define ST_MAX_MOVE_AP              (87) // Hardcoded
+#define ST_MOVE_AP                  (88) // Hardcoded
+#define ST_NPC_ROLE                 (89) // Hardcoded
 #define ST_VAR0                     (90)
 #define ST_VAR1                     (91)
 #define ST_VAR2                     (92)
@@ -399,22 +401,22 @@
 #define ST_VAR8                     (98)
 #define ST_VAR9                     (99)
 #define ST_PLAYER_KARMA             (100)
-#define ST_BONUS_LOOK               (101) // Used in engine
-#define ST_HANDS_ITEM_AND_MODE      (102) // Used in engine
-#define ST_FREE_BARTER_PLAYER       (103) // Used in engine
-#define ST_DIALOG_ID                (104) // Used in engine
-#define ST_AI_ID                    (105) // Used in engine
-#define ST_TEAM_ID                  (106) // Used in engine
-#define ST_BAG_ID                   (107) // Used in engine
+#define ST_BONUS_LOOK               (101) // Hardcoded
+#define ST_HANDS_ITEM_AND_MODE      (102) // Hardcoded
+#define ST_FREE_BARTER_PLAYER       (103) // Hardcoded
+#define ST_DIALOG_ID                (104) // Hardcoded
+#define ST_AI_ID                    (105) // Hardcoded
+#define ST_TEAM_ID                  (106) // Hardcoded
+#define ST_BAG_ID                   (107) // Hardcoded
 #define ST_LAST_STEAL_CR_ID         (108)
 #define ST_STEAL_COUNT              (109)
-#define ST_LAST_WEAPON_ID           (110) // Used in engine
+#define ST_LAST_WEAPON_ID           (110) // Hardcoded
 #define ST_LAST_WEAPON_USE          (111)
-#define ST_BASE_CRTYPE              (112) // Used in engine
+#define ST_BASE_CRTYPE              (112) // Hardcoded
 #define ST_DEAD_BLOCKER_ID          (113)
 #define ST_CURRENT_ARMOR_PERK       (114)
-#define ST_TALK_DISTANCE            (115) // Used in engine; if zero than taked __TalkDistance
-#define ST_SCALE_FACTOR             (116) // Used in engine
+#define ST_TALK_DISTANCE            (115) // Hardcoded; if zero than taked __TalkDistance
+#define ST_SCALE_FACTOR             (116) // Hardcoded
 // 117..149
 	// Initial values of animation 3d layers
 #define ST_ANIM3D_LAYERS            (150)
@@ -426,33 +428,33 @@
 #define SKILL_BEGIN                (__SkillBegin)
 #define SKILL_END                  (__SkillEnd)
 #define SKILL_COUNT                (SKILL_END-SKILL_BEGIN+1)
-#define MAX_SKILL_VAL              (300) // Used in engine
-#define SK_SMALL_GUNS               (200) // Used in engine
-#define SK_BIG_GUNS                 (201) // Used in engine
-#define SK_ENERGY_WEAPONS           (202) // Used in engine
-#define SK_UNARMED                  (203) // Used in engine
-#define SK_MELEE_WEAPONS            (204) // Used in engine
-#define SK_THROWING                 (205) // Used in engine
-#define SK_FIRST_AID                (206) // Used in engine
-#define SK_DOCTOR                   (207) // Used in engine
-#define SK_SNEAK                    (208) // Used in engine
-#define SK_LOCKPICK                 (209) // Used in engine
-#define SK_STEAL                    (210) // Used in engine
-#define SK_TRAPS                    (211) // Used in engine
-#define SK_SCIENCE                  (212) // Used in engine
-#define SK_REPAIR                   (213) // Used in engine
-#define SK_SPEECH                   (214) // Used in engine
-#define SK_BARTER                   (215) // Used in engine
+#define MAX_SKILL_VAL              (300) // Hardcoded
+#define SK_SMALL_GUNS               (200) // Hardcoded
+#define SK_BIG_GUNS                 (201) // Hardcoded
+#define SK_ENERGY_WEAPONS           (202) // Hardcoded
+#define SK_UNARMED                  (203) // Hardcoded
+#define SK_MELEE_WEAPONS            (204) // Hardcoded
+#define SK_THROWING                 (205) // Hardcoded
+#define SK_FIRST_AID                (206) // Hardcoded
+#define SK_DOCTOR                   (207) // Hardcoded
+#define SK_SNEAK                    (208) // Hardcoded
+#define SK_LOCKPICK                 (209) // Hardcoded
+#define SK_STEAL                    (210) // Hardcoded
+#define SK_TRAPS                    (211) // Hardcoded
+#define SK_SCIENCE                  (212) // Hardcoded
+#define SK_REPAIR                   (213) // Hardcoded
+#define SK_SPEECH                   (214) // Hardcoded
+#define SK_BARTER                   (215) // Hardcoded
 #define SK_GAMBLING                 (216)
-#define SK_OUTDOORSMAN              (217) // Used in engine
+#define SK_OUTDOORSMAN              (217) // Hardcoded
 // 218..225
 
 	/// Tag skills
 #pragma crdata "TagSkill 226 229"
-#define TAG_SKILL1                  (226) // Used in engine
-#define TAG_SKILL2                  (227) // Used in engine
-#define TAG_SKILL3                  (228) // Used in engine
-#define TAG_SKILL4                  (229) // Used in engine
+#define TAG_SKILL1                  (226) // Hardcoded
+#define TAG_SKILL2                  (227) // Hardcoded
+#define TAG_SKILL3                  (228) // Hardcoded
+#define TAG_SKILL4                  (229) // Hardcoded
 
 	/// Timeouts
 #pragma crdata "Timeout 230 249"
@@ -461,16 +463,16 @@
 #define TIMEOUT_COUNT              (TIMEOUT_END-TIMEOUT_BEGIN+1)
 #define TO_SK_FIRST_AID             (230)
 #define TO_SK_DOCTOR                (231)
-#define TO_SK_REPAIR                (232) // Used in engine
-#define TO_SK_SCIENCE               (233) // Used in engine
+#define TO_SK_REPAIR                (232) // Hardcoded
+#define TO_SK_SCIENCE               (233) // Hardcoded
 #define TO_SK_LOCKPICK              (234)
 #define TO_SK_STEAL                 (235)
 // 236..237
-#define TO_BATTLE                   (238) // Used in engine
-#define TO_TRANSFER                 (239) // Used in engine
-#define TO_REMOVE_FROM_GAME         (240) // Used in engine
+#define TO_BATTLE                   (238) // Hardcoded
+#define TO_TRANSFER                 (239) // Hardcoded
+#define TO_REMOVE_FROM_GAME         (240) // Hardcoded
 #define TO_REPLICATION              (241)
-#define TO_KARMA_VOTING             (242) // Used in engine
+#define TO_KARMA_VOTING             (242) // Hardcoded
 #define TO_SNEAK                    (243)
 // 244..247
 #define TO_STEALING                 (248)
@@ -492,11 +494,11 @@
 #define PERK_COUNT                 (PERK_END-PERK_BEGIN+1)
 #define PE_BOOKWORM                 (300) // Todo
 #define PE_AWARENESS                (301)
-#define PE_BONUS_HTH_ATTACKS        (302) // Used in engine
+#define PE_BONUS_HTH_ATTACKS        (302) // Hardcoded
 #define PE_BONUS_HTH_DAMAGE         (303)
 #define PE_BONUS_MOVE               (304)
 #define PE_BONUS_RANGED_DAMAGE      (305)
-#define PE_BONUS_RATE_OF_FIRE       (306) // Used in engine
+#define PE_BONUS_RATE_OF_FIRE       (306) // Hardcoded
 #define PE_EARLIER_SEQUENCE         (307)
 #define PE_FASTER_HEALING           (308)
 #define PE_MORE_CRITICALS           (309)
@@ -506,9 +508,9 @@
 #define PE_TOUGHNESS                (313)
 #define PE_STRONG_BACK              (314)
 #define PE_SHARPSHOOTER             (315)
-#define PE_SILENT_RUNNING           (316) // Used in engine
+#define PE_SILENT_RUNNING           (316) // Hardcoded
 #define PE_SURVIVALIST              (317)
-#define PE_MASTER_TRADER            (318) // Used in engine
+#define PE_MASTER_TRADER            (318) // Hardcoded
 #define PE_EDUCATED                 (319)
 #define PE_HEALER                   (320)
 #define PE_FORTUNE_FINDER           (321)
@@ -526,7 +528,7 @@
 #define PE_MEDIC                    (333)
 #define PE_MASTER_THIEF             (334)
 #define PE_SPEAKER                  (335)
-#define PE_HEAVE_HO                 (336) // Used in engine
+#define PE_HEAVE_HO                 (336) // Hardcoded
 #define PE_FRIENDLY_FOE             (337) // Todo
 #define PE_PICKPOCKET               (338)
 #define PE_GHOST                    (339)
@@ -534,18 +536,18 @@
 #define PE_SCROUNGER                (341) // Todo
 #define PE_EXPLORER                 (342)
 #define PE_FLOWER_CHILD             (343) // Todo
-#define PE_PATHFINDER               (344) // Used in engine
+#define PE_PATHFINDER               (344) // Hardcoded
 #define PE_ANIMAL_FRIEND            (345) // Todo
-#define PE_SCOUT                    (346) // Used in engine
+#define PE_SCOUT                    (346) // Hardcoded
 #define PE_MYSTERIOUS_STRANGER      (347) // Todo
 #define PE_RANGER                   (348)
-#define PE_QUICK_POCKETS            (349) // Used in engine
-#define PE_SMOOTH_TALKER            (350) // Used in engine
+#define PE_QUICK_POCKETS            (349) // Hardcoded
+#define PE_SMOOTH_TALKER            (350) // Hardcoded
 #define PE_SWIFT_LEARNER            (351)
 #define PE_TAG                      (352) // Todo
 #define PE_MUTATE                   (353) // Todo
 // 354..379
-#define PE_ADRENALINE_RUSH          (380) // Used in engine
+#define PE_ADRENALINE_RUSH          (380) // Hardcoded
 #define PE_CAUTIOUS_NATURE          (381)
 #define PE_COMPREHENSION            (382)
 #define PE_DEMOLITION_EXPERT        (383)
@@ -559,7 +561,7 @@
 #define PE_GAIN_LUCK                (391)
 #define PE_HARMLESS                 (392)
 #define PE_HERE_AND_NOW             (393)
-#define PE_HTH_EVADE                (394) // Used in engine
+#define PE_HTH_EVADE                (394) // Hardcoded
 #define PE_KAMA_SUTRA_MASTER        (395)
 #define PE_KARMA_BEACON             (396)
 #define PE_LIGHT_STEP               (397)
@@ -645,13 +647,13 @@
 #define DAMAGE_BEGIN               (__DamageBegin)
 #define DAMAGE_END                 (__DamageEnd)
 #define DAMAGE_COUNT               (DAMAGE_END-DAMAGE_BEGIN+1)
-#define DAMAGE_POISONED             (500) // Used in engine
-#define DAMAGE_RADIATED             (501) // Used in engine
-#define DAMAGE_EYE                  (502) // Used in engine
-#define DAMAGE_RIGHT_ARM            (503) // Used in engine
-#define DAMAGE_LEFT_ARM             (504) // Used in engine
-#define DAMAGE_RIGHT_LEG            (505) // Used in engine
-#define DAMAGE_LEFT_LEG             (506) // Used in engine
+#define DAMAGE_POISONED             (500) // Hardcoded
+#define DAMAGE_RADIATED             (501) // Hardcoded
+#define DAMAGE_EYE                  (502) // Hardcoded
+#define DAMAGE_RIGHT_ARM            (503) // Hardcoded
+#define DAMAGE_LEFT_ARM             (504) // Hardcoded
+#define DAMAGE_RIGHT_LEG            (505) // Hardcoded
+#define DAMAGE_LEFT_LEG             (506) // Hardcoded
 // 507..509
 
 	/// Modes
@@ -659,34 +661,34 @@
 #define MODE_BEGIN                 (510)
 #define MODE_END                   (537)
 #define MODE_COUNT                 (MODE_END-MODE_BEGIN+1)
-#define MODE_HIDE                   (510) // Состояние скрытности                                   Used in engine
-#define MODE_NO_STEAL               (511) // Нельзя обворовать                                      Used in engine
-#define MODE_NO_BARTER              (512) // Нельзя тоговать                                        Used in engine
-#define MODE_NO_ENEMY_STACK         (513) // Нпц не запоминает врагов                               Used in engine
-#define MODE_NO_PVP                 (514) // Запрещает ПвП для игрока                               Used in engine
-#define MODE_END_COMBAT             (515) // Согласен ли игрок закончить пошаговый бой              Used in engine
-#define MODE_DEFAULT_COMBAT         (516) // Режим боя по-умолчанию                                 Used in engine
-#define MODE_NO_HOME                (517) // Нпц не возвращается в домашнюю позицию автоматически   Used in engine
-#define MODE_GECK                   (518) // Локация не удаляется при наличии такого нпц            Used in engine
-#define MODE_NO_FAVORITE_ITEM       (519) // Режим установки итемов по-умолчанию                    Used in engine
-#define MODE_NO_ITEM_GARBAGER       (520) // Итемы не удаляются движком                             Used in engine
-#define MODE_DLG_SCRIPT_BARTER      (521) // Возможно торговать при активном скрипте на диалоге     Used in engine
-#define MODE_UNLIMITED_AMMO         (522) // Бесконечные патроны                                    Used in engine
+#define MODE_HIDE                   (510) // Состояние скрытности                                   Hardcoded
+#define MODE_NO_STEAL               (511) // Нельзя обворовать                                      Hardcoded
+#define MODE_NO_BARTER              (512) // Нельзя тоговать                                        Hardcoded
+#define MODE_NO_ENEMY_STACK         (513) // Нпц не запоминает врагов                               Hardcoded
+#define MODE_NO_PVP                 (514) // Запрещает ПвП для игрока                               Hardcoded
+#define MODE_END_COMBAT             (515) // Согласен ли игрок закончить пошаговый бой              Hardcoded
+#define MODE_DEFAULT_COMBAT         (516) // Режим боя по-умолчанию                                 Hardcoded
+#define MODE_NO_HOME                (517) // Нпц не возвращается в домашнюю позицию автоматически   Hardcoded
+#define MODE_GECK                   (518) // Локация не удаляется при наличии такого нпц            Hardcoded
+#define MODE_NO_FAVORITE_ITEM       (519) // Режим установки итемов по-умолчанию                    Hardcoded
+#define MODE_NO_ITEM_GARBAGER       (520) // Итемы не удаляются движком                             Hardcoded
+#define MODE_DLG_SCRIPT_BARTER      (521) // Возможно торговать при активном скрипте на диалоге     Hardcoded
+#define MODE_UNLIMITED_AMMO         (522) // Бесконечные патроны                                    Hardcoded
 #define MODE_NO_DROP                (523) // Нельзя сбрасывать предметы
 #define MODE_NO_LOOSE_LIMBS         (524) // Не может терять конечности
 #define MODE_DEAD_AGES              (525) // Мёртвое тело не исчезает
-#define MODE_NO_HEAL                (526) // Повреждения не излечиваются с течением времени         Used in engine
-#define MODE_INVULNERABLE           (527) // Неуязвимый                                             Used in engine
-#define MODE_NO_FLATTEN             (528) // Не помещать труп на задний план после смерти           Used in engine
+#define MODE_NO_HEAL                (526) // Повреждения не излечиваются с течением времени         Hardcoded
+#define MODE_INVULNERABLE           (527) // Неуязвимый                                             Hardcoded
+#define MODE_NO_FLATTEN             (528) // Не помещать труп на задний план после смерти           Hardcoded
 #define MODE_SPECIAL_DEAD           (529) // Есть особый вид смерти
-#define MODE_RANGE_HTH              (530) // Возможна рукопашная атака на расстоянии                Used in engine
+#define MODE_RANGE_HTH              (530) // Возможна рукопашная атака на расстоянии                Hardcoded
 #define MODE_NO_KNOCK               (531) // Не может быть сбит с ног
-#define MODE_NO_LOOT                (532) // Нельзя лутать                                          Used in engine
+#define MODE_NO_LOOT                (532) // Нельзя лутать                                          Hardcoded
 #define MODE_NO_SUPPLY              (533) // Не приходят охотники за головами при смерти нпц
 #define MODE_NO_KARMA_ON_KILL       (534) // При смерти не производится перерасчета кармы игрока-убийцы.
 #define MODE_BARTER_ONLY_CASH       (535) // При бартере нпц принимает оплату только наличными.
-#define MODE_NO_PUSH                (536) // Can't be pushed                                        Used in engine
-#define MODE_NO_UNARMED             (537) // Not have unarmed attacks                               Used in engine
+#define MODE_NO_PUSH                (536) // Can't be pushed                                        Hardcoded
+#define MODE_NO_UNARMED             (537) // Not have unarmed attacks                               Hardcoded
 // 538..549
 
 	/// Traits
@@ -696,20 +698,20 @@
 #define TRAIT_COUNT                (TRAIT_END-TRAIT_BEGIN+1)
 #define TRAIT_FAST_METABOLISM       (550)
 #define TRAIT_BRUISER               (551)
-#define TRAIT_SMALL_FRAME           (552) // Used in engine
+#define TRAIT_SMALL_FRAME           (552) // Hardcoded
 #define TRAIT_ONE_HANDER            (553)
 #define TRAIT_FINESSE               (554)
 #define TRAIT_KAMIKAZE              (555)
 #define TRAIT_HEAVY_HANDED          (556)
-#define TRAIT_FAST_SHOT             (557) // Used in engine
+#define TRAIT_FAST_SHOT             (557) // Hardcoded
 #define TRAIT_BLOODY_MESS           (558)
 #define TRAIT_JINXED                (559)
 #define TRAIT_GOOD_NATURED          (560)
 #define TRAIT_CHEM_RELIANT          (561)
 #define TRAIT_CHEM_RESISTANT        (562)
-#define TRAIT_SEX_APPEAL            (563) // Used in engine
+#define TRAIT_SEX_APPEAL            (563) // Hardcoded
 #define TRAIT_SKILLED               (564)
-#define TRAIT_NIGHT_PERSON          (565) // Used in engine
+#define TRAIT_NIGHT_PERSON          (565) // Hardcoded
 //#define TRAIT_GIFTED                (566)
 // 17..19
 
@@ -812,7 +814,7 @@
 #define REASON_ATTACK_USE_AIM       (53)
 
 // Locker
-#define LOCKER_ISOPEN               (0x01) // Used in engine
+#define LOCKER_ISOPEN               (0x01) // Hardcoded
 #define LOCKER_LOCKED               (0x02)
 #define LOCKER_JAMMED               (0x04)
 #define LOCKER_BROKEN               (0x08)
@@ -1142,6 +1144,22 @@
 #define ITEM_DATA_MASK_CRITTER_EXT  (2)
 #define ITEM_DATA_MASK_CONTAINER    (3)
 #define ITEM_DATA_MASK_MAP          (4)
+
+// Radio
+	// Flags, Item/ItemCl::RadioFlags
+#define RADIO_DISABLE_SEND          (0x0001) // Hardcoded
+#define RADIO_DISABLE_RECV          (0x0002) // Hardcoded
+#define RADIO_DISABLE_SHIFT_SEND    (0x0100)
+#define RADIO_DISABLE_SHIFT_RECV    (0x0200)
+#define RADIO_DISABLE_SHIFT_BC_SEND (0x0400)
+#define RADIO_DISABLE_SHIFT_BC_RECV (0x0800)
+#define RADIO_DISABLE_SHIFT_CHANNEL (0x1000)
+	// Broadcast, Item/ItemCl::RadioBroadcastSend/RadioBroadcastRecv, Hardcoded
+#define RADIO_BROADCAST_WORLD       (0)       // Send/recv in all world
+#define RADIO_BROADCAST_MAP         (20)      // Send/recv only on one map
+#define RADIO_BROADCAST_LOCATION    (40)      // Send/recv only on one location
+#define RADIO_BROADCAST_ZONE #(x)   (100+(x)) // Send/recv only in x (1..100) zones radius on global map
+#define RADIO_BROADCAST_FORCE_ALL   (250)     // Force send/recv in any place
 
 #endif // __DEFINES__
 

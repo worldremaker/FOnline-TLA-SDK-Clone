@@ -38,6 +38,8 @@ interface IGUIScreenOpt
 	IGUIScreenOpt@ Modal(bool enabled);                                  // delault true
 	IGUIScreenOpt@ Multiinstance(bool enabled);                          // delault false
 	IGUIScreenOpt@ IgnoreBorders(bool enabled);                          // default false
+	IGUIScreenOpt@ CloseOnMiss(bool enabled);                            // default false
+	IGUIScreenOpt@ AutoCursor(bool enabled, int cursorType);             // default false
 
 	// Info
 	int GetPosX();
@@ -61,9 +63,11 @@ interface IGUIElementOpt
 	IGUIElementOpt@ CallbackMouseClick(IGUIElementCallbackMouseClick@ callback);             // default null
 	IGUIElementOpt@ CallbackKeyPress(IGUIElementCallbackKeyPress@ callback);                 // default null
 	IGUIElementOpt@ Position(int x, int y);                                                  // default zeros
+	IGUIElementOpt@ Position(string& iniKey);                                                // get borders from ini
 	IGUIElementOpt@ DownPic(string@ sprName);                                                // default picture off
 	IGUIElementOpt@ Text(string@ text, int font, uint color, uint downColor, int flags);     // default text disabled
 	IGUIElementOpt@ TextInput(bool enabled, uint maxLen, uint colorFocused);                 // deafult false
+	IGUIElementOpt@ Switch(bool enabled);                                                    // default false
 
 	// Info
 	int GetPosX();

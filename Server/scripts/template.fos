@@ -25,7 +25,7 @@ uint r_FuncName(Critter& master, Critter& slave, int val, ...)
 	// Text listener
 void listen_FuncName(Critter& player, string& text)
 	// ~runscript command
-void _FuncName(Critter& player, int param0, int param1, int param2)
+void FuncName(Critter& player, int param0, int param1, int param2)
 	// FixBoy function
 int fix_FuncName(Critter& cr, int stage)
 	// Location entrances (Town/World)
@@ -35,13 +35,13 @@ void answer_FuncName(Critter& player, uint answerI, string& answerS)
 	// Npc misc plane script
 void plane_FuncName(Critter& npc)
 	// @script funcName@ lexem, client side
-string _FuncName(string& lexems)
+string FuncName(string& lexems)
 	// void Critter::RunClientScript method, client side
-void _FuncName(int param0, int param1, int param2, string@ param3, int[]@ param4)
+void FuncName(int param0, int param1, int param2, string@ param3, int[]@ param4)
 	// void RunServerScript function, with hardcoded access check on server side
-void _FuncName(Critter& player, int param0, int param1, int param2, string@ param3, int[]@ param4)
-	// void RunServerScriptUnsafe function, without access checks, "_unsafe" postfix required
-void _FuncName_unsafe(Critter& player, int param0, int param1, int param2, string@ param3, int[]@ param4)
+void FuncName(Critter& player, int param0, int param1, int param2, string@ param3, int[]@ param4)
+	// void RunServerScriptUnsafe function, without access checks, "unsafe_" prefix required
+void unsafe_FuncName(Critter& player, int param0, int param1, int param2, string@ param3, int[]@ param4)
 	// Critter param get behaviour
 int _FuncName(Critter& cr, uint index)
 	// Critter param change behaviour

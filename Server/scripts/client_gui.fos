@@ -39,6 +39,7 @@ class GUIElement : IGUIElementOpt
 		IsFocused=false;
 		MousePressed.resize(MOUSE_CLICK_EXT4+1);
 		for(uint i=0,j=MousePressed.length();i<j;i++) MousePressed[i]=false;
+		SwitchEnabled=false;
 		@CallbackInit=null;
 		@CallbackDraw=null;
 		@CallbackMouseClick=null;
@@ -48,7 +49,7 @@ class GUIElement : IGUIElementOpt
 	void Draw(int screenX, int screenY)
 	{
 		if(Surface.Id!=0) DrawSprite(Surface.Id,-1,screenX+PosX,screenY+PosY,0);
-		bool isDown=(MousePressed[MOUSE_CLICK_LEFT] && DownSpr.Id!=0);
+		bool isDown=((MousePressed[MOUSE_CLICK_LEFT] || SwitchEnabled) && DownSpr.Id!=0);
 		if(isDown) DrawSprite(DownSpr.Id,-1,screenX+PosX,screenY+PosY,0);
 		if(Text!="") DrawText(Text,screenX+PosX,screenY+PosY,
 			Surface.Width!=0?Surface.Width:__ScreenWidth,(Surface.Height!=0?Surface.Height:__ScreenHeight)-(isDown?2:0),
@@ -56,9 +57,14 @@ class GUIElement : IGUIElementOpt
 		if(not (CallbackDraw is null)) CallbackDraw.OnDraw();
 	}
 
-	void MouseDown(int click)
+	bool MouseDown(int click)
 	{
-		MousePressed[click]=true;
+		if(DownSpr.Id!=0 || not (CallbackMouseClick is null) || IsTextInput)
+		{
+			MousePressed[click]=true;
+			return true;
+		}
+		return false;
 	}
 
 	void MouseUp(int click, bool isCollision)
@@ -103,12 +109,39 @@ class GUIElement : IGUIElementOpt
 		PosY=y;
 		return this;
 	}
+
+	IGUIElementOpt@ Position(string& iniKey)
+	{
+		PosX=0;
+		PosY=0;
+		Surface.Width=0;
+		Surface.Height=0;
+
+		// Parse four values from ini option
+		string@ str=GetIfaceIniStr(iniKey);
+		if(@str==null || str=="") return this;
+
+		string@[]@ valuesStr=split(str," ");
+		if(valuesStr.length()!=4) return this;
+
+		int[] values(4);
+		for(int i=0;i<4;i++)
+			if(not StrToInt(valuesStr[i],values[i])) return this;
+
+		PosX=values[0];
+		PosY=values[1];
+		Surface.Width=values[2]-values[0]+1;
+		Surface.Height=values[3]-values[1]+1;
+		return this;
+	}
+
 	IGUIElementOpt@ DownPic(string@ sprName)
 	{
 		if(@sprName!=null) DownSpr.Load(sprName,DefaultPath);
 		else DownSpr.Id=0;
 		return this;
 	}
+
 	IGUIElementOpt@ Text(string@ text, int font, uint color, uint downColor, int flags)
 	{
 		if(text is null) Text="";
@@ -118,11 +151,18 @@ class GUIElement : IGUIElementOpt
 		TextFlags=flags;
 		return this;
 	}
+
 	IGUIElementOpt@ TextInput(bool enabled, uint maxLen, uint colorFocused)
 	{
 		IsTextInput=enabled;
 		InputMaxLen=maxLen;
 		TextColorFocused=colorFocused;
+		return this;
+	}
+
+	IGUIElementOpt@ Switch(bool enabled)
+	{
+		SwitchEnabled=enabled;
 		return this;
 	}
 
@@ -147,6 +187,7 @@ class GUIElement : IGUIElementOpt
 	uint InputMaxLen;
 	bool IsFocused;
 	bool[] MousePressed;
+	bool SwitchEnabled;
 	IGUIElementCallbackInit@ CallbackInit;
 	IGUIElementCallbackDraw@ CallbackDraw;
 	IGUIElementCallbackMouseClick@ CallbackMouseClick;
@@ -159,12 +200,20 @@ class GUIScreen : IGUIScreenOpt
 	{
 		if(@sprName!=null) Surface.Load(sprName,path);
 		Index=0;
+
 		IsCanMove=true;
 		IsModal=true;
 		IsMultiinstance=false;
 		IsIgnoreBorders=false;
+		IsCloseOnMiss=false;
+		IsAutoCursor=false;
+
+		AutoCursorType=CURSOR_DEFAULT;
+		AutoCursorPrev=CURSOR_DEFAULT;
+
 		IsHardcoded=false;
 		IsLMouseDown=false;
+
 		PosX=__ScreenWidth/2-Surface.Width/2;
 		PosY=__ScreenHeight/2-Surface.Height/2;
 		LastX=0;
@@ -187,20 +236,27 @@ class GUIScreen : IGUIScreenOpt
 		{
 			i--;
 			GUIElement@ e=Elements[i];
-			if(IS_COLLISION(x,y,PosX+e.PosX,PosY+e.PosY,e.Surface.Width,e.Surface.Height))
+			if(IS_COLLISION(x,y,PosX+e.PosX,PosY+e.PosY,e.Surface.Width,e.Surface.Height) && e.MouseDown(click))
 			{
-				e.MouseDown(click);
 				e.IsFocused=true;
 				return true;
 			}
 		}
 
-		if(not IsHardcoded && click==MOUSE_CLICK_LEFT && IS_COLLISION(x,y,PosX,PosY,Surface.Width,Surface.Height))
+		if(not IsHardcoded && click==MOUSE_CLICK_LEFT)
 		{
-			IsLMouseDown=true;
-			LastX=x;
-			LastY=y;
-			return true;
+			if(IS_COLLISION(x,y,PosX,PosY,Surface.Width,Surface.Height))
+			{
+				IsLMouseDown=true;
+				LastX=x;
+				LastY=y;
+				return true;
+			}
+			else if(IsCloseOnMiss)
+			{
+				::HideScreen(0,0,0,0);
+				return true;
+			}
 		}
 		return false;
 	}
@@ -290,6 +346,8 @@ class GUIScreen : IGUIScreenOpt
 	IGUIScreenOpt@ Modal(bool enabled){IsModal=enabled; return this;}
 	IGUIScreenOpt@ Multiinstance(bool enabled){IsMultiinstance=enabled; return this;}
 	IGUIScreenOpt@ IgnoreBorders(bool enabled){IsIgnoreBorders=enabled; return this;}
+	IGUIScreenOpt@ CloseOnMiss(bool enabled){IsCloseOnMiss=enabled; return this;}
+	IGUIScreenOpt@ AutoCursor(bool enabled, int cursorType){IsAutoCursor=enabled; AutoCursorType=cursorType; return this;}
 
 	// Info
 	int GetPosX() { return PosX; }
@@ -309,10 +367,17 @@ class GUIScreen : IGUIScreenOpt
 	int LastX;
 	int LastY;
 	Sprite Surface;
+
 	bool IsCanMove;
 	bool IsModal;
 	bool IsMultiinstance;
 	bool IsIgnoreBorders;
+	bool IsCloseOnMiss;
+	bool IsAutoCursor;
+
+	int AutoCursorType;
+	int AutoCursorPrev;
+
 	bool IsHardcoded;
 	bool IsLMouseDown;
 	IGUIScreenCallbackShow@ CallbackShow;
@@ -449,7 +514,7 @@ void GUI_Init()
 	@KbData[DIK_K]=				KeybData('ë','Ë','k','K');
 	@KbData[DIK_L]=				KeybData('ä','Ä','l','L');
 	@KbData[DIK_SEMICOLON]=		KeybData('æ','Æ',';',':');
-	@KbData[DIK_APOSTROPHE]=	KeybData('ý','Ý','"','"'); // todo '
+	@KbData[DIK_APOSTROPHE]=	KeybData('ý','Ý', 39, 39); // 39 == '
 	@KbData[DIK_Z]=				KeybData('ÿ','ß','z','Z');
 	@KbData[DIK_X]=				KeybData('÷','×','x','X');
 	@KbData[DIK_C]=				KeybData('ñ','Ñ','c','C');
@@ -469,6 +534,7 @@ void GUI_Init()
 	@KbData[DIK_NUMPAD4]=		KeybData('4','4','4','4');
 	@KbData[DIK_NUMPAD5]=		KeybData('5','5','5','5');
 	@KbData[DIK_NUMPAD6]=		KeybData('6','6','6','6');
+	@KbData[DIK_NUMPAD7]=		KeybData('7','7','7','7');
 	@KbData[DIK_NUMPAD8]=		KeybData('8','8','8','8');
 	@KbData[DIK_NUMPAD9]=		KeybData('9','9','9','9');
 	@KbData[DIK_NUMPAD0]=		KeybData('0','0','0','0');
@@ -511,13 +577,17 @@ void GUI_ShowScreen(int screenIndex, int p0, int p1, int p2)
 		// Create new instance
 		@screen=screen.GetNewInstance();
 		PUSH_BACK_HANDLE(ActiveScreens,screen);
-		// Call init callbacks
-		if(not (screen.CallbackShow is null))
+
+		// Set screen cursor
+		if(screen.IsAutoCursor)
 		{
-			@LastScreenOpt=screen;
-			screen.CallbackShow.OnShow(p0,p1,p2);
-			@LastScreenOpt=null;
+			screen.AutoCursorPrev=::GetCurrentCursor();
+			::ChangeCursor(screen.AutoCursorType);
 		}
+
+		// Call init callbacks
+		@LastScreenOpt=screen;
+		// First init elements
 		for(uint i=0,j=screen.Elements.length();i<j;i++)
 		{
 			GUIElement@ e=screen.Elements[i];
@@ -525,9 +595,15 @@ void GUI_ShowScreen(int screenIndex, int p0, int p1, int p2)
 			{
 				@LastElementOpt=e;
 				e.CallbackInit.OnInit();
-				@LastElementOpt=e;
+				@LastElementOpt=null;
 			}
 		}
+		// Then show
+		if(not (screen.CallbackShow is null))
+		{
+			screen.CallbackShow.OnShow(p0,p1,p2);
+		}
+		@LastScreenOpt=null;
 	}
 }
 
@@ -539,8 +615,28 @@ void GUI_HideScreen(int screenIndex, int p0, int p1, int p2)
 		GUIScreen@ screen=ActiveScreens[i];
 		if(screen.Index==screenIndex)
 		{
+			// Remove
 			REMOVE_FROM_ARRAY(ActiveScreens,i);
-			if(not (screen.CallbackHide is null)) screen.CallbackHide.OnHide(p0,p1,p2);
+
+			// Hide callback
+			if(not (screen.CallbackHide is null))
+			{
+				screen.CallbackHide.OnHide(p0,p1,p2);
+			}
+
+			// Restore cursor
+			if(screen.IsAutoCursor)
+			{
+				::ChangeCursor(screen.AutoCursorPrev);
+			}
+
+			// Store position for non-multiinstance screens
+			if(not screen.IsMultiinstance)
+			{
+				GUIScreen@ instance=GetScreen(screenIndex);
+				instance.PosX=screen.PosX;
+				instance.PosY=screen.PosY;
+			}
 			break;
 		}
 	}

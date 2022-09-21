@@ -125,8 +125,9 @@
 #define CLIENT_SCREEN_PERK               (32)
 #define CLIENT_SCREEN_TOWN_VIEW          (33)
 #define CLIENT_SCREEN_SAVE_LOAD          (34)
-	// New script screens
+	// User screens
 #define CLIENT_SCREEN_TEST               (40) // client_screen_test.fos
+#define CLIENT_SCREEN_RADIO              (41) // radio.fos
 
 // Cursors
 #define CURSOR_DEFAULT         (0)

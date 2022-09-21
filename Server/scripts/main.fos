@@ -41,6 +41,7 @@ import void SetWear(Item& item, int wearProcent) from "repair";
 import void NpcProcessLevel(Critter& npc) from "parameters";
 import bool IsPermanentDeath(uint id) from "replication";
 import bool SetPlayerStoryLineLocation(Critter & player)  from "q_main_intro";
+import void EditRadioSettings(Critter& player, Item& radio) from "radio";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Call on start server.
@@ -473,6 +474,13 @@ bool critter_use_item(Critter& cr, Item& item, Critter@ targetCr, Item@ targetIt
 	uint16 pid=item.GetProtoId();
 	bool useOnSelf=(not valid(targetCr) && not valid(targetItem) && not valid(targetScen));
 
+	// Radio
+	if(FLAG(item.Flags,ITEM_RADIO) && useOnSelf)
+	{
+		if(isPlayer) EditRadioSettings(cr,item);
+		return true;
+	}
+
 	// Book reading
 	if(useOnSelf && IsReadableBook(pid))
 	{
@@ -608,6 +616,13 @@ bool critter_use_skill(Critter& cr, int skill, Critter@ targetCr, Item@ targetIt
 		return true;
 	case SK_SCIENCE:
 		{
+			// Radio
+			if(valid(targetItem) && FLAG(targetItem.Flags,ITEM_RADIO) && targetItem.Accessory==ACCESSORY_CRITTER && targetItem.CritId==cr.Id)
+			{
+				if(isPlayer) EditRadioSettings(cr,targetItem);
+				return true;
+			}
+
 			cr.SayMsg(SAY_NETMSG,TEXTMSG_GAME,STR_USE_NOTHING); // Todo: "You fail to learn anything."
 		}
 		break;
