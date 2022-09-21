@@ -557,7 +557,7 @@ Pid=2063
 Type=11
 PicMapName=art\scenery\tum1000.frm
 PicInvName=art\inven\reserved.frm
-Flags=33554440
+Flags=33554456
 DisableEgg=1
 SoundId=48
 Material=1
@@ -10697,7 +10697,7 @@ Type=11
 PicMapName=art\scenery\minecrt1.frm
 PicInvName=art\inven\reserved.frm
 Corner=5
-Flags=301989888
+Flags=301989912
 SoundId=48
 Material=1
 
@@ -15183,7 +15183,7 @@ Type=11
 PicMapName=art\scenery\minect10.frm
 PicInvName=art\inven\reserved.frm
 Corner=5
-Flags=33554432
+Flags=33554456
 SoundId=48
 Material=1
 
@@ -15193,7 +15193,7 @@ Type=11
 PicMapName=art\scenery\minect11.frm
 PicInvName=art\inven\reserved.frm
 Corner=5
-Flags=33554432
+Flags=33554440
 SoundId=48
 Material=1
 
@@ -15203,7 +15203,7 @@ Type=11
 PicMapName=art\scenery\minect12.frm
 PicInvName=art\inven\reserved.frm
 Corner=5
-Flags=33554432
+Flags=33554440
 SoundId=48
 Material=1
 
@@ -15213,7 +15213,7 @@ Type=11
 PicMapName=art\scenery\minect13.frm
 PicInvName=art\inven\reserved.frm
 Corner=5
-Flags=33554456
+Flags=33554440
 SoundId=48
 Material=1
 
@@ -15223,7 +15223,7 @@ Type=11
 PicMapName=art\scenery\minect14.frm
 PicInvName=art\inven\reserved.frm
 Corner=5
-Flags=33554432
+Flags=33554456
 SoundId=48
 Material=1
 

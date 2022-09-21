@@ -400,7 +400,7 @@
 #define LVAR_special_doll_holo                       (5626)
 #define LVAR_fixboy_power_armor                      (6000)
 #define LVAR_fixboy_700_nitro_express                (6001)
-#define LVAR_fixboy_700_rounds                       (6002)
+#define LVAR_fixboy_ammo_press_operator              (6002)
 #define LVAR_timeout                                 (6160)
 #define LVAR_timeout1                                (6161)
 #define LVAR_timeout2                                (6162)
@@ -3893,9 +3893,9 @@ $	6001	1	fixboy_700_nitro_express	1	0	1	0
 1 - да.
 **********
 
-$	6002	1	fixboy_700_rounds	1	0	1	0
+$	6002	1	fixboy_ammo_press_operator	0	0	1	0
 **********
-Может ли игрок создавать патроны для винтовки .700 калибра.
+Может ли игрок управлять станком, производящим патроны.
 0 - нет,
 1 - да.
 **********

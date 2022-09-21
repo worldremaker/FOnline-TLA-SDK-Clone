@@ -1178,10 +1178,10 @@
 {58901}{}{Священный Грааль. Честно.}
 {59000}{}{Статуэтка}
 {59001}{}{Статуэтка рыцаря тонкой ручной работы, выполненную из светлого металла. В основании выгравировано: "Рыцари Пустоши".}
-{59100}{}{.700 cal}
-{59101}{}{.700 Nitro Express rifle rounds. You notice an inscription on the back of the box telling: "Instructions for use: If your penis is smaller than one of these, you're not man enough to fire it".}
-{59200}{}{.700 Nitro Express rifle}
-{59201}{}{.700 Nitro Express rifle. The only weapon that can stop a charging Deathclaw. Min. strength: 7.}
+{59100}{}{.700 Nitro Express}
+{59101}{}{.700 Nitro Express rounds. You notice an inscription on the back of the box telling: "Instructions for use: If your penis is smaller than one of these, you're not man enough to fire it".}
+{59200}{}{Elephant gun}
+{59201}{}{Самодельная винтовка под патроны .700 Найтро Экспресс. Вы понятия не имеете, зачем кому-либо могло понадобиться оружие подобного калибра.  Min. strength: 7.}
 {80000}{}{Hummer}
 {80001}{}{This vehicle has been built on the base of M1025 Hummer, produced by AMG at the turn of the 20th and 21th centuries. Most of the parts are taken from its predecessor so the car inherits the quality of the original. Used by the Brotherhood of Steel as a workhorse for any kind of work. Hummer - fast and reliable way to travel.}
 {80100}{}{Hummer trunk}

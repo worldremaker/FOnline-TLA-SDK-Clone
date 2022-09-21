@@ -1,5 +1,8 @@
-// Author: cvet
+// Author: cvet, dagnir
 #include "_macros.fos"
+
+#define STR_DENBUS_IN  (1050) //"Вы испытываете странное чувство полной разрухи."
+#define STR_DENBUS_OUT (1051) //"Где-то в глубине души вы очень рады, что покинули это место."
 
 void _DenBusInit(Map& denBus, bool firstTime)
 {
@@ -9,10 +12,10 @@ void _DenBusInit(Map& denBus, bool firstTime)
 
 void _DenBusInCritter(Map& denBus, Critter& player)
 {
-	if(player.IsPlayer()) player.Say(SAY_NETMSG,"Вы испытываете странное чувство полной разрухи.");
+	if(player.IsPlayer()) player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT,  STR_DENBUS_IN); 
 }
 
 void _DenBusOutCritter(Map& denBus, Critter& player)
 {
-	if(player.IsPlayer()) player.Say(SAY_NETMSG,"Где-то в глубине души вы очень рады, что покинули это место.");
+	if(player.IsPlayer()) player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT,  STR_DENBUS_OUT); 
 }

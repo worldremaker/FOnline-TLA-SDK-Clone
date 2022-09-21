@@ -60,9 +60,14 @@ int fix_NitroExpress(Critter& player, int state) // Рецепт на изготовление винто
 	return fix_Something(player, SCENERY_LATHE, DEFAULT_RADIUS, LVAR_fixboy_700_nitro_express, state, DEFAULT_TIMEOUT_MINUTES(player), 2);
 }
 
-int fix_NitroExpressRounds(Critter& player, int state) // Рецепт на изготовление патронов для винтовки .700 калибра, включен по-умолчанию.
+int fix_NitroExpressRounds(Critter& player, int state)
 {
-	return fix_Something(player, SCENERY_LATHE, DEFAULT_RADIUS, LVAR_fixboy_700_rounds, state, 120, 10);
+	return fix_Something(player, SCENERY_AMMO_PRESS, DEFAULT_RADIUS, LVAR_fixboy_ammo_press_operator, state, 6000, 10);
+}
+
+int fix_AnyRounds(Critter& player, int state)
+{
+	return fix_Something(player, SCENERY_AMMO_PRESS, DEFAULT_RADIUS, LVAR_fixboy_ammo_press_operator, state, 120, 10);
 }
 
 /*                РЕЦЕПТЫ                */

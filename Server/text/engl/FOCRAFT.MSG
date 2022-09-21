@@ -10,12 +10,27 @@
 {8}{}{PID_TESLA_ARMOR@Установите на свою металлическую броню катушки Тесла, чтобы они рассеивали заряды энергооружия. И не забудьте про шапочку из фольги!@SK_REPAIR 50&SK_SCIENCE 50@SK_REPAIR 130&SK_SCIENCE 150@PID_METAL_ARMOR_MK_II 1&PID_METAL_TRASH 2&PID_PUMP_PARTS 4&PID_V15_COMPUTER_PART 3&PID_MICRO_FUSION_CELL 50@PID_SUPER_TOOL_KIT 1&PID_BIG_BOOK_OF_SCIENCE 1@PID_TESLA_ARMOR 1@exp 300 }
 {9}{}{PID_HARDENED_POWER_ARMOR@Эта заводская сборка ну просто никуда не годится. Броню можно перекалить и местами приварить дополнительную защиту. Главное - сумейте её потом собрать обратно.@SK_REPAIR 120@SK_SCIENCE 80&SK_REPAIR 150&ST_STRENGTH 8@PID_POWERED_ARMOR 1&PID_BOTTLE_FULL 10&PID_FIREWOOD 5&PID_WELDING 3&PID_METAL_TRASH 2@PID_SLEDGEHAMMER 1&PID_TECHNICAL_MANUAL 1&PID_BIG_BOOK_OF_SCIENCE 1&PID_DEANS_ELECTRONICS 1&PID_SUPER_TOOL_KIT 1@PID_HARDENED_POWER_ARMOR 1@exp 500 }
 
-#Патроны (остальное - через станки)
+#Патроны
 
 {100}{}{PID_SHOTGUN_SHELLS@Надо обладать недюжиной силой воли для того, чтобы пустить на пыжи такой журнал, как "Кошачья лапка".@SK_SCIENCE 80@SK_SCIENCE 90&SK_SMALL_GUNS 50&SK_REPAIR 80@PID_GUNPOWDER 2&PID_CATS_PAW 1&PID_REAL_BOTTLE_CAPS 40&PID_PUMP_PARTS 2@PID_SUPER_TOOL_KIT 1@PID_SHOTGUN_SHELLS 40@exp 100 }
 {101}{}{PID_10MM_JHP@Зафиксируйте патроны на чём-нибудь устройчивом струбциной, стараясь не смять гильзу. Затем обрежьте кончики пуль, высверлите часть сердечника и загните края латунной оболочки внутрь, сделав в ней небольшие надрезы. Теперь пуля будет разрываться от удара о цель.@SK_REPAIR 30@SK_REPAIR 50@PID_10MM_AP 20@PID_SUPER_TOOL_KIT 1@PID_10MM_JHP 20@exp 50 }
 {102}{}{PID_5MM_JHP@Зафиксируйте патроны на чём-нибудь устройчивом струбциной, стараясь не смять гильзу. Затем обрежьте кончики пуль, высверлите часть сердечника и загните края латунной оболочки внутрь, сделав в ней небольшие надрезы. Теперь пуля будет разрываться от удара о цель.@SK_REPAIR 30@SK_REPAIR 50@PID_5MM_AP 20@PID_SUPER_TOOL_KIT 1@PID_5MM_JHP 20@exp 50 }
 {103}{}{PID_44_MAGNUM_JHP@Зафиксируйте патроны на чём-нибудь устройчивом струбциной, стараясь не смять гильзу. Затем обрежьте кончики пуль, высверлите небольшое углубление в сердцевине и загните края латунной оболочки внутрь, сделав в ней небольшие надрезы. Теперь пуля будет разрываться от удара о цель.@SK_REPAIR 30@SK_REPAIR 50@PID_44_FMJ_MAGNUM 20@PID_SUPER_TOOL_KIT 1@PID_44_MAGNUM_JHP 20@exp 50 }
+
+#Патроны - рецепты для станков (это потом уберётся, будет крафт через диалог станка)
+
+{104}{}{PID_10MM_JHP@Подключите свой Фикс-Бой к автоматическому станку и выберите программу "Патроны 10 мм, полуоболоченные".@@SK_SMALL_GUNS 50&SK_SCIENCE 50&SK_REPAIR 50@PID_GUNPOWDER 1&PID_METAL_TRASH 2@@PID_10MM_JHP 20@exp 50 script fix_boy@fix_AnyRounds}
+{105}{}{PID_10MM_AP@Подключите свой Фикс-Бой к автоматическому станку и выберите программу "Патроны 10 мм, бронебойные".@@SK_SMALL_GUNS 50&SK_SCIENCE 50&SK_REPAIR 50@PID_GUNPOWDER 1&PID_METAL_TRASH 1&PID_STEEL 1@@PID_10MM_AP 20@exp 50 script fix_boy@fix_AnyRounds}
+{106}{}{PID_44_MAGNUM_JHP@Подключите свой Фикс-Бой к автоматическому станку и выберите программу "Патроны калибра .44".@@SK_SMALL_GUNS 50&SK_SCIENCE 50&SK_REPAIR 50@PID_GUNPOWDER 1&PID_METAL_TRASH 2@@PID_44_MAGNUM_JHP 20@exp 50 script fix_boy@fix_AnyRounds}
+{107}{}{PID_44_FMJ_MAGNUM@Подключите свой Фикс-Бой к автоматическому станку и выберите программу "Патроны калибра .44, цельнометаллические".@@SK_SMALL_GUNS 50&SK_SCIENCE 50&SK_REPAIR 50@PID_GUNPOWDER 1&PID_METAL_TRASH 2@@PID_44_FMJ_MAGNUM 20@exp 50 script fix_boy@fix_AnyRounds}
+{108}{}{PID_14MM_AP@Подключите свой Фикс-Бой к автоматическому станку и выберите программу "Патроны 14мм".@@SK_SMALL_GUNS 50&SK_SCIENCE 50&SK_REPAIR 50@PID_GUNPOWDER 1&PID_METAL_TRASH 1&PID_STEEL 1@@PID_14MM_AP 20@exp 50 script fix_boy@fix_AnyRounds}
+{109}{}{PID_223_FMJ@Подключите свой Фикс-Бой к автоматическому станку и выберите программу "Патроны .223, цельнометаллические".@@SK_SMALL_GUNS 50&SK_SCIENCE 50&SK_REPAIR 50@PID_GUNPOWDER 1&PID_METAL_TRASH 2@@PID_223_FMJ 20@exp 50 script fix_boy@fix_AnyRounds}
+{110}{}{PID_5MM_JHP@Подключите свой Фикс-Бой к автоматическому станку и выберите программу "Патроны 5 мм, полуоболоченные".@@SK_SMALL_GUNS 50&SK_SCIENCE 50&SK_REPAIR 50@PID_GUNPOWDER 1&PID_METAL_TRASH 2@@PID_5MM_JHP 20@exp 50 script fix_boy@fix_AnyRounds}
+{111}{}{PID_5MM_AP@Подключите свой Фикс-Бой к автоматическому станку и выберите программу "Патроны 5 мм, бронебойные".@@SK_SMALL_GUNS 50&SK_SCIENCE 50&SK_REPAIR 50@PID_GUNPOWDER 1&PID_METAL_TRASH 1&PID_STEEL 1@@PID_5MM_AP 20@exp 50 script fix_boy@fix_AnyRounds}
+{112}{}{PID_45_CALIBER_AMMO@Подключите свой Фикс-Бой к автоматическому станку и выберите программу "Патроны калибра 0.45".@@SK_SMALL_GUNS 50&SK_SCIENCE 50&SK_REPAIR 50@PID_GUNPOWDER 1&PID_METAL_TRASH 2@@PID_45_CALIBER_AMMO 20@exp 50 script fix_boy@fix_AnyRounds}
+{113}{}{PID_7_62MM_AMMO@Подключите свой Фикс-Бой к автоматическому станку и выберите программу "Патроны калибра 7,62, цельнометаллические".@@SK_SMALL_GUNS 50&SK_SCIENCE 50&SK_REPAIR 50@PID_GUNPOWDER 1&PID_METAL_TRASH 2@@PID_7_62MM_AMMO 20@exp 50 script fix_boy@fix_AnyRounds}
+{114}{}{PID_700_CAL@Понадобятся некоторые познания в электронике и баллистике для того, чтобы запрограммировать станок на производство этих необычных патронов.@@SK_SMALL_GUNS 80&SK_SCIENCE 80&SK_REPAIR 80@PID_GUNPOWDER 1&PID_METAL_TRASH 1@@PID_700_CAL 1@exp 50 script fix_boy@fix_NitroExpressRounds}
+
 
 #Топлива
 
@@ -111,6 +126,5 @@
 
 #Уникальное оружие
 
-#{1000}{}{PID_700_NITRO_EXPRESS@Временно недоступно.@@@PID_METAL_TRASH 1@@PID_700_NITRO_EXPRESS 1@exp 300 script fix_boy@fix_NitroExpress}
-#{1001}{}{PID_700_CAL@Понадобятся некоторые познания в электронике и баллистике для того, чтобы запрограммировать станок на производство этих необычных патронов.@@@PID_GUNPOWDER 1&PID_METAL_TRASH 1@@PID_700_CAL 1@exp 50 script fix_boy@fix_NitroExpressRounds}
+{1000}{}{PID_700_NITRO_EXPRESS@Найдите токарный станок, используя его как сверлильный, рассверлите трубу до диаметра 17.8 мм, из куска металлического кола выточите затвор. По схемам из "Пушек и Пуль" изготовьте спусковой механизм, а приклад просто выточите из дерева.@SK_SCIENCE 40&SK_REPAIR 50@SK_SMALL_GUNS 80&SK_SCIENCE 60&SK_REPAIR 100@PID_TUBE 1&PID_PLANK 1&PID_FIREWOOD 1&PID_METAL_TRASH 4&PID_PUMP_PARTS 2@PID_SUPER_TOOL_KIT 1&PID_WELDING 1&PID_GUNS_AND_BULLETS 1@PID_700_NITRO_EXPRESS 1@exp 300 script fix_boy@fix_NitroExpress}
 

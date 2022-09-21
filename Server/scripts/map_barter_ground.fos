@@ -1,4 +1,4 @@
-// Copypaster: Dagnir, rifleman17
+// Author: Dagnir, rifleman17
 #include "_macros.fos"
 #include "utils_for_array.fos"
 
@@ -71,6 +71,12 @@ void _GuardInit(Critter & cr, bool firstTime)
 	cr.SetEvent(CRITTER_EVENT_SMTH_USE_ITEM,"_GuardSmthUseItem");
 	cr.SetEvent(CRITTER_EVENT_SMTH_DROP_ITEM,"_GuardSmthDropItem");
 	cr.SetEvent(CRITTER_EVENT_MESSAGE,"_GuardMessage");
+}
+
+void _AlienInit(Critter & cr, bool firstTime)
+{
+	cr.SetEvent(CRITTER_EVENT_SMTH_STEALING,"_GuardSmthStealing");
+	cr.SetEvent(CRITTER_EVENT_SMTH_ATTACK,"_GuardSmthAttack");
 }
 
 

@@ -227,8 +227,10 @@ bool _SandBagSkill(Item& item, Critter& cr, int skill)
 			if(pid==PID_SINGLE_SANDBAG)
 			{
 				DeleteItem(item);
+				cr.AddItem (PID_SANDBAG_EMPTY,1);
 			}else{
 				pid--;
+				cr.AddItem (PID_SANDBAG_EMPTY,1);
 				ChangeSandBagProto(item, pid);
 				item.Update();
 			}

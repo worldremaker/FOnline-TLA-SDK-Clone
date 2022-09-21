@@ -443,7 +443,7 @@ Cost=100
 Material=1
 Ammo.StartCount=5
 Ammo.Caliber=19
-Ammo.DRMod=-50
+Ammo.DRMod=-25
 Ammo.DmgMult=2
 Ammo.DmgDiv=1
 
