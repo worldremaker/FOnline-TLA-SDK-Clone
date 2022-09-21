@@ -329,6 +329,7 @@ void _GuardInit(Critter& guard, bool firstTime)
 	guard.ModeBase[MODE_NO_ENEMY_STACK]=1;
 	guard.ModeBase[MODE_UNLIMITED_AMMO]=1; //в противном случае у них воруют оружие
 	guard.StatBase[ST_ACTION_POINTS] = 12;
+	guard.StatBase[ST_BONUS_LOOK]=300; //„тобы реагировали на атаки других игроков сникерами.
 }
 
 void _GuardIdle(Critter& guard)

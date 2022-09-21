@@ -49,21 +49,23 @@ lang=russ engl
 [engl]
 {100}{}{Kane}
 {200}{}{You see: Kane.}
+{210}{}{This guy looks too shy and tidy for these places.}
 {1000}{}{Преддиалоговые установки}
 {1010}{}{-}
-{2000}{}{Выполняем специальный приказ 937. Обеспечение безопасности любой ценой.}
-{2010}{}{Хочу купить кое-что.}
-{2020}{}{А вы кто?}
-{3000}{}{Я Джон Кейн, управляющий тут. Заведую всякими делами, координирую караванщиков.}
-{3010}{}{Хочу купить кое-что.}
-{3020}{}{Нанимаете охранников?}
-{3030}{}{Понятно, до свидания.}
-{4000}{}{Я сам ничего не продаю, походите, поспрашивайте у торговцев.}
-{4010}{}{Окей.}
-{4020}{}{Спасибо!}
-{5000}{}{Рад помочь!}
-{6000}{}{Извините, сейчас все караваны заполнены.}
-{6010}{}{Ладно, давайте поторгуем.}
-{6020}{}{Окей, пока.}
-{6030}{}{Спасибо за информацию, я пойду.}
+{2000}{}{Hi, how may I hepl you?}
+{2010}{}{I want to buy something.}
+{2020}{}{And who are you?}
+{3000}{}{I'm John Cane, I'm a manager here. I'm taking care of all sorts of things and coordinating caravan guides.}
+{3010}{}{I want to buy something.}
+{3020}{}{Are you hiring guards?}
+{3030}{}{I see, thank you.}
+{4000}{}{Sorry, but I'm not selling anything myself - ask the traders.}
+{4010}{}{Okay.}
+{4020}{}{Thanks!}
+{5000}{}{Glad to help!}
+{6000}{}{Sorry, but all caravans are equiped now.}
+{6010}{}{Never mind, let's barter.}
+{6020}{}{Okay, bye.}
+{6030}{}{Thanks for the info, I have to go now.}
+
 

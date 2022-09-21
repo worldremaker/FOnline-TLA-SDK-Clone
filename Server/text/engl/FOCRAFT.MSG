@@ -51,7 +51,7 @@
 {306}{}{PID_ZIP_GUN@Прочно примотайте трубу проволокой к рукояти. Отнеситесь к этому серьёзно, иначе ваше оружие самоуничтожится после первого же выстрела.@@SK_REPAIR 20@PID_PUMP_PARTS 1&PID_FIREWOOD 1&PID_10MM_JHP 1@@PID_ZIP_GUN 1@exp 75 }
 {307}{}{PID_FN_FAL_HPFA@Пускай отдача будет ломать вам плечо, но это улучшение того стоит.@SK_REPAIR 80@SK_SMALL_GUNS 80&SK_REPAIR 120@PID_FN_FAL 1&PID_METAL_TRASH 1&PID_PUMP_PARTS 1@PID_SUPER_TOOL_KIT 1&PID_GUNS_AND_BULLETS 1@PID_FN_FAL_HPFA 1@exp 120 }
 {380}{}{PID_MAUSER_SMG@В одном из номеров журнала "Пушки и пули" была опубликована схема автоматического Маузера М712 калибра 7,62. Изучив её, вы поняли, что 9мм Маузер можно было бы переделать подобным образом.@SK_SMALL_GUNS 50@SK_REPAIR 80@PID_9MM_MAUSER 1&PID_METAL_TRASH 1&PID_PUMP_PARTS 1@PID_MULTI_TOOL 1&PID_GUNS_AND_BULLETS 1@PID_MAUSER_SMG 1@exp 100 }
-
+{381}{}{PID_223_PISTOL@Интеграция револьверного барабана в винтовку, да ещё и не того калибра - непростая задача, но в результат можно будет влюбиться.@SK_REPAIR 60@SK_REPAIR 120&SK_SMALL_GUNS 80@PID_HUNTING_RIFLE 1&PID_44_MAGNUM_REVOLVER 1&PID_WELDING 1@PID_SUPER_TOOL_KIT 1@PID_223_PISTOL 1@exp 150 }
 
 #Тяжёлое
 
@@ -76,10 +76,10 @@
 {701}{}{PID_ANTIDOTE@Это будет скорей самовнушением. @SK_OUTDOORSMAN 30@SK_OUTDOORSMAN 40&SK_DOCTOR 20@PID_BOOZE 1&PID_SCORPION_TAIL 1@PID_LIGHTER 1@PID_ANTIDOTE 1@exp 50 }
 {702}{}{PID_LOCKPICKS@Вы разбираетесь в этом деле и можете сами себе изготовить отмычки. В красивом кожаном чехле.@SK_LOCKPICK 20@SK_LOCKPICK 50&SK_REPAIR 30@PID_METAL_TRASH 1&PID_GECKO_PELT 1@PID_MULTI_TOOL 1@PID_LOCKPICKS 1@exp 50 }
 {703}{}{PID_EXP_LOCKPICK_SET@Профессионалы вроде вас работают только с качественными инструментами!@SK_LOCKPICK 50@SK_LOCKPICK 80&SK_REPAIR 35@PID_LOCKPICKS 1&PID_METAL_TRASH 1&PID_PUMP_PARTS 1@PID_MULTI_TOOL 1@PID_EXP_LOCKPICK_SET 1@exp 100 }
-{704}{}{PID_223_PISTOL@Интеграция револьверного барабана в винтовку, да ещё и не того калибра - непростая задача, но в результат можно будет влюбиться.@SK_REPAIR 60@SK_REPAIR 120&SK_SMALL_GUNS 80@PID_HUNTING_RIFLE 1&PID_44_MAGNUM_REVOLVER 1&PID_WELDING 1@PID_SUPER_TOOL_KIT 1@PID_223_PISTOL 1@exp 150 }
-{705}{}{PID_RADIO@Вам одиноко? Не с кем общаться? Вокруг одни сволочи и кротокрысы? Вам хочется об этом поговорить? Специально для вас! Схема простейшего приёмника в каждом номере "Электроники Дина"!@SK_SCIENCE 40@SK_SCIENCE 80&SK_REPAIR 50@PID_V15_COMPUTER_PART 1&PID_PUMP_PARTS 1&PID_METAL_TRASH 1@PID_MULTI_TOOL 1&PID_DEANS_ELECTRONICS 1@PID_RADIO 1@exp 100 }
-{706}{}{PID_FIRST_AID_KIT@Бинты, спирт для промывки ран и другие полезные вещи в сумке из кожи многострадального гекко.@SK_FIRST_AID 50@SK_DOCTOR 50&SK_FIRST_AID 60&SK_SCIENCE 20@PID_RAGS 5&PID_BOOZE 1&PID_ANTIDOTE 1&PID_GECKO_PELT 1&PID_POCKET_LINT 1@@PID_FIRST_AID_KIT 1@exp 150 }
-{707}{}{PID_RADIO@Почините радио с использованием деталей со старых микросхем.@SK_REPAIR 50@SK_REPAIR 60@PID_VIC_RADIO 1&PID_V15_COMPUTER_PART 1@PID_MULTI_TOOL 1@PID_RADIO 1@exp 100 }
+{704}{}{PID_RADIO@Вам одиноко? Не с кем общаться? Вокруг одни сволочи и кротокрысы? Вам хочется об этом поговорить? Специально для вас! Схема простейшего приёмника в каждом номере "Электроники Дина"!@SK_SCIENCE 40@SK_SCIENCE 80&SK_REPAIR 50@PID_V15_COMPUTER_PART 1&PID_PUMP_PARTS 1&PID_METAL_TRASH 1@PID_MULTI_TOOL 1&PID_DEANS_ELECTRONICS 1@PID_RADIO 1@exp 100 }
+{705}{}{PID_FIRST_AID_KIT@Бинты, спирт для промывки ран и другие полезные вещи в сумке из кожи многострадального гекко.@SK_FIRST_AID 50@SK_DOCTOR 50&SK_FIRST_AID 60&SK_SCIENCE 20@PID_RAGS 5&PID_BOOZE 1&PID_ANTIDOTE 1&PID_GECKO_PELT 1&PID_POCKET_LINT 1@@PID_FIRST_AID_KIT 1@exp 150 }
+{706}{}{PID_RADIO@Почините радио с использованием деталей со старых микросхем.@SK_REPAIR 50@SK_REPAIR 60@PID_VIC_RADIO 1&PID_V15_COMPUTER_PART 1@PID_MULTI_TOOL 1@PID_RADIO 1@exp 100 }
+{707}{}{PID_STIMPAK@Растворите целебный порошок в воде, наполните этой смесью стеклянный шприц и прокипятите. Потом простерилизуйте иглу спиртом.@SK_FIRST_AID 30@SK_FIRST_AID 80&SK_SCIENCE 80@PID_BOTTLE_FULL 1&PID_HYPODERMIC_NEEDLE 1&PID_BOOZE 1&PID_HEALING_POWDER 2@PID_LIGHTER 1&PID_CHEMISTRY_MANUAL 1&PID_FIRST_AID_KIT 1@PID_STIMPAK 1&PID_RAGS 1@exp 50 }
 
 
 # Взрывчатка
@@ -94,7 +94,6 @@
 {807}{}{PID_PLASTIC_EXPLOSIVES_DULL@Найдите в мусоре какой-нибудь пластик, нагрейте его до плавления и вмешивайте в него порошок гексогена. Всё, теперь он удобен для хранения.@SK_SCIENCE 120@SK_OUTDOORSMAN 60&SK_REPAIR 60@PID_PUMP_PARTS 1&PID_HEXOGEN 1@PID_LIGHTER 1@PID_PLASTIC_EXPLOSIVES_DULL 1@exp 100 }
 {808}{}{PID_PLASTIC_EXPLOSIVES@Соберите радиодетонатор из запчастей и старого радио.@SK_REPAIR 100@SK_REPAIR 130&SK_TRAPS 120@PID_PLASTIC_EXPLOSIVES_DULL 1&PID_PUMP_PARTS 1&PID_RADIO 1@PID_MULTI_TOOL 1&PID_DEANS_ELECTRONICS 1@PID_PLASTIC_EXPLOSIVES 1@exp 200 }
 {809}{}{PID_MINE@Высыпьте гексоген в какую-нибудь старую банку, соорудите простенький взрыватель с использованием капсюля ружейного патрона.@SK_TRAPS 80@SK_TRAPS 130&SK_REPAIR 80&SK_OUTDOORSMAN 50@PID_HEXOGEN 1&PID_PUMP_PARTS 2&PID_SHOTGUN_SHELLS 1@PID_MULTI_TOOL 1@PID_MINE 1@exp 200 }
-{810}{}{PID_STIMPAK@Растворите целебный порошок в воде, наполните этой смесью стеклянный шприц и прокипятите. Потом простерилизуйте иглу спиртом.@SK_FIRST_AID 30@SK_FIRST_AID 80&SK_SCIENCE 80@PID_BOTTLE_FULL 1&PID_HYPODERMIC_NEEDLE 1&PID_BOOZE 1&PID_HEALING_POWDER 2@PID_LIGHTER 1&PID_CHEMISTRY_MANUAL 1&PID_FIRST_AID_KIT 1@PID_STIMPAK 1&PID_RAGS 1@exp 50 }
 
 
 #Холодное и инструменты

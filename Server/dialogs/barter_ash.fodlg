@@ -31,12 +31,12 @@ lang=russ engl
 [engl]
 {100}{}{Ash}
 {200}{}{You see: Ash.}
+{210}{}{This man has some kind of overconcentrated and unemotional sight.}
 {1000}{}{Преддиалоговые установки}
 {1010}{}{-}
-{2000}{}{Выполняем специальный приказ 937. Обеспечение безопасности любой ценой.}
-{2010}{}{Хочу перекупить чего-нибудь.}
-{2020}{}{Да ничем, просто на еду хотел@sex@|||а| посмотреть.}
-{3000}{}{Выбирайте, у нас отличные деликатесы и качественная выпивка!}
-{3010}{}{[Торговать]}
-{3020}{}{Это всё.}
-
+{2000}{}{Hello, how are you, how may I help you?}
+{2010}{}{I'd wish to buy something.}
+{2020}{}{Never mind, just looking at your stuff.}
+{3000}{}{Please choose, we have wonderful delicacies and quality drinks!}
+{3010}{}{[Barter]}
+{3020}{}{That's it.}

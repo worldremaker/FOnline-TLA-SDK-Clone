@@ -19,8 +19,10 @@ lang=russ engl
 {2000}{}{Чего тебе?@@Продаёт Бретт, я тут просто так.@@Отвали, товар у Бретта.}
 
 [engl]
-{100}{}{none}
+{100}{}{Parker}
+{200}{}{You see Parker.}
+{210}{}{A bit full black man chewing bubble gum and looking impudently at others.}
 {1000}{}{Преддиалоговые установки}
 {1010}{}{-}
-{2000}{}{Выполняем специальный приказ 937. Обеспечение безопасности любой ценой.}
+{2000}{}{What do you need?@@Brett's got the stuff, I'm here just for fun.@@Piss off, Bret's got the wares.}
 

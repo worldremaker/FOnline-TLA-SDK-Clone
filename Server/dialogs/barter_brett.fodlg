@@ -33,13 +33,13 @@ lang=russ engl
 [engl]
 {100}{}{Brett}
 {200}{}{You see: Brett.}
+{210}{}{Slim guy with a silly look on his face.}
 {1000}{}{Преддиалоговые установки}
 {1010}{}{-}
-{2000}{}{Выполняем специальный приказ 937. Обеспечение безопасности любой ценой.}
-{2010}{}{Что продаёте?}
-{2020}{}{Покажите товар.}
-{2030}{}{Ничего, мне пора.}
-{3000}{}{Да всякий хлам, запчасти, инструменты... Вот так. Хе-хе.}
-{3010}{}{Ну, давайте посмотрим.}
-{3020}{}{Это всё, мне пора.}
-
+{2000}{}{Hey, what can I do you for?}
+{2010}{}{What do you have for trade here?}
+{2020}{}{Show me your stuff.}
+{2030}{}{Nothing, I have to go.}
+{3000}{}{Various junk, parts, tools. Yeah, something like that. Hah.}
+{3010}{}{Let's see.}
+{3020}{}{That's it, I have to go.}

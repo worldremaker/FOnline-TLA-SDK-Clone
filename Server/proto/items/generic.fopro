@@ -20082,6 +20082,15 @@ DisableEgg=1
 Material=1
 
 [Proto]
+Pid=4776
+Type=11
+PicMapName=art\scenery\monument_ponch.fofrm
+PicInvName=art\inven\reserved.frm
+Corner=5
+Flags=33554456
+Material=5
+
+[Proto]
 Pid=5621
 Type=11
 PicMapName=art\scenery\grid_wall.frm

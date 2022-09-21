@@ -2242,7 +2242,7 @@ position=Surrounding, Spacing:2, distance:4*/
 		.AddItem(PID_STIMPAK,2,4,SLOT_INV)
 		.AddItem(PID_BOTTLE_CAPS,40,80,SLOT_INV);
 	group.AddCritter(186).Dialog(0).Script("encounter_npc@_NpcInit")
-		.AddItem(PID_LASER_RIFLE,1,1,SLOT_HAND1)
+		.AddItem(PID_PLASMA_RIFLE,1,1,SLOT_HAND1)
 		.AddItem(PID_MICRO_FUSION_CELL,1,1,SLOT_INV)
 		.AddItem(PID_STIMPAK,1,2,SLOT_INV)
 		.AddItem(PID_BOTTLE_CAPS,30,70,SLOT_INV);
@@ -6012,7 +6012,7 @@ enc_24=Chance:1%,Counter:1,Special,Map:Special Cafe Encounter, Enc:Special1, If(
 	SetZone(0   ,4   ,TABLE_Ocean1_O  ,0    ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Rare      );
 	SetZone(0   ,5   ,TABLE_Ocean1_O  ,0    ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Rare      );
 	SetZone(0   ,6   ,TABLE_Ocean1_O  ,0    ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Rare      );
-	SetZone(0   ,7   ,TABLE_Ocean1_O  ,0    ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Rare      );
+	SetZone(0   ,7   ,TABLE_Fish_O    ,0    ,TERRAIN_Ocean     ,FILL_No_Fill   ,CHANCE_Rare      );
 	SetZone(0   ,8   ,TABLE_Fish_O    ,0    ,TERRAIN_Ocean     ,FILL_No_Fill   ,CHANCE_Rare      );
 	SetZone(0   ,9   ,TABLE_Fish_O    ,0    ,TERRAIN_Ocean     ,FILL_No_Fill   ,CHANCE_Common    );
 	SetZone(0   ,10  ,TABLE_Fish_O    ,0    ,TERRAIN_Ocean     ,FILL_No_Fill   ,CHANCE_Common    );
@@ -6080,10 +6080,10 @@ enc_24=Chance:1%,Counter:1,Special,Map:Special Cafe Encounter, Enc:Special1, If(
 	SetZone(2   ,10  ,TABLE_Prim_M    ,0    ,TERRAIN_Mountain  ,FILL_No_Fill   ,CHANCE_Common    );
 	SetZone(2   ,11  ,TABLE_Prim_D    ,0    ,TERRAIN_Desert    ,FILL_No_Fill   ,CHANCE_Common    );
 	SetZone(2   ,12  ,TABLE_Fish_O    ,-40  ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Uncommon  );
-	SetZone(2   ,13  ,TABLE_Ocean1_O  ,0    ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Rare      );
-	SetZone(2   ,14  ,TABLE_Ocean1_O  ,0    ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Rare      );
-	SetZone(2   ,15  ,TABLE_Ocean1_O  ,0    ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Rare      );
-	SetZone(2   ,16  ,TABLE_Ocean1_O  ,0    ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Rare      );
+	SetZone(2   ,13  ,TABLE_Fish_O    ,0    ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Rare      );
+	SetZone(2   ,14  ,TABLE_Nav_O     ,0    ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Rare      );
+	SetZone(2   ,15  ,TABLE_Nav_O     ,0    ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Rare      );
+	SetZone(2   ,16  ,TABLE_Nav_O     ,0    ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Rare      );
 	SetZone(2   ,17  ,TABLE_Ocean1_O  ,0    ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Rare      );
 	SetZone(2   ,18  ,TABLE_Ocean1_O  ,0    ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Rare      );
 	SetZone(2   ,19  ,TABLE_Ocean1_O  ,0    ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Rare      );
@@ -6149,7 +6149,7 @@ enc_24=Chance:1%,Counter:1,Special,Map:Special Cafe Encounter, Enc:Special1, If(
 	SetZone(4   ,17  ,TABLE_Nav_M     ,-40  ,TERRAIN_Mountain  ,FILL_No_Fill   ,CHANCE_Common    );
 	SetZone(4   ,18  ,TABLE_Nav_M     ,-25  ,TERRAIN_Mountain  ,FILL_No_Fill   ,CHANCE_Common    );
 	SetZone(4   ,19  ,TABLE_Nav_O     ,-25  ,TERRAIN_Ocean     ,FILL_No_Fill    ,CHANCE_Common   );
-	SetZone(4   ,20  ,TABLE_Ocean2_O  ,0    ,TERRAIN_Ocean     ,FILL_No_Fill   ,CHANCE_Common    );
+	SetZone(4   ,20  ,TABLE_Nav_O     ,0    ,TERRAIN_Ocean     ,FILL_No_Fill   ,CHANCE_Common    );
 	SetZone(4   ,21  ,TABLE_Ocean2_O  ,0    ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Uncommon  );
 	SetZone(4   ,22  ,TABLE_Ocean2_O  ,0    ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Rare      );
 	SetZone(4   ,23  ,TABLE_Ocean2_O  ,0    ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Rare      );
@@ -6181,7 +6181,7 @@ enc_24=Chance:1%,Counter:1,Special,Map:Special Cafe Encounter, Enc:Special1, If(
 	SetZone(5   ,18  ,TABLE_Nav_D     ,-25  ,TERRAIN_Desert    ,FILL_No_Fill   ,CHANCE_Common    );
 	SetZone(5   ,19  ,TABLE_Nav_M     ,-25  ,TERRAIN_Mountain  ,FILL_No_Fill   ,CHANCE_Common    );
 	SetZone(5   ,20  ,TABLE_Nav_O     ,-25  ,TERRAIN_Ocean     ,FILL_No_Fill   ,CHANCE_Common    );
-	SetZone(5   ,21  ,TABLE_Ocean2_O  ,-25  ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Common    );
+	SetZone(5   ,21  ,TABLE_Nav_O     ,-25  ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Common    );
 	SetZone(5   ,22  ,TABLE_Ocean2_O  ,0    ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Uncommon  );
 	SetZone(5   ,23  ,TABLE_Ocean2_O  ,0    ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Rare      );
 	SetZone(5   ,24  ,TABLE_Ocean2_O  ,0    ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Rare      );
@@ -6277,7 +6277,7 @@ enc_24=Chance:1%,Counter:1,Special,Map:Special Cafe Encounter, Enc:Special1, If(
 	SetZone(8   ,21  ,TABLE_Wild4_M   ,-50  ,TERRAIN_Mountain  ,FILL_No_Fill   ,CHANCE_Uncommon  );
 	SetZone(8   ,22  ,TABLE_Wild4_M   ,-50  ,TERRAIN_Mountain  ,FILL_No_Fill   ,CHANCE_Uncommon  );
 	SetZone(8   ,23  ,TABLE_Fran_O    ,-50  ,TERRAIN_Ocean     ,FILL_No_Fill   ,CHANCE_Uncommon  );
-	SetZone(8   ,24  ,TABLE_Ocean2_O  ,0    ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Common    );
+	SetZone(8   ,24  ,TABLE_Fran_O    ,0    ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Common    );
 	SetZone(8   ,25  ,TABLE_Fran_O    ,-50  ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Rare      );
 	SetZone(8   ,26  ,TABLE_Fran_O    ,-50  ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Rare      );
 	SetZone(8   ,27  ,TABLE_Ocean2_O  ,0    ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Rare      );
@@ -6313,7 +6313,7 @@ enc_24=Chance:1%,Counter:1,Special,Map:Special Cafe Encounter, Enc:Special1, If(
 	SetZone(9   ,26  ,TABLE_Fran_C    ,-50  ,TERRAIN_City      ,FILL_No_Fill   ,CHANCE_Frequent  );
 	SetZone(9   ,27  ,TABLE_Fran2_C   ,-50  ,TERRAIN_City      ,FILL_Fill_W    ,CHANCE_Uncommon  );
 	SetZone(9   ,28  ,TABLE_Fran_O    ,-50  ,TERRAIN_Ocean     ,FILL_Fill_W    ,CHANCE_Rare      );
-	SetZone(9   ,29  ,TABLE_Ocean2_O  ,0    ,TERRAIN_Ocean     ,FILL_Fill_W     ,CHANCE_Rare     );
+	SetZone(9   ,29  ,TABLE_Fran_O    ,0    ,TERRAIN_Ocean     ,FILL_Fill_W     ,CHANCE_Rare     );
 
 	SetZone(10  ,0   ,TABLE_Kla_M     ,0    ,TERRAIN_Mountain  ,FILL_No_Fill   ,CHANCE_Uncommon  );
 	SetZone(10  ,1   ,TABLE_Kla_D     ,0    ,TERRAIN_Desert    ,FILL_No_Fill   ,CHANCE_Uncommon  );
