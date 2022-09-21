@@ -1592,4 +1592,32 @@ void BattleMusic(Critter& iam, int index, int, int)
 	else PlayMusic(iam.GetMap(),"01 - No Fate No Fear.ogg",0,0);
 }
 
+void FixPlayer(Critter& admin, int id, int, int)
+{
+	Critter@ cr = ::GetCritter(id);
+	if(valid(cr))
+	{
+		if(cr.StatBase[ST_BONUS_LOOK] == 9999)
+		{
+			cr.StatBase[ST_BONUS_LOOK] = 0;
+			if(cr.Perk[PE_SHARPSHOOTER] != 0) cr.StatBase[ST_BONUS_LOOK] = 6;
+			admin.Say(SAY_NETMSG, "Fixed bonus look.");
+		}
+
+		if(cr.StatBase[ST_REPLICATION_TIME] == -1)
+		{
+			cr.StatBase[ST_REPLICATION_TIME] = 0;
+			cr.TimeoutBase[TO_REPLICATION] = 0;
+			admin.Say(SAY_NETMSG, "Fixed replication.");
+		}
+
+		cr.SetEvent(CRITTER_EVENT_DEAD, null);
+	}
+	else
+	{
+		admin.Say(SAY_NETMSG, "Not found.");
+	}
+}
+
+
 
