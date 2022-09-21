@@ -57,7 +57,6 @@ void SetQuestState(Critter& player, int Status)
 	GameVar@ quest = GetLocalVar(LVAR_q_klam_smily_gecko, player.Id);
 	if (not valid(quest)) return;
 	quest=Status;
-	player.SendQuestVar(quest);
 }
 
 int GetQuestState(Critter& player)

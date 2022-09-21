@@ -137,7 +137,6 @@ void r_StartQuest(Critter& master, Critter@ npc)
 	raidersKilled=0;
 	NotCome=true;
 	QuestPlayers.insertLast(master.Id);
-	master.SendQuestVar(quest);
 	StartAttackTE=CreateTimeEvent(__FullSecond+TIME_FOR_START,"e_StartAttack",true);
 }
 
@@ -163,7 +162,6 @@ void r_GetExp(Critter& master, Critter@ npc)
 	master.StatBase[ST_KARMA]+=((raidersKilled.GetValue()+1)*10);
 	raidersKilled=0;
 	quest=QUEST_STAT_END;
-	master.SendQuestVar(quest);
 }
 
 bool d_AttackRuns(Critter& master, Critter@ npc)
@@ -322,14 +320,12 @@ void _RaiderDead(Critter& crit, Critter@ killer)
 				if(raidersKilled.GetValue()==int(CountAll-1))
 				{
 					questStat=QUEST_STAT_FULL_SUCC;
-					killer.SendQuestVar(questStat);
 				}
 				else
 				{
 					if(raidersKilled.GetValue()==0)
 					{
 						questStat=QUEST_STAT_NOT_FULL_SUCC;
-						killer.SendQuestVar(questStat);
 					}
 					raidersKilled+=1;
 				}
@@ -355,7 +351,6 @@ void _PlayerDead(Critter& player, Critter@ killer)
 	if((questStat.GetValue()!=QUEST_STAT_FULL_SUCC) and (questStat.GetValue()!=QUEST_STAT_NOT_FULL_SUCC))
 	{
 		questStat=QUEST_STAT_FAIL_KILL;
-		player.SendQuestVar(questStat);
 	}
 	player.SetEvent(CRITTER_EVENT_DEAD, "");
 }
@@ -574,7 +569,6 @@ void SpawnRaiders(uint mapId, uint entGroup, uint dialogId, uint mobLevel)
 			if(questStat.GetValue()==QUEST_STAT_TAKEN)
 			{
 				questStat=QUEST_STAT_ATTACK_RUNS;
-				crit.SendQuestVar(questStat);
 			}
 		}
 	}
@@ -666,7 +660,6 @@ void SendQuestStat()
 						questStat=QUEST_STAT_FAIL_NO_HELP;
 					}
 				}
-				crit.SendQuestVar(questStat);
 			}
 			else
 			{

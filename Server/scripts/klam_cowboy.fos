@@ -341,7 +341,6 @@ void r_AddExperience(Critter& master, Critter@ slave)
 
 	master.StatBase[ST_EXPERIENCE]+=GetExp(cowDeadCount);
 	var = 0;
-	master.SendQuestVar(var);
 }
 
 //----------------------------- misk plane -----------------------------------
@@ -468,9 +467,6 @@ void SetQuestState(uint state)
 	GameVar@ var = GetLocalVar(LVAR_q_klam_torr_cowboy, playerId);    if(not valid(var))    { Log("ERROR: not valid GameVar ¹" + LVAR_q_klam_torr_cowboy); return; }
 
 	var = state;
-
-	Critter@ player = GetCritter(playerId);                           if(not valid(player)) return;
-	player.SendQuestVar(var);
 }
 
 void SetPlayerLevel(uint16 level)

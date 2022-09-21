@@ -437,9 +437,6 @@ void _SlaverDead(Critter& cr, Critter@ killer)
 			// состо€ние квестовой переменной не изменилось
 			return;
 	}
-
-	killer.SendQuestVar(sVar);
-
 }
 
 // ѕо€вилс€ новый криттер в дистанции определенной uint Critter::ShowCritterDistX.

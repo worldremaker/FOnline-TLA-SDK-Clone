@@ -102,7 +102,6 @@ void SetQuestState(Critter & player, uint idCaravan, int state)
 	if(!valid(qVar)) return;
 
 	qVar = state;
-	player.SendQuestVar(qVar);
 
 }
 uint GetQuestState(Critter & player, uint idCaravan)

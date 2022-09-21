@@ -140,7 +140,6 @@ void GroupSetVar(Critter& player, uint16 varId, int value)
 		GameVar@ var = GetLocalVar(varId, group[i].Id);
 		if(not valid(var)) return; // Wrong varId
 		var = value;
-		group[i].SendQuestVar(var);
 	}
 }
 
@@ -224,7 +223,7 @@ void Attack(Critter& player, int npcRole)
 */
 void AttackStop(Critter& player, int npcRole)
 {
-	if(not player.IsPlayer()) 
+	if(not player.IsPlayer())
 		return;
 	Map@ map=player.GetMap();
 	uint count=map.GetNpcCount(npcRole, FIND_LIFE_AND_KO|FIND_ONLY_NPC);

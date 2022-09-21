@@ -2320,7 +2320,7 @@ position=Surrounding, Spacing:2, distance:4*/
 	group.AddItem(PID_ROCK);
 /*type_00=ratio:0%, pid:19 */
 
-										// SF Mirelurk invasion 
+										// SF Mirelurk invasion
 	@group=@EncounterGroups[GROUP_SF_Mirelurk] ;
 	group.TeamNum=0;
 	group.Position=POSITION_SURROUNDING;
@@ -2345,14 +2345,14 @@ position=Surrounding, Spacing:2, distance:4*/
 		.AddItem(PID_5MM_JHP,100,200,SLOT_INV)
 		.AddItem(PID_FLAMER,1,1,SLOT_HAND2)
 		.AddItem(PID_BOTTLE_CAPS,0,30,SLOT_INV);
-	group.AddCritter(31).Ratio(20).Dialog(0).Script("ai_pattern@_Medic2Init")	
+	group.AddCritter(31).Ratio(20).Dialog(0).Script("ai_pattern@_Medic2Init")
 		.AddItem(PID_LASER_PISTOL,1,1,SLOT_HAND1)
 		.AddItem(PID_BOTTLE_CAPS,0,30,SLOT_INV);
 	group.AddCritter(358).Ratio(30).Dialog(0).Script("ai_pattern@_Sniper1Init")
 		.AddItem(PID_HUNTING_RIFLE,1,1,SLOT_HAND1)
 		.AddItem(PID_223_FMJ,33,44,SLOT_HAND2)
-		.AddItem(PID_BOTTLE_CAPS,0,30,SLOT_INV);											
-	
+		.AddItem(PID_BOTTLE_CAPS,0,30,SLOT_INV);
+
 											// Rangers patrol quest rebels
 	@group=@EncounterGroups[GROUP_NCR_Patrol_Rebels];
 	group.TeamNum=8; //TEAM_Bandit
@@ -2368,20 +2368,20 @@ position=Surrounding, Spacing:2, distance:4*/
 		.AddItem(PID_BOTTLE_CAPS,0,30,SLOT_INV);
 	group.AddCritter(222).Ratio(30).Dialog(2103).Script("ai_pattern@_Slayer2Init")
 		.AddItem(PID_ROCKET_LAUNCHER,1,1,SLOT_HAND1)
-		.AddItem(PID_5MM_JHP,100,200,SLOT_INV)	
+		.AddItem(PID_5MM_JHP,100,200,SLOT_INV)
 		.AddItem(PID_SUPER_STIMPAK,1,2,SLOT_INV)
 		.AddItem(PID_BOTTLE_CAPS,0,30,SLOT_INV);
-	group.AddCritter(222).Ratio(20).Dialog(2103).Script("ai_pattern@_Medic2Init")	
-		.AddItem(PID_LASER_PISTOL,1,1,SLOT_HAND1)	
+	group.AddCritter(222).Ratio(20).Dialog(2103).Script("ai_pattern@_Medic2Init")
+		.AddItem(PID_LASER_PISTOL,1,1,SLOT_HAND1)
 		.AddItem(PID_SUPER_STIMPAK,3,5,SLOT_INV)
 		.AddItem(PID_BOTTLE_CAPS,0,30,SLOT_INV);
 	group.AddCritter(222).Ratio(30).Dialog(2103).Script("ai_pattern@_Sniper4Init")
 		.AddItem(PID_SNIPER_RIFLE,1,1,SLOT_HAND1)
 		.AddItem(PID_SUPER_STIMPAK,1,2,SLOT_INV)
 		.AddItem(PID_223_FMJ,33,44,SLOT_HAND2)
-		.AddItem(PID_BOTTLE_CAPS,0,30,SLOT_INV);	
-	
-	
+		.AddItem(PID_BOTTLE_CAPS,0,30,SLOT_INV);
+
+
 /*
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -2404,7 +2404,7 @@ position=Surrounding, Spacing:2, distance:4*/
 	globalTable.AddEncounter( 15, 10033110).AddGroup(GROUP_Bounty_Hunter_High    , 2, 5).AddGroup(GROUP_Player            , 0, 0).Fighting(0,1).CheckParam(ST_LEVEL,'>',18).CheckParam(ST_KARMA,'<',-500);
 	globalTable.AddEncounter( 10, 10033120).AddGroup(GROUP_Morton_Brother        , 4, 7).CheckLVar(LVAR_redding_morton_brothers,'>',0).CheckLVar(LVAR_redding_morton_brothers,'<',6).AssignLVar(LVAR_redding_morton_brothers,'=',6);
 	globalTable.AddEncounter( 15, 10033070).AddGroup(GROUP_Bounty_Hunter_High    , 2, 6).AddGroup(GROUP_Player            , 0, 0).Fighting(0,1).CheckParam(KARMA_PEDOBEAR,'>',1);
-	
+
 	// Add yours special encounters here
 	AddTableToAllTables(globalTable);
 
@@ -2826,6 +2826,7 @@ enc_20=Chance:1%,Counter:1,Special,Map:Special Holy Encounter 2,Enc:Special1, If
 	table.AddEncounter(  1, 10035890).Special(true).LocationPid(LOCATION_SpecialUnwashedEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_unwashed,'<',1).AssignLVar(LVAR_special_encounter_unwashed,'=',1);
 	table.AddEncounter(  1, 10034790).Special(true).LocationPid(LOCATION_SpecialWastelandChildren).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_wasteland_children,'<',1).AssignLVar(LVAR_special_wasteland_children,'=',1);
 	table.AddEncounter(  1, 10034800).Special(true).LocationPid(LOCATION_SpecialKotW).CheckParam(ST_LEVEL,'>',12).CheckLVar(LVAR_special_encounter_kotw,'<',1).AssignLVar(LVAR_special_encounter_kotw,'=',1);
+	table.AddEncounter(  1, 10034820).Special(true).LocationPid(LOCATION_SpecialZergEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_zerg_laboratory,'<',1).AssignLVar(LVAR_special_zerg_laboratory,'=',1);
 /*lookup_name=Kla_D                                                       ; Areas around Klamath
 maps=Desert Encounter 2, Desert Encounter 4, Desert Encounter 6, Desert Encounter 12, Desert Encounter 11
 enc_00=Chance:2%,Counter:1,Special,Map:Special Toxic Encounter,Enc:Special1, If(Player(Level) > 5) , If(Global(607) < 1)
@@ -2968,6 +2969,7 @@ enc_31=Chance:1%,Counter:1,Special,Map:Special Holy Encounter 2,Enc:Special1, If
 	table.AddEncounter(  1, 10036840).Special(true).LocationPid(LOCATION_SpecialUnwashedEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_unwashed,'<',1).AssignLVar(LVAR_special_encounter_unwashed,'=',1);
 	table.AddEncounter(  1, 10034790).Special(true).LocationPid(LOCATION_SpecialWastelandChildren).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_wasteland_children,'<',1).AssignLVar(LVAR_special_wasteland_children,'=',1);
 	table.AddEncounter(  1, 10034800).Special(true).LocationPid(LOCATION_SpecialKotW).CheckParam(ST_LEVEL,'>',12).CheckLVar(LVAR_special_encounter_kotw,'<',1).AssignLVar(LVAR_special_encounter_kotw,'=',1);
+	table.AddEncounter(  1, 10034820).Special(true).LocationPid(LOCATION_SpecialZergEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_zerg_laboratory,'<',1).AssignLVar(LVAR_special_zerg_laboratory,'=',1);
 	/*lookup_name=Klad_D                                                      ; Klamath-Den Trade Route
 maps=Desert Encounter 5, Desert Encounter 4, Desert Encounter 9, Desert Encounter 10
 enc_00=Chance:2%,Counter:1,Special,Map:Special Toxic Encounter,Enc:Special1, If(Player(Level) > 5) , If(Global(607) < 1)
@@ -3037,6 +3039,7 @@ enc_34=Chance:1%,Counter:1,Special,Map:Special Unwashed Encounter,Enc:Special1, 
 	table.AddEncounter(  1, 10037310).Special(true).LocationPid(LOCATION_SpecialWoodsmanEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_woodsman,'<',1).AssignLVar(LVAR_special_encounter_woodsman,'=',1);
 	table.AddEncounter(  1, 10037320).Special(true).LocationPid(LOCATION_SpecialUnwashedEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_unwashed,'<',1).AssignLVar(LVAR_special_encounter_unwashed,'=',1);
 	table.AddEncounter(  1, 10037330).Special(true).LocationPid(LOCATION_SpecialTrapperHolo).CheckParam(SK_OUTDOORSMAN,'>',119).CheckLVar(LVAR_special_trapper_holo,'<',1).AssignLVar(LVAR_special_trapper_holo,'=',1);
+	table.AddEncounter(  1, 10034820).Special(true).LocationPid(LOCATION_SpecialZergEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_zerg_laboratory,'<',1).AssignLVar(LVAR_special_zerg_laboratory,'=',1);
 /*lookup_name=DMRV_D                                                      ; Den-Modoc-Vault City-Redding Trade Route
 maps=Desert Encounter 5, Desert Encounter 4, Desert Encounter 9, Desert Encounter 10
 enc_00=Chance:2%,Counter:1,Special,Map:Special Toxic Encounter,Enc:Special1, If(Player(Level) > 5) , If(Global(607) < 1)
@@ -3154,8 +3157,9 @@ enc_24=Chance:1%,Counter:1,Special,Map:Special Holy Encounter 2,Enc:Special1, If
 	table.AddEncounter(  1, 10038300).Special(true).LocationPid(LOCATION_SpecialWoodsmanEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_woodsman,'<',1).AssignLVar(LVAR_special_encounter_woodsman,'=',1);
 	table.AddEncounter(  1, 10038310).Special(true).LocationPid(LOCATION_SpecialUnwashedEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_unwashed,'<',1).AssignLVar(LVAR_special_encounter_unwashed,'=',1);
 	table.AddEncounter(  1, 10034790).Special(true).LocationPid(LOCATION_SpecialWastelandChildren).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_wasteland_children,'<',1).AssignLVar(LVAR_special_wasteland_children,'=',1);
-	table.AddEncounter(  1, 10034800).Special(true).LocationPid(LOCATION_SpecialKotW).CheckParam(ST_LEVEL,'>',12).CheckLVar(LVAR_special_encounter_kotw,'<',1).AssignLVar(LVAR_special_encounter_kotw,'=',1);	
+	table.AddEncounter(  1, 10034800).Special(true).LocationPid(LOCATION_SpecialKotW).CheckParam(ST_LEVEL,'>',12).CheckLVar(LVAR_special_encounter_kotw,'<',1).AssignLVar(LVAR_special_encounter_kotw,'=',1);
 	table.AddEncounter(  1, 10034810).Special(true).LocationPid(LOCATION_SpecialDollHolo).CheckParam(SK_OUTDOORSMAN,'>',119).CheckLVar(LVAR_special_doll_holo,'<',1).AssignLVar(LVAR_special_doll_holo,'=',1);
+	table.AddEncounter(  1, 10034820).Special(true).LocationPid(LOCATION_SpecialZergEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_zerg_laboratory,'<',1).AssignLVar(LVAR_special_zerg_laboratory,'=',1);
 	/*lookup_name=Den_D                                                       ; Areas around the Den
 maps=Desert Encounter 8, Desert Encounter 9, Desert Encounter 10, Desert Encounter 7
 enc_00=Chance:2%,Counter:1,Special,Map:Special Toxic Encounter,Enc:Special1, If(Player(Level) > 5) , If(Global(607) < 1)
@@ -3412,6 +3416,7 @@ enc_23=Chance:1%,Counter:1,Special,Map:Special Holy Encounter 2,Enc:Special1, If
 	table.AddEncounter(  1, 10040790).Special(true).LocationPid(LOCATION_SpecialHolyEncounter1).CheckParam(ST_LEVEL,'>',9).CheckLVar(LVAR_special_encounter_holy1,'<',1).AssignLVar(LVAR_special_encounter_holy1,'=',1);
 	table.AddEncounter(  1, 10040800).Special(true).LocationPid(LOCATION_SpecialWoodsmanEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_woodsman,'<',1).AssignLVar(LVAR_special_encounter_woodsman,'=',1);
 	table.AddEncounter(  1, 10040810).Special(true).LocationPid(LOCATION_SpecialUnwashedEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_unwashed,'<',1).AssignLVar(LVAR_special_encounter_unwashed,'=',1);
+	table.AddEncounter(  1, 10034820).Special(true).LocationPid(LOCATION_SpecialZergEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_zerg_laboratory,'<',1).AssignLVar(LVAR_special_zerg_laboratory,'=',1);
 /*lookup_name=DVMV_D                                                              ; Den - Vault City - Modoc Trade Route
 maps=Desert Encounter 11, Desert Encounter 6, Desert Encounter 9, Desert Encounter 12
 enc_00=Chance:2%,Counter:1,Special,Map:Special Toxic Encounter,Enc:Special1, If(Player(Level) > 5) , If(Global(607) < 1)
@@ -3516,6 +3521,7 @@ enc_20=Chance:1%,Counter:1,Special,Map:Special Holy Encounter 2,Enc:Special1, If
 	table.AddEncounter(  1, 10041770).Special(true).LocationPid(LOCATION_SpecialWoodsmanEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_woodsman,'<',1).AssignLVar(LVAR_special_encounter_woodsman,'=',1);
 	table.AddEncounter(  1, 10041780).Special(true).LocationPid(LOCATION_SpecialUnwashedEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_unwashed,'<',1).AssignLVar(LVAR_special_encounter_unwashed,'=',1);
 	table.AddEncounter(  1, 10037330).Special(true).LocationPid(LOCATION_SpecialTrapperHolo).CheckParam(SK_OUTDOORSMAN,'>',119).CheckLVar(LVAR_special_trapper_holo,'<',1).AssignLVar(LVAR_special_trapper_holo,'=',1);
+	table.AddEncounter(  1, 10034820).Special(true).LocationPid(LOCATION_SpecialZergEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_zerg_laboratory,'<',1).AssignLVar(LVAR_special_zerg_laboratory,'=',1);
 /*lookup_name=Wild1_D                                                             ; Wilderness North of Modoc
 maps=Desert Encounter 12, Desert Encounter 8, Desert Encounter 10, Desert Encounter 6
 enc_00=Chance:2%,Counter:1,Special,Map:Special Toxic Encounter,Enc:Special1, If(Player(Level) > 5) , If(Global(607) < 1)
@@ -3933,6 +3939,7 @@ enc_18=Chance:10%,Enc:(3-6) FISH_Fisherman*/
 	table.AddEncounter(  1, 10045800).Special(true).LocationPid(LOCATION_SpecialHolyEncounter1).CheckParam(ST_LEVEL,'>',9).CheckLVar(LVAR_special_encounter_holy1,'<',1).AssignLVar(LVAR_special_encounter_holy1,'=',1);
 	table.AddEncounter(  1, 10045810).Special(true).LocationPid(LOCATION_SpecialWoodsmanEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_woodsman,'<',1).AssignLVar(LVAR_special_encounter_woodsman,'=',1);
 	table.AddEncounter(  1, 10045820).Special(true).LocationPid(LOCATION_SpecialUnwashedEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_unwashed,'<',1).AssignLVar(LVAR_special_encounter_unwashed,'=',1);
+	table.AddEncounter(  1, 10034820).Special(true).LocationPid(LOCATION_SpecialZergEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_zerg_laboratory,'<',1).AssignLVar(LVAR_special_zerg_laboratory,'=',1);
 /*lookup_name=Prim_D                                                              ; Primitive Tribe Region
 maps=Desert Encounter 1, Desert Encounter 4, Desert Encounter 5, Desert Encounter 8
 enc_00=Chance:2%,Counter:1,Special,Map:Special Toxic Encounter,Enc:Special1, If(Player(Level) > 5) , If(Global(607) < 1)
@@ -4155,6 +4162,7 @@ enc_22=Chance:1%,Counter:1,Special,Map:Special Holy Encounter 2,Enc:Special1, If
 	table.AddEncounter(  1, 10047780).Special(true).LocationPid(LOCATION_SpecialHolyEncounter1).CheckParam(ST_LEVEL,'>',9).CheckLVar(LVAR_special_encounter_holy1,'<',1).AssignLVar(LVAR_special_encounter_holy1,'=',1);
 	table.AddEncounter(  1, 10047790).Special(true).LocationPid(LOCATION_SpecialWoodsmanEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_woodsman,'<',1).AssignLVar(LVAR_special_encounter_woodsman,'=',1);
 	table.AddEncounter(  1, 10047800).Special(true).LocationPid(LOCATION_SpecialUnwashedEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_unwashed,'<',1).AssignLVar(LVAR_special_encounter_unwashed,'=',1);
+	table.AddEncounter(  1, 10034820).Special(true).LocationPid(LOCATION_SpecialZergEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_zerg_laboratory,'<',1).AssignLVar(LVAR_special_zerg_laboratory,'=',1);
 /*lookup_name=Red_D                                                         ; Area around Redding
 maps=Desert Encounter 4, Desert Encounter 5, Desert Encounter 6, Desert Encounter 9, Desert Encounter 7
 enc_00=Chance:2%,Counter:1,Special,Map:Special Toxic Encounter,Enc:Special1, If(Player(Level) > 5) , If(Global(607) < 1)

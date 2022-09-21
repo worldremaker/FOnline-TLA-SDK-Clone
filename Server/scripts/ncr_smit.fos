@@ -497,23 +497,13 @@ void OnExitDwnTnPlaneEnd(Critter & smit)
 			if(critters[i].GetTalkedPlayers(null) > 0)
 			{
 				GameVar @ qVar = GetLocalVar(LVAR_ncr_smit_vs_vestin_status, smit.StatBase[ST_VAR7]);
-				if(valid(qVar))
-				{
-					if (qVar.GetValue()==2) qVar = 3;
-					Critter @ cr = GetCritter(smit.StatBase[ST_VAR7]);
-					if (valid(cr)) cr.SendQuestVar(qVar);
-				}
+				if(valid(qVar) && qVar.GetValue()==2) qVar = 3;
 				smit.ModeBase[MODE_HIDE] = 0;
 				Smit2Ranch(smit);
 				return;
 			}else{
 				GameVar @ qVar = GetLocalVar(LVAR_ncr_smit_vs_vestin_status, smit.StatBase[ST_VAR7]);
-				if(valid(qVar))
-				{
-					if (qVar.GetValue()==2) qVar = 6;// провал
-					Critter @ cr = GetCritter(smit.StatBase[ST_VAR7]);
-					if (valid(cr)) cr.SendQuestVar(qVar);
-				}
+				if(valid(qVar) && qVar.GetValue()==2) qVar = 6;// провал
 				smit.StatBase[ST_VAR7] = critters[i].Id;
 				smit.StatBase[ST_VAR2] = STR_FIRST_GRANT;
 				plane_SayNexPolicePhrase(smit);

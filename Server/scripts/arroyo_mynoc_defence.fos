@@ -172,12 +172,8 @@ void StartQuest( Critter& player, uint stage )
 			// Если в группе есть НПС - пропускаем его
 			if ( group[i].IsNpc() ) continue;
 			GameVar@ quest = GetLocalVar( LVAR_q_arroyo_mynoc_defence, group[i].Id );
-			if ( valid(quest) ) {
-				if ( quest.GetValue() == 0 || quest.GetValue() == 4 || quest.GetValue() == 8 ){
-					quest = 1;
-					player.SendQuestVar( quest );
-				}
-			}
+			if ( valid(quest) )
+				if ( quest.GetValue() == 0 || quest.GetValue() == 4 || quest.GetValue() == 8 ) quest = 1;
 		}
 	} else if ( stage == 2 ){
 		Location@ camp = _GetRaidersForce( group );
@@ -191,12 +187,7 @@ void StartQuest( Critter& player, uint stage )
 			// Если в группе есть НПС - пропускаем его
 			if ( group[i].IsNpc() ) continue;
 			GameVar@ quest = GetLocalVar( LVAR_q_arroyo_mynoc_defence, group[i].Id );
-			if ( valid(quest) ) {
-				if ( quest.GetValue() == 2 ){
-					quest = 3;
-					player.SendQuestVar( quest );
-				}
-			}
+			if ( valid(quest) && quest.GetValue() == 2 ) quest = 3;
 		}
 	} else {
 		return;
@@ -273,12 +264,8 @@ void DeleteRaidersCamp( bool isFail )
 					if ( isFail ){
 						// Если на данный момент у игрока задание всё ещё на стадии выполнения - устанавливаем провал.
 						GameVar@ quest = GetLocalVar( LVAR_q_arroyo_mynoc_defence, player.Id );
-						if ( valid(quest) ) {
-							if ( quest.GetValue() == 1 || quest.GetValue() == 2 || quest.GetValue() == 3 || quest.GetValue() == 5 ){
-								quest = 8;
-								player.SendQuestVar( quest );
-							}
-						}
+						if ( valid(quest) )
+							if ( quest.GetValue() == 1 || quest.GetValue() == 2 || quest.GetValue() == 3 || quest.GetValue() == 5 ) quest = 8;
 					}
 				}
 			}

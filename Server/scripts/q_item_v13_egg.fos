@@ -19,7 +19,7 @@ void _EggInit(Item& egg, bool firstTime)
 	//egg.SetEvent( ITEM_EVENT_SKILL,	"e_EggScience" );
 	egg.SetEvent( ITEM_EVENT_FINISH,	"e_EggFinish" );
 	egg.Update();
-	
+
 }
 
 
@@ -93,17 +93,9 @@ bool SetQuestStageById( int playerId, int stage )
 {
 
 	GameVar@ quest = GetLocalVar( LVAR_q_v13_dclaweggs, playerId );
-	if ( valid(quest) ) {
-		if ( quest.GetValue() != stage ){
-			quest = stage;
-			Critter@ player = GetCritter( playerId );
-			if ( valid( player ) ) {
-				if ( player.IsPlayer() ) {
-					player.SendQuestVar( quest );
-				}
-			}
-			return true;
-		}
+	if ( valid(quest) && quest.GetValue() != stage ){
+		quest = stage;
+		return true;
 	}
 	return false;
 
@@ -130,11 +122,11 @@ bool e_EggScience( Item& item, Critter& player, int skill )
 		//player.ShowScreen( SCREEN_DIALOGBOX, );
 
 		ShowDialog( player );
-		
+
 	}
-	
+
 	return false;
-	
+
 }
 void ShowDialog( Critter& player )
 {
@@ -151,9 +143,9 @@ void ShowDialog( Critter& player )
 void answer_EatEgg( Critter& player, uint answerI, string& answerS )
 {
 	if ( answerI != 0 ) return;
-	
+
 		item
-		
+
 		if ( item.Val4 == player.Id ){
 
 			player.StatBase[ST_EXPERIENCE] += player.Skill[SK_SCIENCE] * 10;
@@ -168,7 +160,7 @@ void answer_EatEgg( Critter& player, uint answerI, string& answerS )
 			return true;
 
 		}
-	
+
 }*/
 
 /*

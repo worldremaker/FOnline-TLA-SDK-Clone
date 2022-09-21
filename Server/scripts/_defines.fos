@@ -1100,6 +1100,8 @@
 #define CRTYPE_LHD_LEATHER_JACKET   (108)
 #define CRTYPE_LHD_METAL_ARMOR      (109)
 #define CRTYPE_LHD_TRIBAL           (110)
+	// Other
+#define CRTYPE_VAULT_BOY            (249)
 
 // Global map events
 #define GLOBAL_PROCESS_MOVE         (0)

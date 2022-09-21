@@ -57,19 +57,12 @@ void _WaspDead(Critter& cr, Critter@ killer)
 		for(uint i = 0, l = players.length(); i < l; i++)
 		{
 			GameVar@ qVar = GetLocalVar(LVAR_q_mod_joe_giant_wasp, players[i].Id);
-			if(valid(qVar))
-			{
-				if(qVar.GetValue() == 1)
-				{
-					qVar = 2;
-					players[i].SendQuestVar(qVar);
-				}
-			}
+			if(valid(qVar) && qVar.GetValue() == 1) qVar = 2;
 		}
 	}
 	Location@ loc = map.GetLocation();
 	if(valid(loc))
-		loc.AutoGarbage = true;	
+		loc.AutoGarbage = true;
 }
 
 void _WaspMessage(Critter& cr, Critter& fromCr, int message, int value)

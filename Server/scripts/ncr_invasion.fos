@@ -150,14 +150,7 @@ void _RaiderDead(Critter& cr, Critter@ killer)
 	if (killer.IsPlayer())
 	{
 		GameVar @ qVar = GetLocalVar(LVAR_q_ncr_elize_invasion, killer.Id);
-		if(valid(qVar))
-		{
-			if (qVar.GetValue()==1)
-			{
-				qVar = 2;
-				killer.SendQuestVar(qVar);
-			}
-		}
+		if(valid(qVar) && qVar.GetValue()==1) qVar = 2;
 	}
 	// проверка, если все рейдеры мертвы, присваиваем всем игрокам статус квеста: выполнено
 	Map @ map = cr.GetMap();
@@ -185,7 +178,6 @@ void _RaiderDead(Critter& cr, Critter@ killer)
 			if(!valid(pVar)) continue;
 			if(pVar.GetValue()!=2) continue;
 			pVar = 3;
-			players[i].SendQuestVar(pVar);
 		}
 	}
 	DefineInvasionEvent();

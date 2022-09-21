@@ -266,7 +266,6 @@ uint e_TimeToBroadcast(uint[]@ values)
 				if(qVar.GetValue()==1)
 				{
 					qVar = 2;
-					player.SendQuestVar( qVar );
 					message_counter=MAX_SESSION_MESSAGES; // Только один игрок в сутки
 				}
 			}

@@ -21,6 +21,5 @@ void _DantonDead(Critter& danton, Critter@ player)
 	if(var != 1) return;
 
 	var = 2;
-	player.SendQuestVar(var);
 	danton.EraseEnemyFromStack(player.Id);
 }

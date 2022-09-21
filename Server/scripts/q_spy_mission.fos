@@ -233,9 +233,6 @@ class SpyControl
 					if(qVar.GetMax()>=PLAYER_Q_ST_FAILLEFT&&qVar.GetValue()==PLAYER_Q_ST_BEGINCATCH)
 					{
 						qVar = PLAYER_Q_ST_FAILLEFT;
-
-						Critter @player = GetCritter(this.sneakerIds[i]);
-						if(valid(player)) player.SendQuestVar(qVar);
 					}
 				}
 			}
@@ -253,9 +250,6 @@ class SpyControl
 				if(qVar.GetMax()>=PLAYER_Q_ST_CATCHED&&qVar.GetValue()==PLAYER_Q_ST_BEGINCATCH)
 				{
 					qVar = PLAYER_Q_ST_CATCHED;
-
-					Critter @player = GetCritter(this.sneakerIds[i]);
-					if(valid(player)) player.SendQuestVar(qVar);
 				}
 			}
 		}
@@ -315,9 +309,6 @@ class SpyControl
 					if(qVar.GetMax()>=PLAYER_Q_ST_COMPLETE&&qVar.GetValue()==PLAYER_Q_ST_BEGINCATCH)
 					{
 						qVar = PLAYER_Q_ST_COMPLETE;
-						Critter @player = GetCritter(this.sneakerIds[i]);
-						if(valid(player)) player.SendQuestVar(qVar);
-					// group[i].SendQuestVar(qVar)
 					}
 				}
 			}

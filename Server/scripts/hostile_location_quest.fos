@@ -188,13 +188,8 @@ class HostileLocationInfo
 	void ResetQuest()
 	{
 		GameVar@ qVar = GetLocalVar(this.PlayerId, this.QVarNum);
-		if(valid(qVar))
-		{
-			qVar = QUEST_FAIL_LOC_DELETED;
-			Critter@ cr = GetCritter(this.PlayerId);
-			if(valid(cr))
-				cr.SendQuestVar(qVar);
-		}
+		if(valid(qVar)) qVar = QUEST_FAIL_LOC_DELETED;
+
 		if(this.CVarNum != 0) // —брос счетчика, если назначен
 		{
 			GameVar@ status = GetLocalVar(this.PlayerId, this.CVarNum);
@@ -211,14 +206,9 @@ class HostileLocationInfo
 	{
 		DL("complete quest called");
 		GameVar@ qVar = GetLocalVar(this.QVarNum, this.PlayerId);
-		if(valid(qVar))
-		{
-			qVar = QUEST_COMPLETE;
-			Critter@ cr = GetCritter(this.PlayerId);
-			if(valid(cr))
-				cr.SendQuestVar(qVar);
-		}
-			DL("counter quest called");
+		if(valid(qVar)) qVar = QUEST_COMPLETE;
+
+		DL("counter quest called");
 		if(this.CVarNum != 0) // ”становка счетчика, если назначен
 		{
 			GameVar@ status = GetLocalVar(this.CVarNum, this.PlayerId);

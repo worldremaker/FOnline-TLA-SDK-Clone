@@ -92,8 +92,6 @@ void SetQuestState(uint playerId, uint state)
 	GameVar@ var = GetLocalVar(LVAR_q_klam_danton_bramin, playerId);   if (not valid(var)) { Log("ERROR: not valid GameVar ¹" + LVAR_q_klam_danton_bramin); return; }
 
 	var = state;
-	Critter@ player = GetCritter(playerId);                            if(not valid(player)) return;
-	player.SendQuestVar(var);
 }
 
 uint GetQuestState(uint playerId)

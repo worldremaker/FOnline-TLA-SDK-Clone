@@ -7,9 +7,9 @@
 #define BASE_LOC_PID1				(LOCATION_Vault15)//9 - эталонная начальная точка маршрута - используется при расчете экспы
 #define BASE_LOC_PID2				(LOCATION_NCR) //10 - эталонная конечная точка маршрута - используется при расчете экспы
 #define BASE_XP_LVL1				(500) // эталонная экспа первого уровня
-#define BASE_XP_LVL2				(750) 
-#define BASE_XP_LVL3				(950) 
-#define BASE_XP_LVL4				(1200) 
+#define BASE_XP_LVL2				(750)
+#define BASE_XP_LVL3				(950)
+#define BASE_XP_LVL4				(1200)
 #define LOC_NAME #(mapId)   		((mapId + 100) * 1000 )// поиск названия локации в файле FOGM.msg
 #define NPC_NAME #(dialogId)   		((dialogId)*1000+100)// поиск имени НПЦ в файле FODLG.msg
 
@@ -137,7 +137,7 @@ class LetterInfo
 		item.SetLexems(this.GetLetterLexems());
 		item.Update();
 	}
-	
+
 	// лексемы для адреса/получателя письма
 	string GetLetterLexems()
 	{
@@ -191,10 +191,10 @@ float MeasureDist(uint pidLocFrom, uint pidLocTo)
 bool _OnMailUseOnCritter(Item& item, Critter& cr, Critter@ onCritter, Item@ onItem, Scenery@ onScenery)
 {
 	if (!valid(onCritter) || onCritter.IsDead())
-		return false;	
+		return false;
 	LetterInfo@li = LetterInfo(item);
 	Map@ map = onCritter.GetMap();
-	if(!valid(map)) 
+	if(!valid(map))
 		return false;
 	Location@ loc = map.GetLocation();
 	if(!valid(loc))
@@ -222,14 +222,7 @@ void _OnItemDrop(Item& item, Critter& cr)
 	// если игрок выбрасывает письмо, переключаем квестовую переменную и стираем информацию о почтальоне
 	// можно было бы и не стирать, но в этом случае игрок может накопить тонну конвертов и потом их сдавать оптом - мгновенная прокачка до космических высот
 	GameVar@qVar = GetLocalVar(LVAR_q_mail_delivery, cr.Id);
-	if (valid(qVar))
-	{
-		if (qVar.GetValue() == 1)
-		{
-			qVar = 2;
-			cr.SendQuestVar(qVar);
-		}
-	}
+	if (valid(qVar) && qVar.GetValue() == 1) qVar = 2;
 	LetterInfo@ li = LetterInfo(item);
 	if (li.PlayerID == cr.Id)
 	{
@@ -242,7 +235,7 @@ void _OnItemDrop(Item& item, Critter& cr)
 void _LetterInit(Item& letter, bool firstTime)
 {
 	LetterInfo@ li = LetterInfo(letter);
-	// letter.SetEvent(ITEM_EVENT_DROP, "_OnItemDrop"); отменено 
+	// letter.SetEvent(ITEM_EVENT_DROP, "_OnItemDrop"); отменено
 	letter.SetEvent(ITEM_EVENT_USE, "_OnMailUseOnCritter");
 	letter.Update();
 }
@@ -298,7 +291,7 @@ void r_GrantPlayer(Critter& player, Critter@ npc_null, int needMoney)
 	crVar = 0;
 	if (!valid(npc) || !npc.IsLife() || player.CountItem(PID_POSTMAN_LETTER) == 0)
 		return;
-		
+
 	// писем может быть несколько, нам нужно именно наше
 	Item@[] items;
 	player.GetItems(-1, items);
@@ -321,14 +314,7 @@ void r_GrantPlayer(Critter& player, Critter@ npc_null, int needMoney)
 				if (li.PlayerID == player.Id)
 				{
 					GameVar@qVar = GetLocalVar(LVAR_q_mail_delivery, player.Id);
-					if (valid(qVar))
-					{
-						if (qVar.GetValue() > 0 && qVar.GetValue() < 3)
-						{
-							qVar = 3;
-							player.SendQuestVar(qVar);
-						}
-					}
+					if (valid(qVar) && qVar.GetValue() > 0 && qVar.GetValue() < 3) qVar = 3;
 				}
 				// все проверки закончены, итем удален
 				// выдаем награду

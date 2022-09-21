@@ -50,8 +50,8 @@ void _TankerShowCritter1(Critter& cr, Critter& player)
 {
 	if(!player.IsPlayer()) return;
 	if(player.Id==uint(cr.Stat[ST_VAR5])&&IsCleanMan(player))
-	{		
-		return;	
+	{
+		return;
 	}
 	_ShowPlayer(cr,player);
 }
@@ -64,14 +64,7 @@ void _TankerDead(Critter& cr, Critter@ killer)
 		if(killer.IsPlayer())
 		{
 			GameVar @qVar = GetLocalVar(LVAR_q_sf_ron_kill_beasts, killer.Id);
-			if(valid(qVar))
-			{
-				if(qVar.GetValue()==1)
-				{
-					qVar = 2;
-					killer.SendQuestVar(qVar);
-				}
-			}
+			if(valid(qVar) && qVar.GetValue()==1) qVar = 2;
 		}
 	}
 	Map @ map = cr.GetMap();
@@ -90,18 +83,11 @@ void _TankerDead(Critter& cr, Critter@ killer)
 				if(valid(player))
 				{
 					@status = GetLocalVar(LVAR_q_sf_ron_kill_beasts, player.Id);
-					if(valid(status))
-					{
-						if(status.GetValue()==2)
-						{
-							status = 3;
-							player.SendQuestVar(status);
-						}
-					}
+					if(valid(status) && status.GetValue()==2) status = 3;
 				}
 			}
 		}
-	}	
+	}
 }
 
 void _TankerIdle(Critter & cr)
@@ -122,7 +108,7 @@ void _TankerIdle(Critter & cr)
 					if(valid(map))
 					{
 						uint16 hX = player.HexX;
-						uint16 hY = player.HexY;					
+						uint16 hY = player.HexY;
 						if(GetFreeHex(map, 2, hX, hY))
 						{
 							AddWalkPlane(cr, 0, hX, hY, 6, false, 0);
@@ -151,7 +137,7 @@ void _TankerInCritter(Map& map, Critter& cr)
 	}
 }
 
-// ѕроверка - персонаж не подлежит атаке. 
+// ѕроверка - персонаж не подлежит атаке.
 bool IsCleanMan(Critter & player)
 {
 	if(!player.IsPlayer()) return false;
@@ -187,23 +173,22 @@ void _SmthUseSkill(Critter& cr, Critter& fromCr, int skill, Critter@ onCritter, 
 	if(qVar.GetValue()>0&&qVar.GetValue()<5&&status.GetValue()==0)
 	{
 		qVar=qVar.GetValue()+1;
-		fromCr.SendQuestVar(qVar);
-		status = 1;		
-		
+		status = 1;
+
 		GameVar @ centNoticed = GetLocalVar(LVAR_sf_tanker_centaur_noticed, fromCr.Id);
 		GameVar @ flotNoticed = GetLocalVar(LVAR_sf_tanker_floater_noticed, fromCr.Id);
-		
+
 		if(valid(centNoticed)&&valid(flotNoticed))
 		{
 			if(centNoticed.GetValue()==0&&Random(1,150)<fromCr.Skill[SK_SCIENCE])
 			{
-				centNoticed = 1;				
+				centNoticed = 1;
 			}
 			if(flotNoticed.GetValue()==0&&Random(1,150)<fromCr.Skill[SK_DOCTOR])
 			{
-				flotNoticed = 1;				
+				flotNoticed = 1;
 			}
 		}
-		
+
 	}
 }

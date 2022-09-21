@@ -57,6 +57,7 @@
 #define LOCATION_SpecialSoldierHolo                 (70)
 #define LOCATION_SpecialTrapperHolo                 (71)
 #define LOCATION_SpecialDollHolo                    (72)
+#define LOCATION_SpecialZergEncounter               (73)
 
 #define LOCATION_DesertEncounter1                   (101)
 #define LOCATION_DesertEncounter2                   (102)

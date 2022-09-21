@@ -81,9 +81,7 @@ int GlobalWanCountLow;
 void SetQuestState(Critter& player, int Status)
 {
 	GameVar@ quest = GetLocalVar(LVAR_q_redd_marion_wan, player.Id);
-	if (not valid(quest)) return;
-	quest=Status;
-	player.SendQuestVar(quest);
+	if (valid(quest)) quest=Status;
 }
 
 int GetQuestState(Critter& player)

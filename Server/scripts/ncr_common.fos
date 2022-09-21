@@ -640,7 +640,6 @@ void r_BeginQuest(Critter& player, Critter@ npc)
 	if(!valid(qVar)) return;
 	if(qVar==QST_BEGIN) return;
 	qVar = QST_BEGIN;
-	player.SendQuestVar(qVar);
 	for(int i = VAR_FIRST_BOOK_ACCESS;i<=VAR_LAST_BOOK_ACCESS;i++)
 	{
 		GameVar @ access = GetLocalVar(i, player.Id);
@@ -685,7 +684,6 @@ void r_EndQuest(Critter& player, Critter@ npc, int noAward)
 	}
 	player.DeleteItem(PID_HUBOLOGIST_BOOK, bookCount);
 	qVar = QST_END;
-	player.SendQuestVar(qVar);
 	player.StatBase[ST_EXPERIENCE]+=GET_XP(sumCost,XP_BASE(player.Stat[ST_LEVEL]));
 	if(counter>5&&noAward>0)
 	{

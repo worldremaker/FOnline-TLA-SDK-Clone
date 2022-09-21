@@ -40,15 +40,14 @@ void ChangeCrittersQuest(uint[]& questCrIds, uint16 varId, int newVal, uint exp)
 	for(uint i=0,j=questCrIds.length();i<j;i++)
 	{
 		uint crId=questCrIds[i];
-		Critter@ cr=GetCritter(crId);
 		GameVar@ quest=GetLocalVar(varId,crId);
 		if(valid(quest))
 		{
 			quest=newVal;
-			if(valid(cr))
+			if(exp>0)
 			{
-				cr.SendQuestVar(quest);
-				if(exp>0) cr.StatBase[ST_EXPERIENCE]+=exp;
+				Critter@ cr=GetCritter(crId);
+				if(valid(cr)) cr.StatBase[ST_EXPERIENCE]+=exp;
 			}
 		}
 	}
@@ -188,9 +187,6 @@ uint ProcessMainQuest(Critter& player, int newVal)
 			crQuestSub2=SUBQUEST2_GOLDEN_GLOBES;
 			crQuestOther=0;
 			crQuestDataId=player.Id;
-			cr.SendQuestVar(crQuestMain);
-			cr.SendQuestVar(crQuestSub1);
-			cr.SendQuestVar(crQuestSub2);
 		}
 	}
 	// Выполнение

@@ -1,7 +1,7 @@
 #ifndef __VARS__
 #define __VARS__
 /*************************************************************************************
-***  VARS  *****  COUNT: 00000461  ***************************************************
+***  VARS  *****  COUNT: 00000462  ***************************************************
 *************************************************************************************/
 
 
@@ -398,6 +398,7 @@
 #define LVAR_special_soldier_holo                    (5624)
 #define LVAR_special_trapper_holo                    (5625)
 #define LVAR_special_doll_holo                       (5626)
+#define LVAR_special_zerg_laboratory                 (5627)
 #define LVAR_fixboy_power_armor                      (6000)
 #define LVAR_fixboy_700_nitro_express                (6001)
 #define LVAR_fixboy_ammo_press_operator              (6002)
@@ -3877,6 +3878,11 @@ $	5625	1	special_trapper_holo	0	0	1	0
 $	5626	1	special_doll_holo	0	0	1	0
 **********
 ѕризнак, игрок нашел локацию c третьим голодиском
+**********
+
+$	5627	1	special_zerg_laboratory	0	0	1	0
+**********
+Ћокальна€, признак, посетил ли игрок специальную локацию "Zerg's Laboratory".
 **********
 
 $	6000	1	fixboy_power_armor	0	0	1	0

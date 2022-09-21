@@ -46,12 +46,9 @@ bool SetQuestStage( Critter& player, int stage )
 	if ( !valid( player ) ) return false;
 	if ( !player.IsPlayer() ) return false;
 	GameVar@ quest = GetLocalVar( LVAR_q_v13_dclaw, player.Id );
-	if ( valid(quest) ) {
-		if ( quest.GetValue() != stage ){
-			quest = stage;
-			player.SendQuestVar( quest );
-			return true;
-		}
+	if ( valid(quest) && quest.GetValue() != stage ){
+		quest = stage;
+		return true;
 	}
 	return false;
 

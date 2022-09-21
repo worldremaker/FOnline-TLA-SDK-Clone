@@ -47,7 +47,6 @@ void _CampOutCritter( Map& camp, Critter& player ){
 			if ( valid(quest) ) {
 				if ( quest.GetValue() == 1 ){
 					quest = 2;
-					player.SendQuestVar( quest );
 					// ƒелим опыт на всю банду.
 					uint Exp = 6000 / LastGoupArrDef.length();
 					if ( Exp % 10 <= 5 ) {
@@ -60,7 +59,6 @@ void _CampOutCritter( Map& camp, Critter& player ){
 					player.ReputationBase[REPUTATION_ARROYO] += 1;
 				} else if ( quest.GetValue() == 3 ){
 					quest = 6;
-					player.SendQuestVar( quest );
 					// ƒелим опыт на всю банду.
 					uint Exp = 9000 / LastGoupArrDef.length();
 					if ( Exp % 10 <= 5 ) {

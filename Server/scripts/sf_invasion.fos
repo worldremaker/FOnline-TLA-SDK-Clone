@@ -172,19 +172,11 @@ void _Dead(Critter& cr, Critter@ killer)
 	{
 		if(killer.IsNpc()) return;
 		uint pid = cr.GetProtoId();
-		if(pid==NPC_PID_GiantWasp||pid==NPC_PID_GiantBeetle)
+		if(pid==NPC_PID_GiantWasp || pid==NPC_PID_GiantBeetle)
 		{
 			GameVar @ qVar = GetLocalVar(LVAR_q_sf_invasion_mirelurk_kills,killer.Id);
-			if(valid(qVar))
-			{
-				if(qVar>0&&qVar<6)
-				{
-					qVar=qVar+1;
-					killer.SendQuestVar(qVar);
-				}
-			}
+			if(valid(qVar) && qVar>0 && qVar<6) qVar=qVar+1;
 		}
-
 	}
 }
 
