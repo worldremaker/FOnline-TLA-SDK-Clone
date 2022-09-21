@@ -227,17 +227,6 @@ uint __GlobalMapMaxGroupCount;
  */
 //@{
 
-/** \~russian Обязательный переход диалога.
- *
- * Эта переменная может быть использована только в функциях,
- * вызываемых из диалогового результата или условий в преддиалоговых установках.
- * Перед началом выполнения результатов она обнуляется. После, если она больше нуля,
- * то производится переход по указанному номеру диалога. Значения меньше нуля
- * интерпретируются как выполнение специальный действий. См. @link DialogLinks Dialog links@endlink.
- *
- */
-uint __ForceDialog;
-
 /** \~russian Опыт, даваемый за крафт по умолчанию. */
 uint __FixBoyDefaultExperience;
 
@@ -816,6 +805,24 @@ bool SetParameterGetBehaviour(uint index, string& funcName);
  *
  */
 bool SetParameterChangeBehaviour(uint index, string& funcName);
+
+/** \~russian Позволяет разрешить пересылку клиенту параметров других персонажей,
+ *            по-умолчанию отправка всех параметров выключена.
+ *
+ * @see     Critter::Param
+ * @see     Critter::ParamBase
+ *
+ */
+void SetSendParameter(int index, bool enabled);
+
+/** \~russian Позволяет запретить пересылку клиенту параметров активного персонажа,
+ *            по-умолчанию отправка всех параметров включена.
+ *
+ * @see     Critter::Param
+ * @see     Critter::ParamBase
+ *
+ */
+void SetChosenSendParameter(int index, bool enabled);
 
 //@}
 

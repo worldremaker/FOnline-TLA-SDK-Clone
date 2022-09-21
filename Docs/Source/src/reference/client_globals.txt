@@ -305,11 +305,11 @@ void RunServerScript(string& funcName, int p0, int p1, int p2, string@+ p3, int[
  *
  * Сигнатура вызываемой функции:
  * @code
- * void _FuncName_unsafe(Critter& player, int param0, int param1, int param2, string@ param3, int[]@ param4)
+ * void unsafe_FuncName(Critter& player, int param0, int param1, int param2, string@ param3, int[]@ param4)
  * @endcode
  * @arg @a player Игрок, который вызвал функцию.
  *
- * Постфикс "_unsafe" в имени функции обязателен.
+ * Префикс "unsafe_" в имени функции обязателен.
  *
  * @attention Помните, что при взломе клиента хакер сможет вызывать данные функции
  *            в любое время в любом количестве и с любыми передаваемыми параметрами.

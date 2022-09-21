@@ -6,7 +6,6 @@
  * \~english Dialog special actions.
  *
  * \~
- * @see      __ForceDialog
  *
  */
 /*@{*/

@@ -489,7 +489,8 @@
 #define TO_SK_SCIENCE               (233) // Hardcoded
 #define TO_SK_LOCKPICK              (234)
 #define TO_SK_STEAL                 (235)
-// 236..237
+#define TO_SK_OUTDOORSMAN           (236)
+// 237
 #define TO_BATTLE                   (238) // Hardcoded
 #define TO_TRANSFER                 (239) // Hardcoded
 #define TO_REMOVE_FROM_GAME         (240) // Hardcoded
