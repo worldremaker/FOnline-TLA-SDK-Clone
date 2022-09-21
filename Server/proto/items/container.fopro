@@ -1639,7 +1639,7 @@ Weight=226796
 Volume=1
 SoundId=65
 Material=1
-DrawPosOffsY=7
+DrawOrderOffsetHexY=7
 Container.ContVolume=500
 
 [Proto]
@@ -1653,7 +1653,7 @@ Weight=226796
 Volume=1
 SoundId=65
 Material=1
-DrawPosOffsY=3
+DrawOrderOffsetHexY=3
 Container.ContVolume=200
 
 [Proto]
@@ -1667,7 +1667,7 @@ Weight=226796
 Volume=1
 SoundId=65
 Material=1
-DrawPosOffsY=2
+DrawOrderOffsetHexY=2
 Container.ContVolume=50
 
 [Proto]
@@ -1681,7 +1681,7 @@ Weight=226796
 Volume=1
 SoundId=65
 Material=1
-DrawPosOffsY=1
+DrawOrderOffsetHexY=1
 Container.ContVolume=100
 
 [Proto]
@@ -1695,6 +1695,5 @@ Weight=300000
 Volume=1
 SoundId=65
 Material=1
-DrawPosOffsY=1
 Container.ContVolume=200
 

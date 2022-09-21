@@ -86,7 +86,6 @@ bool start()
 	SetSendParameter(MODE_NO_STEAL,true);
 	SetSendParameter(MODE_NO_LOOT,true);
 	SetSendParameter(MODE_NO_FLATTEN,true);
-	SetSendParameter(MODE_NO_AIM,true);
 	// 3d animation layers
 	//for(uint i=ST_ANIM3D_LAYERS;i<=ST_ANIM3D_LAYERS+15;i++) SetSendParameter(i,true); // From Skin to Backpack
 	// Npc talk distance

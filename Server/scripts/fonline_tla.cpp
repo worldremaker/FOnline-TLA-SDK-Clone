@@ -378,22 +378,22 @@ EXPORT bool Critter_IsOverweight(CritterMutual& cr)
 
 EXPORT bool Item_Weapon_IsHtHAttack(Item& item, uint8 mode)
 {
-	if(!item.IsWeapon() || !item.WeapIsUseAviable(mode & 3)) return false;
-	int skill = SKILL_OFFSET(item.Proto->Weapon.Skill[mode & 3]);
+	if(!item.IsWeapon() || !item.WeapIsUseAviable(mode & 7)) return false;
+	int skill = SKILL_OFFSET(item.Proto->Weapon.Skill[mode & 7]);
 	return skill == SK_UNARMED || skill == SK_MELEE_WEAPONS;
 }
 
 EXPORT bool Item_Weapon_IsGunAttack(Item& item, uint8 mode)
 {
-	if(!item.IsWeapon() || !item.WeapIsUseAviable(mode & 3)) return false;
-	int skill = SKILL_OFFSET(item.Proto->Weapon.Skill[mode & 3]);
+	if(!item.IsWeapon() || !item.WeapIsUseAviable(mode & 7)) return false;
+	int skill = SKILL_OFFSET(item.Proto->Weapon.Skill[mode & 7]);
 	return skill == SK_SMALL_GUNS || skill == SK_BIG_GUNS || skill == SK_ENERGY_WEAPONS;
 }
 
 EXPORT bool Item_Weapon_IsRangedAttack(Item& item, uint8 mode)
 {
-	if(!item.IsWeapon() || !item.WeapIsUseAviable(mode & 3)) return false;
-	int skill = SKILL_OFFSET(item.Proto->Weapon.Skill[mode & 3]);
+	if(!item.IsWeapon() || !item.WeapIsUseAviable(mode & 7)) return false;
+	int skill = SKILL_OFFSET(item.Proto->Weapon.Skill[mode & 7]);
 	return skill == SK_SMALL_GUNS || skill == SK_BIG_GUNS || skill == SK_ENERGY_WEAPONS || skill == SK_THROWING;
 }
 

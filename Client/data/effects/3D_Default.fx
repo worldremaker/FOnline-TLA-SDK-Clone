@@ -40,8 +40,10 @@ VS_3D_OUTPUT VSSimpleNormal(VS_3D_SIMPLE_INPUT input)
 	float3 pos    = mul(input.Pos, WorldMatrices[0]);
 	float3 normal = normalize(mul(input.Normal, WorldMatrices[0]));
 
-	// Calculate shadow position
+	// Calculate position
 	output.Pos = mul(float4(pos.xyz, 1.0f), ProjectionMatrix);
+
+	// Calculate color
 	output.Diffuse.rgb = MaterialAmbient.rgb + max(0.0f, dot(normal, LightDir.rgb)) * MaterialDiffuse.rgb;
 	output.Diffuse.rgb *= LightDiffuse.rgb;
 	output.Diffuse.a = 1.0f;

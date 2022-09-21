@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 18.11.2010
-// Server version 379, MSVS2008
+// Last update 22.11.2010
+// Server version 384, MSVS2008
 // Default calling convention - cdecl
 //
 
@@ -529,6 +529,7 @@ struct ProtoItem
 	int16  OffsetY;
 	int8   DrawPosOffsY;
 	uint8  SpriteCut;
+	int8   DrawOrderOffsetHexY;
 
 	// Radio
 	uint16 RadioChannel;
