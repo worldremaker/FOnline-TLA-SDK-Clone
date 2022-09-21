@@ -49,7 +49,7 @@ uint8 GetEncounterType(Map& map)
 	if(pid >= LOCATION_CavernEncounter0&&pid<=LOCATION_CavernEncounter5) return ETYPE_MOUNTAINS;
 	if(pid >= LOCATION_CityEncounter1&&pid<=LOCATION_CityEncounter8) return ETYPE_CITY;
 	if(pid >= LOCATION_CoastEncounter1&&pid<=LOCATION_CoastEncounter11) return ETYPE_COAST;
-	if(pid >= LOCATION_OceanEncounter1&&pid<=LOCATION_OceanEncounter5) return ETYPE_OCEAN;
+	if(pid >= LOCATION_OceanEncounter1&&pid<=LOCATION_OceanEncounter3) return ETYPE_OCEAN;
 
 	return ETYPE_DEFAULT;
 }

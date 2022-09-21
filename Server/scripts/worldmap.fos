@@ -39,6 +39,7 @@ import void GenerateCavernEncounter(Map@ map, Critter@[]@ critters) from "cave_m
 #define TERRAIN_Mountain                       (1)
 #define TERRAIN_City                           (2)
 #define TERRAIN_Ocean                          (3)
+#define TERRAIN_Water                          (4)
 
 #define FILL_No_Fill                           (0)
 #define FILL_Fill_W                            (1)
@@ -184,7 +185,12 @@ uint[][] PositionDirs={
 #define GROUP_SF_Mirelurk                      (110)
 #define GROUP_NCR_Patrol_Rebels                (111)
 #define GROUP_NCR_Patrol_Raiders               (112)
-#define GROUP_MAX                              (113)
+#define GROUP_OCEAN_W_Voles_Low                (113)
+#define GROUP_OCEAN_W_Voles_High               (114)
+#define GROUP_OCEAN_W_Voles_Mutated            (115)
+#define GROUP_OCEAN_Mantis                     (116)
+#define GROUP_OCEAN_Wasps                      (117)
+#define GROUP_MAX                              (118)
 
 #define TABLE_DstN                             (0)
 #define TABLE_DstS                             (1)
@@ -262,7 +268,9 @@ uint[][] PositionDirs={
 #define TABLE_NCR_D                            (73)
 #define TABLE_V15_M                            (74)
 #define TABLE_V15_D                            (75)
-#define TABLE_MAX                              (76)
+#define TABLE_Ocean1_O                         (76)
+#define TABLE_Ocean2_O                         (77)
+#define TABLE_MAX                              (78)
 
 
 class CCheck

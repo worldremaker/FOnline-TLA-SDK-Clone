@@ -110,8 +110,8 @@
 #define LOCATION_OceanEncounter1                    (193)
 #define LOCATION_OceanEncounter2                    (194)
 #define LOCATION_OceanEncounter3                    (195)
-#define LOCATION_OceanEncounter4                    (196)
-#define LOCATION_OceanEncounter5                    (197)
+#define LOCATION_OceanRaft                          (196)
+#define LOCATION_OceanTrader                        (197)
 
 //#define LOCATION_BessDead                         (201)
 #define LOCATION_Wanamingo_Cavern                   (202)

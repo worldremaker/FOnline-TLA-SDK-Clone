@@ -29,7 +29,7 @@
 {111}{}{PID_5MM_AP@Подключите свой Фикс-Бой к автоматическому станку и выберите программу "Патроны 5 мм, бронебойные".@@SK_SMALL_GUNS 50&SK_SCIENCE 50&SK_REPAIR 50@PID_GUNPOWDER 1&PID_METAL_TRASH 1&PID_STEEL 1@@PID_5MM_AP 20@exp 50 script fix_boy@fix_AnyRounds}
 {112}{}{PID_45_CALIBER_AMMO@Подключите свой Фикс-Бой к автоматическому станку и выберите программу "Патроны калибра 0.45".@@SK_SMALL_GUNS 50&SK_SCIENCE 50&SK_REPAIR 50@PID_GUNPOWDER 1&PID_METAL_TRASH 2@@PID_45_CALIBER_AMMO 20@exp 50 script fix_boy@fix_AnyRounds}
 {113}{}{PID_7_62MM_AMMO@Подключите свой Фикс-Бой к автоматическому станку и выберите программу "Патроны калибра 7,62, цельнометаллические".@@SK_SMALL_GUNS 50&SK_SCIENCE 50&SK_REPAIR 50@PID_GUNPOWDER 1&PID_METAL_TRASH 2@@PID_7_62MM_AMMO 20@exp 50 script fix_boy@fix_AnyRounds}
-{114}{}{PID_700_CAL@Понадобятся некоторые познания в электронике и баллистике для того, чтобы запрограммировать станок на производство этих необычных патронов.@@SK_SMALL_GUNS 80&SK_SCIENCE 80&SK_REPAIR 80@PID_GUNPOWDER 1&PID_METAL_TRASH 1@@PID_700_CAL 1@exp 50 script fix_boy@fix_NitroExpressRounds}
+{114}{}{PID_700_NITRO_EXPRESS@Понадобятся некоторые познания в электронике и баллистике для того, чтобы запрограммировать станок на производство этих необычных патронов.@@SK_SMALL_GUNS 80&SK_SCIENCE 80&SK_REPAIR 80@PID_GUNPOWDER 1&PID_METAL_TRASH 1@@PID_700_NITRO_EXPRESS 1@exp 50 script fix_boy@fix_NitroExpressRounds}
 
 
 #Топлива
@@ -127,5 +127,5 @@
 
 #Уникальное оружие
 
-{1000}{}{PID_700_NITRO_EXPRESS@Найдите токарный станок, используя его как сверлильный, рассверлите трубу до диаметра 17.8 мм, из куска металлического кола выточите затвор. По схемам из "Пушек и Пуль" изготовьте спусковой механизм, а приклад просто выточите из дерева.@SK_SCIENCE 40&SK_REPAIR 50@SK_SMALL_GUNS 80&SK_SCIENCE 60&SK_REPAIR 100@PID_TUBE 1&PID_PLANK 1&PID_FIREWOOD 1&PID_METAL_TRASH 4&PID_PUMP_PARTS 2@PID_SUPER_TOOL_KIT 1&PID_WELDING 1&PID_GUNS_AND_BULLETS 1@PID_700_NITRO_EXPRESS 1@exp 300 script fix_boy@fix_NitroExpress}
+{1000}{}{PID_ELEPHANT_GUN@Найдите токарный станок, используя его как сверлильный, рассверлите трубу до диаметра 17.8 мм, из куска металлического кола выточите затвор. По схемам из "Пушек и Пуль" изготовьте спусковой механизм, а приклад просто выточите из дерева.@SK_SCIENCE 40&SK_REPAIR 50@SK_SMALL_GUNS 80&SK_SCIENCE 60&SK_REPAIR 100@PID_TUBE 1&PID_PLANK 1&PID_FIREWOOD 1&PID_METAL_TRASH 4&PID_PUMP_PARTS 2@PID_SUPER_TOOL_KIT 1&PID_WELDING 1&PID_GUNS_AND_BULLETS 1@PID_ELEPHANT_GUN 1@exp 300 script fix_boy@fix_NitroExpress}
 

@@ -68,7 +68,7 @@
 #define PID_JONNY_BB_GUN                    (261)
 #define PID_INDEPENDENT                     (353)
 #define PID_M72_GAUSS_RIFLE                 (392)  // 2mm EC
-#define PID_700_NITRO_EXPRESS               (592) // .700 cal.
+#define PID_ELEPHANT_GUN                    (592) // .700 cal.
 	// Shotguns
 #define PID_SHOTGUN                         (94)
 #define PID_SAWED_OFF_SHOTGUN               (385)  // 12 ga.
@@ -200,7 +200,7 @@
 #define PID_223_FMJ                         (34)
 #define PID_SHOTGUN_SHELLS                  (95)
 #define PID_2MM_EC_AMMO                     (358)
-#define PID_700_CAL                         (591) 
+#define PID_700_NITRO_EXPRESS               (591) 
 
 // Other
 #define PID_EXPLOSIVE_ROCKET                (14)

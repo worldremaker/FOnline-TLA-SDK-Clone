@@ -4239,7 +4239,6 @@ Weapon.DefAmmo=591
 Weapon.Anim1=10
 Weapon.CrFailture=5
 Weapon.MinSt=7
-Weapon.Perk=4
 Weapon.CountAttack=1
 Weapon.Skill_0=200
 Weapon.Skill_1=200
