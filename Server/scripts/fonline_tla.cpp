@@ -426,8 +426,8 @@ uint GetUseApCost(CritterMutual& cr, Item& item, uint8 mode)
 	else if(use >= USE_PRIMARY && use <= USE_THIRD && item.IsWeapon())
 	{
 		int skill = item.Proto->Weapon.Skill[use];
-		bool hthAttack = Item_Weapon_IsHtHAttack(item, skill);
-		bool rangedAttack = Item_Weapon_IsRangedAttack(item, skill);
+		bool hthAttack = Item_Weapon_IsHtHAttack(item, mode);
+		bool rangedAttack = Item_Weapon_IsRangedAttack(item, mode);
 
 		apCost = item.Proto->Weapon.ApCost[use];
 		if(aim) apCost += GetAimApCost(aim);
