@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 17.11.2010
-// Server version 377, MSVS2008
+// Last update 18.11.2010
+// Server version 379, MSVS2008
 // Default calling convention - cdecl
 //
 
@@ -1068,6 +1068,7 @@ struct GlobalMapGroup
 	uint     NextEncaunter;
 	bool     IsMultiply;
 	uint     MoveLastTick;
+	uint     ProcessLastTick;
 	uint     EncounterDescriptor;
 	uint     EncounterTick;
 	bool     EncounterForce;
@@ -1667,7 +1668,7 @@ inline void static_asserts()
 
 	STATIC_ASSERT(offsetof(TemplateVar, Flags)              == 76  );
 	STATIC_ASSERT(offsetof(NpcPlane, RefCounter)            == 88  );
-	STATIC_ASSERT(offsetof(GlobalMapGroup, EncounterForce)  == 84  );
+	STATIC_ASSERT(offsetof(GlobalMapGroup, EncounterForce)  == 88  );
 	STATIC_ASSERT(offsetof(Item, IsNotValid)                == 118 );
 	STATIC_ASSERT(offsetof(CritterTimeEvent, Identifier)    == 12  );
 	STATIC_ASSERT(offsetof(Critter, RefCounter)             == 9304);
