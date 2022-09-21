@@ -85,11 +85,20 @@ bool UseSkillOnLocker(Critter& cr, Item& locker, int skill) // Export
 	}
 	else if(skill==SK_STEAL)
 	{
-		if(locker.GetType()==ITEM_CONTAINER && FLAG(locker.LockerCondition,LOCKER_ISOPEN)) cr.ShowContainer(null,locker,locker.Proto.Container_IsGroundLevel()?TRANSFER_HEX_CONT_DOWN:TRANSFER_HEX_CONT_UP);
-		else cr.SayMsg(SAY_NETMSG,TEXTMSG_GAME,STR_USE_NOTHING);
+		if(locker.GetType()==ITEM_CONTAINER && FLAG(locker.LockerCondition,LOCKER_ISOPEN))
+			cr.ShowContainer(null,locker,locker.Proto.Container_IsGroundLevel()?TRANSFER_HEX_CONT_DOWN:TRANSFER_HEX_CONT_UP);
+		else
+			cr.SayMsg(SAY_NETMSG,TEXTMSG_GAME,STR_USE_NOTHING);
 	}
 	else if(skill==SK_LOCKPICK)
 	{
+		// NoOpen
+		if(FLAG(locker.LockerCondition,LOCKER_NOOPEN))
+		{
+			cr.SayMsg(SAY_NETMSG,TEXTMSG_GAME,STR_USE_NOTHING);
+			return true;
+		}
+
 		if(cr.Timeout[TO_SK_LOCKPICK]>0)
 		{
 			cr.SayMsg(SAY_NETMSG,TEXTMSG_GAME,STR_SKILL_WEARINESS);

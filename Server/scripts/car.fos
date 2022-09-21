@@ -137,7 +137,7 @@ bool UseSkillOnCar(Critter& cr, Item& car, int skill) // Export
 			cr.SayMsg(SAY_NETMSG,TEXTMSG_GAME,STR_SKILL_LOCKPICK_FAIL);
 		}
 
-		cr.TimeoutBase[TO_SK_LOCKPICK]=LOCKPICK_TIMEOUT(cr)*5;
+		cr.TimeoutBase[TO_SK_LOCKPICK]=LOCKPICK_TIMEOUT(cr);
 	}
 	else
 	{

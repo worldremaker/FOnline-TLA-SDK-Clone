@@ -409,11 +409,11 @@
 {1001}{}{|4291317840 Incorrect login.}
 {1002}{}{|4291317840 Incorrect password.}
 {1003}{}{|4291317840 The account with such login already exists, choose another login.}
-{1004}{}{|4291317840 The player with this login is already in game. Please contact the server administrator.}
+{1004}{}{|4291317840 The player with this login is already in game.}
 {1005}{}{|4291317840 Incorrect SPECIAL data.}
 {1006}{}{|4291317840 Registration was successful.}
 {1007}{}{|4291317840 Connecting to server.}
-{1008}{}{|4291317840 Connection failure! In case of repetetion contact the server administrator.}
+{1008}{}{|4291317840 Connection failure! In case of repetition contact the server administrator.}
 {1009}{}{|4291317840 Incorrect login or password.}
 {1010}{}{|4291317840 Connection established, authentication...}
 {1012}{}{|4291317840 Hexes for spawning are in use, try to enter the game a little bit later.}
@@ -444,7 +444,7 @@
 {1037}{}{|4291317840 Loading user interface failure.}
 {1038}{}{|4291317840 Executing start script failure.}
 {1039}{}{|4291317840 Selected language not supported. Using default language.}
-{1040}{}{|4291317840 Game not supported resolutions less than 800x600 and greather than 1280x1024.}
+{1040}{}{|4291317840 The game may not work properly at resolutions less than 800x600 or greather than 1280x1024.}
 {1041}{}{|4291317840 Knock-knock, anybody here?}
 {1042}{}{|4291317840 Discovered frequent registration from one IP address. Please try again later.}
 {1043}{}{|4291317840 Your IP is banned.}

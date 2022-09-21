@@ -465,8 +465,10 @@ void _CaravanLeaderOnMessage(Critter& leader, Critter& fromCr, int message, int 
 }
 
 // вход на энкаунтер
-bool _CaravanLeaderOnInvite(Critter& leader, Critter@[]& group, Item@ car, uint encounterDescriptor, int combatMode, uint& mapId, uint16& hexX, uint16& hexY, uint8& dir)
+bool _CaravanLeaderOnInvite(Critter& leader, Item@ car, uint encounterDescriptor, int combatMode, uint& mapId, uint16& hexX, uint16& hexY, uint8& dir)
 {
+	Critter@[]@ group=leader.GetGlobalGroup();
+
 	DL("leader on encounter.");
 	//ToDo - проверить, что можно отказаться от этого пункта
 	InviteToEncounter(group, null, encounterDescriptor,combatMode, mapId, hexX, hexY, dir);
@@ -662,8 +664,10 @@ void _CaravanLeaderOnDead(Critter& leader, Critter@ killer)
 }
 
 // глобальная карта
-bool _CaravanLeaderOnGlobal(Critter& leader, int type, Critter@[]& group, Item@ car, uint& x, uint& y, uint& toX, uint& toY, uint& speed, uint& encounterDescriptor, bool& waitForAnswer)
+bool _CaravanLeaderOnGlobal(Critter& leader, int type, Item@ car, uint& x, uint& y, uint& toX, uint& toY, uint& speed, uint& encounterDescriptor, bool& waitForAnswer)
 {
+	Critter@[]@ group=leader.GetGlobalGroup();
+
 	//DL("leader on global");
 	CaravanInfo@ ci = _GetCaravan(leader.CrvId);
 	if(!valid(ci))

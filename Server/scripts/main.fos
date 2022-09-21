@@ -163,12 +163,14 @@ uint loop()
 //  if encounterDescriptor != 0 than global_invite calls;
 //  if waitForAnswer == false than global_invite calls after this function, else call after leader confirm invite;
 // Call types see in Global map events in _defines.fos
-void global_process(int type, Critter& cr, Critter@[]& group, Item@ car, uint& x, uint& y, uint& toX, uint& toY, uint& speed, uint& encounterDescriptor, bool& waitForAnswer)
+void global_process(int type, Critter& cr, Item@ car, uint& x, uint& y, uint& toX, uint& toY, uint& speed, uint& encounterDescriptor, bool& waitForAnswer)
 {
 	int walkType=(valid(car)?car.Proto.Car_WalkType:GM_WALK_GROUND);
 
 	if(type==GLOBAL_PROCESS_MOVE)
 	{
+		Critter@[]@ group=cr.GetGlobalGroup();
+
 		// Validate charisma
 		Critter@ leader=group[0];
 		if(int(group.length())>leader.Stat[ST_CHARISMA]+leader.Perk[PE_MAGNETIC_PERSONALITY])
@@ -198,7 +200,7 @@ void global_process(int type, Critter& cr, Critter@[]& group, Item@ car, uint& x
 					int yy=y+oy;
 					if(xx>=0 && xx<maxx && yy>=0 && yy<maxy && GetGlobalMapRelief(xx,yy)!=GM_RELIEF_WATER)
 					{
-						FindEncounter(group,car,x,y,encounterDescriptor,waitForAnswer,true);
+						FindEncounter(cr.GetGlobalGroup(),car,x,y,encounterDescriptor,waitForAnswer,true);
 						ox=oy=2; // Exit from loop
 					}
 				}
@@ -206,11 +208,13 @@ void global_process(int type, Critter& cr, Critter@[]& group, Item@ car, uint& x
 		}
 		else if(GetGlobalMapRelief(x,y)!=GM_RELIEF_WATER)
 		{
-			FindEncounter(group,car,x,y,encounterDescriptor,waitForAnswer,true);
+			FindEncounter(cr.GetGlobalGroup(),car,x,y,encounterDescriptor,waitForAnswer,true);
 		}
 	}
 	else if(type==GLOBAL_PROCESS_SET_MOVE)
 	{
+		Critter@[]@ group=cr.GetGlobalGroup();
+
 		// Validate charisma
 		Critter@ leader=group[0];
 		if(int(group.length())>leader.Stat[ST_CHARISMA]+leader.Perk[PE_MAGNETIC_PERSONALITY])
@@ -292,11 +296,10 @@ void global_process(int type, Critter& cr, Critter@[]& group, Item@ car, uint& x
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Call on invite to encaunter.
 // If mapId != 0 than group enter to it.
-void global_invite(Critter@[]& group, Item@ car, uint encounterDescriptor, int combatMode, uint& mapId, uint16& hexX, uint16& hexY, uint8& dir)
+void global_invite(Critter& leader, Item@ car, uint encounterDescriptor, int combatMode, uint& mapId, uint16& hexX, uint16& hexY, uint8& dir)
 {
 	if(encounterDescriptor==uint(-1))
 	{
-		Critter@ leader=group[0];
 		Location@[] locations;
 		if(GetLocations(leader.WorldX,leader.WorldY,0,locations)!=0)
 		{
@@ -311,7 +314,7 @@ void global_invite(Critter@[]& group, Item@ car, uint encounterDescriptor, int c
 		return;
 	}
 
-	InviteToEncounter(group,car,encounterDescriptor,combatMode,mapId,hexX,hexY,dir);
+	InviteToEncounter(leader.GetGlobalGroup(),car,encounterDescriptor,combatMode,mapId,hexX,hexY,dir);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

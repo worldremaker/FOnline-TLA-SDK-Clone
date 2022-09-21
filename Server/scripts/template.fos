@@ -166,12 +166,13 @@ bool _FuncName(Critter& cr, Critter& talkCr, bool attach, uint talkCount)
 // uint talkCount - всего разговаривающих, включая новое присоединение/отсоединение.
 // При возвращении true - диалог начинается, false - не начинается; актуально при attach == true.
 	// CRITTER_EVENT_GLOBAL_PROCESS
-bool _FuncName(Critter& cr, int type, Critter@[]& group, Item@ car, uint& x, uint& y, uint& toX, uint& toY, uint& speed, uint& encounterDescriptor, bool& waitForAnswer)
+bool _FuncName(Critter& cr, int type, Item@ car, uint& x, uint& y, uint& toX, uint& toY, uint& speed, uint& encounterDescriptor, bool& waitForAnswer)
 // Обработка глобальной карты.
 // При возвращении true - глобальный обработчик не запускается, false - запуск глобального обработчика.
 	// CRITTER_EVENT_GLOBAL_INVITE
-bool _FuncName(Critter& cr, Critter@[]& group, Item@ car, uint encounterDescriptor, int combatMode, uint& mapId, uint16& hexX, uint16& hexY, uint8& dir)
+bool _FuncName(Critter& cr, Item@ car, uint encounterDescriptor, int combatMode, uint& mapId, uint16& hexX, uint16& hexY, uint8& dir)
 // Обработка глобальной карты для перехода на карту.
+// Криттер является лидером группы.
 // При возвращении true - глобальный обработчик не запускается, false - запуск глобального обработчика.
 	// CRITTER_EVENT_TURN_BASED_PROCESS
 void _FuncName(Critter& cr, Map& map, bool beginTurn)

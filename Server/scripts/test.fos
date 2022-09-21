@@ -1463,19 +1463,136 @@ uint e_TestTE(int[]@ values)
 	return 0;
 }
 
+void DoorKey(Critter& cr, int, int, int)
+{
+	uint16 hx=cr.HexX,hy=cr.HexY;
+	Map@ map=cr.GetMap();
+	if(not valid(map)) return;
+	map.MoveHexByDir(hx,hy,cr.Dir,1);
+	Item@ door=map.GetDoor(hx,hy);
+	if(not valid(door)) return;
+	Item@ key=cr.AddItem(PID_TEMPLE_KEY,1);
+	if(not valid(key)) return;
+	key.LockerId=door.LockerId;
+	key.Update();
+}
 
+void HandToInv(Critter& cr, int, int, int)
+{
+	Item@ item=cr.GetItem(0,SLOT_HAND1);
+	if(valid(item))
+	{
+		if(cr.MoveItem(item.Id,0,SLOT_INV)) Log("ok");
+		else Log("fail");
+	}
+}
 
+void KillSpawn(Critter& cr, int, int, int)
+{
+	uint16 hx=cr.HexX,hy=cr.HexY;
+	Map@ map=cr.GetMap();
+	if(not valid(map)) return;
 
+	map.MoveHexByDir(hx,hy,cr.Dir,1);
 
+	Critter@ oldNpc=map.GetCritter(hx,hy);
+	if(not valid(oldNpc)) return;
 
+	DeleteNpc(oldNpc);
 
+	uint[] values={map.Id,hx,hy};
+	CreateTimeEvent(__FullSecond+REAL_MS(50),"e_KillSpawn",values,false);
+}
 
+uint e_KillSpawn(uint[]@ values)
+{
+	Map@ map=GetMap(values[0]);
+	if(valid(map)) map.AddNpc(20+Random(0,10),values[1],values[2],2,null,null,null);
+	return 0;
+}
 
+import void DropDrugEffects(Critter& cr) from "drugs";
+void DropDrugs(Critter& iam, int, int, int)
+{
+	Map@ map=iam.GetMap();
+	if(not valid(map)) return;
 
+	uint16 hx=iam.HexX,hy=iam.HexY;
+	for(uint i=0;i<10;i++)
+	{
+		map.MoveHexByDir(hx,hy,iam.Dir,1);
+		Critter@ cr=map.GetCritter(hx,hy);
+		if(valid(cr))
+		{
+			DropDrugEffects(cr);
+			cr.Say(SAY_NORM,"Drugs dropped.");
+			break;
+		}
+	}
+}
 
+void ClearExplode(Critter& iam, int, int, int)
+{
+	Map@ map=iam.GetMap();
+	if(not valid(map)) return;
 
+	Item@[] items;
+	map.GetItems(PID_ACTIVE_DYNAMITE,items);
+	map.GetItems(PID_ACTIVE_PLASTIC_EXPLOSIVE,items);
+	map.GetItems(PID_ACTIVE_MINE,items);
 
+	DeleteItems(items);
+}
 
+void Sandbags(Critter& iam, int lineLen, int skipLen, int stackCount)
+{
+	Map@ map=iam.GetMap();
+	if(not valid(map)) return;
 
+	uint16 pid=PID_SANDBAG_EMPTY;
+	if(stackCount!=0) pid=PID_SANDBAG_1-1+stackCount;
+
+	uint16 hx=iam.HexX,hy=iam.HexY;
+	for(uint i=0;i<uint(lineLen);i++)
+	{
+		if(skipLen!=0) skipLen--;
+		else
+		{
+			map.MoveHexByDir(hx,hy,iam.Dir,1);
+			map.AddItem(hx,hy,pid,1);
+		}
+	}
+}
+
+void ClearItems(Critter& iam, int lineLen, int skipLen, int)
+{
+	Map@ map=iam.GetMap();
+	if(not valid(map)) return;
+
+	Item@[] items;
+	uint16 hx=iam.HexX,hy=iam.HexY;
+	for(uint i=0;i<uint(lineLen);i++)
+	{
+		if(skipLen!=0) skipLen--;
+		else
+		{
+			map.MoveHexByDir(hx,hy,iam.Dir,1);
+			map.GetItems(hx,hy,items);
+		}
+	}
+
+	DeleteItems(items);
+}
+
+import void PlayMusic(Map& map, string& musicName, uint pos, uint repeat) from "media";
+void BattleMusic(Critter& iam, int index, int, int)
+{
+	if(index==1) PlayMusic(iam.GetMap(),"02 - Into The Dust.ogg",0,0);
+	else if(index==2) PlayMusic(iam.GetMap(),"07 - Echelon.ogg",0,0);
+	else if(index==3) PlayMusic(iam.GetMap(),"11 - Face To Face.ogg",0,0);
+	else if(index==4) PlayMusic(iam.GetMap(),"16 - Stranglet.ogg",0,0);
+	else if(index==5) PlayMusic(iam.GetMap(),"17 - Trinity.ogg",0,0);
+	else PlayMusic(iam.GetMap(),"01 - No Fate No Fear.ogg",0,0);
+}
 
 

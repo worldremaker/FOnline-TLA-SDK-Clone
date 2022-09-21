@@ -258,10 +258,12 @@ bool _CheckRightGlobalZone(uint wX, uint wY)
 	// зона поисков ”: от 174 до 325
 }
 
-bool e_OnPlayerInvite(Critter& cr, Critter@[]& group, Item@ car, uint encounterDescriptor, int combatMode, uint& mapId, uint16& hexX, uint16& hexY, uint8& dir)
+bool e_OnPlayerInvite(Critter& cr, Item@ car, uint encounterDescriptor, int combatMode, uint& mapId, uint16& hexX, uint16& hexY, uint8& dir)
 // ќбработка глобальной карты дл€ перехода на карту.
 // ѕри возвращении true - глобальный обработчик не запускаетс€, false - запуск глобального обработчика. ~loadscript q_slavers_hunt
 {
+	Critter@[]@ group=cr.GetGlobalGroup();
+
 	InviteToEncounter(group, null, encounterDescriptor,combatMode, mapId, hexX, hexY, dir);
 
 	// провер€ем, что у лидера есть нужный квест
