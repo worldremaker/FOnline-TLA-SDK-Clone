@@ -1,6 +1,6 @@
 /** \~russian @page page_foholomsg FOHOLO.MSG
 
-FOHOLO.msg - файл cодержит тексты голодисков.
+FOHOLO.MSG - файл cодержит тексты голодисков.
 \b Формат:
 
 @code

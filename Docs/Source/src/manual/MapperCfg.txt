@@ -6,7 +6,7 @@
 <table>
 <tr><td>ServerPath</td><td>ѕуть к папке сервера</td></tr>
 <tr><td>ClientPath</td><td>ѕуть к папке клиента</td></tr>
-<tr><td>MapperInterface</td><td>»м€ файла определ€ющего интерфейс окна маппера</td></tr>
+<tr><td>MapperInterface</td><td>»м€ файла, определ€ющего интерфейс окна маппера</td></tr>
 </table>
 
 */

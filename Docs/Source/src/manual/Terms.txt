@@ -10,12 +10,12 @@ Homepage: http://www.angelcode.com/angelscript/\n
 Manual: http://www.angelcode.com/angelscript/sdk/docs/manual/index.html\n
 
 @section term_critter Персонаж
-Или криттер. Игровой персонаж, управляемый человеком (Игрок) или компьютером (Нпц).
+Или криттер. Игровой персонаж, управляемый человеком (Игрок) или компьютером (НПЦ).
 
 @section term_player Игрок
 Игровой персонаж, управляемый человеком.
 
-@section term_npc Нпц
+@section term_npc НПЦ
 Игровой персонаж, управляемый компьютером.
 
 @section term_item Предмет
@@ -56,7 +56,7 @@ Manual: http://www.angelcode.com/angelscript/sdk/docs/manual/index.html\n
 Лексемы записываются в виде: @@lex lexem_name@.
 
 @section term_bag Сумка
-Инвентарь нпц. Может создаваться двумя способами:
+Инвентарь НПЦ. Может создаваться двумя способами:
 <ol><li>Через маппер, помещая предметы вручную в инвентарь каждому NPC.</li>
 <li>Прописывая содержание инвентаря в файле "Bags.cfg" (.cfg), а затем присваивая в маппере/скриптом NPC параметр ST_BAG_ID, который означает номер сумки из этого файла.</li></ol>
 

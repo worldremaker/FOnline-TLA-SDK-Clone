@@ -26,8 +26,6 @@ uint cte_FuncName(Critter& cr, int identifier, uint& rate)
 \~
 @code
 bool s_FuncName(Critter& cr, Scenery& scen, int skill, Item@ item)
-// Возвращается кол-во игровых минут, когда событие вызовется опять, при 0 событие удаляется.
-// При возврате false событие попадает в обработчик персонажа, потом в глобальный. При true выход.
 @endcode
 
 \~russian @par Trigger
@@ -110,7 +108,7 @@ bool entrance_FuncName(Critter@[]& crters, uint8 entrance)
 void answer_FuncName(Critter& player, uint answerI, string& answerS)
 @endcode
 
-\~russian @par Скрипт Misc плана Нпц
+\~russian @par Скрипт Misc плана НПЦ
 \~english @par Npc misc plane script
 \~
 @code

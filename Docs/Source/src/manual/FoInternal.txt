@@ -1,6 +1,6 @@
 /** \~russian @page page_fointernalmsg FOINTERNAL.MSG
 
-FOINTERNAL.msg - используется для внутренних нужд движка.
+FOINTERNAL.MSG - используется для внутренних нужд движка.
 \b Формат:
 
 @code
