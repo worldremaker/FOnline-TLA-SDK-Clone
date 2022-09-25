@@ -1750,18 +1750,31 @@ void animation3d_process(CritterCl& cr, uint anim1, uint anim2, ItemCl@ item)
 
 	// Change values
 	uint8 mode = 0;
-	uint16 armorPid = (valid(cr.GetSlotProto(SLOT_ARMOR, mode)) ? cr.GetSlotProto(SLOT_ARMOR, mode).GetProtoId() : 0);
-	uint16 headPid  = 0;
-	uint16 weapPid  = (valid(item) ? item.GetProtoId() : cr.GetSlotProto(SLOT_HAND1, mode).GetProtoId());
+	uint16 armorPid   = (valid(cr.GetSlotProto(SLOT_ARMOR, mode)) ? cr.GetSlotProto(SLOT_ARMOR, mode).GetProtoId() : 0);
+	uint16 headPid    = 0;
+	uint16 weapPid    = (valid(item) ? item.GetProtoId() : cr.GetSlotProto(SLOT_HAND1, mode).GetProtoId());
+	uint16 weapExPid  = (valid(cr.GetSlotProto(SLOT_HAND2, mode)) ? cr.GetSlotProto(SLOT_HAND2, mode).GetProtoId() : 0);
 	ItemCl@ armorItem = cr.GetItem(0, SLOT_ARMOR);
 	ItemCl@ headItem  = null;
 
 #ifndef PLAYERS_3D_NO_HEAD
-	uint16 headPid  = (valid(cr.GetSlotProto(SLOT_HEAD,  mode)) ? cr.GetSlotProto(SLOT_HEAD,  mode).GetProtoId() : 0);
+	uint16 headPid    = (valid(cr.GetSlotProto(SLOT_HEAD,  mode)) ? cr.GetSlotProto(SLOT_HEAD,  mode).GetProtoId() : 0);
 	ItemCl@ headItem  = cr.GetItem(0, SLOT_HEAD);
 #endif
 
+	bool weapBigGun = false;
+	if(valid(item))
+	{
+		if(FLAG(item.Flags, ITEM_BIG_GUN)) weapBigGun = true;
+	}
+	else
+	{
+		ItemCl@ weap = cr.GetItem(0, SLOT_HAND1);
+		if(valid(weap) && FLAG(weap.Flags, ITEM_BIG_GUN)) weapBigGun = true;
+	}
+
 	int rhandleAtr  = 0;
+	int lhandleAtr  = 0;
 	int handsAtr    = 0;
 	int bodyAtr     = 0;
 	int feetAtr     = 0;
@@ -1769,8 +1782,9 @@ void animation3d_process(CritterCl& cr, uint anim1, uint anim2, ItemCl@ item)
 	int eyeAtr      = 0;
 	int shoulderAtr = 0;
 	int backAtr     = 0;
+	int backpackAtr = 0;
 
-	switch(armorPid)
+	/*switch(armorPid)
 	{
 	case PID_LEATHER_JACKET:
 		bodyAtr     = ATTRIBUTE_Body_LeatherOutfit;
@@ -1785,7 +1799,6 @@ void animation3d_process(CritterCl& cr, uint anim1, uint anim2, ItemCl@ item)
 		feetAtr     = ATTRIBUTE_Feet_PowerArmor;
 		shoulderAtr = ATTRIBUTE_Shoulderpieces_PowerArmor;
 		headAtr     = ATTRIBUTE_Head_ArmingCap;
-
 #ifdef PLAYERS_3D_NO_HEAD
 		headAtr     = ATTRIBUTE_Head_PowerArmor;
 #endif
@@ -1819,8 +1832,107 @@ void animation3d_process(CritterCl& cr, uint anim1, uint anim2, ItemCl@ item)
 		break;
 	default:
 		break;
+	}*/
+
+	// Temporary sets, mostly intended for work with PLAYERS_3D_NO_HEAD
+	// Will be corrected as the development of the missing content
+	switch(armorPid)
+	{
+	case PID_LEATHER_JACKET:
+		bodyAtr     = ATTRIBUTE_Body_LeatherOutfit;
+		handsAtr    = ATTRIBUTE_Hands_LeatherOutfit;
+		feetAtr     = ATTRIBUTE_Feet_LeatherOutfit;
+		break;
+
+	case PID_POWERED_ARMOR:
+	case PID_HARDENED_POWER_ARMOR:
+		bodyAtr     = ATTRIBUTE_Body_PowerArmor;
+		handsAtr    = ATTRIBUTE_Hands_PowerArmor;
+		feetAtr     = ATTRIBUTE_Feet_PowerArmor;
+		headAtr     = ATTRIBUTE_Head_ArmingCap;
+		break;
+
+	case PID_TIBBETS_PRISON:
+		bodyAtr     = ATTRIBUTE_Body_PrisonSuit;
+		feetAtr     = ATTRIBUTE_Feet_PrisonSuit;
+		backAtr     = armorItem.Val5;
+		break;
+
+	case PID_JUMPSUIT:
+	case PID_FAKE_JUMPSUIT:
+	case PID_VAULT_SUIT:
+		bodyAtr     = ATTRIBUTE_Body_VaultSuit;
+		feetAtr     = ATTRIBUTE_Feet_VaultSuit;
+		backAtr     = armorItem.Val5;
+		break;
+
+	case PID_LEATHER_ARMOR:
+	case PID_LEATHER_ARMOR_MK_II:
+	case PID_CURED_LEATHER_ARMOR:
+		bodyAtr     = ATTRIBUTE_Body_LeatherOutfit;
+		handsAtr    = ATTRIBUTE_Hands_LeatherOutfitGauntlet;
+		feetAtr     = ATTRIBUTE_Feet_LeatherOutfit;
+		shoulderAtr = ATTRIBUTE_Shoulderpieces_LeatherOutfit;
+		break;
+
+	case PID_METAL_ARMOR:
+	case PID_METAL_ARMOR_MK_II:
+	case PID_TESLA_ARMOR:
+		bodyAtr     = ATTRIBUTE_Body_PowerArmor;
+		feetAtr     = ATTRIBUTE_Feet_PowerArmor;
+		break;
+
+	case PID_COMBAT_ARMOR:
+		bodyAtr     = ATTRIBUTE_Body_PowerArmor;
+		feetAtr     = ATTRIBUTE_Feet_PowerArmor;
+		headAtr     = ATTRIBUTE_Head_Motorcycle_Skull;
+		break;
+	case PID_COMBAT_ARMOR_MK_II:
+		bodyAtr     = ATTRIBUTE_Body_PowerArmor;
+		feetAtr     = ATTRIBUTE_Feet_PowerArmor;
+		headAtr     = ATTRIBUTE_Head_Motorcycle_SkullFull;
+		break;
+	case PID_BROTHERHOOD_COMBAT_ARMOR:
+		bodyAtr     = ATTRIBUTE_Body_PowerArmor;
+		feetAtr     = ATTRIBUTE_Feet_PowerArmor;
+		headAtr     = ATTRIBUTE_Head_Motorcycle_Green;
+		break;
+	case PID_MIRELURK_ARMOR:
+	case PID_BLACK_COMBAT_ARMOR:
+		bodyAtr     = ATTRIBUTE_Body_PowerArmor;
+		feetAtr     = ATTRIBUTE_Feet_PowerArmor;
+		headAtr     = ATTRIBUTE_Head_Motorcycle_Black;
+		break;
+
+	case PID_ADVANCED_POWER_ARMOR:
+	case PID_ADVANCED_POWER_ARMOR_MK2:
+		bodyAtr     = ATTRIBUTE_Body_PowerArmor;
+		handsAtr    = ATTRIBUTE_Hands_PowerArmor;
+		feetAtr     = ATTRIBUTE_Feet_PowerArmor;
+		shoulderAtr = ATTRIBUTE_Shoulderpieces_PowerArmor;
+		headAtr     = ATTRIBUTE_Head_PowerArmor;
+		break;
+
+	case PID_PURPLE_ROBE:
+		bodyAtr     = ATTRIBUTE_Body_PrisonSuit;
+		feetAtr     = ATTRIBUTE_Feet_PrisonSuit;
+		break;
+	case PID_KEEPBRIGE_ROBE:
+		bodyAtr     = ATTRIBUTE_Body_PrisonSuit;
+		feetAtr     = ATTRIBUTE_Feet_PrisonSuit;
+		headAtr     = ATTRIBUTE_Head_StrawHat;
+		break;
+	case PID_BLACK_ROBE:
+		bodyAtr     = ATTRIBUTE_Body_PrisonSuit;
+		feetAtr     = ATTRIBUTE_Feet_PrisonSuit;
+		headAtr     = ATTRIBUTE_Head_ArmingCap;
+		break;
+
+	default:
+		break;
 	}
 
+	// Head
 	switch(headPid)
 	{
 	case PID_STRAWHAT:
@@ -1839,131 +1951,34 @@ void animation3d_process(CritterCl& cr, uint anim1, uint anim2, ItemCl@ item)
 		break;
 	}
 
-	switch(weapPid)
+	// Backpack
+	if(     weapPid   == PID_BAG || weapPid   == PID_BROWN_BAG) backpackAtr = ATTRIBUTE_Backpack_PaLg01;
+	else if(weapPid   == PID_BACKPACK)                          backpackAtr = ATTRIBUTE_Backpack_PaSm01;
+	else if(weapExPid == PID_BAG || weapExPid == PID_BROWN_BAG) backpackAtr = ATTRIBUTE_Backpack_PaLg01;
+	else if(weapExPid == PID_BACKPACK)                          backpackAtr = ATTRIBUTE_Backpack_PaSm01;
+
+	// Hands
+	if(weapPid == PID_POWER_FIST || weapPid == PID_MEGA_POWER_FIST)
 	{
-	case PID_ZIP_GUN:                        rhandleAtr = ATTRIBUTE_Handle_Weapon_22Autoloader;               break;
-	case PID_9MM_MAUSER:                     rhandleAtr = ATTRIBUTE_Handle_Weapon_9mmAutoloader;              break;
-	case PID_10MM_PISTOL:                    rhandleAtr = ATTRIBUTE_Handle_Weapon_22Autoloader;               break;
-	case PID_14MM_PISTOL:                    rhandleAtr = ATTRIBUTE_Handle_Weapon_22Autoloader;               break;
-	case PID_DESERT_EAGLE:                   rhandleAtr = ATTRIBUTE_Handle_Weapon_45Autoloader;               break;
-	case PID_DESERT_EAGLE_EXT_MAG:           rhandleAtr = ATTRIBUTE_Handle_Weapon_45Autoloader_GunExtClip;    break;
-	case PID_223_PISTOL:                     rhandleAtr = ATTRIBUTE_Handle_Weapon_223Autoloader;              break;
-	case PID_44_MAGNUM_REVOLVER:             rhandleAtr = ATTRIBUTE_Handle_Weapon_44Revolver;                 break;
-	case PID_44_MAGNUM_SPEEDLOADER:          rhandleAtr = ATTRIBUTE_Handle_Weapon_44Revolver;                 break;
-	case PID_NEEDLER_PISTOL:                 rhandleAtr = ATTRIBUTE_Handle_Weapon_22Autoloader;               break;
-	case PID_PK12_GAUSS_PISTOL:              rhandleAtr = ATTRIBUTE_Handle_Weapon_2mmGaussPistol;             break;
-	case PID_HUNTING_RIFLE:                  rhandleAtr = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
-	case PID_SCOPED_HUNTING_RIFLE:           rhandleAtr = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
-	case PID_SPRINGER_RIFLE:                 rhandleAtr = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
-	case PID_ASSAULT_RIFLE:                  rhandleAtr = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
-	case PID_ASSAULT_RIFLE_EXT_MAG:          rhandleAtr = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
-	case PID_SNIPER_RIFLE:                   rhandleAtr = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
-	case PID_FN_FAL:                         rhandleAtr = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
-	case PID_FN_FAL_NIGHT_SCOPE:             rhandleAtr = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
-	case PID_FN_FAL_HPFA:                    rhandleAtr = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
-	case PID_RED_RYDER_BB_GUN:               rhandleAtr = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
-	case PID_RED_RYDER_LE_BB_GUN:            rhandleAtr = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
-	case PID_JONNY_BB_GUN:                   rhandleAtr = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
-	case PID_INDEPENDENT:                    rhandleAtr = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
-	case PID_M72_GAUSS_RIFLE:                rhandleAtr = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
-	case PID_SHOTGUN:                        rhandleAtr = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
-	case PID_SAWED_OFF_SHOTGUN:              rhandleAtr = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
-	case PID_COMBAT_SHOTGUN:                 rhandleAtr = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
-	case PID_HK_CAWS:                        rhandleAtr = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
-	case PID_PANCOR_JACKHAMMER:              rhandleAtr = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
-	case PID_10MM_SMG:                       rhandleAtr = ATTRIBUTE_Handle_Weapon_9mmMachinePistol;           break;
-	case PID_HK_P90C:                        rhandleAtr = ATTRIBUTE_Handle_Weapon_9mmMachinePistol;           break;
-	case PID_TOMMY_GUN:                      rhandleAtr = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
-	case PID_HK_G11:                         rhandleAtr = ATTRIBUTE_Handle_Weapon_9mmMachinePistol;           break;
-	case PID_HK_G11E:                        rhandleAtr = ATTRIBUTE_Handle_Weapon_9mmMachinePistol;           break;
-	case PID_GREASE_GUN:                     rhandleAtr = ATTRIBUTE_Handle_Weapon_9mmMachinePistol;           break;
-	case PID_FLAMER:                         rhandleAtr = ATTRIBUTE_Handle_Weapon_Flamethrower;               break;
-	case PID_IMPROVED_FLAMETHROWER:          rhandleAtr = ATTRIBUTE_Handle_Weapon_Flamethrower_FlamerExtTank; break;
-	case PID_ROCKET_LAUNCHER:                rhandleAtr = ATTRIBUTE_Handle_Weapon_15mmArtemisRailGun;         break;
-	case PID_MINIGUN:                        rhandleAtr = ATTRIBUTE_Handle_Weapon_223Minigun;                 break;
-	case PID_AVENGER_MINIGUN:                rhandleAtr = ATTRIBUTE_Handle_Weapon_223Minigun;                 break;
-	case PID_VINDICATOR_MINIGUN:             rhandleAtr = ATTRIBUTE_Handle_Weapon_223Minigun;                 break;
-	case PID_BOZAR:                          rhandleAtr = ATTRIBUTE_Handle_Weapon_LaserArraygun;              break;
-	case PID_LIGHT_SUPPORT_WEAPON:           rhandleAtr = ATTRIBUTE_Handle_Weapon_LaserArraygun;              break;
-	case PID_M60:                            rhandleAtr = ATTRIBUTE_Handle_Weapon_LaserArraygun;              break;
-	case PID_LASER_PISTOL:                   rhandleAtr = ATTRIBUTE_Handle_Weapon_LaserPistol;                break;
-	case PID_MAGNETO_LASER_PISTOL:           rhandleAtr = ATTRIBUTE_Handle_Weapon_LaserPistol;                break;
-	case PID_SOLAR_SCORCHER:                 rhandleAtr = ATTRIBUTE_Handle_Weapon_APOLLOLaserPistol;          break;
-	case PID_LASER_RIFLE:                    rhandleAtr = ATTRIBUTE_Handle_Weapon_LaserArraygun;              break;
-	case PID_LASER_RIFLE_EXT_CAP:            rhandleAtr = ATTRIBUTE_Handle_Weapon_LaserArraygun;              break;
-	case PID_GATLING_LASER:                  rhandleAtr = ATTRIBUTE_Handle_Weapon_223Minigun;                 break;
-	case PID_ALIEN_LASER_PISTOL:             rhandleAtr = ATTRIBUTE_Handle_Weapon_APOLLOLaserPistol;          break;
-	case PID_PLASMA_PISTOL:                  rhandleAtr = ATTRIBUTE_Handle_Weapon_LaserPistol;                break;
-	case PID_PLASMA_PISTOL_EXT_CART:         rhandleAtr = ATTRIBUTE_Handle_Weapon_LaserPistol;                break;
-	case PID_PLASMA_RIFLE:                   rhandleAtr = ATTRIBUTE_Handle_Weapon_LaserArraygun;              break;
-	case PID_TURBO_PLASMA_RIFLE:             rhandleAtr = ATTRIBUTE_Handle_Weapon_LaserArraygun;              break;
-	case PID_YK32_PULSE_PISTOL:              rhandleAtr = ATTRIBUTE_Handle_Weapon_2mmGaussPistol;             break;
-	case PID_YK42B_PULSE_RIFLE:              rhandleAtr = ATTRIBUTE_Handle_Weapon_LaserArraygun;              break;
-	case PID_MOLOTOV_COCKTAIL:               rhandleAtr = ATTRIBUTE_Handle_Weapon_GrenadeFrag;                break;
-	case PID_FRAG_GRENADE:                   rhandleAtr = ATTRIBUTE_Handle_Weapon_GrenadeFrag;                break;
-	case PID_PLASMA_GRENADE:                 rhandleAtr = ATTRIBUTE_Handle_Weapon_GrenadePlasma;              break;
-	case PID_PULSE_GRENADE:                  rhandleAtr = ATTRIBUTE_Handle_Weapon_GrenadeEMP;                 break;
-	case PID_FLARE:                          rhandleAtr = ATTRIBUTE_Handle_Weapon_Flare;                      break;
-	case PID_ACTIVE_FLARE:                   rhandleAtr = ATTRIBUTE_Handle_Weapon_Flare;                      break;
-	case PID_PLANT_SPIKE:                    rhandleAtr = ATTRIBUTE_Handle_Weapon_Rock;                       break;
-	case PID_THROWING_KNIFE:                 rhandleAtr = ATTRIBUTE_Handle_Weapon_ThrowingKnife;              break;
-	case PID_ROCK:                           rhandleAtr = ATTRIBUTE_Handle_Weapon_Rock;                       break;
-	case PID_GOLD_NUGGET:                    rhandleAtr = ATTRIBUTE_Handle_Weapon_Rock;                       break;
-	case PID_URANIUM_ORE:                    rhandleAtr = ATTRIBUTE_Handle_Weapon_Rock;                       break;
-	case PID_REFINED_ORE:                    rhandleAtr = ATTRIBUTE_Handle_Weapon_Rock;                       break;
-	case PID_KNIFE:                          rhandleAtr = ATTRIBUTE_Handle_Weapon_CombatKnife;                break;
-	case PID_COMBAT_KNIFE:                   rhandleAtr = ATTRIBUTE_Handle_Weapon_CombatKnife;                break;
-	case PID_LIL_JESUS_WEAPON:               rhandleAtr = ATTRIBUTE_Handle_Weapon_CombatKnife;                break;
-	case PID_SHIV:                           rhandleAtr = ATTRIBUTE_Handle_Weapon_Shiv;                       break;
-	case PID_SWITCHBLADE:                    rhandleAtr = ATTRIBUTE_Handle_Weapon_Switchblade;                break;
-	case PID_WAKIZASHI_BLADE:                rhandleAtr = ATTRIBUTE_Handle_Weapon_Machete;                    break;
-	case PID_SPEAR:                          rhandleAtr = ATTRIBUTE_Handle_Weapon_Spear;                      break;
-	case PID_SHARP_SPEAR:                    rhandleAtr = ATTRIBUTE_Handle_Weapon_Spear;                      break;
-	case PID_SHARPENED_POLE:                 rhandleAtr = ATTRIBUTE_Handle_Weapon_Spear;                      break;
-	case PID_AXE:                            rhandleAtr = ATTRIBUTE_Handle_Weapon_Hatchet;                    break;
-	case PID_CLUB:                           rhandleAtr = ATTRIBUTE_Handle_Weapon_NightStick;                 break;
-	case PID_CROWBAR:                        rhandleAtr = ATTRIBUTE_Handle_Weapon_Crowbar;                    break;
-	case PID_WRENCH:                         rhandleAtr = ATTRIBUTE_Handle_Weapon_HeavyWrench;                break;
-	case PID_SLEDGEHAMMER:                   rhandleAtr = ATTRIBUTE_Handle_Weapon_Sledgehammer;               break;
-	case PID_LOUISVILLE_SLUGGER:             rhandleAtr = ATTRIBUTE_Handle_Weapon_Baseballbat;                break;
-	case PID_SUPER_SLEDGE:                   rhandleAtr = ATTRIBUTE_Handle_Weapon_Sledgehammer;               break;
-	case PID_CATTLE_PROD:                    rhandleAtr = ATTRIBUTE_Handle_Weapon_CattleProd;                 break;
-	case PID_SUPER_CATTLE_PROD:              rhandleAtr = ATTRIBUTE_Handle_Weapon_CattleProd;                 break;
-	case PID_RIPPER:                         rhandleAtr = ATTRIBUTE_Handle_Weapon_Machete;                    break;
-	case PID_BOXING_GLOVES:                  rhandleAtr = ATTRIBUTE_Handle_Weapon_GrenadeBio;                 break;
-	case PID_PLATED_BOXING_GLOVES:           rhandleAtr = ATTRIBUTE_Handle_Weapon_GrenadeBio;                 break;
-	case PID_RING_BOXING_GLOVES:             rhandleAtr = ATTRIBUTE_Handle_Weapon_GrenadeBio;                 break;
-	case PID_RING_PLATED_BOXING_GLOVES:      rhandleAtr = ATTRIBUTE_Handle_Weapon_GrenadeBio;                 break;
-	case PID_POWER_FIST:                     handsAtr   = ATTRIBUTE_Hands_PowerFist;                          break;
-	case PID_BRASS_KNUCKLES:                 rhandleAtr = ATTRIBUTE_Handle_Weapon_GrenadeBio;                 break;
-	case PID_SPIKED_KNUCKLES:                rhandleAtr = ATTRIBUTE_Handle_Weapon_GrenadeBio;                 break;
-	case PID_MEGA_POWER_FIST:                handsAtr   = ATTRIBUTE_Hands_PowerFist;                          break;
-	case PID_DYNAMITE:                       rhandleAtr = ATTRIBUTE_Handle_Weapon_Dynamite;                   break;
-	case PID_PLASTIC_EXPLOSIVES:             rhandleAtr = ATTRIBUTE_Handle_Weapon_Dynamite;                   break;
-	case PID_MINE:                           rhandleAtr = ATTRIBUTE_Handle_Weapon_Dynamite;                   break;
-	// Player will never have this weapons anyway
-	case PID_ROBO_ROCKET_LAUNCHER:           rhandleAtr = ATTRIBUTE_Handle_Weapon_LaserArraygun;              break;
-	case PID_PHAZER:                         rhandleAtr = ATTRIBUTE_Handle_Weapon_45Revolver;                 break;
-	case PID_DEATHCLAW_CLAW_1:               rhandleAtr = ATTRIBUTE_Handle_Weapon_45Revolver;                 break;
-	case PID_DEATHCLAW_CLAW_2:               rhandleAtr = ATTRIBUTE_Handle_Weapon_45Revolver;                 break;
-	case PID_FIRE_GECKO_FLAME_WEAPON:        rhandleAtr = ATTRIBUTE_Handle_Weapon_Flamethrower;               break;
-	case PID_SPECIAL_BOXER_WEAPON:           rhandleAtr = ATTRIBUTE_Handle_Weapon_45Revolver;                 break;
-	case PID_GUN_TURRET_WEAPON:              rhandleAtr = ATTRIBUTE_Handle_Weapon_LaserArraygun;              break;
-	case PID_EYEBALL_FIST_1:                 rhandleAtr = ATTRIBUTE_Handle_Weapon_45Revolver;                 break;
-	case PID_EYEBALL_FIST_2:                 rhandleAtr = ATTRIBUTE_Handle_Weapon_45Revolver;                 break;
-	case PID_DUAL_MINIGUN:                   rhandleAtr = ATTRIBUTE_Handle_Weapon_223Minigun;                 break;
-	case PID_HEAVY_DUAL_MINIGUN:             rhandleAtr = ATTRIBUTE_Handle_Weapon_223Minigun;                 break;
-	case PID_END_BOSS_KIFE:                  rhandleAtr = ATTRIBUTE_Handle_Weapon_Machete;                    break;
-	case PID_END_BOSS_PLASMA_GUN:            rhandleAtr = ATTRIBUTE_Handle_Weapon_LaserArraygun;              break;
-	case PID_HOLY_HAND_GRENADE:              rhandleAtr = ATTRIBUTE_Handle_Weapon_GrenadeFrag;                break;
-	default: break;
+		handsAtr = ATTRIBUTE_Hands_PowerFist;
+	}
+	else if(weapBigGun)
+	{
+		rhandleAtr = GetHandleValue(weapPid);
+	}
+	else
+	{
+		rhandleAtr = GetHandleValue(weapPid);
+		lhandleAtr = GetHandleValue(weapExPid);
 	}
 
 #ifdef PLAYERS_3D_VAULT_SUITE
-	if(bodyAtr == 0) bodyAtr = ATTRIBUTE_Body_VaultSuit;
+	bool isSkeleton = (cr.CrType == CRTYPE_3D_MALE_SKELETON || cr.CrType == CRTYPE_3D_FEMALE_SKELETON);
+	if(bodyAtr == 0 && !isSkeleton) bodyAtr = ATTRIBUTE_Body_VaultSuit;
 #endif
 
 	cr.Anim3dLayer[ANIM3D_LAYER_RHANDLE ] = rhandleAtr;
+	cr.Anim3dLayer[ANIM3D_LAYER_LHANDLE ] = lhandleAtr;
 	cr.Anim3dLayer[ANIM3D_LAYER_BODY    ] = bodyAtr;
 	cr.Anim3dLayer[ANIM3D_LAYER_FEET    ] = feetAtr;
 	cr.Anim3dLayer[ANIM3D_LAYER_HANDS   ] = handsAtr;
@@ -1971,12 +1986,162 @@ void animation3d_process(CritterCl& cr, uint anim1, uint anim2, ItemCl@ item)
 	cr.Anim3dLayer[ANIM3D_LAYER_SHOULDER] = shoulderAtr;
 	cr.Anim3dLayer[ANIM3D_LAYER_EYE     ] = eyeAtr;
 	cr.Anim3dLayer[ANIM3D_LAYER_BACK    ] = backAtr;
+	cr.Anim3dLayer[ANIM3D_LAYER_BACKPACK] = backpackAtr;
 
 	// Set custom values
 	for(uint i = ANIM3D_LAYER_SKIN; i <= ANIM3D_LAYER_BACKPACK; i++)
 		if(cr.Stat[ST_ANIM3D_LAYERS + i] != 0) cr.Anim3dLayer[i] = cr.Stat[ST_ANIM3D_LAYERS + i];
 #endif
 }
+
+#ifdef PLAYERS_3D
+int GetHandleValue(uint16 pid)
+{
+	if(pid == 0 || (pid >= 1000 && pid <=1100)) return 0;
+
+	int handle = 0;
+	switch(pid)
+	{
+	case PID_ZIP_GUN:                        handle = ATTRIBUTE_Handle_Weapon_22Autoloader;               break;
+	case PID_9MM_MAUSER:                     handle = ATTRIBUTE_Handle_Weapon_9mmAutoloader;              break;
+	case PID_10MM_PISTOL:                    handle = ATTRIBUTE_Handle_Weapon_22Autoloader;               break;
+	case PID_14MM_PISTOL:                    handle = ATTRIBUTE_Handle_Weapon_22Autoloader;               break;
+	case PID_DESERT_EAGLE:                   handle = ATTRIBUTE_Handle_Weapon_45Autoloader;               break;
+	case PID_DESERT_EAGLE_EXT_MAG:           handle = ATTRIBUTE_Handle_Weapon_45Autoloader_GunExtClip;    break;
+	case PID_223_PISTOL:                     handle = ATTRIBUTE_Handle_Weapon_223Autoloader;              break;
+	case PID_44_MAGNUM_REVOLVER:             handle = ATTRIBUTE_Handle_Weapon_44Revolver;                 break;
+	case PID_44_MAGNUM_SPEEDLOADER:          handle = ATTRIBUTE_Handle_Weapon_44Revolver;                 break;
+	case PID_NEEDLER_PISTOL:                 handle = ATTRIBUTE_Handle_Weapon_22Autoloader;               break;
+	case PID_PK12_GAUSS_PISTOL:              handle = ATTRIBUTE_Handle_Weapon_2mmGaussPistol;             break;
+	case PID_HUNTING_RIFLE:                  handle = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
+	case PID_SCOPED_HUNTING_RIFLE:           handle = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
+	case PID_SPRINGER_RIFLE:                 handle = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
+	case PID_ASSAULT_RIFLE:                  handle = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
+	case PID_ASSAULT_RIFLE_EXT_MAG:          handle = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
+	case PID_SNIPER_RIFLE:                   handle = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
+	case PID_FN_FAL:                         handle = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
+	case PID_FN_FAL_NIGHT_SCOPE:             handle = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
+	case PID_FN_FAL_HPFA:                    handle = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
+	case PID_RED_RYDER_BB_GUN:               handle = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
+	case PID_RED_RYDER_LE_BB_GUN:            handle = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
+	case PID_JONNY_BB_GUN:                   handle = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
+	case PID_INDEPENDENT:                    handle = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
+	case PID_M72_GAUSS_RIFLE:                handle = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
+	case PID_SHOTGUN:                        handle = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
+	case PID_SAWED_OFF_SHOTGUN:              handle = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
+	case PID_COMBAT_SHOTGUN:                 handle = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
+	case PID_HK_CAWS:                        handle = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
+	case PID_PANCOR_JACKHAMMER:              handle = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
+	case PID_10MM_SMG:                       handle = ATTRIBUTE_Handle_Weapon_9mmMachinePistol;           break;
+	case PID_HK_P90C:                        handle = ATTRIBUTE_Handle_Weapon_9mmMachinePistol;           break;
+	case PID_TOMMY_GUN:                      handle = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
+	case PID_HK_G11:                         handle = ATTRIBUTE_Handle_Weapon_9mmMachinePistol;           break;
+	case PID_HK_G11E:                        handle = ATTRIBUTE_Handle_Weapon_9mmMachinePistol;           break;
+	case PID_GREASE_GUN:                     handle = ATTRIBUTE_Handle_Weapon_9mmMachinePistol;           break;
+	case PID_FLAMER:                         handle = ATTRIBUTE_Handle_Weapon_Flamethrower;               break;
+	case PID_IMPROVED_FLAMETHROWER:          handle = ATTRIBUTE_Handle_Weapon_Flamethrower_FlamerExtTank; break;
+	case PID_ROCKET_LAUNCHER:                handle = ATTRIBUTE_Handle_Weapon_15mmArtemisRailGun;         break;
+	case PID_MINIGUN:                        handle = ATTRIBUTE_Handle_Weapon_223Minigun;                 break;
+	case PID_AVENGER_MINIGUN:                handle = ATTRIBUTE_Handle_Weapon_223Minigun;                 break;
+	case PID_VINDICATOR_MINIGUN:             handle = ATTRIBUTE_Handle_Weapon_223Minigun;                 break;
+	case PID_BOZAR:                          handle = ATTRIBUTE_Handle_Weapon_LaserArraygun;              break;
+	case PID_LIGHT_SUPPORT_WEAPON:           handle = ATTRIBUTE_Handle_Weapon_LaserArraygun;              break;
+	case PID_M60:                            handle = ATTRIBUTE_Handle_Weapon_LaserArraygun;              break;
+	case PID_LASER_PISTOL:                   handle = ATTRIBUTE_Handle_Weapon_LaserPistol;                break;
+	case PID_MAGNETO_LASER_PISTOL:           handle = ATTRIBUTE_Handle_Weapon_LaserPistol;                break;
+	case PID_SOLAR_SCORCHER:                 handle = ATTRIBUTE_Handle_Weapon_APOLLOLaserPistol;          break;
+	case PID_LASER_RIFLE:                    handle = ATTRIBUTE_Handle_Weapon_LaserArraygun;              break;
+	case PID_LASER_RIFLE_EXT_CAP:            handle = ATTRIBUTE_Handle_Weapon_LaserArraygun;              break;
+	case PID_GATLING_LASER:                  handle = ATTRIBUTE_Handle_Weapon_223Minigun;                 break;
+	case PID_ALIEN_LASER_PISTOL:             handle = ATTRIBUTE_Handle_Weapon_APOLLOLaserPistol;          break;
+	case PID_PLASMA_PISTOL:                  handle = ATTRIBUTE_Handle_Weapon_LaserPistol;                break;
+	case PID_PLASMA_PISTOL_EXT_CART:         handle = ATTRIBUTE_Handle_Weapon_LaserPistol;                break;
+	case PID_PLASMA_RIFLE:                   handle = ATTRIBUTE_Handle_Weapon_LaserArraygun;              break;
+	case PID_TURBO_PLASMA_RIFLE:             handle = ATTRIBUTE_Handle_Weapon_LaserArraygun;              break;
+	case PID_YK32_PULSE_PISTOL:              handle = ATTRIBUTE_Handle_Weapon_2mmGaussPistol;             break;
+	case PID_YK42B_PULSE_RIFLE:              handle = ATTRIBUTE_Handle_Weapon_LaserArraygun;              break;
+	case PID_MOLOTOV_COCKTAIL:               handle = ATTRIBUTE_Handle_Weapon_GrenadeFrag;                break;
+	case PID_FRAG_GRENADE:                   handle = ATTRIBUTE_Handle_Weapon_GrenadeFrag;                break;
+	case PID_PLASMA_GRENADE:                 handle = ATTRIBUTE_Handle_Weapon_GrenadePlasma;              break;
+	case PID_PULSE_GRENADE:                  handle = ATTRIBUTE_Handle_Weapon_GrenadeEMP;                 break;
+	case PID_FLARE:                          handle = ATTRIBUTE_Handle_Weapon_Flare;                      break;
+	case PID_ACTIVE_FLARE:                   handle = ATTRIBUTE_Handle_Weapon_Flare;                      break;
+	case PID_PLANT_SPIKE:                    handle = ATTRIBUTE_Handle_Weapon_Rock;                       break;
+	case PID_THROWING_KNIFE:                 handle = ATTRIBUTE_Handle_Weapon_ThrowingKnife;              break;
+	case PID_ROCK:                           handle = ATTRIBUTE_Handle_Weapon_Rock;                       break;
+	case PID_GOLD_NUGGET:                    handle = ATTRIBUTE_Handle_Weapon_Rock;                       break;
+	case PID_URANIUM_ORE:                    handle = ATTRIBUTE_Handle_Weapon_Rock;                       break;
+	case PID_REFINED_ORE:                    handle = ATTRIBUTE_Handle_Weapon_Rock;                       break;
+	case PID_KNIFE:                          handle = ATTRIBUTE_Handle_Weapon_CombatKnife;                break;
+	case PID_COMBAT_KNIFE:                   handle = ATTRIBUTE_Handle_Weapon_CombatKnife;                break;
+	case PID_LIL_JESUS_WEAPON:               handle = ATTRIBUTE_Handle_Weapon_CombatKnife;                break;
+	case PID_SHIV:                           handle = ATTRIBUTE_Handle_Weapon_Shiv;                       break;
+	case PID_SWITCHBLADE:                    handle = ATTRIBUTE_Handle_Weapon_Switchblade;                break;
+	case PID_WAKIZASHI_BLADE:                handle = ATTRIBUTE_Handle_Weapon_Machete;                    break;
+	case PID_SPEAR:                          handle = ATTRIBUTE_Handle_Weapon_Spear;                      break;
+	case PID_SHARP_SPEAR:                    handle = ATTRIBUTE_Handle_Weapon_Spear;                      break;
+	case PID_SHARPENED_POLE:                 handle = ATTRIBUTE_Handle_Weapon_Spear;                      break;
+	case PID_AXE:                            handle = ATTRIBUTE_Handle_Weapon_Hatchet;                    break;
+	case PID_CLUB:                           handle = ATTRIBUTE_Handle_Weapon_NightStick;                 break;
+	case PID_CROWBAR:                        handle = ATTRIBUTE_Handle_Weapon_Crowbar;                    break;
+	case PID_WRENCH:                         handle = ATTRIBUTE_Handle_Weapon_HeavyWrench;                break;
+	case PID_SLEDGEHAMMER:                   handle = ATTRIBUTE_Handle_Weapon_Sledgehammer;               break;
+	case PID_LOUISVILLE_SLUGGER:             handle = ATTRIBUTE_Handle_Weapon_Baseballbat;                break;
+	case PID_SUPER_SLEDGE:                   handle = ATTRIBUTE_Handle_Weapon_Sledgehammer;               break;
+	case PID_CATTLE_PROD:                    handle = ATTRIBUTE_Handle_Weapon_CattleProd;                 break;
+	case PID_SUPER_CATTLE_PROD:              handle = ATTRIBUTE_Handle_Weapon_CattleProd;                 break;
+	case PID_RIPPER:                         handle = ATTRIBUTE_Handle_Weapon_Machete;                    break;
+	case PID_BOXING_GLOVES:                  handle = ATTRIBUTE_Handle_Weapon_GrenadeBio;                 break;
+	case PID_PLATED_BOXING_GLOVES:           handle = ATTRIBUTE_Handle_Weapon_GrenadeBio;                 break;
+	case PID_RING_BOXING_GLOVES:             handle = ATTRIBUTE_Handle_Weapon_GrenadeBio;                 break;
+	case PID_RING_PLATED_BOXING_GLOVES:      handle = ATTRIBUTE_Handle_Weapon_GrenadeBio;                 break;
+	case PID_BRASS_KNUCKLES:                 handle = ATTRIBUTE_Handle_Weapon_GrenadeBio;                 break;
+	case PID_SPIKED_KNUCKLES:                handle = ATTRIBUTE_Handle_Weapon_GrenadeBio;                 break;
+	case PID_DYNAMITE:                       handle = ATTRIBUTE_Handle_Weapon_Dynamite;                   break;
+	case PID_PLASTIC_EXPLOSIVES:             handle = ATTRIBUTE_Handle_Weapon_Dynamite;                   break;
+	case PID_MINE:                           handle = ATTRIBUTE_Handle_Weapon_Dynamite;                   break;
+	// Player will never have this weapons anyway
+	case PID_ROBO_ROCKET_LAUNCHER:           handle = ATTRIBUTE_Handle_Weapon_LaserArraygun;              break;
+	case PID_PHAZER:                         handle = ATTRIBUTE_Handle_Weapon_45Revolver;                 break;
+	case PID_DEATHCLAW_CLAW_1:               handle = ATTRIBUTE_Handle_Weapon_45Revolver;                 break;
+	case PID_DEATHCLAW_CLAW_2:               handle = ATTRIBUTE_Handle_Weapon_45Revolver;                 break;
+	case PID_FIRE_GECKO_FLAME_WEAPON:        handle = ATTRIBUTE_Handle_Weapon_Flamethrower;               break;
+	case PID_SPECIAL_BOXER_WEAPON:           handle = ATTRIBUTE_Handle_Weapon_45Revolver;                 break;
+	case PID_GUN_TURRET_WEAPON:              handle = ATTRIBUTE_Handle_Weapon_LaserArraygun;              break;
+	case PID_EYEBALL_FIST_1:                 handle = ATTRIBUTE_Handle_Weapon_45Revolver;                 break;
+	case PID_EYEBALL_FIST_2:                 handle = ATTRIBUTE_Handle_Weapon_45Revolver;                 break;
+	case PID_DUAL_MINIGUN:                   handle = ATTRIBUTE_Handle_Weapon_223Minigun;                 break;
+	case PID_HEAVY_DUAL_MINIGUN:             handle = ATTRIBUTE_Handle_Weapon_223Minigun;                 break;
+	case PID_END_BOSS_KIFE:                  handle = ATTRIBUTE_Handle_Weapon_Machete;                    break;
+	case PID_END_BOSS_PLASMA_GUN:            handle = ATTRIBUTE_Handle_Weapon_LaserArraygun;              break;
+	case PID_HOLY_HAND_GRENADE:              handle = ATTRIBUTE_Handle_Weapon_GrenadeFrag;                break;
+	// Other items
+	case PID_STIMPAK:
+	case PID_RADAWAY:
+	case PID_SUPER_STIMPAK:
+	case PID_HYPO:
+	case PID_PSYCHO:
+	case PID_HYPO_POISON:                    handle = ATTRIBUTE_Handle_Item_FirstAidKit;                  break;
+	case PID_LOCKPICKS:
+	case PID_EXP_LOCKPICK_SET:
+	case PID_ELECTRONIC_LOCKPICKS:
+	case PID_ELEC_LOCKPICK_MKII:             handle = ATTRIBUTE_Handle_Item_SecurityKit;                  break;
+	case PID_MULTI_TOOL:
+	case PID_SUPER_TOOL_KIT:
+	case PID_OIL_CAN:                        handle = ATTRIBUTE_Handle_Item_Toolkit;                      break;
+	// No handle
+	case PID_POWER_FIST:
+	case PID_MEGA_POWER_FIST:
+	case PID_BAG:
+	case PID_BROWN_BAG:
+	case PID_BACKPACK:                       handle = 0;                                                  break;
+	// Generic item
+	default:                                 handle = 0;                                                  break;
+	}
+
+	return handle;
+}
+#endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Called on some items collection generating.

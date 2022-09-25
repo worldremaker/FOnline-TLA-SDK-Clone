@@ -3,18 +3,17 @@
 
 // Animation macro
 #define _CritAnimate #(cr,anim)     cr.Animate(0,anim,null,true,true)
-#define _CritAnimateUse #(cr)       do{if(not cr.IsAnim3d()) cr.Animate(ANIM1_UNARMED,ANIM2_2D_USE,        null,true,true); else cr.Animate(0,ANIM2_3D_USE,        null,true,true);}while(false)
-#define _CritAnimatePickup #(cr)    do{if(not cr.IsAnim3d()) cr.Animate(ANIM1_UNARMED,ANIM2_2D_PICKUP,     null,true,true); else cr.Animate(0,ANIM2_3D_PICKUP,     null,true,true);}while(false)
-#define _CritAnimatePunch #(cr)     do{if(not cr.IsAnim3d()) cr.Animate(ANIM1_UNARMED,ANIM2_2D_PUNCH,      null,true,true); else cr.Animate(0,ANIM2_3D_PUNCH_RIGHT,null,true,true);}while(false)
-#define _CritAnimateKick #(cr)      do{if(not cr.IsAnim3d()) cr.Animate(ANIM1_UNARMED,ANIM2_2D_KICK,       null,true,true); else cr.Animate(0,ANIM2_3D_KICK_HI,    null,true,true);}while(false)
-#define _CritAnimateThrow #(cr)     do{if(not cr.IsAnim3d()) cr.Animate(ANIM1_UNARMED,ANIM2_2D_THROW_EMPTY,null,true,true); else cr.Animate(0,ANIM2_3D_THROW,      null,true,true);}while(false)
-#define _CritAnimateThrust #(cr)    do{if(not cr.IsAnim3d()) cr.Animate(0,ANIM2_2D_THRUST,                 null,true,true); else cr.Animate(0,ANIM2_3D_THRUST_1H,  null,true,true);}while(false)
-#define _CritAnimateSwing #(cr)     do{if(not cr.IsAnim3d()) cr.Animate(0,ANIM2_2D_SWING,                  null,true,true); else cr.Animate(0,ANIM2_3D_SWING_1H,   null,true,true);}while(false)
-#define _CritAnimateThrowWeap #(cr) do{if(not cr.IsAnim3d()) cr.Animate(0,ANIM2_2D_THROW_WEAPON,           null,true,true); else cr.Animate(0,ANIM2_3D_THROW,      null,true,true);}while(false)
-#define _CritAnimateSingle #(cr)    do{if(not cr.IsAnim3d()) cr.Animate(0,ANIM2_2D_SHOOT,                  null,true,true); else cr.Animate(0,ANIM2_3D_SINGLE,     null,true,true);}while(false)
-#define _CritAnimateBrust #(cr)     do{if(not cr.IsAnim3d()) cr.Animate(0,ANIM2_2D_BURST,                  null,true,true); else cr.Animate(0,ANIM2_3D_BURST,      null,true,true);}while(false)
-#define _CritAnimateFidget #(cr)    do{if(not cr.IsAnim3d()) cr.Animate(0,ANIM2_2D_STAY,                   null,true,true); else cr.Animate(0,Random(0,1)==0?ANIM2_3D_FIDGET1:ANIM2_3D_FIDGET2,null,true,true);}while(false)
-
+#define _CritAnimateUse       #(cr) do{if(not cr.IsAnim3d()) cr.Animate(ANIM1_UNARMED, ANIM2_2D_USE         , null, true, true); else cr.Animate(0, ANIM2_3D_USE        , null, true, true);}while(false)
+#define _CritAnimatePickup    #(cr) do{if(not cr.IsAnim3d()) cr.Animate(ANIM1_UNARMED, ANIM2_2D_PICKUP      , null, true, true); else cr.Animate(0, ANIM2_3D_PICKUP     , null, true, true);}while(false)
+#define _CritAnimatePunch     #(cr) do{if(not cr.IsAnim3d()) cr.Animate(ANIM1_UNARMED, ANIM2_2D_PUNCH       , null, true, true); else cr.Animate(0, ANIM2_3D_PUNCH_RIGHT, null, true, true);}while(false)
+#define _CritAnimateKick      #(cr) do{if(not cr.IsAnim3d()) cr.Animate(ANIM1_UNARMED, ANIM2_2D_KICK        , null, true, true); else cr.Animate(0, ANIM2_3D_KICK_HI    , null, true, true);}while(false)
+#define _CritAnimateThrow     #(cr) do{if(not cr.IsAnim3d()) cr.Animate(ANIM1_UNARMED, ANIM2_2D_THROW_EMPTY , null, true, true); else cr.Animate(0, ANIM2_3D_THROW      , null, true, true);}while(false)
+#define _CritAnimateThrust    #(cr) do{if(not cr.IsAnim3d()) cr.Animate(0            , ANIM2_2D_THRUST      , null, true, true); else cr.Animate(0, ANIM2_3D_THRUST_1H  , null, true, true);}while(false)
+#define _CritAnimateSwing     #(cr) do{if(not cr.IsAnim3d()) cr.Animate(0            , ANIM2_2D_SWING       , null, true, true); else cr.Animate(0, ANIM2_3D_SWING_1H   , null, true, true);}while(false)
+#define _CritAnimateThrowWeap #(cr) do{if(not cr.IsAnim3d()) cr.Animate(0            , ANIM2_2D_THROW_WEAPON, null, true, true); else cr.Animate(0, ANIM2_3D_THROW      , null, true, true);}while(false)
+#define _CritAnimateSingle    #(cr) do{if(not cr.IsAnim3d()) cr.Animate(0            , ANIM2_2D_SHOOT       , null, true, true); else cr.Animate(0, ANIM2_3D_SINGLE     , null, true, true);}while(false)
+#define _CritAnimateBrust     #(cr) do{if(not cr.IsAnim3d()) cr.Animate(0            , ANIM2_2D_BURST       , null, true, true); else cr.Animate(0, ANIM2_3D_BURST      , null, true, true);}while(false)
+#define _CritAnimateFidget    #(cr) do{if(not cr.IsAnim3d()) cr.Animate(0            , ANIM2_2D_STAY        , null, true, true); else cr.Animate(0, Random(0, 1) == 0 ? ANIM2_3D_FIDGET1 : ANIM2_3D_FIDGET2, null, true, true);}while(false)
 // Anim1
 #define ANIM1_UNARMED                   (1)
 #define ANIM1_DEAD                      (2) // Not used in 3d animations
@@ -255,24 +254,24 @@
 #define ATTRIBUTE_Handle_Item_SecurityKit                                 (101)
 #define ATTRIBUTE_Handle_Item_Toolkit                                     (102)
 	// ANIM3D_LAYER_BODY      (3)  Body
-#define ATTRIBUTE_Body_LeatherOutfit               (1) // Disabled subsets - Chest, Legs, Shins, UpperArms, Waist, ForeArms
-#define ATTRIBUTE_Body_PowerArmor                  (2) // Disabled subsets - Chest, Legs, UpperArms, Waist
-#define ATTRIBUTE_Body_PrisonSuit                  (3) // Disabled subsets - Chest, Legs, Shins, UpperArms, Waist
-#define ATTRIBUTE_Body_VaultSuit                   (4) // Disabled subsets - Chest, Legs, Shins, UpperArms, Waist, ForeArms
+#define ATTRIBUTE_Body_LeatherOutfit               (1)  // Disabled subsets - Chest, Legs, Shins, UpperArms, Waist, ForeArms
+#define ATTRIBUTE_Body_PowerArmor                  (2)  // Disabled subsets - Chest, Legs, UpperArms, Waist
+#define ATTRIBUTE_Body_PrisonSuit                  (3)  // Disabled subsets - Chest, Legs, Shins, UpperArms, Waist
+#define ATTRIBUTE_Body_VaultSuit                   (4)  // Disabled subsets - Chest, Legs, Shins, UpperArms, Waist, ForeArms
 	// ANIM3D_LAYER_FEET      (4)  Feet
-#define ATTRIBUTE_Feet_LeatherOutfit               (1) // Disabled subsets - Feet
-#define ATTRIBUTE_Feet_PowerArmor                  (2) // Disabled subsets - Feet, Legs
-#define ATTRIBUTE_Feet_PrisonSuit                  (3) // Disabled subsets - Feet
-#define ATTRIBUTE_Feet_VaultSuit                   (4) // Disabled subsets - Feet
+#define ATTRIBUTE_Feet_LeatherOutfit               (1)  // Disabled subsets - Feet
+#define ATTRIBUTE_Feet_PowerArmor                  (2)  // Disabled subsets - Feet, Legs
+#define ATTRIBUTE_Feet_PrisonSuit                  (3)  // Disabled subsets - Feet
+#define ATTRIBUTE_Feet_VaultSuit                   (4)  // Disabled subsets - Feet
 	// ANIM3D_LAYER_HANDS     (5)  Hands
-#define ATTRIBUTE_Hands_LeatherOutfit              (1) // Disabled subsets - Hands
-#define ATTRIBUTE_Hands_PowerArmor                 (2) // Disabled subsets - Hands, ForeArms
-#define ATTRIBUTE_Hands_LeatherOutfitGauntlet      (3) // Disabled subsets - Hands
-#define ATTRIBUTE_Hands_PowerFist                  (4) // Disabled subsets - Hands, ForeArms
+#define ATTRIBUTE_Hands_LeatherOutfit              (1)  // Disabled subsets - Hands
+#define ATTRIBUTE_Hands_PowerArmor                 (2)  // Disabled subsets - Hands, ForeArms
+#define ATTRIBUTE_Hands_LeatherOutfitGauntlet      (3)  // Disabled subsets - Hands
+#define ATTRIBUTE_Hands_PowerFist                  (4)  // Disabled subsets - Hands, ForeArms
 	// ANIM3D_LAYER_HEAD      (6)  Head
-#define ATTRIBUTE_Head_ArmingCap                   (1) // Disabled layers - Hair, Ponytail
-#define ATTRIBUTE_Head_PowerArmor                  (2) // Disabled layers - Hair, Eye, Mustache, Ponytail, Beard
-#define ATTRIBUTE_Head_StrawHat                    (3) // Disabled layers - Hair
+#define ATTRIBUTE_Head_ArmingCap                   (1)  // Disabled layers - Hair, Ponytail
+#define ATTRIBUTE_Head_PowerArmor                  (2)  // Disabled layers - Hair, Eye, Mustache, Ponytail, Beard
+#define ATTRIBUTE_Head_StrawHat                    (3)  // Disabled layers - Hair
 #define ATTRIBUTE_Head_Motorcycle_White            (10) // Disabled layers - Hair
 #define ATTRIBUTE_Head_Motorcycle_Black            (11)
 #define ATTRIBUTE_Head_Motorcycle_Red              (12)
@@ -384,54 +383,54 @@
 
 int ConvertAnim2_2dTo3d(int anim1, int anim2_2d)
 {
-	int anim2=anim2_2d;
-	if(anim1==ANIM1_DEAD)
+	int anim2 = anim2_2d;
+	if(anim1 == ANIM1_DEAD)
 	{
 		switch(anim2)
 		{
-		case ANIM2_2D_DEAD_FRONT: anim2=ANIM2_3D_KNOCK_FRONT; break;
-		case ANIM2_2D_DEAD_BACK: anim2=ANIM2_3D_KNOCK_BACK; break;
-		case ANIM2_2D_DEAD_BLOODY_SINGLE: anim2=ANIM2_3D_DEAD_BLOODY_SINGLE; break;
-		case ANIM2_2D_DEAD_BURN: anim2=ANIM2_3D_DEAD_BURN; break;
-		case ANIM2_2D_DEAD_BLOODY_BURST: anim2=ANIM2_3D_DEAD_BLOODY_BURST; break;
-		case ANIM2_2D_DEAD_BRUST: anim2=ANIM2_3D_DEAD_BURST; break;
-		case ANIM2_2D_DEAD_PULSE: anim2=ANIM2_3D_DEAD_PULSE; break;
-		case ANIM2_2D_DEAD_LASER: anim2=ANIM2_3D_DEAD_LASER; break;
-		case ANIM2_2D_DEAD_BURN2: anim2=ANIM2_3D_DEAD_BURN; break;
-		case ANIM2_2D_DEAD_PULSE_DUST: anim2=ANIM2_3D_DEAD_PULSE_DUST; break;
-		case ANIM2_2D_DEAD_EXPLODE: anim2=ANIM2_3D_DEAD_EXPLODE; break;
-		case ANIM2_2D_DEAD_FUSED: anim2=ANIM2_3D_DEAD_FUSED; break;
-		case ANIM2_2D_DEAD_BURN_RUN: anim2=ANIM2_3D_DEAD_BURN_RUN; break;
-		case ANIM2_2D_DEAD_FRONT2: anim2=ANIM2_3D_DEAD_PRONE_FRONT; break;
-		case ANIM2_2D_DEAD_BACK2: anim2=ANIM2_3D_DEAD_PRONE_BACK; break;
-		default: break;
+		case ANIM2_2D_DEAD_FRONT:         anim2 = ANIM2_3D_KNOCK_FRONT;        break;
+		case ANIM2_2D_DEAD_BACK:          anim2 = ANIM2_3D_KNOCK_BACK;         break;
+		case ANIM2_2D_DEAD_BLOODY_SINGLE: anim2 = ANIM2_3D_DEAD_BLOODY_SINGLE; break;
+		case ANIM2_2D_DEAD_BURN:          anim2 = ANIM2_3D_DEAD_BURN;          break;
+		case ANIM2_2D_DEAD_BLOODY_BURST:  anim2 = ANIM2_3D_DEAD_BLOODY_BURST;  break;
+		case ANIM2_2D_DEAD_BRUST:         anim2 = ANIM2_3D_DEAD_BURST;         break;
+		case ANIM2_2D_DEAD_PULSE:         anim2 = ANIM2_3D_DEAD_PULSE;         break;
+		case ANIM2_2D_DEAD_LASER:         anim2 = ANIM2_3D_DEAD_LASER;         break;
+		case ANIM2_2D_DEAD_BURN2:         anim2 = ANIM2_3D_DEAD_BURN;          break;
+		case ANIM2_2D_DEAD_PULSE_DUST:    anim2 = ANIM2_3D_DEAD_PULSE_DUST;    break;
+		case ANIM2_2D_DEAD_EXPLODE:       anim2 = ANIM2_3D_DEAD_EXPLODE;       break;
+		case ANIM2_2D_DEAD_FUSED:         anim2 = ANIM2_3D_DEAD_FUSED;         break;
+		case ANIM2_2D_DEAD_BURN_RUN:      anim2 = ANIM2_3D_DEAD_BURN_RUN;      break;
+		case ANIM2_2D_DEAD_FRONT2:        anim2 = ANIM2_3D_DEAD_PRONE_FRONT;   break;
+		case ANIM2_2D_DEAD_BACK2:         anim2 = ANIM2_3D_DEAD_PRONE_BACK;    break;
+		default:                                                               break;
 		}
 	}
 	else
 	{
 		switch(anim2)
 		{
-		case ANIM2_2D_WALK: anim2=ANIM2_3D_WALK; break;
-		case ANIM2_2D_PICKUP: anim2=(anim1==ANIM1_UNARMED?ANIM2_3D_PICKUP:ANIM2_3D_BURST); break; // Burst
-		case ANIM2_2D_USE: anim2=(anim1==ANIM1_UNARMED?ANIM2_3D_USE:ANIM2_3D_FLAME); break; // Flame
-		case ANIM2_2D_STAY: anim2=ANIM2_3D_IDLE; break;
-		case ANIM2_2D_SHOW: anim2=ANIM2_3D_SHOW; break;
-		case ANIM2_2D_HIDE: anim2=ANIM2_3D_HIDE; break;
-		case ANIM2_2D_DODGE_EMPTY: anim2=ANIM2_3D_DODGE_FRONT; break;
-		case ANIM2_2D_DODGE_WEAPON: anim2=ANIM2_3D_DODGE_FRONT; break;
-		case ANIM2_2D_DAMAGE_FRONT: anim2=ANIM2_3D_DAMAGE_FRONT; break;
-		case ANIM2_2D_DAMAGE_BACK: anim2=ANIM2_3D_DAMAGE_BACK; break;
-		case ANIM2_2D_PUNCH: anim2=ANIM2_3D_PUNCH_RIGHT; break;
-		case ANIM2_2D_KICK: anim2=ANIM2_3D_KICK_HI; break;
-		case ANIM2_2D_THROW_WEAPON: anim2=ANIM2_3D_THROW; break;
-		case ANIM2_2D_THROW_EMPTY: anim2=ANIM2_3D_THROW; break;
-		case ANIM2_2D_THRUST: anim2=ANIM2_3D_THRUST_1H; break;
-		case ANIM2_2D_SWING: anim2=ANIM2_3D_SLASH_1H; break;
-		case ANIM2_2D_SHOOT: anim2=ANIM2_3D_SINGLE; break;
-		case ANIM2_2D_RUN: anim2=ANIM2_3D_RUN; break;
-		case ANIM2_2D_PREPARE_WEAPON:  anim2=ANIM2_3D_SINGLE; break;
-		case ANIM2_2D_TURNOFF_WEAPON: anim2=ANIM2_3D_SINGLE; break;
-		default: break;
+		case ANIM2_2D_PICKUP:         anim2 = (anim1 == ANIM1_UNARMED ? ANIM2_3D_PICKUP : ANIM2_3D_BURST); break; // Burst
+		case ANIM2_2D_USE:            anim2 = (anim1 == ANIM1_UNARMED ? ANIM2_3D_USE    : ANIM2_3D_FLAME); break; // Flame
+		case ANIM2_2D_WALK:           anim2 = ANIM2_3D_WALK;         break;
+		case ANIM2_2D_STAY:           anim2 = ANIM2_3D_IDLE;         break;
+		case ANIM2_2D_SHOW:           anim2 = ANIM2_3D_SHOW;         break;
+		case ANIM2_2D_HIDE:           anim2 = ANIM2_3D_HIDE;         break;
+		case ANIM2_2D_DODGE_EMPTY:    anim2 = ANIM2_3D_DODGE_FRONT;  break;
+		case ANIM2_2D_DODGE_WEAPON:   anim2 = ANIM2_3D_DODGE_FRONT;  break;
+		case ANIM2_2D_DAMAGE_FRONT:   anim2 = ANIM2_3D_DAMAGE_FRONT; break;
+		case ANIM2_2D_DAMAGE_BACK:    anim2 = ANIM2_3D_DAMAGE_BACK;  break;
+		case ANIM2_2D_PUNCH:          anim2 = ANIM2_3D_PUNCH_RIGHT;  break;
+		case ANIM2_2D_KICK:           anim2 = ANIM2_3D_KICK_HI;      break;
+		case ANIM2_2D_THROW_WEAPON:   anim2 = ANIM2_3D_THROW;        break;
+		case ANIM2_2D_THROW_EMPTY:    anim2 = ANIM2_3D_THROW;        break;
+		case ANIM2_2D_THRUST:         anim2 = ANIM2_3D_THRUST_1H;    break;
+		case ANIM2_2D_SWING:          anim2 = ANIM2_3D_SLASH_1H;     break;
+		case ANIM2_2D_SHOOT:          anim2 = ANIM2_3D_SINGLE;       break;
+		case ANIM2_2D_RUN:            anim2 = ANIM2_3D_RUN;          break;
+		case ANIM2_2D_PREPARE_WEAPON: anim2 = ANIM2_3D_SINGLE;       break;
+		case ANIM2_2D_TURNOFF_WEAPON: anim2 = ANIM2_3D_SINGLE;       break;
+		default:                                                     break;
 		}
 	}
 	return anim2;

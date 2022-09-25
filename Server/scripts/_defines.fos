@@ -2,9 +2,9 @@
 #define __DEFINES__
 
 // 3d players mod, uncomment for use
-// #define PLAYERS_3D             // Enable 3d players
-// #define PLAYERS_3D_NO_HEAD     // No head slot
-// #define PLAYERS_3D_VAULT_SUITE // Vault suite by default, not naked
+#define PLAYERS_3D             // Enable 3d players
+#define PLAYERS_3D_NO_HEAD     // No head slot
+#define PLAYERS_3D_VAULT_SUITE // Vault suite by default, not naked
 
 // Global variables
 // Possible types:

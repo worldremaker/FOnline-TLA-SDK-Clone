@@ -1,6 +1,7 @@
 // Author: rifleman17
 #include "_macros.fos"
 #include "_colors.fos"
+#include "_animation.fos"
 
 
 #define INTRO_WORLD_X           (5) // координаты расположени€ стартовой локации на глобале, ось ’
@@ -66,11 +67,29 @@ bool SetPlayerStartLocation(Critter & player)
 	Map @ map = loc.GetMapByIndex(0);
 	if(!valid(map)) return false;
 	if(!player.TransitToMap(map.Id,(Random(0,1)==0?ENTIRE_ENTRANCE1:ENTIRE_ENTRANCE2))) return false;
+
 	// »зменение типа криттера, чтобы не было пижамы с рождени€
-	int crType = (player.Stat[ST_GENDER]==GENDER_MALE?CRTYPE_DW_LEATHER_JACKET_M:CRTYPE_DW_LEATHER_JACKET_F);
-	if(player.Stat[ST_INTELLECT]<TRIBAL_INT) crType = (player.Stat[ST_GENDER]==GENDER_MALE?CRTYPE_DW_TRIBAL_M:CRTYPE_DW_TRIBAL_F);
+#ifndef PLAYERS_3D
+	int crType = (player.Stat[ST_GENDER] == GENDER_MALE ? CRTYPE_DW_LEATHER_JACKET_M : CRTYPE_DW_LEATHER_JACKET_F);
+	if(player.Stat[ST_INTELLECT] <= TRIBAL_INT) crType = (player.Stat[ST_GENDER] == GENDER_MALE ? CRTYPE_DW_TRIBAL_M : CRTYPE_DW_TRIBAL_F);
 	player.ChangeCrType(crType);
 	player.StatBase[ST_BASE_CRTYPE] = crType;
+#endif
+#ifdef PLAYERS_3D
+	if(player.Stat[ST_INTELLECT] > TRIBAL_INT)
+	{
+		// Leather jacket set
+		player.StatBase[ST_ANIM3D_LAYERS + ANIM3D_LAYER_BODY ] = ATTRIBUTE_Body_LeatherOutfit;
+		player.StatBase[ST_ANIM3D_LAYERS + ANIM3D_LAYER_HANDS] = ATTRIBUTE_Hands_LeatherOutfit;
+		player.StatBase[ST_ANIM3D_LAYERS + ANIM3D_LAYER_FEET ] = ATTRIBUTE_Feet_LeatherOutfit;
+	}
+	else
+	{
+		// Naked
+		player.StatBase[ST_ANIM3D_LAYERS + ANIM3D_LAYER_BODY ] = 1000; // Some unaviable value
+	}
+#endif
+
 	DL("Player successfully transited to start location  LocId="+locId);
 	return true;
 }
@@ -146,9 +165,18 @@ uint e_ReplicateCritter(uint[]@ values )
 {
 	Critter @ player = GetCritter(values[0]);
 	if(!valid(player)) return 0;
+
+#ifndef PLAYERS_3D
 	int crType = (player.Stat[ST_GENDER]==GENDER_MALE?CRTYPE_DEFAULT_M:CRTYPE_DEFAULT_F);
 	player.ChangeCrType(crType);
 	player.StatBase[ST_BASE_CRTYPE] = 0;
+#endif
+#ifdef PLAYERS_3D
+	player.StatBase[ST_ANIM3D_LAYERS + ANIM3D_LAYER_BODY ] = 0;
+	player.StatBase[ST_ANIM3D_LAYERS + ANIM3D_LAYER_HANDS] = 0;
+	player.StatBase[ST_ANIM3D_LAYERS + ANIM3D_LAYER_FEET ] = 0;
+#endif
+
 	player.AddHolodiskInfo(HOLODISK_INFO_INTRO);
 	CreateTimeEvent(__FullSecond+REAL_SECOND(3), "e_ShowMessage", player.Id, true);
 	ReplicateCritter(player);
