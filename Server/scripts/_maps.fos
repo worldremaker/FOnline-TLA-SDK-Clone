@@ -80,6 +80,7 @@
 #define LOCATION_MountainEncounter4                 (124)
 #define LOCATION_MountainEncounter5                 (125)
 #define LOCATION_MountainEncounter6                 (126)
+#define LOCATION_MountainEncounter7                 (127)
 
 #define LOCATION_CavernEncounter0                   (140)
 #define LOCATION_CavernEncounter1                   (141)

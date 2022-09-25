@@ -35,5 +35,21 @@
 #define TEAM_Mob7                     (31)
 #define TEAM_Mob8                     (32)
 #define TEAM_Mob9                     (33)
+#define TEAM_HellGuard                (34)
+#define TEAM_ReddingRegulator         (35)
+#define TEAM_EncounterHubologist      (36)
+#define TEAM_EncounterNCR             (37)
+#define TEAM_EncounterVC              (38)
+#define TEAM_EncounterRedding         (39)
+#define TEAM_EncounterBroken          (40)
+#define TEAM_EncounterGecko           (41)
+#define TEAM_EncounterArroyo          (42)
+#define TEAM_EncounterKlamath         (43)
+#define TEAM_EncounterModoc           (44)
+#define TEAM_EncounterDen             (45)
+#define TEAM_EncounterReno            (46)
+#define TEAM_EncounterEnclave         (47)
+#define TEAM_EncounterSF              (48)
 
 #endif // __TEAMS__
+

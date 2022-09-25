@@ -1,7 +1,8 @@
 // Generic encounter npc script
-// Author: cvet, rifleman17
+// Author: cvet, rifleman17, Dagnir
 #include "_macros.fos"
 #include "_animation.fos"
+#include "_teams.fos"
 
 import bool AddAttackPlane(Critter& npc, uint priority, Critter& target, bool run) from "npc_planes";
 import bool AddWalkPlane(Critter& npc, uint priority, int identifier, uint identifierExt, uint16 hexX, uint16 hexY, uint8 dir, bool run, uint cut) from "npc_planes";
@@ -135,6 +136,75 @@ void _NpcDead(Critter& npc, Critter@ killer)
 			for(uint i=0,j=planes.length();i<j;i++) cr.AddPlane(planes[i]);
 		}
 	}
+	if(valid(killer) && killer.IsPlayer())
+	{
+	uint team=npc.Stat[ST_TEAM_ID];
+	if(team==TEAM_EncounterHubologist)
+		{
+			GameVar@ var = GetLocalVar(LVAR_enc_loyality_hubologists, killer.Id);
+			var += 1;
+		}
+	else if(team==TEAM_EncounterNCR)
+		{
+			GameVar@ var = GetLocalVar(LVAR_enc_loyality_ncr, killer.Id);
+			var += 1;
+		}
+	else if(team==TEAM_EncounterVC)
+		{
+			GameVar@ var = GetLocalVar(LVAR_enc_loyality_vcity, killer.Id);
+			var += 1;
+		}
+	else if(team==TEAM_EncounterRedding)
+		{
+			GameVar@ var = GetLocalVar(LVAR_enc_loyality_redding, killer.Id);
+			var += 1;
+		}
+	else if(team==TEAM_EncounterBroken)
+		{
+			GameVar@ var = GetLocalVar(LVAR_enc_loyality_broken, killer.Id);
+			var += 1;
+		}
+	else if(team==TEAM_EncounterGecko)
+		{
+			GameVar@ var = GetLocalVar(LVAR_enc_loyality_gecko, killer.Id);
+			var += 1;
+		}
+	else if(team==TEAM_EncounterArroyo)
+		{
+			GameVar@ var = GetLocalVar(LVAR_enc_loyality_arroyo, killer.Id);
+			var += 1;
+		}
+	else if(team==TEAM_EncounterKlamath)
+		{
+			GameVar@ var = GetLocalVar(LVAR_enc_loyality_klamath, killer.Id);
+			var += 1;
+		}
+	else if(team==TEAM_EncounterModoc)
+		{
+			GameVar@ var = GetLocalVar(LVAR_enc_loyality_modoc, killer.Id);
+			var += 1;
+		}
+	else if(team==TEAM_EncounterDen)
+		{
+			GameVar@ var = GetLocalVar(LVAR_enc_loyality_den, killer.Id);
+			var += 1;
+		}
+	else if(team==TEAM_EncounterReno)
+		{
+			GameVar@ var = GetLocalVar(LVAR_enc_loyality_reno, killer.Id);
+			var += 1;
+		}
+	else if(team==TEAM_EncounterEnclave)
+		{
+			GameVar@ var = GetLocalVar(LVAR_enc_loyality_enclave, killer.Id);
+			var = 0;                                                           //У Анклава отличаются проверки в worldmap_init.fos
+		}
+	else if(team==TEAM_EncounterSF)
+		{
+			GameVar@ var = GetLocalVar(LVAR_enc_loyality_sf, killer.Id);
+			var += 1;
+		}
+	}
 }
 
 void _NpcSmthDead(Critter& npc, Critter& fromCrit, Critter@ killer)
@@ -191,21 +261,4 @@ void _NpcStealing(Critter& npc, Critter& thief, bool success, Item& item, uint c
 		npc.SendMessage(MESSAGE_ATTACK_HIM, thief.Id, MESSAGE_TO_ALL_ON_MAP);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

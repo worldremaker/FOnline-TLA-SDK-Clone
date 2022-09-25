@@ -772,6 +772,7 @@ $	5061	mob_ill_brahmin
 $	10000	enc_klad_trader
 $	10001	enc_ocean_trader
 $	10002	enc_ocean_america
+$	10003	enc_arroyo_patrol
 $	10010	enc_dmrv_trader
 $	10020	enc_dvmv_trader
 $	10030	enc_wild1_trader
@@ -779,6 +780,9 @@ $	10040	enc_den_trader
 $	10050	enc_vault_trader
 $	10060	enc_reno_trader
 $	10070	enc_redd_trader
+$	10071	enc_hell_patrol_guard
+$	10072	enc_hell_patrol_hub
+$	10073	enc_hell_fugitive
 $	10080	enc_brok_trader
 $	10090	enc_geck_trader
 $	10100	enc_fran_trader

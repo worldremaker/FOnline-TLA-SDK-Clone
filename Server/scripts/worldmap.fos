@@ -72,7 +72,7 @@ uint[][] PositionDirs={
 };
 
 #define GROUP_Player                           (uint(-1))
-#define GROUP_Raiders                          (0)
+#define GROUP_Raiders                          (0) //Fallout 1 encounters, not in use
 #define GROUP_Rad_Scorpions                    (1)
 #define GROUP_Giant_Rats                       (2)
 #define GROUP_Merchant_Party                   (3)
@@ -82,7 +82,7 @@ uint[][] PositionDirs={
 #define GROUP_Easy_MoleRat                     (7)
 #define GROUP_Easy_Pigrat                      (8)
 #define GROUP_Dog                              (9)
-#define GROUP_Brahmin                          (10)
+#define GROUP_Brahmin                          (10) //Fallout 1 encounters end.
 #define GROUP_ARRO_Rats                        (11)
 #define GROUP_ARRO_Pig_Rats                    (12)
 #define GROUP_ARRO_Sm_Scorpions                (13)
@@ -190,14 +190,18 @@ uint[][] PositionDirs={
 #define GROUP_OCEAN_W_Voles_Mutated            (115)
 #define GROUP_OCEAN_Mantis                     (116)
 #define GROUP_OCEAN_Wasps                      (117)
-#define GROUP_MAX                              (118)
+#define GROUP_ARRO_Patrol                      (118)
+#define GROUP_HELL_Patrol                      (119)
+#define GROUP_HELL_Patrol_R                    (120)
+#define GROUP_HELL_Fugitives                   (121)
+#define GROUP_MAX                              (122)
 
-#define TABLE_DstN                             (0)
+#define TABLE_DstN                             (0) //Fallout 1 encounter tables, not in use
 #define TABLE_DstS                             (1)
 #define TABLE_MtnN                             (2)
 #define TABLE_MtnS                             (3)
 #define TABLE_Vault                            (4)
-#define TABLE_Coast                            (5)
+#define TABLE_Coast                            (5)  //Fallout 1 encounter tables end.
 #define TABLE_Arro_M                           (6)
 #define TABLE_Arro_D                           (7)
 #define TABLE_Arro_O                           (8)
@@ -270,7 +274,8 @@ uint[][] PositionDirs={
 #define TABLE_V15_D                            (75)
 #define TABLE_Ocean1_O                         (76)
 #define TABLE_Ocean2_O                         (77)
-#define TABLE_MAX                              (78)
+#define TABLE_HELL_M                           (78)
+#define TABLE_MAX                              (79)
 
 
 class CCheck

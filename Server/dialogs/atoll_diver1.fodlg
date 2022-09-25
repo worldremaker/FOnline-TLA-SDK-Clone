@@ -63,29 +63,31 @@ lang=russ engl
 {100000002}{}{Зайдите в любой пустынный энкаунтер и используйте Г.Э.К.К! Тот, кто активирует Г.Э.К.К автоматически назначается руководителем нового поселения. Вы сможете назначать новых или исключать неугодных жителей из вашего славного города.}
 
 [engl]
-{100}{}{none}
+{100}{}{Diver}
+{200}{}{You see a diver.}
+{210}{}{Young man with a pretty good constitution.}
 {1000}{}{Преддиалоговые установки}
-{1010}{}{Низкий интеллект}
-{1020}{}{Низкий интеллект}
-{2000}{}{[Кивает] Слушаю тебя.@@Я не видел тебя раньше на Атолле. Что привело тебя к нам?@@Я один из лучших здесь. Если тебе нужен хороший пловец, ты по адресу.@@Зачем ты здесь?}
-{2010}{}{Просто мимо прохожу.@@Не бери в голову.}
-{2020}{}{Чем ты занимаешься?@@Кто ты}
-{3000}{}{Я - ныряльщик. Опускаюсь на дно и достаю подарки из прошлого. Тебе тоже нужен такой подарок?}
-{3010}{}{Нет.}
-{3020}{}{А что ты можешь предложить?}
-{3030}{}{А что ты можешь предложить?}
-{4000}{}{У меня есть одна вещь. Когда-то считалась очень ценной. Да и сейчас, вторую такую нигде не найти. Могу продать. Но стоит это... Очень дорого.}
-{4010}{}{Что это?}
-{5000}{}{Смотри. [Пловец показывает вам небольшой серебристый чемоданчик. На нем выбиты четыре символа. Г.Э.К.К.]}
-{5010}{}{Меня это не интересует.}
-{5020}{}{Сколько?}
-{6000}{}{Я хочу получить триста тридцать три тысячи монет. Сразу скажу, никаких торгов, никаких скидок. Если попробуешь на меня напасть, я выброшу это в океан, и Г.Э.К.К. никому не достанется.}
-{6010}{}{Это слишком дорого. У меня нет таких денег.}
-{6020}{}{Годится. Покупаю.}
-{7000}{}{Люблю тех, кто не торгуется. Как я слышал, использовать эту штуку выгоднее всего в пустыне. Найди ровное, сухое место и преврати его в цветущий сад! "Просто добавь воды", как говорили когда-то...}
-{7010}{}{Спасибо за совет. Посмотрим, что получится.}
-{8000}{}{Сейчас ничего. Все у нашего торговца, Стива. Обращайся к нему.}
-{8010}{}{Хорошо.}
-{9000}{}{Нет. Я не стану разговаривать с тобой. Убирайся!}
-{9010}{}{Шо за!?!}
+{1010}{}{Low int.}
+{1020}{}{High int.}
+{2000}{}{I'm listening.@@Haven't seen you before.@@What are you seeking here?@@Do you need a diver? I'm one of the best.}
+{2010}{}{Never mind.@@Just passing by.}
+{2020}{}{What are doing?@@Who are you?}
+{3000}{}{I'm a diver. I'm going down to the bottom of the ocean and bringing presents from the past. Do you need one?}
+{3010}{}{No. thanks.}
+{3020}{}{And what can you offer?}
+{3030}{}{And what can you offer?}
+{4000}{}{I have one item here... It used to be considered very valuable. Well, it is still hard to find one. I can sell it, but it will cost you... very much.}
+{4010}{}{And what is it?}
+{5000}{}{Look. [He shows a small metal case. You see four letters, 'G.E.C.K.' engraved on it]}
+{5010}{}{Not interested.}
+{5020}{}{How much?}
+{6000}{}{I want three hundred thirty-three thousands bucks. I warn you: no trade, no discounts. If you try to attack me, I will throw it away from my window to the ocean and noone will ever get it.}
+{6010}{}{It's too expensive. I don't have such money on me at the moment.}
+{6020}{}{Fine. I'm taking it.}
+{7000}{}{I like those who don't trade. I've heard it's best to use this item in a plane desert. Fine an even and dry place and turn it into a garden! 'Just add water', as they say.}
+{7010}{}{Thank you for advice.}
+{8000}{}{Nothing at the moment. Try our trader, Steve. He has some of my stuff.}
+{8010}{}{Good.}
+{9000}{}{I'm not going to talk with you. Get away!}
+{9010}{}{Uh?}
 

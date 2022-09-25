@@ -523,3 +523,10 @@
 {5060}{}{Гвардеец}
 {5061}{}{Боец Гвардии ГУ}
 {5070}{}{Giant Bat}
+{5080}{}{Arroyo Patrol}
+{5090}{}{Arroyo Patrol}
+{5100}{}{Arroyo Patrol}
+{5110}{}{Fugitive}
+{5120}{}{Fugitive}
+{5130}{}{Fugitive}
+{5140}{}{Fugitive}

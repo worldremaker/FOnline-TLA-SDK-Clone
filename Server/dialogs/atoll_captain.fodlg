@@ -15,6 +15,9 @@ lang=russ engl
 {1000}{}{Преддиалоговые установки}
 
 [engl]
-{100}{}{none}
+{100}{}{Captain}
+{200}{}{You see Captain.}
+{210}{}{Smiling guy in his thirties with a captain's cap on his head.}
 {1000}{}{Преддиалоговые установки}
+
 

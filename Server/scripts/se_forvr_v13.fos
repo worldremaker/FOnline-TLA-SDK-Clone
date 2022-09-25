@@ -48,6 +48,7 @@ bool s_Terminal(Critter& cr, Scenery& terminal, int skill, Item@ item)
  cr.TransitToMap(mapa.Id,0);
  cr.SayMsg(SAY_NETMSG,TEXTMSG_TEXT,STR_COMPUTER_MESSAGE);
  cr.StatBase[ST_EXPERIENCE]+=1000;
+ return true;
  }
  return false;
 }

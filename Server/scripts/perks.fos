@@ -59,7 +59,7 @@ bool PerkCheck(Critter& cr, uint perk) // Export
 	PROCESS_PERK1(PE_SCOUT,               1,  3, cr.ParamBase[ST_PERCEPTION]>=7    );
 	PROCESS_PERK1(PE_RANGER,              1,  6, cr.ParamBase[ST_PERCEPTION]>=6    );
 	PROCESS_PERK1(PE_QUICK_POCKETS,       1,  3, cr.ParamBase[ST_AGILITY]>=5       );
-	PROCESS_PERK1(PE_SMOOTH_TALKER,       3,  3, cr.ParamBase[ST_INTELLECT]>=4     );
+	PROCESS_PERK2(PE_SMOOTH_TALKER,       3,  3, cr.ParamBase[ST_INTELLECT]>=4,    cr.ParamBase[ST_INTELLECT]<10     );
 	PROCESS_PERK1(PE_SWIFT_LEARNER,       3,  3, cr.ParamBase[ST_INTELLECT]>=4     );
 	PROCESS_PERK1(PE_ADRENALINE_RUSH,     1,  6, cr.ParamBase[ST_STRENGTH]<10      );
 	PROCESS_PERK1(PE_CAUTIOUS_NATURE,     1,  3, cr.ParamBase[ST_PERCEPTION]>=6    );

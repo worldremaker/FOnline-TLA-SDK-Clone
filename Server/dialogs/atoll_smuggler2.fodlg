@@ -15,6 +15,8 @@ lang=russ engl
 {1000}{}{Преддиалоговые установки}
 
 [engl]
-{100}{}{none}
+{100}{}{Smuggler}
+{200}{}{You see a smuggler.}
+{210}{}{You feel that this guy is not happy to see you here.}
 {1000}{}{Преддиалоговые установки}
 

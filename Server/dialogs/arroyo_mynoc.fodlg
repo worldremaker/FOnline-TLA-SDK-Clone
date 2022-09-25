@@ -2,7 +2,7 @@
 
 
 [data]
-lang=russ
+lang=russ engl
 
 [dialog]
 &
@@ -360,3 +360,182 @@ lang=russ
 {52080}{}{Всё неправда! Наша очень хороший. Правда-правда!!! Твоя верить? Мы помогать!}
 {52090}{}{Твоя глупый! Моя уходить! [Уходите]}
 
+[engl]
+{100}{}{Mynoc}
+{200}{}{You see Mynoc}
+{210}{}{A man in an Advanced Power Armor with a spear in his hand. He is waiting near the building entrance and is looking around. Maybe it is some kind of ceremonial guard.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{No familiar, nice-looking.}
+{1020}{}{Famiar, ugly.}
+{1030}{}{Familiar, clever.}
+{1040}{}{Familiar, dumb.}
+{2000}{}{Hi, @pname@! Are you looking for something?}
+{2010}{}{No, no... Just looking around.}
+{2020}{}{Yes, I need to ask you about something...}
+{2030}{}{Hey, Mynoc. What's with your armor? It looks pretty rusty.}
+{2040}{}{I've got some lubricant for your tin can.}
+{2050}{}{Hey, Mynoc, I guess I've changed my mind. I'm not looking for your lubricant anymore, don't count on me.}
+{2060}{}{I have dealed with those raiders, they are not going to rob any caravans anymore.}
+{2070}{}{Raiders are destroyed. You are safe now.}
+{2080}{}{Raiders are destroyed. Caravans are safe now. [Try to lie]}
+{2090}{}{Look, I think I don't want to get involved in any mess with these raiders... You better find someone else.}
+{3000}{}{Yeah, that's true. Some lubricant and a proper cleaning would be useful.}
+{3010}{}{I need to ask you about something else.}
+{3020}{}{I'll bring you some lubricant if I find any. And now I need to ask you about something else...}
+{4000}{}{Thanks, replicant. Here, take some money. Thanks again!}
+{4010}{}{No problem, mate. And now I need to ask you about something else...}
+{4020}{}{You're welcome. And I need to go now.}
+{5000}{}{I didn't even ask you for that.}
+{6000}{}{What do you want to know?@@Go on, ask.@@What do you want to ask about?}
+{6010}{}{What a fancy armor you have here. Can you sell it to me?}
+{6020}{}{Where did you get this armor?}
+{6030}{}{Hey, how did you guys manage to build such a city from nothing?}
+{6040}{}{What is it you doing? Are you guarding something?}
+{6050}{}{Nothing actually. Bye.}
+{7000}{}{It's not just an armor, it's a relict! It belonged to Chosen One himself!}
+{7010}{}{Chosen One? Who da hell is that?}
+{7020}{}{And why did he leave it? Where is he now?}
+{7030}{}{Chosen One? Yeah, it looks like it has been through lot.}
+{8000}{}{Are you kidding me? Noone knows. He helped us to build this city, he lived here with us, and then he simply dissapeared one day.}
+{8010}{}{Я хотел@sex@|||а| бы спросить тебя ещё кое о чем.}
+{8020}{}{I see... Well, thanks for the story, I need to go.}
+{9000}{}{Chosen One... He was the greatest of all people! Our brahmins were suffering from diseases, crops were dying from drought... It was a hard time in our life...}
+{9010}{}{[More]}
+{10000}{}{He managed to find G.E.C.K. and he helped us to restore the village... He saved both us and Vault dwellers. He saved many people from that scary Enclave. His name will be remembered forewer.}
+{10010}{}{I want to ask you about something else...}
+{10020}{}{I see... Well, thanks for the story, I need to go.}
+{11000}{}{It's all thans to Chosen One. We survived only because of him...}
+{11010}{}{[More]}
+{12000}{}{Yes, I could use a guy like... no, not like you. Sorry. You look too unexperienced.}
+{12010}{}{Well... Ok. And not I want to ask about this...}
+{13000}{}{Actually, I could use some help, as we have a situation here, and I cannot leave the city...}
+{13010}{}{[More]}
+{14000}{}{Klamath caravans have ceised trade with us. I've heard a raider gang has set a camp somewhere on that side of the Canyon and they're attacking the traders.}
+{14010}{}{[More]}
+{15000}{}{They are not attacking the city itself, but we need someone to help us deal with them. Can you see if you can do anything?}
+{15010}{}{Okay, I'll try. Not for free, or course.}
+{15020}{}{Emm... Sorry, I forgot I have an appointment right now, I have to go, bye!}
+{15030}{}{It would be a pleasure! Just tell me where to search for them!}
+{16000}{}{Great! I'll mark an approximate location on your map. And hurry up! They are not going to wait there forever!}
+{16010}{}{[Exit]}
+{17000}{}{Excellent! But I was just told that main forces were outside the camp... One caravaner told us where we could find them.}
+{17010}{}{Hey, just give me my money, dealing with any 'main forces' was not a part of agreement.}
+{17020}{}{I'll crack them. Where to go?}
+{18000}{}{I'll mark the location on your map, just give me your Pip-Boy... Done. Here's your money for the first part and you can also have something from the equipment - you could use a good gun in a next fight.}
+{18010}{}{Give me a cattle prod. I grew up in a farm and I'm used to this weapon.}
+{18020}{}{I'll take a laser pistol.}
+{18030}{}{A power fist would be cool. Enjoy crashing jaws with it.}
+{18040}{}{AK-112, an assault rifle. I'm not playing toys.}
+{18050}{}{Do you happen to have any grenades? I like when it explodes...}
+{19000}{}{Here's the money and thanks for help.}
+{20000}{}{Well, it's your right.}
+{21000}{}{Here, take some cash and this armor for the job. You really helped us!}
+{21010}{}{Piece of cake! And now I want to ask you about something...}
+{21020}{}{Just business, nothing personal. If you need anything else - just find me.}
+{21030}{}{Hey, Mynoc, you know, there were more raiders than I expected, I almost got killed... I would appreciate if you could add some cash.}
+{22000}{}{Well, okay, here's 200 more. Thanks again.}
+{22010}{}{No problem. And now I want to ask a question...}
+{22020}{}{See ya.}
+{23000}{}{Hey, replicant. How can old Mynoc help you?}
+{23010}{}{Hi, I'm @pname@. And who are you?}
+{23020}{}{My @pname@. You who?}
+{24000}{}{Oh, what the... Was it a bad facial surgery? Well, anyway, how may I help you?}
+{24010}{}{No, no, it's like that from birth. I'm @pname@, and who are you?}
+{24020}{}{No-no, my mom says me look good. My @pname@. And yours?}
+{25000}{}{I'm Mynoc. I used to be a bridgekeeper, but now I'm watching all the city, so don't do anything stupid! So how I help you in any way, @pname@?}
+{25010}{}{No, no, I'm just looking around.}
+{25020}{}{Yes, I want to ask about something...}
+{25030}{}{You boring, my go.}
+{25040}{}{My want a story.}
+{26000}{}{I'm guarding the city. And why are you so curious?}
+{26010}{}{Do you need any help? I've got some spare time and nothing to do with it.}
+{26020}{}{Do you need any help? I've got some spare time and nothing to do with it.}
+{26030}{}{I see. One more question...}
+{27000}{}{Hello again, replicant. Are you looking for something?}
+{27010}{}{Ohh.}
+{27020}{}{My want a story!}
+{27030}{}{My have you lubrica, take!}
+{27040}{}{Me no look lubrica anee-moar.}
+{27050}{}{Me kill da raidas.}
+{27060}{}{Me kill all da raidas. Raidas stupid. They not know how my is strong.}
+{27070}{}{My kill all da raidas. Yours beleive my? My strong warrior. [Try to lie]}
+{27080}{}{My no hit raidas, my afraid. You hit tham, you strong.}
+{28000}{}{Yeah, that's true. Some lubricant and a proper cleaning would be useful.}
+{28010}{}{My want more story.}
+{28020}{}{Uh, my can get you some. But my want a story more...}
+{29000}{}{Thanks, replicant. Here, take some money. Thanks again! I wouldn't beleive you could help.}
+{29010}{}{My use-ful! My always help! Now tell my...}
+{29020}{}{You bye if yours no beleive.}
+{30000}{}{I didn't even ask you for that.}
+{31000}{}{What do you want to know?@@Go on, ask.@@What do you want to ask about?}
+{31010}{}{My want you armo. Make my strong.}
+{31020}{}{Where get the arma?}
+{31030}{}{Who build such city?}
+{31040}{}{What yours do? My want know.}
+{32000}{}{It's not just an armor, it's a relict, you stupid! It belonged to Chosen One himself!}
+{32010}{}{Chosen? No know.}
+{32020}{}{Uh. And where he now?}
+{32030}{}{Old relic. Much red thing. Need clean. Chosan bad cleana.}
+{33000}{}{Are you kidding me? Noone knows. He helped us to build this city, he lived here with us, and then he simply dissapeared one day.}
+{33010}{}{My want more story.}
+{33020}{}{Stay here, my go.}
+{34000}{}{Chosen One... He was the greatest of all people! Our brahmins were suffering from diseases, crops were dying from drought... It was a hard time in our life...}
+{34010}{}{[Moar]}
+{35000}{}{He managed to find G.E.C.K. and he helped us to restore the village... He saved both us and Vault dwellers. He saved many people from that scary Enclave. His name will be remembered forewer.}
+{35010}{}{My want more story.}
+{35020}{}{My go-go.}
+{36000}{}{It's all thans to Chosen One. We survived only because of him...}
+{36010}{}{[Moar]}
+{37000}{}{Yes, I could use a guy like... no, not like you. Sorry. You look too unexperienced.}
+{37010}{}{Uh. My have quesiton then.}
+{38000}{}{Actually, I could use some help, even yours, as we have a situation here, and I cannot leave the city...}
+{38010}{}{[Moar]}
+{39000}{}{Klamath caravans have ceised trade with us. I've heard a raider gang has set a camp somewhere on that side of the Canyon and they're attacking the traders.}
+{39010}{}{[Moar]}
+{40000}{}{They are not attacking the city itself, but we need someone to help us deal with them. Can you see if you can do anything?}
+{40010}{}{My kill them all and you get ready money-money.}
+{40020}{}{My no want to fight. Make love, not war.}
+{40030}{}{My do that. Wait for skulls.}
+{41000}{}{Great! I'll mark an approximate location on your map. And hurry up! They are not going to wait there forever!}
+{42000}{}{Excellent! But I was just told that main forces were outside the camp... One caravaner told us where we could find them.}
+{42010}{}{My tired. Give me my money and let my go.}
+{42020}{}{Where my go for more blood?}
+{43000}{}{I'll mark the location on your map, just give me your Pip-Boy... Done. Here's your money for the first part and you can also have something from the equipment - you could use a good gun in a next fight.}
+{43010}{}{Gimme electrostick. Like it.}
+{43020}{}{Laza-pistol.}
+{43030}{}{Airan pawar fist!}
+{43040}{}{Aka one-one-second. Du-du-du.}
+{43050}{}{Gimme some explodaballs.}
+{44000}{}{Here's the money and thanks for help.}
+{45000}{}{Well, it's your right.}
+{46000}{}{Here, take some cash and this armor for the job. You really helped us!}
+{46010}{}{Thanka. Now answa me...}
+{46020}{}{Uh, my like jink.}
+{46030}{}{Raida were strong. Why not give more?}
+{47000}{}{Well, okay, here's 200 more. Thanks again.}
+{47010}{}{Now tell my...}
+{47020}{}{Bye.}
+{48000}{}{I'm guarding the city. Ci-ty. You understant? Why so curious?}
+{48010}{}{I can help. My strong. You want?}
+{48020}{}{I can help. My strong. You want?}
+{48030}{}{No-no, no thing. Tell me a story more...}
+{49000}{}{Hey, that's not serious, my friend. There's a gand of raiders out there. You will need at least four people. Come back when you gather some companions.}
+{49010}{}{Well. Okay. Hope I'll be back soon.}
+{49020}{}{My go.}
+{50000}{}{Hey, guys, you don't look very tough to me. @pname@, come back when you have a better team.}
+{50010}{}{See you soon.}
+{50020}{}{You no beleive our strong? Okay, our train and come back!}
+{51000}{}{Well, someone is already helping me... But I don't trust them too much. Come back after some time just in case they screw up.}
+{51010}{}{Damn. Okay.}
+{51020}{}{My go.}
+{52000}{}{Sorry, I don't trust you too much. Your reputation is no so good. Maybe that's you robbing our caravans?}
+{52010}{}{Hey, it's just rumors, beleive me. You can trust my guys. So do you need help?}
+{52020}{}{Hey, it's just rumors, beleive me. You can trust my guys. So do you need help?}
+{52030}{}{Hey, it's just rumors, beleive me. You can trust my guys. So do you need help?}
+{52040}{}{As you wish.}
+{52050}{}{You ingrate scum! [Attack]}
+{52060}{}{No true! Mis good! Trastas! We want help yours!}
+{52070}{}{No true! Mis good! Trastas! We want help yours!}
+{52080}{}{No true! Mis good! Trastas! We want help yours!}
+{52090}{}{Stupid. My go.}
+{52100}{}{[Exit]}
