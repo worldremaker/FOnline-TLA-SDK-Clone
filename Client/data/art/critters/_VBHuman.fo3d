@@ -159,8 +159,9 @@ Layer 2
 Layer 3
  Value 1   Root DisableSubset 0-5-6-7-8-2 Attach ATR_%atr%_BodLeatherOutfit.x
  Value 2   Root DisableSubset 0-5-7-8     Attach ATR_%atr%_BodPowerArmor.x
- Value 3   Root DisableSubset 0-5-6-7-8   Attach ATR_%atr%_BodPrisonSuit.x
+ Value 3   Root DisableSubset 0-5-6-7-8   Attach ATR_%atr%_BodPrisonSuit.x    Subset 1 Texture 0 Parent-0-7
  Value 4   Root DisableSubset 0-5-6-7-8-2 Attach ATR_%atr%_BodVaultSuit.x
+ Value 5   Root DisableSubset 0-5-6-7-8-2 Attach ATR_%atr%_BodCombatArmor.x
 
 # Feet
 Layer 4
@@ -168,20 +169,23 @@ Layer 4
  Value 2   Root DisableSubset 1-6 Attach ATR_%atr%_FeePowerArmor.x
  Value 3   Root DisableSubset 1   Attach ATR_%atr%_FeePrisonSuit.x
  Value 4   Root DisableSubset 1   Attach ATR_%atr%_FeeVaultSuit.x
+ Value 5   Root DisableSubset 1   Attach ATR_%atr%_FeeCombatArmor.x
 
 # Hands
 Layer 5
  Value 1   Root DisableSubset 3   Attach ATR_%atr%_HanLeatherOutfit.x
  Value 2   Root DisableSubset 3-2 Attach ATR_%atr%_HanPowerArmor.x
  Value 3   Root DisableSubset 3   Attach ATR_%atr%_HanLeatherOutfitGauntlet.x
- Value 4   Root DisableSubset 3-2 Attach ATR_%atr%_HanPowerFist.x
+ Value 5   Root DisableSubset 3-2 Attach ATR_%atr%_HanCombatArmor.x
+ Value 10  Root DisableSubset 3-2 Attach ATR_%atr%_HanPowerFist.x
 
 # Head
 Layer 6
- Value 1   Root DisableLayer 7-10        Attach ATR_%atr%_HeaArmingCap.x  
- Value 2   Root DisableLayer 7-8-9-10-11 Attach ATR_%atr%_HeaPowerArmor.x 
- Value 3   Root DisableLayer 7           Attach ATR_%atr%_HeaStrawHat.x   
- Value 10  Root DisableLayer 7           Attach ATR_%atr%_HeaMotorcycle.x 
+ Value 1   Root DisableLayer 7-10        Attach ATR_%atr%_HeaArmingCap.x
+ Value 2   Root DisableLayer 7-8-9-10-11 Attach ATR_%atr%_HeaPowerArmor.x
+ Value 3   Root DisableLayer 7           Attach ATR_%atr%_HeaStrawHat.x
+ Value 5   Root DisableLayer 7-8         Attach ATR_%atr%_HeaCombatArmor.x
+ Value 10  Root DisableLayer 7           Attach ATR_%atr%_HeaMotorcycle.x
  Value 11  Root DisableLayer 7           Attach ATR_%atr%_HeaMotorcycle.x Texture 0 HeaMotorcycle_black_LG.tga
  Value 12  Root DisableLayer 7           Attach ATR_%atr%_HeaMotorcycle.x Texture 0 HeaMotorcycle_red_LG.tga
  Value 13  Root DisableLayer 7           Attach ATR_%atr%_HeaMotorcycle.x Texture 0 HeaMotorcycle_green_LG.tga
@@ -661,6 +665,7 @@ Layer 11
 Layer 12
  Value 1 Attach ATR_%atr%_ShoLeatherOutfit.x
  Value 2 Attach ATR_%atr%_ShoPowerArmor.x
+ Value 5 Attach ATR_%atr%_ShoCombatArmor.x
 
 # Armlet
 Layer 13
@@ -712,13 +717,13 @@ Layer 15
 #
 
 # Unused
-# %anim%_Com_1H_Side_Gun_Burst_01
-# %anim%_Com_1H_Side_Gun_NoRecoil_01
-# %anim%_Com_1H_Side_Gun_Shoot_01
-# %anim%_Com_Una_Armor_Equip_01
-# %anim%_Com_Una_Helmet_Equip_01
-# %anim%_Com_Una_Pickup_01
-# %anim%_Def_Una_Use_01 (not converted)
+# %anim_file% %anim%_Com_1H_Side_Gun_Burst_01
+# %anim_file% %anim%_Com_1H_Side_Gun_NoRecoil_01
+# %anim_file% %anim%_Com_1H_Side_Gun_Shoot_01
+# %anim_file% %anim%_Com_Una_Armor_Equip_01
+# %anim_file% %anim%_Com_Una_Helmet_Equip_01
+# %anim_file% %anim%_Com_Una_Pickup_01
+# %anim_file% %anim%_Def_Una_Use_01 (not converted)
 
 # Unarmed Knife Club Hammer Spear Pistol Uzi Shootgun Rifle Minigun Rocket Launcher
 #   A        D    E    F      G     H     I     J       K      L           M
@@ -727,77 +732,77 @@ Layer 15
 # 2 handed - K L M
 
 # Unarmed
-Anim A 1  %anim%_Def_Una_Idle_01
-Anim A 2  %anim%_Com_Una_Stunned_01
-Anim A 3  %anim%_Com_Una_Walk_01
-Anim A 4  %anim%_Com_Una_Limp_01
-Anim A 5  %anim%_Com_Una_Run_01
-Anim A 6  %anim%_Com_Una_PanicRun_01
-Anim A 7  %anim%_Com_Una_Equip_01
-Anim A 8  %anim%_Com_Una_Unequip_01
-Anim A 12 %anim%_Def_Una_Pickup_01
-Anim A 13 %anim%_Com_1H_Switch_Weapons_01
-Anim A 14 %anim%_Com_1H_Switch_Weapons_01
-Anim A 15 %anim%_Def_Una_to_Com_01
-Anim A 16 %anim%_Com_Una_Idle_01
-Anim A 17 %anim%_Com_Una_To_Def_01
-Anim A 18 %anim%_Com_Una_Punch_Jab_02
-Anim A 19 %anim%_Com_Una_Punch_Jab_01
-Anim A 20 %anim%_Def_Una_Fidget_MedSkill_01
-Anim A 21 %anim%_Com_Una_Kick_Roundhouse_01
-Anim A 22 %anim%_Com_Una_Kick_Snap_01
-Anim A 23 %anim%_Def_Una_Fidget_Medskill_02
-Anim A 40 %anim%_Com_Una_Dodge_01
-Anim A 42 %anim%_Com_Una_DmgFr_01
-Anim A 44 %anim%_Com_Una_DmgFrMult_01
-Anim A 46 %anim%_Com_Una_Walk_DmgFr_01
-Anim A 48 %anim%_Com_Una_Limp_DmgFr_01
-Anim A 50 %anim%_Com_Una_Run_DmgFr_01
-Anim A 52 %anim%_Com_Una_Knock_ProneB_01
-Anim A 53 %anim%_Com_Una_Knock_ProneF_01
-Anim A 54 %anim%_Com_Una_Laydown_ProneB_01
-Anim A 55 %anim%_Com_Una_Laydown_ProneF_01
-Anim A 56 %anim%_ProneB_Una_Idle_01
-Anim A 57 %anim%_ProneF_Una_Idle_01
-Anim A 58 %anim%_ProneB_Una_to_Com_01
-Anim A 59 %anim%_ProneF_Una_to_Com_01
-Anim A 60 %anim%_ProneB_Una_DmgFr_01
-Anim A 61 %anim%_ProneF_Una_DmgFr_01
-Anim A 62 %anim%_ProneB_Una_DmgFrMult_01
-Anim A 63 %anim%_ProneF_Una_DmgFrMult_01
-Anim A 64 %anim%_ProneB_Una_Twitch_01
-Anim A 65 %anim%_ProneF_Una_Twitch_01
-Anim A 66 %anim%_ProneB_Una_Death_01
-Anim A 67 %anim%_ProneF_Una_Death_01
+Anim A 1  %anim_file% %anim%_Def_Una_Idle_01
+Anim A 2  %anim_file% %anim%_Com_Una_Stunned_01
+Anim A 3  %anim_file% %anim%_Com_Una_Walk_01
+Anim A 4  %anim_file% %anim%_Com_Una_Limp_01
+Anim A 5  %anim_file% %anim%_Com_Una_Run_01
+Anim A 6  %anim_file% %anim%_Com_Una_PanicRun_01
+Anim A 7  %anim_file% %anim%_Com_Una_Equip_01
+Anim A 8  %anim_file% %anim%_Com_Una_Unequip_01
+Anim A 12 %anim_file% %anim%_Def_Una_Pickup_01
+Anim A 13 %anim_file% %anim%_Com_1H_Switch_Weapons_01
+Anim A 14 %anim_file% %anim%_Com_1H_Switch_Weapons_01
+Anim A 15 %anim_file% %anim%_Def_Una_to_Com_01
+Anim A 16 %anim_file% %anim%_Com_Una_Idle_01
+Anim A 17 %anim_file% %anim%_Com_Una_To_Def_01
+Anim A 18 %anim_file% %anim%_Com_Una_Punch_Jab_02
+Anim A 19 %anim_file% %anim%_Com_Una_Punch_Jab_01
+Anim A 20 %anim_file% %anim%_Def_Una_Fidget_MedSkill_01
+Anim A 21 %anim_file% %anim%_Com_Una_Kick_Roundhouse_01
+Anim A 22 %anim_file% %anim%_Com_Una_Kick_Snap_01
+Anim A 23 %anim_file% %anim%_Def_Una_Fidget_Medskill_02
+Anim A 40 %anim_file% %anim%_Com_Una_Dodge_01
+Anim A 42 %anim_file% %anim%_Com_Una_DmgFr_01
+Anim A 44 %anim_file% %anim%_Com_Una_DmgFrMult_01
+Anim A 46 %anim_file% %anim%_Com_Una_Walk_DmgFr_01
+Anim A 48 %anim_file% %anim%_Com_Una_Limp_DmgFr_01
+Anim A 50 %anim_file% %anim%_Com_Una_Run_DmgFr_01
+Anim A 52 %anim_file% %anim%_Com_Una_Knock_ProneB_01
+Anim A 53 %anim_file% %anim%_Com_Una_Knock_ProneF_01
+Anim A 54 %anim_file% %anim%_Com_Una_Laydown_ProneB_01
+Anim A 55 %anim_file% %anim%_Com_Una_Laydown_ProneF_01
+Anim A 56 %anim_file% %anim%_ProneB_Una_Idle_01
+Anim A 57 %anim_file% %anim%_ProneF_Una_Idle_01
+Anim A 58 %anim_file% %anim%_ProneB_Una_to_Com_01
+Anim A 59 %anim_file% %anim%_ProneF_Una_to_Com_01
+Anim A 60 %anim_file% %anim%_ProneB_Una_DmgFr_01
+Anim A 61 %anim_file% %anim%_ProneF_Una_DmgFr_01
+Anim A 62 %anim_file% %anim%_ProneB_Una_DmgFrMult_01
+Anim A 63 %anim_file% %anim%_ProneF_Una_DmgFrMult_01
+Anim A 64 %anim_file% %anim%_ProneB_Una_Twitch_01
+Anim A 65 %anim_file% %anim%_ProneF_Una_Twitch_01
+Anim A 66 %anim_file% %anim%_ProneB_Una_Death_01
+Anim A 67 %anim_file% %anim%_ProneF_Una_Death_01
 
 # 1 handed
-Anim D 1  %anim%_Def_1H_Idle_01
-Anim D 2  %anim%_Com_1H_Stunned_01
-Anim D 3  %anim%_Com_1H_Walk_01
-Anim D 7  %anim%_Com_1H_Equip_01
-Anim D 8  %anim%_Com_1H_Unequip_01
-Anim D 9  %anim%_Def_1H_Fidget_01
-Anim D 15 %anim%_Def_1H_to_Com_01
-Anim D 16 %anim%_Com_1H_Idle_01
-Anim D 17 %anim%_Com_1H_to_Def_01
-Anim D 24 %anim%_Com_1H_Melee_Thrust_01
-Anim D 26 %anim%_Com_1H_Melee_Slash_01
-Anim D 27 %anim%_Com_2HC_Melee_Slash_01
-Anim D 28 %anim%_Com_1H_Throw_01
-Anim D 29 %anim%_Com_1H_Gun_Shoot_01
-Anim D 30 %anim%_Com_1H_Gun_Burst_01
-Anim D 31 %anim%_Com_1H_Gun_Sweep_01
-Anim D 32 %anim%_Com_1H_Gun_Butt_01
-Anim D 34 %anim%_Com_1H_Gun_NoRecoil_01
-Anim D 35 %anim%_Com_1H_Maintenance_01
-Anim D 36 %anim%_Com_1H_Maintenance_01
-Anim D 40 %anim%_Com_1H_Dodge_01
-Anim D 42 %anim%_Com_1H_DmgFr_01
-Anim D 44 %anim%_Com_1H_DmgFrMult_01
-Anim D 46 %anim%_Com_1H_Walk_DmgFr_01
-Anim D 52 %anim%_Com_1H_Knock_ProneB_01
-Anim D 54 %anim%_Com_1H_Laydown_ProneB_01
-Anim D 58 %anim%_ProneB_1H_to_Com_01
+Anim D 1  %anim_file% %anim%_Def_1H_Idle_01
+Anim D 2  %anim_file% %anim%_Com_1H_Stunned_01
+Anim D 3  %anim_file% %anim%_Com_1H_Walk_01
+Anim D 7  %anim_file% %anim%_Com_1H_Equip_01
+Anim D 8  %anim_file% %anim%_Com_1H_Unequip_01
+Anim D 9  %anim_file% %anim%_Def_1H_Fidget_01
+Anim D 15 %anim_file% %anim%_Def_1H_to_Com_01
+Anim D 16 %anim_file% %anim%_Com_1H_Idle_01
+Anim D 17 %anim_file% %anim%_Com_1H_to_Def_01
+Anim D 24 %anim_file% %anim%_Com_1H_Melee_Thrust_01
+Anim D 26 %anim_file% %anim%_Com_1H_Melee_Slash_01
+Anim D 27 %anim_file% %anim%_Com_2HC_Melee_Slash_01
+Anim D 28 %anim_file% %anim%_Com_1H_Throw_01
+Anim D 29 %anim_file% %anim%_Com_1H_Gun_Shoot_01
+Anim D 30 %anim_file% %anim%_Com_1H_Gun_Burst_01
+Anim D 31 %anim_file% %anim%_Com_1H_Gun_Sweep_01
+Anim D 32 %anim_file% %anim%_Com_1H_Gun_Butt_01
+Anim D 34 %anim_file% %anim%_Com_1H_Gun_NoRecoil_01
+Anim D 35 %anim_file% %anim%_Com_1H_Maintenance_01
+Anim D 36 %anim_file% %anim%_Com_1H_Maintenance_01
+Anim D 40 %anim_file% %anim%_Com_1H_Dodge_01
+Anim D 42 %anim_file% %anim%_Com_1H_DmgFr_01
+Anim D 44 %anim_file% %anim%_Com_1H_DmgFrMult_01
+Anim D 46 %anim_file% %anim%_Com_1H_Walk_DmgFr_01
+Anim D 52 %anim_file% %anim%_Com_1H_Knock_ProneB_01
+Anim D 54 %anim_file% %anim%_Com_1H_Laydown_ProneB_01
+Anim D 58 %anim_file% %anim%_ProneB_1H_to_Com_01
 AnimEqual 1 E D
 AnimEqual 1 F D
 AnimEqual 1 G D
@@ -806,30 +811,30 @@ AnimEqual 1 I D
 AnimEqual 1 J D
 
 # 2 handed
-Anim K 1  %anim%_Def_2HH_Idle_01
-Anim K 2  %anim%_Com_2HH_Stunned_01
-Anim K 3  %anim%_Com_2HH_Walk_01
-Anim K 7  %anim%_Com_2HH_Equip_01
-Anim K 8  %anim%_Com_2HH_Unequip_01
-Anim K 9  %anim%_Def_2HH_Fidget_01
-Anim K 15 %anim%_Def_2HH_to_Com_01
-Anim K 16 %anim%_Com_2HH_Idle_01
-Anim K 17 %anim%_Com_2HH_to_Def_01
-Anim K 28 %anim%_Com_2HH_Throw_01
-Anim K 29 %anim%_Com_2HH_Gun_Shoot_01
-Anim K 30 %anim%_Com_2HH_Gun_Burst_01
-Anim K 31 %anim%_Com_2HH_Gun_Sweep_01
-Anim K 32 %anim%_Com_2HH_Gun_Butt_01
-Anim K 33 %anim%_Com_2HH_Gun_Burst_01
-Anim K 34 %anim%_Com_2HH_Gun_NoRecoil_01
-Anim K 35 %anim%_Com_2HH_Maintenance_01
-Anim K 36 %anim%_Com_2HH_Maintenance_01
-Anim K 40 %anim%_Com_2HH_Dodge_01
-Anim K 42 %anim%_Com_2HH_DmgFr_01
-Anim K 44 %anim%_Com_2HH_DmgFrMult_01
-Anim K 46 %anim%_Com_2HH_Walk_DmgFr_01
-Anim K 52 %anim%_Com_2HH_Knock_ProneB_01
-Anim K 54 %anim%_Com_2HH_Laydown_ProneB_01
-Anim K 58 %anim%_Com_ProneB_2HH_to_Com_01
+Anim K 1  %anim_file% %anim%_Def_2HH_Idle_01
+Anim K 2  %anim_file% %anim%_Com_2HH_Stunned_01
+Anim K 3  %anim_file% %anim%_Com_2HH_Walk_01
+Anim K 7  %anim_file% %anim%_Com_2HH_Equip_01
+Anim K 8  %anim_file% %anim%_Com_2HH_Unequip_01
+Anim K 9  %anim_file% %anim%_Def_2HH_Fidget_01
+Anim K 15 %anim_file% %anim%_Def_2HH_to_Com_01
+Anim K 16 %anim_file% %anim%_Com_2HH_Idle_01
+Anim K 17 %anim_file% %anim%_Com_2HH_to_Def_01
+Anim K 28 %anim_file% %anim%_Com_2HH_Throw_01
+Anim K 29 %anim_file% %anim%_Com_2HH_Gun_Shoot_01
+Anim K 30 %anim_file% %anim%_Com_2HH_Gun_Burst_01
+Anim K 31 %anim_file% %anim%_Com_2HH_Gun_Sweep_01
+Anim K 32 %anim_file% %anim%_Com_2HH_Gun_Butt_01
+Anim K 33 %anim_file% %anim%_Com_2HH_Gun_Burst_01
+Anim K 34 %anim_file% %anim%_Com_2HH_Gun_NoRecoil_01
+Anim K 35 %anim_file% %anim%_Com_2HH_Maintenance_01
+Anim K 36 %anim_file% %anim%_Com_2HH_Maintenance_01
+Anim K 40 %anim_file% %anim%_Com_2HH_Dodge_01
+Anim K 42 %anim_file% %anim%_Com_2HH_DmgFr_01
+Anim K 44 %anim_file% %anim%_Com_2HH_DmgFrMult_01
+Anim K 46 %anim_file% %anim%_Com_2HH_Walk_DmgFr_01
+Anim K 52 %anim_file% %anim%_Com_2HH_Knock_ProneB_01
+Anim K 54 %anim_file% %anim%_Com_2HH_Laydown_ProneB_01
+Anim K 58 %anim_file% %anim%_Com_ProneB_2HH_to_Com_01
 AnimEqual 1 L K
 AnimEqual 1 M K

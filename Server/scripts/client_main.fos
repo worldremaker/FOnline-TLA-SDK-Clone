@@ -1878,25 +1878,17 @@ void animation3d_process(CritterCl& cr, uint anim1, uint anim2, ItemCl@ item)
 		break;
 
 	case PID_COMBAT_ARMOR:
-		bodyAtr     = ATTRIBUTE_Body_PowerArmor;
-		feetAtr     = ATTRIBUTE_Feet_PowerArmor;
-		headAtr     = ATTRIBUTE_Head_Motorcycle_Skull;
-		break;
 	case PID_COMBAT_ARMOR_MK_II:
-		bodyAtr     = ATTRIBUTE_Body_PowerArmor;
-		feetAtr     = ATTRIBUTE_Feet_PowerArmor;
-		headAtr     = ATTRIBUTE_Head_Motorcycle_SkullFull;
-		break;
 	case PID_BROTHERHOOD_COMBAT_ARMOR:
-		bodyAtr     = ATTRIBUTE_Body_PowerArmor;
-		feetAtr     = ATTRIBUTE_Feet_PowerArmor;
-		headAtr     = ATTRIBUTE_Head_Motorcycle_Green;
-		break;
 	case PID_MIRELURK_ARMOR:
 	case PID_BLACK_COMBAT_ARMOR:
-		bodyAtr     = ATTRIBUTE_Body_PowerArmor;
-		feetAtr     = ATTRIBUTE_Feet_PowerArmor;
-		headAtr     = ATTRIBUTE_Head_Motorcycle_Black;
+		bodyAtr     = ATTRIBUTE_Body_CombatArmor;
+		handsAtr    = ATTRIBUTE_Hands_CombatArmor;
+		feetAtr     = ATTRIBUTE_Feet_CombatArmor;
+		shoulderAtr = ATTRIBUTE_Shoulderpieces_CombatArmor;
+#ifdef PLAYERS_3D_NO_HEAD
+		headAtr     = ATTRIBUTE_Head_CombatArmor;
+#endif
 		break;
 
 	case PID_ADVANCED_POWER_ARMOR:

@@ -15,19 +15,19 @@ Speed 3.2
 # _Com_Una_BurrowUp_01 (DesertStalker)
 
 # Empty
-Anim A 1  %anim%_Com_Una_Idle_01
-Anim A 2  %anim%_Com_Una_Stunned_01
-Anim A 3  %anim%_Com_Una_Walk_01
-Anim A 4  %anim%_Com_Una_Limp_01
-Anim A 5  %anim%_Com_Una_Walk_02
-Anim A 13 %anim%_Def_Una_Use_01
-Anim A 18 %anim%_Com_Una_Attack1_01
-Anim A 21 %anim%_Com_Una_Attack1_02
-Anim A 40 %anim%_Com_Una_Dodge_01
-Anim A 42 %anim%_Com_Una_DmgFr_01
-Anim A 44 %anim%_Com_Una_DmgFrMult_01
-Anim A 52 %anim%_Com_Una_Knock_ProneB_01
-Anim A 54 %anim%_Com_Una_Laydown_ProneB_01
-Anim A 56 %anim%_ProneB_Una_Idle_01
-Anim A 58 %anim%_ProneB_Una_to_Com_01
-Anim A 66 %anim%_ProneB_Una_Death_01
+Anim A 1  ModelFile %anim%_Com_Una_Idle_01
+Anim A 2  ModelFile %anim%_Com_Una_Stunned_01
+Anim A 3  ModelFile %anim%_Com_Una_Walk_01
+Anim A 4  ModelFile %anim%_Com_Una_Limp_01
+Anim A 5  ModelFile %anim%_Com_Una_Walk_02
+Anim A 13 ModelFile %anim%_Def_Una_Use_01
+Anim A 18 ModelFile %anim%_Com_Una_Attack1_01
+Anim A 21 ModelFile %anim%_Com_Una_Attack1_02
+Anim A 40 ModelFile %anim%_Com_Una_Dodge_01
+Anim A 42 ModelFile %anim%_Com_Una_DmgFr_01
+Anim A 44 ModelFile %anim%_Com_Una_DmgFrMult_01
+Anim A 52 ModelFile %anim%_Com_Una_Knock_ProneB_01
+Anim A 54 ModelFile %anim%_Com_Una_Laydown_ProneB_01
+Anim A 56 ModelFile %anim%_ProneB_Una_Idle_01
+Anim A 58 ModelFile %anim%_ProneB_Una_to_Com_01
+Anim A 66 ModelFile %anim%_ProneB_Una_Death_01

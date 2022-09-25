@@ -258,20 +258,24 @@
 #define ATTRIBUTE_Body_PowerArmor                  (2)  // Disabled subsets - Chest, Legs, UpperArms, Waist
 #define ATTRIBUTE_Body_PrisonSuit                  (3)  // Disabled subsets - Chest, Legs, Shins, UpperArms, Waist
 #define ATTRIBUTE_Body_VaultSuit                   (4)  // Disabled subsets - Chest, Legs, Shins, UpperArms, Waist, ForeArms
+#define ATTRIBUTE_Body_CombatArmor                 (5)  // Disabled subsets - Chest, Legs, Shins, UpperArms, Waist, ForeArms
 	// ANIM3D_LAYER_FEET      (4)  Feet
 #define ATTRIBUTE_Feet_LeatherOutfit               (1)  // Disabled subsets - Feet
 #define ATTRIBUTE_Feet_PowerArmor                  (2)  // Disabled subsets - Feet, Legs
 #define ATTRIBUTE_Feet_PrisonSuit                  (3)  // Disabled subsets - Feet
 #define ATTRIBUTE_Feet_VaultSuit                   (4)  // Disabled subsets - Feet
+#define ATTRIBUTE_Feet_CombatArmor                 (5)  // Disabled subsets - Feet
 	// ANIM3D_LAYER_HANDS     (5)  Hands
 #define ATTRIBUTE_Hands_LeatherOutfit              (1)  // Disabled subsets - Hands
 #define ATTRIBUTE_Hands_PowerArmor                 (2)  // Disabled subsets - Hands, ForeArms
 #define ATTRIBUTE_Hands_LeatherOutfitGauntlet      (3)  // Disabled subsets - Hands
-#define ATTRIBUTE_Hands_PowerFist                  (4)  // Disabled subsets - Hands, ForeArms
+#define ATTRIBUTE_Hands_CombatArmor                (5)  // Disabled subsets - Hands
+#define ATTRIBUTE_Hands_PowerFist                  (10) // Disabled subsets - Hands, ForeArms
 	// ANIM3D_LAYER_HEAD      (6)  Head
 #define ATTRIBUTE_Head_ArmingCap                   (1)  // Disabled layers - Hair, Ponytail
 #define ATTRIBUTE_Head_PowerArmor                  (2)  // Disabled layers - Hair, Eye, Mustache, Ponytail, Beard
 #define ATTRIBUTE_Head_StrawHat                    (3)  // Disabled layers - Hair
+#define ATTRIBUTE_Head_CombatArmor                 (5)  // Disabled layers - Hair
 #define ATTRIBUTE_Head_Motorcycle_White            (10) // Disabled layers - Hair
 #define ATTRIBUTE_Head_Motorcycle_Black            (11)
 #define ATTRIBUTE_Head_Motorcycle_Red              (12)
@@ -344,6 +348,7 @@
 	// ANIM3D_LAYER_SHOULDER  (12)  Shoulderpieces
 #define ATTRIBUTE_Shoulderpieces_LeatherOutfit     (1)
 #define ATTRIBUTE_Shoulderpieces_PowerArmor        (2)
+#define ATTRIBUTE_Shoulderpieces_CombatArmor       (5)
 	// ANIM3D_LAYER_ARMLET    (13)  Armlet
 #define ATTRIBUTE_Armlet_PipBoyClosed              (1)
 #define ATTRIBUTE_Armlet_PipBoyOpen                (2)
