@@ -22,8 +22,8 @@ lang=russ engl
 0 5020 R _script redd_mines@r_SendPlayerFromMines 0  @
 6 6000 None 0 #
 0 6010 #
-7 6020 D _param p SK_SPEECH } 120 #
-8 6030 D _param p SK_SPEECH < 120 @
+7 6020 D _param p SK_SPEECH } 60 #
+8 6030 D _param p SK_SPEECH < 60 @
 7 7000 None 0 #
 0 7010 #
 0 7020 R _script redd_mines@r_SendPlayerFromMines 0  @

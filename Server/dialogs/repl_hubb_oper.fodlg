@@ -36,8 +36,8 @@ lang=russ engl
 11 11000 NOT_ANSWER_CLOSE_DIALOG 0&
 
 [russ]
-{100}{}{Хабболог}
-{200}{}{Вы видите: хабболог.}
+{100}{}{Хаболог}
+{200}{}{Вы видите: хаболог.}
 {210}{}{Вы видите человека в серой робе.}
 {1000}{}{Преддиалоговые установки}
 {1010}{}{первый раз}
@@ -65,7 +65,7 @@ lang=russ engl
 
 [engl]
 {100}{}{Hubologist}
-{200}{}{Hubologist.}
+{200}{}{You see a Hubologist.}
 {210}{}{You see a man in a grey robe.}
 {1000}{}{Initial preferences}
 {1010}{}{first time}

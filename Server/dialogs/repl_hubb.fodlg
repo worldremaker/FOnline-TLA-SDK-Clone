@@ -11,18 +11,18 @@ lang=russ engl
 2 2000 NOT_ANSWER_CLOSE_DIALOG 0&
 
 [russ]
-{100}{}{Хабболог}
-{200}{}{Хабболог.}
+{100}{}{Хаболог}
+{200}{}{Вы видите: хаболог.}
 {210}{}{Вы видите человека в серой робе.}
 {1000}{}{Преддиалоговые установки}
 {1010}{}{-}
 {2000}{}{Что тебе надо?@@Извини занят.@@Поговорим позже.}
 
 [engl]
-{100}{}{Hubolog}
-{200}{}{Hubolog.}
-{210}{}{You see man in grey robe.}
+{100}{}{Hubologist}
+{200}{}{You see a  hubologist.}
+{210}{}{You see a man in a grey robe.}
 {1000}{}{Initial preferences}
 {1010}{}{-}
-{2000}{}{What do you need?@@Sory i'm busy.@@Talk later.}
+{2000}{}{What do you need?@@Sory i'm busy.@@Let's talk later.}
 

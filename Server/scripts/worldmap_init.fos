@@ -762,7 +762,7 @@ position=wedge, spacing:2
 	group.Position=POSITION_SURROUNDING;
 	group.Spacing=0;
 	group.AddCritter(217).Ratio(50).Dialog(0).Script("encounter_npc@_NpcInit")
-		.AddItem(PID_CLUB,1,1,SLOT_HAND1)
+		.AddItem(PID_SPIKED_KNUCKLES,1,1,SLOT_HAND1)
 		.AddItem(PID_BOTTLE_CAPS,0,10,SLOT_INV);
 	group.AddCritter(218).Ratio(50).Dialog(0).Script("encounter_npc@_NpcInit")
 		.AddItem(PID_CROWBAR,1,1,SLOT_HAND1)
@@ -1515,16 +1515,16 @@ position=Surrounding*/
 	group.Position=POSITION_HUDDLE;
 	group.Spacing=2;
 	group.AddCritter(220).Ratio(25).Dialog(0).Script("encounter_npc@_NpcInit")
-		.AddItem(PID_GREASE_GUN,1,1,SLOT_HAND1)
+		.AddItem(PID_CATTLE_PROD,1,1,SLOT_HAND1)
 		.AddItem(PID_BOTTLE_CAPS,0,20,SLOT_INV);
 	group.AddCritter(220).Ratio(25).Dialog(0).Script("encounter_npc@_NpcInit")
 		.AddItem(PID_CATTLE_PROD,1,1,SLOT_HAND1)
 		.AddItem(PID_BOTTLE_CAPS,0,20,SLOT_INV);
 	group.AddCritter(221).Ratio(25).Dialog(0).Script("encounter_npc@_NpcInit")
-		.AddItem(PID_HK_CAWS,1,1,SLOT_HAND1)
+		.AddItem(PID_GREASE_GUN,1,1,SLOT_HAND1)
 		.AddItem(PID_BOTTLE_CAPS,0,20,SLOT_INV);
 	group.AddCritter(221).Ratio(25).Dialog(0).Script("encounter_npc@_NpcInit")
-		.AddItem(PID_HK_G11,1,1,SLOT_HAND1)
+		.AddItem(PID_GREASE_GUN,1,1,SLOT_HAND1)
 		.AddItem(PID_BOTTLE_CAPS,0,20,SLOT_INV);
 /*type_00=ratio:25%, pid:16777436, Item:332(wielded), Item:(0-20)41, Script:786                              ; Homesteader male w/ Grease Gun
 type_01=ratio:25%, pid:16777436, Item:160(wielded), Item:(0-20)41, Script:786                               ; Homesteader male w/ Cattle Prod
@@ -5976,8 +5976,8 @@ enc_24=Chance:1%,Counter:1,Special,Map:Special Cafe Encounter, Enc:Special1, If(
 	table.AddEncounter( 20,  10068030).AddGroup(GROUP_OCEAN_W_Voles_Low,  4, 6).AddGroup(GROUP_Player, 0, 0).Fighting(0,1);
 	table.AddEncounter( 15,  10068040).AddGroup(GROUP_OCEAN_W_Voles_High, 2, 4).AddGroup(GROUP_Player, 0, 0).Fighting(0,1);
 	table.AddEncounter( 15,  10068050).AddGroup(GROUP_OCEAN_Mantis,       5, 6).AddGroup(GROUP_Player, 0, 0).Fighting(0,1);
-	table.AddEncounter( 10,  10068060).LocationPid(LOCATION_OceanRaft  );
-	table.AddEncounter( 10,  10068070).LocationPid(LOCATION_OceanTrader);
+	table.AddEncounter( 1,  10068060).LocationPid(LOCATION_OceanRaft);
+	table.AddEncounter( 1,   10068070).LocationPid(LOCATION_OceanTrader).CheckGVar(GVAR_enc_ocean_trader_alive,'>',0);
 
 										// Ocean South
 	@table=@EncounterTables[TABLE_Ocean2_O];
@@ -5990,8 +5990,8 @@ enc_24=Chance:1%,Counter:1,Special,Map:Special Cafe Encounter, Enc:Special1, If(
 	table.AddEncounter( 15, 10068230).AddGroup(GROUP_OCEAN_W_Voles_Mutated, 3, 6).AddGroup(GROUP_Player, 0, 0).Fighting(0,1);
 	table.AddEncounter( 15, 10068250).AddGroup(GROUP_OCEAN_Wasps,           2, 3).AddGroup(GROUP_Player, 0, 0).Fighting(0,1);
 	table.AddEncounter( 10, 10068260).AddGroup(GROUP_OCEAN_Wasps,           4, 7).AddGroup(GROUP_Player, 0, 0).Fighting(0,1);
-	table.AddEncounter( 5,  10068270).LocationPid(LOCATION_OceanRaft  );
-	table.AddEncounter( 5,  10068280).LocationPid(LOCATION_OceanTrader);
+	table.AddEncounter( 1,  10068270).LocationPid(LOCATION_OceanRaft);
+	table.AddEncounter( 1,  10068280).LocationPid(LOCATION_OceanTrader).CheckGVar(GVAR_enc_ocean_trader_alive,'>',0);
 
 
 

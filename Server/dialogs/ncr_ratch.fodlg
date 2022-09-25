@@ -18,19 +18,22 @@ lang=russ engl
 0 2040 D _param p ST_INTELLECT > 3 #
 3 2050 D _var p ncr_alex_quest_status > 0 D _param p ST_INTELLECT > 3 #
 20 2060 D _param p ST_INTELLECT > 3 D _var p ncr_ratch_player_points = 0 #
-23 2070 D _param p ST_INTELLECT > 3 D _item p PID_PUMP_PARTS > 2 D _script ncr_ratch@d_RatchTimeOutCheck 1 4241 R _script ncr_ratch@r_RatchTimeOutSet 2 4241 4320 #
-23 2080 D _param p ST_INTELLECT > 3 D _item p PID_PUMP_PARTS < 3 D _item p PID_TUBE > 0 D _script ncr_ratch@d_RatchTimeOutCheck 1 4241 R _script ncr_ratch@r_RatchTimeOutSet 2 4241 4320 #
-23 2090 D _param p ST_INTELLECT > 3 D _item p PID_PUMP_PARTS < 3 D _item p PID_TUBE = 0 D _item p PID_STEEL > 0 D _script ncr_ratch@d_RatchTimeOutCheck 1 4241 R _script ncr_ratch@r_RatchTimeOutSet 2 4241 4320 #
-26 2100 D _var p ncr_ratch_player_points < 5 #
-27 2110 D _var p ncr_ratch_player_points > 4 #
-30 2120 D _param p ST_INTELLECT > 3 D _var p ncr_ratch_player_points > 10 D _var p q_ncr_ratch_buggy = 0 #
-45 2130 D _var p q_ncr_ratch_buggy = 1 #
-38 2140 D _var p q_ncr_ratch_buggy = 1 D _item p PID_MOTOR > 0 D _item p PID_SUPER_TOOL_KIT > 0 D _item p PID_OIL_CAN > 0 D _item p PID_BOTTLE_CAPS > 9999 #
-46 2150 D _var p q_ncr_ratch_buggy = 2 #
-47 2160 D _var p q_ncr_ratch_buggy = 3 D _script q_dappo_lost_c_robot@d_HasHolodisk 1 53 R _var p q_ncr_ratch_buggy = 4 R _script q_dappo_lost_c_robot@r_RemoveHolodisk 1 53 #
-48 2170 D _var p q_ncr_ratch_buggy = 4 #
-52 2180 D _var p q_ncr_ratch_buggy = 5 D _script ncr_ratch@d_RatchTimeOutCheck 1 4243 #
-53 2190 D _var p q_ncr_ratch_buggy = 5 D _script ncr_ratch@d_NotRatchTimeOutCheck 1 4243 @
+23 2070 D _param p ST_INTELLECT > 3 D _item p PID_PUMP_PARTS > 2 D _script ncr_ratch@d_RatchTimeOutCheck 1 4241 R _script ncr_ratch@r_RatchTimeOutSet 2 4241 60 #
+23 2080 D _param p ST_INTELLECT > 3 D _item p PID_PUMP_PARTS < 3 D _item p PID_TUBE > 0 D _script ncr_ratch@d_RatchTimeOutCheck 1 4241 R _script ncr_ratch@r_RatchTimeOutSet 2 4241 60 #
+23 2090 D _param p ST_INTELLECT > 3 D _item p PID_PUMP_PARTS < 3 D _item p PID_TUBE = 0 D _item p PID_STEEL > 0 D _script ncr_ratch@d_RatchTimeOutCheck 1 4241 R _script ncr_ratch@r_RatchTimeOutSet 2 4241 60 #
+56 2100 D _item p PID_PUMP_PARTS > 2 D _script ncr_ratch@d_NotRatchTimeOutCheck 1 4241 #
+56 2110 D _item p PID_PUMP_PARTS < 3 D _item p PID_TUBE > 0 D _script ncr_ratch@d_NotRatchTimeOutCheck 1 4241 #
+56 2120 D _item p PID_PUMP_PARTS < 3 D _item p PID_TUBE = 0 D _item p PID_STEEL > 0 D _script ncr_ratch@d_NotRatchTimeOutCheck 1 4241 #
+26 2130 D _var p ncr_ratch_player_points < 5 #
+27 2140 D _var p ncr_ratch_player_points > 4 #
+30 2150 D _param p ST_INTELLECT > 3 D _var p ncr_ratch_player_points > 10 D _var p q_ncr_ratch_buggy = 0 #
+45 2160 D _var p q_ncr_ratch_buggy = 1 #
+38 2170 D _var p q_ncr_ratch_buggy = 1 D _item p PID_MOTOR > 0 D _item p PID_SUPER_TOOL_KIT > 0 D _item p PID_OIL_CAN > 0 D _item p PID_BOTTLE_CAPS > 9999 #
+46 2180 D _var p q_ncr_ratch_buggy = 2 #
+47 2190 D _var p q_ncr_ratch_buggy = 3 D _script q_dappo_lost_c_robot@d_HasHolodisk 1 53 R _var p q_ncr_ratch_buggy = 4 R _script q_dappo_lost_c_robot@r_RemoveHolodisk 1 53 #
+48 2200 D _var p q_ncr_ratch_buggy = 4 #
+52 2210 D _var p q_ncr_ratch_buggy = 5 D _script ncr_ratch@d_RatchTimeOutCheck 1 4243 #
+53 2220 D _var p q_ncr_ratch_buggy = 5 D _script ncr_ratch@d_NotRatchTimeOutCheck 1 4243 @
 3 3000 None 0 #
 4 3010 @
 4 4000 None 0 #
@@ -65,20 +68,20 @@ lang=russ engl
 22 14000 None 0 #
 2 14010 @
 23 15000 None 0 #
-24 15010 D _var p ncr_ratch_player_points < 15 D _item p PID_PUMP_PARTS > 2 R _var p ncr_ratch_player_points + 1 R _item p PID_BOTTLE_CAPS + 5 R _param p ST_EXPERIENCE + 25 R _item p PID_PUMP_PARTS - 3 #
-25 15020 D _var p ncr_ratch_player_points > 14 D _item p PID_PUMP_PARTS > 2 R _var p ncr_ratch_player_points + 1 R _item p PID_BOTTLE_CAPS + 5 R _param p ST_EXPERIENCE + 25 R _item p PID_PUMP_PARTS - 3 #
-24 15030 D _var p ncr_ratch_player_points < 15 D _item p PID_TUBE > 0 R _var p ncr_ratch_player_points + 1 R _item p PID_BOTTLE_CAPS + 10 R _param p ST_EXPERIENCE + 50 R _item p PID_TUBE - 1 #
-25 15040 D _var p ncr_ratch_player_points > 14 D _item p PID_TUBE > 0 R _var p ncr_ratch_player_points + 1 R _item p PID_BOTTLE_CAPS + 10 R _param p ST_EXPERIENCE + 50 R _item p PID_TUBE - 1 #
-24 15050 D _var p ncr_ratch_player_points < 15 D _item p PID_STEEL > 0 R _var p ncr_ratch_player_points + 2 R _item p PID_BOTTLE_CAPS + 20 R _param p ST_EXPERIENCE + 75 R _item p PID_STEEL - 1 #
-25 15060 D _var p ncr_ratch_player_points > 14 D _item p PID_STEEL > 0 R _var p ncr_ratch_player_points + 2 R _item p PID_BOTTLE_CAPS + 20 R _param p ST_EXPERIENCE + 75 R _item p PID_STEEL - 1 #
+24 15010 D _var p ncr_ratch_player_points < 15 D _item p PID_PUMP_PARTS > 2 R _var p ncr_ratch_player_points + 1 R _item p PID_BOTTLE_CAPS + 30 R _param p ST_EXPERIENCE + 120 R _item p PID_PUMP_PARTS - 3 #
+25 15020 D _var p ncr_ratch_player_points > 14 D _item p PID_PUMP_PARTS > 2 R _var p ncr_ratch_player_points + 1 R _item p PID_BOTTLE_CAPS + 30 R _param p ST_EXPERIENCE + 120 R _item p PID_PUMP_PARTS - 3 R _script ncr_ratch@r_RatchTimeOutSet 2 4241 4320 #
+24 15030 D _var p ncr_ratch_player_points < 15 D _item p PID_TUBE > 0 R _var p ncr_ratch_player_points + 1 R _item p PID_BOTTLE_CAPS + 20 R _param p ST_EXPERIENCE + 75 R _item p PID_TUBE - 1 #
+25 15040 D _var p ncr_ratch_player_points > 14 D _item p PID_TUBE > 0 R _var p ncr_ratch_player_points + 1 R _item p PID_BOTTLE_CAPS + 20 R _param p ST_EXPERIENCE + 75 R _item p PID_TUBE - 1 R _script ncr_ratch@r_RatchTimeOutSet 2 4241 4320 #
+24 15050 D _var p ncr_ratch_player_points < 15 D _item p PID_STEEL > 0 R _var p ncr_ratch_player_points + 2 R _item p PID_BOTTLE_CAPS + 25 R _param p ST_EXPERIENCE + 125 R _item p PID_STEEL - 1 #
+25 15060 D _var p ncr_ratch_player_points > 14 D _item p PID_STEEL > 0 R _var p ncr_ratch_player_points + 2 R _item p PID_BOTTLE_CAPS + 25 R _param p ST_EXPERIENCE + 125 R _item p PID_STEEL - 1 R _script ncr_ratch@r_RatchTimeOutSet 2 4241 4320 #
 0 15070 @
 24 16000 None 0 #
-24 16010 D _var p ncr_ratch_player_points < 15 D _item p PID_PUMP_PARTS > 2 R _var p ncr_ratch_player_points + 1 R _item p PID_BOTTLE_CAPS + 5 R _param p ST_EXPERIENCE + 25 R _item p PID_PUMP_PARTS - 3 #
-25 16020 D _var p ncr_ratch_player_points > 14 D _item p PID_PUMP_PARTS > 2 R _var p ncr_ratch_player_points + 1 R _item p PID_BOTTLE_CAPS + 5 R _param p ST_EXPERIENCE + 25 R _item p PID_PUMP_PARTS - 3 #
-24 16030 D _var p ncr_ratch_player_points < 15 D _item p PID_TUBE > 0 R _var p ncr_ratch_player_points + 1 R _item p PID_BOTTLE_CAPS + 10 R _param p ST_EXPERIENCE + 50 R _item p PID_TUBE - 1 #
-25 16040 D _var p ncr_ratch_player_points > 14 D _item p PID_TUBE > 0 R _var p ncr_ratch_player_points + 1 R _item p PID_BOTTLE_CAPS + 10 R _param p ST_EXPERIENCE + 50 R _item p PID_TUBE - 1 #
-24 16050 D _var p ncr_ratch_player_points < 15 D _item p PID_STEEL > 0 R _var p ncr_ratch_player_points + 2 R _item p PID_BOTTLE_CAPS + 20 R _param p ST_EXPERIENCE + 75 R _item p PID_STEEL - 1 #
-25 16060 D _var p ncr_ratch_player_points > 14 D _item p PID_STEEL > 0 R _var p ncr_ratch_player_points + 2 R _item p PID_BOTTLE_CAPS + 20 R _param p ST_EXPERIENCE + 75 R _item p PID_STEEL - 1 #
+24 16010 D _var p ncr_ratch_player_points < 15 D _item p PID_PUMP_PARTS > 2 R _var p ncr_ratch_player_points + 1 R _item p PID_BOTTLE_CAPS + 30 R _param p ST_EXPERIENCE + 120 R _item p PID_PUMP_PARTS - 3 #
+25 16020 D _var p ncr_ratch_player_points > 14 D _item p PID_PUMP_PARTS > 2 R _var p ncr_ratch_player_points + 1 R _item p PID_BOTTLE_CAPS + 30 R _param p ST_EXPERIENCE + 120 R _item p PID_PUMP_PARTS - 3 R _script ncr_ratch@r_RatchTimeOutSet 2 4241 4320 #
+24 16030 D _var p ncr_ratch_player_points < 15 D _item p PID_TUBE > 0 R _var p ncr_ratch_player_points + 1 R _item p PID_BOTTLE_CAPS + 20 R _param p ST_EXPERIENCE + 75 R _item p PID_TUBE - 1 #
+25 16040 D _var p ncr_ratch_player_points > 14 D _item p PID_TUBE > 0 R _var p ncr_ratch_player_points + 1 R _item p PID_BOTTLE_CAPS + 20 R _param p ST_EXPERIENCE + 75 R _item p PID_TUBE - 1 R _script ncr_ratch@r_RatchTimeOutSet 2 4241 4320 #
+24 16050 D _var p ncr_ratch_player_points < 15 D _item p PID_STEEL > 0 R _var p ncr_ratch_player_points + 2 R _item p PID_BOTTLE_CAPS + 25 R _param p ST_EXPERIENCE + 125 R _item p PID_STEEL - 1 #
+25 16060 D _var p ncr_ratch_player_points > 14 D _item p PID_STEEL > 0 R _var p ncr_ratch_player_points + 2 R _item p PID_BOTTLE_CAPS + 25 R _param p ST_EXPERIENCE + 125 R _item p PID_STEEL - 1 R _script ncr_ratch@r_RatchTimeOutSet 2 4241 4320 #
 0 16070 @
 25 17000 None 0 #
 0 17010 @
@@ -150,7 +153,10 @@ lang=russ engl
 54 44000 None 0 #
 48 44010 @
 55 45000 None 0 #
-0 45010 &
+0 45010 @
+56 46000 None 0 #
+2 46010 #
+0 46020 &
 
 [russ]
 {100}{}{Ретч}
@@ -169,16 +175,19 @@ lang=russ engl
 {2070}{}{Ретч. Я тебе мусора притаранил@sex@|||а|.@@Танцуй, Ретч. Срочная доставка хлама и железных труб.@@Черт, этот хлам весит очень некисло. Тебе еще нужно это барахло?}
 {2080}{}{Ретч. Я тебе мусора притаранил@sex@|||а|.@@Танцуй, Ретч. Срочная доставка хлама и железных труб.@@Черт, этот хлам весит очень некисло. Тебе еще нужно это барахло?}
 {2090}{}{Ретч. Я тебе мусора притаранил@sex@|||а|.@@Танцуй, Ретч. Срочная доставка хлама и железных труб.@@Черт, этот хлам весит очень некисло. Тебе еще нужно это барахло?}
-{2100}{}{Ретч, ну как, нашел что-нибудь интересное в этом хламе?@@Как успехи. Достал что-то новенькое?@@Много "сокровищ" в мусоре уже откопал, колись?}
-{2110}{}{Ретч, ну как, нашел что-нибудь интересное в этом хламе?@@Как успехи. Достал что-то новенькое?@@Много "сокровищ" в мусоре уже откопал, колись?}
-{2120}{}{Ну у тебя и видок, Ретч. Может быть, стоит задуматься о своем образе жизни?@@Брр, Ретч, на тебя смотреть противно. Приведи себя в порядок.@@Неужели каждый механик выглядит, как последний бомж?}
-{2130}{}{Эй, Ретч, напомни, что тебе нужно для того чтобы багги собрать?}
-{2140}{}{Ретч, я все принес@sex@|||ла|. Мотор, масленка, суперинструменты, деньги. Где обещанный багги?}
-{2150}{}{Ретч, расскажи мне еще о этих схемах.}
-{2160}{}{Ретч, диск у меня. [Отдать голодиск]}
-{2170}{}{Когда ты тачку соберешь?}
-{2180}{}{Где моя тачка, чувак?!}
-{2190}{}{Где моя тачка, чувак?!}
+{2100}{}{Ретч. Я тебе мусора притаранил@sex@|||а|.@@Танцуй, Ретч. Срочная доставка хлама и железных труб.@@Черт, этот хлам весит очень некисло. Тебе еще нужно это барахло?}
+{2110}{}{Ретч. Я тебе мусора притаранил@sex@|||а|.@@Танцуй, Ретч. Срочная доставка хлама и железных труб.@@Черт, этот хлам весит очень некисло. Тебе еще нужно это барахло?}
+{2120}{}{Ретч. Я тебе мусора притаранил@sex@|||а|.@@Танцуй, Ретч. Срочная доставка хлама и железных труб.@@Черт, этот хлам весит очень некисло. Тебе еще нужно это барахло?}
+{2130}{}{Ретч, ну как, нашел что-нибудь интересное в этом хламе?@@Как успехи. Достал что-то новенькое?@@Много "сокровищ" в мусоре уже откопал, колись?}
+{2140}{}{Ретч, ну как, нашел что-нибудь интересное в этом хламе?@@Как успехи. Достал что-то новенькое?@@Много "сокровищ" в мусоре уже откопал, колись?}
+{2150}{}{Ну у тебя и видок, Ретч. Может быть, стоит задуматься о своем образе жизни?@@Брр, Ретч, на тебя смотреть противно. Приведи себя в порядок.@@Неужели каждый механик выглядит, как последний бомж?}
+{2160}{}{Эй, Ретч, напомни, что тебе нужно для того чтобы багги собрать?}
+{2170}{}{Ретч, я все принес@sex@|||ла|. Мотор, масленка, суперинструменты, деньги. Где обещанный багги?}
+{2180}{}{Ретч, расскажи мне еще о этих схемах.}
+{2190}{}{Ретч, диск у меня. [Отдать голодиск]}
+{2200}{}{Когда ты тачку соберешь?}
+{2210}{}{Где моя тачка, чувак?!}
+{2220}{}{Где моя тачка, чувак?!}
 {3000}{}{Немного.}
 {3010}{}{Меня возмутил его надменный тон. Он считает себя безусловным знатоком в автомобилях...}
 {4000}{}{Есть такое дело. Знает он много чего, но и его можно удивить.}
@@ -299,6 +308,9 @@ lang=russ engl
 {44010}{}{Ладно, черт тебя подери...}
 {45000}{}{[Смотрит на вас свысока] Ха! Если я и расскажу кому-то об этом, то не тебе. Не люблю болтать попусту. Все равно помочь не сможешь. Наберись опыта, потом приходи. Тогда и поговорим.}
 {45010}{}{Не очень то и хотелось.}
+{46000}{}{Спасибо, но пока не надо! С прошлого раза много осталось.@@Спасибо, но сейчас мне ничего не надо. Но может понадобиться потом.}
+{46010}{}{Хочу спросить ещё кое о чём...}
+{46020}{}{Понятно, пока!@@Ну я пош@sex@|ёл||ла|!}
 
 [engl]
 {100}{}{Ratch}
@@ -317,16 +329,19 @@ lang=russ engl
 {2070}{}{Ретч. Я тебе мусора притаранил@sex@|||а|.@@Танцуй, Ретч. Срочная доставка хлама и железных труб.@@Черт, этот хлам весит очень некисло. Тебе еще нужно это барахло?}
 {2080}{}{Ретч. Я тебе мусора притаранил@sex@|||а|.@@Танцуй, Ретч. Срочная доставка хлама и железных труб.@@Черт, этот хлам весит очень некисло. Тебе еще нужно это барахло?}
 {2090}{}{Ретч. Я тебе мусора притаранил@sex@|||а|.@@Танцуй, Ретч. Срочная доставка хлама и железных труб.@@Черт, этот хлам весит очень некисло. Тебе еще нужно это барахло?}
-{2100}{}{Ретч, ну как, нашел что-нибудь интересное в этом хламе?@@Как успехи. Достал что-то новенькое?@@Много "сокровищ" в мусоре уже откопал, колись?}
-{2110}{}{Ретч, ну как, нашел что-нибудь интересное в этом хламе?@@Как успехи. Достал что-то новенькое?@@Много "сокровищ" в мусоре уже откопал, колись?}
-{2120}{}{Ну у тебя и видок, Ретч. Может быть, стоит задуматься о своем образе жизни?@@Брр, Ретч, на тебя смотреть противно. Приведи себя в порядок.@@Неужели каждый механик выглядит, как последний бомж?}
-{2130}{}{Эй, Ретч, напомни, что тебе нужно для того чтобы багги собрать?}
-{2140}{}{Ретч, я все принес@sex@|||ла|. Мотор, масленка, суперинструменты, деньги. Где моя тачка?}
-{2150}{}{Ретч, расскажи мне еще о этих схемах.}
-{2160}{}{Ретч, диск у меня. [Отдать голодиск]}
-{2170}{}{Когда ты тачку соберешь?}
-{2180}{}{Где моя тачка, чувак?!}
-{2190}{}{Где моя тачка, чувак?!}
+{2100}{}{Ретч. Я тебе мусора притаранил@sex@|||а|.@@Танцуй, Ретч. Срочная доставка хлама и железных труб.@@Черт, этот хлам весит очень некисло. Тебе еще нужно это барахло?}
+{2110}{}{Ретч. Я тебе мусора притаранил@sex@|||а|.@@Танцуй, Ретч. Срочная доставка хлама и железных труб.@@Черт, этот хлам весит очень некисло. Тебе еще нужно это барахло?}
+{2120}{}{Ретч. Я тебе мусора притаранил@sex@|||а|.@@Танцуй, Ретч. Срочная доставка хлама и железных труб.@@Черт, этот хлам весит очень некисло. Тебе еще нужно это барахло?}
+{2130}{}{Ретч, ну как, нашел что-нибудь интересное в этом хламе?@@Как успехи. Достал что-то новенькое?@@Много "сокровищ" в мусоре уже откопал, колись?}
+{2140}{}{Ретч, ну как, нашел что-нибудь интересное в этом хламе?@@Как успехи. Достал что-то новенькое?@@Много "сокровищ" в мусоре уже откопал, колись?}
+{2150}{}{Ну у тебя и видок, Ретч. Может быть, стоит задуматься о своем образе жизни?@@Брр, Ретч, на тебя смотреть противно. Приведи себя в порядок.@@Неужели каждый механик выглядит, как последний бомж?}
+{2160}{}{Эй, Ретч, напомни, что тебе нужно для того чтобы багги собрать?}
+{2170}{}{Ретч, я все принес@sex@|||ла|. Мотор, масленка, суперинструменты, деньги. Где моя тачка?}
+{2180}{}{Ретч, расскажи мне еще о этих схемах.}
+{2190}{}{Ретч, диск у меня. [Отдать голодиск]}
+{2200}{}{Когда ты тачку соберешь?}
+{2210}{}{Где моя тачка, чувак?!}
+{2220}{}{Где моя тачка, чувак?!}
 {3000}{}{Немного.}
 {3010}{}{Меня возмутил его надменный тон. Он считает себя безусловным знатоком в автомобилях...}
 {4000}{}{Есть такое дело. Знает он много чего, но и его можно удивить.}
@@ -447,4 +462,7 @@ lang=russ engl
 {44010}{}{Ладно, черт тебя подери...}
 {45000}{}{[Смотрит на вас свысока] Ха! Если я и расскажу кому-то об этом, то не тебе. Не люблю болтать попусту. Все равно помочь не сможешь. Наберись опыта, потом приходи. Тогда и поговорим.}
 {45010}{}{Не очень то и хотелось.}
+{46000}{}{Спасибо, но пока не надо! С прошлого раза много осталось.@@Спасибо, но сейчас мне ничего не надо. Но может понадобиться потом.}
+{46010}{}{Хочу спросить ещё кое о чём...}
+{46020}{}{Понятно, пока!@@Ну я пош@sex@|ёл||ла|!}
 

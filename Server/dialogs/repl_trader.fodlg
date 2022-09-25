@@ -81,84 +81,6 @@ lang=russ engl
 0 17010 &
 
 [russ]
-{100}{}{Торговец}
-{200}{}{Вы видите: торговец хабологов}
-{210}{}{Простой торговец. Судя по лицу, у него выдался сложный день.}
-{1000}{}{Преддиалоговые установки}
-{1010}{}{Умный, не знаком.}
-{1020}{}{Умный, знаком.}
-{1030}{}{Глупый оба.}
-{2000}{}{Приветствую! Добро пожаловать в магазин Хаб-Мини-Маг!}
-{2010}{}{Что?!}
-{2020}{}{Магазин? Великолепно, а что у вас есть?}
-{2030}{}{Я только реплицировался, у меня нет денег, чтобы что-то купить.}
-{2040}{}{Спасибо, но я не буду ничего покупать.}
-{3000}{}{Из-за повышенной активности рейдеров многие наши клиенты стали погибать, не доходя до городов. Поэтому мы решили открыть магазин простейшей экипировки по сниженным ценам, а также наняли проводников. Нам выгодней, если клиент жив и пополняет счёт.}
-{3010}{}{О, великолепно. А что у вас есть в наличии?}
-{3020}{}{Но я только реплицировался, у меня нет денег, чтобы что-то купить.}
-{3030}{}{Это замечательно, но я не думаю, что буду что-то покупать.}
-{4000}{}{У нас есть постоянно пополняемый ассортимент на выбор, посмотрите на полках. Также имеется большое количество стандартной экипировки на складе, но только по фиксированным ценам.}
-{4010}{}{Покажите мне товар...}
-{4020}{}{Что у вас есть на складе?}
-{4030}{}{Я только реплицировался, у меня нет денег, чтобы что-то купить.}
-{4040}{}{Всё понятно, но я пока не буду ничего покупать.}
-{5000}{}{Есть наборы брони, оружия и медикаментов. Что интересует?}
-{5010}{}{Броня.}
-{5020}{}{Оружие.}
-{5030}{}{Медикаменты.}
-{5040}{}{Я передумал, покажите остальные товары.}
-{5050}{}{Ничего.}
-{6000}{}{Вы можете оформить безналичный заказ необходимого предмета со склада. Или просто снять наличные при помощи вот этого терминала. [Показывает рукой]}
-{6010}{}{Но у меня пустой счёт.}
-{6020}{}{Понятно, спасибо.}
-{6030}{}{Но у меня пустой счёт. Не могли бы вы, выделить мне что-то из снаряжения бесплатно?}
-{6040}{}{Но у меня пустой счёт. Не могли бы вы, выделить мне что-то из снаряжения бесплатно?}
-{7000}{}{Ничем не могу помочь.}
-{8000}{}{Куртка - 300 монет, кожаная броня - 1000 монет, металлическая броня - 2000 монет.}
-{8010}{}{Покупаю куртку.}
-{8020}{}{Покупаю кожаную.}
-{8030}{}{Покупаю металлическую.}
-{8040}{}{Похоже, у меня недостаточно денег на счету.}
-{8050}{}{Покажите лучше остальной товар.}
-{8060}{}{Подскажите лучше, что у вас есть из оружия.}
-{8070}{}{Пока!}
-{9000}{}{10мм пистолет - 300 монет, дубинка - 50 монет, кастет - 50 монет.}
-{9010}{}{Беру пистолет.}
-{9020}{}{Беру дубинку.}
-{9030}{}{Беру кастет.}
-{9040}{}{Боюсь, у меня не хватает денег на счету.}
-{9050}{}{Быть может, я найду что получше среди остального ассортимента?}
-{9060}{}{Брать оружия не буду, куплю брони.}
-{9070}{}{Брать оружия не буду, куплю лекарств.}
-{9080}{}{Блин, дорого.}
-{10000}{}{Стимпак - 200 монет, противоядие - 50 монет, рад-эвэй - 600 монет.}
-{10010}{}{Хочу стимпак.}
-{10020}{}{Хочу противоядие.}
-{10030}{}{Хочу рад-эвей.}
-{10040}{}{Ха, сами покупайте за такие цены.}
-{10050}{}{Хочу посмотреть на остальной ассортимент.}
-{10060}{}{Хреново, дорого. А какое оружие есть?}
-{10070}{}{Хм... А что есть из брони?}
-{10080}{}{Хватит мне тут отовариваться, пойду.}
-{11000}{}{Приветствую! Добро пожаловать в магазин Хаб-Мини-Маг!}
-{11010}{}{Покажите, что имеется в наличии сегодня.}
-{11020}{}{Что интересного есть на складе?}
-{11030}{}{Я только реплицировался, у меня нет денег, чтобы что-то купить.}
-{11040}{}{Привет, привет. Просто прохожу мимо.}
-{12000}{}{Приветствую! Добро пожаловать в магазин Хаб-Мини-Маг!}
-{12010}{}{Ыгг. Ма-га-зи-не? Гы-гы. Хачу купить!}
-{12020}{}{Ух-ух, гыгыгы.}
-{13000}{}{Развелось тут...@@Пшёл вон.@@Иди отсюда.@@Дикарь.@@Тупица.@@Выйди вон.@@Дебил.}
-{14000}{}{Прошу. [Передаёт]}
-{14010}{}{Хочу купить ещё кое-что со склада.}
-{14020}{}{Покажите, какие есть ещё товары.}
-{14030}{}{Спасибо, это всё, что мне надо.}
-{15000}{}{Заходит ещё!@@Было приятно иметь дело.@@Всегда рады видеть.@@Заглядывайте к нам.@@Успехов.@@Удачи в путешествиях.}
-{16000}{}{Разумеется нет. Мы не благотворительная организация...}
-{17000}{}{Ну... Хорошо, я дам вам кое-что из старых вещей.}
-{17010}{}{Вот, спасибо!@@Спасибо огромное!@@Ну, хоть что-то...@@Спасибо и на этом.@@Я вам так благод@sex@|арен||арна|.}
-
-[engl]
 {100}{}{Trader}
 {200}{}{You see: trader}
 {1000}{}{Преддиалоговые установки}
@@ -234,4 +156,82 @@ lang=russ engl
 {16000}{}{Разумеется нет. Это не возможно...}
 {17000}{}{Ну... Хорошо, я дам вам кое-что.}
 {17010}{}{Вот, спасибо!@@Спасибо огромное!@@Ну, хоть что-то...@@Спасибо и на этом.@@Я вам так благод@sex@|арен||арна|.}
+
+[engl]
+{100}{}{Торговец}
+{200}{}{Вы видите: торговец хабологов}
+{210}{}{Простой торговец. Судя по лицу, у него выдался сложный день.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{Intelligent, not familiar.}
+{1020}{}{Intelligent, familiar.}
+{1030}{}{Dumb, both.}
+{2000}{}{Hello! Welcome into the Hub-Mini-Mart shop!}
+{2010}{}{What?!}
+{2020}{}{A shop? That's great. What do you have?}
+{2030}{}{I've just replicated, I have no money to buy something.}
+{2040}{}{Thanks, but I do not want to buy anything.}
+{3000}{}{Because of increased raider activity some of our clients started dying before they actually get back to their somes. So we decided to open an equimpment shop with lowered prices and hired guides to help them get to their destinations.  It's better for us when client is alive and keeps putting money on his account.}
+{3010}{}{That's great. Show me what you've got.}
+{3020}{}{I've just replicated, I have no money to buy something.}
+{3030}{}{Thanks, but I do not want to buy anything.}
+{4000}{}{We have a constantly renewable stock, just look on the slevles. And you can also order some goods from the warehouse, but only for the fixed prices.}
+{4010}{}{Show me what you have...}
+{4020}{}{What do you have in warehouse?}
+{4030}{}{I've just replicated, I have no money to buy something.}
+{4040}{}{I see. Thanks for the info, but I do not want to buy anything.}
+{5000}{}{We have some sets of armor, some weaponry and some useful medicals. What are you interested in?}
+{5010}{}{Armor.}
+{5020}{}{Weaponry.}
+{5030}{}{Medicals.}
+{5040}{}{I changed my mind, show me the rest of your goods.}
+{5050}{}{Nothing.}
+{6000}{}{You can order someting from a warehouse and pay from your account, or just withdraw some cash from this terminal. [Shows with his hand]}
+{6010}{}{But my account is empty.}
+{6020}{}{I see, thank you.}
+{6030}{}{But my account is empty. Could you possibly give me some equipment for free?}
+{6040}{}{But my account is empty. Could you possibly give me some equipment for free?}
+{7000}{}{Sorry, I can't help.}
+{8000}{}{Leather jacker - 300 bucks, leather armor - 1000 bucks, metal armor - 2000 bucks.}
+{8010}{}{I'm taking jacket.}
+{8020}{}{I'm taking leather.}
+{8030}{}{I'm taking metal.}
+{8040}{}{It seems I have not enough money on my balance.}
+{8050}{}{I can't decide, better show me the rest of your stock.}
+{8060}{}{Impossible! So expensive. Tell me about the armor.}
+{8070}{}{I have to go now.}
+{9000}{}{10mm pistol - 300 bucks, baton - 50 bucks, knuckes - 50 bucks.}
+{9010}{}{Pistol sounds good.}
+{9020}{}{Pass me a baton.}
+{9030}{}{Pair of knuckles is what I need.}
+{9040}{}{Pardon me, but it's insubstantially overexpensive.}
+{9050}{}{Pal, show me the rest of your stock.}
+{9060}{}{Paying for that do not want I, tell me what armor you have, oh master of the trade.}
+{9070}{}{Possibly medicals would be more useful.}
+{9080}{}{Pfff, I don't need that.}
+{10000}{}{Stimpack - 200 bucks, antitode - 50 bucks, Rad-Away - 600 bucks.}
+{10010}{}{Single stimpack, please.}
+{10020}{}{Some antitode, please.}
+{10030}{}{Stars tell me I might encounter a ratioactive waste dump. A single Rad-Away, please.}
+{10040}{}{Sounds expensive.}
+{10050}{}{Show me the rest of your stock.}
+{10060}{}{Sounds expensive. And what kind of weaponry do you have?}
+{10070}{}{Say, what armor do you have there?}
+{10080}{}{Sorry, I have to go.}
+{11000}{}{Hello! Welcome into the Hub-Mini-Mart shop!}
+{11010}{}{Show me what you've got today.}
+{11020}{}{Anything interesting in the warehouse?}
+{11030}{}{I've just replicated, I have no money to buy something.}
+{11040}{}{Hello, hello. Just passing by.}
+{12000}{}{Hello! Welcome into the Hub-Mini-Mart shop!}
+{12010}{}{Uh. Mi-Ni-Maar-t? Uh-uh. Me wants to buy!}
+{12020}{}{Huh.}
+{13000}{}{Get out of here.@@Tired of them...@@Dumb.@@Idiot.@@Get back to your village.@@I'm wondering why we replicate you.}
+{14000}{}{Here it is. [Passes]}
+{14010}{}{I want something else from the warehouse.}
+{14020}{}{Show me the rest of the goods.}
+{14030}{}{Thank you, that's it.}
+{15000}{}{Come back soon!@@Pleasure doing business with you.@@I'll be happy to see you again.@@Just tell if you need something.@@Good luck.@@Good luck in your journey.}
+{16000}{}{Of course not. We are not a charity.}
+{17000}{}{Well... Okay, I can give you some of the unnecessary stuff.}
+{17010}{}{Wow, thank you!@@Thanks a lot!@@Well,at least something...@@Thanks for that.@@I'm so thankful to you!}
 

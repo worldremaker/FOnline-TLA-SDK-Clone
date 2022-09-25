@@ -40,7 +40,7 @@ lang=russ engl
 11 10010#
 0 10020@
 11 11000 NOT_ANSWER_CLOSE_DIALOG 0#
-12 11010d*item p 41 > 200r*item p 41 + -200*item p 256 + 1#
+12 11010d*item p 41 > 199r*item p 41 + -200*item p 256 + 1#
 0 11020#
 0 11030#
 14 11040d*skill p SK_STEAL > 99*stat p ST_PERCEPTION > 3*stat p ST_AGILITY > 3*stat p ST_INTELLECT > 1*item p 256 = 0*item p 255 = 0@

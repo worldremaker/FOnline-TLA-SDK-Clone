@@ -43,8 +43,8 @@ lang=russ engl
 8 13020 &
 
 [russ]
-{100}{}{Хабболог}
-{200}{}{Хабболог.}
+{100}{}{Хаболог}
+{200}{}{Вы видите: Хаболог.}
 {210}{}{Вы видите человека в серой робе.}
 {1000}{}{Преддиалоговые установки}
 {1010}{}{Смотреть скрипт den_sh_banker, там используются перенаправления диалогов.}
@@ -160,8 +160,8 @@ lang=russ engl
 {100000176}{}{ выживанию в пустоши.}
 
 [engl]
-{100}{}{Hubolog}
-{200}{}{Hubolog.}
+{100}{}{Hubologist}
+{200}{}{You see a hubologist.}
 {210}{}{You see a man in a grey robe.}
 {1000}{}{Initial preferences}
 {1010}{}{Look script den_sh_banker, dialogue redirections are used there.}
@@ -178,24 +178,101 @@ lang=russ engl
 {6000}{}{Hmmmph, no money - no store. Get out.}
 {7000}{}{Good bye.}
 {7010}{}{Bye.}
-{8000}{}{О чем ты говоришь, бродяга? Пошел вон, а то прикажу охране выкинуть тебя...}
-{8010}{}{[Уходите]}
-{8020}{}{[Бъете наглого хабболога в глаз]}
-{9000}{}{Ну, допустим. А что я с этого иметь буду?}
-{9010}{}{Я хорошо заплачу.}
-{9020}{}{Я хорошо заплачу.}
-{9030}{}{Я хорошо заплачу.}
-{9040}{}{Ничего, я лучше пойду.}
-{10000}{}{Это будет стоить тебе 900 монет.}
-{10010}{}{Дорого, я лучше пойду.@@Слишком дорого.@@Дорого.}
-{10020}{}{Хорошо, вот деньги.@@По рукам, вот деньги.@@Держи деньги.@@Идет, держи!}
-{11000}{}{Это будет стоить тебе 700 монет.}
-{11010}{}{Дорого, я лучше пойду.@@Слишком дорого.@@Дорого.}
-{11020}{}{Хорошо, вот деньги.@@По рукам, вот деньги.@@Держи деньги.@@Идет, держи!}
-{12000}{}{Это будет стоить тебе 500 монет.}
-{12010}{}{Дорого, я лучше пойду.@@Слишком дорого.@@Дорого.}
-{12020}{}{Хорошо, вот деньги.@@По рукам, вот деньги.@@Держи деньги.@@Идет, держи!}
-{13000}{}{Так о ком ты хотел узнать? Назови имя...}
-{13010}{}{[Уходите]}
-{13020}{}{И это всё? За такие деньжищи!?}
+{8000}{}{What are you talking about, vargant? Get out of here, or I'll tell the guards to throw you out.}
+{8010}{}{[Leave]}
+{8020}{}{[Try to punch this insolent hubologist]}
+{9000}{}{[Looks around] Well, maybe. And what am I getting from it?}
+{9010}{}{I can pay well.}
+{9020}{}{I can pay well.}
+{9030}{}{I can pay well.}
+{9040}{}{Nothing, I actually have to go.}
+{10000}{}{This will cost you 900 bucks. I won't risk my post for any less than that.}
+{10010}{}{Too expensive.@@I'd better go.@@Too much for me.}
+{10020}{}{Here's the money.@@Take it.@@Okay.@@Good, you can have them.}
+{11000}{}{This will cost you 700 bucks.}
+{11010}{}{Too expensive.@@I'd better go.@@Too much for me.}
+{11020}{}{Here's the money.@@Take it.@@Okay.@@Good, you can have them.}
+{12000}{}{Okay, only for you, as an exception. This will cost you 500.}
+{12010}{}{Too expensive.@@I'd better go.@@Too much for me.}
+{12020}{}{Here's the money.@@Take it.@@Okay.@@Good, you can have them.}
+{13000}{}{So who do you want to get information about? Tell me the name.}
+{13010}{}{[Leave]}
+{13020}{}{Is this it? For all these money?}
+{100000100}{}{@lex Victim@?.. No, we don't have anyone with this name in our database.}
+{100000101}{}{Let's see... @lex Victim@, @lex Gender@. He's in our database, @lex ReplCount@. Year of birth: @lex Born@.}
+{100000102}{}{ Level of experience: @lex Level@... }
+{100000103}{}{ What else...@lex Strength@@lex Perception@@lex Endurance@@lex Charisma@@lex Intellect@@lex Agility@@lex Luck@}
+{100000104}{}{@lex CombatSkillLvl@@lex CombatSkillMax@}
+{100000105}{}{@lex AnySkill@}
+{100000106}{}{@lex CmbtSkillTag@@lex CombatSkillMax@}
+{100000107}{}{@lex SkillTag@@lex AnySkill@}
+{100000108}{}{ He has @lex ReplMoney@ on his account, @lex ReplCount@ replications to date...}
+{100000109}{}{Hey, and you're a joker!@@Don't play games with me.@@If you are going to waste my time, guards will throw you out.}
+{100000110}{}{male}
+{100000111}{}{female}
+{100000112}{}{it's not even a human}
+{100000113}{}{rarely replicated}
+{100000114}{}{a common guest here}
+{100000115}{}{often replicated}
+{100000116}{}{ Complete weakling.}
+{100000117}{}{ Quite strong.}
+{100000118}{}{ Wery strong.}
+{100000119}{}{ A bit blind.}
+{100000120}{}{ Does not wear glasses.}
+{100000121}{}{ Good sight.}
+{100000122}{}{ Not very fit, actually.}
+{100000123}{}{ Quite fit.}
+{100000124}{}{ Tough as a brahmin.}
+{100000125}{}{ Quite ugly.}
+{100000126}{}{ Looks nice.}
+{100000127}{}{ Pretty attractive.}
+{100000128}{}{ Dumb.}
+{100000129}{}{ Not an idion.}
+{100000130}{}{ Clever.}
+{100000131}{}{ Clumpsy.}
+{100000132}{}{ Agile.}
+{100000133}{}{ Really agile.}
+{100000134}{}{ Complete looser.}
+{100000135}{}{ Lucky.}
+{100000136}{}{ Lucky as hell.}
+{100000137}{}{ Not a fighter.}
+{100000138}{}{ Can handle}
+{100000139}{}{ Is good with}
+{100000140}{}{ Is a master of}
+{100000141}{}{ firearms.}
+{100000142}{}{ heavy weaponry.}
+{100000143}{}{ energy weapons.}
+{100000144}{}{ unarmed fight.}
+{100000145}{}{ melee weapons.}
+{100000146}{}{ throwing weapons.}
+{100000147}{}{ Is not really skilled in anything particular.}
+{100000148}{}{ Can give first aid.
+{100000149}{}{ Comprehends medicine.}
+{100000150}{}{ Is good in hiding.}
+{100000151}{}{ Opens locks.}
+{100000152}{}{ Was reported as a thief.}
+{100000153}{}{ Can disarm traps and knows about explosives.}
+{100000154}{}{ Has a degree.}
+{100000155}{}{ A handyman. Can fix anything.}
+{100000156}{}{ Is a good speaker.}
+{100000157}{}{ Is a good tradesman.}
+{100000158}{}{ A real gambler, but some claim he's a cheter.}
+{100000159}{}{ Knows how to survive in a desert.}
+{100000160}{}{ Was going to learn}
+{100000161}{}{ Is now learning}
+{100000162}{}{ Was going to learn}
+{100000163}{}{ Is now learning}
+{100000164}{}{ Хочет учиться}
+{100000165}{}{ first aid.}
+{100000166}{}{ medicine.}
+{100000167}{}{ an art of camouflage.}
+{100000168}{}{ how to pick lock.}
+{100000169}{}{ a sleight of hand.}
+{100000170}{}{ how to handle explosives.}
+{100000171}{}{ science.}
+{100000172}{}{ how to fix stuff.}
+{100000173}{}{ rhetorics.}
+{100000174}{}{ how to trade well.}
+{100000175}{}{ an art of gambling.}
+{100000176}{}{ how to survive in a desert.}
 

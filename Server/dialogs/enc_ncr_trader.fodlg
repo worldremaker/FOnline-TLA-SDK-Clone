@@ -27,11 +27,10 @@ lang=russ engl
 [engl]
 {100}{}{Trader}
 {200}{}{You see a trader.}
-{210}{}{You see a trader. In appearance a typical slyboots.}
+{210}{}{You see a trader.}
 {1000}{}{Initial preferences}
 {1010}{}{---}
-{2000}{}{Do you want to trade?}
+{2000}{}{Would you like to barter?}
 {2010}{}{Let me see what you have.}
 {2020}{}{That's all for today.}
 {3000}{}{Guards! Get him!@@Rip his skin off!@@Thief! Thief!@@Guards! Shoot that bastard!}
-

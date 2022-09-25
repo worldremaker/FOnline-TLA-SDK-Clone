@@ -1,7 +1,7 @@
 #ifndef __VARS__
 #define __VARS__
 /*************************************************************************************
-***  VARS  *****  COUNT: 00000469  ***************************************************
+***  VARS  *****  COUNT: 00000471  ***************************************************
 *************************************************************************************/
 
 
@@ -52,6 +52,7 @@
 #define GVAR_klam_smily_gecko_timeout                (161)
 #define GVAR_redd_marion_wan_location                (162)
 #define GVAR_redd_marion_wan_timeout                 (163)
+#define GVAR_enc_ocean_trader_alive                  (164)
 #define GVAR_modoc_brahmin_escaped                   (1299)
 #define GVAR_raiders_dead                            (1600)
 #define UVAR_loyality                                (2010)
@@ -406,6 +407,7 @@
 #define LVAR_special_trapper_holo                    (5625)
 #define LVAR_special_doll_holo                       (5626)
 #define LVAR_special_zerg_laboratory                 (5627)
+#define LVAR_enc_ocean_trader_familiar               (5628)
 #define LVAR_fixboy_power_armor                      (6000)
 #define LVAR_fixboy_700_nitro_express                (6001)
 #define LVAR_fixboy_ammo_press_operator              (6002)
@@ -787,6 +789,16 @@ ID локации.
 $	163	0	redd_marion_wan_timeout	0	0	0	4
 **********
 храниться GameTime чтобы определить что пора удалять карту и отменять квест у балбесов.
+**********
+
+$	164	0	enc_ocean_trader_alive	1	0	1	0
+**********
+Проверка на то, жив ли путешествующий торговец Кристофер.
+
+1 - жив
+0 - нежив.
+
+Если мёртв, то уже нельзя встретить энкаунтер с ним.
 **********
 
 $	1299	0	modoc_brahmin_escaped	0	0	0	4
@@ -3946,6 +3958,18 @@ $	5626	1	special_doll_holo	0	0	1	0
 $	5627	1	special_zerg_laboratory	0	0	1	0
 **********
 Локальная, признак, посетил ли игрок специальную локацию "Zerg's Laboratory".
+**********
+
+$	5628	1	enc_ocean_trader_familiar	0	0	5	0
+**********
+Знаком ли игрок с путешествующим торговцем.
+
+0 - нет
+1 - не совсем нет
+2 - знает имя игрока
+3 - недолюбливает
+4 - поссорились
+5 - совсем поссорились
 **********
 
 $	6000	1	fixboy_power_armor	0	0	1	0

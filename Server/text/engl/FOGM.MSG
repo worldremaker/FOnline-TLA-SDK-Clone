@@ -1536,6 +1536,7 @@
 # Barter-ground, pid 22, base 123000
 {122000}{}{Barter ground}
 {122005}{}{Small caravaners' transshipment point, turned into trading Mecca by dealers who settled here. You can safely trade here with caravans from all parts of the Wasteland - use of weapons is forbidden by local rules and any conflicts are to be left outside.}
+{122030}{}{art\intrface\WM_BG.png}
 
 # Atoll, pid 23, base 123000
 {123000}{}{Atoll}
@@ -1572,10 +1573,20 @@
 # Replication Hell, pid 44, base 144000
 {144000}{}{Special Station of Replication}
 {144005}{}{You see the replication station for debtors commonly known as Hell.}
+{144030}{}{art\intrface\WM_HELL.png}
 
 # City, build by GECK, pid 45, base 145000
 {145000}{}{GECK City}
-{145005}{}{City, builded by GECK.}
+{145005}{}{City, built by GECK.}
+{145020}{}{art\intrface\twn_geck.png}
+{145030}{}{art\intrface\WM_GECK.png}
+{145090}{}{2}
+{145101}{}{Main entrance}
+{145102}{}{375}
+{145103}{}{295}
+{145111}{}{Command center}
+{145112}{}{255}
+{145113}{}{170}
 
 # Ocean encounter 1, pid 193, base 293000
 {293000}{}{Остров}
@@ -1652,30 +1663,37 @@
 # Warehouse, pid 220, base 320000
 {320000}{}{Warehouse}
 {320005}{}{You see an abandoned warehouse.}
+{320030}{}{art\intrface\WM_WRHS.png}
 
 # Warehouse, pid 221, base 321000
 {321000}{}{Warehouse}
 {321005}{}{You see an abandoned warehouse.}
+{321030}{}{art\intrface\WM_WRHS.png}
 
 # Warehouse, pid 222, base 322000
 {322000}{}{Warehouse}
 {322005}{}{You see an abandoned warehouse.}
+{322030}{}{art\intrface\WM_WRHS.png}
 
 # Warehouse, pid 223, base 323000
 {323000}{}{Warehouse}
 {323005}{}{You see an abandoned warehouse.}
+{323030}{}{art\intrface\WM_WRHS.png}
 
 # Warehouse, pid 224, base 324000
 {324000}{}{Warehouse}
 {324005}{}{You see an abandoned warehouse.}
+{324030}{}{art\intrface\WM_WRHS.png}
 
 # Warehouse, pid 225, base 325000
 {325000}{}{Warehouse}
 {325005}{}{You see an abandoned warehouse.}
+{325030}{}{art\intrface\WM_WRHS.png}
 
 # Warehouse, pid 226, base 326000
 {326000}{}{Warehouse}
 {326005}{}{You see an abandoned warehouse.}
+{326030}{}{art\intrface\WM_WRHS.png}
 
 
 #

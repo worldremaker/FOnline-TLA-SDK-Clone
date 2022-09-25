@@ -6,119 +6,104 @@ lang=russ engl
 
 [dialog]
 &
-1 1000 NOT_ANSWER_CLOSE_DIALOG 0#
-3 1010d*stat p ST_INTELLECT < 4#
-2 1020d*stat p ST_INTELLECT > 3@
-2 2000 NOT_ANSWER_CLOSE_DIALOG 0#
-4 2010#
-6 2020#
-7 2030#
-8 2040#
-65506 2050#
-0 2060@
-3 3000 NOT_ANSWER_CLOSE_DIALOG 0#
-17 3010@
-4 4000 NOT_ANSWER_CLOSE_DIALOG 0#
-12 4010#
-0 4020@
-6 5000 NOT_ANSWER_CLOSE_DIALOG 0#
-20 5010#
-22 5020#
-22 5030@
-7 6000 NOT_ANSWER_CLOSE_DIALOG 0#
-30 6010#
-31 6020@
-8 7000 NOT_ANSWER_CLOSE_DIALOG 0#
-29 7010#
-36 7020@
-9 8000 NOT_ANSWER_CLOSE_DIALOG 0#
-9 8010#
-9 8020@
-10 9000 NOT_ANSWER_CLOSE_DIALOG 0#
-11 9010#
-11 9020@
-11 10000 NOT_ANSWER_CLOSE_DIALOG 0#
-11 10010#
-11 10020@
-12 11000 NOT_ANSWER_CLOSE_DIALOG 0#
-15 11010#
-0 11020@
-13 12000 NOT_ANSWER_CLOSE_DIALOG 0#
-13 12010#
-13 12020@
-14 13000 NOT_ANSWER_CLOSE_DIALOG 0#
-14 13010#
-14 13020@
-15 14000 NOT_ANSWER_CLOSE_DIALOG 0#
-65506 14010#
-0 14020@
-16 15000 NOT_ANSWER_CLOSE_DIALOG 0#
-16 15010#
-16 15020@
-17 16000 NOT_ANSWER_CLOSE_DIALOG 0#
-18 16010#
-0 16020@
-18 17000 NOT_ANSWER_CLOSE_DIALOG 0#
-19 17010@
-19 18000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 18010@
-20 19000 NOT_ANSWER_CLOSE_DIALOG 0#
-23 19010#
-22 19020#
-36 19030#
-0 19040@
-21 20000 NOT_ANSWER_CLOSE_DIALOG 0#
-21 20010#
-21 20020#
-21 20030#
-21 20040@
-22 21000 NOT_ANSWER_CLOSE_DIALOG 0#
-22 21010#
-0 21020@
-23 22000 NOT_ANSWER_CLOSE_DIALOG 0#
-24 22010#
-22 22020#
-25 22030#
-0 22040@
-24 23000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 23010@
-25 24000 NOT_ANSWER_CLOSE_DIALOG 0#
-36 24010#
-0 24020@
-29 25000 NOT_ANSWER_CLOSE_DIALOG 0#
-36 25010@
-30 26000 NOT_ANSWER_CLOSE_DIALOG 0#
-32 26010#
-37 26020@
-31 27000 NOT_ANSWER_CLOSE_DIALOG 0#
-30 27010#
-0 27020@
-32 28000 NOT_ANSWER_CLOSE_DIALOG 0#
-33 28010@
-33 29000 NOT_ANSWER_CLOSE_DIALOG 0#
-34 29010#
-0 29020@
-34 30000 NOT_ANSWER_CLOSE_DIALOG 0#
-35 30010#
-0 30020@
-35 31000 NOT_ANSWER_CLOSE_DIALOG 0#
-36 31010#
-0 31020@
-36 32000 NOT_ANSWER_CLOSE_DIALOG 0#
-4 32010#
-6 32020#
-7 32030#
-8 32040#
-65506 32050#
-0 32060@
-37 33000 NOT_ANSWER_CLOSE_DIALOG 0#
-32 33010#
-0 33020&
+1 1000 None 0 #
+3 1010 D _param p ST_INTELLECT < 4 #
+2 1020 D _param p ST_INTELLECT > 3 @
+2 2000 None 0 #
+4 2010 #
+6 2020 #
+7 2030 #
+8 2040 #
+65506 2050 #
+0 2060 @
+3 3000 None 0 #
+17 3010 @
+4 4000 None 0 #
+12 4010 #
+0 4020 @
+6 5000 None 0 #
+20 5010 #
+22 5020 #
+22 5030 @
+7 6000 None 0 #
+30 6010 #
+31 6020 @
+8 7000 None 0 #
+29 7010 #
+36 7020 @
+12 8000 None 0 #
+15 8010 D _item p PID_BOTTLE_CAPS > 299 #
+0 8020 @
+15 9000 None 0 #
+0 9010 R _item p PID_BOTTLE_CAPS - 300 R _script dialog@r_ToHeal 0  R _param p DAMAGE_EYE = 0 R _param p DAMAGE_RIGHT_ARM = 0 R _param p DAMAGE_RIGHT_LEG = 0 R _param p DAMAGE_LEFT_LEG = 0 R _param p DAMAGE_LEFT_ARM = 0 @
+17 10000 None 0 #
+18 10010 #
+0 10020 @
+18 11000 None 0 #
+19 11010 @
+19 12000 None 0 #
+0 12010 R _script dialog@r_ToHeal 0  R _param p DAMAGE_EYE = 0 R _param p DAMAGE_RIGHT_ARM = 0 R _param p DAMAGE_LEFT_ARM = 0 R _param p DAMAGE_LEFT_LEG = 0 R _param p DAMAGE_RIGHT_LEG = 0 @
+20 13000 None 0 #
+23 13010 #
+21 13020 #
+36 13030 #
+0 13040 @
+21 14000 None 0 #
+21 14010 #
+22 14020 #
+22 14030 @
+22 15000 None 0 #
+24 15010 #
+0 15020 @
+23 16000 None 0 #
+24 16010 #
+22 16020 #
+25 16030 #
+0 16040 @
+24 17000 None 0 #
+0 17010 @
+25 18000 None 0 #
+36 18010 #
+0 18020 #
+38 18030 @
+29 19000 None 0 #
+36 19010 @
+30 20000 None 0 #
+32 20010 #
+37 20020 @
+31 21000 None 0 #
+30 21010 #
+0 21020 @
+32 22000 None 0 #
+33 22010 @
+33 23000 None 0 #
+34 23010 D _var p npc_story = 0 R _param p REPUTATION_BROKEN_HILLS + 1 R _var p npc_story = 1 #
+0 23020 R _param p REPUTATION_BROKEN_HILLS - 1 #
+34 23030 D _var p npc_story = 1 @
+34 24000 None 0 #
+35 24010 #
+0 24020 @
+35 25000 None 0 #
+36 25010 #
+0 25020 @
+36 26000 None 0 #
+4 26010 #
+6 26020 #
+7 26030 #
+8 26040 #
+65506 26050 #
+0 26060 @
+37 27000 None 0 #
+32 27010 #
+0 27020 @
+38 28000 None 0 #
+0 28010 D _var p npc_story = 1 #
+0 28020 D _var p npc_story = 0 R _var p npc_story = 1 R _param p SK_SPEECH + 2 &
 
 [russ]
-{100}{}{Холидей}
+{100}{}{Док Холидей}
 {200}{}{Вы видите умудренного опытом старика в докторском халате.}
-{210}{}{Вы видите умудренного опытом старика в докторском халате, слегка запятнанным кровью. Он выглядит умным, но немного больным.}
+{210}{}{Вы видите умудренного опытом старика в докторском халате, слегка запятнанном кровью. От него просто исходят лучи знаний и мудрости.}
 {210}{}{Вы видите доктора Xоллидэя.}
 {1000}{}{Преддиалоговые установки}
 {1010}{}{Тупой}
@@ -145,89 +130,74 @@ lang=russ engl
 {7000}{}{Вы даже и не представляете, что только люди не говорят, когда им больно.}
 {7010}{}{Да ну? Например?}
 {7020}{}{Пожалуй, я лучше спрошу о чем-то другом.}
-{8000}{}{Это обойдется вам в $50.}
+{8000}{}{О, как всё запущено! Да вам капитальный ремонт нужен. $300.}
 {8010}{}{Я заплачу.}
 {8020}{}{Ладно, забыли.}
-{9000}{}{За такие раны придется заплатить $100.@@Попали в переделку, а? Это напоминает мне дни моей юности, когда я был молодой и горячий. Тогда во мне было много дырок. Это неудачное приключение обойдется вам в $100.}
-{9010}{}{Я заплачу.}
-{9020}{}{Ладно, забыли.}
-{10000}{}{Похоже, это больно... Вашему бумажнику тоже придется несладко... $150.}
-{10010}{}{Я заплачу.}
-{10020}{}{Ладно, забыли.}
-{11000}{}{О, да вам капитальный ремонт нужен. $200.}
-{11010}{}{Я заплачу.}
-{11020}{}{Ладно, забыли.}
-{12000}{}{Ну... вас же по кусочкам собирать придется. $300 и будете как новенький.}
-{12010}{}{Я заплачу.}
-{12020}{}{Ладно, забыли.}
-{13000}{}{Ух ты! Тут потребуется наложить гипс или что-то в этом роде. За мои обширные медицинские познания вам придется заплатить $300.}
-{13010}{}{Я заплачу.}
-{13020}{}{Ладно, забыли.}
-{14000}{}{Радость моя, у вас же нет таких денег. Я могу продать вам немного лекарств, но с вашими деньгами мои услуги вам просто не по карману.}
-{14010}{}{Продайте мне лекарства.}
-{14020}{}{Нет, спасибо.}
-{15000}{}{Это неприемлемо.}
-{15010}{}{А как начет этого?}
-{15020}{}{Это все, что я могу предложить. До свидания.}
-{16000}{}{[Хрипит] Раны? Дайте мне взглянуть на них. А деньги у вас есть?}
-{16010}{}{Де-ги?}
-{16020}{}{Агы!}
-{17000}{}{Дайте-ка мне посмотреть, что там у вас в сумке. [Он копается у вас в сумке и что-то достает оттуда] Хорошо. Сейчас будет немножко больно.}
-{17010}{}{Больно?}
-{18000}{}{Да. А сейчас... Есть! Готово. Удачи, и больше не шалите!}
-{18010}{}{Пасиб!}
-{19000}{}{Верно. Я доктор. Как приятно видеть, что сообразительность сохранилась и после ядерной войны.}
-{19010}{}{Ха! И бьется в теле семидесятилетнего мужчины!}
-{19020}{}{Я не потерплю, чтобы всякий старый хрен поливал меня грязью.}
-{19030}{}{Уммм... Да. У меня есть еще вопросы.}
-{19040}{}{Пока.}
-{20000}{}{Угрожаете единственному доктору в городе. Умно, ничего не скажешь. ::кашляет:: Радость моя, если вам что-нибудь нужно, просто попросите об этом вежливо. Иначе же - убирайтесь из моей больницы.}
-{20010}{}{Выкуси, старикашка. Готовься к смерти.}
-{20020}{}{Да. Что угодно.}
-{20030}{}{Простите. Сегодня не мой день.}
-{20040}{}{Это была неудачная шутка.}
-{21000}{}{Деточка, вам столько еще надо узнать об уважении.@@Деточка, вам столько еще предстоит узнать о чувстве юмора.}
-{21010}{}{Да, ладно.}
-{21020}{}{Ну все, мое терпение лопнуло. Лечитесь сами.}
-{22000}{}{[В его глазах за стеклами очков пляшут искорки смеха] Мало где нынче можно увидеть такое. Юность и надежда мира, к примеру...}
-{22010}{}{Эй!}
-{22020}{}{Старик, не напрягай меня.}
-{22030}{}{...хранилище того, что когда-то знали наши предки...}
-{22040}{}{Да, да, да... Мне пора.}
-{23000}{}{Да не надо так дергаться, детка. Уж и пошутить нельзя.}
-{23010}{}{Да, да, да... Мне пора.}
-{24000}{}{...и то, что мы вам не говорим, маленькие паршивцы! [Взрыв хохота] Деточка, когда вам в следующий раз понадобится медицинская помощь, я ее окажу за счет заведения.}
-{24010}{}{У меня есть еще вопросы.}
-{24020}{}{Спасибо. Увидимся. До свидания.}
-{25000}{}{На удивление немного. Прошу прощения, но когда я лечу людей, я не прислушиваюсь к их стррашным тайнам.}
-{25010}{}{О. Вы не ответите на другие вопросы?}
-{26000}{}{Так что я отправился в Сан-Франциско и учился там у китайцев; один старик по имени Фанг научил меня всему, что я знаю о медицине. Кроме того, он учил меня своей мудрости.}
-{26010}{}{А что случилось потом?}
-{26020}{}{А как это связано с Брокен Хиллс?}
+{9000}{}{Так-с. Хорошо зафиксированный больной в анестезии не нуждается...Оппа... Собственно все, теперь предписываю покой, хвойные ванны и регулярное питание. Шутка. }
+{9010}{}{Спасибо, доктор!}
+{10000}{}{[Хрипит] Раны? Дайте мне взглянуть на них. А деньги у вас есть?}
+{10010}{}{Де-ги?}
+{10020}{}{Агы!}
+{11000}{}{Дайте-ка мне посмотреть, что там у вас в сумке. [Он копается у вас в сумке и что-то достает оттуда] Хорошо. Сейчас будет немножко больно.}
+{11010}{}{Больно?}
+{12000}{}{Да. А сейчас... Есть! Готово. Удачи, и больше не шалите!}
+{12010}{}{Пасиб!}
+{13000}{}{Верно. Я доктор. Как приятно видеть, что сообразительность сохранилась и после ядерной войны.}
+{13010}{}{Ха! А у наиболее продвинутых экземпляров даже усилилась!}
+{13020}{}{Я не потерплю, чтобы всякий старый хрен поливал меня грязью.}
+{13030}{}{Уммм... Да. У меня есть еще вопросы.}
+{13040}{}{Пока.}
+{14000}{}{Угрожаете единственному доктору в городе. Умно, ничего не скажешь. ::кашляет:: Радость моя, если вам что-нибудь нужно, просто попросите об этом вежливо. Иначе же - убирайтесь из моей больницы.}
+{14010}{}{Выкуси, старикашка. Готовься к смерти.}
+{14020}{}{Простите. Сегодня не мой день.}
+{14030}{}{Это была неудачная шутка.}
+{15000}{}{Деточка, вам столько еще надо узнать об уважении.@@Деточка, вам столько еще предстоит узнать о чувстве юмора..@@В пустошах стало совсем туго с чувстом юмора.}
+{15010}{}{Да, ладно.}
+{15020}{}{Ну все, мое терпение лопнуло.}
+{16000}{}{[В его глазах за стеклами очков пляшут искорки смеха] Ну ты-то, без сомнения, продвинутый экземляр!}
+{16010}{}{Эй!}
+{16020}{}{Старик, не напрягай меня.}
+{16030}{}{Ха, да я так быстро продвигаюсь, что мне иногда свой затылок видно...}
+{16040}{}{Да, да, да... Мне пора.}
+{17000}{}{Да не надо так дергаться, детка. Уж и пошутить нельзя.}
+{17010}{}{Да, да, да... Мне пора.}
+{18000}{}{Да? Ну тогда ты уже в курсе, что тебе пора шею помыть. }
+{18010}{}{У меня есть еще вопросы.}
+{18020}{}{Спасибо. Увидимся. До свидания.}
+{18030}{}{Падла...падла...подловил. Хе хе. Молодец, дедуля...}
+{19000}{}{На удивление немного. Прошу прощения, но когда я лечу людей, я не прислушиваюсь к их стррашным тайнам.}
+{19010}{}{О. Вы не ответите на другие вопросы?}
+{20000}{}{Так что я отправился в Сан-Франциско и учился там у китайцев; один старик по имени Фанг научил меня всему, что я знаю о медицине. Кроме того, он учил меня своей мудрости.}
+{20010}{}{А что случилось потом?}
+{20020}{}{А как это связано с Брокен Хиллс?}
+{21000}{}{Сейчас, сейчас! Ох уж мне эти нынешние детки... никакого терпения...}
+{21010}{}{Прошу прощения. Продолжайте.}
+{21020}{}{Вот отстой. Я сваливаю.}
+{22000}{}{Потом, я вернулся сюда и открыл больницу. Я видел, как Маркус строил город. Он превратил его из палаточного городка, который я помню с детства, в человеческий муравейник, который ты видишь перед собой. Я видел людей, которых привлекала сюда жажда денег. Я видел, как люди росли и умирали. Я видел, как вершилась история.}
+{22010}{}{И это означает...}
+{23000}{}{Это означает, что сейчас я мало что знаю о нынешнем народце. Большая часть моих воспоминаний -- всего лишь воспоминания.}
+{23010}{}{Что ж, спасибо за рассказ.}
+{23020}{}{Ну ты и ублюдок! Ты заставил меня ждать все это время - и не сказал ничего дельного!}
+{23030}{}{Что ж, спасибо за рассказ.}
+{24000}{}{Нет, спасибо вам за снисходительность к моей болтовне. Рад был пообщаться.}
+{24010}{}{Спасибо! Ну, как скажете...}
+{24020}{}{Спасибо! До скорого!}
+{25000}{}{Да. Надеюсь, дело того стоило! [Хмыкает]}
+{25010}{}{Нет. Не думаю. Расскажите мне что-нибудь еще.}
+{25020}{}{Нет. Ты никчемный старый болван. Чао.}
+{26000}{}{[Хрипит] Чем могу помочь?@@Что вам нужно?}
+{26010}{}{Меня ранили, мне нужен врач.}
+{26020}{}{Чем вы здесь занимаетесь?}
+{26030}{}{Расскажите мне об этом городе.}
+{26040}{}{Есть какие-нибудь свежие сплетни?}
+{26050}{}{Можно купить у вас лекарства?}
+{26060}{}{Ничего. Извините за беспокойство.}
 {27000}{}{Сейчас, сейчас! Ох уж мне эти нынешние детки... никакого терпения...}
 {27010}{}{Прошу прощения. Продолжайте.}
 {27020}{}{Вот отстой. Я сваливаю.}
-{28000}{}{Потом, я вернулся сюда и открыл больницу. Я видел, как Маркус строил город. Он превратил его из палаточного городка, который я помню с детства, в человеческий муравейник, который ты видишь перед собой. Я видел людей, которых привлекала сюда жажда денег. Я видел, как люди росли и умирали. Я видел, как вершилась история.}
-{28010}{}{И это означает...}
-{29000}{}{Это означает, что сейчас я мало что знаю о нынешнем народце. Большая часть моих воспоминаний -- всего лишь воспоминания.}
-{29010}{}{Что ж, спасибо за рассказ.}
-{29020}{}{Ну ты и ублюдок! Ты заставил меня ждать все это время - и не сказал ничего дельного!}
-{30000}{}{Нет, спасибо вам за снисходительность к моей болтовне. В следующий раз, когда вам понадобится медицинская помощь, я ее окажу за счет заведения.}
-{30010}{}{Спасибо! Ну, как скажете...}
-{30020}{}{Спасибо! До скорого!}
-{31000}{}{Да. Надеюсь, дело того стоило! [Хмыкает]}
-{31010}{}{Нет. Не думаю. Расскажите мне что-нибудь еще.}
-{31020}{}{Нет. Ты никчемный старый болван. Чао.}
-{32000}{}{[Хрипит] Чем могу помочь?@@Что вам нужно?}
-{32010}{}{Меня ранили, мне нужен врач.}
-{32020}{}{Чем вы здесь занимаетесь?}
-{32030}{}{Расскажите мне об этом городе.}
-{32040}{}{Есть какие-нибудь свежие сплетни?}
-{32050}{}{Можно купить у вас лекарства?}
-{32060}{}{Ничего. Извините за беспокойство.}
-{33000}{}{Сейчас, сейчас! Ох уж мне эти нынешние детки... никакого терпения...}
-{33010}{}{Прошу прощения. Продолжайте.}
-{33020}{}{Вот отстой. Я сваливаю.}
+{28000}{}{Давно не встречал таких скорых на язык, как ты. Мдя. Ты смотри только, аккуратнее со своим языком. Не все люди шутки понимают. }
+{28010}{}{Абсолютая истина. Я всегда это учитываю. }
+{28020}{}{Абсолютая истина. Я всегда это учитываю. Приятно было поболтать с тобой.}
 
 [engl]
 {100}{}{Holiday}
@@ -262,92 +232,77 @@ lang=russ engl
 {7000}{}{You’d be surprised what people say when they’re in pain.}
 {7010}{}{Oh yeah? Like what?}
 {7020}{}{I changed my mind. I’d rather ask other questions.}
-{8000}{}{That’ll cost you $50.}
+{8000}{}{Ouch! You’re going to need some serious patching. $200.}
 {8010}{}{I’ll pay.}
 {8020}{}{Forget it.}
-{9000}{}{For wounds like that, you’ll be losing $100.@@You been seeing some action? I remember back when I was a little spitfire. Got plenty of holes in me, too. This misadventure will cost you $100.}
-{9010}{}{I’ll pay.}
-{9020}{}{Forget it.}
-{10000}{}{That looks like it must have hurt. Going to hurt your wallet, too... $150.}
-{10010}{}{I’ll pay.}
-{10020}{}{Forget it.}
-{11000}{}{Ouch! You’re going to need some serious patching. $200.}
-{11010}{}{I’ll pay.}
-{11020}{}{Forget it.}
-{12000}{}{Whew… friend, this is going to hurt you a lot. $300 and you’re good as new.}
-{12010}{}{I’ll pay.}
-{12020}{}{Forget it.}
-{13000}{}{Ouch! I’ll need to put a cast on that or something. For my extensive medical knowledge, you’ll be parting with $300.}
-{13010}{}{I’ll pay.}
-{13020}{}{Forget it.}
-{14000}{}{Friend, you don’t have that kind of money. I can sell you some stimpacks if you like, but with the healing you’re looking for, you can’t afford what I can afford to give you.}
-{14010}{}{Give me the stimpacks.}
-{14020}{}{No thanks.}
-{15000}{}{That’s not acceptable.}
-{15010}{}{How about this?}
-{15020}{}{It’s all I want to offer. So long.}
-{16000}{}{[Wheeze] Are you hurt? Let me take a look at that. Do you have money?}
-{16010}{}{Mo-ney?}
-{16020}{}{‘Es!}
-{17000}{}{Let me take a look at your bag. [He looks through your bag and takes something] Okay. Now, this may hurt a little bit.}
-{17010}{}{Hurt?}
-{18000}{}{Yes. Now… There! We’re done. Good luck to you, okay? Don’t get hurt!}
-{18010}{}{Tanks!}
-{19000}{}{That’s right. I’m a doctor. Good to see that intelligence is alive and well in the post-nuclear
+{9000}{}{Friend, you don’t have that kind of money. I can sell you some stimpacks if you like, but with the healing you’re looking for, you can’t afford what I can afford to give you.}
+{9010}{}{No thanks.}
+{10000}{}{[Wheeze] Are you hurt? Let me take a look at that. Do you have money?}
+{10010}{}{Mo-ney?}
+{10020}{}{‘Es!}
+{11000}{}{Let me take a look at your bag. [He looks through your bag and takes something] Okay. Now, this may hurt a little bit.}
+{11010}{}{Hurt?}
+{12000}{}{Yes. Now… There! We’re done. Good luck to you, okay? Don’t get hurt!}
+{12010}{}{Tanks!}
+{13000}{}{That’s right. I’m a doctor. Good to see that intelligence is alive and well in the post-nuclear
  world.}
-{19010}{}{Ha! And it’s kicking around inside the body of a 70-year-old man!}
-{19020}{}{I don’t want to be taking shit from you, old man.}
-{19030}{}{Ummm.. Yeah. I had more questions.}
-{19040}{}{Bye.}
-{20000}{}{Threaten the only doctor in town. Good thinking. [Cough] Friend, if you want something, you
+{13010}{}{Ha! And it’s kicking around inside the body of a 70-year-old man!}
+{13020}{}{I don’t want to be taking shit from you, old man.}
+{13030}{}{Ummm.. Yeah. I had more questions.}
+{13040}{}{Bye.}
+{14000}{}{Threaten the only doctor in town. Good thinking. [Cough] Friend, if you want something, you
  can ask politely. Otherwise, get the hell out of my hospital.}
-{20010}{}{Bite me, old man. Get ready to die.}
-{20020}{}{Yeah. Whatever.}
-{20030}{}{Sorry. Bad day.}
-{20040}{}{I was just kidding around.}
-{21000}{}{Stripling,  you have a lot to learn about respect.@@Child, you have a lot to learn about humor.}
-{21010}{}{Yeah, all right.}
-{21020}{}{Okay, you’ve pissed me off. Now you’re going to need to heal yourself.}
-{22000}{}{[You can see a glint of laughter in his eyes behind his glasses] Don’t see it too many other
+{14010}{}{Bite me, old man. Get ready to die.}
+{14020}{}{Sorry. Bad day.}
+{14030}{}{I was just kidding around.}
+{15000}{}{Stripling,  you have a lot to learn about respect.@@Child, you have a lot to learn about humor.}
+{15010}{}{Yeah, all right.}
+{15020}{}{Okay, you’ve pissed me off. Now you’re going to need to heal yourself.}
+{16000}{}{[You can see a glint of laughter in his eyes behind his glasses] Don’t see it too many other
  places these days. The young of the world, for example…}
-{22010}{}{Hey!}
-{22020}{}{Old man, don’t push me.}
-{22030}{}{...are the repository of what our elders once knew...}
-{22040}{}{Yeah, yeah, yeah… I gotta go.}
-{23000}{}{Relax, kid. Just joking around with you.}
-{23010}{}{Yeah, I know. So… ummm…}
-{24000}{}{… and what we refuse to tell you little bastards! [He bursts out laughing] Kid, the next time
+{16010}{}{Hey!}
+{16020}{}{Old man, don’t push me.}
+{16030}{}{...are the repository of what our elders once knew...}
+{16040}{}{Yeah, yeah, yeah… I gotta go.}
+{17000}{}{Relax, kid. Just joking around with you.}
+{17010}{}{Yeah, I know. So… ummm…}
+{18000}{}{… and what we refuse to tell you little bastards! [He bursts out laughing] Kid, the next time
  you need to see me for some medical help, it’s on the house.}
-{24010}{}{I had some other questions.}
-{24020}{}{Thanks. I’ll see you around.}
-{25000}{}{Surprisingly little. Sorry, but when I’m concentrating on healing someone, I don’t usually pay attention to their innermost secrets.}
-{25010}{}{Oh. Will you answer more questions?}
-{26000}{}{So then I traveled to San Francisco and studied under the Chinese there… an old gentleman by
+{18010}{}{I had some other questions.}
+{18020}{}{Thanks. I’ll see you around.}
+{18030}{}{Падла...падла...подловил. Хе хе.}
+{19000}{}{Surprisingly little. Sorry, but when I’m concentrating on healing someone, I don’t usually pay attention to their innermost secrets.}
+{19010}{}{Oh. Will you answer more questions?}
+{20000}{}{So then I traveled to San Francisco and studied under the Chinese there… an old gentleman by
  the name of Mr. Fung taught me everything I know about medicine. He also taught me some wisdom.}
-{26010}{}{So then what happened?}
-{26020}{}{And this ties into Broken Hills how?}
+{20010}{}{So then what happened?}
+{20020}{}{And this ties into Broken Hills how?}
+{21000}{}{I’m getting to that! Kids these days… so impatient.}
+{21010}{}{Sorry. Go on.}
+{21020}{}{This sucks. I’m outta here.}
+{22000}{}{Then, I came back here and watched Marcus build the town from the shanties I remember from my youth into the "sprawling metropolis" you see before you. I saw people attracted by promises of wealth. I saw people grow up and die. I saw the currents of history.}
+{22010}{}{So that means…}
+{23000}{}{That means that I don’t know most of the new people these days. Most of my memories are just that -- memories.}
+{23010}{}{Oh. Well, thanks for the story.}
+{23020}{}{You jerk! You made me wait that long for nothing?}
+{23030}{}{Что ж, спасибо за рассказ.}
+{24000}{}{No, thank you for listening to me ramble. Next time you’re here and need healing, it’s on the house.}
+{24010}{}{Thanks! So anyway…}
+{24020}{}{Thanks. So long!}
+{25000}{}{Yeah. Hope it was worth it! [He cackles]}
+{25010}{}{No. Not really. Tell me something else.}
+{25020}{}{No. You shriveled old jerk. Bye.}
+{26000}{}{[Wheeze] How can I help you?@@Now what do you want?}
+{26010}{}{I’m hurt and need healing.}
+{26020}{}{What do you do here?}
+{26030}{}{Tell me about the town.}
+{26040}{}{Any gossip?}
+{26050}{}{Just sell me some stimpacks.}
+{26060}{}{Forget it. Sorry.}
 {27000}{}{I’m getting to that! Kids these days… so impatient.}
 {27010}{}{Sorry. Go on.}
 {27020}{}{This sucks. I’m outta here.}
-{28000}{}{Then, I came back here and watched Marcus build the town from the shanties I remember from my youth into the "sprawling metropolis" you see before you. I saw people attracted by promises of wealth. I saw people grow up and die. I saw the currents of history.}
-{28010}{}{So that means…}
-{29000}{}{That means that I don’t know most of the new people these days. Most of my memories are just that -- memories.}
-{29010}{}{Oh. Well, thanks for the story.}
-{29020}{}{You jerk! You made me wait that long for nothing?}
-{30000}{}{No, thank you for listening to me ramble. Next time you’re here and need healing, it’s on the house.}
-{30010}{}{Thanks! So anyway…}
-{30020}{}{Thanks. So long!}
-{31000}{}{Yeah. Hope it was worth it! [He cackles]}
-{31010}{}{No. Not really. Tell me something else.}
-{31020}{}{No. You shriveled old jerk. Bye.}
-{32000}{}{[Wheeze] How can I help you?@@Now what do you want?}
-{32010}{}{I’m hurt and need healing.}
-{32020}{}{What do you do here?}
-{32030}{}{Tell me about the town.}
-{32040}{}{Any gossip?}
-{32050}{}{Just sell me some stimpacks.}
-{32060}{}{Forget it. Sorry.}
-{33000}{}{I’m getting to that! Kids these days… so impatient.}
-{33010}{}{Sorry. Go on.}
-{33020}{}{This sucks. I’m outta here.}
+{28000}{}{Давно не встречал таких скорых на язык, как ты. Мдя. Ты смотри только, аккуратнее со своим языком. Не все люди шутки понимают. }
+{28010}{}{Абсолютая истина. Я всегда это учитываю. }
+{28020}{}{Абсолютая истина. Я всегда это учитываю. }
 
