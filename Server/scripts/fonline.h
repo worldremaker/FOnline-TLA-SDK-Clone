@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 10.12.2010
-// Server version 391, MSVS2008
+// Last update 15.12.2010
+// Server version 392, MSVS2008
 // Default calling convention - cdecl
 //
 
@@ -33,8 +33,9 @@ class asIScriptEngine;
 
 struct Mutex;
 struct Spinlock;
-struct ScriptString;
 struct SyncObj;
+struct ScriptString;
+struct ScriptArray;
 struct CritterType;
 struct ProtoItem;
 struct GameVar;
@@ -54,6 +55,7 @@ struct ProtoMap;
 struct Map;
 struct ProtoLocation;
 struct Location;
+struct Field;
 
 #ifdef __SERVER
 typedef Critter CritterMutual;
@@ -90,6 +92,8 @@ typedef vector<NpcPlane*> NpcPlaneVec;
 typedef vector<NpcPlane*>::iterator NpcPlaneVecIt;
 typedef vector<Critter*> CrVec;
 typedef vector<Critter*>::iterator CrVecIt;
+typedef vector<CritterCl*> CrClVec;
+typedef vector<CritterCl*>::iterator CrClVecIt;
 typedef vector<Client*> ClVec;
 typedef vector<Client*>::iterator ClVecIt;
 typedef vector<Npc*> PcVec;
@@ -457,6 +461,10 @@ struct GameOptions
 	void (*CritterChangeParameter)(Critter& cr, uint index); // Call for correct changing critter parameter
 	CritterType* CritterTypes; // Array of critter types, maximum is MAX_CRIT_TYPES
 
+	Field* ClientMap; // Array of client map hexes, accessing - ClientMap[hexY * ClientMapWidth + hexX]
+	uint   ClientMapWidth;
+	uint   ClientMapHeight;
+
 	// Callbacks
 	uint (*GetUseApCost)(CritterMutual& cr, Item& item, uint8 mode);
 	uint (*GetAttackDistantion)(CritterMutual& cr, Item& item, uint8 mode);
@@ -472,15 +480,35 @@ struct Spinlock
 	long   Locker;
 };
 
+struct SyncObj
+{
+	void*  CurMngr;
+};
+
 struct ScriptString
 {
 	string Buffer;
 	int    RefCount;
 };
 
-struct SyncObj
+struct ScriptArray
 {
-	void*  CurMngr;
+	void*  VTable;
+	int    RefCount;
+	bool   GCFlag;
+	void*  ObjType; // asIObjectType
+
+	struct ArrayBuffer
+	{
+		uint   NumElements;
+		uint8  Data[1];
+	} *Buffer;
+
+	bool   IsArrayOfHandles;
+	int    ElementSize;
+
+	uint   GetSize()      {return Buffer->NumElements;}
+	void*  At(uint index) {return Buffer->Data + index * ElementSize;}
 };
 
 struct CritterType
@@ -1602,6 +1630,37 @@ struct Location
 	bool   IsVisible()     {return Data.Visible || (Data.GeckVisible && GeckCount > 0);}
 };
 
+struct Field
+{
+	CritterCl* Crit;
+	CrClVec    DeadCrits;
+	int        ScrX;
+	int        ScrY;
+	uint       TileId;
+	uint       RoofId;
+	ItemVec    Items;
+	int16      RoofNum;
+	bool       ScrollBlock;
+	bool       IsWall;
+	bool       IsWallSAI;
+	bool       IsWallTransp;
+	bool       IsScen;
+	bool       IsExitGrid;
+	bool       IsNotPassed;
+	bool       IsNotRaked;
+	uint8      Corner;
+	bool       IsNoLight;
+	uint8      LightValues[3];
+	bool       IsMultihex;
+
+#ifdef __MAPPER
+	uint       SelTile;
+	uint       SelRoof;
+	uint       TerrainId;
+	uint       SelTerrain;
+#endif
+};
+
 
 inline int GetDirection(int x1, int y1, int x2, int y2)
 {
@@ -1655,23 +1714,29 @@ inline int GetDistantion(int x1, int y1, int x2, int y2)
 
 inline void static_asserts()
 {
-	STATIC_ASSERT(sizeof(uint)        == 4  );
-	STATIC_ASSERT(sizeof(uint16)      == 2  );
-	STATIC_ASSERT(sizeof(uint8)       == 1  );
-	STATIC_ASSERT(sizeof(int)         == 4  );
-	STATIC_ASSERT(sizeof(int16)       == 2  );
-	STATIC_ASSERT(sizeof(int8)        == 1  );
-	STATIC_ASSERT(sizeof(bool)        == 1  );
-	STATIC_ASSERT(sizeof(string)      == 28 );
-	STATIC_ASSERT(sizeof(IntVec)      == 16 );
-	STATIC_ASSERT(sizeof(IntMap)      == 12 );
-	STATIC_ASSERT(sizeof(IntSet)      == 12 );
-	STATIC_ASSERT(sizeof(IntPair)     == 8  );
-	STATIC_ASSERT(sizeof(GameVar)     == 28 );
-	STATIC_ASSERT(sizeof(ProtoItem)   == 184);
-	STATIC_ASSERT(sizeof(Mutex)       == 24 );
-	STATIC_ASSERT(sizeof(Spinlock)    == 4  );
-	STATIC_ASSERT(sizeof(GameOptions) == 1144);
+	STATIC_ASSERT(sizeof(uint)        == 4   );
+	STATIC_ASSERT(sizeof(uint16)      == 2   );
+	STATIC_ASSERT(sizeof(uint8)       == 1   );
+	STATIC_ASSERT(sizeof(int)         == 4   );
+	STATIC_ASSERT(sizeof(int16)       == 2   );
+	STATIC_ASSERT(sizeof(int8)        == 1   );
+	STATIC_ASSERT(sizeof(bool)        == 1   );
+	STATIC_ASSERT(sizeof(string)      == 28  );
+	STATIC_ASSERT(sizeof(IntVec)      == 16  );
+	STATIC_ASSERT(sizeof(IntMap)      == 12  );
+	STATIC_ASSERT(sizeof(IntSet)      == 12  );
+	STATIC_ASSERT(sizeof(IntPair)     == 8   );
+	STATIC_ASSERT(sizeof(GameVar)     == 28  );
+	STATIC_ASSERT(sizeof(ProtoItem)   == 184 );
+	STATIC_ASSERT(sizeof(Mutex)       == 24  );
+	STATIC_ASSERT(sizeof(Spinlock)    == 4   );
+	STATIC_ASSERT(sizeof(GameOptions) == 1152);
+	STATIC_ASSERT(sizeof(ScriptArray) == 28  );
+#ifdef __MAPPER
+	STATIC_ASSERT(sizeof(Field)       == 84  );
+#else
+	STATIC_ASSERT(sizeof(Field)       == 68  );
+#endif
 
 	STATIC_ASSERT(offsetof(TemplateVar, Flags)              == 76  );
 	STATIC_ASSERT(offsetof(NpcPlane, RefCounter)            == 88  );
