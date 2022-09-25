@@ -4,7 +4,8 @@
 #
 
 Root
-Speed 2.8
+Speed* 2.8
+Scale* 0.9
 
 #
 # Layers
@@ -32,65 +33,65 @@ Layer 0
 
 # Right Handle
 Layer 1
- Value 1   Attach 1 1 WP_15mmArtemisRailGun.x                           Link R_Handle_1 RotX 180
- Value 2   Attach 1 2 WP_223Autoloader.fo3d                             Link R_Handle_1 RotX 180
- Value 3   Attach 1 2 WP_223Autoloader_GunSilencer.fo3d                 Link R_Handle_1 RotX 180
- Value 4   Attach 1 2 WP_223Minigun.fo3d                                Link R_Handle_1 RotX 180
- Value 5   Attach 1 2 WP_22Autoloader.fo3d                              Link R_Handle_1 RotX 180
- Value 6   Attach 1 2 WP_22Autoloader_GunSilencer.fo3d                  Link R_Handle_1 RotX 180
- Value 7   Attach 1 2 WP_2mmGaussPistol.fo3d                            Link R_Handle_1 RotX 180
- Value 8   Attach 1 2 WP_44Revolver.fo3d                                Link R_Handle_1 RotX 180
- Value 9   Attach 1 2 WP_45Autoloader.fo3d                              Link R_Handle_1 RotX 180
- Value 10  Attach 1 2 WP_45Autoloader_GunExtClip.fo3d                   Link R_Handle_1 RotX 180
- Value 11  Attach 1 2 WP_45Autoloader_GunExtClip_GunSilencer.fo3d       Link R_Handle_1 RotX 180
- Value 12  Attach 1 2 WP_45Autoloader_GunSilencer.fo3d                  Link R_Handle_1 RotX 180
- Value 13  Attach 1 2 WP_45Revolver.fo3d                                Link R_Handle_1 RotX 180
- Value 14  Attach 1 2 WP_50Revolver.fo3d                                Link R_Handle_1 RotX 180
- Value 15  Attach 1 2 WP_9mmAutoloader.fo3d                             Link R_Handle_1 RotX 180
- Value 16  Attach 1 2 WP_9mmAutoloader_GunExtClip.fo3d                  Link R_Handle_1 RotX 180
- Value 17  Attach 1 2 WP_9mmAutoloader_GunExtClip_GunSilencer.fo3d      Link R_Handle_1 RotX 180
- Value 18  Attach 1 2 WP_9mmAutoloader_GunSilencer.fo3d                 Link R_Handle_1 RotX 180
- Value 19  Attach 1 2 WP_9mmMachinePistol.fo3d                          Link R_Handle_1 RotX 180
- Value 20  Attach 1 2 WP_9mmMachinePistol_GunExtClip.fo3d               Link R_Handle_1 RotX 180
- Value 21  Attach 1 2 WP_9mmMachinePistol_GunExtClip_GunSilencer.fo3d   Link R_Handle_1 RotX 180
- Value 22  Attach 1 2 WP_9mmMachinePistol_GunExtClip_GunSuppressor.fo3d Link R_Handle_1 RotX 180
- Value 23  Attach 1 2 WP_9mmMachinePistol_GunSilencer.fo3d              Link R_Handle_1 RotX 180
- Value 24  Attach 1 2 WP_9mmMachinePistol_GunSuppressor.fo3d            Link R_Handle_1 RotX 180
- Value 25  Attach 1 2 WP_APOLLOLaserPistol.fo3d                         Link R_Handle_1 RotX 180
- Value 26  Attach 1 2 WP_ArcWelder.x                                    Link R_Handle_1 RotX 180
- Value 27  Attach 1 2 WP_Baseballbat.x                                  Link R_Handle_1 RotX 180
- Value 28  Attach 1 2 WP_CattleProd.x                                   Link R_Handle_1 RotX 180
- Value 29  Attach 1 2 WP_CombatKnife.x                                  Link R_Handle_1 RotX 180
- Value 30  Attach 1 2 WP_Crowbar.x                                      Link R_Handle_1 RotX 180
- Value 31  Attach 1 2 WP_Dynamite.x                                     Link R_Handle_1 RotX 180
- Value 32  Attach 1 2 WP_Flamethrower.x                                 Link R_Handle_1 RotX 180
- Value 33  Attach 1 2 WP_Flamethrower_FlamerExtTank.x                   Link R_Handle_1 RotX 180
- Value 34  Attach 1 2 WP_Flare.x                                        Link R_Handle_1 RotX 180
- Value 35  Attach 1 2 WP_GrenadeBio.x                                   Link R_Handle_1 RotX 180
- Value 36  Attach 1 2 WP_GrenadeEMP.x                                   Link R_Handle_1 RotX 180
- Value 37  Attach 1 2 WP_GrenadeFrag.x                                  Link R_Handle_1 RotX 180
- Value 38  Attach WP_GrenadePlasma.x                                    Link R_Handle_1 RotX 180
- Value 39  Attach WP_HandFlamer.x                                       Link R_Handle_1 RotX 180
- Value 40  Attach WP_Hatchet.x                                          Link R_Handle_1 RotX 180
- Value 41  Attach WP_HeavyWrench.x                                      Link R_Handle_1 RotX 180
- Value 42  Attach WP_KitchenKnife.x                                     Link R_Handle_1 RotX 180
- Value 43  Attach WP_LaserArraygun.x                                    Link R_Handle_1 RotX 180
- Value 44  Attach WP_LaserPistol.x                                      Link R_Handle_1 RotX 180
- Value 45  Attach WP_LaserSaw.x                                         Link R_Handle_1 RotX 180
- Value 46  Attach WP_LeadPipe.x                                         Link R_Handle_1 RotX 180
- Value 47  Attach WP_Machete.x                                          Link R_Handle_1 RotX 180
- Value 48  Attach WP_NightStick.x                                       Link R_Handle_1 RotX 180
- Value 49  Attach WP_Rock.x                                             Link R_Handle_1 RotX 180
- Value 50  Attach WP_SawedOffShotgun.x                                  Link R_Handle_1 RotX 180
- Value 51  Attach WP_Shiv.x                                             Link R_Handle_1 RotX 180
- Value 52  Attach WP_Switchblade.x                                      Link R_Handle_1 RotX 180
- Value 53  Attach WP_TableLeg.x                                         Link R_Handle_1 RotX 180
- Value 54  Attach WP_ThrowingKnife.x                                    Link R_Handle_1 RotX 180
- Value 55  Attach WP_Spear.x                                            Link R_Handle_1 RotX 90
- Value 56  Attach WP_Sledgehammer.x                                     Link R_Handle_1 RotX 90
- Value 100 Attach IT_FirstAidKit.x                                      Link R_Handle_1 RotX 180
- Value 101 Attach IT_SecurityKit.x                                      Link R_Handle_1 RotX 180
- Value 102 Attach IT_Toolkit.x                                          Link R_Handle_1 RotX 180
+ Value 1   Attach WP_15mmArtemisRailGun.x                           Link R_Handle_1 RotX 180
+ Value 2   Attach WP_223Autoloader.fo3d                             Link R_Handle_1 RotX 180
+ Value 3   Attach WP_223Autoloader_GunSilencer.fo3d                 Link R_Handle_1 RotX 180
+ Value 4   Attach WP_223Minigun.fo3d                                Link R_Handle_1 RotX 180
+ Value 5   Attach WP_22Autoloader.fo3d                              Link R_Handle_1 RotX 180
+ Value 6   Attach WP_22Autoloader_GunSilencer.fo3d                  Link R_Handle_1 RotX 180
+ Value 7   Attach WP_2mmGaussPistol.fo3d                            Link R_Handle_1 RotX 180
+ Value 8   Attach WP_44Revolver.fo3d                                Link R_Handle_1 RotX 180
+ Value 9   Attach WP_45Autoloader.fo3d                              Link R_Handle_1 RotX 180
+ Value 10  Attach WP_45Autoloader_GunExtClip.fo3d                   Link R_Handle_1 RotX 180
+ Value 11  Attach WP_45Autoloader_GunExtClip_GunSilencer.fo3d       Link R_Handle_1 RotX 180
+ Value 12  Attach WP_45Autoloader_GunSilencer.fo3d                  Link R_Handle_1 RotX 180
+ Value 13  Attach WP_45Revolver.fo3d                                Link R_Handle_1 RotX 180
+ Value 14  Attach WP_50Revolver.fo3d                                Link R_Handle_1 RotX 180
+ Value 15  Attach WP_9mmAutoloader.fo3d                             Link R_Handle_1 RotX 180
+ Value 16  Attach WP_9mmAutoloader_GunExtClip.fo3d                  Link R_Handle_1 RotX 180
+ Value 17  Attach WP_9mmAutoloader_GunExtClip_GunSilencer.fo3d      Link R_Handle_1 RotX 180
+ Value 18  Attach WP_9mmAutoloader_GunSilencer.fo3d                 Link R_Handle_1 RotX 180
+ Value 19  Attach WP_9mmMachinePistol.fo3d                          Link R_Handle_1 RotX 180
+ Value 20  Attach WP_9mmMachinePistol_GunExtClip.fo3d               Link R_Handle_1 RotX 180
+ Value 21  Attach WP_9mmMachinePistol_GunExtClip_GunSilencer.fo3d   Link R_Handle_1 RotX 180
+ Value 22  Attach WP_9mmMachinePistol_GunExtClip_GunSuppressor.fo3d Link R_Handle_1 RotX 180
+ Value 23  Attach WP_9mmMachinePistol_GunSilencer.fo3d              Link R_Handle_1 RotX 180
+ Value 24  Attach WP_9mmMachinePistol_GunSuppressor.fo3d            Link R_Handle_1 RotX 180
+ Value 25  Attach WP_APOLLOLaserPistol.fo3d                         Link R_Handle_1 RotX 180
+ Value 26  Attach WP_ArcWelder.x                                    Link R_Handle_1 RotX 180
+ Value 27  Attach WP_Baseballbat.x                                  Link R_Handle_1 RotX 180
+ Value 28  Attach WP_CattleProd.x                                   Link R_Handle_1 RotX 180
+ Value 29  Attach WP_CombatKnife.x                                  Link R_Handle_1 RotX 180
+ Value 30  Attach WP_Crowbar.x                                      Link R_Handle_1 RotX 180
+ Value 31  Attach WP_Dynamite.x                                     Link R_Handle_1 RotX 180
+ Value 32  Attach WP_Flamethrower.x                                 Link R_Handle_1 RotX 180
+ Value 33  Attach WP_Flamethrower_FlamerExtTank.x                   Link R_Handle_1 RotX 180
+ Value 34  Attach WP_Flare.x                                        Link R_Handle_1 RotX 180
+ Value 35  Attach WP_GrenadeBio.x                                   Link R_Handle_1 RotX 180
+ Value 36  Attach WP_GrenadeEMP.x                                   Link R_Handle_1 RotX 180
+ Value 37  Attach WP_GrenadeFrag.x                                  Link R_Handle_1 RotX 180
+ Value 38  Attach WP_GrenadePlasma.x                                Link R_Handle_1 RotX 180
+ Value 39  Attach WP_HandFlamer.x                                   Link R_Handle_1 RotX 180
+ Value 40  Attach WP_Hatchet.x                                      Link R_Handle_1 RotX 180
+ Value 41  Attach WP_HeavyWrench.x                                  Link R_Handle_1 RotX 180
+ Value 42  Attach WP_KitchenKnife.x                                 Link R_Handle_1 RotX 180
+ Value 43  Attach WP_LaserArraygun.x                                Link R_Handle_1 RotX 180
+ Value 44  Attach WP_LaserPistol.x                                  Link R_Handle_1 RotX 180
+ Value 45  Attach WP_LaserSaw.x                                     Link R_Handle_1 RotX 180
+ Value 46  Attach WP_LeadPipe.x                                     Link R_Handle_1 RotX 180
+ Value 47  Attach WP_Machete.x                                      Link R_Handle_1 RotX 180
+ Value 48  Attach WP_NightStick.x                                   Link R_Handle_1 RotX 180
+ Value 49  Attach WP_Rock.x                                         Link R_Handle_1 RotX 180
+ Value 50  Attach WP_SawedOffShotgun.x                              Link R_Handle_1 RotX 180
+ Value 51  Attach WP_Shiv.x                                         Link R_Handle_1 RotX 180
+ Value 52  Attach WP_Switchblade.x                                  Link R_Handle_1 RotX 180
+ Value 53  Attach WP_TableLeg.x                                     Link R_Handle_1 RotX 180
+ Value 54  Attach WP_ThrowingKnife.x                                Link R_Handle_1 RotX 180
+ Value 55  Attach WP_Spear.x                                        Link R_Handle_1 RotX 90
+ Value 56  Attach WP_Sledgehammer.x                                 Link R_Handle_1 RotX 90
+ Value 100 Attach IT_FirstAidKit.x                                  Link R_Handle_1 RotX 180
+ Value 101 Attach IT_SecurityKit.x                                  Link R_Handle_1 RotX 180
+ Value 102 Attach IT_Toolkit.x                                      Link R_Handle_1 RotX 180
 
 # Left Handle
 Layer 2
@@ -99,7 +100,7 @@ Layer 2
 Layer 3
  Value 1   Root DisableSubset 0-5-6-7-8-2 Attach ATR_%atr%_BodLeatherOutfit.x
  Value 2   Root DisableSubset 0-5-7-8     Attach ATR_%atr%_BodPowerArmor.x
- Value 3   Root DisableSubset 0-5-6-7-8   Attach ATR_%atr%_BodPrisonSuit.x    Texture 0 Parent
+ Value 3   Root DisableSubset 0-5-6-7-8   Attach ATR_%atr%_BodPrisonSuit.x
  Value 4   Root DisableSubset 0-5-6-7-8-2 Attach ATR_%atr%_BodVaultSuit.x
 
 # Feet

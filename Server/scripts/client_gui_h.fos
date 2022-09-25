@@ -14,6 +14,8 @@ import IGUIScreenOpt@ GUI_CreateScreen(int screenIndex, string@ sprName) from "c
 import void GUI_DeleteScreen(int screenIndex) from "client_gui";
 // Add element on screen
 import IGUIElementOpt@ GUI_AddScreenElement(int screenIndex, string@ sprName, int x, int y) from "client_gui";
+// Get screen options
+import IGUIScreenOpt@ GUI_GetScreenOptions(int screenIndex) from "client_gui";
 // Get options for last created screen, valid only on IGUIScreenCallbackShow::OnShow callback
 import IGUIScreenOpt@ GUI_GetScreenOptions() from "client_gui";
 // Get options for last created element, valid only on IGUIElementCallbackInit::OnInit callback
@@ -63,6 +65,7 @@ interface IGUIElementOpt
 	IGUIElementOpt@ CallbackMouseClick(IGUIElementCallbackMouseClick@ callback);             // default null
 	IGUIElementOpt@ CallbackKeyPress(IGUIElementCallbackKeyPress@ callback);                 // default null
 	IGUIElementOpt@ Position(int x, int y);                                                  // default zeros
+	IGUIElementOpt@ Position(int x, int y, int w, int h);                                    // default zeros
 	IGUIElementOpt@ Position(string& iniKey);                                                // get borders from ini
 	IGUIElementOpt@ DownPic(string@ sprName);                                                // default picture off
 	IGUIElementOpt@ Text(string@ text, int font, uint color, uint downColor, int flags);     // default text disabled

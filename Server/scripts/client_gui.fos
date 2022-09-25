@@ -15,6 +15,8 @@ bool[] KeyPressed;
 KeybData@[] KbData;
 IGUIScreenOpt@ LastScreenOpt=null;
 IGUIElementOpt@ LastElementOpt=null;
+int MouseX=0;
+int MouseY=0;
 
 class KeybData
 {
@@ -108,6 +110,15 @@ class GUIElement : IGUIElementOpt
 		return this;
 	}
 
+	IGUIElementOpt@ Position(int x, int y, int w, int h)
+	{
+		PosX=x;
+		PosY=y;
+		Surface.Width=w;
+		Surface.Height=h;
+		return this;
+	}
+
 	IGUIElementOpt@ Position(string& iniKey)
 	{
 		PosX=0;
@@ -137,6 +148,12 @@ class GUIElement : IGUIElementOpt
 	{
 		if(@sprName!=null) DownSpr.Load(sprName,DefaultPath);
 		else DownSpr.Id=0;
+
+		if(DownSpr.Id!=0 && Surface.Width==0 && Surface.Height==0)
+		{
+			Surface.Width=DownSpr.Width;
+			Surface.Height=DownSpr.Height;
+		}
 		return this;
 	}
 
@@ -417,6 +434,12 @@ IGUIElementOpt@ GUI_AddScreenElement(int screenIndex, string@ sprName, int x, in
 	return @element;
 }
 
+// Screen options
+IGUIScreenOpt@ GUI_GetScreenOptions(int screenIndex)
+{
+	return GetScreen(screenIndex);
+}
+
 // Valid only on IGUIScreenCallbackShow::OnShow callback
 IGUIScreenOpt@ GUI_GetScreenOptions()
 {
@@ -547,6 +570,16 @@ void GUI_Init()
 	@KbData[DIK_TAB]=			KeybData('\t','\t','\t','\t');
 }
 
+int GUI_GetMouseX()
+{
+	return MouseX;
+}
+
+int GUI_GetMouseY()
+{
+	return MouseY;
+}
+
 int GUI_GetActiveMainScreen()
 {
 	return ActiveScreens.length() > 0 ? ActiveScreens.first().Index : CLIENT_SCREEN_NONE;
@@ -671,10 +704,14 @@ bool GUI_MouseDown(int click, int x, int y)
 	{
 		GUIScreen@ screen=ActiveScreens[len-1];
 		bool result=screen.MouseDown(click,x,y);
-		if(result) return true;
+		if(result)
+		{
+			if(click==MOUSE_CLICK_WHEEL_UP || click==MOUSE_CLICK_WHEEL_DOWN) return GUI_MouseUp(click,x,y);
+			return true;
+		}
 
-		if(len>1 && not screen.IsHardcoded && not screen.IsModal && click==MOUSE_CLICK_LEFT
-		&& not IS_COLLISION(x,y,screen.PosX,screen.PosY,screen.Surface.Width,screen.Surface.Height))
+		if(len>1 && not screen.IsHardcoded && not screen.IsModal && click==MOUSE_CLICK_LEFT &&
+			not IS_COLLISION(x,y,screen.PosX,screen.PosY,screen.Surface.Width,screen.Surface.Height))
 		{
 			for(uint i=ActiveScreens.length()-1;i>0;) // From end
 			{
@@ -705,6 +742,9 @@ void GUI_MouseMove(int x, int y)
 {
 	uint len=ActiveScreens.length();
 	if(len!=0) ActiveScreens[len-1].MouseMove(x,y);
+
+	MouseX=x;
+	MouseY=y;
 }
 
 bool GUI_KeyDown(uint8 key)

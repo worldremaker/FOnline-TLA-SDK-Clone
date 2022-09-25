@@ -508,6 +508,16 @@
 #define STR_SCORES_TITLE #(score)       (13000+(score)*10)
 #define STR_SCORES_NAME #(score)        (13000+(score)*10+1)
 
+// 3d attributes
+#define STR_BODY_TYPE   #(type)         (150100 + (type))
+#define STR_SKIN_COLOR  #(color)        (151000 + (color))
+#define STR_HAIR_COLOR  #(color)        (151200 + (color))
+#define STR_HAIR_MALE   #(type)         (152000 + (type) * 10)
+#define STR_HAIR_FEMALE #(type)         (152200 + (type) * 10)
+#define STR_MUSTACHE    #(type)         (153000 + (type) * 10)
+#define STR_PONYTAIL    #(type)         (154000 + (type) * 10)
+#define STR_BEARD       #(type)         (155000 + (type) * 10)
+
 // Intellect words
 #define STR_INTELLECT_WORDS             (1999000000)
 #define STR_INTELLECT_SYMBOLS           (1999000001)

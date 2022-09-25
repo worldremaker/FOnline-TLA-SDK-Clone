@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 15.12.2010
-// Server version 392, MSVS2008
+// Last update 25.12.2010
+// Server version 393, MSVS2008
 // Default calling convention - cdecl
 //
 
@@ -432,8 +432,6 @@ struct GameOptions
 	string PlayerOffAppendix;
 	int    PlayerOffAppendixRefCount;
 	int    CombatMessagesType;
-	string UserInterface;
-	int    UserInterfaceRefCount;
 	bool   DisableDrawScreens;
 	uint   Animation3dSmoothTime;
 	uint   Animation3dFPS;
@@ -1730,7 +1728,7 @@ inline void static_asserts()
 	STATIC_ASSERT(sizeof(ProtoItem)   == 184 );
 	STATIC_ASSERT(sizeof(Mutex)       == 24  );
 	STATIC_ASSERT(sizeof(Spinlock)    == 4   );
-	STATIC_ASSERT(sizeof(GameOptions) == 1152);
+	STATIC_ASSERT(sizeof(GameOptions) == 1120);
 	STATIC_ASSERT(sizeof(ScriptArray) == 28  );
 #ifdef __MAPPER
 	STATIC_ASSERT(sizeof(Field)       == 84  );

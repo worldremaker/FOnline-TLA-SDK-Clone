@@ -1,6 +1,11 @@
 #ifndef __DEFINES__
 #define __DEFINES__
 
+// 3d players mod, uncomment for use
+// #define PLAYERS_3D             // Enable 3d players
+// #define PLAYERS_3D_NO_HEAD     // No head slot
+// #define PLAYERS_3D_VAULT_SUITE // Vault suite by default, not naked
+
 // Global variables
 // Possible types:
 // int8, int16, int32, int64, int,
@@ -291,6 +296,11 @@
 #define SLOT_HAND1                  (1) // Weapon slot
 #define SLOT_HAND2                  (2) // Extended slot
 #define SLOT_ARMOR                  (3) // Armor slot
+#ifdef PLAYERS_3D
+ #ifndef PLAYERS_3D_NO_HEAD
+  #define SLOT_HEAD                 (4) // Head slot
+ #endif
+#endif
 #define SLOT_GROUND                 (255) // Ground slot, used when critter drop/pick item
 
 // Critter timeevents identifiers
@@ -443,9 +453,11 @@
 #define ST_TALK_DISTANCE            (115) // Hardcoded; if zero than taked __TalkDistance
 #define ST_SCALE_FACTOR             (116) // Hardcoded
 // 117..149
+#ifdef PLAYERS_3D
 	// Initial values of animation 3d layers
 #define ST_ANIM3D_LAYERS            (150) // Hardcoded
 // 150..179 reserved for 30 layers
+#endif
 // 180..199
 
 	/// Skills
@@ -1092,8 +1104,14 @@
 #define LOOK_CHECK_SCRIPT           (0x10) // Allow bool check_look(...) in main.fos, all other defines ignored
 
 // Critter base types
-#define CRTYPE_DEFAULT_M            (CRTYPE_DW_JUMPSUIT_M) // Before CRTYPE_VAULT_M
+#ifndef PLAYERS_3D
+#define CRTYPE_DEFAULT_M            (CRTYPE_DW_JUMPSUIT_M)
 #define CRTYPE_DEFAULT_F            (CRTYPE_DW_JUMPSUIT_F)
+#endif
+#ifdef PLAYERS_3D
+#define CRTYPE_DEFAULT_M            (CRTYPE_3D_MALE_NORMAL)
+#define CRTYPE_DEFAULT_F            (CRTYPE_3D_FEMALE_NORMAL)
+#endif
 #define CRTYPE_NONE                 (0) // Used with ST_BASE_CRTYPE as default
 	// Dweller
 #define CRTYPE_DW_JUMPSUIT_M        (11)
@@ -1115,6 +1133,34 @@
 #define CRTYPE_LHD_TRIBAL           (110)
 	// Other
 #define CRTYPE_VAULT_BOY            (249)
+	// 3d critters
+#define CRTYPE_3D_MALE_NORMAL       (290)
+#define CRTYPE_3D_MALE_WIRY         (291)
+#define CRTYPE_3D_MALE_STRONG       (292)
+#define CRTYPE_3D_MALE_FAT          (293)
+#define CRTYPE_3D_MALE_SKELETON     (294)
+#define CRTYPE_3D_FEMALE_NORMAL     (295)
+#define CRTYPE_3D_FEMALE_WIRY       (296)
+#define CRTYPE_3D_FEMALE_STRONG     (297)
+#define CRTYPE_3D_FEMALE_FAT        (298)
+#define CRTYPE_3D_FEMALE_SKELETON   (299)
+#define CRTYPE_3D_ANT               (300)
+#define CRTYPE_3D_ANT_QUEEN         (301)
+#define CRTYPE_3D_BAT               (302)
+#define CRTYPE_3D_BEETLE            (303)
+#define CRTYPE_3D_CENTIPEDE         (304)
+#define CRTYPE_3D_COUGAR            (305)
+#define CRTYPE_3D_COW               (306)
+#define CRTYPE_3D_DEATHCLAW         (307)
+#define CRTYPE_3D_DESERT_STALKER    (308)
+#define CRTYPE_3D_DOG               (309)
+#define CRTYPE_3D_GILA              (310)
+#define CRTYPE_3D_MANTRAP           (311)
+#define CRTYPE_3D_RAD_TOAD          (312)
+#define CRTYPE_3D_RAT               (313)
+#define CRTYPE_3D_THORN_SLINGER     (314)
+#define CRTYPE_3D_WASP_GIANT        (315)
+#define CRTYPE_3D_WEEDLING          (316)
 
 // Global map events
 #define GLOBAL_PROCESS_MOVE         (0)

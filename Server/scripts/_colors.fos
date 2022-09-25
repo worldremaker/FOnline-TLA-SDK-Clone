@@ -31,6 +31,7 @@ uint __GetColor(int r, int g, int b)
 #define COLOR_CONTOUR_YELLOW     (COLOR_RGB(150,150,0))
 #define COLOR_CONTOUR_GREEN      (COLOR_RGB(0,150,0))
 
+#define COLOR_LGRAY              (COLOR_RGB(0xAB,0xAB,0xAB))
 #define COLOR_GRAY               (COLOR_RGB(0x7F,0x7F,0x7F))
 #define COLOR_WHITE              (COLOR_RGB(0xFF,0xFF,0xFF))
 #define COLOR_RED                (COLOR_RGB(0xC8,0,0))

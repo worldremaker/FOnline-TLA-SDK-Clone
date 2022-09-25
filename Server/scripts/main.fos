@@ -3,6 +3,7 @@
 #include "_msgstr.fos"
 #include "_teams.fos"
 #include "_npc_pids.fos"
+#include "_animation.fos"
 #include "teams_table.fos"
 #include "npc_ai.fos"
 
@@ -87,7 +88,12 @@ bool start()
 	SetSendParameter(MODE_NO_LOOT,true);
 	SetSendParameter(MODE_NO_FLATTEN,true);
 	// 3d animation layers
-	//for(uint i=ST_ANIM3D_LAYERS;i<=ST_ANIM3D_LAYERS+15;i++) SetSendParameter(i,true); // From Skin to Backpack
+#ifdef PLAYERS_3D
+	// Enable sending 3d layers, from Skin to Backpack
+	uint fromLayer=ST_ANIM3D_LAYERS+ANIM3D_LAYER_SKIN;
+	uint toLayer=ST_ANIM3D_LAYERS+ANIM3D_LAYER_BACKPACK;
+	for(uint i=fromLayer;i<=toLayer;i++) SetSendParameter(i,true);
+#endif
 	// Npc talk distance
 	SetSendParameter(ST_TALK_DISTANCE,true);
 	// Dialog id
@@ -936,6 +942,32 @@ void critter_init(Critter& cr, bool firstTime)
 
 			cr.StatBase[ST_EMP_RESIST]=500;
 			cr.AddHolodiskInfo(42); // Journalist's research
+
+			// Default skin
+#ifdef PLAYERS_3D
+			if(cr.StatBase[ST_GENDER]==GENDER_MALE)
+			{
+				cr.StatBase[ST_BASE_CRTYPE]=CLAMP(cr.StatBase[ST_BASE_CRTYPE],CRTYPE_3D_MALE_NORMAL,CRTYPE_3D_MALE_FAT);
+				cr.StatBase[ST_ANIM3D_LAYERS+ANIM3D_LAYER_HAIR]=CLAMP(cr.StatBase[ST_ANIM3D_LAYERS+ANIM3D_LAYER_HAIR],ATTRIBUTE_Hair_Male_Afro,ATTRIBUTE_Hair_Male_Shoulder+ATTRIBUTE_COLOR_RedGrey);
+				if(cr.StatBase[ST_ANIM3D_LAYERS+ANIM3D_LAYER_MUSTACHE]!=ATTRIBUTE_Mustache_MadMax)
+				cr.StatBase[ST_ANIM3D_LAYERS+ANIM3D_LAYER_MUSTACHE]=CLAMP(cr.StatBase[ST_ANIM3D_LAYERS+ANIM3D_LAYER_MUSTACHE],0,ATTRIBUTE_Mustache_Male_Stubble+ATTRIBUTE_COLOR_RedGrey);
+				cr.StatBase[ST_ANIM3D_LAYERS+ANIM3D_LAYER_BEARD]=CLAMP(cr.StatBase[ST_ANIM3D_LAYERS+ANIM3D_LAYER_BEARD],0,ATTRIBUTE_Beard_Male_Stubble+ATTRIBUTE_COLOR_RedGrey);
+			}
+			else
+			{
+				cr.StatBase[ST_BASE_CRTYPE]=CLAMP(cr.StatBase[ST_BASE_CRTYPE],CRTYPE_3D_FEMALE_NORMAL,CRTYPE_3D_FEMALE_FAT);
+				cr.StatBase[ST_ANIM3D_LAYERS+ANIM3D_LAYER_HAIR]=CLAMP(cr.StatBase[ST_ANIM3D_LAYERS+ANIM3D_LAYER_HAIR],ATTRIBUTE_Hair_Female_Afro,ATTRIBUTE_Hair_Female_Short+ATTRIBUTE_COLOR_RedGrey);
+				if(cr.StatBase[ST_ANIM3D_LAYERS+ANIM3D_LAYER_MUSTACHE]!=ATTRIBUTE_Mustache_MadMax) cr.StatBase[ST_ANIM3D_LAYERS+ANIM3D_LAYER_MUSTACHE]=0;
+				cr.StatBase[ST_ANIM3D_LAYERS+ANIM3D_LAYER_BEARD]=0;
+			}
+
+			cr.StatBase[ST_ANIM3D_LAYERS+ANIM3D_LAYER_SKIN]=CLAMP(cr.StatBase[ST_ANIM3D_LAYERS+ANIM3D_LAYER_SKIN],ATTRIBUTE_Skin_Human_White01,ATTRIBUTE_Skin_Human_Yellow03);
+			cr.StatBase[ST_ANIM3D_LAYERS+ANIM3D_LAYER_PONYTAIL]=CLAMP(cr.StatBase[ST_ANIM3D_LAYERS+ANIM3D_LAYER_PONYTAIL],0,ATTRIBUTE_Ponytail_Ponytail2+ATTRIBUTE_COLOR_RedGrey);
+			cr.StatBase[ST_ANIM3D_LAYERS+ANIM3D_LAYER_ARMLET]=ATTRIBUTE_Armlet_PipBoyClosed;
+#endif
+#ifndef PLAYERS_3D
+			cr.ChangeCrType(cr.Stat[ST_GENDER]==GENDER_MALE?CRTYPE_DEFAULT_M:CRTYPE_DEFAULT_F);
+#endif
 		}
 
 		if(cr.TagSkill[TAG_SKILL1]<int(SKILL_BEGIN) || cr.TagSkill[TAG_SKILL1]>int(SKILL_END)) cr.TagSkillBase[TAG_SKILL1]=0;
