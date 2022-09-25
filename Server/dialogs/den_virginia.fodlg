@@ -88,7 +88,7 @@ lang=russ engl
 24 20010 D _item p PID_JET > 0 R _item p PID_JET - 1 R _item n PID_JET + 1 R _var p q_den_mom_slut = 2 R _script den_virgin@r_GoAway 1 0 #
 25 20020 D _param p PE_MAGNETIC_PERSONALITY = 1 R _var p q_den_mom_slut = 2 R _script den_virgin@r_GoAway 1 0 #
 23 20030 D _item p PID_BOTTLE_CAPS > 99 R _item p PID_BOTTLE_CAPS - 100 R _item n PID_BOTTLE_CAPS + 100 R _var p q_den_mom_slut = 2 R _script den_virgin@r_GoAway 1 0 #
-22 20040 D _param p SK_SPEECH > 59 R _var p q_den_mom_slut = 2 R _script den_virgin@r_GoAway 1 0 #
+22 20040 D _param p SK_SPEECH > 29 R _var p q_den_mom_slut = 2 R _script den_virgin@r_GoAway 1 0 #
 7 20050 @
 22 21000 None 0 #
 0 21010 @
@@ -197,7 +197,7 @@ lang=russ engl
 {20000}{}{С чего бы это вдруг?}
 {20010}{}{У меня есть халявный джет для тебя. [Вы отдаете Вирджинии джет]}
 {20020}{}{@sex@|Ты знаешь, я могу быть очень нежным... Очень... [Вы многозначительно подмигиваете ей одним глазом]||Ты знаешь, я могу быть очень нежной... Очень... [Вы многозначительно подмигиваете ей одним глазом]|}
-{20030}{}{Могу подкинуть 100 крышечек. [Вы отдаете Вирджинии 100 крышек]}
+{20030}{}{Могу подкинуть сотню баксов.}
 {20040}{}{Мама очень стара, подумай, ведь если бы твоя мать была жива, что бы она про тебя подумала?}
 {20050}{}{Ну... Я не знаю.}
 {21000}{}{@sex@|Возможно ты прав... ладно передай ей, что я прекращу... Ненадолго.||Возможно ты права... ладно передай ей, что я прекращу... Ненадолго.|}

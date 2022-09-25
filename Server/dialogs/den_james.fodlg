@@ -75,8 +75,9 @@ lang=russ engl
 0 14010 R _var p q_den_jane_radio = 1 R _var p den_jane_job_counter + 1 R _item p PID_VIC_RADIO + 10 #
 3 14020 @
 15 15000 None 0 #
-17 15010 D _item p PID_HUNTING_RIFLE > 0 R _var p den_jane_job_counter - 1 R _var p q_den_jane_hunt = 3 R _item p PID_HUNTING_RIFLE - 1 R _param p ST_EXPERIENCE + 400 R _item p PID_BOTTLE_CAPS + 400 R _item n PID_BOTTLE_CAPS - 400 #
-16 15020 @
+17 15010 D _item p PID_HUNTING_RIFLE > 0 R _var p den_jane_job_counter - 1 R _var p q_den_jane_hunt = 3 R _item p PID_HUNTING_RIFLE - 1 R _param p ST_EXPERIENCE + 400 R _item p PID_BOTTLE_CAPS + 400 #
+17 15020 D _item p PID_SCOPED_HUNTING_RIFLE > 0 D _item p PID_HUNTING_RIFLE < 1 R _var p den_jane_job_counter - 1 R _var p q_den_jane_hunt = 3 R _item p PID_SCOPED_HUNTING_RIFLE - 1 R _param p ST_EXPERIENCE + 500 R _item p PID_BOTTLE_CAPS + 500 #
+16 15030 @
 16 16000 None 0 @
 17 17000 None 0 @
 19 18000 None 0 #
@@ -199,7 +200,8 @@ lang=russ engl
 {14020}{}{Лучше я задам вопрос.}
 {15000}{}{Да?}
 {15010}{}{Вот, держи!}
-{15020}{}{Еще нет.}
+{15020}{}{Вот, держи!}
+{15030}{}{Еще нет.}
 {16000}{}{Я все еще жду.@@Окей.@@Поскорее бы.}
 {17000}{}{Ого, надо будет проверить ее в деле. Вот тебе 400 монет.}
 {18000}{}{Нету, но если найдешь по упаковке психо, боффаута и ментата, буду тебе благодарен. У меня и на такое клиенты найдутся.}
@@ -322,7 +324,8 @@ lang=russ engl
 {14020}{}{I'd better ask you a question.}
 {15000}{}{Yes?}
 {15010}{}{Here, take it!}
-{15020}{}{I haven't found any yet.}
+{15020}{}{Вот, держи!}
+{15030}{}{I haven't found any yet.}
 {16000}{}{I'm still waiting.@@Okay.@@Sooner is better.}
 {17000}{}{Wow, I'll need to see how good is it in work. Here's your $400.}
 {18000}{}{Nope. But if you get me a psycho, buffout and mentats I'll be grateful. I've got people who'll buy even that.}

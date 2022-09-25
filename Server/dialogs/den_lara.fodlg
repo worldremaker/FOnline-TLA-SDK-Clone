@@ -10,8 +10,8 @@ lang=russ engl
 37 1010 D _var p q_den_lara_band = 3 #
 36 1020 D _var p q_den_lara_band = 1 D _var p q_den_lara_trust = 2 #
 28 1030 D _param p ST_INTELLECT < 4 #
-2 1040 D _var n name_mem_npc_player = 0 R _var n name_mem_npc_player = 1 #
-3 1050 D _var n name_mem_npc_player = 1 @
+2 1040 D _var n name_mem_npc_player = 0 R _var n name_mem_npc_player = 1 R _param n MODE_NO_BARTER = 1 #
+3 1050 D _var n name_mem_npc_player = 1 R _param n MODE_NO_BARTER = 1 @
 2 2000 None 0 #
 5 2010 D _param p ST_INTELLECT > 3 #
 0 2020 D _param p ST_INTELLECT > 3 #
@@ -20,11 +20,12 @@ lang=russ engl
 30 3010 D _param p ST_KARMA > 0 D _var p q_den_lara_trust = 1 #
 32 3020 D _var p q_den_lara_trust = 1 D _param p ST_KARMA < 0 R _var p q_den_lara_trust = 2 #
 31 3030 D _var p q_den_joey_lara = 1 R _var p q_den_joey_lara = 3 #
-65506 3040 D _var n loyality > 0 #
+65506 3040 D _var n loyality > 0 R _param n MODE_NO_BARTER = 0 #
 8 3050 D _var n loyality > 0 #
 9 3060 D _var n loyality < 5 #
 10 3070 D _var n loyality < 5 #
-27 3080 D _var p q_den_lara_molotov_coctail = 2 R _var p q_den_lara_molotov_coctail = 3 R _item p PID_BOTTLE_CAPS + 200 R _param p ST_EXPERIENCE + 500 @
+27 3080 D _var p q_den_lara_molotov_coctail = 2 R _var p q_den_lara_molotov_coctail = 3 R _item p PID_BOTTLE_CAPS + 200 R _param p ST_EXPERIENCE + 500 #
+0 3090 @
 4 4000 None 0 #
 0 4010 @
 5 5000 None 0 #
@@ -32,7 +33,7 @@ lang=russ engl
 7 5020 R _var n loyality = 0 @
 6 6000 None 0 #
 7 6010 D _var p q_den_lara_molotov_coctail = 0 R _var n loyality = 0 #
-8 6020 #
+8 6020 R _param n MODE_NO_BARTER = 0 #
 21 6030 D _param p ST_INTELLECT > 4 D _param p SK_SPEECH > 29 D _var n loyality < 10 R _var n loyality = 10 #
 0 6040 @
 7 7000 None 0 #
@@ -42,14 +43,14 @@ lang=russ engl
 13 8010 #
 14 8020 #
 22 8030 D _var n loyality < 10 #
-23 8040 D _var n loyality > 5 D _var p q_den_lara_molotov_coctail = 0 #
+23 8040 D _var n loyality > 5 D _var p q_den_lara_molotov_coctail = 0 D _param p ST_KARMA < 15 #
 26 8050 D _var p q_den_lara_molotov_coctail = 1 #
 6 8060 #
 65506 8070 #
 0 8080 @
 9 9000 None 0 #
 11 9010 #
-12 9020 D _param p SK_SPEECH > 29 R _var n loyality = 5 #
+12 9020 D _param p SK_SPEECH > 29 R _var n loyality = 5 R _param n MODE_NO_BARTER = 0 #
 0 9030 @
 10 10000 None 0 #
 9 10010 #
@@ -71,43 +72,43 @@ lang=russ engl
 17 15010 #
 8 15020 @
 17 16000 None 0 #
-8 16010 #
+8 16010 R _param n MODE_NO_BARTER = 0 #
 0 16020 #
 18 16030 D _param p ST_INTELLECT > 4 D _param p SK_SPEECH > 29 @
 18 17000 None 0 #
 8 17010 #
 0 17020 #
-19 17030 D _param p SK_SPEECH > 59 D _param p ST_CHARISMA > 2 D _param p ST_INTELLECT > 5 @
+19 17030 @
 19 18000 None 0 #
-8 18010 #
+8 18010 R _param n MODE_NO_BARTER = 0 #
 20 18020 D _var n loyality > 5 #
 0 18030 @
 20 19000 None 0 #
-8 19010 #
+8 19010 R _param n MODE_NO_BARTER = 0 #
 0 19020 @
 21 20000 None 0 #
-8 20010 @
+8 20010 R _param n MODE_NO_BARTER = 0 @
 22 21000 None 0 #
-8 21010 #
+8 21010 R _param n MODE_NO_BARTER = 0 #
 0 21020 @
 23 22000 None 0 #
-8 22010 #
-8 22020 #
+8 22010 R _param n MODE_NO_BARTER = 0 #
+8 22020 R _param n MODE_NO_BARTER = 0 #
 24 22030 @
 24 23000 None 0 #
 29 23010 D _var p q_den_lara_band = 0 R _var p q_den_lara_band = 1 #
-8 23020 #
+8 23020 R _param n MODE_NO_BARTER = 0 #
 8 23030 D _var p q_den_lara_molotov_coctail = 3 #
 25 23040 D _var p q_den_lara_molotov_coctail = 0 R _var p q_den_lara_molotov_coctail = 1 @
 25 24000 None 0 #
-8 24010 #
+8 24010 R _param n MODE_NO_BARTER = 0 #
 0 24020 @
 26 25000 None 0 #
-8 25010 #
+8 25010 R _param n MODE_NO_BARTER = 0 #
 0 25020 @
 27 26000 None 0 #
 23 26010 #
-8 26020 #
+8 26020 R _param n MODE_NO_BARTER = 0 #
 0 26030 @
 28 27000 None 0 @
 29 28000 None 0 #
@@ -151,7 +152,10 @@ lang=russ engl
 45 44000 None 0 #
 46 44010 @
 46 45000 None 0 #
-0 45010 &
+47 45010 #
+0 45020 @
+47 46000 None 0 #
+0 46010 &
 
 [russ]
 {100}{}{Лара}
@@ -176,6 +180,7 @@ lang=russ engl
 {3060}{}{Я хочу спросить кое-что.@@Есть вопросы.@@Нужна информация.}
 {3070}{}{Я хочу прикупить у тебя кое-чего...@@Мне нужно поторговать с тобой.@@Хочу закупиться.@@Мне надо упаковаться по полной. Что у тебя есть?}
 {3080}{}{Задание выполнено.@@Бутылки доставлены.@@Я @sex@|отнес||отнесла| бутылки Джеймсу.}
+{3090}{}{Ничего, извини.}
 {4000}{}{У нас в городе нет психиатров, и я не могу тебе помочь.@@Чего разговариваешь как дебил? Погоди... дай угадаю... ты и есть дебил.}
 {4010}{}{Пока, Рара! [Выход]}
 {5000}{}{Я тебя раньше не видела. Лучше не шляйся без дела, у нас тут с этим строго, пока Братство Стали здесь...}
@@ -301,8 +306,11 @@ lang=russ engl
 {43010}{}{Валяй.}
 {44000}{}{Может ты слышал@sex@|||а| об Анклаве? Это определенно самая могущественная организация на материке. Они вроде до сих пор нанимают людей для сбора информации по городам.}
 {44010}{}{А где их можно найти?}
-{45000}{}{Точно не знаю, меня нанял их агент, какой-то мужичок с акцентом, как у Флика. Знаю только что их база находится где-то на побережье далеко к юго-западу отсюда. }
-{45010}{}{Спасибо, надо будет посмотреть.}
+{45000}{}{Точно не знаю, меня нанял их агент, какой-то мужичок с акцентом, как у Флика. Знаю только что их база находится где-то на побережье далеко к юго-западу отсюда. Хотя... С какой целью ты интересуешься?}
+{45010}{}{Меня интересует ещё работа.}
+{45020}{}{Да на самом деле ни с какой.}
+{46000}{}{Чёрт, я не должна тебе этого говорить... Но ладно, ты вроде показал@sex@|||а| себя человеком, которому можно доверять. Давай сюда свой пип-бой, я отмечу примерное расположение их базы у тебя на карте. Скажи, что интересуешься работой по сбору информации в городах.}
+{46010}{}{Спасибо, надо будет посмотреть.}
 
 [engl]
 {100}{}{Lara}
@@ -327,6 +335,7 @@ lang=russ engl
 {3060}{}{I want to ask you something.@@I have questions.@@I need information.}
 {3070}{}{I want to buy something...@@I need to trade with you.@@I'd like to trade.@@I need to equip myself wholly. What do you have?}
 {3080}{}{Job's done.@@Bottles are delivered.@@I've delivered the bottles to James.}
+{3090}{}{Ничего, извини.}
 {4000}{}{We don't have any doctors in town and I can't help you.@@Why are you speaking like a moron? Wait... let me guess... you ARE moron.}
 {4010}{}{By Rara!}
 {5000}{}{I haven't seen you before. Better not bum around, it's severe about this while Brotherhood of Steel is here...}
@@ -453,5 +462,8 @@ lang=russ engl
 {44000}{}{Maybe you've heard about Enclave? That's definitely the most powerful organization on this continent. They are gathering the most skilled warriors and scientists. I don't know exactly what for. But if you show yourself worthy, they will notice you.}
 {44010}{}{And where can I find them?}
 {45000}{}{I don't know where exactly, but there is their base somewhere near the coast far away to the south-west from here.}
-{45010}{}{Thanks, I'll look.}
+{45010}{}{Меня интересует ещё работа.}
+{45020}{}{Thanks, I'll look.}
+{46000}{}{Чёрт, я не должна тебе этого говорить... Но ладно, ты вроде показал@sex@|||а| себя человеком, которому можно доверять. Давай сюда свой пип-бой, я отмечу примерное расположение их базы у тебя на карте. Скажи, что интересуешься работой по сбору информации в городах.}
+{46010}{}{Спасибо, надо будет посмотреть.}
 

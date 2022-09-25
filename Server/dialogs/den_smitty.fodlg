@@ -22,7 +22,7 @@ lang=russ engl
 17 3060 D _item p PID_RUBBER_BOOTS > 0 D _var p q_den_smitty_boots = 1 R _item p PID_RUBBER_BOOTS - 1 R _item p PID_BOTTLE_CAPS + 100 R _param p ST_EXPERIENCE + 150 R _item n PID_BOTTLE_CAPS - 150 R _var p q_den_smitty_boots = 3 R _param p REPUTATION_DEN + 1 #
 19 3070 D _var p q_den_smitty_key = 1 D _item p PID_WRENCH > 0 R _item p PID_STIMPAK + 1 R _var p q_den_smitty_key = 3 R _item p PID_WRENCH - 1 R _item p PID_10MM_JHP + 20 R _param p ST_EXPERIENCE + 500 R _param p REPUTATION_DEN + 1 #
 18 3080 D _var p q_den_smitty_key = 0 #
-22 3090 D _var p q_den_smitty_ammo = 3 R _var p q_den_smitty_ammo = 4 R _var p den_smitty_ammo = 1 R _item p PID_10MM_JHP + 20 R _item n PID_10MM_JHP - 20 R _param p ST_EXPERIENCE + 1000 R _param p REPUTATION_DEN + 1 #
+22 3090 D _var p q_den_smitty_ammo = 3 R _var p q_den_smitty_ammo = 4 R _var p den_smitty_ammo = 1 R _param p ST_EXPERIENCE + 1000 R _param p REPUTATION_DEN + 1 R _item p PID_10MM_JHP + 48 #
 0 3100 @
 4 4000 None 0 #
 11 4010 D _var p q_den_smitty_fixit = 0 #

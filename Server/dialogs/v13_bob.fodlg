@@ -6,103 +6,104 @@ lang=russ engl
 
 [dialog]
 &
-1 1000 NOT_ANSWER_CLOSE_DIALOG 1#
-3 1010d*var n name_mem_npc_player = 0*stat p ST_INTELLECT < 4#
-12 1020d*var n name_mem_npc_player = 0*stat p ST_INTELLECT > 3#
-4 1030d*stat p ST_INTELLECT < 4*var n name_mem_npc_player = 1#
-2 1040d*var n name_mem_npc_player = 1*stat p ST_INTELLECT > 3@
-2 2000 NOT_ANSWER_CLOSE_DIALOG 0#
-13 2010#
-25 2020#
-0 2030@
-3 3000 NOT_ANSWER_CLOSE_DIALOG 0#
-10 3010r*var p name_mem_player_npc = 1*var n name_mem_npc_player = 1@
-4 4000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 4010@
-10 5000 NOT_ANSWER_CLOSE_DIALOG 0#
-11 5010#
-11 5020#
-0 5030@
-11 6000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 6010@
-12 7000 NOT_ANSWER_CLOSE_DIALOG 1#
-5 7010r*var n name_mem_npc_player = 1#
-31 7020#
-0 7030@
-5 8000 NOT_ANSWER_CLOSE_DIALOG 0#
-13 8010#
-0 8020@
-13 9000 NOT_ANSWER_CLOSE_DIALOG 0#
-14 9010@
-14 10000 NOT_ANSWER_CLOSE_DIALOG 0#
-15 10010@
-15 11000 NOT_ANSWER_CLOSE_DIALOG 0#
-16 11010@
-16 12000 NOT_ANSWER_CLOSE_DIALOG 0#
-17 12010@
-17 13000 NOT_ANSWER_CLOSE_DIALOG 0#
-18 13010@
-18 14000 NOT_ANSWER_CLOSE_DIALOG 0#
-19 14010@
-19 15000 NOT_ANSWER_CLOSE_DIALOG 0#
-20 15010@
-20 16000 NOT_ANSWER_CLOSE_DIALOG 0#
-13 16010#
-21 16020#
-22 16030#
-0 16040@
-21 17000 NOT_ANSWER_CLOSE_DIALOG 0#
-27 17010#
-0 17020@
-22 18000 NOT_ANSWER_CLOSE_DIALOG 0#
-23 18010#
-24 18020#
-26 18030#
-29 18040#
-0 18050@
-23 19000 NOT_ANSWER_CLOSE_DIALOG 0#
-30 19010d*skill p SK_SPEECH > 60#
-25 19020#
-27 19030#
-0 19040@
-24 20000 NOT_ANSWER_CLOSE_DIALOG 0#
-19 20010#
-25 20020#
-27 20030#
-0 20040@
-25 21000 NOT_ANSWER_CLOSE_DIALOG 0#
-13 21010#
-23 21020#
-24 21030#
-26 21040#
-28 21050#
-29 21060#
-27 21070#
-0 21080@
-26 22000 NOT_ANSWER_CLOSE_DIALOG 0#
-25 22010#
-27 22020#
-0 22030@
-27 23000 NOT_ANSWER_CLOSE_DIALOG 0#
-13 23010#
-21 23020#
-22 23030#
-0 23040@
-28 24000 NOT_ANSWER_CLOSE_DIALOG 0#
-25 24010#
-27 24020#
-0 24030@
-29 25000 NOT_ANSWER_CLOSE_DIALOG 0@
-30 26000 NOT_ANSWER_CLOSE_DIALOG 0#
-27 26010r*stat p ST_EXPERIENCE + 50@
-31 27000 NOT_ANSWER_CLOSE_DIALOG 0#
-13 27010#
-32 27020#
-0 27030@
-32 28000 NOT_ANSWER_CLOSE_DIALOG 0#
-65507 28010#
-13 28020#
-0 28030&
+1 1000 None 1 #
+3 1010 D _var n name_mem_npc_player = 0 D _param p ST_INTELLECT < 4 #
+12 1020 D _var n name_mem_npc_player = 0 D _param p ST_INTELLECT > 3 #
+4 1030 D _param p ST_INTELLECT < 4 D _var n name_mem_npc_player = 1 #
+2 1040 D _var n name_mem_npc_player = 1 D _param p ST_INTELLECT > 3 @
+2 2000 None 0 #
+13 2010 #
+25 2020 #
+0 2030 @
+3 3000 None 0 #
+10 3010 R _var p name_mem_player_npc = 1 R _var n name_mem_npc_player = 1 @
+4 4000 None 0 #
+0 4010 @
+10 5000 None 0 #
+11 5010 #
+11 5020 #
+0 5030 @
+11 6000 None 0 #
+0 6010 @
+12 7000 None 1 #
+5 7010 R _var n name_mem_npc_player = 1 #
+31 7020 #
+0 7030 @
+5 8000 None 0 #
+13 8010 #
+0 8020 @
+13 9000 None 0 #
+14 9010 @
+14 10000 None 0 #
+15 10010 @
+15 11000 None 0 #
+16 11010 @
+16 12000 None 0 #
+17 12010 @
+17 13000 None 0 #
+18 13010 @
+18 14000 None 0 #
+19 14010 @
+19 15000 None 0 #
+20 15010 @
+20 16000 None 0 #
+13 16010 #
+21 16020 #
+22 16030 #
+0 16040 @
+21 17000 None 0 #
+27 17010 #
+0 17020 @
+22 18000 None 0 #
+23 18010 #
+24 18020 #
+26 18030 #
+29 18040 #
+0 18050 @
+23 19000 None 0 #
+30 19010 D _param p SK_SPEECH > 60 #
+25 19020 #
+27 19030 #
+0 19040 @
+24 20000 None 0 #
+19 20010 #
+25 20020 #
+27 20030 #
+0 20040 @
+25 21000 None 0 #
+13 21010 #
+23 21020 #
+24 21030 #
+26 21040 #
+28 21050 #
+29 21060 #
+27 21070 #
+0 21080 @
+26 22000 None 0 #
+25 22010 #
+27 22020 #
+0 22030 @
+27 23000 None 0 #
+13 23010 #
+21 23020 #
+22 23030 #
+0 23040 @
+28 24000 None 0 #
+25 24010 #
+27 24020 #
+0 24030 @
+29 25000 None 0 @
+30 26000 None 0 #
+27 26010 D _var p click_counter = 0 R _param p ST_EXPERIENCE + 50 R _var p click_counter = 1 #
+27 26020 D _var p click_counter = 1 @
+31 27000 None 0 #
+13 27010 #
+32 27020 #
+0 27030 @
+32 28000 None 0 #
+65507 28010 #
+13 28020 #
+0 28030 &
 
 [russ]
 {100}{}{Боб}
@@ -197,6 +198,7 @@ lang=russ engl
 {25000}{}{Этот старик по сути главный среди обычных жителей убежища и... Эй! Сколько можно меня доставать? У меня дел по горло!}
 {26000}{}{Наварро, больше ничего не знаю.}
 {26010}{}{Ух, спасибо!}
+{26020}{}{Ух, спасибо!}
 {27000}{}{Нихрена себе! Да ты @sex@|крутой мужик||баба с яйцами|! Ну ладно, от меня-то что тебе надо? Ты же не приш@sex@|ёл||ла| и меня убить?}
 {27010}{}{Расскажи-ка, что это за место и какого хрена тут делает Анклав.}
 {27020}{}{Ты. Ошибся. Я. Приш@sex@|ёл||ла|. Тебя. Убить.}
@@ -299,6 +301,7 @@ lang=russ engl
 {25000}{}{In fact, that old bones is the main guy amongst regular vault dwellers and... Hey! How long are you gonna bother me for? I got another stuff to do!}
 {26000}{}{Navarro. I don't know anything else.}
 {26010}{}{Uh, thanks!}
+{26020}{}{Ух, спасибо!}
 {27000}{}{Holy Moly! You're a @sex@|tough guy||Judy with balls|! Well what do you want from me? You didn't come here to kill me... did you?}
 {27010}{}{Tell me about this place and what the heck are Enclave soldiers doing here.}
 {27020}{}{You're. Wrong. I. Came. To. Kill. You.}

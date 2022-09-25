@@ -118,7 +118,7 @@ $	221	klam_sulivan
 $	222	klam_smily_warn
 $	229	klam_emma
 $	230	klam_mike
-$	231	klam_jim
+$	231	klam_bryan
 $	232	klam_edwin
 $	233	klam_jura
 $       234     klam_hish
@@ -126,6 +126,9 @@ $       235     klam_brahmin_hish1
 $       236     klam_brahmin_hish2
 $       237     klam_brahmin_hish3
 $       238     klam_will
+$	239	klam_emma_post_quest
+$	240	klam_mike_post_quest
+$	241	klam_bryan_post_quest
 $	300	mod_hose
 $	301	mod_joe
 $	302	mod_citizen

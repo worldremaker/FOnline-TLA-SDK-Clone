@@ -31,7 +31,7 @@ lang=russ engl
 8 8000 None 0 #
 0 8010 @
 9 9000 None 0 #
-0 9010 R _var p q_den_jane_meat = 3 R _item p PID_IGUANA_ON_A_STICK + 40 R _item p PID_MEAT_JERKY + 50 &
+0 9010 R _var p q_den_jane_meat = 3 R _item p PID_IGUANA_ON_A_STICK + 20 R _item p PID_MEAT_JERKY + 30 &
 
 [russ]
 {100}{}{Дантон}
@@ -50,7 +50,7 @@ lang=russ engl
 {3020}{}{Окей. Извините. Не бейте меня.}
 {3030}{}{Мне очень жаль. Не хотел вас расстраивать. Я просто глуп. Вернусь попоздже, когда вас не будет тошнить при взгляде на меня.}
 {4000}{}{Что ты хочешь узнать?@@Не думаю, что нам нужно что-то тебе говорить. Какого рожна тебе надо?}
-{4010}{}{Вообще я тут за мясом. Меня Джейн прислал.}
+{4010}{}{Вообще я тут за мясом. Меня Джеймс прислал.}
 {4020}{}{Какую здесь нужно сделать работу?}
 {4030}{}{Кстати, кто из вас какой Дантон?}
 {4040}{}{Думаю, мне уже здесь ничего не нужно. До свидания.}
@@ -62,7 +62,7 @@ lang=russ engl
 {7010}{}{Что же это?}
 {8000}{}{Хмм... не думаю, что мы можем тебе доверять.}
 {8010}{}{Ну и черт с вами.}
-{9000}{}{Что сразу не @sex@|мог||могла| сказать? Хорошо вот как обычно. 40 тушек на палочках и 50 вяленых кусков мяса.}
+{9000}{}{Что сразу не @sex@|мог||могла| сказать? Хорошо вот как обычно. 20 тушек на палочках и 30 вяленых кусков мяса.}
 {9010}{}{Давайте это сюда.}
 
 [engl]
@@ -82,7 +82,7 @@ lang=russ engl
 {3020}{}{Okay, sorry. Don't hit me.}
 {3030}{}{I'm sorry, I didn't want to upset you. I'll come back later, when you feel a little better.}
 {4000}{}{What do you want to know?@@I don't think that we should be telling you anything. What the hell do you want?}
-{4010}{}{Actualy I'm here for meat. I've been sent by Jane.}
+{4010}{}{Actualy I'm here for meat. I've been sent by James.}
 {4020}{}{What jobs needs to be done around here?}
 {4030}{}{By the way, which Danton is which?}
 {4040}{}{I don't think I need anything here, after all. Good bye.}
@@ -94,6 +94,6 @@ lang=russ engl
 {7010}{}{What is that?}
 {8000}{}{Hmm... I don't think we can trust you.}
 {8010}{}{Well, the hell with you both.}
-{9000}{}{Why didn't you say so? Okay, here it is - as usual. 40 iguanas on a stick and 50 pieces of dried meat.}
+{9000}{}{Why didn't you say so? Okay, here it is - as usual. 20 iguanas on a stick and 30 pieces of dried meat.}
 {9010}{}{Give it here.}
 

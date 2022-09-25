@@ -69,7 +69,7 @@ DONE: All
 {3041003}{}{Pass daughter's message to her father.}
 {3041004}{}{Completed. The military depot is now marked on the map.}
 
-{3041101}{}{The abandoned military depot's location}
+{3041101}{}{Abandoned military depot's location}
 {3041102}{}{Find the military depot location. Old Man will let you know it after you find his daughter.}
 
 # 3042
@@ -525,29 +525,30 @@ DONE: All
 # 3215
 # Klamath. jo Sulivan. Quest "Teach Dunton a lesson".
 
-{3215001}{}{Thrash Dunton!}
-{3215002}{}{You've killed Dunton.}
+{3215001}{}{Thrash that junkie!}
+{3215002}{}{You've killed that junkie.}
 {3215003}{}{You've completed the task.}
 
 {3215101}{}{Klamath}
-{3215102}{}{Teach Dunton a lesson.}
+{3215102}{}{Teach that junkie a lesson.}
 
 # 3223
-# Saving trapper Jim.
+# Saving trapper Bryan.
 
 {3223001}{}{Hepl Emma to find her husband.}
-{3223002}{}{Jim asked to tell Emma everything is allright.}
-{3223003}{}{Trapper Jim asked to tell his wife everything is allright.}
-{3223004}{}{Completed. You calmed down Emma. It would be best if you let Jim know too.}
-{3223005}{}{Completed. You reported to Jim.}
+{3223002}{}{Bryan asked to tell Emma everything is allright.}
+{3223003}{}{Trapper Bryan asked to tell his wife everything is allright.}
+{3223004}{}{Completed. You calmed down Emma. It would be best if you let Bryan know too.}
+{3223005}{}{Completed. You reported to Bryan.}
 {3223006}{}{Failed. You broke Emma's hope.}
-{3223007}{}{Failed. You broke Emma's hope and even told Jim about it. What a bastard you are.}
-{3223008}{}{Completed. You calmed down Emma. It would be best if you let Jim know too.}
+{3223007}{}{Failed. You broke Emma's hope and even told Bryan about it. What a bastard you are.}
+{3223008}{}{Completed. You calmed down Emma. It would be best if you let Bryan know too.}
 {3223009}{}{Failed. You tried to trick Emma.}
-{3223010}{}{Completed. You tricked Jim}
+{3223010}{}{Completed. You tricked Bryan.}
+{3223011}{}{Failed. You were to late.}
 
 {3223101}{}{Klamath}
-{3223102}{}{Saving trapper Jim.}
+{3223102}{}{Saving trapper Bryan.}
 
 # 3224
 # Кламат, найти работницу
@@ -617,7 +618,7 @@ DONE: All
 {3307002}{}{Вы убили гигантскую осу. Вернитесь к мэру в Модок, чтобы получить награду.}
 {3307003}{}{Вы помогли Джо справиться с гигантской осой.}
 
-{3307101}{}{Модок}
+{3307101}{}{Modoc}
 {3307102}{}{Вредители на ферме}
 
 # 3308
@@ -634,7 +635,7 @@ DONE: All
 {3308009}{}{Вы нашли странную пещеру. Похоже, там кто-то живет. Или что-то.}
 {3308010}{}{Вы нашли странную пещеру. Похоже, там кто-то живет. Или что-то.}
 
-{3308101}{}{Модок}
+{3308101}{}{Modoc}
 {3308102}{}{Ночь нежна.}
 
 # 3600
@@ -1604,7 +1605,7 @@ DONE: All
 {9925002}{}{Выполнено. Вы принесли маслёнку Миноку.}
 {9925003}{}{Провалено. Вы отказались искать маслёнку для Минока.}
 
-{9925101}{}{Арройо}
+{9925101}{}{Arroyo}
 {9925102}{}{Принести маслёнку для Минока.}
 
 # 9926 - q_arroyo_mynoc_defence
@@ -1619,7 +1620,7 @@ DONE: All
 {9926007}{}{Выполнено. Вы помогли Арройо в борьбе за выживание.}
 {9926008}{}{Провалено. Вы не успели уничтожить рейдеров. Бандиты покинули лагерь.}
 
-{9926101}{}{Арройо}
+{9926101}{}{Arroyo}
 {9926102}{}{Помочь Арройо ибавиться от рейдеров.}
 
 

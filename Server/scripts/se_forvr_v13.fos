@@ -21,7 +21,10 @@ uint e_Zizz(uint[]@ values)
 {
  Critter@ cr=GetCritter(values[0]);
  Map@ map = cr.GetMap();
- map.SetTextMsg (74, 127,(COLOR_RGB(0xFF,0,0xFF)), TEXTMSG_TEXT,STR_COMPUTER_BEEP);
+ Location @ loc = map.GetLocation();
+ Map @ mapa = loc.GetMapByIndex(1);
+ if (!valid(mapa) || !valid(map) || !valid(loc)) return 0;
+ mapa.SetTextMsg (74, 127,(COLOR_RGB(0xFF,0,0xFF)), TEXTMSG_TEXT,STR_COMPUTER_BEEP);
  return 90;
 }
 

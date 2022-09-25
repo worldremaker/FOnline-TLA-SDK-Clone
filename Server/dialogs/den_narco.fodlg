@@ -69,7 +69,7 @@ lang=russ engl
 {4010}{}{Может продашь подешевле? Как-то у тебя товар странно выглядит.}
 {4020}{}{Конечно давай! [Вы отдаете 50 монет]}
 {4030}{}{Нет, слишком дорого для меня!}
-{5000}{}{[Он выглядит недовольным] Хорошо, сделаю тебе скидку на 25 процентов.}
+{5000}{}{[Он выглядит недовольным] Хорошо, сделаю тебе скидку на 20 процентов.}
 {5010}{}{Отлично! Супер! [Вы отдаете 40 монет]}
 {5020}{}{Нет, все равно дорого для меня!}
 {6000}{}{Я знал, тебе понравится!@@Заходи еще!}
@@ -116,10 +116,10 @@ lang=russ engl
 {3000}{}{Come here and we'll see who kicks each other's ass!}
 {4000}{}{Jet? Of course! Don't look elsewhere! I've got the finest Jet, the real stuff, fresh and pure. All yours for 500!}
 {4010}{}{How about you lower the price? Your stuff doesn't look too good.}
-{4020}{}{Of course, yes! [You give him 500 coins]}
+{4020}{}{Of course, yes! [You give him 50 coins]}
 {4030}{}{No, too expensive.}
-{5000}{}{[He looks annoyed] Okay, fine. What about a discount? 25 percent.}
-{5010}{}{Great! Super! [You give him 400 coins]}
+{5000}{}{[He looks annoyed] Okay, fine. What about a discount? 20 percent.}
+{5010}{}{Great! Super! [You give him 40 coins]}
 {5020}{}{No, it's too expensive for me anyway.}
 {6000}{}{I knew you'll like that!@@Come back for more!}
 {6010}{}{Prepare more next time!@@Sure, see you later!}
