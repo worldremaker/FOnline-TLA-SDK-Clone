@@ -141,6 +141,9 @@
 	__PlayerOffAppendix="|0x44ffffff  (off)";
 	__SpritesZoomMax=2.5f;
 	__SpritesZoomMin=0.2f;
+	// __AlwaysRun Specifed in config
+	__AlwaysRunMoveDist=1;
+	__AlwaysRunUseDist=5;
 
 	// Next vars defined in client config file, if you want override it, than uncomment need vars
 	// __Animation3dSmoothTime=250; // In milliseconds

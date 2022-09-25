@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 28.11.2010
-// Server version 388, MSVS2008
+// Last update 10.12.2010
+// Server version 391, MSVS2008
 // Default calling convention - cdecl
 //
 
@@ -440,6 +440,9 @@ struct GameOptions
 	float  SpritesZoomMax;
 	float  SpritesZoomMin;
 	float  EffectValues[EFFECT_SCRIPT_VALUES];
+	bool   AlwaysRun;
+	int    AlwaysRunMoveDist;
+	int    AlwaysRunUseDist;
 
 	// Mapper
 	string ClientPath;
@@ -1228,6 +1231,7 @@ struct Critter
 	uint     WaitEndTick;
 	int      DisableSend;
 	uint     AccessContainerId;
+	uint     ItemTransferCount;
 	uint     TryingGoHomeTick;
 
 	CritterTimeEventVec CrTimeEvents;
@@ -1667,16 +1671,16 @@ inline void static_asserts()
 	STATIC_ASSERT(sizeof(ProtoItem)   == 184);
 	STATIC_ASSERT(sizeof(Mutex)       == 24 );
 	STATIC_ASSERT(sizeof(Spinlock)    == 4  );
-	STATIC_ASSERT(sizeof(GameOptions) == 1128);
+	STATIC_ASSERT(sizeof(GameOptions) == 1144);
 
 	STATIC_ASSERT(offsetof(TemplateVar, Flags)              == 76  );
 	STATIC_ASSERT(offsetof(NpcPlane, RefCounter)            == 88  );
 	STATIC_ASSERT(offsetof(GlobalMapGroup, EncounterForce)  == 88  );
 	STATIC_ASSERT(offsetof(Item, IsNotValid)                == 118 );
 	STATIC_ASSERT(offsetof(CritterTimeEvent, Identifier)    == 12  );
-	STATIC_ASSERT(offsetof(Critter, RefCounter)             == 9304);
-	STATIC_ASSERT(offsetof(Client, LanguageMsg)             == 9372);
-	STATIC_ASSERT(offsetof(Npc, Reserved)                   == 9328);
+	STATIC_ASSERT(offsetof(Critter, RefCounter)             == 9308);
+	STATIC_ASSERT(offsetof(Client, LanguageMsg)             == 9376);
+	STATIC_ASSERT(offsetof(Npc, Reserved)                   == 9332);
 	STATIC_ASSERT(offsetof(CritterCl, ItemSlotArmor)        == 4264);
 	STATIC_ASSERT(offsetof(Scenery, RunTime.RefCounter)     == 244 );
 	STATIC_ASSERT(offsetof(MapEntire, Dir)                  == 8   );
