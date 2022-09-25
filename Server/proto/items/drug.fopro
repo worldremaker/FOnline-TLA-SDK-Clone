@@ -327,3 +327,16 @@ SoundId=48
 Cost=500
 Material=1
 
+[Proto]
+Pid=594
+Type=2
+PicMapName=art\items\box2.frm
+PicInvName=art\inven\doughnuts.png
+Flags=419430430
+DisableEgg=1
+Weight=260
+Volume=1
+SoundId=48
+Cost=15
+Material=7
+

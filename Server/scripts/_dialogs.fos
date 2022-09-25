@@ -673,6 +673,7 @@
 #define DIALOG_enc_ncr_trader                          (10120)
 #define DIALOG_enc_v15_trader                          (10130)
 #define DIALOG_se_kotw_console1                        (10134)
+#define DIALOG_se_woodsman                             (10150)
 
 #endif // __DIALOGS__
 

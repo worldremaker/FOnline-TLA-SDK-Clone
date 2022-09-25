@@ -194,6 +194,12 @@ const int[] DrugEffects={
               ST_CURRENT_HP,       100,      0,      0,          0,     0,
                          -1,         0,      0,      0,          0,     0,
                          -1,         0,      0,      0,          0,     0,
+//PID_BOX_OF_DOUGHNUTS
+					     -1,         0,      0,      0,          0,     0,
+                         -2,         1,      0,      0,          0,     0,
+              ST_CURRENT_HP,         2,      0,      0,          0,     0,
+                         -1,         0,      0,      0,          0,     0,
+                         -1,         0,      0,      0,          0,     0,
 };
 
 // Table offsets
@@ -351,6 +357,7 @@ int GetDrugTableIndex(uint16 drugPid)
 	case PID_KITTY_SEX_DRUG_INTELLIGENCE: index=25; break;
 	case PID_KITTY_SEX_DRUG_STRENGTH: index=26; break;
 	case PID_HYPO: index=27; break;
+	case PID_BOX_OF_DOUGHNUTS: index=28; break;
 	default: break;
 	}
 	index*=30;

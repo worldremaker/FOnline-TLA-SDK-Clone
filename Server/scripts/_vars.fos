@@ -1,7 +1,7 @@
 #ifndef __VARS__
 #define __VARS__
 /*************************************************************************************
-***  VARS  *****  COUNT: 00000477  ***************************************************
+***  VARS  *****  COUNT: 00000478  ***************************************************
 *************************************************************************************/
 
 
@@ -414,6 +414,7 @@
 #define LVAR_special_doll_holo                       (5626)
 #define LVAR_special_zerg_laboratory                 (5627)
 #define LVAR_enc_ocean_trader_familiar               (5628)
+#define LVAR_special_doughnut_warehouse              (5629)
 #define LVAR_fixboy_power_armor                      (6000)
 #define LVAR_fixboy_700_nitro_express                (6001)
 #define LVAR_fixboy_ammo_press_operator              (6002)
@@ -4030,6 +4031,11 @@ $	5628	1	enc_ocean_trader_familiar	0	0	5	0
 3 - недолюбливает
 4 - поссорились
 5 - совсем поссорились
+**********
+
+$	5629	1	special_doughnut_warehouse	0	0	1	0
+**********
+Локальная, признак, посетил ли игрок специальную локацию "Склад заброшенных пончиков".
 **********
 
 $	6000	1	fixboy_power_armor	0	0	1	0

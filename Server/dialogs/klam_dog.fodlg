@@ -6,23 +6,23 @@ lang=russ engl
 
 [dialog]
 &
-1 1000 NOT_ANSWER_CLOSE_DIALOG 0#
-2 1010d*uvar n loyality = 5#
-3 1020d*uvar n loyality = 10#
-4 1030d*uvar n loyality = 0@
-2 2000 NOT_ANSWER_CLOSE_DIALOG 0#
-5 2010#
-0 2020#
-0 2030r*uvar n loyality = 0@
-3 3000 NOT_ANSWER_CLOSE_DIALOG 0@
-4 4000 NOT_ANSWER_CLOSE_DIALOG 0@
-5 5000 NOT_ANSWER_CLOSE_DIALOG 0#
-6 5010@
-6 6000 NOT_ANSWER_CLOSE_DIALOG 0#
-7 6010d*item p 81 = 1r*uvar n loyality = 10#
-0 6020@
-7 7000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 7010&
+1 1000 None 0 #
+2 1010 D _var n loyality = 5 #
+3 1020 D _var n loyality = 10 #
+4 1030 D _var n loyality = 0 @
+2 2000 None 0 #
+5 2010 #
+0 2020 #
+0 2030 R _var n loyality = 0 @
+3 3000 None 0 @
+4 4000 None 0 @
+5 5000 None 0 #
+6 5010 @
+6 6000 None 0 #
+7 6010 D _item p PID_IGUANA_ON_A_STICK > 0 D or D _item p PID_MEAT_JERKY > 0 D or D _item p PID_MEAT_ON_A_STICK > 0 R _var n loyality = 10 #
+0 6020 @
+7 7000 None 0 #
+0 7010 &
 
 [russ]
 {100}{}{Пес}

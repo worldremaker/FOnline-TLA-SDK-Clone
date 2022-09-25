@@ -7713,7 +7713,7 @@ Pid=2828
 Type=11
 PicMapName=art\scenery\mblight4.frm
 PicInvName=art\inven\reserved.frm
-Flags=33562652
+Flags=33554460
 SoundId=48
 Material=1
 
@@ -20088,6 +20088,16 @@ PicMapName=art\scenery\monument_ponch.fofrm
 PicInvName=art\inven\reserved.frm
 Corner=5
 Flags=33554456
+Material=5
+
+[Proto]
+Pid=4777
+Type=11
+PicMapName=art\scenery\telecross.fofrm
+PicInvName=art\inven\reserved.frm
+Corner=5
+LightColor=2097152000
+Flags=33554462
 Material=5
 
 [Proto]

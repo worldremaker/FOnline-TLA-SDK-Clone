@@ -10,8 +10,8 @@ lang=russ engl
 1 1000 None 0 #
 7 1010 D _param p ST_GENDER = 1 D _var p klam_sally_pay = 2 #
 4 1020 D _var p klam_sally_pay = 2 #
-10 1030 #
-2 1040 @
+10 1030 D _var p klam_sally_pay ! 0 D _var p klam_sally_pay ! 2 #
+2 1040 D _var p klam_sally_pay = 0 @
 4 2000 None 0 @
 7 3000 None 0 @
 10 4000 None 0 @

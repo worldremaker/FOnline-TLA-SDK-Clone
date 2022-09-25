@@ -587,6 +587,12 @@
 # Map 181, base 1820
 {1820}{}{Doll holodisk cave. Cave}
 {1825}{}{07desert}
+# Map 185, base 1860
+{1860}{}{Abandoned doughnut warehouse}
+{1865}{}{07desert}
+# Map 186, base 1870
+{1870}{}{Abandoned doughnut warehouse - basement}
+{1875}{}{07desert}
 
 # Map 190, base 1910
 {1910}{}{City Encounter 1}
@@ -1871,6 +1877,7 @@
 {10034800}{}{заброшенный аванпост Рыцарей Пустоши}
 {10034810}{}{пещеру}
 {10034820}{}{заброшенную деревеньку. Даже с расстояния ощущается зло, исходящее от нее}
+{10034830}{}{abandoned doughnut warehouse}
 
 # Encounter Table 10
 {10035000}{}{A band of outcasts}
@@ -1936,6 +1943,10 @@
 {10035870}{}{King Arthur's Knights}
 {10035880}{}{A tin woodsman}
 {10035890}{}{The Unwashed Villagers hunting a spammer}
+{10035900}{}{Пристанище Детей Пустоши}
+{10035910}{}{заброшенный аванпост Рыцарей Пустоши}
+{10035920}{}{заброшенную деревеньку. Даже с расстояния ощущается зло, исходящее от нее}
+{10035930}{}{склад заброшенных пончиков}
 
 # Encounter Table 12
 {10036000}{}{A pack of golden geckos and a family of radscorpions}
@@ -1970,6 +1981,7 @@
 {10036290}{}{A group of trappers}
 {10036300}{}{A man guarding a bridge}
 {10036310}{}{King Arthur's Knights fighting a rat}
+{10036320}{}{склад заброшенных пончиков}
 
 # Encounter Table 13
 {10036500}{}{Toxic waste dump}
@@ -2937,6 +2949,8 @@
 {10054210}{}{The Unwashed Villagers hunting a spammer}
 {10054220}{}{The Cafe of Broken Dreams}
 {10054230}{}{The Mad scientist's lab}
+{10054240}{}{заброшенный аванпост Рыцарей Пустоши}
+{10054250}{}{склад заброшенных пончиков}
 
 # Encounter Table 49
 {10054500}{}{A pack of fire geckos}
@@ -2998,6 +3012,9 @@
 {10055760}{}{King Arthur's Knights}
 {10055770}{}{A tin woodsman}
 {10055780}{}{The Unwashed Villagers hunting a spammer}
+{10055790}{}{заброшенную лабораторию безумного ученого}
+{10055800}{}{заброшенный аванпост Рыцарей Пустоши}
+{10055810}{}{склад заброшенных пончиков}
 
 # Encounter Table 52
 {10056000}{}{A pack of deathclaws}
@@ -3372,6 +3389,7 @@
 {10063640}{}{A caravan}
 {10063650}{}{A man guarding a bridge}
 {10063660}{}{King Arthur's Knights fighting a rat}
+{10063670}{}{abandoned doughnut warehouse}
 
 # Encounter Table 68
 {10064000}{}{A pack of wolves}
@@ -3413,6 +3431,8 @@
 {10064700}{}{A tin woodsman}
 {10064710}{}{The Unwashed Villagers hunting a spammer}
 {10064720}{}{The Cafe of Broken Dreams}
+{10064720}{}{strange abandoned house}
+{10064720}{}{abandoned doughnut warehouse}
 
 # Encounter Table 70
 {10065000}{}{Toxic waste dump}
