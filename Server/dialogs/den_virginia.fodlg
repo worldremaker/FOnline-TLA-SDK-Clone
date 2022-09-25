@@ -1,101 +1,114 @@
 [comment]
-Продублировано изменение переменной после непосредственного выбора нужных вариантов в [21]
+Продублировано изменение переменной после непосредственного выбора нужных вариантов в [21] 
 
 [data]
 lang=russ engl
 
 [dialog]
 &
-1 1000 NOT_ANSWER_CLOSE_DIALOG 0#
-2 1010d*var n loyality = 0#
-5 1020d*var n loyality = 5*var n name_mem_npc_player = 0*var n name_mem_player_npc = 0#
-8 1030d*var n loyality = 5*var n name_mem_npc_player = 1*var n name_mem_player_npc = 1@
-2 2000 NOT_ANSWER_CLOSE_DIALOG 0#
-21 2010d*var p q_den_mom_slut = 1*var p den_virgin = 0#
-3 2020#
-4 2030r*var n loyality = 5#
-65507 2040#
-65507 2050@
-3 3000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 3010@
-4 4000 NOT_ANSWER_CLOSE_DIALOG 0#
-8 4010@
-5 5000 NOT_ANSWER_CLOSE_DIALOG 0#
-21 5010d*var p q_den_mom_slut = 1*var p den_virgin = 0#
-6 5020r*var n name_mem_npc_player = 1*var n name_mem_player_npc = 1#
-0 5030@
-6 6000 NOT_ANSWER_CLOSE_DIALOG 0#
-9 6010r*var n name_mem_npc_player = 1*var n name_mem_player_npc = 1#
-7 6020r*var n loyality = 0*var n name_mem_npc_player = 1*var n name_mem_player_npc = 1#
-0 6030@
-7 7000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 7010@
-8 8000 NOT_ANSWER_CLOSE_DIALOG 0#
-21 8010d*var p q_den_mom_slut = 1*var p den_virgin = 0#
-9 8020#
-0 8030@
-9 9000 NOT_ANSWER_CLOSE_DIALOG 0#
-10 9010#
-13 9020d*var n den_virginia_sex_was = 0#
-14 9030d*var n den_virginia_sex_was = 1#
-20 9040#
-0 9050@
-10 10000 NOT_ANSWER_CLOSE_DIALOG 0#
-12 10010d*item p 41 > 99r*item p 41 - 100*item p 259 + 1#
-9 10020d*item p 41 < 100#
-9 10030#
-0 10040@
-12 11000 NOT_ANSWER_CLOSE_DIALOG 0#
-9 11010#
-0 11020@
-13 12000 NOT_ANSWER_CLOSE_DIALOG 0#
-15 12010d*stat p ST_CHARISMA < 4#
-16 12020d*stat p ST_CHARISMA > 3*stat p ST_CHARISMA < 9#
-17 12030d*stat p ST_CHARISMA > 8#
-9 12040#
-0 12050@
-14 13000 NOT_ANSWER_CLOSE_DIALOG 0#
-15 13010d*stat p ST_CHARISMA < 3#
-16 13020d*stat p ST_CHARISMA > 2*stat p ST_CHARISMA < 8#
-17 13030d*stat p ST_CHARISMA > 7#
-9 13040#
-0 13050@
-15 14000 NOT_ANSWER_CLOSE_DIALOG 0#
-18 14010d*item p 41 > 499r*item p 41 - 500*var n den_virginia_sex_was = 1*script dialog@r_ToHeal 0 *item n 41 + 500*var p sex_exp + 1#
-9 14020d*item p 41 < 500#
-0 14030@
-16 15000 NOT_ANSWER_CLOSE_DIALOG 0#
-18 15010d*item p 41 > 299r*item p 41 - 300*var n den_virginia_sex_was = 1*script dialog@r_ToHeal 0 *item n 41 + 300*var p sex_exp + 1#
-9 15020d*item p 41 < 300#
-0 15030@
-17 16000 NOT_ANSWER_CLOSE_DIALOG 0#
-18 16010d*item p 41 > 99r*item p 41 - 100*var n den_virginia_sex_was = 1*script dialog@r_ToHeal 0 *item n 41 + 100*var p sex_exp + 1#
-19 16020d*stat p ST_CHARISMA > 8*stat p ST_INTELLECT > 4*skill p SK_SPEECH > 80r*var n den_virginia_sex_was = 1*script dialog@r_ToHeal 0 *var p sex_exp + 1#
-9 16030d*item p 41 < 100#
-0 16040@
-18 17000 NOT_ANSWER_CLOSE_DIALOG 0#
-9 17010#
-0 17020@
-19 18000 NOT_ANSWER_CLOSE_DIALOG 0#
-9 18010#
-0 18020@
-20 19000 NOT_ANSWER_CLOSE_DIALOG 0#
-9 19010#
-0 19020@
-21 20000 NOT_ANSWER_CLOSE_DIALOG 0#
-24 20010d*item p 259 > 0r*item p 259 - 1*item n 259 + 1*var p q_den_mom_slut = 2*script den_virgin@r_GoAway 1 0#
-25 20020d*perk p PE_MAGNETIC_PERSONALITY = 1r*var p q_den_mom_slut = 2*script den_virgin@r_GoAway 1 0#
-23 20030d*item p 41 > 99r*item p 41 - 100*item n 41 + 100*var p q_den_mom_slut = 2*script den_virgin@r_GoAway 1 0#
-22 20040d*skill p SK_SPEECH > 59r*var p q_den_mom_slut = 2*script den_virgin@r_GoAway 1 0#
-7 20050@
-22 21000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 21010@
-23 22000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 22010@
-24 23000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 23010@
-25 24000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 24010&
+1 1000 None 0 #
+2 1010 D _var n loyality = 0 #
+5 1020 D _var n loyality = 5 D _var n name_mem_npc_player = 0 D _var n name_mem_player_npc = 0 #
+8 1030 D _var n loyality = 5 D _var n name_mem_npc_player = 1 D _var n name_mem_player_npc = 1 @
+2 2000 None 0 #
+21 2010 D _var p q_den_mom_slut = 1 D _var p den_virgin = 0 #
+3 2020 #
+4 2030 R _var n loyality = 5 #
+65507 2040 #
+65507 2050 @
+3 3000 None 0 #
+0 3010 @
+4 4000 None 0 #
+8 4010 @
+5 5000 None 0 #
+21 5010 D _var p q_den_mom_slut = 1 D _var p den_virgin = 0 #
+6 5020 R _var n name_mem_npc_player = 1 R _var n name_mem_player_npc = 1 #
+29 5030 D _var p q_klam_sally_find_prostitute = 1 #
+0 5040 @
+6 6000 None 0 #
+9 6010 R _var n name_mem_npc_player = 1 R _var n name_mem_player_npc = 1 #
+7 6020 R _var n loyality = 0 R _var n name_mem_npc_player = 1 R _var n name_mem_player_npc = 1 #
+0 6030 @
+7 7000 None 0 #
+0 7010 @
+8 8000 None 0 #
+21 8010 D _var p q_den_mom_slut = 1 D _var p den_virgin = 0 #
+29 8020 D _var p q_klam_sally_find_prostitute = 1 #
+9 8030 #
+0 8040 @
+9 9000 None 0 #
+10 9010 #
+13 9020 D _var n den_virginia_sex_was = 0 #
+14 9030 D _var n den_virginia_sex_was = 1 #
+20 9040 #
+0 9050 @
+10 10000 None 0 #
+12 10010 D _item p PID_BOTTLE_CAPS > 99 R _item p PID_BOTTLE_CAPS - 100 R _item p PID_JET + 1 #
+9 10020 D _item p PID_BOTTLE_CAPS < 100 #
+9 10030 #
+0 10040 @
+12 11000 None 0 #
+9 11010 #
+0 11020 @
+13 12000 None 0 #
+15 12010 D _param p ST_CHARISMA < 4 #
+16 12020 D _param p ST_CHARISMA > 3 D _param p ST_CHARISMA < 9 #
+17 12030 D _param p ST_CHARISMA > 8 #
+9 12040 #
+0 12050 @
+14 13000 None 0 #
+15 13010 D _param p ST_CHARISMA < 3 #
+16 13020 D _param p ST_CHARISMA > 2 D _param p ST_CHARISMA < 8 #
+17 13030 D _param p ST_CHARISMA > 7 #
+9 13040 #
+0 13050 @
+15 14000 None 0 #
+18 14010 D _item p PID_BOTTLE_CAPS > 499 R _item p PID_BOTTLE_CAPS - 500 R _var n den_virginia_sex_was = 1 R _script dialog@r_ToHeal 0  R _item n PID_BOTTLE_CAPS + 500 R _var p sex_exp + 1 #
+9 14020 D _item p PID_BOTTLE_CAPS < 500 #
+0 14030 @
+16 15000 None 0 #
+18 15010 D _item p PID_BOTTLE_CAPS > 299 R _item p PID_BOTTLE_CAPS - 300 R _var n den_virginia_sex_was = 1 R _script dialog@r_ToHeal 0  R _item n PID_BOTTLE_CAPS + 300 R _var p sex_exp + 1 #
+9 15020 D _item p PID_BOTTLE_CAPS < 300 #
+0 15030 @
+17 16000 None 0 #
+18 16010 D _item p PID_BOTTLE_CAPS > 99 R _item p PID_BOTTLE_CAPS - 100 R _var n den_virginia_sex_was = 1 R _script dialog@r_ToHeal 0  R _item n PID_BOTTLE_CAPS + 100 R _var p sex_exp + 1 #
+19 16020 D _param p ST_CHARISMA > 8 D _param p ST_INTELLECT > 4 D _param p SK_SPEECH > 80 R _var n den_virginia_sex_was = 1 R _script dialog@r_ToHeal 0  R _var p sex_exp + 1 #
+9 16030 D _item p PID_BOTTLE_CAPS < 100 #
+0 16040 @
+18 17000 None 0 #
+9 17010 #
+0 17020 @
+19 18000 None 0 #
+9 18010 #
+0 18020 @
+20 19000 None 0 #
+9 19010 #
+0 19020 @
+21 20000 None 0 #
+24 20010 D _item p PID_JET > 0 R _item p PID_JET - 1 R _item n PID_JET + 1 R _var p q_den_mom_slut = 2 R _script den_virgin@r_GoAway 1 0 #
+25 20020 D _param p PE_MAGNETIC_PERSONALITY = 1 R _var p q_den_mom_slut = 2 R _script den_virgin@r_GoAway 1 0 #
+23 20030 D _item p PID_BOTTLE_CAPS > 99 R _item p PID_BOTTLE_CAPS - 100 R _item n PID_BOTTLE_CAPS + 100 R _var p q_den_mom_slut = 2 R _script den_virgin@r_GoAway 1 0 #
+22 20040 D _param p SK_SPEECH > 59 R _var p q_den_mom_slut = 2 R _script den_virgin@r_GoAway 1 0 #
+7 20050 @
+22 21000 None 0 #
+0 21010 @
+23 22000 None 0 #
+0 22010 @
+24 23000 None 0 #
+0 23010 @
+25 24000 None 0 #
+0 24010 @
+27 25000 None 0 #
+28 25010 #
+0 25020 @
+26 26000 None 0 #
+27 26010 #
+0 26020 @
+28 27000 None 0 #
+0 27010 R _var p q_klam_sally_find_prostitute = 2 R _param p ST_EXPERIENCE + 200 @
+29 28000 None 0 #
+26 28010 #
+0 28020 &
 
 [russ]
 {100}{}{Вирджиния}
@@ -120,7 +133,8 @@ lang=russ engl
 {5000}{}{[ Вы видите невероятно красивую вызывающе одетую молодую девушку с очень возбуждающими формами. На вид ей лет 18. Она вам улыбается. ] Привет. Как дела? @sex@|С чем пожаловал?||С чем пожаловала?|}
 {5010}{}{Это ты, Вирджиния? Мамочка очень недовольна тобой, не могла бы ты поработать в другом месте?}
 {5020}{}{Привет. Меня @pname@ звать. А тебя?}
-{5030}{}{Ни с чем. Я уже ухожу...}
+{5030}{}{Привет. Слушай, скажи пожалуйста, ты ведь шлюха?}
+{5040}{}{Ни с чем. Я уже ухожу...}
 {6000}{}{Я Вирджиния [Она подмигивает] Я тут занимаюсь всякими делами... @sex@|Если будешь хорошим мальчиком, могу что-нибудь и тебе предложить.||Если будешь хорошей девочкой, могу что-нибудь и тебе предложить.|}
 {6010}{}{Ну воспользуюсь ли я твоими услугами - это же зависит от того, ЧТО ты можешь мне предложить.}
 {6020}{}{Эээ... Погоди-ка... Всмысле предложить? Ты чем тут занимаешься вообще? Торгуешь телом? Грязная мерзкая шлюха! Лучше бы делом занималась полезным! И в церковь ходила по воскресеньям! Мир когда-нибудь очистится от таких, как ты...}
@@ -129,8 +143,9 @@ lang=russ engl
 {7010}{}{Я еще вернусь!}
 {8000}{}{[Вирджиния вам улыбается. Сегодня она хороша как и всегда] Привет, @pname@! Как дела? Чего-нибудь хочешь?}
 {8010}{}{Вирджиния, Мамочка очень недовольна тобой, не могла бы ты поработать в другом месте?}
-{8020}{}{Ну, это же зависит от того, ЧТО ты можешь мне предложить.}
-{8030}{}{Нет, спасибо. Я уже ухожу.}
+{8020}{}{Привет. Слушай, скажи пожалуйста, ты ведь шлюха?}
+{8030}{}{Ну, это же зависит от того, ЧТО ты можешь мне предложить.}
+{8040}{}{Нет, спасибо. Я уже ухожу.}
 {9000}{}{Ну у меня довольно широкий спектр услуг: наркотики, секс, информация. Что интересует?}
 {9010}{}{Наркотики.}
 {9020}{}{Секс}
@@ -193,6 +208,17 @@ lang=russ engl
 {23010}{}{Ты не пожалеешь!}
 {24000}{}{Мне кажется или ты пытаешься соблазнить меня? Ммм.. иди ко мне @sex@|красавчик!|| красавица!|}
 {24010}{}{О боже правый!}
+{25000}{}{Нууу... я даже не знаю...Я тут привыкла уже...}
+{25010}{}{Ну сама подумай. Работать в салоне, приличная клиентура,  фейсконтроль, оплаченный отпуск, медицинское обслуживание. А не торчать нау лице, как шлюха какая-то.}
+{25020}{}{Ну думай сама короче.Не собираюсь тебя уговаривать.Как надумаешь, скажешь.}
+{26000}{}{Какое именно? Хочешь , чтоб я тебе в долг дала, а ты заплатишь, когда раскрутишься?}
+{26010}{}{Нет. Хочу предложить тебе официальную работу в салоне. Но придётся для этого переехать в Кламат. Там у мисс Салли одна работница увольняется скоро, место освободится.}
+{26020}{}{Смешная шутка. Пошла ты в задницу. Тоже ещё юмористка.}
+{27000}{}{Вон как? Ну ладно, я согласна. Передай Салли, как только у неё освободится место, я готова приступить к работе.}
+{27010}{}{Верное решение, Вирдж. }
+{28000}{}{Что??? Это мама твоя шлюха, а я работница сферы интимных услуг! Понятно объясняю?}
+{28010}{}{Оу. Да. Теперь всё понятно. Я дико извиняюсь. У меня есть к тебе деловое предложение.}
+{28020}{}{Пошла ты. Ещё всякая шлюха мне указывать будет.}
 
 [engl]
 {100}{}{Virginia}
@@ -217,7 +243,8 @@ lang=russ engl
 {5000}{}{[You see an incredibly beautiful defiantly dressed young woman with very arousing shapes. She looks 18. She smiles to you] Hi. How are you? What do you desire?}
 {5010}{}{Are you Virginia? Mom is very displeased with you. Could you work in another place?}
 {5020}{}{Hi. I'm @pname@. And you?}
-{5030}{}{Nothing. I'm already leaving...}
+{5030}{}{Привет. Слушай, скажи пожалуйста, ты ведь шлюха?}
+{5040}{}{Nothing. I'm already leaving...}
 {6000}{}{I'm Virginia. [She winks you] I do different things here... @sex@|If you are a good boy, I can offer you something.||If you are a good girl, I can offer you something.|}
 {6010}{}{My decision about accepting your offer depends on WHAT you can offer me.}
 {6020}{}{Oh... Wait... What do you mean "offer"? What are you doing here? Are you trading your body? Filthy vile whore! You could better do useful things! And visit church on Sundays! One day the world will be cleaned of such like you...}
@@ -226,8 +253,9 @@ lang=russ engl
 {7010}{}{I'll be back!}
 {8000}{}{[Virginia smiles you. Today she is pretty as always] Hi, @pname@! How're you? Do you desire something?}
 {8010}{}{Virginia, Mom is very displeased with you. Could you work in another place?}
-{8020}{}{Hm, it depends on WHAT you can offer me.}
-{8030}{}{No thanks. I'm already leaving...}
+{8020}{}{Привет. Слушай, скажи пожалуйста, ты ведь шлюха?}
+{8030}{}{Hm, it depends on WHAT you can offer me.}
+{8040}{}{No thanks. I'm already leaving...}
 {9000}{}{I have rather wide range of services: drugs, sex, info. What are you interested in?}
 {9010}{}{Drugs.}
 {9020}{}{Sex.}
@@ -290,4 +318,15 @@ lang=russ engl
 {23010}{}{You won't regret!}
 {24000}{}{Am I wrong or are you trying to seduce me? Mmm... come to me, cutie!}
 {24010}{}{Oh my God!}
+{25000}{}{Нууу... я даже не знаю...}
+{25010}{}{Ну сама подумай. Работать в салоне, приличная клиентура,  фейсконтроль, оплаченный отпуск, медицинское обслуживание. А не торчать нау лице, как шлюха какая-то.}
+{25020}{}{Ну думай сама короче. Как надумаешь, скажешь.}
+{26000}{}{Какое именно? Хочешь , чтоб я тебе в долг дала, а ты заплатишь, когда раскрутишься?}
+{26010}{}{Нет. Хочу предложить тебе официальную работу в салоне. Но придётся для этого переехать в Кламат.}
+{26020}{}{Смешная шутка. Пошла ты в задницу. Тоже ещё Клара Новикова.}
+{27000}{}{Вон как? Ну ладно, я согласна. Передай Салли, как только у неё освободится место, я готова приступить к работе.}
+{27010}{}{Верное решение, Вирдж. }
+{28000}{}{Что??? Это мама твоя шлюха, а я работница сферы интимных услуг! Понятно объясняю?}
+{28010}{}{Оу. Да. Теперь всё понятно. Я дико извиняюсь. У меня есть к тебе деловое предложение.}
+{28020}{}{Пошла ты. Ещё всякая шлюха мне указывать будет.}
 

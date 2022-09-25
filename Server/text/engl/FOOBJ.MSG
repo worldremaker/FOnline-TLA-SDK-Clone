@@ -1182,6 +1182,10 @@
 {59101}{}{.700 Nitro Express rounds. You notice an inscription on the back of the box telling: "Instructions for use: If your penis is smaller than one of these, you're not man enough to fire it".}
 {59200}{}{Elephant gun}
 {59201}{}{Самодельная винтовка под патроны .700 Найтро Экспресс. Вы понятия не имеете, зачем кому-либо могло понадобиться оружие подобного калибра.  Min. strength: 7.}
+{59300}{}{Вакцина}
+{59301}{}{Шприц наполнен какой-то жидкостью.}
+{59400}{}{Коробка пончиков}
+{59401}{}{Коробка пончиков "Пончики вкусные". 5 штук в упаковке.}
 {80000}{}{Hummer}
 {80001}{}{This vehicle has been built on the base of M1025 Hummer, produced by AMG at the turn of the 20th and 21th centuries. Most of the parts are taken from its predecessor so the car inherits the quality of the original. Used by the Brotherhood of Steel as a workhorse for any kind of work. Hummer - fast and reliable way to travel.}
 {80100}{}{Hummer trunk}

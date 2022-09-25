@@ -257,6 +257,7 @@
 #define PID_KITTY_SEX_DRUG_INTELLIGENCE     (481)  // + 1 iq for 1 hr
 #define PID_KITTY_SEX_DRUG_STRENGTH         (482)  // + 1 strength for 1 hr
 #define PID_MONUMENT_CHUNCK                 (424)
+#define PID_BOX_OF_DOUGHNUTS                (594)
 
 /******************************************************************
 ***************       Container                     ***************
@@ -409,7 +410,7 @@
 #define PID_DEAD_REDSHIRT_2                 (528)
 #define PID_MINING_MACHINE	                (529)
 
-// Car bugs
+// Car bags
 #define PID_HUMMER_BAG                      (801)
 #define PID_VERTIBIRD_BAG                   (809)
 #define PID_HIGHWAYMAN_BAG                  (817)
@@ -537,6 +538,7 @@
 #define PID_PARAMEDICS_BAG                  (409) // +50 doctor
 #define PID_MEDICAL_SUPPLIES                (428)
 #define PID_BIO_GEL                         (440)
+#define PID_VACCINE                         (593)
 	// Other
 #define PID_SHOVEL                          (289) // Лопата
 #define PID_PLANK                           (297) // Лом
