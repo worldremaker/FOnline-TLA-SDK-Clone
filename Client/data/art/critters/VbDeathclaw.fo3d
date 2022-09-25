@@ -1,3 +1,2 @@
-template=TemplateVBMob.txt anim CR_Deathclaw
-xfile=CR_Deathclaw.x
-
+Model CR_Deathclaw.x
+Include _VBMob.fo3d anim CR_Deathclaw

@@ -1,4 +1,2 @@
-template=TemplateVBMob.txt anim CR_Cougar
-xfile=CR_Cougar.x
-
-
+Model CR_Cougar.x
+Include _VBMob.fo3d anim CR_Cougar

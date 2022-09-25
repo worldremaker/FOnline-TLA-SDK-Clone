@@ -4,102 +4,76 @@
 //
 
 
-// Vertex shader
-struct VS_3D_SIMPLE_INPUT
+// 3D structures
+struct AppToVs_3D
 {
-	float4 Pos          : POSITION;
+	float4 Position     : POSITION;
 	float3 Normal       : NORMAL;
-	float3 Tex          : TEXCOORD;
+	float2 TexCoord     : TEXCOORD;
 };
 
-struct VS_3D_SIMPLE_INPUT_SHADOW
+struct AppToVs_3DTangent
 {
-	float4 Pos          : POSITION;
-	float3 Tex          : TEXCOORD;
+	float4 Position     : POSITION;
+	float3 Normal       : NORMAL;
+	float2 TexCoord     : TEXCOORD;
+	float3 Tangent      : TANGENT;
+	float3 Binormal     : BINORMAL;
 };
 
-struct VS_3D_SKINNED_INPUT
+struct AppToVs_3DSkinned
 {
-	float4 Pos          : POSITION;
+	float4 Position     : POSITION;
 	float4 BlendWeights : BLENDWEIGHT;
 	float4 BlendIndices : BLENDINDICES;
 	float3 Normal       : NORMAL;
-	float3 Tex          : TEXCOORD;
+	float2 TexCoord     : TEXCOORD;
 };
 
-struct VS_3D_SKINNED_INPUT_SHADOW
+struct AppToVs_3DSkinnedTangent
 {
-	float4 Pos          : POSITION;
+	float4 Position     : POSITION;
 	float4 BlendWeights : BLENDWEIGHT;
 	float4 BlendIndices : BLENDINDICES;
-	float3 Tex          : TEXCOORD;
+	float3 Normal       : NORMAL;
+	float2 TexCoord     : TEXCOORD;
+	float3 Tangent      : TANGENT;
+	float3 Binormal     : BINORMAL;
 };
 
-struct VS_3D_OUTPUT
+struct VsToPs_3D
 {
-	float4 Pos          : POSITION;
+	float4 Position     : POSITION;
 	float4 Diffuse      : COLOR;
-	float2 Tex          : TEXCOORD;
+	float2 TexCoord     : TEXCOORD;
 };
 
-struct VS_3D_OUTPUT_SHADOW
+struct VsToPs_3DTangent
 {
-	float4 Pos          : POSITION;
-	float3 Tex          : TEXCOORD;
+	float4 Position     : POSITION;
+	float2 TexCoord     : TEXCOORD0;
+	float3 LightDir     : TEXCOORD1; 
 };
 
-struct VS_2D_PRIMITIVE
+// 2D structures
+struct AppToVsToPs_2D
 {
-	float4 Pos     : POSITION;
-	float4 Diffuse : COLOR;
+	float4 Position     : POSITION;
+	float4 Diffuse      : COLOR;
+	float2 TexCoord     : TEXCOORD;
 };
 
-struct VS_2D
+struct AppToVsToPs_2DEgg
 {
-	float4 Pos     : POSITION;
-	float4 Diffuse : COLOR;
-	float2 Tex     : TEXCOORD;
+	float4 Position     : POSITION;
+	float4 Diffuse      : COLOR;
+	float2 TexCoord     : TEXCOORD0;
+	float2 TexEggCoord  : TEXCOORD1;
 };
 
-struct VS_2D_EGG
+struct AppToVsToPs_2DPrimitive
 {
-	float4 Pos     : POSITION;
-	float4 Diffuse : COLOR;
-	float2 Tex     : TEXCOORD0;
-	float2 TexEgg  : TEXCOORD1;
+	float4 Position     : POSITION;
+	float4 Diffuse      : COLOR;
 };
-
-
-// Pixel shader
-struct PS_3D
-{
-	float4 Color   : COLOR;
-	float2 Tex     : TEXCOORD;
-};
-
-struct PS_3D_SHADOW
-{
-	float2 Tex     : TEXCOORD;
-};
-
-struct PS_2D_PRIMITIVE
-{
-	float4 Color   : COLOR;
-};
-
-struct PS_2D
-{
-	float4 Color   : COLOR;
-	float2 Tex     : TEXCOORD;
-};
-
-struct PS_2D_EGG
-{
-	float4 Color   : COLOR;
-	float2 Tex     : TEXCOORD0;
-	float2 TexEgg  : TEXCOORD1;
-};
-
-
-
 

@@ -1,3 +1,2 @@
-template=TemplateVBMob.txt anim CR_Weedling
-xfile=CR_Weedling.x
-
+Model CR_Weedling.x
+Include _VBMob.fo3d anim CR_Weedling

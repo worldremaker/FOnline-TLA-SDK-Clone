@@ -134,6 +134,8 @@ typedef vector<Location*>::iterator LocVecIt;
 #define MAX_HEX_OFFSET              (50)
 #define AP_DIVIDER                  (100)
 #define MAX_CRIT_TYPES              (1000)
+#define EFFECT_TEXTURES             (10)
+#define EFFECT_SCRIPT_VALUES        (10)
 
 // Vars
 #define VAR_CALC_QUEST(tid,val)     ((tid)*1000+(val))
@@ -341,7 +343,7 @@ struct GameOptions
 	int    ReputationAntipathy;
 	int    ReputationHated;
 
-	// Client
+	// Client and Mapper
 	bool   Quit;
 	int    ScrOx;
 	int    ScrOy;
@@ -437,6 +439,7 @@ struct GameOptions
 	float  SpritesZoom;
 	float  SpritesZoomMax;
 	float  SpritesZoomMin;
+	float  EffectValues[EFFECT_SCRIPT_VALUES];
 
 	// Mapper
 	string ClientPath;
@@ -1664,7 +1667,7 @@ inline void static_asserts()
 	STATIC_ASSERT(sizeof(ProtoItem)   == 184);
 	STATIC_ASSERT(sizeof(Mutex)       == 24 );
 	STATIC_ASSERT(sizeof(Spinlock)    == 4  );
-	STATIC_ASSERT(sizeof(GameOptions) == 1088);
+	STATIC_ASSERT(sizeof(GameOptions) == 1128);
 
 	STATIC_ASSERT(offsetof(TemplateVar, Flags)              == 76  );
 	STATIC_ASSERT(offsetof(NpcPlane, RefCounter)            == 88  );

@@ -1,3 +1,2 @@
-template=TemplateVBMob.txt anim CR_ThornSlinger
-xfile=CR_ThornSlinger.x
-
+Model CR_ThornSlinger.x
+Include _VBMob.fo3d anim CR_ThornSlinger

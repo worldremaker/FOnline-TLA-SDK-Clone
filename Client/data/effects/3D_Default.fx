@@ -5,8 +5,16 @@
 
 #include "IOStructures.inc"
 
-// Texture
-sampler2D MainTexture;
+// Samplers
+texture Texture0;
+
+sampler ColorMap = sampler_state
+{
+     Texture   = (Texture0);
+     MinFilter = Linear;
+     MagFilter = Linear;
+     MipFilter = Linear;
+};
 
 // Bones per vertex, for skinned meshes
 int BonesInfluences               = 2;
@@ -15,15 +23,15 @@ int BonesInfluences               = 2;
 float4 GroundPosition             = {0.0f, 0.0f, 0.0f, 0.0f};
 
 // Lighting
-float4 LightDir                          = {0.0f, 0.0f, -1.0f, 1.0f}; // Light direction 
-float4 LightDiffuse                      = {0.6f, 0.6f, 0.6f, 1.0f};  // Light diffuse color
-float4 MaterialAmbient : MATERIALAMBIENT = {0.1f, 0.1f, 0.1f, 1.0f};  // Ambient color
-float4 MaterialDiffuse : MATERIALDIFFUSE = {0.8f, 0.8f, 0.8f, 1.0f};  // Diffuse color
+float3 LightDir                          = {0.0f, 0.0f,-1.0f};       // Light direction 
+float4 LightDiffuse                      = {0.6f, 0.6f, 0.6f, 1.0f}; // Light diffuse color
+float4 MaterialAmbient : MATERIALAMBIENT = {0.3f, 0.3f, 0.3f, 1.0f}; // Ambient color
+float4 MaterialDiffuse : MATERIALDIFFUSE = {0.8f, 0.8f, 0.8f, 1.0f}; // Diffuse color
 
-// Matrix pallette, for static meshes used WorldMatrices[0]
+// Matrix pallette, for simple meshes used WorldMatrices[0]
 static const int MaxMatrices      = 60;
 float4x3 WorldMatrices[MaxMatrices] : WORLDMATRIXARRAY;
-float4x4 ProjectionMatrix           : VIEWPROJECTION;
+float4x4 ViewProjMatrix             : VIEWPROJECTION;
 
 // Some useful game angles
 static const float CameraAngle    = 25.7f * 3.141592654f / 180.0f;
@@ -34,32 +42,32 @@ static const float ShadowAngleTan = tan(ShadowAngle);
 
 
 // Vertex shader
-VS_3D_OUTPUT VSSimpleNormal(VS_3D_SIMPLE_INPUT input)
+VsToPs_3D VSSimpleNormal(AppToVs_3D input)
 {
-	VS_3D_OUTPUT output;
-	float3 pos    = mul(input.Pos, WorldMatrices[0]);
-	float3 normal = normalize(mul(input.Normal, WorldMatrices[0]));
+	VsToPs_3D output = (VsToPs_3D)0;
 
 	// Calculate position
-	output.Pos = mul(float4(pos.xyz, 1.0f), ProjectionMatrix);
+	float3 pos = mul(input.Position, WorldMatrices[0]);
+	output.Position = mul(float4(pos, 1.0f), ViewProjMatrix);
 
 	// Calculate color
-	output.Diffuse.rgb = MaterialAmbient.rgb + max(0.0f, dot(normal, LightDir.rgb)) * MaterialDiffuse.rgb;
+	float3 normal = normalize(mul(input.Normal, WorldMatrices[0]));
+	output.Diffuse.rgb = MaterialAmbient.rgb + max(0.0f, dot(normal, LightDir)) * MaterialDiffuse.rgb;
 	output.Diffuse.rgb *= LightDiffuse.rgb;
 	output.Diffuse.a = 1.0f;
 
 	// Copy the input texture coordinate through
-	output.Tex = input.Tex;
+	output.TexCoord = input.TexCoord;
 
 	return output;
 }
 
-VS_3D_OUTPUT_SHADOW VSSimpleShadow(VS_3D_SIMPLE_INPUT_SHADOW input)
+VsToPs_3D VSSimpleShadow(AppToVs_3D input)
 {
-	VS_3D_OUTPUT_SHADOW output;
-	float3           pos = mul(input.Pos, WorldMatrices[0]);
+	VsToPs_3D output = (VsToPs_3D)0;
 
 	// Calculate shadow position
+	float3 pos = mul(input.Position, WorldMatrices[0]);
 	float d = (pos.y - GroundPosition.y) * CameraAngleCos - (pos.z - GroundPosition.z) * CameraAngleSin;
 	pos.y -= d * CameraAngleCos;
 	pos.z += d * CameraAngleSin;
@@ -68,17 +76,17 @@ VS_3D_OUTPUT_SHADOW VSSimpleShadow(VS_3D_SIMPLE_INPUT_SHADOW input)
 	pos.z += d * CameraAngleCos;
 
 	// Transform position from world space into view and then projection space
-	output.Pos = mul(float4(pos.xyz, 1.0f), ProjectionMatrix);
+	output.Position = mul(float4(pos.xyz, 1.0f), ViewProjMatrix);
 
 	// Copy the input texture coordinate through
-	output.Tex = input.Tex;
+	output.TexCoord = input.TexCoord;
 
 	return output;
 }
 
-VS_3D_OUTPUT VSSkinnedNormal(VS_3D_SKINNED_INPUT input, uniform int bones)
+VsToPs_3D VSSkinnedNormal(AppToVs_3DSkinned input, uniform int bones)
 {
-	VS_3D_OUTPUT   output;
+	VsToPs_3D output = (VsToPs_3D)0;
 	float3      pos        = 0.0f;
 	float3      normal     = 0.0f;    
 	float       lastWeight = 0.0f;
@@ -92,35 +100,35 @@ VS_3D_OUTPUT VSSkinnedNormal(VS_3D_SKINNED_INPUT input, uniform int bones)
 	for(int i = 0; i < bones-1; i++)
 	{
 		lastWeight = lastWeight + blendWeightsArray[i];
-		pos += mul(input.Pos, WorldMatrices[indexArray[i]]) * blendWeightsArray[i];
+		pos += mul(input.Position, WorldMatrices[indexArray[i]]) * blendWeightsArray[i];
 		normal += mul(input.Normal, WorldMatrices[indexArray[i]]) * blendWeightsArray[i];
 	}
 	lastWeight = 1.0f - lastWeight; 
 
 	// Now that we have the calculated weight, add in the final influence
-	pos += (mul(input.Pos, WorldMatrices[indexArray[bones-1]]) * lastWeight);
-	normal += (mul(input.Normal, WorldMatrices[indexArray[bones-1]]) * lastWeight); 
+	pos += (mul(input.Position, WorldMatrices[indexArray[bones - 1]]) * lastWeight);
+	normal += (mul(input.Normal, WorldMatrices[indexArray[bones - 1]]) * lastWeight); 
 
 	// Transform position from world space into view and then projection space
-	output.Pos = mul(float4(pos.xyz, 1.0f), ProjectionMatrix);
+	output.Position = mul(float4(pos.xyz, 1.0f), ViewProjMatrix);
 
 	// Normalize normals
 	normal = normalize(normal);
 
 	// Shade
-	output.Diffuse.rgb = MaterialAmbient.rgb + max(0.0f, dot(normal, LightDir.rgb)) * MaterialDiffuse.rgb;
+	output.Diffuse.rgb = MaterialAmbient.rgb + max(0.0f, dot(normal, LightDir)) * MaterialDiffuse.rgb;
 	output.Diffuse.rgb *= LightDiffuse.rgb;
 	output.Diffuse.a = 1.0f;
 
 	// Copy the input texture coordinate through
-	output.Tex = input.Tex;
+	output.TexCoord = input.TexCoord;
 
 	return output;
 }
 
-VS_3D_OUTPUT_SHADOW VSSkinnedShadow(VS_3D_SKINNED_INPUT_SHADOW input, uniform int bones)
+VsToPs_3D VSSkinnedShadow(AppToVs_3DSkinned input, uniform int bones)
 {
-	VS_3D_OUTPUT_SHADOW   output;
+	VsToPs_3D output = (VsToPs_3D)0;
 	float3             pos        = 0.0f;
 	float              lastWeight = 0.0f;
 
@@ -133,12 +141,12 @@ VS_3D_OUTPUT_SHADOW VSSkinnedShadow(VS_3D_SKINNED_INPUT_SHADOW input, uniform in
 	for(int i = 0; i < bones-1; i++)
 	{
 		lastWeight = lastWeight + blendWeightsArray[i];
-		pos += mul(input.Pos, WorldMatrices[indexArray[i]]) * blendWeightsArray[i];
+		pos += mul(input.Position, WorldMatrices[indexArray[i]]) * blendWeightsArray[i];
 	}
 	lastWeight = 1.0f - lastWeight;
 
 	// Now that we have the calculated weight, add in the final influence
-	pos += (mul(input.Pos, WorldMatrices[indexArray[bones-1]]) * lastWeight);
+	pos += (mul(input.Position, WorldMatrices[indexArray[bones - 1]]) * lastWeight);
 
 	// Calculate shadow position
 	float d = (pos.y - GroundPosition.y) * CameraAngleCos - (pos.z - GroundPosition.z) * CameraAngleSin;
@@ -149,27 +157,27 @@ VS_3D_OUTPUT_SHADOW VSSkinnedShadow(VS_3D_SKINNED_INPUT_SHADOW input, uniform in
 	pos.z += d * CameraAngleCos;
 
 	// Transform position from world space into view and then projection space
-	output.Pos = mul(float4(pos.xyz, 1.0f), ProjectionMatrix);
+	output.Position = mul(float4(pos.xyz, 1.0f), ViewProjMatrix);
 
 	// Copy the input texture coordinate through
-	output.Tex = input.Tex;
+	output.TexCoord = input.TexCoord;
 
 	return output;
 }
 
 
 // Pixel shader
-float4 PSNormal(PS_3D input) : COLOR
+float4 PSNormal(VsToPs_3D input) : COLOR
 {
 	float4 output;
 
 	// Sample
-	output = tex2D(MainTexture, input.Tex) * input.Color;
+	output = tex2D(ColorMap, input.TexCoord) * input.Diffuse;
 
 	return output;
 }
 
-float4 PSShadow(PS_3D_SHADOW input) : COLOR
+float4 PSShadow(VsToPs_3D input) : COLOR
 {
 	float4 output;
 
@@ -177,7 +185,7 @@ float4 PSShadow(PS_3D_SHADOW input) : COLOR
 	output.rgb = 0.0f;
 
 	// Transparent from texture
-	output.a = tex2D(MainTexture, input.Tex).a;
+	output.a = tex2D(ColorMap, input.TexCoord).a;
 
 	return output;
 }

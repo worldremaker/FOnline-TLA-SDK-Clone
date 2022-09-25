@@ -5,12 +5,12 @@
 
 #include "IOStructures.inc"
 
-sampler2D MainTexture;
-sampler2D EggTexture;
+sampler2D ColorMap;
+sampler2D EggMap;
 
 
 // Vertex shader
-VS_2D_EGG VSSimple(VS_2D_EGG input)
+AppToVsToPs_2DEgg VSSimple(AppToVsToPs_2DEgg input)
 {
 	// Just pass forward
 	return input;
@@ -18,17 +18,17 @@ VS_2D_EGG VSSimple(VS_2D_EGG input)
 
 
 // Pixel shader
-float4 PSSimple(PS_2D_EGG input) : COLOR
+float4 PSSimple(AppToVsToPs_2DEgg input) : COLOR
 {
 	float4 output;
 
 	// Sample
-	float4 texColor = tex2D(MainTexture, input.Tex);
-	output.rgb = (texColor.rgb * input.Color.rgb) * 2;
-	output.a = texColor.a * input.Color.a;
+	float4 texColor = tex2D(ColorMap, input.TexCoord);
+	output.rgb = (texColor.rgb * input.Diffuse.rgb) * 2;
+	output.a = texColor.a * input.Diffuse.a;
 
 	// Egg transparent
-	if(input.TexEgg.x != 0.0f) output.a *= tex2D(EggTexture, input.TexEgg).a;
+	if(input.TexEggCoord.x != 0.0f) output.a *= tex2D(EggMap, input.TexEggCoord).a;
 
 	return output;
 }

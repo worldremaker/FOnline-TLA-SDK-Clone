@@ -1,3 +1,2 @@
-template=TemplateVBMob.txt anim CR_Beetle
-xfile=CR_Beetle.x
-
+Model CR_Beetle.x
+Include _VBMob.fo3d anim CR_Beetle

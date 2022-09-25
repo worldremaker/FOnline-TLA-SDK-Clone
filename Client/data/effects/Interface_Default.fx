@@ -5,11 +5,11 @@
 
 #include "IOStructures.inc"
 
-sampler2D MainTexture;
+sampler2D ColorMap;
 
 
 // Vertex shader
-VS_2D VSSimple(VS_2D input)
+AppToVsToPs_2D VSSimple(AppToVsToPs_2D input)
 {
 	// Just pass forward
 	return input;
@@ -17,14 +17,14 @@ VS_2D VSSimple(VS_2D input)
 
 
 // Pixel shader
-float4 PSSimple(PS_2D input) : COLOR
+float4 PSSimple(AppToVsToPs_2D input) : COLOR
 {
 	float4 output;
 
 	// Sample
-	float4 texColor = tex2D(MainTexture, input.Tex);
-	output.rgb = (texColor.rgb * input.Color.rgb) * 2;
-	output.a = texColor.a * input.Color.a;
+	float4 texColor = tex2D(ColorMap, input.TexCoord);
+	output.rgb = (texColor.rgb * input.Diffuse.rgb) * 2;
+	output.a = texColor.a * input.Diffuse.a;
 
 	return output;
 }

@@ -1,3 +1,4 @@
-template=TemplateVBMob.txt anim CR_Gila
-xfile=CR_Gila.x
-scale=800
+Model CR_Gila.x
+Include _VBMob.fo3d anim CR_Gila
+Scale 0.8
+Speed 5.0

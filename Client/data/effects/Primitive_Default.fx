@@ -7,7 +7,7 @@
 
 
 // Vertex shader
-VS_2D_PRIMITIVE VSSimple(VS_2D_PRIMITIVE input)
+AppToVsToPs_2DPrimitive VSSimple(AppToVsToPs_2DPrimitive input)
 {
 	// Just pass forward
 	return input;
@@ -15,10 +15,10 @@ VS_2D_PRIMITIVE VSSimple(VS_2D_PRIMITIVE input)
 
 
 // Pixel shader
-float4 PSSimple(PS_2D_PRIMITIVE input) : COLOR
+float4 PSSimple(AppToVsToPs_2DPrimitive input) : COLOR
 {
 	// Just pass forward
-	return input.Color;
+	return input.Diffuse;
 }
 
 
