@@ -50,9 +50,9 @@ lang=russ engl
 0 19010 R _var p q_mod_joe_farm = 2 R _item p PID_MUTATED_FRUIT + 10 &
 
 [russ]
-{100}{}{Вы видите человека в простой одежде.}
-{200}{}{Вы видите человека в простой одежде. Похоже это фермер.}
-{210}{}{Вы видите человека в одежде фермера.}
+{100}{}{Фермер}
+{200}{}{Вы видите человека в одежде фермера.}
+{210}{}{Вы видите человека в простой одежде. Похоже это фермер.}
 {1000}{}{Преддиалоговые установки}
 {1010}{}{квест с капустой}
 {1020}{}{ответ}
@@ -97,9 +97,9 @@ lang=russ engl
 {19010}{}{[Выход]}
 
 [engl]
-{100}{}{You see a man in casual clothes.}
-{200}{}{You see a man wearing casual clothes. He seems to be a farmer.}
-{210}{}{You see a man wearing some casual farmer clothes.}
+{100}{}{Farmer}
+{200}{}{You see a farmer.}
+{210}{}{You see a man wearing casual clothes. He seems to be a farmer.}
 {1000}{}{Predialogue installations}
 {1010}{}{квест с капустой}
 {1020}{}{ответ}
