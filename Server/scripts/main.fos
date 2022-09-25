@@ -964,6 +964,8 @@ void critter_init(Critter& cr, bool firstTime)
 			cr.StatBase[ST_ANIM3D_LAYERS+ANIM3D_LAYER_SKIN]=CLAMP(cr.StatBase[ST_ANIM3D_LAYERS+ANIM3D_LAYER_SKIN],ATTRIBUTE_Skin_Human_White01,ATTRIBUTE_Skin_Human_Yellow03);
 			cr.StatBase[ST_ANIM3D_LAYERS+ANIM3D_LAYER_PONYTAIL]=CLAMP(cr.StatBase[ST_ANIM3D_LAYERS+ANIM3D_LAYER_PONYTAIL],0,ATTRIBUTE_Ponytail_Ponytail2+ATTRIBUTE_COLOR_RedGrey);
 			cr.StatBase[ST_ANIM3D_LAYERS+ANIM3D_LAYER_ARMLET]=ATTRIBUTE_Armlet_PipBoyClosed;
+
+			cr.ChangeCrType(cr.StatBase[ST_BASE_CRTYPE]);
 #endif
 #ifndef PLAYERS_3D
 			cr.ChangeCrType(cr.Stat[ST_GENDER]==GENDER_MALE?CRTYPE_DEFAULT_M:CRTYPE_DEFAULT_F);
@@ -990,7 +992,6 @@ void critter_init(Critter& cr, bool firstTime)
 			cr.StatBase[ST_REPLICATION_COST]=100;
 			cr.StatBase[ST_REPLICATION_MONEY]=0;
 			cr.StatBase[ST_REPLICATION_COUNT]=0;
-			cr.ChangeCrType(cr.Stat[ST_GENDER]==GENDER_MALE?CRTYPE_DEFAULT_M:CRTYPE_DEFAULT_F);
 			cr.StatBase[ST_TEAM_ID]=1;
 			cr.StatBase[ST_DAMAGE_TYPE]=DAMAGE_NORMAL;
 
