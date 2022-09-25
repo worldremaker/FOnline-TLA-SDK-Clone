@@ -11,6 +11,7 @@
 \~
 @code
 uint e_FuncName(uint[]@ values)
+uint e_FuncName(int[]@ values)
 @endcode
 
 \~russian @par Временные события персонажа
@@ -41,20 +42,37 @@ void t_FuncName(Critter& cr, Scenery& trigger, bool entered, uint8 dir)
 \~
 @code
 void dlg_FuncName(Critter& player, Critter@ npc, string@ text)
+uint dlg_FuncName(Critter& player, Critter@ npc, string@ text)
 @endcode
 
 \~russian @par Условие диалога
 \~english @par Dialog demand
 \~
 @code
+bool d_FuncName(Critter& master, Critter@ slave)
 bool d_FuncName(Critter& master, Critter@ slave, int val)
+bool d_FuncName(Critter& master, Critter@ slave, int val0, int val1,)
+bool d_FuncName(Critter& master, Critter@ slave, int val0, int val1, int val2)
+bool d_FuncName(Critter& master, Critter@ slave, int val0, int val1, int val2, int val3)
+bool d_FuncName(Critter& master, Critter@ slave, int val0, int val1, int val2, int val3, int val4)
 @endcode
 
 \~russian @par Результат диалога
 \~english @par Dialog result
 \~
 @code
+void r_FuncName(Critter& master, Critter@ slave)
+uint r_FuncName(Critter& master, Critter@ slave)
 void r_FuncName(Critter& master, Critter@ slave, int val)
+uint r_FuncName(Critter& master, Critter@ slave, int val)
+void r_FuncName(Critter& master, Critter@ slave, int val0, int val1,)
+uint r_FuncName(Critter& master, Critter@ slave, int val0, int val1,)
+void r_FuncName(Critter& master, Critter@ slave, int val0, int val1, int val2)
+uint r_FuncName(Critter& master, Critter@ slave, int val0, int val1, int val2)
+void r_FuncName(Critter& master, Critter@ slave, int val0, int val1, int val2, int val3)
+uint r_FuncName(Critter& master, Critter@ slave, int val0, int val1, int val2, int val3)
+void r_FuncName(Critter& master, Critter@ slave, int val0, int val1, int val2, int val3, int val4)
+uint r_FuncName(Critter& master, Critter@ slave, int val0, int val1, int val2, int val3, int val4)
 @endcode
 
 \~russian @par Прослушка текста

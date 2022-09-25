@@ -337,6 +337,12 @@ float __SpritesZoomMax;
  */
 float __SpritesZoomMin;
 
+/** \~russian Минимальное время диалога */
+uint __DlgTalkMinTime;
+
+/** \~russian Минимальное время бартера */
+uint __DlgBarterMinTime;
+
 //@}
 
 /**
@@ -552,6 +558,24 @@ uint GetScriptId(string& scriptName, string& funcDeclaration);
  */
 string@ GetScriptName(uint scriptId);
 
+/** \~russian Загружает шрифт.
+ *
+ * @param  font  Номер шрифта.
+ * @param  fontFileName  Имя файла шрифта.
+ *
+ * @return Возвращает true в случае успеха.
+ *
+ */
+bool LoadFont(int font, string& fontFileName);
+
+/** \~russian Устанавливает шрифт по-умолчанию и его цвет.
+ *
+ * @param  font  Номер шрифта.
+ * @param  color  Цвет шрифта.
+ *
+ */
+void SetDefaultFont(int font, uint color);
+
 //@}
 
 /**
@@ -742,17 +766,8 @@ string@+ GetPlayerName(uint playerId);
  *
  * @param  npc  NPC, которого необходимо удалить.
  *
- * @see    DeleteNpcForce
  */
 void DeleteNpc(Critter& npc);
-
-/** \~russian Немедленно удаляет из игры указанного NPC.
- *
- * @param  npc  NPC, которого необходимо удалить.
- *
- * @see    DeleteNpc
- */
-void DeleteNpcForce(Critter& npc);
 
 /** \~russian (?)
  *
@@ -859,14 +874,6 @@ GameVar@+ GetLocalVar(uint16 varId, uint masterId);
  * @return Указатель на экземпляр класса GameVar. При провале – @c null.
  */
 GameVar@+ GetUnicumVar(uint16 varId, uint masterId, uint slaveId);
-
-/** \~russian Удаляет переменную, имеющую указанный идентификатор.
- *
- * @param  id  Идентификатор переменной.
- * @return (?)
- *
- */
-uint DeleteVars(uint id);
 
 //@}
 
@@ -1156,46 +1163,51 @@ uint CreateTimeEvent(uint beginSecond, string& funcName, uint[]& values, bool sa
 
 /** \~russian Создает событие, которое произойдет в указанное игровое время.
  *
- * @param  beginSecond  Время, в полных минутах, когда произойдет событие.
- * @param  funcName     Имя функции-события (см. CreateTimeEvent(uint, string&, bool)).
- * @param  cr           Криттер, который участвует в событии.
- * @param  save         Флаг, который определяет, необходимо ли сохранять запись о событии в базе данных сервера.
- *                      @c true – да, необходимо, @c false – нет.
+ * @param  num       Номер события
+ * @param  duration  время до выполнения данного события в секундах (не полная секунда).
+ * @param  values    Значения, передаваемые вместе с событием.
  *
- * @return Номер события. В случае провала функция возвращает 0.
+ * @return Возвращает false, если событие не найдено.
  *
  * @see    CreateTimeEvent(uint, string&, bool)
  */
-uint CreateTimeEvent(uint beginSecond, string& funcName, Critter& cr, bool save);
+bool GetTimeEvent(uint num, uint& duration, uint[]@+ values);
 
 /** \~russian Создает событие, которое произойдет в указанное игровое время.
  *
- * @param  beginSecond  Время, в полных минутах, когда произойдет событие.
- * @param  funcName     Имя функции-события (см. CreateTimeEvent(uint, string&, bool)).
- * @param  item         Предмет, который участвует в событии.
- * @param  save         Флаг, который определяет, необходимо ли сохранять запись о событии в базе данных сервера.
- *                      @c true – да, необходимо, @c false – нет.
+ * @param  num       Номер события
+ * @param  duration  время до выполнения данного события в секундах (не полная секунда).
+ * @param  values    Значения, передаваемые вместе с событием.
  *
- * @return Номер события. В случае провала функция возвращает 0.
+ * @return Возвращает false, если событие не найдено.
  *
  * @see    CreateTimeEvent(uint, string&, bool)
  */
-uint CreateTimeEvent(uint beginSecond, string& funcName, Item& item, bool save);
+bool GetTimeEvent(uint num, uint& duration, int[]@+ values);
 
 /** \~russian Создает событие, которое произойдет в указанное игровое время.
  *
- * @param  beginSecond  Время, в полных минутах, когда произойдет событие.
- * @param  funcName     Имя функции-события (см. CreateTimeEvent(uint, string&, bool)).
- * @param  critters     Массив криттеров, участвующих в событии.
- * @param  items        Массив предметов, участвующих в событии.
- * @param  save         Флаг, который определяет, необходимо ли сохранять запись о событии в базе данных сервера.
- *                      @c true – да, необходимо, @c false – нет.
+ * @param  num       Номер события
+ * @param  duration  время до выполнения данного события в секундах (не полная секунда).
+ * @param  values    Значения, передаваемые вместе с событием.
  *
- * @return Номер события. В случае провала функция возвращает 0.
+ * @return Возвращает false, если событие не найдено.
  *
  * @see    CreateTimeEvent(uint, string&, bool)
  */
-uint CreateTimeEvent(uint beginSecond, string& funcName, Critter@[]@+ critters, Item@[]@+ items, bool save);
+bool SetTimeEvent(uint num, uint duration, uint[]@+ values);
+
+/** \~russian Создает событие, которое произойдет в указанное игровое время.
+ *
+ * @param  num       Номер события
+ * @param  duration  время до выполнения данного события в секундах (не полная секунда).
+ * @param  values    Значения, передаваемые вместе с событием.
+ *
+ * @return Возвращает false, если событие не найдено.
+ *
+ * @see    CreateTimeEvent(uint, string&, bool)
+ */
+bool SetTimeEvent(uint num, uint duration, int[]@+ values);
 
 /** \~russian Удаляет событие с указанным номером.
  *
@@ -1203,9 +1215,11 @@ uint CreateTimeEvent(uint beginSecond, string& funcName, Critter@[]@+ critters, 
  *
  * @param  num  номер удаляемого события.
  *
+ * @return Возвращает false, если событие не найдено.
+ *
  * @see    CreateTimeEvent(uint, string&, bool)
  */
-void EraseTimeEvent(uint num);
+bool EraseTimeEvent(uint num);
 
 //@}
 

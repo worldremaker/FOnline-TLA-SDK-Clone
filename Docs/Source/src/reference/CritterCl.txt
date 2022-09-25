@@ -69,6 +69,18 @@ public:
      * @see    IsFree
      */
     bool IsBusy();
+	
+	/** \~russian Проверяет, ход криттера ли в данный момент в пошаговом бою.
+     *
+     * @return @c true – если ход данного криттера; @c false – в противном случае.
+     */
+	bool IsTurnBasedTurn();
+	
+	/** \~russian Возвращает время до окончания хода.
+     *
+     * @return время в миллисекундах.
+     */
+	uint GetTurnBasedTime();
 
     /** \~russian Возвращает количество всех предметов, находящихся в инвентаре криттера.
      *
@@ -129,10 +141,13 @@ public:
     /** \~russian Позволяет получить прототип предмета, который находится в указанном слоте.
      *
      * @param  slot  Слот (см. @link Slots@endlink).
+	 * @param  mode  В аргументе возвращается текущий режим атаки, если объект в слоте является оружием
+	 * старшие четыре бита - прицел (см. @link HitLocations Hit Locations@endlink),
+	 * младшие четыре бита - тип использования (0 – primary, 1 – secondary, 2 – third).
      *
      * @return Указатель на экземпляр класса ProtoItem. Если слот пуст, то возвращается @c null.
      */
-    ProtoItem@+ GetSlotProto(int slot);
+    ProtoItem@+ GetSlotProto(int slot, uint8& mode);
 
     /** \~russian Проверяет, есть ли у криттера ключ от указанного замка.
      *
@@ -260,13 +275,13 @@ public:
      */
     const uint16 FlagsExt;
 
-    /** \~russian Строка значений лексем криттера. */
-    const string Lexems;
-
     /** \~russian Массив значений параметров криттера. */
     DataVal Param;
-
-    /** \~russian Цвет имени над головой криттера */
+	
+	/** \~russian Если данная строка не пустая, то выводится над головой криттера */
+	string NameOnHead
+    
+	/** \~russian Цвет имени над головой криттера */
     uint NameColor;
 
     /** \~russian Цвет обводки криттера */

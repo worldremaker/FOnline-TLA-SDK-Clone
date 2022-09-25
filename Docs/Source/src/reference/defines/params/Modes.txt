@@ -93,6 +93,9 @@
 /** \~russian При смерти не производится перерасчета кармы игрока-убийцы. */
 #define MODE_NO_KARMA_ON_KILL       (534)
 
+/** \~russian При бартере нпц принимает оплату только наличными. */
+#define MODE_BARTER_ONLY_CASH       (535)
+
 /** \~russian Не быть оттолкнут. */
 #define MODE_NO_PUSH                (536) // Used in engine
 

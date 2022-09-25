@@ -74,6 +74,53 @@ bool __MessNotify;
 bool __SoundNotify;
 int __IndicatorType;
 uint __DoubleClickTime;
+/** \~russian Отображение @ref term_tile "тайлов". */
+/** \~english @ref term_tile "Tiles" visibility. */
+bool __ShowTile;
+
+/** \~russian Отображение @ref term_tile "крыши". */
+/** \~english @ref term_tile "Roofs" visibility. */
+bool __ShowRoof;
+
+/** \~russian Отображение @ref term_item "предметов". */
+/** \~english @ref term_item "Items" visibility. */
+bool __ShowItem;
+
+/** \~russian Отображение @ref term_scenery "Сценери". */
+/** \~english @ref term_scenery "Scenery" visibility. */
+bool __ShowScen;
+
+/** \~russian Отображение @ref term_wall "стен". */
+/** \~english @ref term_wall "Walls" visibility. */
+bool __ShowWall;
+
+/** \~russian Отображение @ref term_critter "персонажей". */
+/** \~english @ref term_critter "Critters" visibility. */
+bool __ShowCrit;
+
+/** \~russian Отображение объектов из группы Fast. */
+/** \~english Fast-objects visibility. */
+bool __ShowFast;
+
+/** \~russian Отображение имен @ref term_player "игроков". */
+/** \~english @ref term_player "Players" names visibility. */
+bool __ShowPlayerNames;
+
+/** \~russian Отображение имен @ref term_npc "НПЦ". */
+/** \~english @ref term_npc "NPCs" names visibility. */
+bool __ShowNpcNames;
+
+/** \~russian Отображение идентификаторов @ref term_critter "персонажей". */
+/** \~english @ref term_critter "Critters" names visibility. */
+bool __ShowCritId;
+
+/** \~russian Путь к папке клиента. */
+/** \~english Path to client folder. */
+string __ClientPath;
+
+/** \~russian Путь к папке сервера. */
+/** \~english Path to server folder. */
+string __ServerPath;
 
 /** \~russian Боевые сообщения
  *
@@ -342,6 +389,9 @@ int GetFog(uint16 zoneX, uint16 zoneY);
  * @return Значение, соответствующее ключу.
  */
 string@ GetIfaceIniStr(string& key);
+
+/** \~russian Для включения часов ожидания на время сигнала серверу и его ответа (т.е. пинг). */
+void WaitPing();
 
 //@}
 

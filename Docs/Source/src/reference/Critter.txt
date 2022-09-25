@@ -333,11 +333,11 @@ public:
 
     /** \~russian Принудительно вызывает событие #CRITTER_EVENT_GLOBAL_PROCESS. */
     /** \~english Invokes #CRITTER_EVENT_GLOBAL_PROCESS event. */
-    bool EventGlobalProcess(int type, Critter@[]& group, Item@ car, uint& x, uint& y, uint& toX, uint& toY, uint& speed, uint& encounterDescriptor, bool& waitForAnswer);
+    bool EventGlobalProcess(int type, Critter& cr, Item@ car, uint& x, uint& y, uint& toX, uint& toY, uint& speed, uint& encounterDescriptor, bool& waitForAnswer);
 
     /** \~russian Принудительно вызывает событие #CRITTER_EVENT_GLOBAL_INVITE. */
     /** \~english Invokes #CRITTER_EVENT_GLOBAL_INVITE event. */
-    bool EventGlobalInvite(Critter@[]& group, Item@ car, uint encounterDescriptor, int combatMode, uint& mapId, uint16& hexX, uint16& hexY, uint8& dir);
+    bool EventGlobalInvite(Critter& leader, Item@ car, uint encounterDescriptor, int combatMode, uint& mapId, uint16& hexX, uint16& hexY, uint8& dir);
 
     //@}
 

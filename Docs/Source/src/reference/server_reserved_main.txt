@@ -213,17 +213,19 @@ void critter_respawn(Critter& cr);
 
 /** \~russian √лобальный обработчик атаки, который вызываетс€ каждый раз при атаке одного криттера другим.
  *
- * @param  cr      јтакующий криттер.
- * @param  target  јтакуемый криттер.
- * @param  weapon  »спользуемый прототип оружи€, уже настроенный на нужный тип атаки.
- * @param  ammo    »спользуема€ амуници€.
- * @param  aim     ћестоположение прицельного выстрела (см. @link HitLocations Hit locations@endlink).
+ * @param  cr          јтакующий криттер.
+ * @param  target      јтакуемый криттер.
+ * @param  weapon      »спользуемый прототип оружи€, уже настроенный на нужный тип атаки.
+ * @param  weaponMode  –ежим атаки оружи€.
+ * старшие четыре бита - прицел (см. @link HitLocations Hit Locations@endlink),
+ * младшие четыре бита - тип использовани€ (0 Ц primary, 1 Ц secondary, 2 Ц third).
+ * @param  ammo        »спользуема€ амуници€.
  *
  * @see    Critter::SendCombatResult
  * @see    CRITTER_EVENT_ATTACK
  * @see    CRITTER_EVENT_SMTH_ATTACK
  */
-void critter_attack(Critter& cr, Critter& target, ProtoItem& weapon, ProtoItem@ ammo, uint8 aim);
+void critter_attack(Critter& cr, Critter& target, ProtoItem& weapon, uint8 weaponMode, ProtoItem@ ammo);
 
 /** \~russian √лобальный обработчик атаки, который вызываетс€ каждый раз при атаке одного криттера другим.
  *

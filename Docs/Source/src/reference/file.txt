@@ -153,4 +153,19 @@ class file
 	/** \~russian Выполняет чтение следующего числа из файла. */
 	/** \~english Reads next integer number from the file. */
 	int readNumber();
+	uint8 readUint8();
+	uint16 readUint16();
+	uint32 readUint32();
+	uint64 readUint64();
+	/** \~russian Если data == 0, то программа читает все данные до конца файла с текущей позиции.
+	 * Прочтенные данные добавляются в конец массива.
+	 * Возвращаемое значение указывает на реально прочтенное число байт.
+	 */
+	uint readData(uint count, uint8[]& data);
+	bool writeUint8(uint8 data);
+	bool writeUint16(uint16 data);
+	bool writeUint32(uint32 data);
+	bool writeUint64(uint64 data);
+	/** \~russian При count == 0 записывает все данные из массива. */
+	bool writeData(uint8[]& data, uint count);
 }

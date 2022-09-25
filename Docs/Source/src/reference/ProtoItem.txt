@@ -28,6 +28,17 @@ public:
      * См. @link ItemFlags Item flags@endlink.
      */
     const uint Flags;
+	
+	uint HolodiskNum;
+	
+	uint16 RadioChannel;
+	
+	/** \~russian Флаги рации (См. @link RadioFlags Radio flags@endlink) */
+	uint16 RadioFlags;
+	
+	uint8 RadioBroadcastSend;
+	
+	uint8 RadioBroadcastRecv;
 
     /** (?) */
     const uint8 DistanceLight;
@@ -37,8 +48,14 @@ public:
 
     /** (?) */
     const uint Weight;
+	
+	/** \~russian */
+	uint8 IndicatorStart;
+	
+	/** \~russian Стартовое значение параметра заряда */
+	uint8 IndicatorMax;
 
-    /** (?) */
+    /** (?) Максимальное значение индикатора заряда */
     const uint16 PicMap;
 
     /** (?) */
@@ -137,44 +154,115 @@ public:
     /** \~russian PID амуниции по-умолчанию. */
     const uint16 Weapon_DefAmmo;
 
-    /** \~russian Текущее использование (Primary, Secondary, Third). */
-    const uint8 Weapon_CurrentUse;
+    /** \~russian Навык, влияющий на использование. */
+    const uint8 Weapon_Skill_F;
 
     /** \~russian Навык, влияющий на использование. */
-    const uint8 Weapon_Skill;
+    const uint8 Weapon_Skill_S;
+
+    /** \~russian Навык, влияющий на использование. */
+    const uint8 Weapon_Skill_T;
 
     /** \~russian Тип повреждений. */
-    const uint8 Weapon_DmgType;
+    const uint8 Weapon_DmgType_F;
+
+    /** \~russian Тип повреждений. */
+    const uint8 Weapon_DmgType_S;
+
+    /** \~russian Тип повреждений. */
+    const uint8 Weapon_DmgType_T;
 
     /** \~russian Вторичный индекс анимации. */
-    const uint8 Weapon_Anim2;
+    const uint8 Weapon_Anim2_F;
+
+    /** \~russian Вторичный индекс анимации. */
+    const uint8 Weapon_Anim2_S;
+
+    /** \~russian Вторичный индекс анимации. */
+    const uint8 Weapon_Anim2_T;
 
     /** \~russian Минимальное повреждение. */
-    const uint16 Weapon_DmgMin;
+    const uint16 Weapon_DmgMin_F;
+
+    /** \~russian Минимальное повреждение. */
+    const uint16 Weapon_DmgMin_S;
+
+    /** \~russian Минимальное повреждение. */
+    const uint16 Weapon_DmgMin_T;
 
     /** \~russian Максимальное повреждение. */
-    const uint16 Weapon_DmgMax;
+    const uint16 Weapon_DmgMax_F;
+
+    /** \~russian Максимальное повреждение. */
+    const uint16 Weapon_DmgMax_S;
+
+    /** \~russian Максимальное повреждение. */
+    const uint16 Weapon_DmgMax_T;
 
     /** \~russian Максимальная дистанция. */
-    const uint16 Weapon_MaxDist;
+    const uint16 Weapon_MaxDist_F;
+
+    /** \~russian Максимальная дистанция. */
+    const uint16 Weapon_MaxDist_S;
+
+    /** \~russian Максимальная дистанция. */
+    const uint16 Weapon_MaxDist_T;
 
     /** \~russian Летящий эффект от выстрела. */
-    const uint16 Weapon_Effect;
+    const uint16 Weapon_Effect_F;
+
+    /** \~russian Летящий эффект от выстрела. */
+    const uint16 Weapon_Effect_S;
+
+    /** \~russian Летящий эффект от выстрела. */
+    const uint16 Weapon_Effect_T;
 
     /** \~russian Расход обоймы за выстрел. */
-    const uint16 Weapon_Round;
+    const uint16 Weapon_Round_F;
+
+    /** \~russian Расход обоймы за выстрел. */
+    const uint16 Weapon_Round_S;
+
+    /** \~russian Расход обоймы за выстрел. */
+    const uint16 Weapon_Round_T;
 
     /** \~russian Базовая стоимость очков действий. */
-    const uint8 Weapon_ApCost;
+    const uint8 Weapon_ApCost_F;
+
+    /** \~russian Базовая стоимость очков действий. */
+    const uint8 Weapon_ApCost_S;
+
+    /** \~russian Базовая стоимость очков действий. */
+    const uint8 Weapon_ApCost_T;
 
     /** \~russian Индекс звука на оружии. */
-    const uint8 Weapon_SoundId;
+    const uint8 Weapon_SoundId_F;
+
+    /** \~russian Индекс звука на оружии. */
+    const uint8 Weapon_SoundId_S;
+
+    /** \~russian Индекс звука на оружии. */
+    const uint8 Weapon_SoundId_T;
 
     /** \~russian Удаляется ли оружие после использования (например, метательное). */
-    const bool Weapon_Remove;
+    const bool Weapon_Remove_F;
+
+    /** \~russian Удаляется ли оружие после использования (например, метательное). */
+    const bool Weapon_Remove_S;
+
+    /** \~russian Удаляется ли оружие после использования (например, метательное). */
+    const bool Weapon_Remove_T;
 
     /** \~russin Есть ли возможность прицельной стрельбы. */
-    const bool Weapon_Aim;
+    const bool Weapon_Aim_F;
+
+    /** \~russin Есть ли возможность прицельной стрельбы. */
+    const bool Weapon_Aim_S;
+
+    /** \~russin Есть ли возможность прицельной стрельбы. */
+    const bool Weapon_Aim_T;
+	
+	uint8 Weapon_CurrentUse
 
    /** \~russian Позволяет установить текущее значение типа использования оружия.
      *

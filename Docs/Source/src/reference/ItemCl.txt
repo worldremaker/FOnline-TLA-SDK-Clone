@@ -122,6 +122,12 @@ public:
      * @see Item#Flags
      */
     const uint Flags;
+	
+	/** \~russian ‘лаги рации (—м. @link RadioFlags Radio flags@endlink) */
+	uint16 RadioFlags;
+	
+	/** \~russian «начение индикатора зар€да */
+	uint8 Indicator
 
     /** \~russian —трока значений лексем предмета. */
     const string Lexems;
@@ -247,6 +253,12 @@ public:
 
     /** \~russian “екущее количество патронов. */
     const uint16 Weapon_AmmoCount;
+	
+	/** \~russian јктивный режим атаки.
+	 * старшие четыре бита - прицел (см. @link HitLocations Hit Locations@endlink),
+	 * младшие четыре бита - тип использовани€ (0 Ц primary, 1 Ц secondary, 2 Ц third).
+	 */
+	uint8 Mode;
 
     //@}
 

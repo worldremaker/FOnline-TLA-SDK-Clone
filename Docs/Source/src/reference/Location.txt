@@ -57,7 +57,7 @@ public:
 
     /** Удалять ли карту, когда на ней не осталось ни одного игрока, местного NPC или предмета с флагом #ITEM_GECK.
      *
-     * Актуально при <code>geck_enabled == 1</code>.
+     * Актуально при <code>geck_visible == 1</code>.
      */
     bool AutoGarbage;
 
@@ -117,7 +117,7 @@ public:
      *
      * @return Number of maps.
      */
-    uint GetMaps(Map@[]& maps);
+    uint GetMaps(Map@[]@+ maps);
 
 
     /** \~russian Переинициализирует все карты в локации.

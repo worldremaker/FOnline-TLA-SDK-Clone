@@ -1,7 +1,7 @@
 /**
 
-\~russian @page dialogs_scripts Скрипты: Работа с диалогом
-\~english @page dialogs_scripts Scripts: Working with dialogs
+\~russian @page dialogs_scripts Работа с диалогом
+\~english @page dialogs_scripts Working with dialogs
 \~
 
 \~russian @section dialogs_scripts_info Общая информация

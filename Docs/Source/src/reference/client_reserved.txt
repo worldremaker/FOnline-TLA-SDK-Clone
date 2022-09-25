@@ -311,10 +311,12 @@ void combat_result(uint[]& data);
  * @param  chosen       »грок.
  * @param  target       ÷ель.
  * @param  weapon       »спользуемое игроком оружие.
- * @param  hitLocation  “очка атаки (см. @link HitLocations Hit Locations@endlink).
+ * @param  weaponMode   –ежим атаки оружи€.
+ * старшие четыре бита - прицел (см. @link HitLocations Hit Locations@endlink),
+ * младшие четыре бита - тип использовани€ (0 Ц primary, 1 Ц secondary, 2 Ц third).
  *
  */
-int to_hit(CritterCl& chosen, CritterCl& target, ProtoItem& weapon, int hitLocation);
+int to_hit(CritterCl& chosen, CritterCl& target, ProtoItem& weapon, uint8 weaponMode);
 
 //@}
 

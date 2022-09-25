@@ -61,5 +61,6 @@ MODE_NO_BARTER=1
 <tr><td>@ref ST_BODY_TYPE</td><td>Тип тела криттера. См. @ref BodyTypes "Body types".</td></tr>
 <tr><td>@ref ST_DAMAGE_TYPE</td><td>Тип повреждений при безоружной атаке</td></tr>
 </table>\n\n
+В прототипах можно указывать только параметры имеющиеся в файле Server/Data/ParamNames.lst\n
 Значение любого стата можно изменять динамически с помощью скриптов.
 */
