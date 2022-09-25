@@ -59,11 +59,6 @@ bool start()
 	LoadFont(FONT_COURIER_NEW_SMALL, "CourierNewSmall");
 	// SetDefaultFont(FONT_COURIER_NEW_SMALL, COLOR_TEXT);
 
-	if(!LoadDataFile("longhairdude.dat")) Message("File longhairdude.dat with Long Hair Dude animations not found. Run Updater.exe.");
-	if(!LoadDataFile("vaultboy.dat"    )) Message("File vaultboy.dat with Vault Boy animations not found. Run Updater.exe.");
-	if(!LoadDataFile("cablack.dat"     )) Message("File cablack.dat with Black Combat Armor animations not found. Run Updater.exe.");
-	AppendIfaceIni(""); // Refresh ini file from loaded data files
-
 	GUI_Init();
 	InitNameColorizing();
 	// InitTestScreen();
