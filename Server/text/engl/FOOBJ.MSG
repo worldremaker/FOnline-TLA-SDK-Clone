@@ -815,6 +815,8 @@
 {41001}{}{A set of locksmith tools. Includes all the necessary picks and tension wrenches to open conventional pin and tumbler locks. This set also includes some special tools for more difficult mechanical locking mechanisms.}
 {41100}{}{Electronic Lockpick MKII}
 {41101}{}{This is the second generation Wattz Electronics Micromanipulator FingerStuff electronic lockpick. For defeating electronic locks and security devices. This Mark II version includes updated software and interface tools.}
+{41102}{}{Сканер}
+{41103}{}{Сканер предназначен для считывания информации из блоков памяти боевых роботов Сьерры. Объем данных: @lex value@%}
 {41200}{}{Oil Can}
 {41201}{}{You see a can of Armor-Go. A space-age, polymer, lubricant for powered armor.}
 {41300}{}{Stables ID Badge}

@@ -1126,6 +1126,8 @@
 	// Vault citizen
 #define CRTYPE_VAULT_M              (69)
 #define CRTYPE_VAULT_F              (74)
+	// Robots
+#define CRTYPE_ROBOT                (66)
 	// Long Hair Dude
 #define CRTYPE_LHD_JUMPSUIT         (106) // Used with ST_BASE_CRTYPE
 #define CRTYPE_LHD_LEATHER_ARMOR    (107)
