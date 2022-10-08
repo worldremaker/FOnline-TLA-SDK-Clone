@@ -173,7 +173,7 @@
 #define NPC_PID_CaveRobber_female_3         (504)
 #define NPC_PID_VCGuardsman                 (506) // Гвардеец ГУ, черная ББ
 #define NPC_PID_VBBat                       (507) // Летучая мышь из Ван-Буррена
-
+#define NPC_PID_Eli                         (516) // Странник Илай
 /*const uint16[] Pids_AllNpc={
 	NPC_PID_SmallSilverGecko,NPC_PID_ToughSilverGecko,NPC_PID_GoldenGecko,NPC_PID_ToughGoldenGecko,NPC_PID_FireGecko,NPC_PID_ToughFireGecko,
 	NPC_PID_SmallRadscorpion,NPC_PID_LargeRadscorpion,

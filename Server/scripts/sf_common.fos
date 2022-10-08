@@ -87,7 +87,7 @@ void _citizenDead(Critter& npc, Critter@ killer)
 
 import void _MercInit(Critter & merc, bool firstTime) from "merc";
 import void e_MercDead(Critter& merc, Critter@ killer) from "merc";
-import bool Merc2Player(Critter & player, Critter & merc, bool alwaysRun, bool cancelOnAttack, uint loseDist, uint16 mercMasterDist, uint16 type, bool defendMaster, bool assistMaster) from "merc";
+import bool Merc2Player(Critter & player, Critter & merc, bool alwaysRun, bool cancelOnAttack, uint loseDist, uint16 mercMasterDist, uint16 type, bool defendMaster, bool assistMaster, uint fireTime) from "merc";
 import bool IsMerc(Critter& merc) from "merc";
 import void CancelMerc(Critter & merc) from "merc";
 
@@ -139,7 +139,7 @@ void r_SFMerc2Player(Critter & player, Critter @ npc)
 
 	CreateTimeEvent(__FullSecond+CONTRACT_TIME, "e_CancelContract", npc.Id, true); // Окончание контракта через полгода
 
-	Merc2Player(player,npc, true, false, 0, MMDistMedium, MERC_GUARD_DEFAULT, true, false);
+	Merc2Player(player,npc, true, false, 0, MMDistMedium, MERC_GUARD_DEFAULT, true, false, CONTRACT_TIME);
 	npc.SetScript("sf_common@_SFMercInit");
 
 }
@@ -149,9 +149,6 @@ uint e_CancelContract(uint[]@ values)
 	Critter @ merc = GetCritter(values[0]);
 	if(valid(merc))
 	{
-		CancelMerc(merc);
-		merc.StatBase[ST_REPLICATION_TIME]=0;
-		SFMercToHome(merc);
 		CancelContract(merc);
 	}
 	return 0;

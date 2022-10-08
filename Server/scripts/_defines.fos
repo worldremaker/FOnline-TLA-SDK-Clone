@@ -777,7 +777,7 @@
 
 	/// Mercenary settings
 #define MERC_BEGIN                 (800)
-#define MERC_END                   (805)
+#define MERC_END                   (808)
 #define MERC_COUNT                 (MERC_END-MERC_BEGIN+1)
 #define MERC_MASTER_ID              (800) // Id хозяина мерка
 #define MERC_ALWAYS_RUN             (801) // Признак, мерк перемещаетя бегом при следовании за хозяином
@@ -787,6 +787,7 @@
 #define MERC_TYPE                   (805) // Тип мерка. См. merc_h
 #define MERC_DEFEND_MASTER          (806) // Признак: мерк защищает хозяина, если тот атакован
 #define MERC_ASSIST_MASTER          (807) // Признак: если хозяин атакует цель, мерк присоединяется к атаке
+#define MERC_CANCEL_TIME            (808) // Время завершения службы
 
 //
 // 830..999

@@ -347,7 +347,7 @@ bool _BlackBoardInit(Critter& cr, Scenery& sc, int skill, Item@ item)
 }
 
 /****************************************Ѕольной брамин на –анчо ¬ейстина ************************************************/
-#define	NEX_ILL_EVENT				(60*24*5) // следующа€ "болезнь" брамина через 5 игровых суток
+#define	NEX_ILL_EVENT				(60*60*24*5) // следующа€ "болезнь" брамина через 5 игровых суток
 #define NPC_ROLE_ILL_BRAHMIN		(71)// роль "больной брамин"
 #define NPC_ROLE_HEALTHY_BRAHMIN	(72)// роль "здоровый брамин"
 #define STR_DISP_QUESTION			(3470)// текст диалога при вопросе "искать/не искать"
@@ -609,8 +609,8 @@ void _HalInit(Critter & hal, bool firstTime)
 #define VAR_LAST_BOOK_ACCESS                               (LVAR_ncr_hub_book_access_7)//4283
 #define BOOKS_COUNT                                        (VAR_LAST_BOOK_ACCESS-VAR_FIRST_BOOK_ACCESS+1)
 #define RESP_MODE_ENTIRES                                  (ENTIRE_NUM_SPAWN)
-#define BOOK_RESP_TIME_MIN                                 (60*24*6) // раз в 6 дней
-#define BOOK_RESP_TIME_MAX                                 (60*24*9) // раз в 9 дней
+#define BOOK_RESP_TIME_MIN                                 (60*60*24*6) // раз в 6 дней
+#define BOOK_RESP_TIME_MAX                                 (60*60*24*9) // раз в 9 дней
 #define BOOK_RESP_TIME                                     (Random(BOOK_RESP_TIME_MIN, BOOK_RESP_TIME_MAX))
 #define BOOK_INFO #(bookNum)                               (2*(1+bookNum))
 #define BOOK_COST #(bookInfo)                              ((bookInfo/2)-4)             // условна€ стоимость книги. ѕерва€ = -3; втора€ -2 итд

@@ -89,5 +89,6 @@
 #define BAG_Slayer2                                (281) // SuperSledge
 #define BAG_Slayer3                                (282) // Ripper << ai_pattern special bags.
 
+#define BAG_Eli                                    (283) // Eli special bag.
 
 #endif // __BAGS__

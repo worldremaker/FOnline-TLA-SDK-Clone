@@ -1097,7 +1097,11 @@ void critter_dead(Critter& cr, Critter@ killer)
 		if(valid(map))
 		{
 			// Disable drop of hidden items
-			for(uint i=0,j=items.length();i<j;i++) if(FLAG(items[i].Flags,ITEM_HIDDEN)) @items[i]=null;
+			for(uint i=0,j=items.length();i<j;i++) 
+			{
+				if(FLAG(items[i].Flags,ITEM_GAG)) @items[i]=null;
+				else if(FLAG(items[i].Flags,ITEM_HIDDEN)) @items[i]=null;
+			}
 			MoveItems(items,map,cr.HexX,cr.HexY);
 		}
 		else DeleteItems(items);

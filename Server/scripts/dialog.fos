@@ -616,7 +616,8 @@ void r_InfoMessage(Critter& player, Critter@ npc, int strNum)
 
 void r_TimeoutSet(Critter& player, Critter@ npc, int gameHours)
 {
-	TimeoutSet(player,gameHours);
+	if(valid(npc))
+		TimeoutSet(npc,gameHours);
 }
 
 void r_DoorOpen(Critter& player, Critter@ npc, int entireNum)

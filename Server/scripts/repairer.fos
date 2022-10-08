@@ -108,7 +108,11 @@ void GetItemFromRepair(Critter@ player, Critter@ npc)
 	GameVar@ pidRepair = GetUnicumVar(VAR_REPAIR_ITEM, player.Id, npc.Id);
 	if(!valid(pidRepair) || (pidRepair == 0))
 		return;
-	player.AddItem(pidRepair.GetValue(), 1);
+	Item@ item = player.AddItem(pidRepair.GetValue(), 1);
+	if(valid(item) && item.GetType() == ITEM_WEAPON)
+	{
+		item.WeaponAmmoCount = 0;
+	}
 	pidRepair = 0;
 }
 

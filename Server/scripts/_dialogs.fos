@@ -46,6 +46,7 @@
 #define DIALOG_all_roulette                            (95)
 #define DIALOG_all_energy_barier_terminal              (96)
 #define DIALOG_all_energy_barier_guard                 (97)
+#define DIALOG_eli                                     (99)
 #define DIALOG_den_leanna                              (100)
 #define DIALOG_den_kliff                               (101)
 #define DIALOG_den_monk                                (102)

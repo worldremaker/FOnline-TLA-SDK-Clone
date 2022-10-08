@@ -3,6 +3,7 @@
 #include "_macros.fos"
 #include "merc_h.fos"
 #include "merc_dialog.fos"
+#include "_teams.fos"
 
 uint8 GetDir(Critter & cr0, Critter & cr1){return GetDirection(cr0.HexX,cr0.HexY,cr1.HexX,cr1.HexY);}
 import bool GetFreeHex(Map& map, uint radius, uint16& hx, uint16& hy) from "caravan";
@@ -20,7 +21,7 @@ import bool AddAttackPlane(Critter& npc, uint priority, Critter& target) from "n
 #define MERC_TYPE_COUNT                (4) // число типов мерков. При добавлении нового типа, увеличивайте число вручную
 #define MERC_CELL #(type, col) (_mercInfo[((type>MERC_TYPE_COUNT?MERC_FOLLOWER_DEFAULT:type)-1)*MERC_PARAM_COUNT + col])// ячейка таблицы (строка+1, колонка)
 #define RELEASE_TIME                   (__FullSecond+60*60) // 60 минут = время в игровых минутах до уничтожения/или переноса на домашнюю позицию мерка после вызова CancelMerc.
-
+#define FIRE_TIME                      (60*60*24*30*3) // Время службы по умолчанию - 3 месяца
 /*
 type                         - тип мерка
 loseDist                     - дистанция, на которой мерк отстанет от игрока, 0= не будет отставать
@@ -29,7 +30,7 @@ cancelOnMasterDead           - сброс мерка при смерти хозяина
 cancelOnMasterAttack         - сброс мерка при атаки мерка хозяином
 defendMaster                 - атакует тех, кто напал на хозяина
 assistMaster                 - атакует тех, на кого напал хозяин
-
+cancelTime                   - время завершения службы
 */
 const uint[] _mercInfo = {
 //  type,                   loseDist,  alwaysRun,  cancelOnMasterDead,  cancelOnMasterAttack,  defendMaster,  assistMaster
@@ -126,6 +127,12 @@ void e_MercIdle(Critter& merc)
 
 	if(merc.MasterId==0) return;
 
+	if(uint(merc.Merc[MERC_CANCEL_TIME]) < __FullSecond )
+	{
+		CancelMerc(merc);
+		return;
+	}
+	
 	Critter @ master = GetCritter(merc.MasterId);
 	if(!valid(master)) return;
 
@@ -181,7 +188,7 @@ void e_MercIdle(Critter& merc)
 // type - тип мерка
 bool Merc2Player(Critter & player, Critter & merc, uint16 type) // Predefined Mercs
 {
-	return Merc2Player(player, merc, (_MercAlwaysRun(type)>0), (_MercCancelOnMasterAttack(type)>0), _MercLoseDist(type), MMDistShort, type, (_MercDefendMaster(type)>0), (_MercAssistMaster(type)>0));
+	return Merc2Player(player, merc, (_MercAlwaysRun(type)>0), (_MercCancelOnMasterAttack(type)>0), _MercLoseDist(type), MMDistShort, type, (_MercDefendMaster(type)>0), (_MercAssistMaster(type)>0), 0);
 
 }
 
@@ -192,7 +199,10 @@ bool Merc2Player(Critter & player, Critter & merc) // Default follower
 {
 	return Merc2Player(player, merc, MERC_FOLLOWER_DEFAULT);
 }
-
+bool Merc2Player(Critter & player, Critter & merc, bool alwaysRun, bool cancelOnAttack, uint loseDist, uint16 mercMasterDist, uint16 type, bool defendMaster, bool assistMaster) // Custom Mercs
+{
+	return Merc2Player(player, merc, alwaysRun, cancelOnAttack, loseDist, mercMasterDist, type, defendMaster, assistMaster, 0);
+}
 // Добавление мерка с подробной настройкой параметров
 // player - хозяин мерка
 // merc - мерк
@@ -205,7 +215,8 @@ bool Merc2Player(Critter & player, Critter & merc) // Default follower
 // type - тип мерка
 // defendMaster - признак, мерк будет защищать хозяина, если хозяин был атакован кем-то
 // assistMaster - признак, если хозяин кого-то атакует, мерк присоединится к атаке
-bool Merc2Player(Critter & player, Critter & merc, bool alwaysRun, bool cancelOnAttack, uint loseDist, uint16 mercMasterDist, uint16 type, bool defendMaster, bool assistMaster) // Custom Mercs
+// fireTime - время увольнения
+bool Merc2Player(Critter & player, Critter & merc, bool alwaysRun, bool cancelOnAttack, uint loseDist, uint16 mercMasterDist, uint16 type, bool defendMaster, bool assistMaster, uint fireTime) // Custom Mercs
 {
 	if(merc.Id==player.Id)
 	{
@@ -221,7 +232,8 @@ bool Merc2Player(Critter & player, Critter & merc, bool alwaysRun, bool cancelOn
 	merc.MercBase[MERC_MASTER_DIST] = mercMasterDist;
 	merc.MercBase[MERC_DEFEND_MASTER] = defendMaster?1:0;
 	merc.MercBase[MERC_ASSIST_MASTER] = assistMaster?1:0;
-
+	merc.MercBase[MERC_CANCEL_TIME] = __FullSecond + (fireTime == 0?FIRE_TIME:fireTime);
+	merc.StatBase[ST_TEAM_ID] = TEAM_Default;
 	merc.SetScript("merc@_MercInit");
 
 	return true;
@@ -239,7 +251,7 @@ bool Merc2Player(Critter & player, Critter & merc, bool alwaysRun, bool cancelOn
 // mercMasterDist - дистанция, на которую будет стремиться приблизиться мерк при перемещении хозяина по карте
 bool Merc2Player(Critter & player, Critter & merc, bool alwaysRun, bool cancelOnAttack, uint loseDist, uint mercMasterDist) // Custom Mercs
 {
-	return Merc2Player(player, merc, alwaysRun, cancelOnAttack, loseDist, mercMasterDist, MERC_CUSTOM, false, false);
+	return Merc2Player(player, merc, alwaysRun, cancelOnAttack, loseDist, mercMasterDist, MERC_CUSTOM, false, false,0);
 }
 
 //* **************************** Отмена режима мерка у нпц ***************************** *//

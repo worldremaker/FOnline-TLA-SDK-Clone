@@ -130,7 +130,19 @@ string@ GetTimeString(const string& format, int year, int month, int day, int da
 }
 #endif
 
-
+// Возвращает представление времени в виде строки в формате dd.mm.yy hh:mm. rifleman17
+string DateTimeToString(uint gameTime)
+{
+	uint16 year = 0;
+	uint16 month = 0;
+	uint16 dayOfWeek = 0;
+	int16 day = 0;
+	uint16 hour = 0;
+	uint16 minute = 0;
+	uint16 second = 0;
+	GetGameTime (gameTime, year, month, day, dayOfWeek, hour, minute, second);
+	return "" + (day > 9 ? ("" + day) : ("0" + day)) + "."+(month > 9 ? ("" + month) : ("0" + month)) + "." + year + " " + (hour > 9 ? (""+ hour) : ("0" + hour)) + ":" + (minute > 9 ? ("" + minute) : ("0" + minute));
+}
 
 
 
