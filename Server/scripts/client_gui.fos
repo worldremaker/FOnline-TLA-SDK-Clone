@@ -130,7 +130,7 @@ class GUIElement : IGUIElementOpt
 		string@ str=GetIfaceIniStr(iniKey);
 		if(@str==null || str=="") return this;
 
-		string@[]@ valuesStr=split(str," ");
+		string@[]@ valuesStr=splitEx(str," ");
 		if(valuesStr.length()!=4) return this;
 
 		int[] values(4);

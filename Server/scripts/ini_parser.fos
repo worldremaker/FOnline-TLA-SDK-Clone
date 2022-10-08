@@ -29,7 +29,7 @@ int[]@ GetIniValues2(string& iniKey, int[]@ defaultValues) // Export
 	string@ str = GetIfaceIniStr(iniKey);
 	if(@str == null || str == "") return result;
 
-	string@[]@ valuesStr = split(str, " ");
+	string@[]@ valuesStr = splitEx(str, " ");
 	if(valuesStr.length() < 2) return result;
 
 	int[] values(2);
@@ -55,7 +55,7 @@ int[]@ GetIniValues4(string& iniKey, int[]@ defaultValues) // Export
 	string@ str = GetIfaceIniStr(iniKey);
 	if(@str == null || str == "") return result;
 
-	string@[]@ valuesStr = split(str, " ");
+	string@[]@ valuesStr = splitEx(str, " ");
 	if(valuesStr.length() < 4) return result;
 
 	int[] values(4);
