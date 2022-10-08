@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 21.01.2011
-// Server version 401, MSVS2008
+// Last update 26.01.2011
+// Server version 402, MSVS2008
 // Default calling convention - cdecl
 //
 
@@ -1490,24 +1490,47 @@ struct ProtoMap
 	struct
 	{
 		uint   Version;
-		bool   Packed;
-		bool   NoLogOut;
-		uint16 HeaderSize;
-		int    PlayersLimit;
-		uint   UnpackedDataLen;
-		uint16 MaxHexX;
-		uint16 MaxHexY;
+		uint16 MaxHexX, MaxHexY;
+		int    WorkHexX, WorkHexY;
+		int8   ScriptModule[MAX_SCRIPT_NAME + 1];
+		int8   ScriptFunc[MAX_SCRIPT_NAME + 1];
 		int    Time;
-		int    CenterX;
-		int    CenterY;
-		int8   ScriptModule[MAX_SCRIPT_NAME+1];
-		int8   ScriptFunc[MAX_SCRIPT_NAME+1];
+		bool   NoLogOut;
 		int    DayTime[4];
 		uint8  DayColor[12];
+
+		// Deprecated
+		uint16 HeaderSize;
+		bool   Packed;
+		uint   UnpackedDataLen;
 	} Header;
 
 	SceneryVec MObjects;
-	uint*      Tiles;
+
+	struct Tile
+	{
+		uint   NameHash;
+		uint16 HexX, HexY;
+		int16  OffsX, OffsY;
+		bool   IsRoof;
+#ifdef __MAPPER
+		bool   IsSelected;
+#endif
+	};
+	typedef vector<Tile> TileVec;
+	TileVec Tiles;
+
+#ifdef __MAPPER
+	typedef vector<TileVec> TileVecVec;
+	TileVecVec TilesField;
+	TileVecVec RoofsField;
+
+	TileVec& GetTiles(WORD hx, WORD hy, bool is_roof)
+	{
+		uint index = hy * Header.MaxHexX + hx;
+		return is_roof ? RoofsField[index] : TilesField[index];
+	}
+#endif
 
 	SceneryToClientVec WallsToSend;
 	SceneryToClientVec SceneriesToSend;
@@ -1526,12 +1549,6 @@ struct ProtoMap
 	int    PathType;
 	string Name;
 	uint16 Pid;
-
-	uint GetTilesSize()                              {return (Header.MaxHexX / 2) * (Header.MaxHexY / 2) * sizeof(uint) * 2;}
-	uint GetTile(uint16 tx, uint16 ty)               {return Tiles[ty * (Header.MaxHexX / 2) * 2 + tx * 2];}
-	uint GetRoof(uint16 tx, uint16 ty)               {return Tiles[ty * (Header.MaxHexX / 2) * 2 + tx * 2 + 1];}
-	void SetTile(uint16 tx, uint16 ty, uint picHash) {Tiles[ty * (Header.MaxHexX / 2) * 2 + tx * 2] = picHash;}
-	void SetRoof(uint16 tx, uint16 ty, uint picHash) {Tiles[ty * (Header.MaxHexX / 2) * 2 + tx * 2 + 1] = picHash;}
 };
 
 struct Map
@@ -1642,12 +1659,20 @@ struct Location
 
 struct Field
 {
+	struct Tile
+	{
+		void* Anim;
+		int16 OffsX;
+		int16 OffsY;
+	};
+	typedef vector<Tile> TileVec;
+
 	CritterCl* Crit;
 	CrClVec    DeadCrits;
 	int        ScrX;
 	int        ScrY;
-	void*      Tile;
-	void*      Roof;
+	TileVec    Tiles;
+	TileVec    Roofs;
 	ItemVec    Items;
 	int16      RoofNum;
 	bool       ScrollBlock;
@@ -1662,13 +1687,6 @@ struct Field
 	bool       IsNoLight;
 	uint8      LightValues[3];
 	bool       IsMultihex;
-
-#ifdef __MAPPER
-	void*      SelTile;
-	void*      SelRoof;
-	uint       TerrainId;
-	uint       SelTerrain;
-#endif
 };
 
 struct SpriteInfo
@@ -1815,11 +1833,10 @@ inline void static_asserts()
 	STATIC_ASSERT(sizeof(GameOptions) == 1144);
 	STATIC_ASSERT(sizeof(ScriptArray) == 28  );
 	STATIC_ASSERT(sizeof(SpriteInfo)  == 36  );
+	STATIC_ASSERT(sizeof(Field)       == 92  );
 #ifdef __MAPPER
-	STATIC_ASSERT(sizeof(Field)       == 84  );
 	STATIC_ASSERT(sizeof(Sprite)      == 116 );
 #else
-	STATIC_ASSERT(sizeof(Field)       == 68  );
 	STATIC_ASSERT(sizeof(Sprite)      == 108 );
 #endif	
 
@@ -1835,7 +1852,7 @@ inline void static_asserts()
 	STATIC_ASSERT(offsetof(Scenery, RunTime.RefCounter)     == 244 );
 	STATIC_ASSERT(offsetof(MapEntire, Dir)                  == 8   );
 	STATIC_ASSERT(offsetof(SceneryToClient, Reserved1)      == 30  );
-	STATIC_ASSERT(offsetof(ProtoMap, HexFlags)              == 320 );
+	STATIC_ASSERT(offsetof(ProtoMap, HexFlags)              == 332 );
 	STATIC_ASSERT(offsetof(Map, RefCounter)                 == 794 );
 	STATIC_ASSERT(offsetof(ProtoLocation, GeckVisible)      == 92  );
 	STATIC_ASSERT(offsetof(Location, RefCounter)            == 286 );

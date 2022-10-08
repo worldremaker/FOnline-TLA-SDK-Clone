@@ -30,7 +30,7 @@
 // void    SetFastPrototypes(uint16[]@+ pids)
 // MapperMap@+ LoadMap(string& fileName, int pathType)
 // void    UnloadMap(MapperMap@+ map)
-// bool    SaveMap(MapperMap@+ map, string& fileName, int pathType, bool text, bool pack)
+// bool    SaveMap(MapperMap@+ map, string& fileName, int pathType)
 // bool    ShowMap(MapperMap@+ map)
 // int     GetLoadedMaps(MapperMap@[]@+ maps) const
 // void    DeleteObject(MapperObject@+ obj)
@@ -40,6 +40,7 @@
 // MapperObject@+ GetSelectedObject() const
 // uint    GetSelectedObjects(MapperObject@[]@+ objects) const
 // void    GetMousePosition(int& x, int& y) const
+// uint    GetMapFileNames(string@+ dir, string@[]@+ names)
 //
 // ProtoItem@+ GetProtoItem(uint16 protoId) const
 // bool    LoadDat(string& datName)
@@ -150,6 +151,15 @@
 // void    MoveToDir(uint8 dir)
 
 /// MapperMap
+// const uint16 Width
+// const uint16 Height
+// const int    WorkHexX
+// const int    WorkHexY
+// int    Time
+// bool   NoLogOut
+// string ScriptModule
+// string ScriptFunc
+
 // MapperObject@+ AddObject(uint16 hexX, uint16 hexY, int mapObjType, uint16 pid)
 // MapperObject@+ GetObject(uint16 hexX, uint16 hexY, int mapObjType, uint16 pid, uint skip) const
 // uint    GetObjects(uint16 hexX, uint16 hexY, uint radius, int mapObjType, uint16 pid, MapperObject@[]@+ objects) const
@@ -158,6 +168,12 @@
 // void    SetTile(uint16 tileX, uint16 tileY, bool roof, uint picHash)
 // string@ GetTileName(uint16 tileX, uint16 tileY, bool roof) const
 // void    SetTileName(uint16 tileX, uint16 tileY, bool roof, string@ picName)
+// uint    GetTilesCount(uint16 hexX, uint16 hexY, bool roof) const
+// void    DeleteTile(uint16 hexX, uint16 hexY, bool roof, uint index)
+// uint    GetTile(uint16 hexX, uint16 hexY, bool roof, uint index) const
+// void    AddTile(uint16 hexX, uint16 hexY, int offsX, int offsY, bool roof, uint picHash)
+// string@ GetTileName(uint16 hexX, uint16 hexY, bool roof, uint index) const
+// void    AddTileName(uint16 hexX, uint16 hexY, int offsX, int offsY, bool roof, string@+ picName)
 // uint    GetDayTime(uint dayPart) const
 // void    SetDayTime(uint dayPart, uint time)
 // void    GetDayColor(uint dayPart, uint8& r, uint8& g, uint8& b) const
@@ -266,216 +282,128 @@ void input_lost()
 {
 }
 
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Some useful functions.
+// #ConvertMaps
+// #ClearTiles
+// #MapTime         value
+// #MapNoLogOut     value
+// #MapScriptModule moduleName
+// #MapScriptFunc   funcName
 
-// Set terrain to grid
-// #SetTerrain terrain_name [x] [y]
-// To disable type in terrain_name "-"
-string SetTerrain(string str)
-{
-	string@[]@ arr=split(str," ");
-	if(arr.length()==0) return "Type terrain name.";
-
-	MapperMap@[] maps;
-	int cur=::GetLoadedMaps(maps);
-	if(cur==-1) return "Map not loaded.";
-
-	int x=0,y=0;
-	if(arr.length()>1) StrToInt(arr[1],x);
-	if(arr.length()>2) StrToInt(arr[2],y);
-
-	if(arr[0]=="-") maps[cur].SetTerrainName(x/2,y/2,null); // Disable
-	else maps[cur].SetTerrainName(x/2,y/2,"terrain\\"+arr[0]+".ter"); // Enable
-	return "Done.";
-}
-
-// Graphic statistics
-string ShowGraphic(string str)
+MapperMap@ GetActiveMap()
 {
 	MapperMap@[] maps;
-	int cur=::GetLoadedMaps(maps);
-	if(cur==-1) return "Map not loaded.";
-	return ShowGraphic(maps[cur],str)+".";
+	int cur = GetLoadedMaps(maps);
+	if(cur == -1) return null;
+	return maps[cur];
 }
 
-string ShowAllGraphic(string str)
+// Maps convertation to text format
+string ConvertMaps(string str)
 {
 	string@[] mapNames;
-	::GetMapFileNames(null,mapNames);
-	uint count=0;
+	GetMapFileNames(null, mapNames);
 
-	file f;
-	f.open(".\\GraphicAll.txt","w");
-
-	for(uint i=0,j=mapNames.length();i<j;i++)
+	uint success = 0;
+	uint fail = 0;
+	for(uint i = 0; i < mapNames.length(); i++)
 	{
-		MapperMap@ map=::LoadMap(mapNames[i],PT_SERVER_MAPS);
+		MapperMap@ map = LoadMap(mapNames[i], PT_SERVER_MAPS);
 		if(not (map is null))
 		{
-			string@ stat=ShowGraphic(map,mapNames[i]);
-			::UnloadMap(map);
-			count++;
+			if(SaveMap(map, mapNames[i], PT_SERVER_MAPS))
+			{
+				success++;
+			}
+			else
+			{
+				Message("Fail to save " + mapNames[i]);
+				fail++;
+			}
 
-			f.writeString(count+") Map "+mapNames[i]+". "+stat+".\n");
+			UnloadMap(map);
+		}
+		else
+		{
+			Message("Fail to load " + mapNames[i]);
+			fail++;
 		}
 	}
 
-	f.close();
-	return "Done, maps "+count+".";
+	return "Done, maps converted " + (success + fail) + ", success " + success + ", fail " + fail + ".";
 }
 
-string ShowGraphic(MapperMap& map, string& name)
+// Keep only one tile per hex
+string ClearTiles(string str)
 {
-	string@[] wallNames;
-	string@[] sceneryNames;
-	string@[] itemNames;
-	string@[] tileNames;
+	MapperMap@ map = GetActiveMap();
+	if(map is null) return "Map not loaded.";
 
-	// Walls
+	uint deleted = 0;
+	for(uint hx = 0; hx < map.Width; hx++)
 	{
-		MapperObject@[] objects;
-		map.GetObjects(0,0,uint(-1),MAP_OBJECT_SCENERY,0,objects);
-
-		for(uint i=0,j=objects.length();i<j;i++)
+		for(uint hy = 0; hy < map.Height; hy++)
 		{
-			MapperObject@ obj=objects[i];
-
-			ProtoItem@ proto=::GetProtoItem(obj.ProtoId);
-			if(proto.GetType()!=12) continue; // ITEM_WALL
-
-			bool exists=false;
-			for(uint k=0,l=wallNames.length();k<l;k++)
-			{
-				if(wallNames[k]==obj.PicMap)
-				{
-					exists=true;
-					break;
-				}
-			}
-
-			if(not exists) wallNames.insertLast(obj.PicMap);
+			for(;map.GetTilesCount(hx, hy, false) > 1; deleted++)
+				map.DeleteTile(hx, hy, false, 0);
+			for(;map.GetTilesCount(hx, hy, true)  > 1; deleted++)
+				map.DeleteTile(hx, hy, true , 0);
 		}
 	}
 
-	// Scenery
-	{
-		MapperObject@[] objects;
-		map.GetObjects(0,0,uint(-1),MAP_OBJECT_SCENERY,0,objects);
-
-		for(uint i=0,j=objects.length();i<j;i++)
-		{
-			MapperObject@ obj=objects[i];
-
-			ProtoItem@ proto=::GetProtoItem(obj.ProtoId);
-			if(proto.GetType()==12) continue; // ITEM_WALL
-
-			bool exists=false;
-			for(uint k=0,l=sceneryNames.length();k<l;k++)
-			{
-				if(sceneryNames[k]==obj.PicMap)
-				{
-					exists=true;
-					break;
-				}
-			}
-
-			if(not exists) sceneryNames.insertLast(obj.PicMap);
-		}
-	}
-
-	// Item
-	{
-		MapperObject@[] objects;
-		map.GetObjects(0,0,uint(-1),MAP_OBJECT_ITEM,0,objects);
-
-		for(uint i=0,j=objects.length();i<j;i++)
-		{
-			MapperObject@ obj=objects[i];
-
-			bool exists=false;
-			for(uint k=0,l=itemNames.length();k<l;k++)
-			{
-				if(itemNames[k]==obj.PicMap)
-				{
-					exists=true;
-					break;
-				}
-			}
-
-			if(not exists) itemNames.insertLast(obj.PicMap);
-		}
-	}
-
-	// Tiles
-	{
-		for(uint x=0;x<map.Width/2;x++)
-		{
-			for(uint y=0;y<map.Height/2;y++)
-			{
-				string@ name=map.GetTileName(x,y,false);
-				bool exists=false;
-				if(name!="")
-				{
-					for(uint k=0,l=tileNames.length();k<l;k++)
-					{
-						if(tileNames[k]==name)
-						{
-							exists=true;
-							break;
-						}
-					}
-
-					if(not exists) tileNames.insertLast(name);
-				}
-
-				@name=map.GetTileName(x,y,true);
-				exists=false;
-				if(name!="")
-				{
-					for(uint k=0,l=tileNames.length();k<l;k++)
-					{
-						if(tileNames[k]==name)
-						{
-							exists=true;
-							break;
-						}
-					}
-
-					if(not exists) tileNames.insertLast(name);
-				}
-			}
-		}
-	}
-
-	// Statistics
-	string stat="All "+(wallNames.length()+sceneryNames.length()+itemNames.length()+tileNames.length())+", walls "+
-		wallNames.length()+", scenery "+sceneryNames.length()+", items "+itemNames.length()+", tiles "+tileNames.length();
-
-	// Save
-	if(name!="")
-	{
-		file f;
-		f.open(".\\Graphic_"+name+".txt","w");
-		f.writeString("Map "+name+"\n");
-		f.writeString(stat+"\n");
-		f.writeString("\nWALLS\n");
-		for(uint i=0,j=wallNames.length();i<j;i++)
-			f.writeString(wallNames[i]+"\n");
-		f.writeString("\nSCENERY\n");
-		for(uint i=0,j=sceneryNames.length();i<j;i++)
-			f.writeString(sceneryNames[i]+"\n");
-		f.writeString("\nITEMS\n");
-		for(uint i=0,j=itemNames.length();i<j;i++)
-			f.writeString(itemNames[i]+"\n");
-		f.writeString("\nTILES\n");
-		for(uint i=0,j=tileNames.length();i<j;i++)
-			f.writeString(tileNames[i]+"\n");
-		f.close();
-	}
-
-	return stat;
+	return "Done. Deleted " + deleted + " tiles.";
 }
+
+// Map parameters
+string MapTime(string str)
+{
+	MapperMap@ map = GetActiveMap();
+	if(map is null) return "Map not loaded.";
+	int value = 0;
+	if(not StrToInt(str, value)) return "Wrong value.";
+
+	map.Time = value;
+	return "Done. Time setted to " + map.Time + ".";
+}
+
+string MapNoLogOut(string str)
+{
+	MapperMap@ map = GetActiveMap();
+	if(map is null) return "Map not loaded.";
+	int value = 0;
+	if(not StrToInt(str, value)) return "Wrong value.";
+
+	map.NoLogOut = value != 0 ? true : false;
+	return "Done. NoLogOut setted to " + map.NoLogOut + ".";
+}
+
+string MapScriptModule(string str)
+{
+	MapperMap@ map = GetActiveMap();
+	if(map is null) return "Map not loaded.";
+
+	map.ScriptModule = str;
+	return "Done. ScriptModule setted to " + map.ScriptModule + ".";
+}
+
+string MapScriptFunc(string str)
+{
+	MapperMap@ map = GetActiveMap();
+	if(map is null) return "Map not loaded.";
+
+	map.ScriptFunc = str;
+	return "Done. ScriptFunc setted to " + map.ScriptFunc + ".";
+}
+
+
+
+
+
+
+
 
 
 
