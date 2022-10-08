@@ -1,4 +1,4 @@
-// Author: Тринитротолуол, heX
+// Author: Тринитротолуол, heX, rifleman17
 
 // Для удобства последующей заскриптовки карты, квесты "Пасти браминов", "Сгубить браминов"
 // и "Отнести мясо псам" вынесены в отдельные файлы.
@@ -21,5 +21,16 @@ void _KlamathTrapInit(Map& map, bool firstTime)
 	InitDantonKilling(map, firstTime);
 }
 
+// Использование вакцины в квесте на прививку браминов
+void _BrahmaInit(Critter& cr, bool firstTime)
+{
+	cr.SetEvent(CRITTER_EVENT_SMTH_USE_ITEM, "_BrahmaSmthUseItem");
+}
+
+void _BrahmaSmthUseItem(Critter& cr, Critter& fromCr, Item& item, Critter@ onCritter, Item@ onItem, Scenery@ onScenery)
+{
+	if(valid(onCritter) && onCritter.Id == cr.Id && fromCr.IsPlayer() && item.GetProtoId() == PID_VACCINE)
+		RunDialog(fromCr, cr, true);
+}
 
 

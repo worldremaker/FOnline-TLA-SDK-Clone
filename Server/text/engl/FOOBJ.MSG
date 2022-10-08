@@ -957,6 +957,8 @@
 {47801}{}{The label reads: "Mission Statement."}
 {47900}{}{NavCom Parts}
 {47901}{}{These are computer parts that look like they slot into the interior of a machine. The fact that they say "Poseidon Oil" and "Navigational Computer" on them lead you to believe they fit into a Poseidon Oil Navigational Computer.}
+{47902}{}{Модуль управления Стражем}
+{47903}{}{Миниатюрный чип предназначен для получения контроля над боевыми роботами типов Страж и Страж-2. Установите чип в коммуникационный разъем, и страж будет вам подчиняться. Срок службы ограничен.}
 {48000}{}{Bonus +1 Agility}
 {48100}{}{Bonus +1 Intelligence}
 {48200}{}{Bonus +1 Strength}

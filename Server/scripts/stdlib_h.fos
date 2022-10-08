@@ -98,4 +98,5 @@ import bool TransitToMap(Critter& cr, int locPid, int mapIndex, int entranceNum)
 // Импорты с других модулей.
 import void DropDrugEffects(Critter& cr) from "drugs";
 import void DropRadiation(Critter& cr) from "radiation";
+import bool AddAttackPlane(Critter& npc, uint priority, uint critId) from "npc_planes";
 

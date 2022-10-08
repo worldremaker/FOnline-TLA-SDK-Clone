@@ -658,4 +658,22 @@ void r_Damage(Critter& player, Critter@ npc,int dmg, int type, int dir)
 	Damage(player, dmg, type, dir);
 }
 
+// Атака игрока всеми НПЦ на карте, у которых команда совпадает с командой говорящего НПЦ
+void r_TeamAttack(Critter& player, Critter@ npc)
+{
+	if(!valid(npc))
+		return;
+	Map@ map = npc.GetMap();
+	if(!valid(map))
+		return;
+	Critter@[] team;
+	if(map.GetCritters(0, FIND_LIFE|FIND_ONLY_NPC, team)>0)
+	{
+		for(uint i = 0, l = team.length(); i < l; i++)
+		{
+			if(team[i].Stat[ST_TEAM_ID] == npc.Stat[ST_TEAM_ID])
+				AddAttackPlane(team[i], 0, player.Id);
+		}
+	}
+}
 
