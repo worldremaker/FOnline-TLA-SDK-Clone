@@ -2,8 +2,8 @@
 Version              2
 MaxHexX              160
 MaxHexY              160
-WorkHexX             92
-WorkHexY             55
+WorkHexX             93
+WorkHexY             49
 ScriptModule         -
 ScriptFunc           -
 NoLogOut             0
@@ -14923,17 +14923,17 @@ Critter_ParamValue5  0
 
 MapObjType           0
 ProtoId              163
-MapX                 44
-MapY                 83
-Dir                  1
+MapX                 91
+MapY                 59
+Dir                  3
 Critter_Cond         1
 Critter_CondExt      1
 Critter_ParamIndex0  ST_DIALOG_ID
-Critter_ParamValue0  2302
+Critter_ParamValue0  2310
 Critter_ParamIndex1  ST_AI_ID
 Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
-Critter_ParamValue2  0
+Critter_ParamValue2  16
 Critter_ParamIndex3  ST_TEAM_ID
 Critter_ParamValue3  2
 Critter_ParamIndex4  ST_NPC_ROLE
@@ -18623,5 +18623,25 @@ MapObjType           2
 ProtoId              2067
 MapX                 92
 MapY                 47
+
+MapObjType           0
+ProtoId              163
+MapX                 44
+MapY                 83
+Dir                  1
+Critter_Cond         1
+Critter_CondExt      1
+Critter_ParamIndex0  ST_DIALOG_ID
+Critter_ParamValue0  2302
+Critter_ParamIndex1  ST_AI_ID
+Critter_ParamValue1  0
+Critter_ParamIndex2  ST_BAG_ID
+Critter_ParamValue2  0
+Critter_ParamIndex3  ST_TEAM_ID
+Critter_ParamValue3  2
+Critter_ParamIndex4  ST_NPC_ROLE
+Critter_ParamValue4  0
+Critter_ParamIndex5  ST_REPLICATION_TIME
+Critter_ParamValue5  0
 
 

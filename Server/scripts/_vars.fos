@@ -1,7 +1,7 @@
 #ifndef __VARS__
 #define __VARS__
 /*************************************************************************************
-***  VARS  *****  COUNT: 00000511  ***************************************************
+***  VARS  *****  COUNT: 00000520  ***************************************************
 *************************************************************************************/
 
 
@@ -64,6 +64,7 @@
 #define UVAR_first_aid_count                         (2012)
 #define UVAR_name_mem_npc_player                     (2015)
 #define UVAR_name_mem_player_npc                     (2016)
+#define UVAR_guarded_item_skill                      (2017)
 #define UVAR_last_dialog                             (2020)
 #define UVAR_trade_was                               (2025)
 #define UVAR_npc_story                               (2026)
@@ -346,6 +347,12 @@
 #define LVAR_sf_recipe_plasmagrenades                (4425)
 #define LVAR_sf_recipe_supersledge                   (4426)
 #define GVAR_sf_devin_hired                          (4427)
+#define LVAR_q_sf_ahs7_invitations                   (4428)
+#define LVAR_sf_hubb_status                          (4429)
+#define LVAR_q_sf_ahs7_hub_judgement                 (4430)
+#define LVAR_sf_hub_judgement_kills                  (4431)
+#define LVAR_sf_hub_judgement_loc_id                 (4432)
+#define LVAR_sf_hub_judgement_ignat_story            (4433)
 #define LVAR_scen_enclave_soldier                    (4500)
 #define LVAR_scen_enclave_scient                     (4501)
 #define LVAR_scen_bos_soldier                        (4502)
@@ -397,6 +404,8 @@
 #define LVAR_tbu_kill_burnham                        (5120)
 #define LVAR_tbu_kill_ramires                        (5121)
 #define LVAR_tbu_dead_rebels_counter                 (5122)
+#define LVAR_atoll_tesla                             (5301)
+#define LVAR_atoll_money                             (5302)
 #define LVAR_redd_doc_medicals                       (5309)
 #define LVAR_q_redd_doctor_delivery                  (5310)
 #define LVAR_deprecated0                             (5326)
@@ -900,6 +909,14 @@ $	2015	2	name_mem_npc_player	0	0	1	0
 $	2016	2	name_mem_player_npc	0	0	1	0
 **********
 Используется для того, чтобы определить знает ли Игрок о имени Нпц или нет. Если 0, то не нет. 1
+**********
+
+$	2017	2	guarded_item_skill	0	0	3	0
+**********
+уникальная
+используется в скриптах для охраняемых предметов
+число попыток открыть дверь или поднять охраняемый предмет
+максимум 3
 **********
 
 $	2020	2	last_dialog	2	2	65000	0
@@ -3555,6 +3572,50 @@ $	4427	0	sf_devin_hired	0	0	1	0
 глобальная, признак: нанят ли Девин в ГЕКК или нет.
 **********
 
+$	4428	1	q_sf_ahs7_invitations	0	0	5	1
+**********
+локальная. квестовая. Статус квеста Введение в хабологию
+1 - взят квест
+2 - заинвайтил одного
+3 - заинватил второго
+4 - третьего
+5 - сдал квест
+**********
+
+$	4429	1	sf_hubb_status	0	0	9	0
+**********
+Уровень АХС в церкви хабологов у персонажа
+0..9
+**********
+
+$	4430	1	q_sf_ahs7_hub_judgement	0	0	8	1
+**********
+локальная, квестовая, статус квеста "правосудие хаба"
+
+1 - взят квест, появилась локация на глобале
+2 - поговорил с местными жителями, предупредил, что нужно уходить
+3 - оставил жителей в живых
+4 - убил хотя бы одного
+5 - убил всех
+6 - сообщил хабологу, что отказался убивать
+7 - сдал квест
+**********
+
+$	4431	1	sf_hub_judgement_kills	0	0	4	0
+**********
+счетчик убийств НПЦ на локации, локальная, макс 4
+**********
+
+$	4432	1	sf_hub_judgement_loc_id	0	0	0	4
+**********
+локальная, без границ, Ид локации, созданной для игрока в квесте "Правосудие Хаба" (она может быть удалена)
+**********
+
+$	4433	1	sf_hub_judgement_ignat_story	0	0	1	0
+**********
+Локальная, макс 1. Признак: игрок услышал историю семейства Игната.
+**********
+
 $	4500	1	scen_enclave_soldier	0	0	10	0
 **********
 Отвечает за текущий ранг игрока в Анклаве по таблице воинов
@@ -3976,6 +4037,20 @@ $	5121	1	tbu_kill_ramires	0	0	2	0
 $	5122	1	tbu_dead_rebels_counter	0	0	20	0
 **********
 счетчик убитых ребелей
+**********
+
+$	5301	1	atoll_tesla	0	0	2	0
+**********
+локальная, неквестовая
+статус задания "принести броню тесла для ныряльщика"
+1 - выдано
+2 - выполнено
+**********
+
+$	5302	1	atoll_money	0	0	2	0
+**********
+1 - выдано
+2 - выполнено
 **********
 
 $	5309	1	redd_doc_medicals	50	0	100	0

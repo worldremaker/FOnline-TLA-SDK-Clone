@@ -216,8 +216,6 @@ void _VampireShowCritter1(Critter& cr, Critter& showCrit)
 // Попытка излечения вампира
 uint r_TryCureVampire(Critter& cr, Critter@ npc, int val)
 {
-	Log("ss");
-	Log("ss");
 	uint forceDialog = FD_CURE_FAIL;
 	int sk = cr.Skill[SK_DOCTOR];
 	uint8 mode = 0;
@@ -250,6 +248,6 @@ uint r_TryCureVampire(Critter& cr, Critter@ npc, int val)
 		if(valid(loc) && !loc.AutoGarbage)
 			loc.AutoGarbage = true;
 	}
-	Log("fd=" + forceDialog);
+	//Log("fd=" + forceDialog);
 	return forceDialog;
 }

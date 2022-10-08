@@ -477,3 +477,119 @@ void r_SetCanHire(Critter& player, Critter@ npc)
 		status = 1;
 }
 
+// Квест "Правосудие Хаба"
+#define ROLE_FAMILY               (17)
+#define STR_DONTKILL              (3510)
+#define VICTIMS_X                 (640)
+#define VICTIMS_Y                 (1150)
+import bool GetFreeHex(Map& map, uint radius, uint16& hx, uint16& hy) from "caravan";
+
+#include "location.fos"
+
+// Проверка, что карта не удалена
+bool d_VictimsExists(Critter& player, Critter@ npc)
+{
+	GameVar@ locId = GetLocalVar(LVAR_sf_hub_judgement_loc_id, player.Id);
+	return valid(locId) && valid(GetLocation(locId.GetValue()));
+}
+
+bool d_VictimsNotExists(Critter& player, Critter@ npc)
+{
+	return !d_VictimsExists(player, npc);
+}
+
+// добавляет локацию с жертвами, видимую игроку
+void r_AddVictimsLocation(Critter& player, Critter@ npc)
+{
+	Location@ loc = CreateLocationForCritter(player, LOCATION_Quest_HubJudgementFarm, VICTIMS_X, VICTIMS_Y, __GlobalMapZoneLength*2, LVAR_sf_hub_judgement_loc_id);
+	if(valid(loc))
+	{
+		SetLocationDeleteTime(loc, 60*60*24*4);// 4 дня
+		Map@ map = loc.GetMapByIndex(0);
+		if(valid(map))
+		{
+			map.SetScript("_DeletableMapInit");// чтобы не использовали локацию для склада, нужно ее удалять
+		}
+	}
+}
+
+// Скрипт жертв
+void _HubVictimInit(Critter& cr, bool firstTime)
+{
+	cr.SetEvent(CRITTER_EVENT_ATTACKED, "_HubVictimAttacked");
+	cr.SetEvent(CRITTER_EVENT_DEAD, "_HubVictimDead");
+}
+
+void _HubVictimDead(Critter& cr, Critter@ killer)
+{
+	if(!valid(killer) || killer.IsNpc())
+		return;
+	GameVar @qVar = GetLocalVar(LVAR_q_sf_ahs7_hub_judgement, killer.Id);
+	GameVar @counter = GetLocalVar(LVAR_sf_hub_judgement_kills, killer.Id);
+	if(!valid(qVar) || !valid(counter))
+		return;
+	if(qVar > 0 && qVar < 4)
+		qVar = 4;
+	counter =  counter + 1;
+	if(counter > 3)
+		qVar = 5;
+}
+
+
+bool _HubVictimAttacked(Critter& cr, Critter& attacker)
+{
+	r_MapAutoGarbage(attacker, cr);
+	Critter@[] family;
+	Map@ map = cr.GetMap();
+	if(!valid(map))
+		return false;
+	uint num = map.GetNpcCount(ROLE_FAMILY, FIND_ALL|FIND_ONLY_NPC);
+	if(num > 0)
+	{
+		for(uint i = 0; i < num; i++)
+		{
+			Critter@ npc = map.GetNpc(ROLE_FAMILY, FIND_ALL|FIND_ONLY_NPC, i);
+			if(valid(npc) && npc.IsNpc() && attacker.IsPlayer())
+			{
+				if(!npc.CheckEnemyInStack(attacker.Id))
+					npc.AddEnemyInStack(attacker.Id);
+				if(npc.Id == cr.Id || npc.IsSee(cr))
+				{
+					uint16 hx = npc.HexX;
+					uint16 hy = npc.HexY;
+					if(GetFreeHex(map, Random(6,20), hx, hy))
+						AddWalkPlane(npc, 100, hx, hy, Random(0,5), true, 1);
+					if(Random(1,3) < 2)
+						npc.SayMsg(SAY_SHOUT, TEXTMSG_TEXT, STR_DONTKILL);				
+				}
+			}
+		}
+	}	
+	return false;
+}
+
+void r_MapAutoGarbage(Critter& player, Critter@ npc)
+{
+	Map@ map = player.GetMap();
+	if(valid(map))
+	{
+		Location@ loc = map.GetLocation();
+		if(valid(loc))
+			loc.AutoGarbage = true;
+	}
+}
+
+void r_ChangeStatus(Critter& player, Critter@ npc)
+{
+	Map@ map = player.GetMap();
+	if(valid(map))
+		map.SetEvent(MAP_EVENT_OUT_CRITTER, "_VictimsOutCritter");
+}
+
+// при выходе игрока с карты, если все живы нпй, то игрок переключает статус квеста
+void _VictimsOutCritter(Map& map, Critter& cr)
+{
+	GameVar@ qVar = GetLocalVar(LVAR_q_sf_ahs7_hub_judgement, cr.Id);
+	if(valid(qVar) && qVar == 2 && map.GetNpcCount(17, FIND_LIFE|FIND_ONLY_NPC) == 4)
+		qVar = 3;
+}

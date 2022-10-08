@@ -344,6 +344,20 @@
 {905}{}{19reno}
 {906}{}{clank:20, clank1:20, blank:15, shots1:15}
 
+# Map 90, base 910
+{910}{}{Hub Judgement Farm}
+{915}{}{07desert}
+{916}{}{gustwind:20, gustwin1:20, rattle:15, rattle1:15, vulture:15, vulture1:15}
+
+# Map 91, base 920
+{920}{}{Hubologists laboratory ground}
+{925}{}{07desert}
+{926}{}{gustwind:20, gustwin1:20, rattle:15, rattle1:15, vulture:15, vulture1:15}
+# Map 92, base 930
+{930}{}{Hubologists laboratory}
+{935}{}{08vats}
+{936}{}{electri1:15, electric:15, elevator:20, elevato1:15, steam:20, steam:15}
+
 # Map 93, base 940
 {940}{}{Dappo lost caravan encounter}
 {945}{}{07desert}
@@ -1670,6 +1684,14 @@
 # Vampire cave, pid 217, base 317000
 {317000}{}{Странная пещера}
 {317005}{}{У вас появился уникальный шанс исцелить вампира. Но ждать он будет недолго.}
+
+# Vampire cave, pid 218, base 318000
+{318000}{}{Небольшая ферма}
+{318005}{}{Именно здесь должны находиться те пресловутые враги Церкви Хаба.}
+
+# Hubologists lab, pid 219, base 319000
+{319000}{}{Лаборатория}
+{319005}{}{Случайно наткнуться на эту лабораторию очень сложно. Несмотря на то, что громадная тарелка выдает ее присутствие, она легко теряется среди остальных руин.}
 
 # Warehouse, pid 220, base 320000
 {320000}{}{Warehouse}

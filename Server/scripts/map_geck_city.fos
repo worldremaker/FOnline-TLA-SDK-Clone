@@ -147,6 +147,13 @@ bool IsPlayerCitizen(Critter@ cr)
 	if(!valid(map)) return false;
 	Location@ loc = map.GetLocation();
 	if(!valid(loc)) return false;
+	return IsPlayerCitizen(cr, loc);
+}
+
+bool IsPlayerCitizen(Critter@ cr, Location@ loc)
+{
+	if(!valid(cr) || !valid(loc))
+		return false;
 	string key = GECK_CITY_KEY(loc.Id);
 	if(!IsAnyData(key)) return false;
 	uint[] acceptedPlayers;
@@ -491,7 +498,7 @@ bool entrance_Geck(Location& geck, Critter@[]& critters, uint8 entrance)
 		for(int k=0, l=critters.length(); k<l; k++)
 		{
 			Critter@ cr = critters[k];
-			if(valid(cr) && !IsPlayerCitizen(cr))
+			if(valid(cr) && !IsPlayerCitizen(cr, geck))
 			{
 				return false;
 			}
@@ -501,9 +508,11 @@ bool entrance_Geck(Location& geck, Critter@[]& critters, uint8 entrance)
 }
 
 // Жители сразу попадают в штабквартиру, если заходят на карту города из ГЕККа
-void _GeckMapInCritter(Map& map, Critter& cr)
+// Отменено, теперь попадание на карту зависит определяется функцией входа
+// Оставлено на будущее, возможно будет логика для автомобилей
+void _GeckMapInCritter(Map& map, Critter& cr) // obsolete
 {
-	if(cr.IsPlayer())
+	if(cr.IsPlayer() && cr.IsNpc())
 	{
 		if(IsPlayerCitizen(cr))
 		{

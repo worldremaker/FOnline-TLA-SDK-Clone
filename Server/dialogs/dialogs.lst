@@ -538,6 +538,7 @@ $	1453	sf_devin
 $ 	1454	sf_bruce
 $ 	1455	sf_khung
 $ 	1456	sf_wei
+$	1457    sf_wolf
 $	1500	nav_tomas
 $	1501	nav_samuel
 $	1502	nav_migel
@@ -665,6 +666,7 @@ $	2306	atoll_smuggler1
 $	2307	atoll_smuggler2
 $	2308	atoll_diver1
 $	2309	atoll_diver2
+$	2310	atoll_boatman
 $	2600	bax_child
 $	2601	bax_cook
 $	2602	bax_cowherd
@@ -743,6 +745,9 @@ $	4211	all_mslaver_elize_quest
 $	4212	all_fslaver_elize_quest
 $	4213	geck_door_outer
 $	4214	geck_comp_inner
+$	4215	q_hj_oldman
+$	4216	q_hj_woman
+$	4217	q_hj_child
 $	5000	mob_norm_rat
 $	5001	mob_pig_rat
 $	5002	mob_mole_rat

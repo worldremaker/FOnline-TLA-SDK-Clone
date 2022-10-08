@@ -1,3 +1,6 @@
+
+#ifndef _LOCATIONZ_
+#define _LOCATIONZ_
 // Author: rifleman17
 // Различные вспомогательные скрипты при работе с локациями.
 #include "_macros.fos"
@@ -62,3 +65,4 @@ Location@ CreateLocationForCritter(Critter& player, int locPid, int worldX, int 
 	player.SetKnownLoc(true, loc.Id);
 	return loc;
 }
+#endif

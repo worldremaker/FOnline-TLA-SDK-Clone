@@ -2,8 +2,8 @@
 Version              2
 MaxHexX              181
 MaxHexY              175
-WorkHexX             79
-WorkHexY             124
+WorkHexX             34
+WorkHexY             174
 ScriptModule         -
 ScriptFunc           -
 NoLogOut             0
@@ -13351,7 +13351,7 @@ Critter_ParamValue2  117
 Critter_ParamIndex3  ST_TEAM_ID
 Critter_ParamValue3  7
 Critter_ParamIndex4  ST_NPC_ROLE
-Critter_ParamValue4  0
+Critter_ParamValue4  44
 Critter_ParamIndex5  ST_REPLICATION_TIME
 Critter_ParamValue5  0
 
@@ -20548,11 +20548,10 @@ ProtoId              3536
 MapX                 44
 MapY                 78
 ScriptName           item
-FuncName             _DoorAutoCloseInit
+FuncName             _GuardedItemInit
 Item_LockerDoorId    1
 Item_LockerComplexity 10
-Item_Val1            1
-Item_Val2            655360
+Item_Val1            44
 
 MapObjType           1
 ProtoId              3533
@@ -34540,6 +34539,8 @@ MapObjType           0
 ProtoId              74
 MapX                 53
 MapY                 80
+ScriptName           collector
+FuncName             _CollectorInit
 Critter_Cond         1
 Critter_CondExt      1
 Critter_ParamIndex0  ST_DIALOG_ID
@@ -40225,5 +40226,11 @@ MapX                 33
 MapY                 57
 Scenery_ToEntire     41
 Scenery_ToDir        3
+
+MapObjType           2
+ProtoId              3853
+MapX                 53
+MapY                 71
+Scenery_ToEntire     87
 
 

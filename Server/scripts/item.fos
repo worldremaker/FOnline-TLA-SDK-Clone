@@ -1,6 +1,8 @@
 // Author: rifleman17
 #include "_macros.fos"
 
+import bool AddAttackPlane(Critter& npc, uint priority, Critter& target) from "npc_planes";
+
 // Дверь, которая зпкроется через 2 игровые минуты илии через некоторое число реальных секунд , указанное в val3
 void _DoorAutoCloseInit(Item& door, bool firstTime)
 {
@@ -92,4 +94,82 @@ uint e_DeleteItem(uint[]@ val)
 	if(valid(item))
 		DeleteItem(item);
 	return 0;
+}
+
+// Охраняемая дверь или другой предмет
+// в Val0 - пишется время автоматического закрытия двери, в реальных минутах, если больше 0, дверь будет автоматически закрываться
+// обратите внимание, игрок может застрять за дверью, если пройдет внутрь, а она захлопнется
+// в Val1 прописывается номер роли НПЦ которые будут говорить, должно быть отличным от ноля
+// если скрипт только на одно использование - в Val2 - нужно указать любое значение, это может использоваться для охраняемых предметов, например оружия
+#define STR_DONTOUCH     (540)
+
+
+void _GuardedItemInit(Item& item, bool firstTime)
+{
+	item.SetEvent(ITEM_EVENT_SKILL,"_GuardedItemSkill");
+}
+
+bool _GuardedItemSkill(Item& item, Critter& cr, int skill)
+{
+	Map@ map = cr.GetMap();
+	if(!valid(map))
+		return false;
+	int  role = item.Val1;
+	bool reset = (item.Val2 > 0 ? true : false);
+	if(cr.IsPlayer())
+	{
+		uint guards = map.GetNpcCount(role, FIND_LIFE|FIND_ONLY_NPC);
+		if(guards == 0)
+		{	
+			if(reset)
+			{
+				item.SetEvent(ITEM_EVENT_SKILL, "");
+				item.SetScript(null);
+			}
+			if(item.GetType() == ITEM_DOOR || item.GetType() == ITEM_CONTAINER)
+			{
+				if(item.Val0 > 0)
+					CreateTimeEvent(__FullSecond + REAL_MINUTE(item.Val0 == 0? 2 : item.Val0), "e_AutoCloseDoor", item.Id, true);
+			}
+			return false;
+		}
+		Critter@ guard = map.GetNpc(role, FIND_LIFE|FIND_ONLY_NPC, Random(0, guards-1));
+		if(valid(guard))
+		{
+			GameVar@ counter = GetUnicumVar(UVAR_guarded_item_skill, guard.Id, cr.Id);
+			if(valid(counter))
+			{
+				if(counter < 2)
+				{
+					NpcPlane@[] planes;
+					if(guard.GetPlanes(AI_PLANE_ATTACK, planes) > 0)
+					{
+						for(uint i = 0, l= planes.length(); i < l; i++)
+						{
+							if(planes[i].Attack_TargId == cr.Id)
+							{
+								if(reset)
+								{
+									item.SetEvent(ITEM_EVENT_SKILL, "");
+									item.SetScript(null);
+								}
+								return false;
+							}
+						}
+					}
+					counter = counter.GetValue() + 1;
+					guard.SayMsg(SAY_SHOUT, TEXTMSG_TEXT, STR_DONTOUCH, "$pname" + GetPlayerName(cr.Id));
+				}else{
+					counter = 0;
+					AddAttackPlane(guard, 0, cr);
+				}
+			}
+		}		
+		return true;
+	}
+	else
+	{
+		// Нпц такие двери открыть тоже не смогут
+		return true;
+	}
 }

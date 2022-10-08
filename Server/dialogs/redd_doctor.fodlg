@@ -52,27 +52,27 @@ lang=russ engl
 19 7060 D _param p DAMAGE_LEFT_LEG > 0 #
 0 7070 @
 15 8000 None 0 #
-0 8010 D _item p PID_BOTTLE_CAPS > 99 R _item p PID_BOTTLE_CAPS - 100 R _item n PID_BOTTLE_CAPS + 100 R _param p DAMAGE_EYE = 0 #
+0 8010 D _item p PID_BOTTLE_CAPS > 99 R _item p PID_BOTTLE_CAPS - 100 R _item n PID_BOTTLE_CAPS + 100 R _param p DAMAGE_EYE = 0 R _var n redd_doc_medicals - 1 #
 0 8020 D _item p PID_BOTTLE_CAPS < 100 #
 0 8030 @
 16 9000 None 0 #
-0 9010 D _item p PID_BOTTLE_CAPS > 49 R _item p PID_BOTTLE_CAPS - 50 R _item n PID_BOTTLE_CAPS + 50 R _param p DAMAGE_RIGHT_ARM = 0 #
+0 9010 D _item p PID_BOTTLE_CAPS > 49 R _item p PID_BOTTLE_CAPS - 50 R _item n PID_BOTTLE_CAPS + 50 R _param p DAMAGE_RIGHT_ARM = 0 R _var n redd_doc_medicals - 1 #
 0 9020 D _item p PID_BOTTLE_CAPS < 45 #
 0 9030 @
 17 10000 None 0 #
-0 10010 D _item p PID_BOTTLE_CAPS > 59 R _item p PID_BOTTLE_CAPS - 60 R _item n PID_BOTTLE_CAPS + 60 R _param p DAMAGE_LEFT_ARM = 0 #
+0 10010 D _item p PID_BOTTLE_CAPS > 59 R _item p PID_BOTTLE_CAPS - 60 R _item n PID_BOTTLE_CAPS + 60 R _param p DAMAGE_LEFT_ARM = 0 R _var n redd_doc_medicals - 1 #
 0 10020 D _item p PID_BOTTLE_CAPS < 60 #
 0 10030 @
 18 11000 None 0 #
-0 11010 D _item p PID_BOTTLE_CAPS > 39 R _item p PID_BOTTLE_CAPS - 40 R _item n PID_BOTTLE_CAPS + 40 R _param p DAMAGE_RIGHT_LEG = 0 #
+0 11010 D _item p PID_BOTTLE_CAPS > 39 R _item p PID_BOTTLE_CAPS - 40 R _item n PID_BOTTLE_CAPS + 40 R _param p DAMAGE_RIGHT_LEG = 0 R _var n redd_doc_medicals - 1 #
 0 11020 D _item p PID_BOTTLE_CAPS < 40 #
 0 11030 @
 19 12000 None 0 #
-0 12010 D _item p PID_BOTTLE_CAPS > 44 R _item p PID_BOTTLE_CAPS - 45 R _item n PID_BOTTLE_CAPS + 45 R _param p DAMAGE_LEFT_LEG = 0 #
+0 12010 D _item p PID_BOTTLE_CAPS > 44 R _item p PID_BOTTLE_CAPS - 45 R _item n PID_BOTTLE_CAPS + 45 R _param p DAMAGE_LEFT_LEG = 0 R _var n redd_doc_medicals - 1 #
 0 12020 D _item p PID_BOTTLE_CAPS < 45 #
 0 12030 @
 20 13000 None 0 #
-0 13010 D _item p PID_BOTTLE_CAPS > 19 R _item n PID_BOTTLE_CAPS + 20 R _item p PID_BOTTLE_CAPS - 20 R _script dialog@r_ToHeal 0  #
+0 13010 D _item p PID_BOTTLE_CAPS > 19 R _item n PID_BOTTLE_CAPS + 20 R _item p PID_BOTTLE_CAPS - 20 R _script dialog@r_ToHeal 0  R _var n redd_doc_medicals - 1 #
 0 13020 D _item p PID_BOTTLE_CAPS < 20 #
 0 13030 @
 21 14000 None 0 #
