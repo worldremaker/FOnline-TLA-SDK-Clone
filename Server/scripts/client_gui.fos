@@ -15,8 +15,6 @@ bool[] KeyPressed;
 KeybData@[] KbData;
 IGUIScreenOpt@ LastScreenOpt=null;
 IGUIElementOpt@ LastElementOpt=null;
-int MouseX=0;
-int MouseY=0;
 
 class KeybData
 {
@@ -570,16 +568,6 @@ void GUI_Init()
 	@KbData[DIK_TAB]=			KeybData('\t','\t','\t','\t');
 }
 
-int GUI_GetMouseX()
-{
-	return MouseX;
-}
-
-int GUI_GetMouseY()
-{
-	return MouseY;
-}
-
 int GUI_GetActiveMainScreen()
 {
 	return ActiveScreens.length() > 0 ? ActiveScreens.first().Index : CLIENT_SCREEN_NONE;
@@ -742,9 +730,6 @@ void GUI_MouseMove(int x, int y)
 {
 	uint len=ActiveScreens.length();
 	if(len!=0) ActiveScreens[len-1].MouseMove(x,y);
-
-	MouseX=x;
-	MouseY=y;
 }
 
 bool GUI_KeyDown(uint8 key)

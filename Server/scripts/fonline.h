@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 06.01.2011
-// Server version 397, MSVS2008
+// Last update 21.01.2011
+// Server version 401, MSVS2008
 // Default calling convention - cdecl
 //
 
@@ -56,6 +56,8 @@ struct Map;
 struct ProtoLocation;
 struct Location;
 struct Field;
+struct SpriteInfo;
+struct Sprite;
 
 #ifdef __SERVER
 typedef Critter CritterMutual;
@@ -108,6 +110,8 @@ typedef vector<Location*> LocVec;
 typedef vector<Location*>::iterator LocVecIt;
 
 // Generic
+EXPORT extern void (*Log)(const char* frmt, ...);
+
 #define STATIC_ASSERT(a)            {static int arr[(a)?1:-1];}
 #define BIN__N(x)                   (x) | x>>3 | x>>6 | x>>9
 #define BIN__B(x)                   (x) & 0xf | (x)>>12 & 0xf0
@@ -167,28 +171,28 @@ typedef vector<Location*>::iterator LocVecIt;
 
 // Parameters
 #define MAX_PARAMS                  (1000)
-#define SKILL_OFFSET(skill)         ((skill) + (GameOpt->AbsoluteOffsets ? 0 : SKILL_BEGIN))
-#define PERK_OFFSET(perk)           ((perk)  + (GameOpt->AbsoluteOffsets ? 0 : PERK_BEGIN ))
+#define SKILL_OFFSET(skill)         ((skill) + (Game->AbsoluteOffsets ? 0 : SKILL_BEGIN))
+#define PERK_OFFSET(perk)           ((perk)  + (Game->AbsoluteOffsets ? 0 : PERK_BEGIN ))
 #define TB_BATTLE_TIMEOUT           (100000000)
 #define TB_BATTLE_TIMEOUT_CHECK(to) ((to)>10000000)
-#define SKILL_BEGIN                 (GameOpt->SkillBegin)
-#define SKILL_END                   (GameOpt->SkillEnd)
-#define TIMEOUT_BEGIN               (GameOpt->TimeoutBegin)
-#define TIMEOUT_END                 (GameOpt->TimeoutEnd)
-#define KILL_BEGIN                  (GameOpt->KillBegin)
-#define KILL_END                    (GameOpt->KillEnd)
-#define PERK_BEGIN                  (GameOpt->PerkBegin)
-#define PERK_END                    (GameOpt->PerkEnd)
-#define ADDICTION_BEGIN             (GameOpt->AddictionBegin)
-#define ADDICTION_END               (GameOpt->AddictionEnd)
-#define KARMA_BEGIN                 (GameOpt->KarmaBegin)
-#define KARMA_END                   (GameOpt->KarmaEnd)
-#define DAMAGE_BEGIN                (GameOpt->DamageBegin)
-#define DAMAGE_END                  (GameOpt->DamageEnd)
-#define TRAIT_BEGIN                 (GameOpt->TraitBegin)
-#define TRAIT_END                   (GameOpt->TraitEnd)
-#define REPUTATION_BEGIN            (GameOpt->ReputationBegin)
-#define REPUTATION_END              (GameOpt->ReputationEnd)
+#define SKILL_BEGIN                 (Game->SkillBegin)
+#define SKILL_END                   (Game->SkillEnd)
+#define TIMEOUT_BEGIN               (Game->TimeoutBegin)
+#define TIMEOUT_END                 (Game->TimeoutEnd)
+#define KILL_BEGIN                  (Game->KillBegin)
+#define KILL_END                    (Game->KillEnd)
+#define PERK_BEGIN                  (Game->PerkBegin)
+#define PERK_END                    (Game->PerkEnd)
+#define ADDICTION_BEGIN             (Game->AddictionBegin)
+#define ADDICTION_END               (Game->AddictionEnd)
+#define KARMA_BEGIN                 (Game->KarmaBegin)
+#define KARMA_END                   (Game->KarmaEnd)
+#define DAMAGE_BEGIN                (Game->DamageBegin)
+#define DAMAGE_END                  (Game->DamageEnd)
+#define TRAIT_BEGIN                 (Game->TraitBegin)
+#define TRAIT_END                   (Game->TraitEnd)
+#define REPUTATION_BEGIN            (Game->ReputationBegin)
+#define REPUTATION_END              (Game->ReputationEnd)
 
 // Events
 #define MAP_LOOP_FUNC_MAX           (5)
@@ -349,6 +353,8 @@ struct GameOptions
 
 	// Client and Mapper
 	bool   Quit;
+	int    MouseX;
+	int    MouseY;
 	int    ScrOx;
 	int    ScrOy;
 	bool   ShowTile;
@@ -463,10 +469,16 @@ struct GameOptions
 	uint   ClientMapWidth;
 	uint   ClientMapHeight;
 
+	Sprite* (*GetDrawingSprites)(uint& count); // Array of currently drawing sprites, tree is sorted
+	SpriteInfo* (*GetSpriteInfo)(uint sprId); // Sprite information
+	uint (*GetSpriteColor)(uint sprId, int x, int y, bool affectZoom); // Color of pixel on sprite
+	bool (*IsSpriteHit)(Sprite* sprite, int x, int y, bool checkEgg); // Is position hitting sprite
+
 	// Callbacks
 	uint (*GetUseApCost)(CritterMutual& cr, Item& item, uint8 mode);
 	uint (*GetAttackDistantion)(CritterMutual& cr, Item& item, uint8 mode);
 };
+EXPORT extern GameOptions* Game;
 
 struct Mutex
 {
@@ -1634,8 +1646,8 @@ struct Field
 	CrClVec    DeadCrits;
 	int        ScrX;
 	int        ScrY;
-	uint       TileId;
-	uint       RoofId;
+	void*      Tile;
+	void*      Roof;
 	ItemVec    Items;
 	int16      RoofNum;
 	bool       ScrollBlock;
@@ -1652,13 +1664,85 @@ struct Field
 	bool       IsMultihex;
 
 #ifdef __MAPPER
-	uint       SelTile;
-	uint       SelRoof;
+	void*      SelTile;
+	void*      SelRoof;
 	uint       TerrainId;
 	uint       SelTerrain;
 #endif
 };
 
+struct SpriteInfo
+{
+	void*  Surface;
+	float  SurfaceUV[4];
+	uint16 Width;
+	uint16 Height;
+	int16  OffsX;
+	int16  OffsY;
+	void*  Effect;
+	void*  Anim3d; // If Anim3d != NULL than this is pure 3d animation
+};
+
+struct Sprite
+{
+	// Ordering
+	int     DrawOrderType; // 0..4 - flat, 5..9 - normal
+	uint    DrawOrderPos;
+	uint    TreeIndex;
+
+	// Sprite information, pass to GetSpriteInfo
+	uint    SprId;
+	uint*   PSprId; // If PSprId == NULL than used SprId
+
+	// Positions
+	int     HexX, HexY;
+	int     ScrX, ScrY;
+	int16*  OffsX, *OffsY;
+
+	// Cutting
+	int     CutType; // See Sprites cutting
+	Sprite* Parent, *Child;
+	float   CutX, CutW, CutTexL, CutTexR;
+
+	// Other
+	uint8*  Alpha;
+	uint8*  Light;
+	int     EggType;
+	int     ContourType;
+	uint    ContourColor;
+	uint    Color;
+	uint    FlashMask;
+	bool*   ValidCallback;
+	bool    Valid; // If Valid == false than this sprite not valid
+
+#ifdef __MAPPER
+	int     CutOyL, CutOyR;
+#endif
+
+	uint GetSprId()
+	{
+		return PSprId ? *PSprId : SprId;
+	}
+
+	SpriteInfo* GetSprInfo()
+	{
+		return Game->GetSpriteInfo(PSprId ? *PSprId : SprId);
+	}
+
+ 	void GetPos(int& x, int& y)
+ 	{
+ 		SpriteInfo* si = GetSprInfo();
+ 		x = (int)((float)(ScrX - si->Width / 2 + si->OffsX + (OffsX ? *OffsX : 0) + Game->ScrOx) / Game->SpritesZoom);
+ 		y = (int)((float)(ScrY - si->Height    + si->OffsY + (OffsY ? *OffsY : 0) + Game->ScrOy) / Game->SpritesZoom);
+ 	}
+};
+
+
+inline Field* GetField(uint hexX, uint hexY)
+{
+	if(!Game->ClientMap || hexX >= Game->ClientMapWidth || hexY >= Game->ClientMapHeight) return NULL;
+	return &Game->ClientMap[hexY * Game->ClientMapWidth + hexX];
+}
 
 inline int GetDirection(int x1, int y1, int x2, int y2)
 {
@@ -1728,13 +1812,16 @@ inline void static_asserts()
 	STATIC_ASSERT(sizeof(ProtoItem)   == 184 );
 	STATIC_ASSERT(sizeof(Mutex)       == 24  );
 	STATIC_ASSERT(sizeof(Spinlock)    == 4   );
-	STATIC_ASSERT(sizeof(GameOptions) == 1120);
+	STATIC_ASSERT(sizeof(GameOptions) == 1144);
 	STATIC_ASSERT(sizeof(ScriptArray) == 28  );
+	STATIC_ASSERT(sizeof(SpriteInfo)  == 36  );
 #ifdef __MAPPER
 	STATIC_ASSERT(sizeof(Field)       == 84  );
+	STATIC_ASSERT(sizeof(Sprite)      == 116 );
 #else
 	STATIC_ASSERT(sizeof(Field)       == 68  );
-#endif
+	STATIC_ASSERT(sizeof(Sprite)      == 108 );
+#endif	
 
 	STATIC_ASSERT(offsetof(TemplateVar, Flags)              == 76  );
 	STATIC_ASSERT(offsetof(NpcPlane, RefCounter)            == 88  );

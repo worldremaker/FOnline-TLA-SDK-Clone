@@ -1,9 +1,9 @@
 #include "fonline_tla.h"
 
 // Engine data
-EXPORT GameOptions* GameOpt = NULL;
-EXPORT asIScriptEngine* ASEngine = NULL;
-EXPORT void (*Log)(const char* frmt, ...) = NULL;
+GameOptions* Game;
+asIScriptEngine* ASEngine;
+void (*Log)(const char* frmt, ...);
 
 // Extern data definition
 _GlobalVars GlobalVars;
@@ -80,8 +80,8 @@ EXPORT void DllMainEx(bool compiler)
 	if(compiler) return;
 
 	// Register callbacks
-	GameOpt->GetUseApCost = &GetUseApCost;
-	GameOpt->GetAttackDistantion = &GetAttackDistantion;
+	Game->GetUseApCost = &GetUseApCost;
+	Game->GetAttackDistantion = &GetAttackDistantion;
 
 	// Register script global vars
 	memset(&GlobalVars, 0, sizeof(GlobalVars));
@@ -91,13 +91,15 @@ EXPORT void DllMainEx(bool compiler)
 		void* ptr;
 		if(ASEngine->GetGlobalPropertyByIndex(i,&name,NULL,NULL,NULL,&ptr) < 0) continue;
 
-#define REGISTER_GLOBAL_VAR(gvar) else if(!strcmp(#gvar, name)) GlobalVars.gvar = (uint*)ptr
-		REGISTER_GLOBAL_VAR(HitAimEyes);
-		REGISTER_GLOBAL_VAR(HitAimHead);
-		REGISTER_GLOBAL_VAR(HitAimGroin);
-		REGISTER_GLOBAL_VAR(HitAimTorso);
-		REGISTER_GLOBAL_VAR(HitAimArms);
-		REGISTER_GLOBAL_VAR(HitAimLegs);
+#define REGISTER_GLOBAL_VAR(type, gvar) else if(!strcmp(#gvar, name)) GlobalVars.gvar = (type*)ptr
+		REGISTER_GLOBAL_VAR(int , CurX);
+		REGISTER_GLOBAL_VAR(int , CurY);
+		REGISTER_GLOBAL_VAR(uint, HitAimEyes);
+		REGISTER_GLOBAL_VAR(uint, HitAimHead);
+		REGISTER_GLOBAL_VAR(uint, HitAimGroin);
+		REGISTER_GLOBAL_VAR(uint, HitAimTorso);
+		REGISTER_GLOBAL_VAR(uint, HitAimArms);
+		REGISTER_GLOBAL_VAR(uint, HitAimLegs);
 	}
 }
 
@@ -311,7 +313,7 @@ EXPORT int getParam_Reputation(CritterMutual& cr, uint index)
 #ifdef __SERVER
 	if(cr.Params[index] == 0x80000000)
 	{
-		GameOpt->CritterChangeParameter(cr, index);
+		Game->CritterChangeParameter(cr, index);
 		cr.Params[index] = 0;
 	}
 #else
@@ -322,7 +324,7 @@ EXPORT int getParam_Reputation(CritterMutual& cr, uint index)
 
 EXPORT int getParam_Timeout(CritterMutual& cr, uint index)
 {
-	return (uint)cr.Params[index] > GameOpt->FullSecond ? (uint)cr.Params[index] - GameOpt->FullSecond : 0;
+	return (uint)cr.Params[index] > Game->FullSecond ? (uint)cr.Params[index] - Game->FullSecond : 0;
 }
 
 /************************************************************************/
@@ -410,16 +412,16 @@ uint GetUseApCost(CritterMutual& cr, Item& item, uint8 mode)
 	if(use == USE_USE)
 	{
 		if(TB_BATTLE_TIMEOUT_CHECK(getParam_Timeout(cr, TO_BATTLE)))
-			apCost = GameOpt->TbApCostUseItem;
+			apCost = Game->TbApCostUseItem;
 		else
-			apCost = GameOpt->RtApCostUseItem;
+			apCost = Game->RtApCostUseItem;
 	}
 	else if(use == USE_RELOAD)
 	{
 		if(TB_BATTLE_TIMEOUT_CHECK(getParam_Timeout(cr, TO_BATTLE)))
-			apCost = GameOpt->TbApCostReloadWeapon;
+			apCost = Game->TbApCostReloadWeapon;
 		else
-			apCost = GameOpt->RtApCostReloadWeapon;
+			apCost = Game->RtApCostReloadWeapon;
 
 		if(item.IsWeapon() && item.Proto->Weapon.Perk == WEAPON_PERK_FAST_RELOAD) apCost--;
 	}
@@ -458,9 +460,9 @@ uint GetAttackDistantion(CritterMutual& cr, Item& item, uint8 mode)
 
 int GetNightPersonBonus()
 {
-	if(GameOpt->Hour < 6 || GameOpt->Hour > 18) return 1;
-	if(GameOpt->Hour == 6 && GameOpt->Minute == 0) return 1;
-	if(GameOpt->Hour == 18 && GameOpt->Minute > 0) return 1;
+	if(Game->Hour < 6 || Game->Hour > 18) return 1;
+	if(Game->Hour == 6 && Game->Minute == 0) return 1;
+	if(Game->Hour == 18 && Game->Minute > 0) return 1;
 	return -1;
 }
 
@@ -468,14 +470,14 @@ uint GetAimApCost(int hitLocation)
 {
 	switch(hitLocation)
 	{
-	case HIT_LOCATION_TORSO:     return GameOpt->ApCostAimTorso;
-	case HIT_LOCATION_EYES:      return GameOpt->ApCostAimEyes;
-	case HIT_LOCATION_HEAD:      return GameOpt->ApCostAimHead;
+	case HIT_LOCATION_TORSO:     return Game->ApCostAimTorso;
+	case HIT_LOCATION_EYES:      return Game->ApCostAimEyes;
+	case HIT_LOCATION_HEAD:      return Game->ApCostAimHead;
 	case HIT_LOCATION_LEFT_ARM:
-	case HIT_LOCATION_RIGHT_ARM: return GameOpt->ApCostAimArms;
-	case HIT_LOCATION_GROIN:     return GameOpt->ApCostAimGroin;
+	case HIT_LOCATION_RIGHT_ARM: return Game->ApCostAimArms;
+	case HIT_LOCATION_GROIN:     return Game->ApCostAimGroin;
 	case HIT_LOCATION_RIGHT_LEG:
-	case HIT_LOCATION_LEFT_LEG:  return GameOpt->ApCostAimLegs;
+	case HIT_LOCATION_LEFT_LEG:  return Game->ApCostAimLegs;
 	case HIT_LOCATION_NONE:
 	case HIT_LOCATION_UNCALLED:
 	default: break;
@@ -505,7 +507,7 @@ uint GetAimHit(int hitLocation)
 uint GetMultihex(CritterMutual& cr)
 {
 	int mh = cr.Multihex;
-	if(mh < 0) mh = GameOpt->CritterTypes[cr.BaseType].Multihex;
+	if(mh < 0) mh = Game->CritterTypes[cr.BaseType].Multihex;
 	return CLAMP(mh, 0, MAX_HEX_OFFSET);
 }
 

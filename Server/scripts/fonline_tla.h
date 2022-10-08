@@ -13,10 +13,13 @@
 
 // AngelScript
 #include "angelscript.h"
+EXPORT extern asIScriptEngine* ASEngine;
 
 // Script global variables
 struct _GlobalVars
 {
+	int*  CurX;
+	int*  CurY;
 	uint* HitAimEyes;
 	uint* HitAimHead;
 	uint* HitAimGroin;

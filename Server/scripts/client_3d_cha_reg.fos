@@ -12,7 +12,6 @@
 #include "client_gui_h.fos"
 #include "sprite.fos"
 
-import int GUI_GetMouseY() from "client_gui";
 import int GUI_GetActiveMainScreen() from "client_gui";
 import int GetIniValue(string& iniKey, int defaultValue) from "ini_parser";
 import int[]@ GetIniValues4(string& iniKey, int[]@ defaultValues) from "ini_parser";
