@@ -143,12 +143,31 @@ void screen_change(bool show, int screen, int p0, int p1, int p2)
 //    4
 // PopUp menu, Cursor
 //    5
+//
+// Extra layers:
+// Global map
+//    100
 void render_iface(uint layer)
 {
 	if(layer == 3)
 	{
 		DrawChosenTabs();
 		GUI_Render();
+	}
+
+	if(layer == 100 && __GmapActive)
+	{
+		// Here you can draw on global map
+
+		// bool  __GmapActive - активна ли глобальная карта и все ли следующие нижеприведенные переменные корректны;
+		// bool  __GmapWait   - включен режим ожидания ответа о подтверждении энкаунтера;
+		// float __GmapZoom   - текущий масштаб, не забывайте учитывать его при рисовании на карте;
+		// int   __GmapOffsetX, __GmapOffsetY - смещение карты от нулевой координаты (верхний-левый угол);
+		// int   __GmapGroupX , __GmapGroupY  - координаты группы игрока;
+		// int   __GmapMoveX  , __GmapMoveY   - координаты точки назначения;
+		// float __GmapSpeedX , __GmapSpeedY  - скорость передвижения каждые 50мс, без учета рельефа.
+		// Для примера, расчет текущего пикселя группы:
+		// x = __GmapGroupX / __GmapZoom + __GmapOffsetX, y = __GmapGroupY / __GmapZoom + __GmapOffsetY.
 	}
 }
 
