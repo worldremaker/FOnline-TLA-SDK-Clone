@@ -22,7 +22,7 @@ lang=russ engl
 0 5010 #
 6 5020 #
 8 5030 #
-11 5040 D _var p ncr_mic_guarantee_counter < 10 D _script dialog@d_TimeoutCheck 0  R _script dialog@r_TimeoutSet 1 60 @
+11 5040 D _var p ncr_mic_guarantee_counter < 10 @
 6 6000 None 0 #
 65507 6010 #
 7 6020 @

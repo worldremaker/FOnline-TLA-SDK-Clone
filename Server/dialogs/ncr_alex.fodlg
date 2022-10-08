@@ -28,8 +28,8 @@ lang=russ engl
 0 8010 @
 9 9000 None 0 #
 10 9010 D _param p ST_CHARISMA < 5 #
-11 9020 D _param p ST_CHARISMA > 4 D _script dialog@d_TimeoutCheck 0  R _script dialog@r_TimeoutSet 1 60 #
-10 9030 D _param p ST_CHARISMA > 4 D _script dialog@d_NotTimeoutCheck 0  @
+11 9020 D _param p ST_CHARISMA > 4 D _script dialog@d_TimeoutOk 0  R _script dialog@r_SetUniqTO 1 60 #
+10 9030 D _param p ST_CHARISMA > 4 D _script dialog@d_NotTimeoutOk 0  @
 10 10000 None 0 @
 11 11000 None 0 #
 12 11010 #

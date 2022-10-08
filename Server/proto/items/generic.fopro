@@ -7704,7 +7704,7 @@ Pid=2827
 Type=11
 PicMapName=art\scenery\mblight3.frm
 PicInvName=art\inven\reserved.frm
-Flags=33562652
+Flags=33554460
 SoundId=48
 Material=1
 

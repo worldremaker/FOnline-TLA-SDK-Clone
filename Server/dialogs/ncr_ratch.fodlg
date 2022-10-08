@@ -140,7 +140,7 @@ lang=russ engl
 50 38030 D _item p PID_BOTTLE_CAPS > 9999 D _item p PID_OIL_CAN > 0 D _item p PID_SUPER_TOOL_KIT > 0 D _item p PID_MOTOR > 0 D _var p q_ncr_ratch_buggy = 4 R _var p q_ncr_ratch_buggy = 5 R _item p PID_BOTTLE_CAPS - 10000 R _item p PID_OIL_CAN - 1 R _item p PID_MOTOR - 1 R _item p PID_SUPER_TOOL_KIT - 1 R _script ncr_ratch@r_RatchTimeOutSet 2 4243 10080 #
 0 38040 @
 49 39000 None 0 #
-50 39010 D _var p q_ncr_ratch_buggy = 4 D _item p PID_MOTOR > 0 D _item p PID_OIL_CAN > 0 D _item p PID_SUPER_TOOL_KIT > 0 D _item p PID_BOTTLE_CAPS > 7999 R _var p q_ncr_ratch_buggy = 5 R _item p PID_SUPER_TOOL_KIT - 1 R _item p PID_OIL_CAN - 1 R _item p PID_MOTOR - 1 R _item p PID_BOTTLE_CAPS - 7000 R _param p ST_EXPERIENCE + 200 @
+50 39010 D _var p q_ncr_ratch_buggy = 4 D _item p PID_MOTOR > 0 D _item p PID_OIL_CAN > 0 D _item p PID_SUPER_TOOL_KIT > 0 D _item p PID_BOTTLE_CAPS > 7999 R _var p q_ncr_ratch_buggy = 5 R _item p PID_SUPER_TOOL_KIT - 1 R _item p PID_OIL_CAN - 1 R _item p PID_MOTOR - 1 R _item p PID_BOTTLE_CAPS - 7000 R _param p ST_EXPERIENCE + 200 R _script ncr_ratch@r_RatchTimeOutSet 2 4243 10080 @
 50 40000 None 0 #
 51 40010 #
 0 40020 @

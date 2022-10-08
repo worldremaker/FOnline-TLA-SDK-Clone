@@ -2,12 +2,12 @@
 Version              2
 MaxHexX              180
 MaxHexY              180
-WorkHexX             0
-WorkHexY             0
+WorkHexX             98
+WorkHexY             99
 ScriptModule         -
 ScriptFunc           -
 NoLogOut             0
-Time                 720
+Time                 -1
 DayTime              300  600  1140 1380
 DayColor0            18  18  53 
 DayColor1            128 128 128
@@ -6714,17 +6714,7 @@ tile       178  178            art\tiles\cav4008.frm
 [Objects]
 MapObjType           2
 ProtoId              4012
-MapX                 99
-MapY                 30
-
-MapObjType           2
-ProtoId              4012
 MapX                 98
-MapY                 30
-
-MapObjType           2
-ProtoId              4012
-MapX                 99
 MapY                 30
 
 MapObjType           2
@@ -6848,16 +6838,6 @@ MapX                 75
 MapY                 42
 
 MapObjType           2
-ProtoId              2102
-MapX                 66
-MapY                 43
-
-MapObjType           2
-ProtoId              4012
-MapX                 72
-MapY                 43
-
-MapObjType           2
 ProtoId              4012
 MapX                 72
 MapY                 43
@@ -6880,11 +6860,6 @@ MapY                 44
 MapObjType           2
 ProtoId              4012
 MapX                 68
-MapY                 45
-
-MapObjType           2
-ProtoId              4012
-MapX                 69
 MapY                 45
 
 MapObjType           2
@@ -6919,18 +6894,8 @@ MapY                 48
 
 MapObjType           2
 ProtoId              4012
-MapX                 62
-MapY                 48
-
-MapObjType           2
-ProtoId              4012
 MapX                 63
 MapY                 48
-
-MapObjType           2
-ProtoId              4012
-MapX                 60
-MapY                 49
 
 MapObjType           2
 ProtoId              4012
@@ -6964,16 +6929,6 @@ MapY                 51
 
 MapObjType           2
 ProtoId              4012
-MapX                 57
-MapY                 51
-
-MapObjType           2
-ProtoId              4012
-MapX                 54
-MapY                 52
-
-MapObjType           2
-ProtoId              4012
 MapX                 54
 MapY                 52
 
@@ -6993,23 +6948,8 @@ MapX                 53
 MapY                 53
 
 MapObjType           2
-ProtoId              2105
-MapX                 134
-MapY                 53
-
-MapObjType           2
-ProtoId              2103
-MapX                 135
-MapY                 53
-
-MapObjType           2
 ProtoId              4012
 MapX                 50
-MapY                 54
-
-MapObjType           2
-ProtoId              4012
-MapX                 51
 MapY                 54
 
 MapObjType           2
@@ -7028,21 +6968,6 @@ MapX                 37
 MapY                 61
 
 MapObjType           2
-ProtoId              2102
-MapX                 136
-MapY                 55
-
-MapObjType           2
-ProtoId              2105
-MapX                 136
-MapY                 55
-
-MapObjType           2
-ProtoId              4012
-MapX                 34
-MapY                 62
-
-MapObjType           2
 ProtoId              4012
 MapX                 34
 MapY                 62
@@ -7051,16 +6976,6 @@ MapObjType           2
 ProtoId              4012
 MapX                 35
 MapY                 62
-
-MapObjType           2
-ProtoId              2102
-MapX                 135
-MapY                 56
-
-MapObjType           2
-ProtoId              2125
-MapX                 136
-MapY                 56
 
 MapObjType           2
 ProtoId              4012
@@ -7074,22 +6989,7 @@ MapY                 63
 
 MapObjType           2
 ProtoId              4012
-MapX                 33
-MapY                 63
-
-MapObjType           2
-ProtoId              4012
-MapX                 33
-MapY                 63
-
-MapObjType           2
-ProtoId              4012
 MapX                 30
-MapY                 64
-
-MapObjType           2
-ProtoId              4012
-MapX                 31
 MapY                 64
 
 MapObjType           2
@@ -7116,11 +7016,6 @@ MapObjType           2
 ProtoId              4012
 MapX                 99
 MapY                 30
-
-MapObjType           2
-ProtoId              4012
-MapX                 98
-MapY                 29
 
 MapObjType           2
 ProtoId              4012
@@ -7279,11 +7174,6 @@ MapY                 76
 
 MapObjType           2
 ProtoId              4012
-MapX                 129
-MapY                 76
-
-MapObjType           2
-ProtoId              4012
 MapX                 130
 MapY                 77
 
@@ -7309,11 +7199,6 @@ MapY                 107
 
 MapObjType           2
 ProtoId              4012
-MapX                 150
-MapY                 107
-
-MapObjType           2
-ProtoId              4012
 MapX                 151
 MapY                 109
 
@@ -7329,11 +7214,6 @@ MapY                 112
 
 MapObjType           2
 ProtoId              4012
-MapX                 98
-MapY                 29
-
-MapObjType           2
-ProtoId              4012
 MapX                 154
 MapY                 113
 
@@ -7344,38 +7224,8 @@ MapY                 115
 
 MapObjType           2
 ProtoId              4012
-MapX                 98
-MapY                 29
-
-MapObjType           2
-ProtoId              4012
-MapX                 98
-MapY                 29
-
-MapObjType           2
-ProtoId              4012
 MapX                 156
 MapY                 116
-
-MapObjType           2
-ProtoId              4012
-MapX                 96
-MapY                 30
-
-MapObjType           2
-ProtoId              4012
-MapX                 97
-MapY                 30
-
-MapObjType           2
-ProtoId              4012
-MapX                 94
-MapY                 31
-
-MapObjType           2
-ProtoId              4012
-MapX                 95
-MapY                 31
 
 MapObjType           2
 ProtoId              4012
@@ -7384,333 +7234,13 @@ MapY                 118
 
 MapObjType           2
 ProtoId              4012
-MapX                 92
-MapY                 32
-
-MapObjType           2
-ProtoId              4012
-MapX                 92
-MapY                 32
-
-MapObjType           2
-ProtoId              4012
-MapX                 93
-MapY                 32
-
-MapObjType           2
-ProtoId              4012
 MapX                 158
 MapY                 119
 
 MapObjType           2
 ProtoId              4012
-MapX                 90
-MapY                 33
-
-MapObjType           2
-ProtoId              4012
-MapX                 91
-MapY                 33
-
-MapObjType           2
-ProtoId              4012
-MapX                 88
-MapY                 34
-
-MapObjType           2
-ProtoId              4012
-MapX                 89
-MapY                 34
-
-MapObjType           2
-ProtoId              4012
 MapX                 159
 MapY                 121
-
-MapObjType           2
-ProtoId              4012
-MapX                 86
-MapY                 35
-
-MapObjType           2
-ProtoId              4012
-MapX                 87
-MapY                 35
-
-MapObjType           2
-ProtoId              4012
-MapX                 84
-MapY                 36
-
-MapObjType           2
-ProtoId              4012
-MapX                 85
-MapY                 36
-
-MapObjType           2
-ProtoId              4012
-MapX                 82
-MapY                 37
-
-MapObjType           2
-ProtoId              4012
-MapX                 83
-MapY                 37
-
-MapObjType           2
-ProtoId              4012
-MapX                 80
-MapY                 38
-
-MapObjType           2
-ProtoId              4012
-MapX                 81
-MapY                 38
-
-MapObjType           2
-ProtoId              4012
-MapX                 78
-MapY                 39
-
-MapObjType           2
-ProtoId              4012
-MapX                 79
-MapY                 39
-
-MapObjType           2
-ProtoId              4012
-MapX                 76
-MapY                 40
-
-MapObjType           2
-ProtoId              4012
-MapX                 77
-MapY                 40
-
-MapObjType           2
-ProtoId              4012
-MapX                 74
-MapY                 41
-
-MapObjType           2
-ProtoId              4012
-MapX                 75
-MapY                 41
-
-MapObjType           2
-ProtoId              4012
-MapX                 72
-MapY                 42
-
-MapObjType           2
-ProtoId              4012
-MapX                 72
-MapY                 42
-
-MapObjType           2
-ProtoId              4012
-MapX                 73
-MapY                 42
-
-MapObjType           2
-ProtoId              4012
-MapX                 70
-MapY                 43
-
-MapObjType           2
-ProtoId              4012
-MapX                 71
-MapY                 43
-
-MapObjType           2
-ProtoId              4012
-MapX                 68
-MapY                 44
-
-MapObjType           2
-ProtoId              4012
-MapX                 68
-MapY                 44
-
-MapObjType           2
-ProtoId              4012
-MapX                 69
-MapY                 44
-
-MapObjType           2
-ProtoId              4012
-MapX                 66
-MapY                 45
-
-MapObjType           2
-ProtoId              4012
-MapX                 67
-MapY                 45
-
-MapObjType           2
-ProtoId              4012
-MapX                 64
-MapY                 46
-
-MapObjType           2
-ProtoId              4012
-MapX                 65
-MapY                 46
-
-MapObjType           2
-ProtoId              4012
-MapX                 62
-MapY                 47
-
-MapObjType           2
-ProtoId              4012
-MapX                 63
-MapY                 47
-
-MapObjType           2
-ProtoId              4012
-MapX                 60
-MapY                 48
-
-MapObjType           2
-ProtoId              4012
-MapX                 61
-MapY                 48
-
-MapObjType           2
-ProtoId              4012
-MapX                 58
-MapY                 49
-
-MapObjType           2
-ProtoId              4012
-MapX                 59
-MapY                 49
-
-MapObjType           2
-ProtoId              4012
-MapX                 56
-MapY                 50
-
-MapObjType           2
-ProtoId              4012
-MapX                 57
-MapY                 50
-
-MapObjType           2
-ProtoId              4012
-MapX                 54
-MapY                 51
-
-MapObjType           2
-ProtoId              4012
-MapX                 55
-MapY                 51
-
-MapObjType           2
-ProtoId              4012
-MapX                 52
-MapY                 52
-
-MapObjType           2
-ProtoId              4012
-MapX                 52
-MapY                 52
-
-MapObjType           2
-ProtoId              4012
-MapX                 53
-MapY                 52
-
-MapObjType           2
-ProtoId              4012
-MapX                 50
-MapY                 53
-
-MapObjType           2
-ProtoId              4012
-MapX                 50
-MapY                 53
-
-MapObjType           2
-ProtoId              4012
-MapX                 51
-MapY                 53
-
-MapObjType           2
-ProtoId              4012
-MapX                 36
-MapY                 60
-
-MapObjType           2
-ProtoId              4012
-MapX                 37
-MapY                 60
-
-MapObjType           2
-ProtoId              4012
-MapX                 37
-MapY                 60
-
-MapObjType           2
-ProtoId              4012
-MapX                 34
-MapY                 61
-
-MapObjType           2
-ProtoId              4012
-MapX                 35
-MapY                 61
-
-MapObjType           2
-ProtoId              4012
-MapX                 32
-MapY                 62
-
-MapObjType           2
-ProtoId              4012
-MapX                 33
-MapY                 62
-
-MapObjType           2
-ProtoId              4012
-MapX                 30
-MapY                 63
-
-MapObjType           2
-ProtoId              4012
-MapX                 31
-MapY                 63
-
-MapObjType           2
-ProtoId              4012
-MapX                 31
-MapY                 63
-
-MapObjType           2
-ProtoId              4012
-MapX                 28
-MapY                 64
-
-MapObjType           2
-ProtoId              4012
-MapX                 29
-MapY                 64
-
-MapObjType           2
-ProtoId              4012
-MapX                 26
-MapY                 65
-
-MapObjType           2
-ProtoId              4012
-MapX                 27
-MapY                 65
-
-MapObjType           2
-ProtoId              4012
-MapX                 23
-MapY                 67
 
 MapObjType           2
 ProtoId              4012
@@ -7874,11 +7404,6 @@ MapY                 102
 
 MapObjType           2
 ProtoId              4012
-MapX                 147
-MapY                 102
-
-MapObjType           2
-ProtoId              4012
 MapX                 148
 MapY                 103
 
@@ -7896,11 +7421,6 @@ MapObjType           2
 ProtoId              4012
 MapX                 151
 MapY                 108
-
-MapObjType           2
-ProtoId              4012
-MapX                 152
-MapY                 109
 
 MapObjType           2
 ProtoId              4012
@@ -8229,11 +7749,6 @@ MapY                 108
 
 MapObjType           2
 ProtoId              4012
-MapX                 71
-MapY                 139
-
-MapObjType           2
-ProtoId              4012
 MapX                 72
 MapY                 139
 
@@ -8274,23 +7789,13 @@ MapY                 145
 
 MapObjType           2
 ProtoId              4012
-MapX                 75
-MapY                 145
-
-MapObjType           2
-ProtoId              4012
-MapX                 76
-MapY                 145
-
-MapObjType           2
-ProtoId              4012
 MapX                 76
 MapY                 146
 
 MapObjType           2
 ProtoId              4012
-MapX                 77
-MapY                 147
+MapX                 76
+MapY                 145
 
 MapObjType           2
 ProtoId              4012
@@ -8334,22 +7839,12 @@ MapY                 152
 
 MapObjType           2
 ProtoId              4012
-MapX                 80
-MapY                 152
-
-MapObjType           2
-ProtoId              4012
 MapX                 81
 MapY                 153
 
 MapObjType           2
 ProtoId              4012
 MapX                 81
-MapY                 154
-
-MapObjType           2
-ProtoId              4012
-MapX                 82
 MapY                 154
 
 MapObjType           2
@@ -8404,26 +7899,6 @@ MapY                 161
 
 MapObjType           2
 ProtoId              4012
-MapX                 87
-MapY                 162
-
-MapObjType           2
-ProtoId              4012
-MapX                 87
-MapY                 163
-
-MapObjType           2
-ProtoId              4012
-MapX                 162
-MapY                 124
-
-MapObjType           2
-ProtoId              4012
-MapX                 162
-MapY                 124
-
-MapObjType           2
-ProtoId              4012
 MapX                 162
 MapY                 124
 
@@ -8450,11 +7925,6 @@ MapY                 126
 MapObjType           2
 ProtoId              4012
 MapX                 157
-MapY                 127
-
-MapObjType           2
-ProtoId              4012
-MapX                 156
 MapY                 127
 
 MapObjType           2
@@ -8539,16 +8009,6 @@ MapY                 162
 
 MapObjType           2
 ProtoId              4012
-MapX                 86
-MapY                 162
-
-MapObjType           2
-ProtoId              4012
-MapX                 136
-MapY                 137
-
-MapObjType           2
-ProtoId              4012
 MapX                 136
 MapY                 137
 
@@ -8565,11 +8025,6 @@ MapY                 138
 MapObjType           2
 ProtoId              4012
 MapX                 133
-MapY                 139
-
-MapObjType           2
-ProtoId              4012
-MapX                 132
 MapY                 139
 
 MapObjType           2
@@ -8746,346 +8201,6 @@ MapObjType           2
 ProtoId              4012
 MapX                 102
 MapY                 154
-
-MapObjType           2
-ProtoId              4012
-MapX                 162
-MapY                 125
-
-MapObjType           2
-ProtoId              4012
-MapX                 162
-MapY                 125
-
-MapObjType           2
-ProtoId              4012
-MapX                 162
-MapY                 125
-
-MapObjType           2
-ProtoId              4012
-MapX                 161
-MapY                 126
-
-MapObjType           2
-ProtoId              4012
-MapX                 160
-MapY                 126
-
-MapObjType           2
-ProtoId              4012
-MapX                 159
-MapY                 127
-
-MapObjType           2
-ProtoId              4012
-MapX                 158
-MapY                 127
-
-MapObjType           2
-ProtoId              4012
-MapX                 157
-MapY                 128
-
-MapObjType           2
-ProtoId              4012
-MapX                 156
-MapY                 128
-
-MapObjType           2
-ProtoId              4012
-MapX                 156
-MapY                 128
-
-MapObjType           2
-ProtoId              4012
-MapX                 101
-MapY                 156
-
-MapObjType           2
-ProtoId              4012
-MapX                 100
-MapY                 156
-
-MapObjType           2
-ProtoId              4012
-MapX                 99
-MapY                 157
-
-MapObjType           2
-ProtoId              4012
-MapX                 98
-MapY                 157
-
-MapObjType           2
-ProtoId              4012
-MapX                 97
-MapY                 158
-
-MapObjType           2
-ProtoId              4012
-MapX                 96
-MapY                 158
-
-MapObjType           2
-ProtoId              4012
-MapX                 95
-MapY                 159
-
-MapObjType           2
-ProtoId              4012
-MapX                 94
-MapY                 159
-
-MapObjType           2
-ProtoId              4012
-MapX                 93
-MapY                 160
-
-MapObjType           2
-ProtoId              4012
-MapX                 92
-MapY                 160
-
-MapObjType           2
-ProtoId              4012
-MapX                 91
-MapY                 161
-
-MapObjType           2
-ProtoId              4012
-MapX                 90
-MapY                 161
-
-MapObjType           2
-ProtoId              4012
-MapX                 89
-MapY                 162
-
-MapObjType           2
-ProtoId              4012
-MapX                 88
-MapY                 162
-
-MapObjType           2
-ProtoId              4012
-MapX                 87
-MapY                 163
-
-MapObjType           2
-ProtoId              4012
-MapX                 86
-MapY                 163
-
-MapObjType           2
-ProtoId              4012
-MapX                 137
-MapY                 138
-
-MapObjType           2
-ProtoId              4012
-MapX                 136
-MapY                 138
-
-MapObjType           2
-ProtoId              4012
-MapX                 136
-MapY                 138
-
-MapObjType           2
-ProtoId              4012
-MapX                 135
-MapY                 139
-
-MapObjType           2
-ProtoId              4012
-MapX                 134
-MapY                 139
-
-MapObjType           2
-ProtoId              4012
-MapX                 133
-MapY                 140
-
-MapObjType           2
-ProtoId              4012
-MapX                 132
-MapY                 140
-
-MapObjType           2
-ProtoId              4012
-MapX                 132
-MapY                 140
-
-MapObjType           2
-ProtoId              4012
-MapX                 131
-MapY                 141
-
-MapObjType           2
-ProtoId              4012
-MapX                 130
-MapY                 141
-
-MapObjType           2
-ProtoId              4012
-MapX                 129
-MapY                 142
-
-MapObjType           2
-ProtoId              4012
-MapX                 128
-MapY                 142
-
-MapObjType           2
-ProtoId              4012
-MapX                 127
-MapY                 143
-
-MapObjType           2
-ProtoId              4012
-MapX                 126
-MapY                 143
-
-MapObjType           2
-ProtoId              4012
-MapX                 125
-MapY                 144
-
-MapObjType           2
-ProtoId              4012
-MapX                 124
-MapY                 144
-
-MapObjType           2
-ProtoId              4012
-MapX                 123
-MapY                 145
-
-MapObjType           2
-ProtoId              4012
-MapX                 122
-MapY                 145
-
-MapObjType           2
-ProtoId              4012
-MapX                 121
-MapY                 146
-
-MapObjType           2
-ProtoId              4012
-MapX                 120
-MapY                 146
-
-MapObjType           2
-ProtoId              4012
-MapX                 119
-MapY                 147
-
-MapObjType           2
-ProtoId              4012
-MapX                 118
-MapY                 147
-
-MapObjType           2
-ProtoId              4012
-MapX                 117
-MapY                 148
-
-MapObjType           2
-ProtoId              4012
-MapX                 116
-MapY                 148
-
-MapObjType           2
-ProtoId              4012
-MapX                 116
-MapY                 148
-
-MapObjType           2
-ProtoId              4012
-MapX                 115
-MapY                 149
-
-MapObjType           2
-ProtoId              4012
-MapX                 114
-MapY                 149
-
-MapObjType           2
-ProtoId              4012
-MapX                 114
-MapY                 149
-
-MapObjType           2
-ProtoId              4012
-MapX                 113
-MapY                 150
-
-MapObjType           2
-ProtoId              4012
-MapX                 113
-MapY                 150
-
-MapObjType           2
-ProtoId              4012
-MapX                 112
-MapY                 150
-
-MapObjType           2
-ProtoId              4012
-MapX                 111
-MapY                 151
-
-MapObjType           2
-ProtoId              4012
-MapX                 110
-MapY                 151
-
-MapObjType           2
-ProtoId              4012
-MapX                 109
-MapY                 152
-
-MapObjType           2
-ProtoId              4012
-MapX                 108
-MapY                 152
-
-MapObjType           2
-ProtoId              4012
-MapX                 107
-MapY                 153
-
-MapObjType           2
-ProtoId              4012
-MapX                 107
-MapY                 153
-
-MapObjType           2
-ProtoId              4012
-MapX                 106
-MapY                 153
-
-MapObjType           2
-ProtoId              4012
-MapX                 105
-MapY                 154
-
-MapObjType           2
-ProtoId              4012
-MapX                 104
-MapY                 154
-
-MapObjType           2
-ProtoId              4012
-MapX                 103
-MapY                 155
-
-MapObjType           2
-ProtoId              4012
-MapX                 102
-MapY                 155
 
 MapObjType           2
 ProtoId              5047
@@ -10393,11 +9508,6 @@ MapObjType           2
 ProtoId              5223
 MapX                 115
 MapY                 139
-
-MapObjType           2
-ProtoId              4012
-MapX                 88
-MapY                 163
 
 MapObjType           2
 ProtoId              4012
@@ -13825,11 +12935,6 @@ MapY                 78
 MapObjType           2
 ProtoId              4012
 MapX                 131
-MapY                 78
-
-MapObjType           2
-ProtoId              4012
-MapX                 131
 MapY                 79
 
 MapObjType           2
@@ -13864,22 +12969,12 @@ MapY                 83
 
 MapObjType           2
 ProtoId              4012
-MapX                 134
-MapY                 83
-
-MapObjType           2
-ProtoId              4012
 MapX                 135
 MapY                 84
 
 MapObjType           2
 ProtoId              4012
 MapX                 135
-MapY                 85
-
-MapObjType           2
-ProtoId              4012
-MapX                 136
 MapY                 85
 
 MapObjType           2
@@ -14084,96 +13179,6 @@ MapY                 137
 
 MapObjType           2
 ProtoId              4012
-MapX                 155
-MapY                 129
-
-MapObjType           2
-ProtoId              4012
-MapX                 154
-MapY                 129
-
-MapObjType           2
-ProtoId              4012
-MapX                 153
-MapY                 130
-
-MapObjType           2
-ProtoId              4012
-MapX                 152
-MapY                 130
-
-MapObjType           2
-ProtoId              4012
-MapX                 151
-MapY                 131
-
-MapObjType           2
-ProtoId              4012
-MapX                 150
-MapY                 131
-
-MapObjType           2
-ProtoId              4012
-MapX                 149
-MapY                 132
-
-MapObjType           2
-ProtoId              4012
-MapX                 148
-MapY                 132
-
-MapObjType           2
-ProtoId              4012
-MapX                 147
-MapY                 133
-
-MapObjType           2
-ProtoId              4012
-MapX                 146
-MapY                 133
-
-MapObjType           2
-ProtoId              4012
-MapX                 145
-MapY                 134
-
-MapObjType           2
-ProtoId              4012
-MapX                 144
-MapY                 134
-
-MapObjType           2
-ProtoId              4012
-MapX                 143
-MapY                 135
-
-MapObjType           2
-ProtoId              4012
-MapX                 142
-MapY                 135
-
-MapObjType           2
-ProtoId              4012
-MapX                 141
-MapY                 136
-
-MapObjType           2
-ProtoId              4012
-MapX                 140
-MapY                 136
-
-MapObjType           2
-ProtoId              4012
-MapX                 139
-MapY                 137
-
-MapObjType           2
-ProtoId              4012
-MapX                 138
-MapY                 137
-
-MapObjType           2
-ProtoId              4012
 MapX                 101
 MapY                 155
 
@@ -14224,11 +13229,6 @@ MapY                 115
 
 MapObjType           2
 ProtoId              4012
-MapX                 55
-MapY                 115
-
-MapObjType           2
-ProtoId              4012
 MapX                 56
 MapY                 115
 
@@ -14236,11 +13236,6 @@ MapObjType           2
 ProtoId              4012
 MapX                 56
 MapY                 116
-
-MapObjType           2
-ProtoId              4012
-MapX                 57
-MapY                 117
 
 MapObjType           2
 ProtoId              4012
@@ -14284,22 +13279,12 @@ MapY                 122
 
 MapObjType           2
 ProtoId              4012
-MapX                 60
-MapY                 122
-
-MapObjType           2
-ProtoId              4012
 MapX                 61
 MapY                 123
 
 MapObjType           2
 ProtoId              4012
 MapX                 61
-MapY                 124
-
-MapObjType           2
-ProtoId              4012
-MapX                 62
 MapY                 124
 
 MapObjType           2
@@ -14405,76 +13390,6 @@ MapY                 139
 MapObjType           2
 ProtoId              4012
 MapX                 49
-MapY                 54
-
-MapObjType           2
-ProtoId              4012
-MapX                 49
-MapY                 54
-
-MapObjType           2
-ProtoId              4012
-MapX                 48
-MapY                 54
-
-MapObjType           2
-ProtoId              4012
-MapX                 47
-MapY                 55
-
-MapObjType           2
-ProtoId              4012
-MapX                 46
-MapY                 55
-
-MapObjType           2
-ProtoId              4012
-MapX                 45
-MapY                 56
-
-MapObjType           2
-ProtoId              4012
-MapX                 44
-MapY                 56
-
-MapObjType           2
-ProtoId              4012
-MapX                 43
-MapY                 57
-
-MapObjType           2
-ProtoId              4012
-MapX                 43
-MapY                 57
-
-MapObjType           2
-ProtoId              4012
-MapX                 42
-MapY                 57
-
-MapObjType           2
-ProtoId              4012
-MapX                 41
-MapY                 58
-
-MapObjType           2
-ProtoId              4012
-MapX                 40
-MapY                 58
-
-MapObjType           2
-ProtoId              4012
-MapX                 39
-MapY                 59
-
-MapObjType           2
-ProtoId              4012
-MapX                 38
-MapY                 59
-
-MapObjType           2
-ProtoId              4012
-MapX                 49
 MapY                 55
 
 MapObjType           2
@@ -14494,21 +13409,6 @@ MapY                 56
 
 MapObjType           2
 ProtoId              4012
-MapX                 46
-MapY                 56
-
-MapObjType           2
-ProtoId              4012
-MapX                 45
-MapY                 57
-
-MapObjType           2
-ProtoId              4012
-MapX                 45
-MapY                 57
-
-MapObjType           2
-ProtoId              4012
 MapX                 45
 MapY                 57
 
@@ -14516,11 +13416,6 @@ MapObjType           2
 ProtoId              4012
 MapX                 44
 MapY                 57
-
-MapObjType           2
-ProtoId              4012
-MapX                 43
-MapY                 58
 
 MapObjType           2
 ProtoId              4012
@@ -14563,16 +13458,6 @@ MapX                 25
 MapY                 67
 
 MapObjType           2
-ProtoId              4012
-MapX                 24
-MapY                 66
-
-MapObjType           2
-ProtoId              4012
-MapX                 25
-MapY                 66
-
-MapObjType           2
 ProtoId              2170
 MapX                 115
 MapY                 68
@@ -14596,22 +13481,6 @@ Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
 Critter_ParamValue5  0
-
-MapObjType           1
-ProtoId              15
-MapX                 95
-MapY                 131
-Item_InContainer     1
-Item_ItemSlot        2
-Item_AmmoPid         39
-Item_AmmoCount       10
-
-MapObjType           1
-ProtoId              144
-MapX                 95
-MapY                 131
-Item_Count           3
-Item_InContainer     1
 
 MapObjType           2
 ProtoId              2032
@@ -16296,20 +15165,6 @@ FuncName             door_close
 Scenery_TriggerNum   5
 Scenery_ParamsCount  1
 Scenery_Param0       112
-
-MapObjType           1
-ProtoId              39
-MapX                 95
-MapY                 131
-Item_InContainer     1
-Item_ItemSlot        1
-
-MapObjType           1
-ProtoId              524
-MapX                 95
-MapY                 131
-Item_InContainer     1
-Item_ItemSlot        3
 
 MapObjType           2
 ProtoId              5162

@@ -90,7 +90,7 @@ void r_StartDclawRebirth( Critter& player, Critter@ prof )
 	Map@ map = prof.GetMap();
 	uint[] args = { map.Id, 0 };
 
-	GameVar@ DclawKids = GetGlobalVar( GVAR_v13_dclaw_saved );
+	GameVar@ DclawKids = GetGlobalVar( GVAR_ending_v13_dclaw_saved );
 	if ( valid(DclawKids) ) {
 		switch( DclawKids.GetValue() ){
 			case 0: DclawKids = 1; args[1] = 251; CreateTimeEvent( __FullSecond + ( 60 * 60 * 24 * Random( 7, 9 ) ), "e_DclawKidBorn", args, true ); break;

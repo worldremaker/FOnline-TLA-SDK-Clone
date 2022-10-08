@@ -67,7 +67,7 @@ lang=russ engl
 25 15020 D _var p q_klam_find_trappers = 6 R _param p ST_KARMA - 5 R _var p q_klam_find_trappers = 7 R _param p ST_EXPERIENCE + 200 R _param p REPUTATION_KLAMATH - 1 #
 17 15030 D _param p ST_INTELLECT < 6 D _item p PID_STIMPAK > 0 D _var p klam_trappers_radaway < 20 R _item p PID_STIMPAK - 1 #
 18 15040 D _param p ST_INTELLECT < 6 D _item p PID_ANTIDOTE > 0 D _var p klam_trappers_radaway < 20 R _item p PID_ANTIDOTE - 1 #
-19 15050 D _item p PID_RADAWAY > 0 D _var p klam_trappers_radaway < 19 R _var p klam_trappers_radaway + 1 R _var p klam_trappers_radaway + 1 R _var p name_mem_npc_player + 1 R _item p PID_RADAWAY - 1 R _param p ST_EXPERIENCE + 500 R _param p ST_KARMA + 10 #
+19 15050 D _item p PID_RADAWAY > 0 D _var p klam_trappers_radaway < 19 R _var p klam_trappers_radaway + 1 R _var p name_mem_npc_player + 1 R _item p PID_RADAWAY - 1 R _param p ST_EXPERIENCE + 500 R _param p ST_KARMA + 10 #
 20 15060 D _var p klam_trappers_radaway = 19 D _item p PID_RADAWAY > 0 R _var p klam_trappers_radaway + 1 R _var p name_mem_npc_player + 1 R _item p PID_RADAWAY - 1 R _param p ST_EXPERIENCE + 500 R _param p ST_KARMA + 10 #
 21 15070 D _param p ST_INTELLECT < 6 D _item p PID_RAD_X > 0 D _var p klam_trappers_radaway < 20 R _item p PID_RAD_X - 1 #
 22 15080 D _param p ST_INTELLECT < 6 D _item p PID_BEER > 0 D _var p klam_trappers_radaway < 20 R _item p PID_BEER - 1 #
@@ -89,8 +89,8 @@ lang=russ engl
 18 18000 None 1 #
 0 18010 #
 17 18020 D _item p PID_STIMPAK > 0 R _item p PID_STIMPAK - 1 #
-19 18030 D _item p PID_RADAWAY > 0 D _var p klam_trappers_radaway < 19 R _var p name_mem_npc_player + 1 R _item p PID_RADAWAY - 1 R _param p ST_EXPERIENCE + 500 R _param p ST_KARMA + 10 #
-20 18040 D _item p PID_RADAWAY > 0 D _var p klam_trappers_radaway = 19 R _var p name_mem_npc_player + 1 R _item p PID_RADAWAY - 1 R _param p ST_EXPERIENCE + 500 R _param p ST_KARMA + 10 #
+19 18030 D _item p PID_RADAWAY > 0 D _var p klam_trappers_radaway < 19 R _var p name_mem_npc_player + 1 R _item p PID_RADAWAY - 1 R _param p ST_EXPERIENCE + 500 R _param p ST_KARMA + 10 R _var p klam_trappers_radaway + 1 #
+20 18040 D _item p PID_RADAWAY > 0 D _var p klam_trappers_radaway = 19 R _var p klam_trappers_radaway + 1 R _var p name_mem_npc_player + 1 R _item p PID_RADAWAY - 1 R _param p ST_EXPERIENCE + 500 R _param p ST_KARMA + 10 #
 21 18050 D _item p PID_RAD_X > 0 R _item p PID_RAD_X - 1 #
 22 18060 D _item p PID_BEER > 0 R _item p PID_BEER - 1 @
 19 19000 None 1 #

@@ -167,35 +167,6 @@ bool d_IsDead(Critter& player, Critter@ npc, int v0, int v1)
 	return not d_IsLife(player,npc,v0,v1);
 }
 
-
-// Установка таймаута. value - время в минутах, через которое таймаут пройдет
-void r_SetUniqTO(Critter & player, Critter @ npc, int value)
-{
-	if(!valid(npc)) return;
-	GameVar @ to = GetUnicumVar(UVAR_uniq_timeout, player.Id, npc.Id);
-	if(!valid(to)) return;
-	to = value*60+__FullSecond;
-}
-
-// Отложенная всплывающая строка над нпц
-void r_SayMessageDelayed(Critter & player, Critter @ npc, int strNum, int delaySeconds, int sayType)
-{
-	if(!valid(npc)) return;
-	uint[] values = {npc.Id, uint(sayType), uint(strNum)};
-	CreateTimeEvent(__FullSecond + delaySeconds, "e_SayMessage", values, false);
-}
-
-uint e_SayMessage(uint[]@ values)
-{
-	if(values.length() < 3) return 0;
-	Critter @ cr = GetCritter(values[0]);
-	if(!valid(cr)) return 0;
-	int did = cr.Stat[ST_DIALOG_ID];
-	if(did == 0) return 0;
-	cr.SayMsg(values[1], TEXTMSG_DLG, DLGSTR(did, values[2]));
-	return 0;
-}
-
 // Шпионаж
 void dlg_TrySpy( Critter& player, Critter@ banker, string@ playerName )
 {
@@ -614,10 +585,20 @@ void r_InfoMessage(Critter& player, Critter@ npc, int strNum)
 	InfoMessage(player,npc,strNum);
 }
 
+// Установка таймаута в часах на отдельного нпц (общий для всех игроков).
 void r_TimeoutSet(Critter& player, Critter@ npc, int gameHours)
 {
 	if(valid(npc))
 		TimeoutSet(npc,gameHours);
+}
+
+// Установка таймаута в минутах для связки игрок/нпц.
+void r_SetUniqTO(Critter & player, Critter @ npc, int value)
+{
+	if(!valid(npc)) return;
+	GameVar @ to = GetUnicumVar(UVAR_uniq_timeout, player.Id, npc.Id);
+	if(!valid(to)) return;
+	to = value*60+__FullSecond;
 }
 
 void r_DoorOpen(Critter& player, Critter@ npc, int entireNum)
@@ -677,3 +658,21 @@ void r_TeamAttack(Critter& player, Critter@ npc)
 	}
 }
 
+// Отложенная всплывающая строка над нпц
+void r_SayMessageDelayed(Critter & player, Critter @ npc, int strNum, int delaySeconds, int sayType)
+{
+	if(!valid(npc)) return;
+	uint[] values = {npc.Id, uint(sayType), uint(strNum)};
+	CreateTimeEvent(__FullSecond + delaySeconds, "e_SayMessage", values, false);
+}
+
+uint e_SayMessage(uint[]@ values)
+{
+	if(values.length() < 3) return 0;
+	Critter @ cr = GetCritter(values[0]);
+	if(!valid(cr)) return 0;
+	int did = cr.Stat[ST_DIALOG_ID];
+	if(did == 0) return 0;
+	cr.SayMsg(values[1], TEXTMSG_DLG, DLGSTR(did, values[2]));
+	return 0;
+}

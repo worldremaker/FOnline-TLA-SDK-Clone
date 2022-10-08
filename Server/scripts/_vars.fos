@@ -1,7 +1,7 @@
 #ifndef __VARS__
 #define __VARS__
 /*************************************************************************************
-***  VARS  *****  COUNT: 00000501  ***************************************************
+***  VARS  *****  COUNT: 00000511  ***************************************************
 *************************************************************************************/
 
 
@@ -20,13 +20,6 @@
 #define GVAR_mod_baltas_armour_count                 (13)
 #define GVAR_den_ghost_is_dead                       (14)
 #define LVAR_hell_visits                             (20)
-#define GVAR_arroyo_ending_arroyo                    (21)
-#define GVAR_arroyo_ending_todd                      (22)
-#define GVAR_arroyo_ending_vc                        (23)
-#define GVAR_v13_fugitives                           (24)
-#define GVAR_dclaw_revival                           (25)
-#define GVAR_dclaw_genocide                          (26)
-#define GVAR_v13_dclaw_saved                         (27)
 #define GVAR_base_sierra_rule                        (100)
 #define GVAR_base_mariposa_rule                      (101)
 #define GVAR_base_cathedral_rule                     (102)
@@ -55,6 +48,17 @@
 #define GVAR_enc_ocean_trader_alive                  (164)
 #define GVAR_modoc_brahmin_escaped                   (1299)
 #define GVAR_raiders_dead                            (1600)
+#define GVAR_ending_arroyo_independence              (1800)
+#define GVAR_ending_arroyo_todd                      (1801)
+#define GVAR_ending_arroyo_vc                        (1802)
+#define GVAR_ending_arroyo_arrest_tim                (1803)
+#define GVAR_ending_arroyo_arrest_tribal             (1804)
+#define GVAR_ending_arroyo_arrest_shaman             (1805)
+#define GVAR_ending_arroyo_arrest_klint              (1806)
+#define GVAR_ending_v13_fugitives                    (1811)
+#define GVAR_ending_v13_dclaw_revival                (1812)
+#define GVAR_ending_v13_dclaw_genocide               (1813)
+#define GVAR_ending_v13_dclaw_saved                  (1814)
 #define UVAR_loyality                                (2010)
 #define UVAR_steal_exp_count                         (2011)
 #define UVAR_first_aid_count                         (2012)
@@ -362,6 +366,13 @@
 #define UVAR_poker_manywins                          (4623)
 #define UVAR_poker_wincash                           (4624)
 #define LVAR_arroyo_doc_healing                      (4700)
+#define LVAR_q_arroyo_mynoc_oil                      (4701)
+#define LVAR_q_arroyo_mynoc_defence                  (4702)
+#define GVAR_arroyo_mynoc_timeout                    (4703)
+#define GVAR_arroyo_mynoc_map                        (4704)
+#define LVAR_q_arroyo_cassidy_letter                 (4705)
+#define LVAR_q_arroyo_proof_of_death                 (4706)
+#define LVAR_q_arroyo_letter_to_linnett              (4707)
 #define LVAR_scenery_axe_lasttime                    (4800)
 #define LVAR_q_v13_dclaw                             (4900)
 #define LVAR_q_v13_dclaweggs                         (4902)
@@ -502,10 +513,9 @@
 #define LVAR_vc_prisoner_bulled                      (8844)
 #define LVAR_q_vc_lynett_forgery                     (8845)
 #define LVAR_vc_forgery_witness_inhome               (8846)
-#define LVAR_q_arroyo_mynoc_oil                      (9925)
-#define LVAR_q_arroyo_mynoc_defence                  (9926)
-#define GVAR_arroyo_mynoc_timeout                    (9927)
-#define GVAR_arroyo_mynoc_map                        (9928)
+#define LVAR_q_vc_cindy_letter                       (8847)
+#define LVAR_q_vc_letter_to_todd                     (8848)
+#define LVAR_vc_knows_about_delivery                 (8849)
 
 
 /*************************************************************************************
@@ -632,41 +642,6 @@ $	20	1	hell_visits	0	0	0	4
 **********
 Количество посещений игроком Ада.
 Используется для воспроизведения ролика TheLifeAfterHell.avi.
-**********
-
-$	21	0	arroyo_ending_arroyo	0	0	0	0
-**********
-Независимость Арройо
-**********
-
-$	22	0	arroyo_ending_todd	0	0	0	0
-**********
-Успехи Тодда
-**********
-
-$	23	0	arroyo_ending_vc	0	0	0	0
-**********
-Успех ГУ
-**********
-
-$	24	0	v13_fugitives	0	0	0	0
-**********
-Беглец
-**********
-
-$	25	0	dclaw_revival	0	0	0	0
-**********
-Переменные "Руки Смерти возрождение" и "Руки Смерти геноцид"
-**********
-
-$	26	0	dclaw_genocide	0	0	0	0
-**********
-Переменные "Руки Смерти возрождение" и "Руки Смерти геноцид"
-**********
-
-$	27	0	v13_dclaw_saved	0	0	0	0
-**********
-Кол-во спасённых/выращенных детёнышей смертокогтов.
 **********
 
 $	100	0	base_sierra_rule	0	0	0	4
@@ -841,6 +816,61 @@ $	1600	0	raiders_dead	0	0	0	4
 **********
 GVAR_RAIDERS_DEAD                       :=0;    //      (600)
 Поставил пока без ограничений.
+**********
+
+$	1800	0	ending_arroyo_independence	0	0	0	4
+**********
+Счётчик выполненных квестов, направленных на усиление независимости Арройо.
+**********
+
+$	1801	0	ending_arroyo_todd	0	0	0	4
+**********
+Счётчик выполненных квестов, направленных на приведение Тодда Стьюарда к успеху.
+**********
+
+$	1802	0	ending_arroyo_vc	0	0	0	4
+**********
+Счётчик выполненных квестов, направленных на усиление контроля Города-Убежища над Арройо.
+**********
+
+$	1803	0	ending_arroyo_arrest_tim	0	0	0	4
+**********
+Счётчик успешных доказательств вины Тима (Квест на разоблачение наркоманов).
+**********
+
+$	1804	0	ending_arroyo_arrest_tribal	0	0	0	4
+**********
+Счётчик успешных доказательств вины туземного парня (Квест на разоблачение наркоманов).
+**********
+
+$	1805	0	ending_arroyo_arrest_shaman	0	0	0	4
+**********
+Счётчик успешных доказательств вины шамана(Квест на разоблачение наркоманов).
+**********
+
+$	1806	0	ending_arroyo_arrest_klint	0	0	0	4
+**********
+Счётчик успешных доказательств вины Клинта(Квест на разоблачение наркоманов).
+**********
+
+$	1811	0	ending_v13_fugitives	0	0	0	0
+**********
+Беглец
+**********
+
+$	1812	0	ending_v13_dclaw_revival	0	0	0	0
+**********
+Счётчик для квестов, направленных на возрождение Когтей Смерти.
+**********
+
+$	1813	0	ending_v13_dclaw_genocide	0	0	0	0
+**********
+Счётчик для квестов, направленных на геноцид Когтей Смерти.
+**********
+
+$	1814	0	ending_v13_dclaw_saved	0	0	0	0
+**********
+Счётчик спасённых яиц Когтей Смерти.
 **********
 
 $	2010	2	loyality	5	0	10	0
@@ -3716,6 +3746,56 @@ $	4700	1	arroyo_doc_healing	0	0	2	0
 2 - в операционную, к Рейчел.
 **********
 
+$	4701	1	q_arroyo_mynoc_oil	0	0	3	1
+**********
+Квест "Броня избранного", NPC Минок в Арройо.
+**********
+
+$	4702	1	q_arroyo_mynoc_defence	0	0	8	1
+**********
+Квест "Защита Арройо", NPC Минок в Арройо.
+**********
+
+$	4703	0	arroyo_mynoc_timeout	0	0	0	4
+**********
+Храниться GameTime для квеста "Защита Арройо". По истечении квест можно давать другой группе или нужно просто "провалить" у этой.
+**********
+
+$	4704	0	arroyo_mynoc_map	0	0	0	4
+**********
+ID локации с рейдерами для  квеста "Защита Арройо".
+**********
+
+$	4705	1	q_arroyo_cassidy_letter	0	0	4	1
+**********
+Квест "Доставка письма", Кэссиди.
+
+1 - квест взят.
+2 - письмо доставлено.
+3 - игрок отчитался.
+4 - игрок потерял письмо и признался.
+**********
+
+$	4706	1	q_arroyo_proof_of_death	0	0	4	1
+**********
+Квест "Доказательства смерти Избранного", Тодд.
+
+1 - квест взят.
+2 - принёс улику, надо отойти
+3 - сдал улику.
+4 - сдал Тодда Мартину.
+**********
+
+$	4707	1	q_arroyo_letter_to_linnett	0	0	4	1
+**********
+Задание "Доставка письма Линнетт", Тодд.
+
+1 - квест взят.
+2 - сдал.
+3 - отчитался.
+4 - не смог взять задание.
+**********
+
 $	4800	1	scenery_axe_lasttime	0	0	0	4
 **********
 Время последнего использования топора.
@@ -4698,24 +4778,30 @@ $	8846	1	vc_forgery_witness_inhome	0	0	1	0
 1 = гвардейцы внутри дома Макклюра
 **********
 
-$	9925	1	q_arroyo_mynoc_oil	0	0	3	1
+$	8847	1	q_vc_cindy_letter	0	0	6	1
 **********
-Квест "Броня избранного", NPC Минок в Арройо.
+Квест "Доставка письма Кэссиди", Синди в ГУ.
+
+1 - взял письмо, но короткое.
+2 - взял письмо, подождав, пока Синди напишет ответ.
+3 - доставлено.
+4 - доставлено и отчитался.
+5 - потерял письмо и признался.
+6 - ожидает написания письма.
 **********
 
-$	9926	1	q_arroyo_mynoc_defence	0	0	8	1
+$	8848	1	q_vc_letter_to_todd	0	0	3	1
 **********
-Квест "Защита Арройо", NPC Минок в Арройо.
+Квест "Доставка письма Тодду", Грегори.
+
+1 - взял письмо.
+2 - доставил.
+3 - отчитался.
 **********
 
-$	9927	0	arroyo_mynoc_timeout	0	0	0	4
+$	8849	1	vc_knows_about_delivery	0	0	1	0
 **********
-Храниться GameTime для квеста "Защита Арройо". По истечении квест можно давать другой группе или нужно просто "провалить" у этой.
-**********
-
-$	9928	0	arroyo_mynoc_map	0	0	0	4
-**********
-ID локации с рейдерами для  квеста "Защита Арройо".
+Узнал от Линнет о том, что можно носить письма.
 **********
 
 **************************************************************************************

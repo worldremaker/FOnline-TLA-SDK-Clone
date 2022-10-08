@@ -18,8 +18,8 @@ lang=russ engl
 8 3010 #
 7 3020 #
 11 3030 D _var p q_v13_dclaweggs = 1 #
-7 3040 D _var p v13_dclaw_saved < 1 #
-15 3050 D _var p v13_dclaw_saved > 0 @
+7 3040 D _var p ending_v13_dclaw_saved < 1 #
+15 3050 D _var p ending_v13_dclaw_saved > 0 @
 4 4000 None 0 #
 5 4010 @
 5 5000 None 0 #
@@ -40,17 +40,17 @@ lang=russ engl
 0 10010 @
 11 11000 None 0 #
 6 11010 D _param p ST_INTELLECT < 4 #
-12 11020 D _var p q_v13_dclaweggs = 1 D _param p ST_INTELLECT < 4 D _param p TRAIT_JINXED = 0 D _item p PID_EASTER_EGG > 0 R _var p q_v13_dclaweggs = 2 R _param p ST_EXPERIENCE + 5000 R _param p ST_KARMA + 40 R _var p dclaw_revival + 1 R _item p PID_EASTER_EGG - 1 #
+12 11020 D _var p q_v13_dclaweggs = 1 D _param p ST_INTELLECT < 4 D _param p TRAIT_JINXED = 0 D _item p PID_EASTER_EGG > 0 R _var p q_v13_dclaweggs = 2 R _param p ST_EXPERIENCE + 5000 R _param p ST_KARMA + 40 R _var p ending_v13_dclaw_revival + 1 R _item p PID_EASTER_EGG - 1 #
 6 11030 D _param p ST_INTELLECT < 4 #
 7 11040 D _param p ST_INTELLECT > 3 #
-12 11050 D _var p q_v13_dclaweggs = 1 D _param p ST_INTELLECT > 3 D _param p TRAIT_JINXED = 0 D _item p PID_EASTER_EGG > 0 R _var p q_v13_dclaweggs = 2 R _param p ST_EXPERIENCE + 5000 R _param p ST_KARMA + 40 R _var p dclaw_revival + 1 R _item p PID_EASTER_EGG - 1 #
-13 11060 D _var p q_v13_dclaweggs = 1 D _param p ST_INTELLECT > 3 D _param p TRAIT_JINXED = 1 D _item p PID_EASTER_EGG > 0 R _var p q_v13_dclaweggs = 5 R _param p ST_EXPERIENCE + 2500 R _param p ST_KARMA + 10 R _var p dclaw_genocide + 1 R _item p PID_EASTER_EGG - 1 #
-13 11070 D _var p q_v13_dclaweggs = 1 D _param p ST_INTELLECT < 4 D _param p TRAIT_JINXED = 1 D _item p PID_EASTER_EGG > 0 R _var p q_v13_dclaweggs = 5 R _param p ST_EXPERIENCE + 2500 R _param p ST_KARMA + 10 R _var p dclaw_genocide + 1 R _item p PID_EASTER_EGG - 1 #
+12 11050 D _var p q_v13_dclaweggs = 1 D _param p ST_INTELLECT > 3 D _param p TRAIT_JINXED = 0 D _item p PID_EASTER_EGG > 0 R _var p q_v13_dclaweggs = 2 R _param p ST_EXPERIENCE + 5000 R _param p ST_KARMA + 40 R _var p ending_v13_dclaw_revival + 1 R _item p PID_EASTER_EGG - 1 #
+13 11060 D _var p q_v13_dclaweggs = 1 D _param p ST_INTELLECT > 3 D _param p TRAIT_JINXED = 1 D _item p PID_EASTER_EGG > 0 R _var p q_v13_dclaweggs = 5 R _param p ST_EXPERIENCE + 2500 R _param p ST_KARMA + 10 R _var p ending_v13_dclaw_genocide + 1 R _item p PID_EASTER_EGG - 1 #
+13 11070 D _var p q_v13_dclaweggs = 1 D _param p ST_INTELLECT < 4 D _param p TRAIT_JINXED = 1 D _item p PID_EASTER_EGG > 0 R _var p q_v13_dclaweggs = 5 R _param p ST_EXPERIENCE + 2500 R _param p ST_KARMA + 10 R _var p ending_v13_dclaw_genocide + 1 R _item p PID_EASTER_EGG - 1 #
 7 11080 D _param p ST_INTELLECT > 3 @
 12 12000 None 0 #
 0 12010 D _param p ST_INTELLECT < 4 #
 0 12020 #
-14 12030 D _param p ST_INTELLECT > 3 D _param p SK_SPEECH > 50 R _param p ST_EXPERIENCE + 1500 R _param p ST_KARMA + 10 R _var p q_v13_dclaweggs = 3 R _var p dclaw_revival + 1 R _script v13_goris@r_StartDclawRebirth 0  @
+14 12030 D _param p ST_INTELLECT > 3 D _param p SK_SPEECH > 50 R _param p ST_EXPERIENCE + 1500 R _param p ST_KARMA + 10 R _var p q_v13_dclaweggs = 3 R _var p ending_v13_dclaw_revival + 1 R _script v13_goris@r_StartDclawRebirth 0  @
 13 13000 None 0 #
 0 13010 @
 14 14000 None 0 @

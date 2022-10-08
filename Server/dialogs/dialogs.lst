@@ -204,13 +204,13 @@ $	447	vc_guard_gift
 $	448	vc_guard_starm
 $	449	vc_cindy
 $	450	vc_black_jack
-$	451 vc_hartmann
-$	452 vc_guard_fighter
+$	451     vc_hartmann
+$	452     vc_guard_fighter
 $	453	vc_guardsman
-$	454 vc_shrim
-$	455 vc_patroller
-$	456 vc_killer
-$	457 vc_telman
+$	454     vc_shrim
+$	455     vc_patroller
+$	456     vc_killer
+$	457     vc_telman
 $	458 vc_guard_witness
 $	501	gecko_garold
 $	502	gecko_citizen
@@ -803,6 +803,7 @@ $	10134	se_kotw_console1
 $	10135	se_kotw_console2
 $       10150   se_woodsman 
 $	11003	intro_martin
+$	11004	intro_hub_init
 $	21000	q_arroyo_rayders
 
 ************************************************************

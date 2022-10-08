@@ -23,9 +23,9 @@ lang=russ engl
 4 4000 None 0 @
 5 5000 None 0 @
 6 6000 None 0 #
-0 6010 D _param p ST_INTELLECT > 3 R _var p q_v13_dclaweggs = 4 R _param p ST_EXPERIENCE + 300 R _param p ST_KARMA - 30 R _var p dclaw_genocide + 1 #
+0 6010 D _param p ST_INTELLECT > 3 R _var p q_v13_dclaweggs = 4 R _param p ST_EXPERIENCE + 300 R _param p ST_KARMA - 30 R _var p ending_v13_dclaw_genocide + 1 #
 7 6020 D _param p ST_INTELLECT > 3 R _var p q_v13_dclaweggs = 1 R _script v13_goris@r_AddEgg 0  R _param p ST_EXPERIENCE + 100 #
-0 6030 D _param p ST_INTELLECT < 4 R _var p q_v13_dclaweggs = 4 R _param p ST_EXPERIENCE + 300 R _param p ST_KARMA - 30 R _var p dclaw_genocide + 1 #
+0 6030 D _param p ST_INTELLECT < 4 R _var p q_v13_dclaweggs = 4 R _param p ST_EXPERIENCE + 300 R _param p ST_KARMA - 30 R _var p ending_v13_dclaw_genocide + 1 #
 7 6040 D _param p ST_INTELLECT < 4 R _var p q_v13_dclaweggs = 1 R _script v13_goris@r_AddEgg 0  R _param p ST_EXPERIENCE + 100 @
 7 7000 None 0 &
 

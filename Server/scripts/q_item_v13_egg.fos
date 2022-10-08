@@ -66,7 +66,7 @@ void e_EggFinish( Item& item, bool deleted )
 
 	if ( GetQuestStageById( item.Val4 ) == 1 ){
 		SetQuestStageById( item.Val4, 5 );
-		GameVar@ Genocide = GetGlobalVar( GVAR_dclaw_genocide );
+		GameVar@ Genocide = GetGlobalVar( GVAR_ending_v13_dclaw_genocide );
 		if ( valid(Genocide) ) {
 			Genocide += 1;
 		}

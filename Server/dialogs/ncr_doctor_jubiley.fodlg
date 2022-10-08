@@ -34,11 +34,11 @@ lang=russ engl
 2 1020d*_param p ST_INTELLECT > 3 @
 2 2000 NOT_ANSWER_CLOSE_DIALOG 0#
 4 2010#
-3 2020d*_script dialog@d_NotTimeoutCheck 0  #
+3 2020d*_script dialog@d_NotTimeoutOk 0  #
 0 2030#
-10 2040d*_script dialog@d_TimeoutCheck 0  #
-14 2050d*_var p ncr_jubiley_tails_status = 1 *_item p PID_SCORPION_TAIL > 4 r*_var p ncr_jubiley_tails_status = 2 *_item p PID_SCORPION_TAIL - 5 *_param p ST_EXPERIENCE + 100 *_item p PID_BOTTLE_CAPS + 50 *_item p PID_ANTIDOTE + 1 *_script dialog@r_TimeoutSet 1 60 #
-12 2060d*_var p ncr_jubiley_tails_status = 1 *_item p PID_SCORPION_TAIL > 4 *_param p SK_DOCTOR > 50 r*_var p ncr_jubiley_tails_status = 2 *_item p PID_SCORPION_TAIL - 5 *_param p ST_EXPERIENCE + 100 *_item p PID_HYPODERMIC_NEEDLE + 4 *_script dialog@r_TimeoutSet 1 60 @
+10 2040d*_script dialog@d_TimeoutOk 0  #
+14 2050d*_var p ncr_jubiley_tails_status = 1 *_item p PID_SCORPION_TAIL > 4 r*_var p ncr_jubiley_tails_status = 2 *_item p PID_SCORPION_TAIL - 5 *_param p ST_EXPERIENCE + 100 *_item p PID_BOTTLE_CAPS + 50 *_item p PID_ANTIDOTE + 1 *_script dialog@r_SetUniqTO 1 60 #
+12 2060d*_var p ncr_jubiley_tails_status = 1 *_item p PID_SCORPION_TAIL > 4 *_param p SK_DOCTOR > 50 r*_var p ncr_jubiley_tails_status = 2 *_item p PID_SCORPION_TAIL - 5 *_param p ST_EXPERIENCE + 100 *_item p PID_HYPODERMIC_NEEDLE + 4 *_script dialog@r_SetUniqTO 1 60 @
 3 3000 NOT_ANSWER_CLOSE_DIALOG 0#
 0 3010#
 15 3020d*_var p ncr_jubiley_tails_counter > 0 *_var p ncr_jubiley_tails_counter < 5 #

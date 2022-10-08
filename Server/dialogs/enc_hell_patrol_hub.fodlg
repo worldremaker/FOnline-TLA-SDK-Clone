@@ -9,10 +9,10 @@ lang=russ engl
 1 1000 None 1 #
 2 1010 D _var p name_mem_npc_player = 0 #
 7 1020 D _var p name_mem_npc_player = 1 @
-2 2000 None 0 #
+2 2000 Attack 0 #
 5 2010 D _param p ST_INTELLECT > 3 #
 3 2020 D _param p ST_INTELLECT > 3 #
-9 2030 D _param p ST_INTELLECT > 3 #
+9 2030 D _param p ST_INTELLECT > 3 R _script dialog@r_TeamAttack 0  #
 8 2040 D _param p ST_INTELLECT < 4 @
 3 3000 None 0 #
 4 3010 #
@@ -21,12 +21,12 @@ lang=russ engl
 5 3040 @
 4 4000 None 0 @
 5 5000 Attack 1 #
-6 5010 D _param p ST_REPLICATION_MONEY < 0 #
+6 5010 D _param p ST_REPLICATION_MONEY < 0 R _script dialog@r_TeamAttack 0  #
 7 5020 D _param p ST_REPLICATION_MONEY } 0 R _var p name_mem_npc_player = 1 #
-65507 5030 @
+65507 5030 R _script dialog@r_TeamAttack 0  @
 6 6000 Attack 0 @
 7 7000 None 0 @
-8 8000 None 0 #
+8 8000 Attack 0 #
 6 8010 D _param p ST_REPLICATION_MONEY < 0 #
 7 8020 D _param p ST_REPLICATION_MONEY } 0 #
 65507 8030 @
