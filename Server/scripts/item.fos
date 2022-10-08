@@ -80,3 +80,16 @@ void _HoloInit(Item & item, bool firstTime)
 
 }
 
+// Настройка автоматического удаления предмета через икс часов
+void SetDeleteItem(Item& item, uint delHours)
+{
+	CreateTimeEvent(__FullSecond + delHours*60*60, "e_DeleteItem", item.Id, true);
+}
+
+uint e_DeleteItem(uint[]@ val)
+{
+	Item@ item = GetItem(val[0]);
+	if(valid(item))
+		DeleteItem(item);
+	return 0;
+}

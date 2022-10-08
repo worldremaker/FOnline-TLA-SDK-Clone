@@ -15,9 +15,9 @@ lang=russ engl
 23 1060 D _var p vc_lynet_or_maclure = 1 D _script dialog@d_TimeoutOk 0  D _var p vc_lynett_prisoner_id = 0 D _var p q_vc_lynett_arest = 0 D _var p q_vc_lynett_scare_newcomers = 5 R _script vc_lynnet@r_TrySelectPrisoner 0  #
 23 1070 D _var p vc_lynet_or_maclure = 1 D _script dialog@d_TimeoutOk 0  D _var p vc_lynett_prisoner_id > 0 D _var p q_vc_lynett_arest = 0 D _var p q_vc_lynett_scare_newcomers = 5 #
 27 1080 D _var p vc_lynet_or_maclure = 1 D _var p q_vc_lynett_arest < 5 D _var p q_vc_lynett_arest > 0 #
-29 1090 D _var p vc_lynet_or_maclure = 1 D _var p q_vc_lynett_arest = 5 D _script dialog@d_TimeoutOk 0  #
-36 1100 D _param p ST_GENDER > 3 D _var p vc_lynet_or_maclure = 1 #
-38 1110 D _param p ST_GENDER > 3 D _var p vc_lynet_or_maclure = 1 #
+29 1090 D _var p vc_lynet_or_maclure = 1 D _var p q_vc_lynett_arest = 5 D _script dialog@d_TimeoutOk 0  D _var p q_vc_lynett_forgery = 0 #
+36 1100 D _var p vc_lynet_or_maclure = 1 D _var p q_vc_lynett_forgery > 0 D _var p q_vc_lynett_forgery < 5 #
+38 1110 D _var p vc_lynet_or_maclure = 1 D _var p q_vc_lynett_forgery = 5 #
 44 1120 D _script dialog@d_NotTimeoutOk 0  D _var p vc_lynet_or_maclure = 1 #
 45 1130 D _var p vc_lynet_or_maclure = 2 @
 2 2000 None 0 #
@@ -111,17 +111,17 @@ lang=russ engl
 34 33010 #
 35 33020 @
 34 34000 None 0 #
-0 34010 @
+0 34010 R _var p q_vc_lynett_forgery = 1 R _script vc_lynnet@r_AddDocs 0  @
 35 35000 None 0 #
-0 35010 @
+0 35010 R _var p q_vc_lynett_forgery = 1 R _script vc_lynnet@r_AddDocs 0  @
 36 36000 None 0 #
 0 36010 #
-37 36020 @
+37 36020 D _var p q_vc_lynett_forgery = 2 R _var p q_vc_lynett_forgery = 4 R _script vc_lynnet@r_AddGuards 0  @
 37 37000 None 0 #
 0 37010 @
 38 38000 None 0 #
 0 38010 #
-39 38020 @
+39 38020 D _var p q_vc_lynett_forgery = 5 @
 39 39000 None 0 #
 40 39010 @
 40 40000 None 0 #
@@ -130,9 +130,9 @@ lang=russ engl
 43 41010 D _var p vc_citizenship = 1 #
 42 41020 D _var p vc_citizenship = 0 @
 42 42000 None 0 #
-0 42010 R _param p ST_EXPERIENCE + 2000 R _param p REPUTATION_VAULT_CITY + 3 R _item p PID_BOTTLE_CAPS + 5000 R _item p PID_MEGA_POWER_FIST + 1 R _item p PID_SUPER_SLEDGE + 1 R _var p vc_citizenship + 1 @
+0 42010 D _var p q_vc_lynett_forgery = 5 R _param p ST_EXPERIENCE + 2000 R _param p REPUTATION_VAULT_CITY + 3 R _item p PID_BOTTLE_CAPS + 5000 R _item p PID_MEGA_POWER_FIST + 1 R _item p PID_SUPER_SLEDGE + 1 R _var p vc_citizenship + 1 R _var p q_vc_lynett_forgery = 6 @
 43 43000 None 0 #
-0 43010 R _param p ST_EXPERIENCE + 2000 R _param p REPUTATION_VAULT_CITY + 3 R _item p PID_BOTTLE_CAPS + 5000 R _item p PID_MEGA_POWER_FIST + 1 R _item p PID_SUPER_SLEDGE + 1 @
+0 43010 D _var p q_vc_lynett_forgery = 5 R _param p ST_EXPERIENCE + 2000 R _param p REPUTATION_VAULT_CITY + 3 R _item p PID_BOTTLE_CAPS + 5000 R _item p PID_MEGA_POWER_FIST + 1 R _item p PID_SUPER_SLEDGE + 1 R _var p q_vc_lynett_forgery = 6 @
 44 44000 None 0 #
 0 44010 @
 45 45000 None 0 #
@@ -249,16 +249,16 @@ lang=russ engl
 {33010}{}{В шкафу? Хорошо, их найдут в шкафу. Я смогу пройти туда незаметно.}
 {33020}{}{Как это - попали к нему в шкаф незаметно?}
 {34000}{}{Люблю понятливых. Бери бумаги. Отнесешь - немедленно ко мне.}
-{34010}{}{Я @sex@|понял||поняла|. Как сделаю - зайду к вам.[выход]}
+{34010}{}{Я @sex@|понял||поняла|. Как сделаю - зайду к вам.}
 {35000}{}{Не тупи.  Господи, с какими ослами приходится работать. Так, твоё задание - взять бумаги, скрытно попасть в дом МакКлюра, подложить бумаги ему в шкаф. Вернуться и доложить мне.}
-{35010}{}{Я @sex@|понял||поняла|. Как сделаю - зайду к вам.[выход]}
+{35010}{}{Я @sex@|понял||поняла|. Как сделаю - зайду к вам.}
 {36000}{}{Ну как?}
-{36010}{}{Пока не сделано [выход]}
+{36010}{}{Пока не сделано...}
 {36020}{}{Всё готово.}
 {37000}{}{Ну хорошо. Теперь нельзя терять времени. Там ждут двое гвардейцев. Пойдут как свидетели. Вот ордер на обыск. Предьявишь его МакКлюру. Найдешь документы, хехе. Гвардейцы должны засвидетельствовать. Собственно все. Потом ко мне.}
-{37010}{}{Ясно. Выполняю.[выход]}
+{37010}{}{Ясно. Выполняю.}
 {38000}{}{Ну  что?}
-{38010}{}{Пока не сделано [выход]}
+{38010}{}{Работаю над этим...}
 {38020}{}{Всё получилось, как вы и хотели. Бумаги найдены, свидетели имеются.}
 {39000}{}{Отлично, отлично. Давай сюда бумаги.  Теперь у меня есть все основания обойтись с ним круто. Даже в тюрьму отправить. Ладно, это я обдумаю. В любом случае, число его сторонников теперь значительно сократится. И они уже не будут серьёзным препятствием для меня.
 }
@@ -274,7 +274,7 @@ lang=russ engl
 }
 {42010}{}{Непременно[выход]}
 {43000}{}{Угу. Лучше молчать, как могила, чем в ней лежать. Помни об этом. Ну а в награду - вот возьми. Больше не задерживаю. Будешь проходить мимо - проходи.}
-{43010}{}{Непременно[выход]}
+{43010}{}{Непременно.}
 {44000}{}{Не сейчас. Позже приходи.@@Ты слишком рано. Увидимся завтра.@@Потом. Все дела потом.}
 {44010}{}{Загляну позже.@@Поня@sex@|л||ла|. Ухожу.@@Так и сделаю.@@Прошу прощения. }
 {45000}{}{[Глаза Линетт горят откровенной ненавистью] Еще один жополиз Мак Клюра. А ну, прочь отсюда! Охрана!}

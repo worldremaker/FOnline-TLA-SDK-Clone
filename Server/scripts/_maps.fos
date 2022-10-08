@@ -151,6 +151,7 @@
 //************************************************************************/
 
 #define MAP_vcity_courtyard                         (15)
+#define MAP_vcity                                   (16)
 #define MAP_barter_ground                           (24)
 #define MAP_sad_enter                               (25)
 #define MAP_sad_powersub                            (26)

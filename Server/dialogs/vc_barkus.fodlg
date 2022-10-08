@@ -9,7 +9,7 @@ lang=russ engl
 1 1000 None 0 #
 13 1010 D _param p ST_INTELLECT < 4 #
 2 1020 D _var n name_mem_npc_player = 0 D _var p q_vc_amanda_help_joshua ! 7 D _var p q_vc_amanda_help_joshua ! 8 D _var p q_vc_amanda_help_joshua ! 9 R _var n name_mem_npc_player = 1 #
-10 1030 D _var n name_mem_npc_player = 1 D _var p q_vc_amanda_help_joshua ! 8 D _var p q_vc_amanda_help_joshua ! 7 #
+10 1030 D _var n name_mem_npc_player = 1 D _var p q_vc_amanda_help_joshua ! 8 D _var p q_vc_amanda_help_joshua ! 7 D _var p q_vc_amanda_help_joshua ! 9 #
 31 1040 D _var p q_vc_amanda_help_joshua > 6 D _param p ST_GENDER = 0 #
 32 1050 D _var p q_vc_amanda_help_joshua > 6 D _param p ST_GENDER = 1 @
 2 2000 None 0 #

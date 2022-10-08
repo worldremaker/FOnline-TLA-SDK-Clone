@@ -198,6 +198,7 @@
 #define DIALOG_vc_patroller                            (455)
 #define DIALOG_vc_killer                               (456)
 #define DIALOG_vc_telman                               (457)
+#define DIALOG_vc_guard_witness                        (458)
 #define DIALOG_gecko_garold                            (501)
 #define DIALOG_gecko_citizen                           (502)
 #define DIALOG_gecko_citizen_glow                      (503)

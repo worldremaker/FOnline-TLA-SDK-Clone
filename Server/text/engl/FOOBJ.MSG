@@ -1192,6 +1192,8 @@
 {59401}{}{Коробка пончиков "Пончики вкусные". 5 штук в упаковке.}
 {59500}{}{Eli's knife}
 {59501}{}{Чертовски хорошо заточенный и увесистый нож в два фута длиной. Таким можно отрубить чью-нибудь конечность даже без особого замаха.}
+{60000}{}{Подложные документы}
+{60001}{}{Мерзкое порождение извращенного ума Линетт. Нужно подбросить их  МакКлюру.}
 {80000}{}{Hummer}
 {80001}{}{This vehicle has been built on the base of M1025 Hummer, produced by AMG at the turn of the 20th and 21th centuries. Most of the parts are taken from its predecessor so the car inherits the quality of the original. Used by the Brotherhood of Steel as a workhorse for any kind of work. Hummer - fast and reliable way to travel.}
 {80100}{}{Hummer trunk}
