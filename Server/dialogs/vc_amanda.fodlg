@@ -49,8 +49,8 @@ lang=russ engl
 12 12000 None 0 @
 13 13000 None 0 #
 0 13010 #
-14 13020 D _var p q_vc_amanda_help_joshua > 3 D _var p q_vc_amanda_help_joshua < 6 R _var p q_vc_amanda_help_joshua = 6 R _param p REPUTATION_VAULT_CITY + 1 R _param p ST_CURRENT_AP + 2100 #
-14 13030 D _var p q_vc_amanda_help_joshua = 7 D or D _var p q_vc_amanda_help_joshua = 8 R _var p q_vc_amanda_help_joshua = 9 R _param p REPUTATION_VAULT_CITY + 1 R _param p ST_CURRENT_AP + 2100 @
+14 13020 D _var p q_vc_amanda_help_joshua > 3 D _var p q_vc_amanda_help_joshua < 6 R _var p q_vc_amanda_help_joshua = 6 R _param p REPUTATION_VAULT_CITY + 1 R _param p ST_EXPERIENCE + 2100 #
+14 13030 D _var p q_vc_amanda_help_joshua = 7 D or D _var p q_vc_amanda_help_joshua = 8 R _var p q_vc_amanda_help_joshua = 9 R _param p REPUTATION_VAULT_CITY + 1 R _param p ST_EXPERIENCE + 2100 @
 14 14000 None 0 #
 0 14010 &
 

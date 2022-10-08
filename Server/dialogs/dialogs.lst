@@ -209,6 +209,8 @@ $	452 vc_guard_fighter
 $	453	vc_guardsman
 $	454 vc_shrim
 $	455 vc_patroller
+$	456 vc_killer
+$	457 vc_telman
 $	501	gecko_garold
 $	502	gecko_citizen
 $	503	gecko_citizen_glow

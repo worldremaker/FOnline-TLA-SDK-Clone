@@ -1728,6 +1728,7 @@
 {10030020}{}{Giant rats}
 {10030030}{}{A merchant party}
 {10030040}{}{<Special>}
+{10030050}{}{кого-то неизвестного}
 
 # Encounter Table 1
 {10030500}{}{A party of raiders}

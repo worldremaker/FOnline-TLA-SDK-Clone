@@ -175,6 +175,12 @@ void e_MercIdle(Critter& merc)
 			merc.TransitToMap(map_master.Id, hX, hY, Random(0,5));
 		}
 	}else{
+		if(merc.Merc[MERC_CANCEL_ON_GLOBAL] > 0)
+		{
+			// ћерк отмен€ет режим службы, если хоз€ин вышел на глобал и установлен параметр MERC_CANCEL_ON_GLOBAL
+			CancelMerc(merc);
+			return;
+		}
 		// хоз€ин на глобале
 		if(valid(merc.GetGlobalGroup())) return;
 		merc.TransitToGlobalGroup(master.Id);

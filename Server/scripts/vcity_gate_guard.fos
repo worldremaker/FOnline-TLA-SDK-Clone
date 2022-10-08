@@ -33,17 +33,24 @@ void Guard_on_add_critter(Critter& npc, Critter& player)
 {
 	if (not player.IsPlayer()) return;
 	//Log("Add OK.");
-	player_ok.removeAt(uint(FindInArray(player_ok, player.Id)));
-	player_warned.removeAt(uint(FindInArray(player_warned, player.Id)));
+	int i = FindInArray(player_ok, player.Id);
+	if(i > 0)
+		player_ok.removeAt(i);
+	i = FindInArray(player_warned, player.Id);
+	if(i > 0)
+		player_warned.removeAt(i);
 }
 
 // Вызывается, когда из поля зрения NPC исчезает криттер.
 void Guard_on_remove_critter(Critter& npc, Critter& player)
 {
 	if (not player.IsPlayer()) return;
-	//Log("remove OK.");
-	player_ok.removeAt(uint(FindInArray(player_ok, player.Id)));
-	player_warned.removeAt(uint(FindInArray(player_warned, player.Id)));
+	int i = FindInArray(player_ok, player.Id);
+	if (i > 0)
+		player_ok.removeAt(i);
+	i = FindInArray(player_warned, player.Id);
+	if (i > 0)
+		player_warned.removeAt(i);
 }
 
 // тестирование предмета на разрешонность
