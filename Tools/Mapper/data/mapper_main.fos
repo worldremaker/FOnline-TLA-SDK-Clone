@@ -164,16 +164,12 @@
 // MapperObject@+ GetObject(uint16 hexX, uint16 hexY, int mapObjType, uint16 pid, uint skip) const
 // uint    GetObjects(uint16 hexX, uint16 hexY, uint radius, int mapObjType, uint16 pid, MapperObject@[]@+ objects) const
 // void    UpdateObjects() const
-// uint    GetTile(uint16 tileX, uint16 tileY, bool roof) const
-// void    SetTile(uint16 tileX, uint16 tileY, bool roof, uint picHash)
-// string@ GetTileName(uint16 tileX, uint16 tileY, bool roof) const
-// void    SetTileName(uint16 tileX, uint16 tileY, bool roof, string@ picName)
 // uint    GetTilesCount(uint16 hexX, uint16 hexY, bool roof) const
 // void    DeleteTile(uint16 hexX, uint16 hexY, bool roof, uint index)
 // uint    GetTile(uint16 hexX, uint16 hexY, bool roof, uint index) const
-// void    AddTile(uint16 hexX, uint16 hexY, int offsX, int offsY, bool roof, uint picHash)
+// void    AddTile(uint16 hexX, uint16 hexY, int offsX, int offsY, int layer, bool roof, uint picHash)
 // string@ GetTileName(uint16 hexX, uint16 hexY, bool roof, uint index) const
-// void    AddTileName(uint16 hexX, uint16 hexY, int offsX, int offsY, bool roof, string@+ picName)
+// void    AddTileName(uint16 hexX, uint16 hexY, int offsX, int offsY, int layer, bool roof, string@+ picName)
 // uint    GetDayTime(uint dayPart) const
 // void    SetDayTime(uint dayPart, uint time)
 // void    GetDayColor(uint dayPart, uint8& r, uint8& g, uint8& b) const

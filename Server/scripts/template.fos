@@ -29,7 +29,7 @@ void FuncName(Critter& player, int param0, int param1, int param2)
 	// FixBoy function
 int fix_FuncName(Critter& cr, int stage)
 	// Location entrances (Town/World)
-bool entrance_FuncName(Critter@[]& crters, uint8 entrance)
+bool entrance_FuncName(Location& loc, Critter@[]& critters, uint8 entrance)
 	// Show screen answer, used in Critter::ShowScreen
 void answer_FuncName(Critter& player, uint answerI, string& answerS)
 	// Npc misc plane script
@@ -99,11 +99,16 @@ void _FuncName(Critter& cr, Critter& fromCr, int message, int value)
 // Пришло сообщение отправленное с помощью Critter::SendMessage.
 	// CRITTER_EVENT_USE_ITEM
 bool _FuncName(Critter& cr, Item& item, Critter@ onCritter, Item@ onItem, Scenery@ onScenery)
-// При использовании итема на что-либо. При flase вызывается глобальный обработчик on_use_item. При true выход.
+// При использовании итема на что-либо. При flase вызываютя дальнейшие обработчики. При true выход.
+	// CRITTER_EVENT_USE_ITEM_ON_ME
+bool _FuncName(Critter& cr, Critter& whoUse, Item& item)
+// При использовании итема на криттера. При flase вызываютя дальнейшие обработчики. При true выход.
 	// CRITTER_EVENT_USE_SKILL
 bool _FuncName(Critter& cr, int skill, Critter@ onCritter, Item@ onItem, Scenery@ onScenery)
-// При использовании навыка на что-либо. При flase вызывается глобальный обработчик on_use_scenery. При true выход.
-// При обычном юзании или подниании skill == -1.
+// При использовании навыка на что-либо. При flase вызываютя дальнейшие обработчики. При true выход.
+	// CRITTER_EVENT_USE_SKILL_ON_ME
+bool _FuncName(Critter& cr, Critter& whoUse, int skill)
+// При использовании навыка на что-либо. При flase вызываютя дальнейшие обработчики. При true выход.
 	// CRITTER_EVENT_DROP_ITEM
 void _FuncName(Critter& cr, Item& item)
 // При выкидывании тема.

@@ -11,7 +11,7 @@
 
 import bool GetEntireFreeHex(Map& map, int number, uint16& hx, uint16& hy) from "entire";
 
-bool entrance_Modoc(Critter@[]& critters, uint8 entrance)
+bool entrance_Modoc(Location& modoc, Critter@[]& critters, uint8 entrance)
 {
 	Critter@ leader=critters[0];
 	if(entrance==ENTRANCE_NORTH) return leader.Skill[SK_OUTDOORSMAN]>=50;

@@ -484,7 +484,7 @@ void _GeckMapLoop1(Map& map)
 	}
 }
 
-bool entrance_Geck(Critter@[]& critters, uint8 entrance)
+bool entrance_Geck(Location& geck, Critter@[]& critters, uint8 entrance)
 {
 	if(entrance == ENTANCE_CITYHALL)
 	{
@@ -492,8 +492,8 @@ bool entrance_Geck(Critter@[]& critters, uint8 entrance)
 		{
 			Critter@ cr = critters[k];
 			if(valid(cr) && !IsPlayerCitizen(cr))
-			{	
-				return false;	
+			{
+				return false;
 			}
 		}
 	}
@@ -501,7 +501,7 @@ bool entrance_Geck(Critter@[]& critters, uint8 entrance)
 }
 
 // Жители сразу попадают в штабквартиру, если заходят на карту города из ГЕККа
-void _GeckMapInCritter(Map& map, Critter& cr) 
+void _GeckMapInCritter(Map& map, Critter& cr)
 {
 	if(cr.IsPlayer())
 	{

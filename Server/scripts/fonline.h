@@ -4,7 +4,7 @@
 //
 // FOnline engine structures, for native working
 // Last update 26.01.2011
-// Server version 402, MSVS2008
+// Server version 403, MSVS2008
 // Default calling convention - cdecl
 //
 
@@ -474,6 +474,9 @@ struct GameOptions
 	uint (*GetSpriteColor)(uint sprId, int x, int y, bool affectZoom); // Color of pixel on sprite
 	bool (*IsSpriteHit)(Sprite* sprite, int x, int y, bool checkEgg); // Is position hitting sprite
 
+	const char* (*GetNameByHash)(uint hash); // Get name of file by hash
+	uint (*GetHashByName)(const char* name); // Get hash of file name
+
 	// Callbacks
 	uint (*GetUseApCost)(CritterMutual& cr, Item& item, uint8 mode);
 	uint (*GetAttackDistantion)(CritterMutual& cr, Item& item, uint8 mode);
@@ -524,8 +527,8 @@ struct ScriptArray
 struct CritterType
 {
 	bool Enabled;
-	int8 Name[64];
-	int8 SoundName[64];
+	char Name[64];
+	char SoundName[64];
 	uint Alias;
 	uint Multihex;
 
@@ -966,7 +969,7 @@ struct Item
 	int      FuncId[ITEM_EVENT_MAX];
 	Critter* ViewByCritter;
 	ItemVec* ChildItems;
-	int8*    Lexems;
+	char*    Lexems;
 	SyncObj  Sync;
 #endif
 
@@ -1156,7 +1159,7 @@ struct Critter
 	uint16 Reserved2;
 	int    Params[MAX_PARAMS];
 	uint   Reserved3[10];
-	int8   Lexems[LEXEMS_SIZE];
+	char   Lexems[LEXEMS_SIZE];
 	uint   Reserved4[8];
 	bool   ClientToDelete;
 	uint8  Reserved5;
@@ -1304,8 +1307,8 @@ struct Critter
 
 struct Client : Critter
 {
-	int8   Name[MAX_NAME+1];
-	int8   Pass[MAX_NAME+1];
+	char   Name[MAX_NAME+1];
+	char   Pass[MAX_NAME+1];
 	uint8  Access;
 	uint   LanguageMsg;
 };
@@ -1341,7 +1344,7 @@ struct CritterCl
 	string    Lexems;
 	int       LexemsRefCounter;
 	string    Avatar;
-	int8      Password[MAX_NAME+1];
+	char      Password[MAX_NAME+1];
 
 	ItemVec   InvItems;
 	Item*     DefItemSlotHand;
@@ -1365,8 +1368,8 @@ struct Scenery
 	uint8  LightDistance;
 	int8   LightIntensity;
 
-	int8   ScriptName[MAPOBJ_SCRIPT_NAME+1];
-	int8   FuncName[MAPOBJ_SCRIPT_NAME+1];
+	char   ScriptName[MAPOBJ_SCRIPT_NAME+1];
+	char   FuncName[MAPOBJ_SCRIPT_NAME+1];
 
 	uint   Reserved[7];
 	int    UserData[10];
@@ -1492,8 +1495,8 @@ struct ProtoMap
 		uint   Version;
 		uint16 MaxHexX, MaxHexY;
 		int    WorkHexX, WorkHexY;
-		int8   ScriptModule[MAX_SCRIPT_NAME + 1];
-		int8   ScriptFunc[MAX_SCRIPT_NAME + 1];
+		char   ScriptModule[MAX_SCRIPT_NAME + 1];
+		char   ScriptFunc[MAX_SCRIPT_NAME + 1];
 		int    Time;
 		bool   NoLogOut;
 		int    DayTime[4];
@@ -1664,6 +1667,7 @@ struct Field
 		void* Anim;
 		int16 OffsX;
 		int16 OffsY;
+		uint8 Layer;
 	};
 	typedef vector<Tile> TileVec;
 
@@ -1830,7 +1834,7 @@ inline void static_asserts()
 	STATIC_ASSERT(sizeof(ProtoItem)   == 184 );
 	STATIC_ASSERT(sizeof(Mutex)       == 24  );
 	STATIC_ASSERT(sizeof(Spinlock)    == 4   );
-	STATIC_ASSERT(sizeof(GameOptions) == 1144);
+	STATIC_ASSERT(sizeof(GameOptions) == 1152);
 	STATIC_ASSERT(sizeof(ScriptArray) == 28  );
 	STATIC_ASSERT(sizeof(SpriteInfo)  == 36  );
 	STATIC_ASSERT(sizeof(Field)       == 92  );
@@ -1838,16 +1842,16 @@ inline void static_asserts()
 	STATIC_ASSERT(sizeof(Sprite)      == 116 );
 #else
 	STATIC_ASSERT(sizeof(Sprite)      == 108 );
-#endif	
+#endif
 
 	STATIC_ASSERT(offsetof(TemplateVar, Flags)              == 76  );
 	STATIC_ASSERT(offsetof(NpcPlane, RefCounter)            == 88  );
 	STATIC_ASSERT(offsetof(GlobalMapGroup, EncounterForce)  == 88  );
 	STATIC_ASSERT(offsetof(Item, IsNotValid)                == 118 );
 	STATIC_ASSERT(offsetof(CritterTimeEvent, Identifier)    == 12  );
-	STATIC_ASSERT(offsetof(Critter, RefCounter)             == 9308);
-	STATIC_ASSERT(offsetof(Client, LanguageMsg)             == 9376);
-	STATIC_ASSERT(offsetof(Npc, Reserved)                   == 9332);
+	STATIC_ASSERT(offsetof(Critter, RefCounter)             == 9316);
+	STATIC_ASSERT(offsetof(Client, LanguageMsg)             == 9384);
+	STATIC_ASSERT(offsetof(Npc, Reserved)                   == 9340);
 	STATIC_ASSERT(offsetof(CritterCl, ItemSlotArmor)        == 4264);
 	STATIC_ASSERT(offsetof(Scenery, RunTime.RefCounter)     == 244 );
 	STATIC_ASSERT(offsetof(MapEntire, Dir)                  == 8   );
