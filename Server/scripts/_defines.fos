@@ -998,11 +998,11 @@
 #define FOG_NONE                    (3)
 
 // Critter extra flags, only for read
-#define CRITTER_PLAYER              (0x0001) // Игрок.
-#define CRITTER_NPC                 (0x0002) // Нпц.
-#define CRITTER_DISCONNECT          (0x0008) // В оффлайне.
-#define CRITTER_CHOSEN              (0x0010) // Криттер игрока. Используется только при отправке сообщения клиенту для идентификации его персонажа.
-#define CRITTER_RULEGROUP           (0x0020) // Рулевой в группе на глобале.
+#define CRITTER_PLAYER              (0x00010000) // Игрок.
+#define CRITTER_NPC                 (0x00020000) // Нпц.
+#define CRITTER_DISCONNECT          (0x00080000) // В оффлайне.
+#define CRITTER_CHOSEN              (0x00100000) // Криттер игрока. Используется только при отправке сообщения клиенту для идентификации его персонажа.
+#define CRITTER_RULEGROUP           (0x00200000) // Рулевой в группе на глобале.
 
 // Hit locations
 #define HIT_LOCATION_NONE           (0)

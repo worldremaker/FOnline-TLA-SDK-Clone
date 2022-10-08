@@ -395,6 +395,7 @@
 {901}{}{Surprisingly, the location has moved.}
 {902}{}{You haven't found the location entrance.}
 {903}{}{You haven't found a parking lot.}
+{904}{}{Location is full, try to enter later.}
 {950}{}{Are you ready to follow %s to %s?}
 {952}{}{Get ready to follow %s to %s.}
 {970}{}{a stranger}

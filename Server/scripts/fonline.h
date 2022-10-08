@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 25.12.2010
-// Server version 393, MSVS2008
+// Last update 06.01.2011
+// Server version 397, MSVS2008
 // Default calling convention - cdecl
 //
 
@@ -404,8 +404,6 @@ struct GameOptions
 	int    MasterPathRefCount;
 	string CritterPath;
 	int    CritterPathRefCount;
-	string FoPatchPath;
-	int    FoPatchPathRefCount;
 	string FoDataPath;
 	int    FoDataPathRefCount;
 	int    Sleep;
@@ -445,6 +443,8 @@ struct GameOptions
 	bool   AlwaysRun;
 	int    AlwaysRunMoveDist;
 	int    AlwaysRunUseDist;
+	string KeyboardRemap;
+	int    KeyboardRemapRefCount;
 
 	// Mapper
 	string ClientPath;
@@ -1149,7 +1149,7 @@ struct Critter
 	bool   ClientToDelete;
 	uint8  Reserved5;
 	uint16 Reserved6;
-	uint   Reserved7;
+	uint   Temp;
 	uint16 Reserved8;
 	uint16 HoloInfoCount;
 	uint   HoloInfo[MAX_HOLO_INFO];
@@ -1586,7 +1586,7 @@ struct ProtoLocation
 	uint16      LocPid;
 	string      Name;
 
-	uint16      MaxCopy;
+	uint        MaxPlayers;
 	Uint16Vec   ProtoMapPids;
 	Uint16Vec   AutomapsPids;
 	UintPairVec Entrance;
