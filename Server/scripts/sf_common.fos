@@ -135,9 +135,9 @@ void r_SFMerc2Player(Critter & player, Critter @ npc)
 
 	GameVar @ masterId = GetLocalVar(LVAR_sf_merc_master, npc.Id);
 	if(!valid(masterId)) return;
-	masterId = player.Id;
-
-	CreateTimeEvent(__FullSecond+CONTRACT_TIME, "e_CancelContract", npc.Id, true); // ќкончание контракта через полгода
+	uint mId = player.Id;
+	uint[] values = {npc.Id, mId};
+	CreateTimeEvent(__FullSecond+CONTRACT_TIME, "e_CancelContract", values, true); // ќкончание контракта через полгода
 
 	Merc2Player(player,npc, true, false, 0, MMDistMedium, MERC_GUARD_DEFAULT, true, false, CONTRACT_TIME);
 	npc.SetScript("sf_common@_SFMercInit");
@@ -147,9 +147,21 @@ void r_SFMerc2Player(Critter & player, Critter @ npc)
 uint e_CancelContract(uint[]@ values)
 {
 	Critter @ merc = GetCritter(values[0]);
+	uint masterId = 0;
+	if(values.length()>0)
+		masterId = values[1];	
 	if(valid(merc))
 	{
-		CancelContract(merc);
+		if(masterId == 0)
+		{
+			CancelContract(merc);
+		}
+		else
+		{
+			if(masterId == merc.MasterId) // ’оз€ин уже мог сменитьс€
+				CancelContract(merc);				
+		}
+		
 	}
 	return 0;
 }

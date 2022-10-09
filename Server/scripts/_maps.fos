@@ -28,6 +28,8 @@
 #define LOCATION_PrimalTribe                        (17)
 #define LOCATION_Rangers                            (18)
 #define LOCATION_Vault13                            (19)
+#define LOCATION_Atoll                              (23)
+#define LOCATION_Raiders                            (24)
 #define LOCATION_Replication1                       (40)
 #define LOCATION_Replication2                       (41)
 #define LOCATION_Replication3                       (42)

@@ -13,14 +13,14 @@ const uint[] noPvpMaps = {MAP_arroyo_temple_entrance,
 	MAP_vcity_vault_2, MAP_vcity_vault_3,  MAP_v15_village, MAP_ncr_downtown, 
 	MAP_ncr_council, MAP_ncr_ranch, MAP_ncr_bazaar,  MAP_redding_outer, MAP_redding_miners, 
 	MAP_vredding_lost, MAP_primal_tribe, 
-	MAP_broken, MAP_broken_basement, 
+	MAP_broken, MAP_broken_basement,
 	MAP_sf_tanker, MAP_sf_dock, MAP_sf_china, MAP_sf_shuttle, MAP_sf_shi, MAP_sf_hubb, MAP_sf_tanker3, MAP_sf_emp, MAP_sf_bro, 
 	MAP_repl_bank_den, MAP_repl_bank_klamath, MAP_repl_bank_redding, MAP_repl_bank_modoc, MAP_repl_bank_newreno, 
 	MAP_repl_bank_gecko, MAP_repl_bank_broken, MAP_repl_bank_ncr, MAP_repl_bank_sf, MAP_repl_bank_vcity, 
 	MAP_replication1, MAP_replication2, MAP_replication3, MAP_replication4};
 	
 const int[] excludeDialogs = {DIALOG_ncr_westin, DIALOG_ncr_smit, DIALOG_sf_citizen_shue, DIALOG_vc_shrim, DIALOG_vc_kohl, DIALOG_vc_randal, DIALOG_vc_ed, DIALOG_sf_kuraru, DIALOG_sf_bruce, DIALOG_sf_khung, DIALOG_sf_wei, DIALOG_sf_imbot,DIALOG_sf_master_khung, DIALOG_sf_kuraru, DIALOG_redd_wade, DIALOG_redd_savinel, DIALOG_redd_stanwell, DIALOG_ncr_hal,
-DIALOG_bh_kit, DIALOG_ncr_hate, DIALOG_vc_shrim};
+DIALOG_bh_kit, DIALOG_ncr_hate, DIALOG_vc_shrim, DIALOG_vc_guard_fighter};
 const int[] btInvul = {BT_MEN, BT_WOMEN, BT_CHILDREN, BT_SUPER_MUTANT, BT_GHOUL};
 
 #define NOPVP_VAR          (LMVAR_is_nopvp_map) // Номер переменной, в которой 
@@ -54,6 +54,9 @@ uint cte_NoPvpOff(Critter& cr, int identifier, uint& rate)
 
 void OnCritterMapOut(Critter& cr, Map& map)
 {
+	Map@ mapCr = cr.GetMap();
+	if(valid(mapCr)&& IsNoPvpMap(mapCr))
+		return;
 	if(__NoPvpMaps && cr.IsPlayer() && cr.Mode[MODE_NO_PVP] > 0) // если но пвп карты не включены, персонаж получил нопвп режим другим способом, не отменяем
 		cr.ModeBase[MODE_NO_PVP] = 0;
 }

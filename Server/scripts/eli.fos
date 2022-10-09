@@ -67,7 +67,7 @@ void _EliInit(Critter& cr, bool firstTime)
 	uint16[] locPids;
 	for(uint16 i = LOCATION_Den; i<=LOCATION_GeckCity; i++)
 	{
-		if(i == LOCATION_SanFrancisco)
+		if(i == LOCATION_SanFrancisco ||i == LOCATION_Atoll)
 			continue;
 		locPids.insertLast(i);	
 	}
