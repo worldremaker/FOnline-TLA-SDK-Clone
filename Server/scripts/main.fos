@@ -994,7 +994,7 @@ void critter_init(Critter& cr, bool firstTime)
 		cr.StatBase[ST_CURRENT_HP]=cr.Stat[ST_MAX_LIFE];
 		cr.StatBase[ST_CURRENT_AP]=cr.Stat[ST_ACTION_POINTS]*100;
 
-		for(int i=REPUTATION_BEGIN;i<=599;i++) cr.ParamBase[i]=int(0x80000000); // 599 is last number processed in client
+		//for(int i=REPUTATION_BEGIN;i<=599;i++) cr.ParamBase[i]=int(0x80000000); // 599 is last number processed in client
 
 		if(cr.IsPlayer())
 		{
