@@ -1,11 +1,12 @@
 // Game configuration, for server/client/mapper, call in start functions
 
+#include "_defines.fos"
+
 //
 // Server and client
 //
 #ifndef __MAPPER
 
-#include "_defines.fos"
 #include "_animation.fos"
 #include "_time.fos"
 
@@ -253,6 +254,7 @@ void InitializeGame() // Export
 	__Anim2CombatBegin      = ANIM2_BEGIN_COMBAT;
 	__Anim2CombatIdle       = ANIM2_IDLE_COMBAT;
 	__Anim2CombatEnd        = ANIM2_END_COMBAT;
+	__SplitTilesCollection  = true;
 
 	InitializeGeometry();
 }
@@ -265,10 +267,10 @@ void InitializeGame() // Export
 void InitializeGeometry()
 {
 	// Geometry customization
-	// 0 - Fallout
-	// 1 - Tactics
-	// 2 - Arcanum
-	int type = 0;
+	// GEOMETRY_FALLOUT
+	// GEOMETRY_TACTICS
+	// GEOMETRY_ARCANUM
+	__GeometryType = GEOMETRY_FALLOUT;
 
 	// __MapHexagonal     true - hexagonal, false - square;
 	// __MapHexWidth      hex/square width;
@@ -281,9 +283,9 @@ void InitializeGeometry()
 	// __MapSmoothPath    enable pathfinding path smoothing;
 	// __MapDataPrefix    path and prefix for names used for geometry sprites.
 
-	switch(type)
+	switch(__GeometryType)
 	{
-	case 0: /// Fallout
+	case GEOMETRY_FALLOUT:
 		__MapHexagonal     = true;
 		__MapHexWidth      = 32;
 		__MapHexHeight     = 16;
@@ -298,7 +300,7 @@ void InitializeGeometry()
 		__MapDataPrefix    = "art/geometry/fallout_";
 		break;
 
-	case 1: /// Tactics
+	case GEOMETRY_TACTICS:
 		__MapHexagonal     = false;
 		__MapHexWidth      = 36;
 		__MapHexHeight     = 18;
@@ -313,7 +315,7 @@ void InitializeGeometry()
 		__MapDataPrefix    = "art/geometry/tactics_";
 		break;
 
-	case 2: /// Arcanum
+	case GEOMETRY_ARCANUM:
 		__MapHexagonal     = false;
 		__MapHexWidth      = 78;
 		__MapHexHeight     = 40;
@@ -329,7 +331,7 @@ void InitializeGeometry()
 		break;
 
 	default:
-		Log("Wrong geometry value.");
+		Log("Wrong geometry type value.");
 		break;
 	}
 }

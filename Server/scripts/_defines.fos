@@ -18,6 +18,7 @@
 #ifndef SKIP_PRAGMAS
 #pragma globalvar "bool __MainStoryLineActive = true"
 #pragma globalvar "uint __PermanentDeath = 0" // Number of deaths to account blocking, zero to disable
+#pragma globalvar "int __GeometryType = 0" // See GEOMETRY_* constants, assigned in config.fos InitializeGeometry()
 
 #pragma globalvar "uint __HitAimEyes  = 60"
 #pragma globalvar "uint __HitAimHead  = 40"
@@ -297,6 +298,7 @@
 // Parameters
 	/// Ranges
 #ifndef SKIP_PRAGMAS
+#ifndef __MAPPER
 #pragma crdata "Stat           0 199"
 #pragma crdata "Skill        200 217"
 #pragma crdata "TagSkill     226 229"
@@ -311,6 +313,7 @@
 #pragma crdata "Reputation   570 599"
 //#pragma crdata "GoodEvilList 600 799"
 #pragma crdata "Merc         800 829"
+#endif
 #endif
 	/// Stats
 #define STAT_BEGIN                 (0)
@@ -1220,6 +1223,11 @@
 #define RADIO_BROADCAST_LOCATION    (40)      // Send/recv only on one location
 #define RADIO_BROADCAST_ZONE #(x)   (100+(x)) // Send/recv only in x (1..100) zones radius on global map
 #define RADIO_BROADCAST_FORCE_ALL   (250)     // Force send/recv in any place
+
+// Geomtry
+#define GEOMETRY_FALLOUT            (0)
+#define GEOMETRY_TACTICS            (1)
+#define GEOMETRY_ARCANUM            (2)
 
 // Extended methods
 #ifndef SKIP_PRAGMAS

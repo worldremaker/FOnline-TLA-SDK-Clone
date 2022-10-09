@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 08.03.2011
-// Server version 414, MSVS2008
+// Last update 11.03.2011
+// Server version 415, MSVS2008
 // Default calling convention - cdecl
 //
 
@@ -481,6 +481,7 @@ struct GameOptions
 	bool   ShowCorners;
 	bool   ShowCuttedSprites;
 	bool   ShowDrawOrder;
+	bool   SplitTilesCollection;
 
 	// Engine data
 	void (*CritterChangeParameter)(Critter& cr, uint index); // Call for correct changing critter parameter

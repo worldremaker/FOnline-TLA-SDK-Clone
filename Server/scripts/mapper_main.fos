@@ -26,8 +26,6 @@
 /// Global functions
 // void    SetDefaultCritterParam(uint index, int param)
 //  Init state: 0 ST_DIALOG_ID, 1 ST_AI_ID, 2 ST_BAG_ID, 3 ST_TEAM_ID, 4 ST_NPC_ROLE, 5 ST_REPLICATION_TIME, 6..14 -1
-// uint    GetFastPrototypes(uint16[]@+ pids) const
-// void    SetFastPrototypes(uint16[]@+ pids)
 // MapperMap@+ LoadMap(string& fileName, int pathType)
 // void    UnloadMap(MapperMap@+ map)
 // bool    SaveMap(MapperMap@+ map, string& fileName, int pathType)
@@ -88,6 +86,16 @@
 // void    DrawMapSprite(uint16 hx, uint16 hy, uint16 effectPid, uint sprId, int sprIndex, int offsX, int offsY)
 // void    DrawCritter2d(uint crType, uint anim1, uint anim2, uint8 dir, int l, int t, int r, int b, bool scratch, bool center, uint color)
 // void    DrawCritter3d(uint instance, uint crType, uint anim1, uint anim2, int[]@+ layers, float[]@+ position, uint color)
+//
+// uint    TabGetTileDirs(int tab, string@[]@+ dirNames, bool[]@+ includeSubdirs)
+// uint    TabGetItemPids(int tab, string@+ subTab, uint16[]@+ itemPids)
+// uint    TabGetCritterPids(int tab, string@+ subTab, uint16[]@+ critterPids)
+// void    TabSetTileDirs(int tab, string@[]@+ dirNames, bool[]@+ includeSubdirs)
+// void    TabSetItemPids(int tab, string@+ subTab, uint16[]@+ itemPids)
+// void    TabSetCritterPids(int tab, string@+ subTab, uint16[]@+ critterPids)
+// void    TabDelete(int tab)
+// void    TabSelect(int tab, string@+ subTab)
+// void    TabSetName(int tab, string@+ subName)
 
 /// MapperObject
 /// Shared parameters
@@ -175,6 +183,8 @@
 // void    Resize(uint16 width, uint16 height)
 
 #include "_mapper_defines.fos"
+#include "_defines.fos"
+#include "_itempid.fos"
 
 import void InitializeGame() from "config";
 
@@ -192,12 +202,92 @@ bool new_instance(string commandLine)
 void start()
 {
 	InitializeGame();
+	InitializeTabs();
+}
+
+void InitializeTabs()
+{
+	// Fast item prototypes
+	TabDelete(TAB_FAST_ITEMS);
+	uint16[] pids;
+
+	// Special hexes
+	pids.resize(0);
+	pids.insertLast(3852); // Trigger
+	pids.insertLast(3853); // Entire
+	pids.insertLast(4012); // Scroll block
+	pids.insertLast(2141); // Light source
+	pids.insertLast(4592); // Light stopper
+	TabSetItemPids(TAB_FAST_ITEMS, "001 - special", pids);
+
+	// Blockers
+	pids.resize(0);
+	pids.insertLast(2067); // Secret Blocking Hex
+	pids.insertLast(2344); // Block Hex Auto Inviso
+	pids.insertLast(5621); // Wall blocker with light
+	pids.insertLast(5622); // Wall blocker without light
+	TabSetItemPids(TAB_FAST_ITEMS, "002 - blocker", pids);
 
 	// Wall corners
-	uint16[] pids;
-	GetFastPrototypes(pids);
-	for(uint i=6800;i<=6805;i++) pids.insertLast(i);
-	SetFastPrototypes(pids);
+	pids.resize(0);
+	for(uint i = 6800; i <= 6805; i++) pids.insertLast(i);
+	TabSetItemPids(TAB_FAST_ITEMS, "003 - wall corner", pids);
+
+	// Exit grids
+	pids.resize(0);
+	pids.insertLast(2049);
+	for(uint i = 4016; i <= 4023; i++) pids.insertLast(i);
+	for(uint i = 4031; i <= 4046; i++) pids.insertLast(i);
+	TabSetItemPids(TAB_FAST_ITEMS, "004 - exit grid", pids);
+
+	// Custom items
+	TabDelete(TAB_CUSTOM8);
+	TabSetName(TAB_CUSTOM8, "Cust");
+
+	// Cars
+	pids.resize(0);
+	pids.insertLast(PID_BUGGY);
+	pids.insertLast(PID_BUGGY_BAG);
+	pids.insertLast(PID_SCOUT);
+	pids.insertLast(PID_SCOUT_BAG);
+	pids.insertLast(PID_HUMMER);
+	pids.insertLast(PID_HUMMER_BAG);
+	pids.insertLast(PID_HIGHWAYMAN);
+	pids.insertLast(PID_HIGHWAYMAN_BAG);
+	pids.insertLast(PID_VERTIBIRD);
+	pids.insertLast(PID_VERTIBIRD_BAG);
+	pids.insertLast(PID_BOAT);
+	pids.insertLast(PID_BOAT_BAG);
+	TabSetItemPids(TAB_CUSTOM8, "001 - cars", pids);
+
+	// Dead bodies
+	pids.resize(0);
+	pids.insertLast(PID_ALIEN_SIDE);
+	pids.insertLast(PID_ALIEN_FORWARD);
+	pids.insertLast(PID_VAULT_DWELLER_BONES);
+	pids.insertLast(PID_HUMAN_BONES);
+	pids.insertLast(PID_DEAD_REDSHIRT_0);
+	pids.insertLast(PID_DEAD_REDSHIRT_1);
+	pids.insertLast(PID_DEAD_REDSHIRT_2);
+	TabSetItemPids(TAB_CUSTOM8, "002 - dead bodies", pids);
+
+	// Tactics tiles, tiles_0.bos
+	if(__GeometryType == GEOMETRY_TACTICS)
+	{
+		TabSetName(TAB_CUSTOM0, "TacT");
+		string@[] ftTiles = {"tiles/"};
+		bool[] includeSubdirs = {true};
+		TabSetTileDirs(TAB_CUSTOM0, ftTiles, includeSubdirs);
+	}
+
+	// Arcanum tiles, arcanum2.dat
+	if(__GeometryType == GEOMETRY_ARCANUM)
+	{
+		TabSetName(TAB_CUSTOM0, "ArcT");
+		string@[] arcanumTiles = {"art/tile/"};
+		bool[] includeSubdirs = {true};
+		TabSetTileDirs(TAB_CUSTOM0, arcanumTiles, includeSubdirs);
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
