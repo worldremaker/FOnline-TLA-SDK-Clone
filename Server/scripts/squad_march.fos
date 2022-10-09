@@ -492,7 +492,10 @@ class SquadCommander
 		{
 			MarchQueue@ q = MarchQueue(this.Squad[i]);
 			if(valid(q))
+			{
+				q.Load();
 				q.Erase();
+			}
 		}
 		if(IsAnyData(key))
 			EraseAnyData(key);

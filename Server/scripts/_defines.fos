@@ -1243,6 +1243,7 @@
 #pragma globalvar "uint __HitAimArms  = 30"
 #pragma globalvar "uint __HitAimLegs  = 20"
 #pragma globalvar "bool __NoPvpMaps = false" // Отключение нопвп режима активно
+#pragma globalvar "uint __MaxLifeLevelSoftCap = 0" // Максимальный уровень персонажа, на котором происходит увеличение хп. 0  = не используется
 
 ///
 /// Critter data parameters

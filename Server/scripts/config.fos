@@ -93,6 +93,7 @@ void InitializeGame() // Export
 	__MinimumOfflineTime        = 180000; // 3 minutes
 	__MainStoryLineActive       = true;
 	__NoPvpMaps                 = true; 
+	__MaxLifeLevelSoftCap       = 36;
 	// Look modifiers
 	__LookChecks = 0; // See Look checks in _defines.fos
 	// __LookChecks |= LOOK_CHECK_DIR; // Nerfe look by directions of look

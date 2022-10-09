@@ -3146,6 +3146,18 @@ Cost=3
 Material=7
 
 [Proto]
+Pid=597
+Type=5
+PicMapName=art\items\smalbox2.frm
+PicInvName=art\inven\slagmess.frm
+Flags=134217758
+DisableEgg=1
+Weight=453
+Volume=1
+SoundId=48
+Material=3
+
+[Proto]
 Pid=850
 Type=5
 PicMapName=art\items\forcfd01.frm
@@ -3914,3 +3926,4 @@ PicInvName=art\inven\reserved.frm
 Flags=33558556
 DisableEgg=1
 Material=1
+

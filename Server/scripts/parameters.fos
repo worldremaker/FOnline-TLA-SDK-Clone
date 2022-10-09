@@ -49,7 +49,8 @@ void changedParam_Experience(Critter& cr, uint, int oldValue)
 				//if(cr.Trait[TRAIT_GIFTED]!=0) cr.StatBase[ST_UNSPENT_SKILL_POINTS]-=5; // Gifted trait
 				cr.StatBase[ST_UNSPENT_SKILL_POINTS]+=cr.Perk[PE_EDUCATED]*2; // Educated perk
 				if(cr.StatBase[ST_UNSPENT_SKILL_POINTS]>99) cr.StatBase[ST_UNSPENT_SKILL_POINTS]=99; // Clamp skill points
-				cr.StatBase[ST_MAX_LIFE]+=2+cr.StatBase[ST_ENDURANCE]/2+cr.Perk[PE_LIFEGIVER]*4; // Add max hp
+				if(__MaxLifeLevelSoftCap==0 || uint(cr.Stat[ST_LEVEL])<=__MaxLifeLevelSoftCap)
+					cr.StatBase[ST_MAX_LIFE]+=2+cr.StatBase[ST_ENDURANCE]/2+cr.Perk[PE_LIFEGIVER]*4; // Add max hp
 
 				if((level%perkUp)==0)
 				{

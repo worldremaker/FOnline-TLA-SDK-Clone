@@ -333,7 +333,7 @@ void _AllyIdle(Critter& cr)
 	if(cr.Stat[ST_VAR0] == 0 || !valid(cr.GetMap()))
 		return;
 	HostileLocationInfo@ info = _InfoFromCr(cr);
-	if(!valid(info))
+	if(!valid(info) || !info.Serialized())
 		return;
 	info.Load();
 	Critter@ player = GetCritter(info.PlayerId);
@@ -394,7 +394,7 @@ void _AllyShowCritter(Critter& cr, Critter& showCrit)
 {
 	DL("Show critter");
 	HostileLocationInfo@ info = _InfoFromCr(cr);
-	if(!valid(info))
+	if(!valid(info) && !info.Serialized())
 		return;
 	info.Load();
 	DL("Info loaded");
@@ -464,7 +464,7 @@ void _HostileDead(Critter& cr, Critter@ killer)
 {
 	bool toAll = false;
 	HostileLocationInfo@ info = _InfoFromCr(cr);
-	if(valid(info))
+	if(valid(info) && info.Serialized())
 	{
 		info.Load();
 		if(info.DeadPercent(false)>20)

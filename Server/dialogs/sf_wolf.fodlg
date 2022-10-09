@@ -15,12 +15,13 @@ lang=russ engl
 0 2030 @
 3 3000 None 0 #
 4 3010 D _script dialog@d_NotTimeoutOk 0  #
-5 3020 D _var p npc_story = 0 #
-8 3030 D _param p ST_GENDER = 1 D _param p ST_CHARISMA > 5 @
+10 3020 D _script dialog@d_TimeoutOk 0  D _var p npc_story > 0 #
+5 3030 D _var p npc_story = 0 #
+8 3040 D _param p ST_GENDER = 1 D _param p ST_CHARISMA > 5 @
 4 4000 None 0 #
 0 4010 @
 5 5000 None 0 #
-6 5010 #
+6 5010 D _var p q_sf_ahs7_invitations = 0 #
 10 5020 D _var p q_sf_ahs7_invitations > 0 @
 6 6000 None 0 #
 7 6010 @
@@ -29,7 +30,7 @@ lang=russ engl
 8 8000 None 0 #
 9 8010 @
 9 9000 None 0 #
-0 9010 R _script dialog@r_TransitToMap 2 100 0 R _script dialog@r_SetUniqTO 1 7200 R _var p npc_story = 1 #
+0 9010 R _script dialog@r_TransitToMap 2 100 0 R _script dialog@r_SetUniqTO 1 720 R _var p npc_story = 1 #
 0 9020 @
 10 10000 None 0 #
 11 10010 #
@@ -40,24 +41,24 @@ lang=russ engl
 12 12000 None 0 #
 0 12010 #
 14 12020 #
-0 12030 D _item p PID_BOTTLE_CAPS } 5000 R _item p PID_BOTTLE_CAPS - 5000 R _script dialog@r_TransitToMap 2 100 0 R _script dialog@r_SetUniqTO 1 7200 R _var p npc_story = 1 #
+0 12030 D _item p PID_BOTTLE_CAPS } 5000 R _item p PID_BOTTLE_CAPS - 5000 R _script dialog@r_TransitToMap 2 100 0 R _script dialog@r_SetUniqTO 1 720 R _var p npc_story = 1 #
 15 12040 D _param p SK_SPEECH > 75 #
 16 12050 D _param p SK_BARTER > 99 @
 13 13000 None 0 #
 0 13010 #
 14 13020 #
-0 13030 D _item p PID_BOTTLE_CAPS } 5000 R _item p PID_BOTTLE_CAPS - 5000 R _script dialog@r_TransitToMap 2 100 0 R _script dialog@r_SetUniqTO 1 7200 R _var p npc_story = 1 #
+0 13030 D _item p PID_BOTTLE_CAPS } 5000 R _item p PID_BOTTLE_CAPS - 5000 R _script dialog@r_TransitToMap 2 100 0 R _script dialog@r_SetUniqTO 1 720 R _var p npc_story = 1 #
 15 13040 D _param p SK_SPEECH > 75 #
 16 13050 D _param p SK_BARTER > 99 @
 14 14000 None 0 #
 0 14010 @
 15 15000 None 0 #
-0 15010 D _item p PID_BOTTLE_CAPS } 1000 R _item p PID_BOTTLE_CAPS - 1000 R _script dialog@r_TransitToMap 2 100 0 R _script dialog@r_SetUniqTO 1 7200 R _var p npc_story = 1 #
+0 15010 D _item p PID_BOTTLE_CAPS } 1000 R _item p PID_BOTTLE_CAPS - 1000 R _script dialog@r_TransitToMap 2 100 0 R _script dialog@r_SetUniqTO 1 720 R _var p npc_story = 1 #
 0 15020 @
 16 16000 None 0 #
 17 16010 @
 17 17000 None 0 #
-0 17010 D _item p PID_BOTTLE_CAPS } 1000 R _item p PID_BOTTLE_CAPS - 1000 R _script dialog@r_TransitToMap 2 100 0 R _script dialog@r_SetUniqTO 1 7200 R _var p npc_story = 1 #
+0 17010 D _item p PID_BOTTLE_CAPS } 1000 R _item p PID_BOTTLE_CAPS - 1000 R _script dialog@r_TransitToMap 2 100 0 R _script dialog@r_SetUniqTO 1 720 R _var p npc_story = 1 #
 0 17020 @
 18 18000 None 0 #
 0 18010 #
@@ -67,7 +68,7 @@ lang=russ engl
 21 19020 D _script dialog@d_NotTimeoutOk 0  @
 20 20000 None 0 #
 0 20010 #
-0 20020 D _item p PID_BOTTLE_CAPS } 3000 R _item p PID_BOTTLE_CAPS - 3000 R _script dialog@r_SetUniqTO 1 7200 R _script dialog@r_TransitToMap 2 100 0 @
+0 20020 D _item p PID_BOTTLE_CAPS } 3000 R _item p PID_BOTTLE_CAPS - 3000 R _script dialog@r_SetUniqTO 1 720 R _script dialog@r_TransitToMap 2 100 0 @
 21 21000 None 0 #
 0 21010 &
 
@@ -85,9 +86,10 @@ lang=russ engl
 {2020}{}{Я убью тебя, лодочник! [Атаковать]}
 {2030}{}{[Уйти]}
 {3000}{}{[Явно недоволен вашим появлением] Ну, блин. Раскашлял@sex@|ся||ась| тут. Че, рыбий грипп прихватил@sex@|||а|, чуму 23его века? Тогда меняй курс, вали отсюда, и не шипи мне в ухо...}
-{3010}{}{Мне снова нужно на Атолл. Когда твой "паром" выходит?}
-{3020}{}{Это ты водишь лодку на Атолл?}
-{3030}{}{[Кокетливо улыбнуться] Красавчик, а сколько стоит прокатиться на твоем пароме до Атолла?}
+{3010}{}{У меня снова дела на Атолле. Когда твой "паром" выходит?}
+{3020}{}{У меня снова дела на Атолле. Когда твой "паром" выходит?}
+{3030}{}{Это ты водишь лодку на Атолл?}
+{3040}{}{[Кокетливо улыбнуться] Красавчик, а сколько стоит прокатиться на твоем пароме до Атолла?}
 {4000}{}{Завтра. Чего ты туда зачастил@sex@|||а|?}
 {4010}{}{А пораньше никак? Эх.}
 {5000}{}{Лодку? Какую, к радиактивному морскому дьяволу, лодку. Только православный паром. Да.}
@@ -153,8 +155,9 @@ lang=russ engl
 {2030}{}{[Уйти]}
 {3000}{}{[Явно недоволен вашим появлением] Ну, блин. Раскашлял@sex@|ся||ась| тут. Че, рыбий грипп прихватил@sex@|||а|, чуму 23его века? Тогда меняй курс, и не шипи мне в ухо...}
 {3010}{}{Мне снова нужно на Атолл. Когда твой "паром" выходит?}
-{3020}{}{Это ты водишь лодку на Атолл?}
-{3030}{}{[Кокетливо улыбнуться] Красавчик, а сколько стоит прокатиться на твоем пароме до Атолла?}
+{3020}{}{У меня снова дела на Атолле. Когда твой "паром" выходит?}
+{3030}{}{Это ты водишь лодку на Атолл?}
+{3040}{}{[Кокетливо улыбнуться] Красавчик, а сколько стоит прокатиться на твоем пароме до Атолла?}
 {4000}{}{Завтра. Чего ты туда зачастил@sex@|||а|?}
 {4010}{}{А пораньше никак? Эх.}
 {5000}{}{Лодку? Какую, к радиактивному морскому дьяволу, лодку. Только православный паром. Да.}
