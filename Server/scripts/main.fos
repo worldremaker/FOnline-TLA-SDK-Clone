@@ -88,6 +88,7 @@ bool start()
 	SetSendParameter(MODE_NO_STEAL,true);
 	SetSendParameter(MODE_NO_LOOT,true);
 	SetSendParameter(MODE_NO_FLATTEN,true);
+	SetSendParameter(MODE_NO_TALK,true);
 	// 3d animation layers
 #ifdef PLAYERS_3D
 	// Enable sending 3d layers, from Skin to Backpack

@@ -1,12 +1,15 @@
 // Game configuration, for server/client/mapper, call in start functions
 
+//
+// Server and client
+//
 #ifndef __MAPPER
 
 #include "_defines.fos"
 #include "_animation.fos"
 #include "_time.fos"
 
-void InitializeGame()
+void InitializeGame() // Export
 {
 	/// Init global vars
 	__ScriptRunSuspendTimeout   = 10000; // In milliseconds
@@ -92,11 +95,13 @@ void InitializeGame()
 	__LookDir1 = 20; // Nerfe 20% of look radius with front side look
 	__LookDir2 = 40; // Nerfe 40% of look radius with back side look
 	__LookDir3 = 60; // Nerfe 60% of look radius with back look
+	__LookDir4 = 60; // Nerfe 60% of look radius with back look (Square geometry)
 	// __LookChecks |= LOOK_CHECK_SNEAK_DIR; // Nerfe opponent sneak by directions of look
 	__LookSneakDir0 = 90; // Nerfe 90% of opponent sneak with direct look
 	__LookSneakDir1 = 60; // Nerfe 60% of opponent sneak with front side look
 	__LookSneakDir2 = 30; // Nerfe 30% of opponent sneak with back side look
 	__LookSneakDir3 =  0; // Nerfe 0% of opponent sneak with back look
+	__LookSneakDir4 =  0; // Nerfe 0% of opponent sneak with back look (Square geometry)
 	__LookChecks |= LOOK_CHECK_SNEAK_WEIGHT; // Nerfe sneak by current weight
 	__LookWeight = 10; // Lost 1 sneak point per 200 gramm
 	// SETFLAG(__LookChecks, LOOK_CHECK_TRACE); // Tracing for wall aviablility
@@ -233,14 +238,17 @@ void InitializeGame()
 
 #endif // !__MAPPER
 
+//
+// Mapper
+//
 #ifdef __MAPPER
 
 #include "_animation.fos"
 
-void InitializeGame()
+void InitializeGame() // Export
 {
 	__RoofAlpha             = 200;
-	__SpritesZoomMax        = 2.5f;
+	__SpritesZoomMax        = 10.0f;
 	__SpritesZoomMin        = 0.2f;
 	__Anim2CombatBegin      = ANIM2_BEGIN_COMBAT;
 	__Anim2CombatIdle       = ANIM2_IDLE_COMBAT;
@@ -251,17 +259,79 @@ void InitializeGame()
 
 #endif // __MAPPER
 
+//
+// Geometry
+//
 void InitializeGeometry()
 {
-	// Fallout
+	// Geometry customization
+	// 0 - Fallout
+	// 1 - Tactics
+	// 2 - Arcanum
+	int type = 0;
 
-	// Tactics
-	/*
-	*/
+	// __MapHexagonal     true - hexagonal, false - square;
+	// __MapHexWidth      hex/square width;
+	// __MapHexHeight     hex/square height;
+	// __MapHexLineHeight hex/square line height;
+	// __MapTileOffsX/Y   tile default offsets;
+	// __MapRoofOffsX/Y   roof default offsets;
+	// __MapRoofSkipSize  default length (in hexes/squares) of roof tiles;
+	// __MapCameraAngle   angle for 3d critters rendering;
+	// __MapSmoothPath    enable pathfinding path smoothing;
+	// __MapDataPrefix    path and prefix for names used for geometry sprites.
 
-	// Arcanum
-	/*
-	*/
+	switch(type)
+	{
+	case 0: /// Fallout
+		__MapHexagonal     = true;
+		__MapHexWidth      = 32;
+		__MapHexHeight     = 16;
+		__MapHexLineHeight = 12;
+		__MapTileOffsX     = -8;
+		__MapTileOffsY     = 32;
+		__MapRoofOffsX     = -8;
+		__MapRoofOffsY     = -66;
+		__MapRoofSkipSize  = 2;
+		__MapCameraAngle   = 25.7f;
+		__MapSmoothPath    = true;
+		__MapDataPrefix    = "art/geometry/fallout_";
+		break;
+
+	case 1: /// Tactics
+		__MapHexagonal     = false;
+		__MapHexWidth      = 36;
+		__MapHexHeight     = 18;
+		__MapHexLineHeight = 9;
+		__MapTileOffsX     = 18;
+		__MapTileOffsY     = 18;
+		__MapRoofOffsX     = 18;
+		__MapRoofOffsY     = -72;
+		__MapRoofSkipSize  = 2;
+		__MapCameraAngle   = 30.0f;
+		__MapSmoothPath    = false;
+		__MapDataPrefix    = "art/geometry/tactics_";
+		break;
+
+	case 2: /// Arcanum
+		__MapHexagonal     = false;
+		__MapHexWidth      = 78;
+		__MapHexHeight     = 40;
+		__MapHexLineHeight = 20;
+		__MapTileOffsX     = 39;
+		__MapTileOffsY     = 40;
+		__MapRoofOffsX     = 39;
+		__MapRoofOffsY     = -44;
+		__MapRoofSkipSize  = 1;
+		__MapCameraAngle   = 30.0f;
+		__MapSmoothPath    = true;
+		__MapDataPrefix    = "art/geometry/arcanum_";
+		break;
+
+	default:
+		Log("Wrong geometry value.");
+		break;
+	}
 }
 
 

@@ -127,14 +127,14 @@ void SetStartLocation(Critter& cr) // Export
 	zoneX=cr.WorldX/__GlobalMapZoneLength;
 	zoneY=cr.WorldY/__GlobalMapZoneLength;
 	cr.SetFog(zoneX  ,zoneY  ,FOG_NONE);
-	cr.SetFog(zoneX-1,zoneY-1,FOG_SELF);
-	cr.SetFog(zoneX  ,zoneY-1,FOG_SELF);
-	cr.SetFog(zoneX+1,zoneY-1,FOG_SELF);
-	cr.SetFog(zoneX-1,zoneY  ,FOG_SELF);
-	cr.SetFog(zoneX+1,zoneY  ,FOG_SELF);
-	cr.SetFog(zoneX-1,zoneY+1,FOG_SELF);
-	cr.SetFog(zoneX  ,zoneY+1,FOG_SELF);
-	cr.SetFog(zoneX+1,zoneY+1,FOG_SELF);
+	cr.SetFog(zoneX-1,zoneY-1,FOG_HALF);
+	cr.SetFog(zoneX  ,zoneY-1,FOG_HALF);
+	cr.SetFog(zoneX+1,zoneY-1,FOG_HALF);
+	cr.SetFog(zoneX-1,zoneY  ,FOG_HALF);
+	cr.SetFog(zoneX+1,zoneY  ,FOG_HALF);
+	cr.SetFog(zoneX-1,zoneY+1,FOG_HALF);
+	cr.SetFog(zoneX  ,zoneY+1,FOG_HALF);
+	cr.SetFog(zoneX+1,zoneY+1,FOG_HALF);
 }
 
 void SetReplicationTime(Critter& cr) // Export

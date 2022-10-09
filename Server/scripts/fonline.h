@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 03.03.2011
-// Server version 411, MSVS2008
+// Last update 08.03.2011
+// Server version 414, MSVS2008
 // Default calling convention - cdecl
 //
 
@@ -310,8 +310,8 @@ struct GameOptions
 	uint   WhisperDist;
 	uint   ShoutDist;
 	int    LookChecks;
-	uint   LookDir[4];
-	uint   LookSneakDir[4];
+	uint   LookDir[5];
+	uint   LookSneakDir[5];
 	uint   LookWeight;
 	bool   CustomItemCost;
 	uint   RegistrationTimeout;
@@ -352,6 +352,20 @@ struct GameOptions
 	int    ReputationNeutral;
 	int    ReputationAntipathy;
 	int    ReputationHated;
+
+	bool   MapHexagonal;
+	int    MapHexWidth;
+	int    MapHexHeight;
+	int    MapHexLineHeight;
+	int    MapTileOffsX;
+	int    MapTileOffsY;
+	int    MapRoofOffsX;
+	int    MapRoofOffsY;
+	int    MapRoofSkipSize;
+	float  MapCameraAngle;
+	bool   MapSmoothPath;
+	string MapDataPrefix;
+	int    MapDataPrefixRefCount;
 
 	// Client and Mapper
 	bool   Quit;
@@ -1772,50 +1786,75 @@ inline Field* GetField(uint hexX, uint hexY)
 
 inline int GetDirection(int x1, int y1, int x2, int y2)
 {
-	float hx = (float)x1;
-	float hy = (float)y1;
-	float tx = (float)x2;
-	float ty = (float)y2;
-	float nx = 3 * (tx - hx);
-	float ny = (ty - hy) * SQRT3T2_FLOAT - (float(x2 % 2) - float(x1 % 2)) * SQRT3_FLOAT;
-	float dir = 180.0f + RAD2DEG * atan2f(ny, nx);
+	if(Game->MapHexagonal)
+	{
+		float hx = (float)x1;
+		float hy = (float)y1;
+		float tx = (float)x2;
+		float ty = (float)y2;
+		float nx = 3 * (tx - hx);
+		float ny = (ty - hy) * SQRT3T2_FLOAT - (float(x2 & 1) - float(x1 & 1)) * SQRT3_FLOAT;
+		float dir = 180.0f + RAD2DEG * atan2f(ny, nx);
 
-	if(dir >= 60.0f  && dir < 120.0f) return 5;
-	if(dir >= 120.0f && dir < 180.0f) return 4;
-	if(dir >= 180.0f && dir < 240.0f) return 3;
-	if(dir >= 240.0f && dir < 300.0f) return 2;
-	if(dir >= 300.0f && dir < 360.0f) return 1;
-	return 0;
+		if(dir >= 60.0f  && dir < 120.0f) return 5;
+		if(dir >= 120.0f && dir < 180.0f) return 4;
+		if(dir >= 180.0f && dir < 240.0f) return 3;
+		if(dir >= 240.0f && dir < 300.0f) return 2;
+		if(dir >= 300.0f) return 1;
+		return 0;
+	}
+	else
+	{
+		float dir=180.0f+RAD2DEG*atan2((float)(x2-x1),(float)(y2-y1));
+
+		if(dir >= 22.5f  && dir <  67.5f) return 7;
+		if(dir >= 67.5f  && dir < 112.5f) return 0;
+		if(dir >= 112.5f && dir < 157.5f) return 1;
+		if(dir >= 157.5f && dir < 202.5f) return 2;
+		if(dir >= 202.5f && dir < 247.5f) return 3;
+		if(dir >= 247.5f && dir < 292.5f) return 4;
+		if(dir >= 292.5f && dir < 337.5f) return 5;
+		return 6;
+	}
 }
 
 inline int GetDistantion(int x1, int y1, int x2, int y2)
 {
-	int dx = (x1 > x2 ? x1 - x2 : x2 - x1);
-	if(x1%2 == 0)
+	if(Game->MapHexagonal)
 	{
-		if(y2 <= y1)
+		int dx = (x1 > x2 ? x1 - x2 : x2 - x1);
+		if(x1%2 == 0)
 		{
-			int rx = y1 - y2 - dx / 2;
-			return dx + (rx > 0 ? rx : 0);
+			if(y2 <= y1)
+			{
+				int rx = y1 - y2 - dx / 2;
+				return dx + (rx > 0 ? rx : 0);
+			}
+			else
+			{
+				int rx = y2 - y1 - (dx + 1) / 2;
+				return dx + (rx > 0 ? rx : 0);
+			}
 		}
 		else
 		{
-			int rx = y2 - y1 - (dx + 1) / 2;
-			return dx + (rx > 0 ? rx : 0);
+			if(y2 >= y1)
+			{
+				int rx = y2 - y1 - dx / 2;
+				return dx + (rx > 0 ? rx : 0);
+			}
+			else
+			{
+				int rx = y1 - y2 - (dx + 1) / 2;
+				return dx + (rx > 0 ? rx : 0);
+			}
 		}
 	}
 	else
 	{
-		if(y2 >= y1)
-		{
-			int rx = y2 - y1 - dx / 2;
-			return dx + (rx > 0 ? rx : 0);
-		}
-		else
-		{
-			int rx = y1 - y2 - (dx + 1) / 2;
-			return dx + (rx > 0 ? rx : 0);
-		}
+		int dx=abs(x2 - x1);
+		int dy=abs(y2 - y1);
+		return max(dx, dy);
 	}
 }
 
@@ -1838,7 +1877,7 @@ inline void static_asserts()
 	STATIC_ASSERT(sizeof(ProtoItem)   == 184 );
 	STATIC_ASSERT(sizeof(Mutex)       == 24  );
 	STATIC_ASSERT(sizeof(Spinlock)    == 4   );
-	STATIC_ASSERT(sizeof(GameOptions) == 1176);
+	STATIC_ASSERT(sizeof(GameOptions) == 1264);
 	STATIC_ASSERT(sizeof(ScriptArray) == 36  );
 	STATIC_ASSERT(sizeof(SpriteInfo)  == 36  );
 	STATIC_ASSERT(sizeof(Field)       == 92  );

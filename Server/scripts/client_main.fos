@@ -1847,6 +1847,7 @@ int GetHandleValue(uint16 pid)
 	case PID_JONNY_BB_GUN:                   handle = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
 	case PID_INDEPENDENT:                    handle = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
 	case PID_M72_GAUSS_RIFLE:                handle = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
+	case PID_ELEPHANT_GUN:                   handle = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
 	case PID_SHOTGUN:                        handle = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
 	case PID_SAWED_OFF_SHOTGUN:              handle = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;
 	case PID_COMBAT_SHOTGUN:                 handle = ATTRIBUTE_Handle_Weapon_SawedOffShotgun;            break;

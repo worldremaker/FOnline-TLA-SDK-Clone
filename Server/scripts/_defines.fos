@@ -706,7 +706,8 @@
 #define MODE_NO_AIM                 (538) // Critter can't do aim attacks                           Hardcoded
 #define MODE_NO_WALK                (539) // Critter can't walk                                     Hardcoded
 #define MODE_NO_RUN                 (540) // Critter can't run                                      Hardcoded
-// 541..549
+#define MODE_NO_TALK                (541) // Npc can't talk                                         Hardcoded
+// 542..549
 
 	/// Traits
 #define TRAIT_BEGIN                (__TraitBegin)
@@ -984,8 +985,8 @@
 
 // Global map fog
 #define FOG_FULL                    (0)
-#define FOG_SELF                    (1)
-#define FOG_SELF2                   (2)
+#define FOG_HALF                    (1)
+#define FOG_HALF_EX                 (2)
 #define FOG_NONE                    (3)
 
 // Critter extra flags, only for read
