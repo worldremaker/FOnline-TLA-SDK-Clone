@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 18.02.2011
-// Server version 404, MSVS2008
+// Last update 20.02.2011
+// Server version 406, MSVS2008
 // Default calling convention - cdecl
 //
 
@@ -434,6 +434,7 @@ struct GameOptions
 	bool   DisableLMenu;
 	bool   DisableMouseEvents;
 	bool   DisableKeyboardEvents;
+	bool   HidePassword;
 	string PlayerOffAppendix;
 	int    PlayerOffAppendixRefCount;
 	int    CombatMessagesType;
@@ -1275,7 +1276,6 @@ struct Critter
 	Item*    ItemSlotArmor;
 	int      FuncId[CRITTER_EVENT_MAX];
 	uint     KnockoutAp;
-	uint     LastHealTick;
 	uint     NextIntellectCachingTick;
 	uint16   IntellectCacheValue;
 	uint     LookCacheValue;
@@ -1852,9 +1852,9 @@ inline void static_asserts()
 	STATIC_ASSERT(offsetof(GlobalMapGroup, EncounterForce)  == 88  );
 	STATIC_ASSERT(offsetof(Item, IsNotValid)                == 118 );
 	STATIC_ASSERT(offsetof(CritterTimeEvent, Identifier)    == 12  );
-	STATIC_ASSERT(offsetof(Critter, RefCounter)             == 9316);
-	STATIC_ASSERT(offsetof(Client, LanguageMsg)             == 9384);
-	STATIC_ASSERT(offsetof(Npc, Reserved)                   == 9340);
+	STATIC_ASSERT(offsetof(Critter, RefCounter)             == 9312);
+	STATIC_ASSERT(offsetof(Client, LanguageMsg)             == 9380);
+	STATIC_ASSERT(offsetof(Npc, Reserved)                   == 9336);
 	STATIC_ASSERT(offsetof(CritterCl, ItemSlotArmor)        == 4288);
 	STATIC_ASSERT(offsetof(MapEntire, Dir)                  == 8   );
 	STATIC_ASSERT(offsetof(SceneryToClient, Reserved1)      == 30  );

@@ -138,6 +138,7 @@
 	__DisableLMenu          = false;
 	__DisableMouseEvents    = false;
 	__DisableKeyboardEvents = false;
+	__HidePassword          = true;
 	__PlayerOffAppendix     = "|0x44ffffff  (off)";
 	__SpritesZoomMax        = 2.5f;
 	__SpritesZoomMin        = 0.2f;

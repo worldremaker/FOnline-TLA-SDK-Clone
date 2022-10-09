@@ -1074,10 +1074,22 @@ void critter_finish(Critter& cr, bool toDelete)
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Call every __CritterLoopTick time.
+// Call every __CritterIdleTick time.
 void critter_idle(Critter& cr)
 {
 	if(cr.IsDead() && cr.Stat[ST_REPLICATION_TIME]>=0 && cr.Timeout[TO_REPLICATION]==0) ReplicateCritter(cr);
+
+	// Healing
+	if(cr.Timeout[TO_HEALING] == 0)
+	{
+		if(!cr.IsDead() && cr.Mode[MODE_NO_HEAL] == 0 && cr.Timeout[TO_BATTLE] == 0 && cr.StatBase[ST_CURRENT_HP] < cr.Stat[ST_MAX_LIFE])
+		{
+			cr.StatBase[ST_CURRENT_HP] += cr.Stat[ST_HEALING_RATE];
+			if(cr.StatBase[ST_CURRENT_HP] > cr.Stat[ST_MAX_LIFE]) cr.StatBase[ST_CURRENT_HP] = cr.Stat[ST_MAX_LIFE];
+		}
+
+		cr.TimeoutBase[TO_HEALING] = HEALING_TIMEOUT(cr);
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
