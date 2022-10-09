@@ -147,7 +147,7 @@ lang=russ engl
 53 51040 D _var p q_sf_ahs7_hub_judgement = 3 R _var p q_sf_ahs7_hub_judgement = 8 R _var p sf_hubb_status = 3 R _param p ST_EXPERIENCE + 5000 R _param p ST_KARMA + 5 R _param p REPUTATION_SF + 3 @
 53 52000 None 0 #
 55 52010 D _param p KARMA_CHILDKILLER > 0 R _param p KARMA_CHILDKILLER = 0 R _param p KILL_CHILDREN - 1 R _script dialog@r_InfoMessage 1 3 R _script dialog@r_InfoMessage 1 2 #
-55 52020 D _param p KARMA_CHILDKILLER = 0 R _param p KILL_CHILDREN - 1 R _script dialog@r_InfoMessage 1 3 @
+55 52020 D _param p KARMA_CHILDKILLER = 0 @
 54 53000 None 0 @
 55 54000 None 0 #
 0 54010 @

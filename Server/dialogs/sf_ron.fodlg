@@ -24,7 +24,7 @@ lang=russ engl
 6 6000 None 0 #
 4 6010 #
 8 6020 D _var p q_sf_ron_findbodies = 0 D _param p KILL_MEN = 0 D _param p KILL_WOMEN = 0 D _param p KILL_ALIEN = 0 D _param p KILL_FLOATER = 0 D _param p KILL_CENTAUR = 0 D or D _param p KILL_CENTAUR > 0 D _var p q_sf_ron_kill_beasts = 0 D or D _param p KILL_MEN > 0 D _var p q_sf_ron_kill_beasts = 0 D or D _var p q_sf_ron_kill_beasts = 0 D _param p KILL_ALIEN > 0 D or D _param p KILL_FLOATER > 0 D _var p q_sf_ron_kill_beasts = 0 #
-19 6030 D _var p q_sf_ron_findbodies = 1 #
+19 6030 D _var p q_sf_ron_findbodies > 1 #
 13 6040 D _var p q_sf_ron_kill_beasts = 3 @
 7 7000 None 0 #
 0 7010 @

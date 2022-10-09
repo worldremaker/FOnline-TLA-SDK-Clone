@@ -378,7 +378,7 @@ class GlobalRouteCurve
 		return (nextPoint==-1);
 	}
 	// если караван достиг узла ломаной маршрута, меняем координаты точки назначения на следующую в маршруте
-	void SetRouteDir(uint x, uint y, uint& toX, uint& toY)
+	void SetRouteDir(uint x, uint y, float& toX, float& toY)
 	{
 		// нет ни одной точки в маршруте
 		if (Points.length()==0)
@@ -403,8 +403,8 @@ class GlobalRouteCurve
 				nextPoint++;
 			}
 		}
-		toX = Points[nextPoint].X;
-		toY = Points[nextPoint].Y;
+		toX = float(Points[nextPoint].X);
+		toY = float(Points[nextPoint].Y);
 
 	}
 	// преобразование марщрута в обратный
