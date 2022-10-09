@@ -6,4 +6,8 @@
 
 @subpage page_locationscfg
 
+@subpage page_globalmap
+
+@subpage page_encounters
+
 */

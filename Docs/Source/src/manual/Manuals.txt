@@ -6,4 +6,8 @@
 
 @subpage page_creatinglocation
 
+@subpage page_manualinterface
+
+@subpage page_manualinterface2
+
 */
