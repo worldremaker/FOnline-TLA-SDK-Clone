@@ -173,19 +173,23 @@ void global_process(int processType, Critter& cr, Item@ car,
 			if(fuel <= 0 || deterioration >= int(car.Proto.Car_MaxDeterioration))
 			{
 				uint str = (fuel <= 0 ? STR_CAR_FUEL_EMPTY : STR_CAR_BROKEN);
-				cr.SayMsg(SAY_NETMSG, TEXTMSG_GAME, STR_CRIT_BAD_CHARISMA);
+				cr.SayMsg(SAY_NETMSG, TEXTMSG_GAME, str);
 				speed = 0.0f;
 				return;
 			}
 
-			fuel -= car.Proto.Car_FuelConsumption;
-			deterioration += car.Proto.Car_DeteriorationRate;
+			// Car values created for the call every 500 ms
+			fuel -= car.Proto.Car_FuelConsumption * __GlobalMapMoveTime / 500;
+			deterioration += car.Proto.Car_DeteriorationRate * __GlobalMapMoveTime / 500;
 			if(fuel < 0) fuel = 0;
 			if(deterioration > int(car.Proto.Car_MaxDeterioration)) deterioration = int(car.Proto.Car_MaxDeterioration);
 
-			car.CarFuel = fuel;
-			car.CarDeterioration = deterioration;
-			car.Update();
+			if(fuel != car.CarFuel || deterioration != car.CarDeterioration)
+			{
+				car.CarFuel = fuel;
+				car.CarDeterioration = deterioration;
+				car.Update();
+			}
 		}
 
 		int moveCounter = ++cr.StatBase[ST_GLOBAL_MAP_MOVE_COUNTER];
