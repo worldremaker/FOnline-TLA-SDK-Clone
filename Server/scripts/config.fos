@@ -1,13 +1,16 @@
 // Game configuration, for server/client/mapper, call in start functions
 
 #include "_defines.fos"
+#include "_animation.fos"
 
-//
-// Server and client
-//
+#ifndef __COMPILER
+
+///
+/// Server and client initialization
+///
+
 #ifndef __MAPPER
 
-#include "_animation.fos"
 #include "_time.fos"
 
 void InitializeGame() // Export
@@ -88,6 +91,7 @@ void InitializeGame() // Export
 	__DlgBarterMinTime          = 50000;
 	__EncounterTime             = 5000;
 	__MinimumOfflineTime        = 180000; // 3 minutes
+	__MainStoryLineActive       = true;
 
 	// Look modifiers
 	__LookChecks = 0; // See Look checks in _defines.fos
@@ -105,8 +109,8 @@ void InitializeGame() // Export
 	__LookSneakDir4 =  0; // Nerfe 0% of opponent sneak with back look (Square geometry)
 	__LookChecks |= LOOK_CHECK_SNEAK_WEIGHT; // Nerfe sneak by current weight
 	__LookWeight = 10; // Lost 1 sneak point per 200 gramm
-	// SETFLAG(__LookChecks, LOOK_CHECK_TRACE); // Tracing for wall aviablility
-	// SETFLAG(__LookChecks, LOOK_CHECK_SCRIPT); // Allow bool check_look(...) in main.fos, all other defines ignored
+	// __LookChecks |= LOOK_CHECK_TRACE; // Tracing for wall aviablility
+	// __LookChecks |= LOOK_CHECK_SCRIPT; // Allow bool check_look(...) in main.fos, all other defines ignored
 
 	// Range of values for client engine
 	__AbsoluteOffsets = true;
@@ -239,12 +243,11 @@ void InitializeGame() // Export
 
 #endif // !__MAPPER
 
-//
-// Mapper
-//
-#ifdef __MAPPER
+///
+/// Mapper initialization
+///
 
-#include "_animation.fos"
+#ifdef __MAPPER
 
 void InitializeGame() // Export
 {
@@ -261,9 +264,10 @@ void InitializeGame() // Export
 
 #endif // __MAPPER
 
-//
-// Geometry
-//
+///
+/// Geometry
+///
+
 void InitializeGeometry()
 {
 	// Geometry customization
@@ -335,10 +339,5 @@ void InitializeGeometry()
 		break;
 	}
 }
-
-
-
-
-
 
 

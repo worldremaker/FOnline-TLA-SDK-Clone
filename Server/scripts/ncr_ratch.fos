@@ -137,7 +137,7 @@ uint r_GiveBuggyToPlayer(Critter& player, Critter@ npc)
 
 		Entire@ ent=entires[i];
 		// проверка, что машина влезет
-		if(map.CheckPlaceForCar(ent.HexX,ent.HexY,PID_BUGGY))
+		if(map.CheckPlaceForItem(ent.HexX,ent.HexY,PID_BUGGY))
 		{
 			hx=ent.HexX;
 			hy=ent.HexY;
@@ -155,10 +155,10 @@ uint r_GiveBuggyToPlayer(Critter& player, Critter@ npc)
 	if(valid(isQuest))
 		isQuest = 1;
 	car.LockerId=keyId;
-	car.CarFuel=car.Proto.Car_FuelTank;
+	car.CarFuel=car.Proto.Car_TankVolume;
 	car.Update();
 
-	Item@ bag=car.CarGetBag(0);
+	Item@ bag=car.GetChild(0);
 	if(valid(bag))
 	{
 		bag.LockerId=keyId;

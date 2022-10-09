@@ -219,7 +219,7 @@ uint r_TryCureVampire(Critter& cr, Critter@ npc, int val)
 	uint forceDialog = FD_CURE_FAIL;
 	int sk = cr.Skill[SK_DOCTOR];
 	uint8 mode = 0;
-	uint16 activePid = cr.GetSlotProto(SLOT_HAND1, mode).GetProtoId();
+	uint16 activePid = cr.GetSlotProto(SLOT_HAND1, mode).ProtoId;
 	if(activePid == PID_DOCTORS_BAG)
 	{
 		sk += 25;

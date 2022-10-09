@@ -242,7 +242,7 @@ EXPORT int getParam_Ac(CritterMutual& cr, uint)
 {
 	int val = cr.Params[ST_ARMOR_CLASS] + cr.Params[ST_ARMOR_CLASS_EXT] + getParam_Agility(cr, 0) + cr.Params[ST_TURN_BASED_AC];
 	Item* armor = cr.ItemSlotArmor;
-	if(armor->GetId() && armor->IsArmor()) val += armor->Proto->Armor.AC * (100 - armor->GetWearProc()) / 100;
+	if(armor->GetId() && armor->IsArmor()) val += armor->Proto->Armor_AC * (100 - armor->GetDeteriorationProc()) / 100;
 	return CLAMP(val, 0, 90);
 }
 
@@ -255,18 +255,18 @@ EXPORT int getParam_DamageResistance(CritterMutual& cr, uint index)
 	int drVal = 0;
 	switch(dmgType)
 	{
-	case DAMAGE_NORMAL:   val = cr.Params[ST_NORMAL_RESIST]  + cr.Params[ST_NORMAL_RESIST_EXT];  drVal = armor->Proto->Armor.DRNormal;  break;
-	case DAMAGE_LASER:    val = cr.Params[ST_LASER_RESIST]   + cr.Params[ST_LASER_RESIST_EXT];   drVal = armor->Proto->Armor.DRLaser;   break;
-	case DAMAGE_FIRE:     val = cr.Params[ST_FIRE_RESIST]    + cr.Params[ST_FIRE_RESIST_EXT];    drVal = armor->Proto->Armor.DRFire;    break;
-	case DAMAGE_PLASMA:   val = cr.Params[ST_PLASMA_RESIST]  + cr.Params[ST_PLASMA_RESIST_EXT];  drVal = armor->Proto->Armor.DRPlasma;  break;
-	case DAMAGE_ELECTR:   val = cr.Params[ST_ELECTRO_RESIST] + cr.Params[ST_ELECTRO_RESIST_EXT]; drVal = armor->Proto->Armor.DRElectr;  break;
-	case DAMAGE_EMP:      val = cr.Params[ST_EMP_RESIST]     + cr.Params[ST_EMP_RESIST_EXT];     drVal = armor->Proto->Armor.DREmp;     break;
-	case DAMAGE_EXPLODE:  val = cr.Params[ST_EXPLODE_RESIST] + cr.Params[ST_EXPLODE_RESIST_EXT]; drVal = armor->Proto->Armor.DRExplode; break;
+	case DAMAGE_NORMAL:   val = cr.Params[ST_NORMAL_RESIST]  + cr.Params[ST_NORMAL_RESIST_EXT];  drVal = armor->Proto->Armor_DRNormal;  break;
+	case DAMAGE_LASER:    val = cr.Params[ST_LASER_RESIST]   + cr.Params[ST_LASER_RESIST_EXT];   drVal = armor->Proto->Armor_DRLaser;   break;
+	case DAMAGE_FIRE:     val = cr.Params[ST_FIRE_RESIST]    + cr.Params[ST_FIRE_RESIST_EXT];    drVal = armor->Proto->Armor_DRFire;    break;
+	case DAMAGE_PLASMA:   val = cr.Params[ST_PLASMA_RESIST]  + cr.Params[ST_PLASMA_RESIST_EXT];  drVal = armor->Proto->Armor_DRPlasma;  break;
+	case DAMAGE_ELECTR:   val = cr.Params[ST_ELECTRO_RESIST] + cr.Params[ST_ELECTRO_RESIST_EXT]; drVal = armor->Proto->Armor_DRElectr;  break;
+	case DAMAGE_EMP:      val = cr.Params[ST_EMP_RESIST]     + cr.Params[ST_EMP_RESIST_EXT];     drVal = armor->Proto->Armor_DREmp;     break;
+	case DAMAGE_EXPLODE:  val = cr.Params[ST_EXPLODE_RESIST] + cr.Params[ST_EXPLODE_RESIST_EXT]; drVal = armor->Proto->Armor_DRExplode; break;
 	case DAMAGE_UNCALLED:
 	default: break;
 	}
 
-	if(armor->GetId() && armor->IsArmor()) val += drVal * (100 - armor->GetWearProc()) / 100;
+	if(armor->GetId() && armor->IsArmor()) val += drVal * (100 - armor->GetDeteriorationProc()) / 100;
 
 	if(dmgType == DAMAGE_EMP) return CLAMP(val, 0, 999);
 	return CLAMP(val, 0, 90);
@@ -281,18 +281,18 @@ EXPORT int getParam_DamageThreshold(CritterMutual& cr, uint index)
 	int dtVal = 0;
 	switch(dmgType)
 	{
-	case DAMAGE_NORMAL:   val = cr.Params[ST_NORMAL_ABSORB]  + cr.Params[ST_NORMAL_ABSORB_EXT];  dtVal = armor->Proto->Armor.DTNormal;  break;
-	case DAMAGE_LASER:    val = cr.Params[ST_LASER_ABSORB]   + cr.Params[ST_LASER_ABSORB_EXT];   dtVal = armor->Proto->Armor.DTLaser;   break;
-	case DAMAGE_FIRE:     val = cr.Params[ST_FIRE_ABSORB]    + cr.Params[ST_FIRE_ABSORB_EXT];    dtVal = armor->Proto->Armor.DTFire;    break;
-	case DAMAGE_PLASMA:   val = cr.Params[ST_PLASMA_ABSORB]  + cr.Params[ST_PLASMA_ABSORB_EXT];  dtVal = armor->Proto->Armor.DTPlasma;  break;
-	case DAMAGE_ELECTR:   val = cr.Params[ST_ELECTRO_ABSORB] + cr.Params[ST_ELECTRO_ABSORB_EXT]; dtVal = armor->Proto->Armor.DTElectr;  break;
-	case DAMAGE_EMP:      val = cr.Params[ST_EMP_ABSORB]     + cr.Params[ST_EMP_ABSORB_EXT];     dtVal = armor->Proto->Armor.DTEmp;     break;
-	case DAMAGE_EXPLODE:  val = cr.Params[ST_EXPLODE_ABSORB] + cr.Params[ST_EXPLODE_ABSORB_EXT]; dtVal = armor->Proto->Armor.DTExplode; break;
+	case DAMAGE_NORMAL:   val = cr.Params[ST_NORMAL_ABSORB]  + cr.Params[ST_NORMAL_ABSORB_EXT];  dtVal = armor->Proto->Armor_DTNormal;  break;
+	case DAMAGE_LASER:    val = cr.Params[ST_LASER_ABSORB]   + cr.Params[ST_LASER_ABSORB_EXT];   dtVal = armor->Proto->Armor_DTLaser;   break;
+	case DAMAGE_FIRE:     val = cr.Params[ST_FIRE_ABSORB]    + cr.Params[ST_FIRE_ABSORB_EXT];    dtVal = armor->Proto->Armor_DTFire;    break;
+	case DAMAGE_PLASMA:   val = cr.Params[ST_PLASMA_ABSORB]  + cr.Params[ST_PLASMA_ABSORB_EXT];  dtVal = armor->Proto->Armor_DTPlasma;  break;
+	case DAMAGE_ELECTR:   val = cr.Params[ST_ELECTRO_ABSORB] + cr.Params[ST_ELECTRO_ABSORB_EXT]; dtVal = armor->Proto->Armor_DTElectr;  break;
+	case DAMAGE_EMP:      val = cr.Params[ST_EMP_ABSORB]     + cr.Params[ST_EMP_ABSORB_EXT];     dtVal = armor->Proto->Armor_DTEmp;     break;
+	case DAMAGE_EXPLODE:  val = cr.Params[ST_EXPLODE_ABSORB] + cr.Params[ST_EXPLODE_ABSORB_EXT]; dtVal = armor->Proto->Armor_DTExplode; break;
 	case DAMAGE_UNCALLED:
 	default: break;
 	}
 
-	if(armor->GetId() && armor->IsArmor()) val += dtVal * (100 - armor->GetWearProc()) / 100;
+	if(armor->GetId() && armor->IsArmor()) val += dtVal * (100 - armor->GetDeteriorationProc()) / 100;
 
 	return CLAMP(val, 0, 999);
 }
@@ -387,21 +387,21 @@ EXPORT bool Critter_IsOverweight(CritterMutual& cr)
 EXPORT bool Item_Weapon_IsHtHAttack(Item& item, uint8 mode)
 {
 	if(!item.IsWeapon() || !item.WeapIsUseAviable(mode & 7)) return false;
-	int skill = SKILL_OFFSET(item.Proto->Weapon.Skill[mode & 7]);
+	int skill = SKILL_OFFSET(item.Proto->Weapon_Skill[mode & 7]);
 	return skill == SK_UNARMED || skill == SK_MELEE_WEAPONS;
 }
 
 EXPORT bool Item_Weapon_IsGunAttack(Item& item, uint8 mode)
 {
 	if(!item.IsWeapon() || !item.WeapIsUseAviable(mode & 7)) return false;
-	int skill = SKILL_OFFSET(item.Proto->Weapon.Skill[mode & 7]);
+	int skill = SKILL_OFFSET(item.Proto->Weapon_Skill[mode & 7]);
 	return skill == SK_SMALL_GUNS || skill == SK_BIG_GUNS || skill == SK_ENERGY_WEAPONS;
 }
 
 EXPORT bool Item_Weapon_IsRangedAttack(Item& item, uint8 mode)
 {
 	if(!item.IsWeapon() || !item.WeapIsUseAviable(mode & 7)) return false;
-	int skill = SKILL_OFFSET(item.Proto->Weapon.Skill[mode & 7]);
+	int skill = SKILL_OFFSET(item.Proto->Weapon_Skill[mode & 7]);
 	return skill == SK_SMALL_GUNS || skill == SK_BIG_GUNS || skill == SK_ENERGY_WEAPONS || skill == SK_THROWING;
 }
 
@@ -429,15 +429,15 @@ uint GetUseApCost(CritterMutual& cr, Item& item, uint8 mode)
 		else
 			apCost = Game->RtApCostReloadWeapon;
 
-		if(item.IsWeapon() && item.Proto->Weapon.Perk == WEAPON_PERK_FAST_RELOAD) apCost--;
+		if(item.IsWeapon() && item.Proto->Weapon_Perk == WEAPON_PERK_FAST_RELOAD) apCost--;
 	}
 	else if(use >= USE_PRIMARY && use <= USE_THIRD && item.IsWeapon())
 	{
-		int skill = item.Proto->Weapon.Skill[use];
+		int skill = item.Proto->Weapon_Skill[use];
 		bool hthAttack = Item_Weapon_IsHtHAttack(item, mode);
 		bool rangedAttack = Item_Weapon_IsRangedAttack(item, mode);
 
-		apCost = item.Proto->Weapon.ApCost[use];
+		apCost = item.Proto->Weapon_ApCost[use];
 		if(aim) apCost += GetAimApCost(aim);
 		if(hthAttack && cr.Params[PE_BONUS_HTH_ATTACKS]) apCost--;
 		if(rangedAttack && cr.Params[PE_BONUS_RATE_OF_FIRE]) apCost--;
@@ -451,9 +451,9 @@ uint GetUseApCost(CritterMutual& cr, Item& item, uint8 mode)
 uint GetAttackDistantion(CritterMutual& cr, Item& item, uint8 mode)
 {
 	uint8 use = mode & 0xF;
-	int dist = item.Proto->Weapon.MaxDist[use];
+	int dist = item.Proto->Weapon_MaxDist[use];
 	int strength = getParam_Strength(cr, 0);
-	if(item.Proto->Weapon.Skill[use] == SKILL_OFFSET(SK_THROWING)) dist = min(dist, 3 * min(10, strength + 2 * cr.Params[PE_HEAVE_HO]));
+	if(item.Proto->Weapon_Skill[use] == SKILL_OFFSET(SK_THROWING)) dist = min(dist, 3 * min(10, strength + 2 * cr.Params[PE_HEAVE_HO]));
 	if(Item_Weapon_IsHtHAttack(item, mode) && cr.Params[MODE_RANGE_HTH]) dist++;
 	dist += GetMultihex(cr);
 	if(dist < 0) dist = 0;

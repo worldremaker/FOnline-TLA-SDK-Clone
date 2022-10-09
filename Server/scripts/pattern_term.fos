@@ -302,7 +302,7 @@ Item @ GetCritterWeapon (Critter & cr, uint[] weapPids)
 			Item @ weapon = cr.GetItem(weapPids[i], -1);
 			if(!valid(weapon)) continue;
 
-			if(GetWearProcent(weapon)<100)
+			if(GetDeteriorationProcent(weapon)<100)
 			{
 				return weapon;
 			}

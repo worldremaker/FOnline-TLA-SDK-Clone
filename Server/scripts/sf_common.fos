@@ -352,7 +352,6 @@ void _NancySkill(Critter& cr, Critter& fromCr, int skill, Critter@ onCritter, It
 				}
 			}
 		}
-
 	}
 }
 
@@ -363,11 +362,11 @@ void _BoatInit(Item & boat, bool firstTime)
 	Map @ map = GetMap(boat.MapId);
 	if(!valid(map)) return;
 	uint keyId=Random(10000,50000);
-	boat.CarFuel=boat.Proto.Car_FuelTank;
-	boat.CarDeteoration=0;
+	boat.CarFuel=boat.Proto.Car_TankVolume;
+	boat.CarDeterioration=0;
 	boat.LockerId=keyId;
 	boat.LockerComplexity=Random(100,150);
-	Item@ bag=boat.CarGetBag(0);
+	Item@ bag=boat.GetChild(0);
 	if(valid(bag))
 	{
 		bag.LockerId=keyId;
@@ -560,11 +559,11 @@ bool _HubVictimAttacked(Critter& cr, Critter& attacker)
 					if(GetFreeHex(map, Random(6,20), hx, hy))
 						AddWalkPlane(npc, 100, hx, hy, Random(0,5), true, 1);
 					if(Random(1,3) < 2)
-						npc.SayMsg(SAY_SHOUT, TEXTMSG_TEXT, STR_DONTKILL);				
+						npc.SayMsg(SAY_SHOUT, TEXTMSG_TEXT, STR_DONTKILL);
 				}
 			}
 		}
-	}	
+	}
 	return false;
 }
 

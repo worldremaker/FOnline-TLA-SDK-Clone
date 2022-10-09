@@ -2,7 +2,7 @@
 #include "_macros.fos"
 #include "trader_table.fos"
 
-import void SetWear(Item& item, int wearProcent) from "repair";
+import void SetDeterioration(Item& item, int deteriorationProcent) from "repair";
 
 #define TABLE_TRADERS_COUNT                         (TradersCount)
 #define TABLE_ITEMS_COUNT                           (ItemsCount)
@@ -75,7 +75,7 @@ uint UpdateItems(Critter& trader)
 			if(needCount > 0)
 			{
 				Item@ item = trader.AddItem(pid, needCount);
-				if(valid(item) && item.IsWeared()) SetWear(item, Random(5, 25)); // 5%..25% procent of deteoration
+				if(valid(item) && item.IsDeteriorable()) SetDeterioration(item, Random(5, 25)); // 5%..25% procent of deteoration
 			}
 		}
 	}

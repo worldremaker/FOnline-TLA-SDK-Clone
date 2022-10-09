@@ -6,7 +6,7 @@
 
 import bool AddAttackPlane(Critter& npc, uint priority, Critter& target, bool run) from "npc_planes";
 import bool AddWalkPlane(Critter& npc, uint priority, int identifier, uint identifierExt, uint16 hexX, uint16 hexY, uint8 dir, bool run, uint cut) from "npc_planes";
-import void SetWear(Item& item, int wearProcent) from "repair";
+import void SetDeterioration(Item& item, int deteriorationProcent) from "repair";
 
 #define MESSAGE_COLLECT_NPC     (30)
 #define MESSAGE_ATTACK_HIM      (31)
@@ -36,7 +36,7 @@ void _NpcInit(Critter& npc, bool firstTime)
 		bool favrtWpnSet  = false;
 		for(uint i = 0, j = items.length(); i < j; i++)
 		{
-			SetWear(items[i], Random(80, 95));
+			SetDeterioration(items[i], Random(80, 95));
 			if(items[i].GetType() == ITEM_WEAPON && !favrtWpnSet)
 			{
 				npc.SetFavoriteItem(SLOT_HAND1, items[i].GetProtoId());

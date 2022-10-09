@@ -4,7 +4,7 @@
 
 // Uses
 #include "_macros.fos"
-import void SetWear(Item& item, int wearProcent) from "repair";
+import void SetDeterioration(Item& item, int deteriorationProcent) from "repair";
 
 // Defines
 uint FreeEquipTime = 0;
@@ -82,8 +82,8 @@ void GiveWeapon( Critter& player )
 	Item@ Weapon = player.AddItem( ItemPid, 1 );
 	if ( !valid(Weapon) ) return;
 	Weapon.Cost = Roll;
-	if( Weapon.IsWeared() ) {
-		SetWear( Weapon, Random( 9, 99 - Roll ) );
+	if( Weapon.IsDeteriorable() ) {
+		SetDeterioration( Weapon, Random( 9, 99 - Roll ) );
 		switch( Random( 0, 8 ) ){
 			case 0: SETFLAG( Weapon.BrokenFlags, BI_LOWBROKEN ); break;
 			case 1: SETFLAG( Weapon.BrokenFlags, BI_NORMBROKEN ); break;
@@ -138,8 +138,8 @@ void GiveArmor( Critter& player )
 	Item@ Armor = player.AddItem( ItemPid, 1 );
 	if ( !valid(Armor) ) return;
 	Armor.Cost = Roll;
-	if( Armor.IsWeared() ) {
-		SetWear( Armor, Random( 19, 99 - Roll ) );
+	if( Armor.IsDeteriorable() ) {
+		SetDeterioration( Armor, Random( 19, 99 - Roll ) );
 		switch( Random( 0, 8 ) ){
 			case 0: SETFLAG( Armor.BrokenFlags, BI_LOWBROKEN ); break;
 			case 1: SETFLAG( Armor.BrokenFlags, BI_NORMBROKEN ); break;

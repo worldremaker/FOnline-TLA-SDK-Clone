@@ -128,9 +128,9 @@
 // uint8   InfoOffset
 //  Item parameters
 // uint    Item_Count
-// uint8   Item_DeteorationFlags
-// uint8   Item_DeteorationCount
-// uint16  Item_DeteorationValue
+// uint8   Item_BrokenFlags
+// uint8   Item_BrokenCount
+// uint16  Item_Deterioration
 // uint8   Item_ItemSlot
 // uint16  Item_AmmoPid
 // uint    Item_AmmoCount

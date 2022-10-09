@@ -557,7 +557,7 @@ void TryMoveCar(Critter & cr, Map & map)
 					for(uint m=0, n=entires.length(); m<n; m++)
 					{
 						Entire@ ent=entires[m];
-						if(map.CheckPlaceForCar(ent.HexX, ent.HexY, car.GetProtoId()))
+						if(map.CheckPlaceForItem(ent.HexX, ent.HexY, car.GetProtoId()))
 						{
 							MoveItem(car, 1, map, ent.HexX, ent.HexY);
 							return;

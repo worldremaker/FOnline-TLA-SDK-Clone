@@ -66,27 +66,27 @@ bool UseSkillOnLocker(Critter& cr, Item& locker, int skill) // Export
 			}
 
 			// Is changeble
-			if(locker.Proto.Container_IsChangeble)
+			if(locker.Proto.Container_Changeble)
 			{
 				// Change state
 				if(FLAG(locker.LockerCondition,LOCKER_ISOPEN)) locker.LockerClose();
 				else
 				{
 					locker.LockerOpen();
-					cr.ShowContainer(null,locker,locker.Proto.Container_IsGroundLevel()?TRANSFER_HEX_CONT_DOWN:TRANSFER_HEX_CONT_UP);
+					cr.ShowContainer(null,locker,locker.Proto.GroundLevel?TRANSFER_HEX_CONT_DOWN:TRANSFER_HEX_CONT_UP);
 				}
 			}
 			// No changeble
 			else
 			{
-				cr.ShowContainer(null,locker,locker.Proto.Container_IsGroundLevel()?TRANSFER_HEX_CONT_DOWN:TRANSFER_HEX_CONT_UP);
+				cr.ShowContainer(null,locker,locker.Proto.GroundLevel?TRANSFER_HEX_CONT_DOWN:TRANSFER_HEX_CONT_UP);
 			}
 		}
 	}
 	else if(skill==SK_STEAL)
 	{
 		if(locker.GetType()==ITEM_CONTAINER && FLAG(locker.LockerCondition,LOCKER_ISOPEN))
-			cr.ShowContainer(null,locker,locker.Proto.Container_IsGroundLevel()?TRANSFER_HEX_CONT_DOWN:TRANSFER_HEX_CONT_UP);
+			cr.ShowContainer(null,locker,locker.Proto.GroundLevel?TRANSFER_HEX_CONT_DOWN:TRANSFER_HEX_CONT_UP);
 		else
 			cr.SayMsg(SAY_NETMSG,TEXTMSG_GAME,STR_USE_NOTHING);
 	}
@@ -113,7 +113,7 @@ bool UseSkillOnLocker(Critter& cr, Item& locker, int skill) // Export
 
 		int base=cr.Skill[SK_LOCKPICK]-locker.LockerComplexity;
 		uint8 mode=0;
-		uint16 activePid=cr.GetSlotProto(SLOT_HAND1,mode).GetProtoId();
+		uint16 activePid=cr.GetSlotProto(SLOT_HAND1,mode).ProtoId;
 		if(activePid==PID_LOCKPICKS)
 		{
 			base+=25;
@@ -130,7 +130,7 @@ bool UseSkillOnLocker(Critter& cr, Item& locker, int skill) // Export
 		if(base>=Random(1,100))
 		{
 			locker.LockerOpen();
-			if(locker.GetType()==ITEM_CONTAINER) cr.ShowContainer(null,locker,locker.Proto.Container_IsGroundLevel()?TRANSFER_HEX_CONT_DOWN:TRANSFER_HEX_CONT_UP);
+			if(locker.GetType()==ITEM_CONTAINER) cr.ShowContainer(null,locker,locker.Proto.GroundLevel?TRANSFER_HEX_CONT_DOWN:TRANSFER_HEX_CONT_UP);
 			cr.StatBase[ST_EXPERIENCE]+=50;
 			cr.AddScore(SCORE_CRACKER,1);
 		}

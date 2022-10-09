@@ -655,16 +655,16 @@ void r_EndQuest(Critter& player, Critter@ npc, int noAward)
 
 	GameVar @ qVar = GetLocalVar(LVAR_q_ncr_hub_book, player.Id);
 	if(!valid(qVar)) return;
-	if(qVar==QST_END||qVar==0) return;
+	if(qVar==QST_END || qVar==0) return;
 	uint bookCount = player.CountItem(PID_HUBOLOGIST_BOOK);
 	if(bookCount<3) return;
 	Item @[] items;
-	if(player.GetItemsByType (ITEM_MISC_EX, items)==0) return;
+	if(player.GetItemsByType(ITEM_MISC, items)==0) return;
 	int sumCost = 0;
 	int counter = 0;
-	for(uint i = 0; i<items.length()&&counter<7; i++)
+	for(uint i = 0; i < items.length() && counter < 7; i++)
 	{
-		if (items[i].GetProtoId() ==PID_HUBOLOGIST_BOOK)
+		if (items[i].GetProtoId() == PID_HUBOLOGIST_BOOK)
 		{
 			sumCost+=BOOK_COST(items[i].Info);
 			counter++;

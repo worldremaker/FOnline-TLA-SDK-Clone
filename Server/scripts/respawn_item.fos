@@ -6,8 +6,8 @@
 //        1 - в инвентаре НПЦ на той же карте,
 //		  2 - в контейнере на той же карте
 //		  3+ - если режим>2, то итем располагается гденибудь неподалеку от гекса с таким номером
-// респауну подвержены только итемы типов: ITEM_ARMOR, ITEM_DRUG, ITEM_WEAPON, ITEM_MISC, ITEM_MISC_EX, ITEM_KEY
-// Для итемов типа MISC2 есть дополнительная возможность указать номер переменной (поле Val3), чье значение будет проверяться при попытке поднять итем
+// респауну подвержены только итемы типов: ITEM_ARMOR, ITEM_DRUG, ITEM_WEAPON, ITEM_MISC, ITEM_KEY
+// Eсть дополнительная возможность указать номер переменной (поле Val3), чье значение будет проверяться при попытке поднять итем
 // если значение переменной = 1, предмет будет поднят и после этого переменная будет установлена в 0
 
 #include "_macros.fos"
@@ -28,8 +28,6 @@ void SetItemRespawn(Item& item, uint mode, uint respTime)
 
 void SetItemNoPick(Item & item, uint varNum)
 {
-	if(item.GetType()!=ITEM_MISC_EX)  return;
-
 	item.Val3 = varNum;
 	item.SetEvent(ITEM_EVENT_SKILL, "e_ItemOnSkill");
 	item.SetScript("_RespItemInit");
@@ -41,7 +39,7 @@ bool CheckItemValidToRespawn(Item @ item)
 	if(!valid(item)) return false;
 
 	uint8 protoType = item.GetType();
-	return protoType==ITEM_ARMOR||protoType==ITEM_DRUG||protoType==ITEM_WEAPON||protoType==ITEM_MISC||protoType==ITEM_MISC_EX||protoType==ITEM_KEY;
+	return protoType==ITEM_ARMOR||protoType==ITEM_DRUG||protoType==ITEM_WEAPON||protoType==ITEM_MISC||protoType==ITEM_KEY;
 }
 
 bool e_ItemOnSkill(Item& item, Critter& cr, int skill)
@@ -49,38 +47,35 @@ bool e_ItemOnSkill(Item& item, Critter& cr, int skill)
 	//Log("sk"+skill);
 	if(skill<0)
 	{
-		if(item.GetType()==ITEM_MISC_EX)
+		// проверка, может ли игрок поднять предмет
+		if(item.Val3!=0)
 		{
-
-			// проверка, может ли игрок поднять предмет
-			if(item.Val3!=0)
+			GameVar @canPick = GetLocalVar(item.Val3, cr.Id);
+			if(valid(canPick))
 			{
-				GameVar @canPick = GetLocalVar(item.Val3, cr.Id);
-				if(valid(canPick))
+				if (canPick.GetValue()==0)
 				{
-					if (canPick.GetValue()==0)
-					{
-						cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_CANT_PICKUP);
-						return true;
-					}else{
-						canPick = 0;
-					}
+					cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_CANT_PICKUP);
+					return true;
+				}else{
+					canPick = 0;
 				}
 			}
 		}
+
 		if(item.Val4>0&&valid(cr.GetMap()))
 		{
 
 			uint[] values = {
-				cr.GetMap().Id,    // карта респауна
+				cr.GetMap().Id,      // карта респауна
 				item.GetProtoId(),   // код Пида итема
 				item.GetCount(),     // количество
 				item.GetScriptId(),  // скрипт
 				item.HexX,           // координаты
 				item.HexY,           // координаты
-				(item.GetType()==ITEM_MISC_EX?item.Val3:0), // номер переменной в которой хранится признак может ли игрок поднять этот итем
+				item.Val3,           // номер переменной в которой хранится признак может ли игрок поднять этот итем
 				item.Val5,           // режим респауна
-				item.Val4,            // время следующего респауна
+				item.Val4,           // время следующего респауна
 				item.Info
 			};
 

@@ -76,7 +76,7 @@ void CreateSupplyCar(Map@ map, int base, uint playerId, int org)
 		if(i==j) return;
 
 		Entire@ ent=entires[i];
-		if(map.CheckPlaceForCar(ent.HexX,ent.HexY,carPid))
+		if(map.CheckPlaceForItem(ent.HexX,ent.HexY,carPid))
 		{
 			hx=ent.HexX;
 			hy=ent.HexY;
@@ -87,10 +87,10 @@ void CreateSupplyCar(Map@ map, int base, uint playerId, int org)
 	Item@ car=map.AddItem(hx,hy,carPid,1);
 	if(not valid(car)) return;
 	car.LockerId=1;
-	car.CarFuel=Random(0,car.Proto.Car_FuelTank);
-	car.CarDeteoration=Random(0,car.Proto.Car_RunToBreak);
+	car.CarFuel=Random(0,car.Proto.Car_TankVolume);
+	car.CarDeterioration=Random(0,car.Proto.Car_MaxDeterioration);
 
-	Item@ bag=car.CarGetBag(0);
+	Item@ bag=car.GetChild(0);
 	if(valid(bag))
 	{
 		bag.LockerId=(org==ORG_ENCLAVE?_CritFingersDoorId(playerId):_CritEyesDoorId(playerId));

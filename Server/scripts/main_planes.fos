@@ -1,5 +1,13 @@
 // Authors: cvet, Atom
+#include "_macros.fos"
+#include "_npc_pids.fos"
+#include "npc_ai.fos"
 #include "tracing_util.fos"
+
+import void SetDeterioration(Item& item, int deteriorationProcent) from "repair";
+import bool AddWalkPlane(Critter& npc, uint priority, uint16 hexX, uint16 hexY, uint8 dir, bool run, uint cut) from "npc_planes";
+import bool IsKeyAviable(Critter& cr, uint lockerId) from "lockers";
+import uint GetKeyId(Critter& cr, uint lockerId) from "lockers";
 import int RawToHit(Critter &cr, Critter &target, ProtoItem@ weapon, uint8 weaponUse, ProtoItem@ ammo) from "combat";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -136,7 +144,7 @@ bool npc_plane_end(Critter& npc, NpcPlane& plane, int reason, Critter@ someCr, I
 			Item@ item=items[i];
 			if(_ItemIsBroken(item))
 			{
-				SetWear(item,0);
+				SetDeterioration(item,0);
 				break;
 			}
 		}
@@ -317,7 +325,7 @@ bool npc_plane_run(Critter& npc, NpcPlane& plane, int reason, uint& r0, uint& r1
 		uint8 mode=0;
 		ProtoItem@ weapon=npc.GetSlotProto(SLOT_HAND1,mode);
 		int use=_WeaponModeUse(mode);
-		ProtoItem@ ammo=(weapon.Weapon_VolumeHolder>0 && weapon.Weapon_Caliber!=0?GetProtoItem(_CritGetItemHand(npc).WeaponAmmoPid):null);
+		ProtoItem@ ammo=(weapon.Weapon_MaxAmmoCount>0 && weapon.Weapon_Caliber!=0?GetProtoItem(_CritGetItemHand(npc).WeaponAmmoPid):null);
 		int wpnDist=_WeaponMaxDist(weapon,use);
 		int multihex=npc.GetMultihex()+target.GetMultihex();
 
@@ -336,7 +344,7 @@ bool npc_plane_run(Critter& npc, NpcPlane& plane, int reason, uint& r0, uint& r1
 		{
 			int base =
 				npc.Skill[skill]-
-				MAX(0,target.Stat[ST_ARMOR_CLASS]+(valid(ammo)?ammo.Ammo_AcMod:0))+
+				MAX(0,target.Stat[ST_ARMOR_CLASS]+(valid(ammo)?ammo.Ammo_ACMod:0))+
 				(target.IsKnockout()?40:0)-
 				(npc.Damage[DAMAGE_EYE]!=0?25:0);
 
@@ -377,7 +385,7 @@ bool npc_plane_run(Critter& npc, NpcPlane& plane, int reason, uint& r0, uint& r1
 			}
 			else if (valid(ammo))
 			{
-				switch (ammo.GetProtoId())
+				switch (ammo.ProtoId)
 				{
 				case PID_EXPLOSIVE_ROCKET:
 				case PID_ROCKET_AP:
@@ -399,7 +407,7 @@ bool npc_plane_run(Critter& npc, NpcPlane& plane, int reason, uint& r0, uint& r1
 			}
 
 			int base = npc.Skill[skill] -
-					   MAX(0,target.Stat[ST_ARMOR_CLASS]+(valid(ammo)?ammo.Ammo_AcMod:0)) +
+					   MAX(0,target.Stat[ST_ARMOR_CLASS]+(valid(ammo)?ammo.Ammo_ACMod:0)) +
 					   (target.IsKnockout()?40:0) -
 					   (npc.Damage[DAMAGE_EYE]!=0?25:0) + (weapon.Weapon_Perk==WEAPON_PERK_ACCURATE?20:0);
 
@@ -450,7 +458,7 @@ bool npc_plane_run(Critter& npc, NpcPlane& plane, int reason, uint& r0, uint& r1
 
 			if (npc.IsCanAim())
 			{
-				if (weapon.Weapon_Aim_F)
+				if (weapon.Weapon_Aim_0)
 				{
 					uint reduction = (r0*3*npc.Stat[ST_INTELLECT])/100;
 					reduction = MIN(15,reduction);
@@ -548,7 +556,7 @@ bool CogitateFiring(Critter& cr, uint& mode, uint& aim) // in: targetId, 0; out:
   ProtoItem@ protoWeapon = GetProtoItem(weapon.GetProtoId());
   ProtoItem@ protoAmmo = null;
   if (weapon.WeaponAmmoPid!=0) @protoAmmo = GetProtoItem(weapon.WeaponAmmoPid);
-  if (protoWeapon.Weapon_Skill_F == SK_UNARMED || protoWeapon.Weapon_Skill_F == SK_MELEE_WEAPONS) // assuming all modes melee
+  if (protoWeapon.Weapon_Skill_0 == SK_UNARMED || protoWeapon.Weapon_Skill_0 == SK_MELEE_WEAPONS) // assuming all modes melee
   {
     mode = 0;
     if (cr.IsCanAim())
@@ -561,7 +569,7 @@ bool CogitateFiring(Critter& cr, uint& mode, uint& aim) // in: targetId, 0; out:
   else // assuming all modes ranged
   {
     bool forceBurst = false;
-    if (protoWeapon.Weapon_Round_F > 1)
+    if (protoWeapon.Weapon_Round_0 > 1)
     {
       //cr.Say(SAY_NORM, "Burst is the only mode");
       forceBurst = true;
@@ -569,7 +577,7 @@ bool CogitateFiring(Critter& cr, uint& mode, uint& aim) // in: targetId, 0; out:
     }
     else
     {
-      if (protoWeapon.Weapon_DmgType_S == DAMAGE_UNCALLED)
+      if (protoWeapon.Weapon_DmgType_1 == DAMAGE_UNCALLED)
       {
         //cr.Say(SAY_NORM, "Single shot is the only mode");
         mode = 0;
@@ -673,7 +681,7 @@ bool ValidateBurst(Critter& cr, Critter& target, ProtoItem@ weapon, uint mode)
   //cr.Say(SAY_NORM, "validating burst, ap: "+cr.Stat[ST_CURRENT_AP]+" of "+cr.Stat[ST_ACTION_POINTS]+", needed "+weapon.Weapon_ApCost);
   if (Random(0,2) == 0) return false; // force normal shot, for a little diversity
   Map@ map = cr.GetMap();
-  if ((map.IsTurnBasedAvailability() ? cr.Stat[ST_CURRENT_AP] : cr.Stat[ST_ACTION_POINTS]) < _WeaponApCost(weapon, mode)) return false;
+  if ((map.IsTurnBasedAvailability() ? cr.Stat[ST_CURRENT_AP] : cr.Stat[ST_ACTION_POINTS]) < int(_WeaponApCost(weapon, mode))) return false;
 
   uint maxDist = _WeaponMaxDist(weapon, mode);
 
@@ -744,14 +752,14 @@ bool CheckBattleWeapon(Critter& npc, Item& weapon)
 	if(not npc.IsAnim1(weapon.Proto.Weapon_Anim1)) return false;
 	if(_ItemIsBroken(weapon)) return false;
 	if(FLAG(weapon.Flags,ITEM_TWO_HANDS) && (npc.Damage[DAMAGE_LEFT_ARM]!=0 || npc.Damage[DAMAGE_RIGHT_ARM]!=0)) return false;
-	if(npc.Mode[MODE_UNLIMITED_AMMO]==0 && weapon.Proto.Weapon_VolumeHolder>0 && weapon.WeaponAmmoCount==0 && !IsAmmoForWeapon(npc,weapon)) return false;
+	if(npc.Mode[MODE_UNLIMITED_AMMO]==0 && weapon.Proto.Weapon_MaxAmmoCount>0 && weapon.WeaponAmmoCount==0 && !IsAmmoForWeapon(npc,weapon)) return false;
 	return true;
 }
 
 bool IsAmmoForWeapon(Critter& npc, Item& weapon)
 {
 	if(npc.CountItem(weapon.WeaponAmmoPid)>0) return true;
-	if(npc.CountItem(weapon.Proto.Weapon_DefAmmo)>0) return true;
+	if(npc.CountItem(weapon.Proto.Weapon_DefaultAmmoPid)>0) return true;
 	Item@[] ammo;
 	for(uint i=0,j=npc.GetItemsByType(ITEM_AMMO,ammo);i<j;i++)
 	{

@@ -3,10 +3,14 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 11.03.2011
-// Server version 415, MSVS2008
+// Last update 17.03.2011
+// Server version 416, MSVS2008
 // Default calling convention - cdecl
 //
+
+#if !defined(__SERVER) && !defined(__CLIENT) && !defined(__MAPPER)
+#error __SERVER / __CLIENT / __MAPPER any of this must be defined
+#endif
 
 #pragma pack(8)
 
@@ -158,6 +162,11 @@ EXPORT extern void (*Log)(const char* frmt, ...);
 #define VAR_FLAG_NO_CHECK           (0x4)
 
 // Items
+#define PROTO_ITEM_USER_DATA_SIZE   (500)
+#define ITEM_MAX_BLOCK_LINES        (50)
+#define ITEM_MAX_CHILDS             (5)
+#define ITEM_MAX_CHILD_LINES        (6)
+#define ITEM_MAX_SCRIPT_VALUES      (10)
 #define USE_PRIMARY                 (0)
 #define USE_SECONDARY               (1)
 #define USE_THIRD                   (2)
@@ -165,9 +174,6 @@ EXPORT extern void (*Log)(const char* frmt, ...);
 #define USE_USE                     (4)
 #define MAX_USES					(3)
 #define USE_NONE                    (15)
-
-#define CAR_MAX_BLOCKS              (80)
-#define CAR_MAX_BAG_POSITION        (12)
 
 // Parameters
 #define MAX_PARAMS                  (1000)
@@ -568,28 +574,29 @@ struct CritterType
 
 struct ProtoItem
 {
-	uint16 Pid;
-	uint8  Type;
-	uint8  Slot;
+	// Internal data
+	uint16 ProtoId;
+	int    Type;
+	uint   PicMap;
+	uint   PicInv;
 	uint   Flags;
-	uint8  Corner;
-	bool   DisableEgg;
-	int16  Dir;
-	uint   PicMapHash;
-	uint   PicInvHash;
+	bool   Stackable;
+	bool   Deteriorable;
+	bool   GroundLevel;
+	int    Corner;
+	int    Dir;
+	uint8  Slot;
 	uint   Weight;
 	uint   Volume;
 	uint   Cost;
+	uint   StartCount;
 	uint8  SoundId;
 	uint8  Material;
-
-	// Light
 	uint8  LightFlags;
 	uint8  LightDistance;
 	int8   LightIntensity;
 	uint   LightColor;
-
-	// Animation
+	bool   DisableEgg;
 	uint16 AnimWaitBase;
 	uint16 AnimWaitRndMin;
 	uint16 AnimWaitRndMax;
@@ -598,185 +605,121 @@ struct ProtoItem
 	uint8  AnimHide[2];
 	int16  OffsetX;
 	int16  OffsetY;
-	int8   DrawPosOffsY;
 	uint8  SpriteCut;
 	int8   DrawOrderOffsetHexY;
-
-	// Radio
 	uint16 RadioChannel;
 	uint16 RadioFlags;
 	uint8  RadioBroadcastSend;
 	uint8  RadioBroadcastRecv;
-
-	// Indicator
 	uint8  IndicatorStart;
 	uint8  IndicatorMax;
+	uint   HolodiskNum;
+	uint   StartValue[ITEM_MAX_SCRIPT_VALUES];
+	uint8  BlockLines[ITEM_MAX_BLOCK_LINES];
+	uint16 ChildPids[ITEM_MAX_CHILDS];
+	uint8  ChildLines[ITEM_MAX_CHILDS][ITEM_MAX_CHILD_LINES];
 
-	// Holodisk
-	uint   HolodiskId;
+	// User data, binded with 'bindfield' pragma
+	// Common
+	int    MagicPower;
+	uint8  Unused[96];
+	// Armor, offset 100
+	uint   Armor_CrTypeMale;
+	uint   Armor_CrTypeFemale;
+	int    Armor_AC;
+	uint   Armor_Perk;
+	int    Armor_DRNormal;
+	int    Armor_DRLaser;
+	int    Armor_DRFire;
+	int    Armor_DRPlasma;
+	int    Armor_DRElectr;
+	int    Armor_DREmp;
+	int    Armor_DRExplode;
+	int    Armor_DTNormal;
+	int    Armor_DTLaser;
+	int    Armor_DTFire;
+	int    Armor_DTPlasma;
+	int    Armor_DTElectr;
+	int    Armor_DTEmp;
+	int    Armor_DTExplode;
+	uint8  Armor_Unused[28];
+	// Weapon, offset 200
+	int    Weapon_DmgType[3];
+	uint   Weapon_Anim2[3];
+	int    Weapon_DmgMin[3];
+	int    Weapon_DmgMax[3];
+	uint16 Weapon_Effect[3];
+	bool   Weapon_Remove[3];
+	uint   Weapon_ReloadAp;
+	int    Weapon_UnarmedCriticalBonus;
+	uint   Weapon_CriticalFailture;
+	bool   Weapon_UnarmedArmorPiercing;
+	uint8  Weapon_Unused[27];
+	// Ammo, offset 300
+	int    Ammo_AcMod;
+	int    Ammo_DrMod;
+	uint   Ammo_DmgMult;
+	uint   Ammo_DmgDiv;
+	// Other
+	uint8  UnusedEnd[184];
 
-	union
-	{
-		struct
-		{
-			uint8  Anim0Male;
-			uint8  Anim0Female;
-			uint16 AC;
-			uint8  Perk;
+	// Type specific data
+	bool   Weapon_IsUnarmed;
+	int    Weapon_UnarmedTree;
+	int    Weapon_UnarmedPriority;
+	int    Weapon_UnarmedMinAgility;
+	int    Weapon_UnarmedMinUnarmed;
+	int    Weapon_UnarmedMinLevel;
+	uint   Weapon_Anim1;
+	uint   Weapon_MaxAmmoCount;
+	int    Weapon_Caliber;
+	uint16 Weapon_DefaultAmmoPid;
+	int    Weapon_MinStrength;
+	int    Weapon_Perk;
+	uint   Weapon_ActiveUses;
+	int    Weapon_Skill[MAX_USES];
+	uint   Weapon_PicUse[MAX_USES];
+	uint   Weapon_MaxDist[MAX_USES];
+	uint   Weapon_Round[MAX_USES];
+	uint   Weapon_ApCost[MAX_USES];
+	bool   Weapon_Aim[MAX_USES];
+	uint8  Weapon_SoundId[MAX_USES];
+	int    Ammo_Caliber;
+	bool   Door_NoBlockMove;
+	bool   Door_NoBlockShoot;
+	bool   Door_NoBlockLight;
+	uint   Container_Volume;
+	bool   Container_CannotPickUp;
+	bool   Container_MagicHandsGrnd;
+	bool   Container_Changeble;
+	uint16 Locker_Condition;
+	int    Grid_Type;
+	uint   Car_Speed; 
+	uint   Car_Passability;
+	uint   Car_DeteriorationRate;
+	uint   Car_CrittersCapacity;
+	uint   Car_TankVolume;
+	uint   Car_MaxDeterioration;
+	uint   Car_FuelConsumption;
+	uint   Car_Entrance;
+	uint   Car_MovementType;
 
-			uint16 DRNormal;
-			uint16 DRLaser;
-			uint16 DRFire;
-			uint16 DRPlasma;
-			uint16 DRElectr;
-			uint16 DREmp;
-			uint16 DRExplode;
-
-			uint16 DTNormal;
-			uint16 DTLaser;
-			uint16 DTFire;
-			uint16 DTPlasma;
-			uint16 DTElectr;
-			uint16 DTEmp;
-			uint16 DTExplode;
-		} Armor;
-
-		struct
-		{
-			bool   NoWear;
-
-			bool   IsUnarmed;
-			uint8  UnarmedTree;
-			uint8  UnarmedPriority;
-			uint8  UnarmedCriticalBonus;
-			bool   UnarmedArmorPiercing;
-			uint8  UnarmedMinAgility;
-			uint8  UnarmedMinUnarmed;
-			uint8  UnarmedMinLevel;
-
-			uint8  Anim1;
-			uint16 VolHolder;
-			uint16 Caliber;
-			uint16 DefAmmo;
-			uint8  ReloadAp;
-			uint8  CrFailture;
-			uint8  MinSt;
-			uint8  Perk;
-
-			uint8  Uses;
-			uint16 Skill[MAX_USES];
-			uint16 DmgType[MAX_USES];
-			uint16 Anim2[MAX_USES];
-			uint16 PicDeprecated[MAX_USES];
-			uint   PicHash[MAX_USES];
-			uint16 DmgMin[MAX_USES];
-			uint16 DmgMax[MAX_USES];
-			uint16 MaxDist[MAX_USES];
-			uint16 Effect[MAX_USES];
-			uint16 Round[MAX_USES];
-			uint16 ApCost[MAX_USES];
-			bool   Aim[MAX_USES];
-			bool   Remove[MAX_USES];
-			uint8  SoundId[MAX_USES];
-		} Weapon;
-
-		struct
-		{
-			uint   StartCount;
-			uint   Caliber;
-			int    ACMod;
-			int    DRMod;
-			uint   DmgMult;
-			uint   DmgDiv;
-		} Ammo;
-
-		struct
-		{
-			uint   StartVal1;
-			uint   StartVal2;
-			uint   StartVal3;
-
-			bool IsCar;
-
-			struct _CAR
-			{
-				uint8  Speed; 
-				uint8  Negotiability;
-				uint8  WearConsumption;
-				uint8  CritCapacity;
-				uint16 FuelTank;
-				uint16 RunToBreak;
-				uint8  Entire;
-				uint8  WalkType;
-				uint8  FuelConsumption;
-
-				uint8  Bag0[CAR_MAX_BAG_POSITION / 2];
-				uint8  Bag1[CAR_MAX_BAG_POSITION / 2];
-				uint8  Blocks[CAR_MAX_BLOCKS / 2];
-
-				uint8  GetBag0Dir(int num)  {return ((num & 1) ? (Bag0  [num / 2] & 0xF) : (Bag0  [num / 2] >> 4));}
-				uint8  GetBag1Dir(int num)  {return ((num & 1) ? (Bag1  [num / 2] & 0xF) : (Bag1  [num / 2] >> 4));}
-				uint8  GetBlockDir(int num) {return ((num & 1) ? (Blocks[num / 2] & 0xF) : (Blocks[num / 2] >> 4));}
-			} Car;
-		} MiscEx;
-
-		struct
-		{
-			uint   ContVolume;
-			uint   CannotPickUp;
-			uint   MagicHandsGrnd;
-			uint   Changeble;
-			bool   IsNoOpen;
-		} Container;
-
-		struct
-		{
-			uint   WalkThru;
-			bool   IsNoOpen;
-			bool   BlockPass;
-			bool   BlockRake;
-			bool   BlockLight;
-		} Door;
-
-		struct
-		{
-			uint8  Type;
-		} Grid;
-	};
-
-	uint16 GetPid()            {return Pid;}
-	uint   GetInfo()           {return Pid * 100;}
-	uint8  GetType()           {return Type;}
-	bool   IsItem()            {return Type >= ITEM_ARMOR   && Type <= ITEM_DOOR;}
+	bool   IsItem()            {return Type != ITEM_GENERIC && Type != ITEM_WALL;}
 	bool   IsScen()            {return Type == ITEM_GENERIC;}
 	bool   IsWall()            {return Type == ITEM_WALL;}
-	bool   IsTile()            {return Type == ITEM_TILE;}
 	bool   IsArmor()           {return Type == ITEM_ARMOR;}
 	bool   IsDrug()            {return Type == ITEM_DRUG;}
 	bool   IsWeapon()          {return Type == ITEM_WEAPON;}
 	bool   IsAmmo()            {return Type == ITEM_AMMO;}
 	bool   IsMisc()            {return Type == ITEM_MISC;}
-	bool   IsMisc2()           {return Type == ITEM_MISC_EX;}
 	bool   IsKey()             {return Type == ITEM_KEY;}
 	bool   IsContainer()       {return Type == ITEM_CONTAINER;}
 	bool   IsDoor()            {return Type == ITEM_DOOR;}
 	bool   IsGrid()            {return Type == ITEM_GRID;}
 	bool   IsGeneric()         {return Type == ITEM_GENERIC;}
-	bool   IsCar()             {return Type == ITEM_MISC_EX && MiscEx.IsCar;}
-	bool   LockerIsChangeble() {if(IsDoor()) return true; if(IsContainer()) return Container.Changeble!=0; return false;}
-	bool   IsGrouped()         {return IsDrug() || IsAmmo() || IsMisc() || (IsWeapon() && WeapIsGrouped());}
-	bool   IsWeared()          {return Type == ITEM_ARMOR || (Type == ITEM_WEAPON && WeapIsWeared());}
-	bool   WeapIsWeared()      {return !Weapon.NoWear;}
-	bool   WeapIsGrouped()     {return Weapon.NoWear;}
+	bool   IsCar()             {return Type == ITEM_CAR;}
+	bool   LockerIsChangeble() {if(IsDoor()) return true; if(IsContainer()) return Container_Changeble; return false;}
 	bool   IsCanPickUp()       {return FLAG(Flags, ITEM_CAN_PICKUP);}
-
-	bool   Container_IsGroundLevel()
-	{
-		bool is_ground = true;
-		if(IsContainer()) is_ground = (Container.MagicHandsGrnd ? true : false);
-		else if(IsDoor() || IsCar() || IsScen() || IsGrid() || !IsCanPickUp()) is_ground = false;
-		return is_ground;
-	}
 };
 
 struct TemplateVar
@@ -882,10 +825,10 @@ struct NpcPlane
 	bool   Assigned;
 	int    RefCounter;
 
-	NpcPlane* GetCurPlane()                  {return ChildPlane?ChildPlane->GetCurPlane():this;}
-	bool      IsSelfOrHas(int type)          {return Type==type || (ChildPlane?ChildPlane->IsSelfOrHas(type):false);}
-	uint      GetChildIndex(NpcPlane* child) {uint index=0; for(NpcPlane* child_=this;child_;index++) {if(child_==child) break; else child_=child_->ChildPlane;} return index;}
-	uint      GetChildsCount()               {uint count=0; NpcPlane* child=ChildPlane; for(;child;count++,child=child->ChildPlane); return count;}
+	NpcPlane* GetCurPlane()                  {return ChildPlane ? ChildPlane->GetCurPlane() : this;}
+	bool      IsSelfOrHas(int type)          {return Type == type || (ChildPlane ? ChildPlane->IsSelfOrHas(type) : false);}
+	uint      GetChildIndex(NpcPlane* child) {uint index = 0; for(NpcPlane* child_ = this; child_; index++) {if(child_ == child) break; else child_ = child_->ChildPlane;} return index;}
+	uint      GetChildsCount()               {uint count = 0; NpcPlane* child = ChildPlane; for(; child; count++, child = child->ChildPlane); return count;}
 };
 
 struct Item
@@ -945,15 +888,15 @@ struct Item
 		int16  TrapValue;
 		uint   Count;
 		uint   Cost;
-		int    ScriptValues[10];
+		int    ScriptValues[ITEM_MAX_SCRIPT_VALUES];
 
 		union
 		{
 			struct
 			{
-				uint8  DeteorationFlags;
-				uint8  DeteorationCount;
-				uint16 DeteorationValue;
+				uint8  BrokenFlags;
+				uint8  BrokenCount;
+				uint16 Deterioration;
 				uint16 AmmoPid;
 				uint16 AmmoCount;
 			} TechInfo;
@@ -969,7 +912,7 @@ struct Item
 			{
 				uint   DoorId;
 				uint16 Fuel;
-				uint16 Deteoration;
+				uint16 Deterioration;
 			} Car;
 
 			struct
@@ -1000,13 +943,13 @@ struct Item
 	int      LexemsRefCounter;
 #endif
 
-	uint   GetId()      {return Id;}
-	uint16 GetProtoId() {return Proto->GetPid();}
-	uint   GetInfo()    {return Proto->GetInfo() + Data.Info;}
-	uint   GetPicMap()  {return Data.PicMapHash ? Data.PicMapHash : Proto->PicMapHash;}
-	uint   GetPicInv()  {return Data.PicInvHash ? Data.PicInvHash : Proto->PicInvHash;}
-	uint8  GetType()    {return Proto->GetType();}
-	bool   IsGrouped()  {return Proto->IsGrouped();}
+	uint   GetId()       {return Id;}
+	uint16 GetProtoId()  {return Proto->ProtoId;}
+	uint   GetInfo()     {return Proto->ProtoId * 100 + Data.Info;}
+	uint   GetPicMap()   {return Data.PicMapHash ? Data.PicMapHash : Proto->PicMap;}
+	uint   GetPicInv()   {return Data.PicInvHash ? Data.PicInvHash : Proto->PicInv;}
+	uint8  GetType()     {return Proto->Type;}
+	bool   IsStackable() {return Proto->Stackable;}
 
 	bool   IsPassed()           {return FLAG(Data.Flags, ITEM_NO_BLOCK) && FLAG(Data.Flags, ITEM_SHOOT_THRU);}
 	bool   IsRaked()            {return FLAG(Data.Flags, ITEM_SHOOT_THRU);}
@@ -1030,18 +973,17 @@ struct Item
 	bool   IsNoSteal()          {return FLAG(Data.Flags, ITEM_NO_STEAL);}
 	bool   IsCanPickUp()        {return FLAG(Data.Flags, ITEM_CAN_PICKUP);}
 
-	bool   IsWeared()           {return GetId() && Proto->IsWeared();}
-	bool   IsBroken()           {return (IsWeared() ? FLAG(Data.TechInfo.DeteorationFlags, BI_BROKEN) : false);}
-	bool   IsNoResc()           {return (IsWeared() ? FLAG(Data.TechInfo.DeteorationFlags, BI_NOTRESC) : false);}
-	bool   IsService()          {return (IsWeared() ? FLAG(Data.TechInfo.DeteorationFlags, BI_SERVICE) : false);}
-	bool   IsServiceExt()       {return (IsWeared() ? FLAG(Data.TechInfo.DeteorationFlags, BI_SERVICE_EXT) : false);}
-	bool   IsEternal()          {return (IsWeared() ? FLAG(Data.TechInfo.DeteorationFlags, BI_ETERNAL) : false);}
-	int    GetBrokenCount()     {return (IsWeared() ? Data.TechInfo.DeteorationCount : 0);}
-	int    GetWear()            {return (IsWeared() ? Data.TechInfo.DeteorationValue : 0);}
-	int    GetMaxWear()         {return WEAR_MAX;}
-	int    GetWearProc()        {int val = GetWear() * 100 / WEAR_MAX; return CLAMP(val, 0, 100);}
+	bool   IsDeteriorable()       {return Proto->Deteriorable;}
+	bool   IsBroken()             {return FLAG(Data.TechInfo.BrokenFlags, BI_BROKEN);}
+	bool   IsNoResc()             {return FLAG(Data.TechInfo.BrokenFlags, BI_NOTRESC);}
+	bool   IsService()            {return FLAG(Data.TechInfo.BrokenFlags, BI_SERVICE);}
+	bool   IsServiceExt()         {return FLAG(Data.TechInfo.BrokenFlags, BI_SERVICE_EXT);}
+	bool   IsEternal()            {return FLAG(Data.TechInfo.BrokenFlags, BI_ETERNAL);}
+	int    GetBrokenCount()       {return Data.TechInfo.BrokenCount;}
+	int    GetDeterioration()     {return Data.TechInfo.Deterioration;}
+	int    GetDeteriorationProc() {int val = GetDeterioration() * 100 / MAX_DETERIORATION; return CLAMP(val, 0, 100);}
 
-	uint   GetCount()           {return IsGrouped() ? Data.Count : 1;}
+	uint   GetCount()           {return IsStackable() ? Data.Count : 1;}
 	uint   GetVolume()          {return GetCount() * Proto->Volume;}
 	uint   GetWeight()          {return GetCount() * Proto->Weight;}
 
@@ -1051,24 +993,20 @@ struct Item
 	// Weapon
 	bool   IsWeapon()                {return GetType() == ITEM_WEAPON;}
 	bool   WeapIsEmpty()             {return !Data.TechInfo.AmmoCount;}
-	bool   WeapIsFull()              {return Data.TechInfo.AmmoCount >= Proto->Weapon.VolHolder;}
+	bool   WeapIsFull()              {return Data.TechInfo.AmmoCount >= Proto->Weapon_MaxAmmoCount;}
 	uint   WeapGetAmmoCount()        {return Data.TechInfo.AmmoCount;}
 	uint   WeapGetAmmoPid()          {return Data.TechInfo.AmmoPid;}
-	uint   WeapGetMaxAmmoCount()     {return Proto->Weapon.VolHolder;}
-	int    WeapGetAmmoCaliber()      {return Proto->Weapon.Caliber;}
-	bool   WeapIsWeared()            {return Proto->WeapIsWeared();}
-	bool   WeapIsGrouped()           {return Proto->WeapIsGrouped();}
-	bool   WeapIsEffect(int use)     {return Proto->Weapon.Effect[use] != 0;}
-	uint16 WeapGetEffectPid(int use) {return Proto->Weapon.Effect[use];}
-	int    WeapGetNeedStrength()     {return Proto->Weapon.MinSt;}
-	bool   WeapIsUseAviable(int use) {return use >= USE_PRIMARY && use <= USE_THIRD ? (((Proto->Weapon.Uses >> use) & 1) != 0) : false;}
-	bool   WeapIsCanAim(int use)     {return use < MAX_USES && Proto->Weapon.Aim[use];}
+	uint   WeapGetMaxAmmoCount()     {return Proto->Weapon_MaxAmmoCount;}
+	int    WeapGetAmmoCaliber()      {return Proto->Weapon_Caliber;}
+	int    WeapGetNeedStrength()     {return Proto->Weapon_MinStrength;}
+	bool   WeapIsUseAviable(int use) {return use >= USE_PRIMARY && use <= USE_THIRD ? (((Proto->Weapon_ActiveUses >> use) & 1) != 0) : false;}
+	bool   WeapIsCanAim(int use)     {return use >= 0 && use < MAX_USES && Proto->Weapon_Aim[use];}
 
 	// Container
 	bool   IsContainer()          {return Proto->IsContainer();}
-	bool   ContIsCannotPickUp()   {return Proto->Container.CannotPickUp != 0;}
-	bool   ContIsMagicHandsGrnd() {return Proto->Container.MagicHandsGrnd != 0;}
-	bool   ContIsChangeble()      {return Proto->Container.Changeble != 0;}
+	bool   ContIsCannotPickUp()   {return Proto->Container_CannotPickUp;}
+	bool   ContIsMagicHandsGrnd() {return Proto->Container_MagicHandsGrnd;}
+	bool   ContIsChangeble()      {return Proto->Container_Changeble;}
 
 	// Door
 	bool   IsDoor()               {return GetType() == ITEM_DOOR;}
@@ -1083,7 +1021,7 @@ struct Item
 
 	// Ammo
 	bool   IsAmmo()         {return Proto->IsAmmo();}
-	int    AmmoGetCaliber() {return Proto->Ammo.Caliber;}
+	int    AmmoGetCaliber() {return Proto->Ammo_Caliber;}
 
 	// Key
 	bool   IsKey()          {return Proto->IsKey();}
@@ -1108,20 +1046,11 @@ struct Item
 	uint   LightGetColor()     {return (Data.LightColor ? Data.LightColor : Proto->LightColor) & 0xFFFFFF;}
 
 	// Car
-	bool   IsCar()                 {return Proto->IsCar();}
-	uint   CarGetDoorId()          {return Data.Car.DoorId;}
-	uint16 CarGetFuel()            {return Data.Car.Fuel;}
-	uint16 CarGetFuelTank()        {return Proto->MiscEx.Car.FuelTank;}
-	uint8  CarGetFuelConsumption() {return Proto->MiscEx.Car.FuelConsumption;}
-	uint16 CarGetWear()            {return Data.Car.Deteoration;}
-	uint16 CarGetRunToBreak()      {return Proto->MiscEx.Car.RunToBreak;}
-	uint8  CarGetWearConsumption() {return Proto->MiscEx.Car.WearConsumption;}
-	uint   CarGetSpeed()           {return Proto->MiscEx.Car.Speed;}
-	uint8  CarGetCritCapacity()    {return Proto->MiscEx.Car.CritCapacity;}
+	bool   IsCar()        {return Proto->IsCar();}
 
 	// Trap
-	bool   IsTrap()                {return FLAG(Data.Flags, ITEM_TRAP);}
-	int    TrapGetValue()          {return Data.TrapValue;}
+	bool   IsTrap()       {return FLAG(Data.Flags, ITEM_TRAP);}
+	int    TrapGetValue() {return Data.TrapValue;}
 };
 
 struct GlobalMapGroup
@@ -1431,9 +1360,9 @@ struct MapObject
 
 			uint   Count;
 
-			uint8  DeteorationFlags;
-			uint8  DeteorationCount;
-			uint16 DeteorationValue;
+			uint8  BrokenFlags;
+			uint8  BrokenCount;
+			uint16 Deterioration;
 
 			bool   InContainer;
 			uint8  ItemSlot;
@@ -1533,7 +1462,8 @@ struct ProtoMap
 	{
 		uint   NameHash;
 		uint16 HexX, HexY;
-		int16  OffsX, OffsY;
+		int8   OffsX, OffsY;
+		uint8  Layer;
 		bool   IsRoof;
 #ifdef __MAPPER
 		bool   IsSelected;
@@ -1875,7 +1805,7 @@ inline void static_asserts()
 	STATIC_ASSERT(sizeof(IntSet)      == 12  );
 	STATIC_ASSERT(sizeof(IntPair)     == 8   );
 	STATIC_ASSERT(sizeof(GameVar)     == 28  );
-	STATIC_ASSERT(sizeof(ProtoItem)   == 184 );
+	STATIC_ASSERT(sizeof(ProtoItem)   == 908 );
 	STATIC_ASSERT(sizeof(Mutex)       == 24  );
 	STATIC_ASSERT(sizeof(Spinlock)    == 4   );
 	STATIC_ASSERT(sizeof(GameOptions) == 1264);

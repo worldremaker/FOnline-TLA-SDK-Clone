@@ -6,28 +6,6 @@
 #define PLAYERS_3D_NO_HEAD     // No head slot
 #define PLAYERS_3D_VAULT_SUITE // Vault suite by default, not naked
 
-// Global variables
-// Possible types:
-// int8, int16, int32, int64, int,
-// uint8, uint16, uint32, uint64, uint,
-// bool, float, double, string.
-// Default value is zero.
-// To set start value use '=' after var name.
-// This vars works like engine global vars.
-// Also recommended use "__" prefix in var name.
-#ifndef SKIP_PRAGMAS
-#pragma globalvar "bool __MainStoryLineActive = true"
-#pragma globalvar "uint __PermanentDeath = 0" // Number of deaths to account blocking, zero to disable
-#pragma globalvar "int __GeometryType = 0" // See GEOMETRY_* constants, assigned in config.fos InitializeGeometry()
-
-#pragma globalvar "uint __HitAimEyes  = 60"
-#pragma globalvar "uint __HitAimHead  = 40"
-#pragma globalvar "uint __HitAimGroin = 30"
-#pragma globalvar "uint __HitAimTorso =  0"
-#pragma globalvar "uint __HitAimArms  = 30"
-#pragma globalvar "uint __HitAimLegs  = 20"
-#endif
-
 // Say types
 #define SAY_NORM                    (1)
 #define SAY_NORM_ON_HEAD            (2)
@@ -82,19 +60,20 @@
 #define ACCESSORY_CONTAINER         (3)
 
 // Items types
-#define ITEM_TILE                   (0)
+#define ITEM_NONE                   (0)
 #define ITEM_ARMOR                  (1)
 #define ITEM_DRUG                   (2)
 #define ITEM_WEAPON                 (3)
 #define ITEM_AMMO                   (4)
 #define ITEM_MISC                   (5)
-#define ITEM_MISC_EX                (6)
 #define ITEM_KEY                    (7)
 #define ITEM_CONTAINER              (8)
 #define ITEM_DOOR                   (9)
 #define ITEM_GRID                   (10)
 #define ITEM_GENERIC                (11)
 #define ITEM_WALL                   (12)
+#define ITEM_CAR                    (13)
+#define ITEM_MAGIC                  (20) // User types
 
 // Item flags
 #define ITEM_HIDDEN                 (0x00000001)
@@ -296,25 +275,6 @@
 // Drugs time events                40 (PID_STIMPAK) .. 1000
 
 // Parameters
-	/// Ranges
-#ifndef SKIP_PRAGMAS
-#ifndef __MAPPER
-#pragma crdata "Stat           0 199"
-#pragma crdata "Skill        200 217"
-#pragma crdata "TagSkill     226 229"
-#pragma crdata "Timeout      230 249"
-#pragma crdata "Kill         260 280"
-#pragma crdata "Perk         300 469"
-#pragma crdata "Addiction    470 476"
-#pragma crdata "Karma        480 497"
-#pragma crdata "Damage       500 506"
-#pragma crdata "Mode         510 549"
-#pragma crdata "Trait        550 565"
-#pragma crdata "Reputation   570 599"
-//#pragma crdata "GoodEvilList 600 799"
-#pragma crdata "Merc         800 829"
-#endif
-#endif
 	/// Stats
 #define STAT_BEGIN                 (0)
 #define STAT_END                   (199)
@@ -839,7 +799,7 @@
 #define LOCKER_LOCKED               (0x02)
 #define LOCKER_JAMMED               (0x04)
 #define LOCKER_BROKEN               (0x08)
-#define LOCKER_NOOPEN               (0x10)
+#define LOCKER_NOOPEN               (0x10) // Hardcoded
 #define LOCKER_ELECTRO              (0x20)
 
 // Timer
@@ -954,15 +914,15 @@
 #define IS_AFTERNOON #(hour)        ((hour)>=12 && (hour)<=21) // 10 hours
 #define IS_NIGHT #(hour)            ((hour)>=22 || (hour)<=6) // 9 hours
 
-// Item broken info
-#define WEAR_MAX					(30000)
-#define BROKEN_MAX					(10)
-	// Flags
+// Item deterioration info
+#define MAX_DETERIORATION           (10000) // Hardcoded
+#define MAX_BROKENS                 (10)
+	// Broken Information
 #define BI_LOWBROKEN				(0x01)
 #define BI_NORMBROKEN				(0x02)
 #define BI_HIGHBROKEN				(0x04)
 #define BI_NOTRESC					(0x08)
-#define BI_BROKEN					(0x0F)
+#define BI_BROKEN					(0x0F) // Hardcoded
 #define BI_SERVICE					(0x10)
 #define BI_SERVICE_EXT				(0x20)
 #define BI_ETERNAL					(0x40)
@@ -1224,13 +1184,81 @@
 #define RADIO_BROADCAST_ZONE #(x)   (100+(x)) // Send/recv only in x (1..100) zones radius on global map
 #define RADIO_BROADCAST_FORCE_ALL   (250)     // Force send/recv in any place
 
+// Weapon calibers
+#define CALIBER_NONE                (0)
+#define CALIBER_ROCKET              (1)
+#define CALIBER_FLAMETHROWER_FUEL   (2)
+#define CALIBER_C_ENERGY_CELL       (3)
+#define CALIBER_D_ENERGY_CELL       (4)
+#define CALIBER_223                 (5)
+#define CALIBER_5MM                 (6)
+#define CALIBER_40                  (7)
+#define CALIBER_10MM                (8)
+#define CALIBER_44                  (9)
+#define CALIBER_14MM                (10)
+#define CALIBER_12_GAUGE            (11)
+#define CALIBER_9MM                 (12)
+#define CALIBER_BB                  (13)
+#define CALIBER_45                  (14)
+#define CALIBER_2MM                 (15)
+#define CALIBER_4_7MM_CASELESS      (16)
+#define CALIBER_HN_NEEDLER          (17)
+#define CALIBER_7_62MM              (18)
+#define CALIBER_700_NITRO_EXPRESS   (19)
+
 // Geomtry
 #define GEOMETRY_FALLOUT            (0)
 #define GEOMETRY_TACTICS            (1)
 #define GEOMETRY_ARCANUM            (2)
 
-// Extended methods
+
 #ifndef SKIP_PRAGMAS
+
+///
+/// Global variables
+///
+
+// Possible types:
+// int8, int16, int32, int64, int,
+// uint8, uint16, uint32, uint64, uint,
+// bool, float, double, string.
+// Default value is zero.
+// To set start value use '=' after var name.
+// This vars works like engine global vars.
+// Also recommended use "__" prefix in var name.
+#pragma globalvar "bool __MainStoryLineActive = true"
+#pragma globalvar "uint __PermanentDeath = 0" // Number of deaths to account blocking, zero to disable
+#pragma globalvar "int __GeometryType = 0" // See GEOMETRY_* constants, assigned in config.fos InitializeGeometry()
+#pragma globalvar "uint __HitAimEyes  = 60"
+#pragma globalvar "uint __HitAimHead  = 40"
+#pragma globalvar "uint __HitAimGroin = 30"
+#pragma globalvar "uint __HitAimTorso =  0"
+#pragma globalvar "uint __HitAimArms  = 30"
+#pragma globalvar "uint __HitAimLegs  = 20"
+
+///
+/// Critter data parameters
+///
+
+#pragma crdata "Stat           0 199"
+#pragma crdata "Skill        200 217"
+#pragma crdata "TagSkill     226 229"
+#pragma crdata "Timeout      230 249"
+#pragma crdata "Kill         260 280"
+#pragma crdata "Perk         300 469"
+#pragma crdata "Addiction    470 476"
+#pragma crdata "Karma        480 497"
+#pragma crdata "Damage       500 506"
+#pragma crdata "Mode         510 549"
+#pragma crdata "Trait        550 565"
+#pragma crdata "Reputation   570 599"
+//#pragma crdata "GoodEvilList 600 799"
+#pragma crdata "Merc         800 829"
+
+///
+/// Extended critter methods
+///
+
 #ifdef __SERVER
 #pragma bindfunc "bool Critter::IsInjured()    -> fonline_tla.dll Critter_IsInjured   "
 #pragma bindfunc "bool Critter::IsDmgEye()     -> fonline_tla.dll Critter_IsDmgEye    "
@@ -1260,7 +1288,63 @@
 #pragma bindfunc "bool ItemCl::Weapon_IsGunAttack(uint8 mode)    -> fonline_tla_client.dll Item_Weapon_IsGunAttack   "
 #pragma bindfunc "bool ItemCl::Weapon_IsRangedAttack(uint8 mode) -> fonline_tla_client.dll Item_Weapon_IsRangedAttack"
 #endif
-#endif
+
+///
+/// Item prototypes fields
+///
+
+// Whole size for data - 500 bytes
+	// Common
+#pragma bindfield "const int    ProtoItem::MagicPower -> 0"
+	// Armor
+#pragma bindfield "const uint   ProtoItem::Armor_CrTypeMale   -> 100"
+#pragma bindfield "const uint   ProtoItem::Armor_CrTypeFemale -> 104"
+#pragma bindfield "const int    ProtoItem::Armor_AC           -> 108"
+#pragma bindfield "const uint   ProtoItem::Armor_Perk         -> 112"
+#pragma bindfield "const int    ProtoItem::Armor_DRNormal     -> 116"
+#pragma bindfield "const int    ProtoItem::Armor_DRLaser      -> 120"
+#pragma bindfield "const int    ProtoItem::Armor_DRFire       -> 124"
+#pragma bindfield "const int    ProtoItem::Armor_DRPlasma     -> 128"
+#pragma bindfield "const int    ProtoItem::Armor_DRElectr     -> 132"
+#pragma bindfield "const int    ProtoItem::Armor_DREmp        -> 136"
+#pragma bindfield "const int    ProtoItem::Armor_DRExplode    -> 140"
+#pragma bindfield "const int    ProtoItem::Armor_DTNormal     -> 144"
+#pragma bindfield "const int    ProtoItem::Armor_DTLaser      -> 148"
+#pragma bindfield "const int    ProtoItem::Armor_DTFire       -> 152"
+#pragma bindfield "const int    ProtoItem::Armor_DTPlasma     -> 156"
+#pragma bindfield "const int    ProtoItem::Armor_DTElectr     -> 160"
+#pragma bindfield "const int    ProtoItem::Armor_DTEmp        -> 164"
+#pragma bindfield "const int    ProtoItem::Armor_DTExplode    -> 168"
+	// Weapon
+#pragma bindfield "const int    ProtoItem::Weapon_DmgType_0 -> 200"
+#pragma bindfield "const int    ProtoItem::Weapon_DmgType_1 -> 204"
+#pragma bindfield "const int    ProtoItem::Weapon_DmgType_2 -> 208"
+#pragma bindfield "const uint   ProtoItem::Weapon_Anim2_0   -> 212"
+#pragma bindfield "const uint   ProtoItem::Weapon_Anim2_1   -> 216"
+#pragma bindfield "const uint   ProtoItem::Weapon_Anim2_2   -> 220"
+#pragma bindfield "const int    ProtoItem::Weapon_DmgMin_0  -> 224"
+#pragma bindfield "const int    ProtoItem::Weapon_DmgMin_1  -> 228"
+#pragma bindfield "const int    ProtoItem::Weapon_DmgMin_2  -> 232"
+#pragma bindfield "const int    ProtoItem::Weapon_DmgMax_0  -> 236"
+#pragma bindfield "const int    ProtoItem::Weapon_DmgMax_1  -> 240"
+#pragma bindfield "const int    ProtoItem::Weapon_DmgMax_2  -> 244"
+#pragma bindfield "const uint16 ProtoItem::Weapon_Effect_0  -> 248"
+#pragma bindfield "const uint16 ProtoItem::Weapon_Effect_1  -> 250"
+#pragma bindfield "const uint16 ProtoItem::Weapon_Effect_2  -> 252"
+#pragma bindfield "const bool   ProtoItem::Weapon_Remove_0  -> 254"
+#pragma bindfield "const bool   ProtoItem::Weapon_Remove_1  -> 255"
+#pragma bindfield "const bool   ProtoItem::Weapon_Remove_2  -> 256"
+#pragma bindfield "const uint   ProtoItem::Weapon_ReloadAp  -> 260"
+#pragma bindfield "const int    ProtoItem::Weapon_UnarmedCriticalBonus -> 264"
+#pragma bindfield "const uint   ProtoItem::Weapon_CriticalFailture     -> 268"
+#pragma bindfield "const bool   ProtoItem::Weapon_UnarmedArmorPiercing -> 272"
+	// Ammo
+#pragma bindfield "const int    ProtoItem::Ammo_ACMod   -> 300"
+#pragma bindfield "const int    ProtoItem::Ammo_DRMod   -> 304"
+#pragma bindfield "const uint   ProtoItem::Ammo_DmgMult -> 308"
+#pragma bindfield "const uint   ProtoItem::Ammo_DmgDiv  -> 312"
+
+#endif // SKIP_PRAGMAS
 
 #endif // __DEFINES__
 

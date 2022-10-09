@@ -31,12 +31,12 @@ import uint GetCarCost(uint16 protoCar) from "car";
 
 int GetFuelCost(Item@ car)
 {
-	return _CarGetFuelTank(car)-car.CarFuel+10;
+	return int(car.Proto.Car_TankVolume)-car.CarFuel+10;
 }
 
 int GetWearCost(Item@ car)
 {
-	return car.CarDeteoration+10;
+	return car.CarDeterioration+10;
 }
 
 int GetBioCost(Item@ car)
@@ -94,7 +94,7 @@ uint TryCreateCar(Critter& player, uint16 protoCar)
 		if(i==j) return FD_NO_PLACES;
 
 		Entire@ ent=entires[i];
-		if(map.CheckPlaceForCar(ent.HexX,ent.HexY,protoCar))
+		if(map.CheckPlaceForItem(ent.HexX,ent.HexY,protoCar))
 		{
 			hx=ent.HexX;
 			hy=ent.HexY;
@@ -108,11 +108,11 @@ uint TryCreateCar(Critter& player, uint16 protoCar)
 	Item@ car=map.AddItem(hx,hy,protoCar,1);
 	if(not valid(car)) return FD_GENERIC_ERROR;
 	car.LockerId=keyId;
-	car.CarFuel=car.Proto.Car_FuelTank;
-	car.CarDeteoration=0;
+	car.CarFuel=car.Proto.Car_TankVolume;
+	car.CarDeterioration=0;
 	car.Update();
 
-	Item@ bag=car.CarGetBag(0);
+	Item@ bag=car.GetChild(0);
 	if(valid(bag))
 	{
 		bag.LockerId=keyId;
@@ -190,7 +190,7 @@ uint dlg_SellCar(Critter& player, Critter@ tray, string@ lexems)
 			cost = 0;
 		lexems="$sell_cost"+cost;
 	}
-	
+
 	return forceDialog;
 }
 
@@ -250,8 +250,8 @@ uint r_DoFuel(Critter& player, Critter@ tray, int val)
 	uint money=player.CountItem(PID_BOTTLE_CAPS);
 	if(cost>money) return FD_MODIFY_NO_MONEY;
 
-	if(car.CarFuel>=_CarGetFuelTank(car)) return FD_MODIFY_NO_NEED;
-	car.CarFuel=car.Proto.Car_FuelTank;
+	if(car.CarFuel>=car.Proto.Car_TankVolume) return FD_MODIFY_NO_NEED;
+	car.CarFuel=car.Proto.Car_TankVolume;
 	player.DeleteItem(PID_BOTTLE_CAPS,cost);
 	return 0;
 }
@@ -266,8 +266,8 @@ uint r_DoWear(Critter& player, Critter@ tray, int val)
 	uint money=player.CountItem(PID_BOTTLE_CAPS);
 	if(cost>money) return FD_MODIFY_NO_MONEY;
 
-	if(car.CarDeteoration==0) return FD_MODIFY_NO_NEED;
-	car.CarDeteoration=0;
+	if(car.CarDeterioration==0) return FD_MODIFY_NO_NEED;
+	car.CarDeterioration=0;
 	player.DeleteItem(PID_BOTTLE_CAPS,cost);
 	return 0;
 }

@@ -3,13 +3,13 @@
 #include "_macros.fos"
 #include "squad_march.fos"
 
-import void SetWear(Item& item, int wearProcent)  from "repair";
-import int GetWearProcent(Item& item) from "repair";
+import void SetDeterioration(Item& item, int deteriorationProcent)  from "repair";
+import int GetDeteriorationProcent(Item& item) from "repair";
 
 // Квест "Самоделкин":
 //  Тренировка по надлежащему уходу за оружием
 //  Выдача двух сломанных Штурмовых винтовок
-void r_GiveWearItems(Critter& player, Critter@ npc, int pid, int count, int wearPercent)
+void r_GiveWearItems(Critter& player, Critter@ npc, int pid, int count, int deteriorationPercent)
 {
 	Item@ item;
 	for(int i = 0; i < count; i++)
@@ -17,11 +17,11 @@ void r_GiveWearItems(Critter& player, Critter@ npc, int pid, int count, int wear
 		@item = player.AddItem(pid, 1);
 		if(!valid(item))
 			continue;
-		SetWear(item, wearPercent);
+		SetDeterioration(item, deteriorationPercent);
 	}
 }
 
-bool d_CheckWear(Critter& player, Critter@ npc, int pid, int count, int wearPercent)
+bool d_CheckWear(Critter& player, Critter@ npc, int pid, int count, int deteriorationPercent)
 {
 	if(count == 0)
 		return false;
@@ -35,7 +35,7 @@ bool d_CheckWear(Critter& player, Critter@ npc, int pid, int count, int wearPerc
 		@item = items[i];
 		if(!valid(item) || item.GetProtoId() != pid)
 			continue;
-		if(GetWearProcent(item) <= wearPercent)
+		if(GetDeteriorationProcent(item) <= deteriorationPercent)
 			num++;
 	}
 	return (num >= count);

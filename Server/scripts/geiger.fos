@@ -84,15 +84,15 @@ bool UseGeiger(Critter& cr, Item& geiger) // Export
 bool UseItemOnGeiger(Critter& cr, Item& geiger, Item& item) // Export
 {
 	uint16 itemPid=item.GetProtoId();
-	if((itemPid==PID_SMALL_ENERGY_CELL || itemPid==PID_MICRO_FUSION_CELL) && uint(geiger.Val2)<geiger.Proto.Misc2_StartVal2)
+	if((itemPid==PID_SMALL_ENERGY_CELL || itemPid==PID_MICRO_FUSION_CELL) && uint(geiger.Val2)<geiger.Proto.StartValue_2)
 	{
-		uint needCharge=geiger.Proto.Misc2_StartVal2-geiger.Val2;
+		uint needCharge=geiger.Proto.StartValue_2-geiger.Val2;
 		uint charge=(itemPid==PID_SMALL_ENERGY_CELL?GEIGER_ENERGY_CHARGE:GEIGER_FUSION_CHARGE);
 		uint needItems=needCharge/charge;
 		if((needCharge%charge)!=0) needItems++;
 		if(needItems>item.GetCount()) needItems=item.GetCount();
 		geiger.Val2+=needItems*charge;
-		if(uint(geiger.Val2)>geiger.Proto.Misc2_StartVal2) geiger.Val2=geiger.Proto.Misc2_StartVal2;
+		if(uint(geiger.Val2)>geiger.Proto.StartValue_2) geiger.Val2=geiger.Proto.StartValue_2;
 		geiger.Update();
 		_SubItem(item,needItems);
 		cr.SayMsg(SAY_NETMSG,TEXTMSG_GAME,STR_GEIGER_ADD_CHARGE);
@@ -110,7 +110,7 @@ bool UseSkillOnGeiger(Critter& cr, Item& geiger, int skill) // Export
 
 	if(skill==SK_SCIENCE)
 	{
-		cr.SayMsg(SAY_NETMSG,TEXTMSG_GAME,STR_GEIGER_CUR_CHARGE,"$cur"+geiger.Val2+"$max"+geiger.Proto.Misc2_StartVal2);
+		cr.SayMsg(SAY_NETMSG,TEXTMSG_GAME,STR_GEIGER_CUR_CHARGE,"$cur"+geiger.Val2+"$max"+geiger.Proto.StartValue_2);
 	}
 	else
 	{

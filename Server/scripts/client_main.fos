@@ -456,7 +456,7 @@ int to_hit(CritterCl& chosen, CritterCl& target, ProtoItem& weapon, uint8 weapon
     if(weaponPerk == WEAPON_PERK_ACCURATE) toHit += 20;
 
     int acmod = target.Stat[ST_ARMOR_CLASS];
-    if(valid(ammo)) acmod += ammo.Ammo_AcMod;
+    if(valid(ammo)) acmod += ammo.Ammo_ACMod;
     if(acmod > 0) toHit -= acmod;
     // TODO: tohit += 15 if target is multihex
     // TODO: light penalty
@@ -780,11 +780,11 @@ string generic_description(int descType, int& offsX, int& offsY)
 				}
 				result += "\n";
 
-				if(weaponMain.Proto.Weapon_VolumeHolder > 0)
+				if(weaponMain.Proto.Weapon_MaxAmmoCount > 0)
 				{
 					result += GetMsgStr(TEXTMSG_GAME, STR_INV_AMMO) + " ";
 					result += weaponMain.WeaponAmmoCount            + "/";
-					result += weaponMain.Proto.Weapon_VolumeHolder  + " ";
+					result += weaponMain.Proto.Weapon_MaxAmmoCount  + " ";
 					result += GetMsgStr(TEXTMSG_GAME, STR_CALIBER(weaponMain.Proto.Weapon_Caliber));
 				}
 				result += "\n";
@@ -832,11 +832,11 @@ string generic_description(int descType, int& offsX, int& offsY)
 				}
 				result += "\n";
 
-				if(weaponExt.Proto.Weapon_VolumeHolder > 0)
+				if(weaponExt.Proto.Weapon_MaxAmmoCount > 0)
 				{
 					result += GetMsgStr(TEXTMSG_GAME, STR_INV_AMMO) + " ";
 					result += weaponExt.WeaponAmmoCount             + "/";
-					result += weaponExt.Proto.Weapon_VolumeHolder   + " ";
+					result += weaponExt.Proto.Weapon_MaxAmmoCount   + " ";
 					result += GetMsgStr(TEXTMSG_GAME, STR_CALIBER(weaponExt.Proto.Weapon_Caliber));
 				}
 				result += "\n";
@@ -917,10 +917,10 @@ string item_description(ItemCl& item, int lookType)
 	{
 		string fuel = GetMsgStr(TEXTMSG_GAME, STR_INV_CAR_FUEL);
 		fuel = ReplaceText(fuel, "VALUE",     item.CarFuel / 100);
-		fuel = ReplaceText(fuel, "MAX_VALUE", _CarGetFuelTank(item) / 100);
-		string wear = GetMsgStr(TEXTMSG_GAME, STR_INV_CAR_WEAR);
-		wear = ReplaceText(wear, "VALUE", item.CarDeteoration * 100 / _CarGetRunToBreak(item));
-		result = fuel + "\n" + wear;
+		fuel = ReplaceText(fuel, "MAX_VALUE", item.Proto.Car_TankVolume / 100);
+		string deterioration = GetMsgStr(TEXTMSG_GAME, STR_INV_CAR_DETERIORATION);
+		deterioration = ReplaceText(deterioration, "VALUE", item.CarDeterioration * 100 / item.Proto.Car_MaxDeterioration);
+		result = fuel + "\n" + deterioration;
 	}
 	// Short info
 	else if(lookType == ITEM_LOOK_ONLY_NAME)
@@ -943,41 +943,41 @@ string item_description(ItemCl& item, int lookType)
 			result += "\n" + ReplaceText(GetMsgStr(TEXTMSG_GAME, STR_ITEM_WEIGHT_GRAMM), "VALUE", item.Proto.Weight * item.GetCount());
 
 			// Ammo load
-			if(item.GetType() == ITEM_WEAPON && item.Proto.Weapon_VolumeHolder > 0)
+			if(item.GetType() == ITEM_WEAPON && item.Proto.Weapon_MaxAmmoCount > 0)
 			{
 				result += "\n";
 				string str = GetMsgStr(TEXTMSG_GAME, STR_INV_HAS_SHOTS);
 				str = ReplaceText(str,"VALUE",     item.WeaponAmmoCount);
-				str = ReplaceText(str,"MAX_VALUE", item.Proto.Weapon_VolumeHolder);
+				str = ReplaceText(str,"MAX_VALUE", item.Proto.Weapon_MaxAmmoCount);
 				str = ReplaceText(str,"AMMO",      GetMsgStr(TEXTMSG_GAME, STR_CALIBER(item.Proto.Weapon_Caliber)));
 				result += str;
 			}
 
-			// Deteoration
-			if(item.IsWeared())
+			// Deterioration
+			if(item.IsDeteriorable())
 			{
-				uint8 flags       = item.BrokenFlags;
-				uint8 brokenCount = item.BrokenCount;
-				uint16 wearCount  = item.BrokenWear;
+				uint8 brokenFlags    = item.BrokenFlags;
+				uint8 brokenCount    = item.BrokenCount;
+				uint16 deterioration = item.Deterioration;
 
 				// Broken level, procent
 				result += "\n";
-				if(FLAG(flags,BI_NOTRESC))         result += GetMsgStr(TEXTMSG_GAME, STR_INV_WEAR_NO_RESC);
-				else if(FLAG(flags,BI_LOWBROKEN))  result += GetMsgStr(TEXTMSG_GAME, STR_INV_WEAR_BROKEN_LOW);
-				else if(FLAG(flags,BI_NORMBROKEN)) result += GetMsgStr(TEXTMSG_GAME, STR_INV_WEAR_BROKEN_NORM);
-				else if(FLAG(flags,BI_HIGHBROKEN)) result += GetMsgStr(TEXTMSG_GAME, STR_INV_WEAR_BROKEN_HIGH);
-				else result += ReplaceText(GetMsgStr(TEXTMSG_GAME, STR_INV_WEAR_PROC), "VALUE", wearCount * 100 / WEAR_MAX);
+				if(FLAG(brokenFlags,BI_NOTRESC))         result += GetMsgStr(TEXTMSG_GAME, STR_DETERIORATION_NO_RESC);
+				else if(FLAG(brokenFlags,BI_LOWBROKEN))  result += GetMsgStr(TEXTMSG_GAME, STR_DETERIORATION_BROKEN_LOW);
+				else if(FLAG(brokenFlags,BI_NORMBROKEN)) result += GetMsgStr(TEXTMSG_GAME, STR_DETERIORATION_BROKEN_NORM);
+				else if(FLAG(brokenFlags,BI_HIGHBROKEN)) result += GetMsgStr(TEXTMSG_GAME, STR_DETERIORATION_BROKEN_HIGH);
+				else result += ReplaceText(GetMsgStr(TEXTMSG_GAME, STR_DETERIORATION_PROCENT), "VALUE", deterioration * 100 / MAX_DETERIORATION);
 
 				// Service
-				if(FLAG(flags,BI_SERVICE)) result += "\n" + GetMsgStr(TEXTMSG_GAME, STR_INV_WEAR_SERVICE);
+				if(FLAG(brokenFlags,BI_SERVICE)) result += "\n" + GetMsgStr(TEXTMSG_GAME, STR_DETERIORATION_SERVICE);
 
 				// Service ext
-				if(FLAG(flags,BI_SERVICE_EXT)) result += "\n" + GetMsgStr(TEXTMSG_GAME, STR_INV_WEAR_SERVICE_EXT);
+				if(FLAG(brokenFlags,BI_SERVICE_EXT)) result += "\n" + GetMsgStr(TEXTMSG_GAME, STR_DETERIORATION_SERVICE_EXT);
 
 				// Broken count
 				CritterCl@ chosen = GetChosen();
 				if(valid(chosen) && chosen.Perk[PE_MR_FIXIT] != 0)
-					result += "\n" + ReplaceText(GetMsgStr(TEXTMSG_GAME, STR_INV_WEAR_BROKEN_COUNT), "VALUE", brokenCount);
+					result += "\n" + ReplaceText(GetMsgStr(TEXTMSG_GAME, STR_DETERIORATION_BROKEN_COUNT), "VALUE", brokenCount);
 			}
 
 			// Key id
@@ -1167,7 +1167,7 @@ string critter_description(CritterCl& cr, int lookType)
 			{
 				if(item.GetType() == ITEM_WEAPON)
 				{
-					if(item.Proto.Weapon_VolumeHolder == 0)
+					if(item.Proto.Weapon_MaxAmmoCount == 0)
 					{
 						result += GetMsgStr(TEXTMSG_GAME, STR_CRIT_LOOK_WEAP);
 						result = ReplaceText(result, "WEAPON", GetMsgStr(TEXTMSG_ITEM, STR_ITEM_INFO(item)));
@@ -1177,7 +1177,7 @@ string critter_description(CritterCl& cr, int lookType)
 						result += GetMsgStr(TEXTMSG_GAME, STR_CRIT_LOOK_WEAP_AMMO);
 						result = ReplaceText(result, "WEAPON", GetMsgStr(TEXTMSG_ITEM, STR_ITEM_INFO(item)));
 						result = ReplaceText(result, "CUR"   , item.WeaponAmmoCount);
-						result = ReplaceText(result, "MAX"   , item.Proto.Weapon_VolumeHolder);
+						result = ReplaceText(result, "MAX"   , item.Proto.Weapon_MaxAmmoCount);
 						result = ReplaceText(result, "AMMO"  , GetMsgStr(TEXTMSG_GAME, STR_CALIBER(item.Proto.Weapon_Caliber)));
 					}
 				}
@@ -1392,8 +1392,8 @@ void critter_action(bool localCall, CritterCl& cr, int action, int actionExt, It
 		{
 			cr.ClearAnim();
 
-			if(proto.GetType() == ITEM_WEAPON && FLAG(proto.Flags, ITEM_CAN_USE_ON_SMTH) && cr.IsAnimAviable(proto.Weapon_Anim1, proto.Weapon_Anim2_F))
-				cr.Animate(proto.Weapon_Anim1, proto.Weapon_Anim2_F, item);
+			if(proto.Type == ITEM_WEAPON && FLAG(proto.Flags, ITEM_CAN_USE_ON_SMTH) && cr.IsAnimAviable(proto.Weapon_Anim1, proto.Weapon_Anim2_0))
+				cr.Animate(proto.Weapon_Anim1, proto.Weapon_Anim2_0, item);
 			else
 				cr.Animate(0, ANIM2_USE, item);
 		}
@@ -1429,7 +1429,7 @@ void critter_action(bool localCall, CritterCl& cr, int action, int actionExt, It
 		if(cr.IsLife() && valid(proto))
 		{
 			cr.ClearAnim();
-			PlaySound('W', SOUND_WEAPON_RELOAD, proto.Weapon_SoundId_F, '1');
+			PlaySound('W', SOUND_WEAPON_RELOAD, proto.Weapon_SoundId_0, '1');
 			cr.Animate(item.Proto.Weapon_Anim1, ANIM2_RELOAD, item);
 		}
 		break;
@@ -1444,11 +1444,7 @@ void critter_action(bool localCall, CritterCl& cr, int action, int actionExt, It
 		if(cr.IsLife() && valid(proto))
 		{
 			cr.ClearAnim();
-
-			bool isGround = (proto.GetType() >= ITEM_ARMOR && proto.GetType() <= ITEM_KEY && not item.IsCar());
-			if(proto.GetType() == ITEM_CONTAINER) isGround = proto.Container_IsGroundLevel();
-
-			cr.Animate(0, isGround ? ANIM2_PICKUP : ANIM2_USE);
+			cr.Animate(0, proto.GroundLevel ? ANIM2_PICKUP : ANIM2_USE);
 		}
 		break;
 	case ACTION_PICK_CRITTER:
@@ -1579,15 +1575,15 @@ void animation3d_process(bool animateStay, CritterCl& cr, uint anim1, uint anim2
 
 	// Change values
 	uint8 mode = 0;
-	uint16 armorPid   = (valid(cr.GetSlotProto(SLOT_ARMOR, mode)) ? cr.GetSlotProto(SLOT_ARMOR, mode).GetProtoId() : 0);
+	uint16 armorPid   = (valid(cr.GetSlotProto(SLOT_ARMOR, mode)) ? cr.GetSlotProto(SLOT_ARMOR, mode).ProtoId : 0);
 	uint16 headPid    = 0;
-	uint16 weapPid    = (valid(item) ? item.GetProtoId() : cr.GetSlotProto(SLOT_HAND1, mode).GetProtoId());
-	uint16 weapExPid  = (valid(cr.GetSlotProto(SLOT_HAND2, mode)) ? cr.GetSlotProto(SLOT_HAND2, mode).GetProtoId() : 0);
+	uint16 weapPid    = (valid(item) ? item.GetProtoId() : cr.GetSlotProto(SLOT_HAND1, mode).ProtoId);
+	uint16 weapExPid  = (valid(cr.GetSlotProto(SLOT_HAND2, mode)) ? cr.GetSlotProto(SLOT_HAND2, mode).ProtoId : 0);
 	ItemCl@ armorItem = cr.GetItem(0, SLOT_ARMOR);
 	ItemCl@ headItem  = null;
 
 #ifndef PLAYERS_3D_NO_HEAD
-	uint16 headPid    = (valid(cr.GetSlotProto(SLOT_HEAD,  mode)) ? cr.GetSlotProto(SLOT_HEAD,  mode).GetProtoId() : 0);
+	uint16 headPid    = (valid(cr.GetSlotProto(SLOT_HEAD,  mode)) ? cr.GetSlotProto(SLOT_HEAD,  mode).ProtoId : 0);
 	ItemCl@ headItem  = cr.GetItem(0, SLOT_HEAD);
 #endif
 

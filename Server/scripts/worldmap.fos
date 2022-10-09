@@ -1090,7 +1090,7 @@ void FindEncounter(Critter@[]& group, Item@ car, uint x, uint y, uint& encounter
 	}
 
 	bool isWater=(GetGlobalMapRelief(x,y)==GM_RELIEF_WATER);
-	int walkType=(valid(car)?car.Proto.Car_WalkType:GM_WALK_GROUND);
+	int walkType=(valid(car)?car.Proto.Car_MovementType:GM_WALK_GROUND);
 	bool walkWaterOrFly=(walkType==GM_WALK_WATER || walkType==GM_WALK_FLY);
 	if(walkType==GM_WALK_GROUND && isWater) return;
 

@@ -13,9 +13,9 @@ import void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, uint8 
 import uint EraseAttackPlane(Critter& npc, Critter& target) from "npc_planes";
 import uint8 GetDir(Critter & cr0, Critter & cr1) from "merc";
 import bool GetFreeHex(Map& map, uint radius, uint16& hx, uint16& hy) from "caravan";
-import int GetWearProcent(Item& item)  from "repair";
+import int GetDeteriorationProcent(Item& item)  from "repair";
 import void UseDrugOn(Critter& cr, Critter& onCr, Item& drug) from "drugs";
-import void SetWear(Item& item, int wearProcent)  from "repair";
+import void SetDeterioration(Item& item, int deteriorationProcent)  from "repair";
 
 // rifleman17
 // Базовый класс с общими методами и настройками. Не предусматривается использование его в качестве шаблона поведения.
@@ -111,7 +111,7 @@ class CommonPattern
 				Item @ item = items[i];
 				if(!valid(item)) continue;
 				// Износ оружия
-				SetWear(item, Random(50,90));
+				SetDeterioration(item, Random(50,90));
 				// Удаление избыточных патронов
 				if(item.GetType()==ITEM_AMMO)
 				{

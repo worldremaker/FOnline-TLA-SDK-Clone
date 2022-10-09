@@ -106,8 +106,8 @@ class SlayerPattern : CommonPattern
 		uint8 mode=0;
 		ProtoItem @ weapon = cr.GetSlotProto(SLOT_HAND1,mode);
 		if(!valid(weapon)) return false;
-		if(weapon.GetType()!=ITEM_WEAPON) return false;
-		if(weapon.Weapon_Skill_F!=SK_MELEE_WEAPONS && weapon.Weapon_Skill_F!=SK_UNARMED) return false;
+		if(weapon.Type!=ITEM_WEAPON) return false;
+		if(weapon.Weapon_Skill_0!=SK_MELEE_WEAPONS && weapon.Weapon_Skill_0!=SK_UNARMED) return false;
 
 		Item @ weap = _CritGetItemHand(cr);
 		if(!valid(weap)) return false;

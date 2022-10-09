@@ -26345,12 +26345,6 @@ MapX                 54
 MapY                 90
 
 MapObjType           1
-ProtoId              807
-MapX                 50
-MapY                 85
-Item_Val1            50000033
-
-MapObjType           1
 ProtoId              166
 MapX                 69
 MapY                 70

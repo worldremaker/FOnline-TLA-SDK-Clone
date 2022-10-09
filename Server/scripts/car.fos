@@ -36,7 +36,7 @@ bool UseItemOnCar(Critter& cr, Item& car, Item& item) // Export
 	else if(pid==PID_MICRO_FUSION_CELL) octane=150;
 	else octane=70; // Bio energy
 
-	int need=_CarGetFuelTank(car)-car.CarFuel;
+	int need=int(car.Proto.Car_TankVolume)-car.CarFuel;
 	int count=item.GetCount()*octane;
 	if(count>need) count=need;
 
@@ -74,18 +74,18 @@ bool UseSkillOnCar(Critter& cr, Item& car, int skill) // Export
 	else if(skill==SK_SCIENCE)
 	{
 		cr.SayMsg(SAY_NETMSG,TEXTMSG_TEXT,STR_CAR_INFO,"$number"+car.LockerId+
-			"$fuel"+(car.CarFuel/100)+"$fuel_tank"+(_CarGetFuelTank(car)/100)+
-			"$wear"+(car.CarDeteoration*100/_CarGetRunToBreak(car)));
+			"$fuel"+(car.CarFuel/100)+"$fuel_tank"+(car.Proto.Car_TankVolume/100)+
+			"$wear"+(car.CarDeterioration*100/car.Proto.Car_MaxDeterioration));
 	}
 	else if(skill==SK_REPAIR)
 	{
-		if(car.CarDeteoration==0) cr.SayMsg(SAY_NETMSG,TEXTMSG_GAME,STR_CAR_REPAIR_NO_NEED);
+		if(car.CarDeterioration==0) cr.SayMsg(SAY_NETMSG,TEXTMSG_GAME,STR_CAR_REPAIR_NO_NEED);
 		else if(cr.IsPlayer() && cr.Timeout[TO_SK_REPAIR]>0) cr.SayMsg(SAY_NETMSG,TEXTMSG_GAME,STR_SKILL_WEARINESS);
 		else
 		{
-			int fix=car.CarDeteoration-(cr.Skill[SK_REPAIR]>0?cr.Skill[SK_REPAIR]:1)*100;
+			int fix=car.CarDeterioration-(cr.Skill[SK_REPAIR]>0?cr.Skill[SK_REPAIR]:1)*100;
 			if(fix<0) fix=0;
-			car.CarDeteoration=fix;
+			car.CarDeterioration=fix;
 			cr.SayMsg(SAY_NETMSG,TEXTMSG_GAME,STR_CAR_REPAIR_SUCCESS);
 			cr.TimeoutBase[TO_SK_REPAIR]=REPAIR_TIMEOUT(cr);
 			cr.StatBase[ST_EXPERIENCE]+=10;
@@ -108,7 +108,7 @@ bool UseSkillOnCar(Critter& cr, Item& car, int skill) // Export
 
 		int base=cr.Skill[SK_LOCKPICK]-200;
 		uint8 mode=0;
-		uint16 activePid=cr.GetSlotProto(SLOT_HAND1,mode).GetProtoId();
+		uint16 activePid=cr.GetSlotProto(SLOT_HAND1,mode).ProtoId;
 		if(activePid==PID_LOCKPICKS)
 		{
 			base+=25;
@@ -151,7 +151,7 @@ void DriveToGlobal(Critter& cr, Item& car, bool requestGroup)
 	// Place car and bags to inventory
 	for(uint i=0;i<3;i++)
 	{
-		Item@ bag=car.CarGetBag(i);
+		Item@ bag=car.GetChild(i);
 		if(valid(bag))
 		{
 			SETFLAG(bag.Flags,ITEM_HIDDEN);

@@ -72,11 +72,10 @@ int fix_ChitinArmor(Critter& player, int state) // Хитиновая броня
 			if(luck > 9) chance = 15;
 			if(luck > 7 && luck < 10)  chance = 10;
 			if(luck > 5 && luck < 8)  chance = 5;
-					
-			
+
 			if (fix_AdvancedCraft(player, PID_CHITIN_ARMOR, PID_CHITIN_ARMOR_MK_II, chance, true, 2, state))
 				_CritDeleteItem(player, PID_METAL_TRASH, 2);
-		}	
+		}
 	}
 	return FIX_SUCCESS;
 }
@@ -270,7 +269,7 @@ uint fix_ByRecipe(Critter& player, int recipePid, int state)
 /*
  basePid = код предмета, который производит игрок
  advancedPid = код предмета, который получится при проке
- signed = признак, подписывать предмет или нет. 
+ signed = признак, подписывать предмет или нет.
  info - инфо предмета, на которое нужно переключиться
  Подписываются только предметы ARMOR, WEAPON
 */
@@ -284,9 +283,9 @@ bool fix_AdvancedCraft(Critter& player, int basePid, int advancedPid, int chance
 			ProtoItem@ proto = GetProtoItem(advancedPid);
 			if(valid(proto))
 			{
-				uint type = proto.GetType();
+				uint type = proto.Type;
 				if(type == ITEM_WEAPON || type == ITEM_ARMOR )
-				{				
+				{
 					values.insertLast(info);
 				}
 			}
@@ -300,7 +299,7 @@ bool fix_AdvancedCraft(Critter& player, int basePid, int advancedPid, int chance
 // Временное событие, убираем скрафченый базовый предмет, заменяем усовершенствованным
 uint e_AdvancedCraft(uint[]@ values)
 {
-	if(values.length() < 3) 
+	if(values.length() < 3)
 		return 0;
 	Critter@ cr = GetCritter(values[0]);
 	if(!valid(cr))
@@ -315,7 +314,7 @@ uint e_AdvancedCraft(uint[]@ values)
 				advItem.Info = values[3];
 				advItem.SetLexems("$craftername" + GetPlayerName(cr.Id));
 			}
-		}	
-	}	
+		}
+	}
 	return 0;
 }

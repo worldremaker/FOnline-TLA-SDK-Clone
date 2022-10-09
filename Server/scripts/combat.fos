@@ -8,7 +8,7 @@
 #include "npc_ai.fos"
 #include "combat_h.fos"
 
-import void WearItem(Critter& cr, Item& item, int wearCount) from "repair";
+import void DeteriorateItem(Critter& cr, Item& item, int deteriorateCount) from "repair";
 import void AffectPoison(Critter& cr, int value) from "poison";
 import void AffectRadiation(Critter& cr, int value) from "radiation";
 import void QuakeScreen(Map& map) from "effects";
@@ -89,9 +89,9 @@ void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, uint8 weaponM
   uint16 hy=cr.HexY;
   uint16 tx=target.HexX;
   uint16 ty=target.HexY;
-  uint16 weapPid=weapon.GetProtoId();
+  uint16 weapPid=weapon.ProtoId;
   uint16 ammoPid=0;
-  if (valid(ammo)) ammoPid=ammo.GetProtoId();
+  if (valid(ammo)) ammoPid=ammo.ProtoId;
   bool isBurst=(ammoRound>1); // will suffice for now
   if (isBurst) aim=HIT_LOCATION_UNCALLED;
   int dmgType=_WeaponDmgType(weapon,use);
@@ -198,7 +198,7 @@ void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, uint8 weaponM
   // Ammo
   if(valid(ammo))
   {
-    attack.DRMod=ammo.Ammo_DrMod;
+    attack.DRMod=ammo.Ammo_DRMod;
     attack.DMMod=ammo.Ammo_DmgMult;
     attack.DDMod=ammo.Ammo_DmgDiv;
     if(attack.DMMod==0) attack.DMMod=1;
@@ -243,7 +243,7 @@ void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, uint8 weaponM
     toHit-=10*blockers;
   }
   acmod=target.Stat[ST_ARMOR_CLASS];
-  if (valid(ammo)) acmod += ammo.Ammo_AcMod;
+  if (valid(ammo)) acmod += ammo.Ammo_ACMod;
   if (acmod>0) toHit-=acmod;
   if (target.IsKnockout()) toHit+=40;
   if (target.GetMultihex()>0) toHit+=15;
@@ -367,7 +367,7 @@ void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, uint8 weaponM
         acc*=-4;
         toHit+=acc;
         acmod=critsLine[i].Stat[ST_ARMOR_CLASS];
-        if (valid(ammo)) acmod += ammo.Ammo_AcMod;
+        if (valid(ammo)) acmod += ammo.Ammo_ACMod;
         if (acmod>0) toHit-=acmod;
         toHit-=10*bl;
         if (critsLine[i].IsKnockout()) toHit+=40;
@@ -403,7 +403,7 @@ void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, uint8 weaponM
       acc*=-4;
       toHit+=acc;
       acmod=realTarget.Stat[ST_ARMOR_CLASS];
-      if (valid(ammo)) acmod += ammo.Ammo_AcMod;
+      if (valid(ammo)) acmod += ammo.Ammo_ACMod;
       if (acmod>0) toHit-=acmod;
       if (realTarget.IsKnockout()) toHit+=40;
       if (realTarget.GetMultihex()>0) toHit+=15;
@@ -457,7 +457,7 @@ void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, uint8 weaponM
         acc*=-4;
         toHit+=acc;
         acmod=lineCentral[i].Stat[ST_ARMOR_CLASS];
-        if (valid(ammo)) acmod += ammo.Ammo_AcMod;
+        if (valid(ammo)) acmod += ammo.Ammo_ACMod;
         if (acmod>0) toHit-=acmod;
         if (lineCentral[i].IsKnockout()) toHit+=40;
           else bl++;
@@ -515,7 +515,7 @@ void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, uint8 weaponM
         acc*=-4;
         toHit+=acc;
         acmod=lineLeft[i].Stat[ST_ARMOR_CLASS];
-        if (valid(ammo)) acmod += ammo.Ammo_AcMod;
+        if (valid(ammo)) acmod += ammo.Ammo_ACMod;
         if (acmod>0) toHit-=acmod;
         if (lineLeft[i].IsKnockout()) toHit+=40;
         if (lineLeft[i].GetMultihex()>0) toHit+=15;
@@ -564,7 +564,7 @@ void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, uint8 weaponM
         acc*=-4;
         toHit+=acc;
         acmod=lineRight[i].Stat[ST_ARMOR_CLASS];
-        if (valid(ammo)) acmod += ammo.Ammo_AcMod;
+        if (valid(ammo)) acmod += ammo.Ammo_ACMod;
         if (acmod>0) toHit-=acmod;
         if (lineRight[i].IsKnockout()) toHit+=40;
         if (lineRight[i].GetMultihex()>0) toHit+=15;
@@ -606,7 +606,7 @@ void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, uint8 weaponM
       acc*=-4;
       toHit+=acc;
       acmod=realTarget.Stat[ST_ARMOR_CLASS];
-      if (valid(ammo)) acmod += ammo.Ammo_AcMod;
+      if (valid(ammo)) acmod += ammo.Ammo_ACMod;
       if (acmod>0) toHit-=acmod;
       if (realTarget.IsKnockout()) toHit+=40;
       if (realTarget.GetMultihex()>0) toHit+=15;
@@ -661,7 +661,7 @@ void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, uint8 weaponM
       acc*=-4;
       toHit+=acc;
       acmod=lineCentral[i].Stat[ST_ARMOR_CLASS];
-      if (valid(ammo)) acmod += ammo.Ammo_AcMod;
+      if (valid(ammo)) acmod += ammo.Ammo_ACMod;
       if (acmod>0) toHit-=acmod;
       toHit=CLAMP(toHit,5,95);
       if (lineCentral[i].IsKnockout()) toHit+=40;
@@ -728,7 +728,7 @@ void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, uint8 weaponM
         acc*=-4;
         toHit+=acc;
         acmod=lineCentral[i].Stat[ST_ARMOR_CLASS];
-        if (valid(ammo)) acmod += ammo.Ammo_AcMod;
+        if (valid(ammo)) acmod += ammo.Ammo_ACMod;
         if (acmod>0) toHit-=acmod;
         if (lineCentral[i].IsKnockout()) toHit+=40;
         if (lineCentral[i].GetMultihex()>0) toHit+=15;
@@ -795,7 +795,7 @@ void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, uint8 weaponM
           acc*=-4;
           toHit+=acc;
           acmod=lineLeft[i].Stat[ST_ARMOR_CLASS];
-          if (valid(ammo)) acmod += ammo.Ammo_AcMod;
+          if (valid(ammo)) acmod += ammo.Ammo_ACMod;
           if (acmod>0) toHit-=acmod;
           if (lineLeft[i].IsKnockout()) toHit+=40;
           if (lineLeft[i].GetMultihex()>0) toHit+=15;
@@ -859,7 +859,7 @@ void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, uint8 weaponM
           acc*=-4;
           toHit+=acc;
           acmod=lineRight[i].Stat[ST_ARMOR_CLASS];
-          if (valid(ammo)) acmod += ammo.Ammo_AcMod;
+          if (valid(ammo)) acmod += ammo.Ammo_ACMod;
           if (acmod>0) toHit-=acmod;
           if (lineRight[i].IsKnockout()) toHit+=40;
           if (lineRight[i].GetMultihex()>0) toHit+=15;
@@ -937,7 +937,7 @@ void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, uint8 weaponM
         acc*=-4;
         toHit+=acc;
         acmod=critsLine[i].Stat[ST_ARMOR_CLASS];
-        if (valid(ammo)) acmod += ammo.Ammo_AcMod;
+        if (valid(ammo)) acmod += ammo.Ammo_ACMod;
         if (acmod>0) toHit-=acmod;
         toHit-=10*bl;
         if (critsLine[i].IsKnockout()) toHit+=40;
@@ -1023,13 +1023,13 @@ void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, uint8 weaponM
 
   if(valid(realWeapon))
   {
-    if(realWeapon.IsWeared()) WearItem(cr,realWeapon,MAX_SKILL_VAL-skillVal);
+    if(realWeapon.IsDeteriorable()) DeteriorateItem(cr,realWeapon,(MAX_SKILL_VAL-skillVal)/3);
 
     // One time weapon, erase current and push next (if exist)
     if(wpnIsRemoved && cr.Mode[MODE_UNLIMITED_AMMO]==0)
     {
       bool placeOnHex=(skillNum==SK_THROWING && !isGrenade);
-      if(realWeapon.IsGrouped())
+      if(realWeapon.IsStackable())
       {
         // Place on hex
         if(placeOnHex) map.AddItem(tx,ty,weapPid,1);
@@ -1258,7 +1258,7 @@ void ApplyDamage(AttackStruct &attack, Critter &target, uint rounds, bool isCrit
     Item@ realWeaponTarget=_CritGetItemHand(target);
     if (valid(realWeaponTarget))
     {
-      if(realWeaponTarget.IsGrouped())
+      if(realWeaponTarget.IsStackable())
       {
         Item@ dropped = map.AddItem(target.HexX,target.HexY,realWeaponTarget.GetProtoId(),1);
         if(realWeaponTarget.GetCount()>1)
@@ -1383,7 +1383,7 @@ void ApplyDamage(AttackStruct &attack, Critter &target, uint rounds, bool isCrit
 
   int armorDr=target.Stat[ST_NORMAL_RESIST+dmgType-1];
   Item@ armor=_CritGetItemArmor(target);
-  if(valid(armor) && targetIsPlayer) WearItem(target,armor,(100-armorDr)*rounds+totalDmg);
+  if(valid(armor) && targetIsPlayer) DeteriorateItem(target,armor,((100-armorDr)*rounds+totalDmg)/3);
 
   // Dead
   if(isDead)
@@ -1689,7 +1689,7 @@ void CriticalFailure(Critter &cr, ProtoItem& weapon, uint8 weaponUse, ProtoItem@
     if (weapon.Weapon_Perk == WEAPON_PERK_PENETRATE) targetDT/=5;
 
     targetDR+=(cr.Trait[TRAIT_FINESSE]!=0?30:0);
-    targetDR+=validAmmo?ammo.Ammo_DrMod:0;
+    targetDR+=validAmmo?ammo.Ammo_DRMod:0;
     targetDR=CLAMP(targetDR,0,100);
     int dmgMin=_WeaponDmgMin(weapon,weaponUse);
     int dmgMax=_WeaponDmgMax(weapon,weaponUse);
@@ -1719,9 +1719,9 @@ void CriticalFailure(Critter &cr, ProtoItem& weapon, uint8 weaponUse, ProtoItem@
 
   if (FLAG(eff,MF_WEAPON_DROPPED) && valid(realWeapon))
   {
-    if(realWeapon.IsGrouped())
+    if(realWeapon.IsStackable())
     {
-      Item@ dropped = map.AddItem(cr.HexX,cr.HexY,weapon.GetProtoId(),1);
+      Item@ dropped = map.AddItem(cr.HexX,cr.HexY,weapon.ProtoId,1);
       if(realWeapon.GetCount()>1)
         realWeapon.SetCount(realWeapon.GetCount()-1);
       else
@@ -1775,7 +1775,7 @@ void CriticalFailure(Critter &cr, ProtoItem& weapon, uint8 weaponUse, ProtoItem@
 
   if ((FLAG(eff,MF_WEAPON_DESTROYED) || FLAG(eff,MF_WEAPON_EXPLODED)) && valid(realWeapon))
   {
-    if(realWeapon.IsGrouped())
+    if(realWeapon.IsStackable())
     {
       if(realWeapon.GetCount()>1) realWeapon.SetCount(realWeapon.GetCount()-1);
       else
@@ -2045,7 +2045,7 @@ int RawToHit(Critter &cr, Critter &target, ProtoItem@ weapon, uint8 weaponUse, P
   }
 
   int acmod=target.Stat[ST_ARMOR_CLASS];
-  if (valid(ammo)) acmod += ammo.Ammo_AcMod;
+  if (valid(ammo)) acmod += ammo.Ammo_ACMod;
   if (acmod>0) toHit-=acmod;
 
   if (cr.Damage[DAMAGE_EYE]!=0) toHit-=25;
