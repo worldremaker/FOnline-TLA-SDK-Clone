@@ -506,7 +506,8 @@ bool critter_animation_substitute(int animType, uint crTypeBase, uint anim1Base,
 	case ANIM2_DAMAGE_MUL_PRONE_BACK: anim2 = ANIM2_DAMAGE_MUL_PRONE_FRONT; break;
 	case ANIM2_TWITCH_PRONE_BACK:     anim2 = ANIM2_TWITCH_PRONE_FRONT;     break;
 
-	case ANIM2_DEAD_BACK:
+	case ANIM2_DEAD_FRONT:         anim2 = ANIM2_KNOCK_FRONT; break;
+	case ANIM2_DEAD_BACK:          anim2 = ANIM2_KNOCK_BACK;  break;
 	case ANIM2_DEAD_BLOODY_SINGLE:
 	case ANIM2_DEAD_BLOODY_BURST:
 	case ANIM2_DEAD_BURST:
@@ -516,7 +517,7 @@ bool critter_animation_substitute(int animType, uint crTypeBase, uint anim1Base,
 	case ANIM2_DEAD_FUSED:
 	case ANIM2_DEAD_EXPLODE:
 	case ANIM2_DEAD_BURN:
-	case ANIM2_DEAD_BURN_RUN:      anim2 = ANIM2_DEAD_FRONT; break;
+	case ANIM2_DEAD_BURN_RUN:      anim2 = ANIM2_DEAD_FRONT;       break;
 
 	default: swapped = false; break;
 	}
@@ -693,11 +694,15 @@ bool critter_animation_fallout(uint crType, uint& anim1, uint& anim2, uint& anim
 	case ANIM2_DEAD_LASER:         anim2 = ANIM2_FALLOUT_DEAD_LASER;         anim1 = ANIM1_FALLOUT_DEAD;     break;
 	case ANIM2_DEAD_FUSED:         anim2 = ANIM2_FALLOUT_DEAD_FUSED;         anim1 = ANIM1_FALLOUT_DEAD;     break;
 	case ANIM2_DEAD_EXPLODE:       anim2 = ANIM2_FALLOUT_DEAD_EXPLODE;       anim1 = ANIM1_FALLOUT_DEAD;     break;
-	case ANIM2_DEAD_BURN_RUN:      anim2 = ANIM2_FALLOUT_DEAD_BURN_RUN;      anim1 = ANIM1_FALLOUT_DEAD;     break;
+
 	case ANIM2_IDLE_PRONE_FRONT:   anim2 = ANIM2_FALLOUT_KNOCK_FRONT;        anim1 = ANIM1_FALLOUT_DEAD; flags |= ANIM_FLAG_LAST_FRAME; break;
 	case ANIM2_IDLE_PRONE_BACK:    anim2 = ANIM2_FALLOUT_KNOCK_BACK;         anim1 = ANIM1_FALLOUT_DEAD; flags |= ANIM_FLAG_LAST_FRAME; break;
 
 	case ANIM2_DEAD_BURN:          anim2 = ANIM2_FALLOUT_DEAD_BURN;          anim1 = ANIM1_FALLOUT_DEAD;     break; // ANIM2_FALLOUT_DEAD_BURN2
+	case ANIM2_DEAD_BURN_RUN:
+		anim2   = ANIM2_FALLOUT_DEAD_BURN_RUN; anim1   = ANIM1_FALLOUT_DEAD;
+		anim2ex = ANIM2_FALLOUT_DEAD_BURN;     anim1ex = ANIM1_FALLOUT_DEAD;
+		break;
 
 	case ANIM2_DEAD_FRONT:
 		anim1 = ANIM1_FALLOUT_DEAD;        anim1ex = ANIM1_FALLOUT_DEAD;

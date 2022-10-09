@@ -399,7 +399,7 @@
 {950}{}{Are you ready to follow %s to %s?}
 {952}{}{Get ready to follow %s to %s.}
 {970}{}{a stranger}
-{972}{}{wasteland}Your training in firearms
+{972}{}{wasteland}
 
 ####################################################################################################################################
 #

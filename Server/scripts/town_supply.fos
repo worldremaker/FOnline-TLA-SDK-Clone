@@ -46,7 +46,7 @@ uint e_CallTownSupply(uint[]@ values)
 bool IsValidForSupply(Critter& victim, Critter& hostile)
 {
 	// Only for humanoids npc in cities
-	if(hostile.IsPlayer() && victim.IsNpc() && victim.Mode[MODE_NO_SUPPLY]==0)
+	if(hostile.IsPlayer() && hostile.GetAccess()<ACCESS_MODER && victim.IsNpc() && victim.Mode[MODE_NO_SUPPLY]==0)
 	{
 		int bt=victim.Stat[ST_BODY_TYPE];
 		if(bt>=BT_MEN && bt<=BT_GHOUL)

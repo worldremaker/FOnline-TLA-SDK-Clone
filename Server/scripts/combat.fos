@@ -1388,21 +1388,21 @@ void ApplyDamage(AttackStruct &attack, Critter &target, uint rounds, bool isCrit
   if(isDead)
   {
     bool burst=attack.IsBurst;
-    uint deadType;
+    uint anim2Dead=0;
 
     if(target.IsKnockout())
     {
-    	if(target.Anim2Knockout==ANIM2_KNOCK_FRONT || target.Anim2Knockout==ANIM2_LAYDOWN_FRONT)
-			deadType=ANIM2_DEAD_PRONE_FRONT;
-		else
-			deadType=ANIM2_DEAD_PRONE_BACK;
+      if(target.Anim2Knockout==ANIM2_IDLE_PRONE_FRONT)
+        anim2Dead=ANIM2_DEAD_PRONE_FRONT;
+      else
+		anim2Dead=ANIM2_DEAD_PRONE_BACK;
     }
     else
     {
       if(attackFront)
-        deadType=ANIM2_DEAD_FRONT;
+        anim2Dead=ANIM2_DEAD_FRONT;
       else
-        deadType=ANIM2_DEAD_BACK;
+        anim2Dead=ANIM2_DEAD_BACK;
 
       switch(dmgType)
       {
@@ -1411,30 +1411,30 @@ void ApplyDamage(AttackStruct &attack, Critter &target, uint rounds, bool isCrit
       case DAMAGE_NORMAL:
         if(burst)
         {
-          if(isCritical || isBloodyMess) deadType=ANIM2_DEAD_BLOODY_BURST;
-          else deadType=ANIM2_DEAD_BURST;
+          if(isCritical || isBloodyMess) anim2Dead=ANIM2_DEAD_BLOODY_BURST;
+          else anim2Dead=ANIM2_DEAD_BURST;
         }
         else
         {
-          if(isCritical || isBloodyMess) deadType=ANIM2_DEAD_BLOODY_SINGLE;
+          if(isCritical || isBloodyMess) anim2Dead=ANIM2_DEAD_BLOODY_SINGLE;
         }
         break;
       case DAMAGE_LASER:
-        deadType=ANIM2_DEAD_LASER;
+        anim2Dead=ANIM2_DEAD_LASER;
         break;
       case DAMAGE_FIRE:
-        if(Random(0,1)==0) deadType=ANIM2_DEAD_BURN;
-        else deadType=ANIM2_DEAD_BURN_RUN;
+        if(Random(0,1)==0) anim2Dead=ANIM2_DEAD_BURN;
+        else anim2Dead=ANIM2_DEAD_BURN_RUN;
         break;
       case DAMAGE_PLASMA:
-        deadType=ANIM2_DEAD_FUSED;
+        anim2Dead=ANIM2_DEAD_FUSED;
         break;
       case DAMAGE_ELECTR:
-        if(Random(0,1)==0) deadType=ANIM2_DEAD_PULSE;
-        else deadType=ANIM2_DEAD_PULSE_DUST;
+        if(Random(0,1)==0) anim2Dead=ANIM2_DEAD_PULSE;
+        else anim2Dead=ANIM2_DEAD_PULSE_DUST;
         break;
       case DAMAGE_EXPLODE:
-        deadType=ANIM2_DEAD_EXPLODE;
+        anim2Dead=ANIM2_DEAD_EXPLODE;
         break;
       default:
         break;
@@ -1458,7 +1458,7 @@ void ApplyDamage(AttackStruct &attack, Critter &target, uint rounds, bool isCrit
       attacker.KillBase[KILL_BEGIN+bt]++;
     }
 
-    target.ToDead(deadType,attacker);
+    target.ToDead(anim2Dead,attacker);
   }
   else if (isKo)
   {
@@ -1822,7 +1822,15 @@ void CriticalFailure(Critter &cr, ProtoItem& weapon, uint8 weaponUse, ProtoItem@
     if(cr.Stat[ST_CURRENT_HP]>__DeadHitPoints && cr.Mode[MODE_NO_KNOCK]==0) { if (!cr.IsKnockout()) cr.ToKnockout(KNOCKOUT_ANIM2_DEFAULT(true),0,cr.HexX,cr.HexY); }
     else
     {
-      cr.ToDead(ANIM2_DEAD_FRONT,null);
+      uint anim2Dead=ANIM2_DEAD_FRONT;
+      if(cr.IsKnockout())
+      {
+        if(cr.Anim2Knockout==ANIM2_IDLE_PRONE_FRONT)
+          anim2Dead=ANIM2_DEAD_PRONE_FRONT;
+        else
+          anim2Dead=ANIM2_DEAD_PRONE_BACK;
+      }
+      cr.ToDead(anim2Dead,null);
       allEff[2]|=MF_WAS_KILLED;
     }
   }

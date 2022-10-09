@@ -700,7 +700,18 @@ void AllToLife(Critter& cr, int , int , int)
 {
 	Map@ map=cr.GetMap();
 	Critter@[] critters;
-	map.GetCritters(0,FIND_ALL|FIND_ONLY_PLAYERS,critters);
+	map.GetCritters(0,FIND_DEAD|FIND_ONLY_PLAYERS,critters);
+	for(uint i=0,j=critters.length();i<j;i++)
+	{
+		critters[i].ToLife();
+	}
+}
+
+void NpcToLife(Critter& cr, int , int , int)
+{
+	Map@ map=cr.GetMap();
+	Critter@[] critters;
+	map.GetCritters(0,FIND_DEAD|FIND_ONLY_NPC,critters);
 	for(uint i=0,j=critters.length();i<j;i++)
 	{
 		critters[i].ToLife();
