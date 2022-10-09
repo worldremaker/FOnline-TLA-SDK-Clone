@@ -427,18 +427,21 @@ bool critter_animation_substitute(int animType, uint crTypeBase, uint anim1Base,
 	}
 
 	// Check crType alias
-	uint crTypeAlias = GetCritterAlias(crTypeBase);
-	if(crTypeBase != 0 && crType == crTypeBase && crType != crTypeAlias)
+	if(crTypeBase != 0) // Zero for 3d animations
 	{
-		switch(anim2)
+		uint crTypeAlias = GetCritterAlias(crTypeBase);
+		if(crType == crTypeBase && crType != crTypeAlias)
 		{
-		case ANIM2_DEAD_PULSE:
-		case ANIM2_DEAD_PULSE_DUST:
-		case ANIM2_DEAD_BURN:
-		case ANIM2_DEAD_BURN_RUN:
-			crType = crTypeAlias;
-			return true;
-		default: break;
+			switch(anim2)
+			{
+			case ANIM2_DEAD_PULSE:
+			case ANIM2_DEAD_PULSE_DUST:
+			case ANIM2_DEAD_BURN:
+			case ANIM2_DEAD_BURN_RUN:
+				crType = crTypeAlias;
+				return true;
+			default: break;
+			}
 		}
 	}
 	crType = crTypeBase;

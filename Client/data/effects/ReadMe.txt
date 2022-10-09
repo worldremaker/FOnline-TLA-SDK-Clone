@@ -67,6 +67,8 @@ float Random2Effect;                  // Random value [0,1], value updated each 
 float Random3Effect;                  // Random value [0,1], value updated each effect
 float Random4Effect;                  // Random value [0,1], value updated each effect
 float EffectValue[0..9];              // Value that changed in scripts, names is same
+float AnimPosProc;                    // Current animation process 0%..100% [0,1)
+float AnimPosTime;                    // Current animation time, in seconds
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // 
