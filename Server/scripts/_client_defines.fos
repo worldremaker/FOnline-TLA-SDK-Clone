@@ -410,17 +410,24 @@
 #define CHOSEN_DIR                (3)  // 0 (CW) or 1 (CCW)
 #define CHOSEN_SHOW_ITEM          (4)  // Item id
 #define CHOSEN_HIDE_ITEM          (5)  // Item id
-#define CHOSEN_USE_ITEM           (6)  // Item id, Item pid, Target type, Target id, Item mode, Some param (timer)
+#define CHOSEN_USE_ITEM           (6)  // Item id, Item pid, Target type (see below), Target id, Item mode (see below), Some param (timer)
 #define CHOSEN_MOVE_ITEM          (7)  // Item id, Item count, To slot
 #define CHOSEN_MOVE_ITEM_CONT     (8)  // From container, Item id, Count
 #define CHOSEN_TAKE_ALL           (9)  //
 #define CHOSEN_USE_SKL_ON_CRITTER (10) // Skill, Critter id
-#define CHOSEN_USE_SKL_ON_ITEM    (11) // Is inventory, Skill index, Item id
+#define CHOSEN_USE_SKL_ON_ITEM    (11) // Is inventory, Skill index (SK_*), Item id
 #define CHOSEN_USE_SKL_ON_SCEN    (12) // Skill, Pid, HexX, HexY
 #define CHOSEN_TALK_NPC           (13) // Critter id
 #define CHOSEN_PICK_ITEM          (14) // Pid, HexX, HexY
 #define CHOSEN_PICK_CRIT          (15) // Critter id, (loot - 0, push - 1)
 #define CHOSEN_WRITE_HOLO         (16) // Holodisk id
+
+// Item modes
+#define ITEM_MODE_PRIMARY         (0)
+#define ITEM_MODE_SECONDARY       (1)
+#define ITEM_MODE_THIRD           (2)
+#define ITEM_MODE_RELOAD          (3)
+#define ITEM_MODE_USE             (4)
 
 // Target types
 #define TARGET_SELF               (0)
