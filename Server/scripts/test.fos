@@ -1677,6 +1677,11 @@ void Pos(Critter& cr, int newPos, int, int)
 	}
 }
 
+void ColorOffset(Critter& cr, int skin, int hair, int armor)
+{
+	cr.SetAnims(0, ANIM1_COLOR_SKIN(skin) | ANIM1_COLOR_HAIR(hair) | ANIM1_COLOR_ARMOR(armor), 0);
+}
+
 void Shield(Critter& cr, int on, int, int)
 {
 	if(on != 0)
@@ -1704,6 +1709,29 @@ void SetRun(Critter& cr, int time, int off, int)
 
 
 
+void excep0(Critter& cr, int, int, int)
+{
+	Log("excep0");
+	excep1(cr);
+}
+void excep1(Critter& cr)
+{
+	Log("excep1");
+	int y=100;
+	excep2(6);
+}
+void excep2(int i)
+{
+	Log("excep2");
+	for(int k=0;k<10;k++)
+		excep3();
+}
+void excep3()
+{
+	Log("excep3");
+	int h=0;
+	int k=10/h;
+}
 
 
 

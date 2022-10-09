@@ -25,18 +25,27 @@
 #define ANIM_FLAG_FIRST_FRAME        (0x01)
 #define ANIM_FLAG_LAST_FRAME         (0x02)
 
-// Anim1 Flags / Weapon
-// 0 1 2 3 4 5 6 7 8        9       10 1 2        3 4 5 6     7     8 9 20 1 2 3 4 5 6 7 8 9 30 1
-// |<  Weapon   >| | Crouch | Prone      | Shield       |< Palette >|
+// Anim1 Weapon / Flags
+// 0 1 2 3 4 5 6 7
+// |<  Weapon   >|
 	// Manage constants
 #define ANIM1_WEAPON_MASK            (0x000000FF)
 #define ANIM1_FLAGS_MASK             (0xFFFFFF00)
 #define ANIM1_FLAGS_BITS             (8)
 	// Flags
+		// Tactics specific
+		// 8        9       10 1 2 3 4 5 6 7 8 9 20  1 2  3 4 5 6  7 8 9 30  1
+		// | Crouch | Prone                       | Skin  | | Hair | | Armor |
 #define ANIM1_CROUCH                 (0x0100)
 #define ANIM1_PRONE                  (0x0200)
-#define ANIM1_SHIELD                 (0x1000) // Arcanum
-#define ANIM1_PALETTE #(num)         (((num) & 3) << (ANIM1_FLAGS_BITS + 8)) // Arcanum
+#define ANIM1_COLOR_SKIN  #(index)   (((index) & 0xF) << 20) // 0..15, colors see in colorOffsets animation.fos
+#define ANIM1_COLOR_HAIR  #(index)   (((index) & 0xF) << 24) // 0..15, colors see in colorOffsets animation.fos
+#define ANIM1_COLOR_ARMOR #(index)   (((index) & 0xF) << 28) // 0..15, colors see in colorOffsets animation.fos
+		// Arcanum specific
+		// 8 9 10 1 2        3 4 5 6     7     8 9 20 1 2 3 4 5 6 7 8 9 30 1
+		//          | Shield       |< Palette >|
+#define ANIM1_SHIELD                 (0x1000)
+#define ANIM1_PALETTE #(num)         (((num) & 3) << (ANIM1_FLAGS_BITS + 8))
 	// Weapons
 #define ANIM1_UNARMED                (1) // Hardcoded
 #define ANIM1_KNIFE                  (4)
