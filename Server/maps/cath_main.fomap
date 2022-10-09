@@ -1,9 +1,9 @@
 [Header]
-Version              2
+Version              3
 MaxHexX              122
 MaxHexY              162
-WorkHexX             74
-WorkHexY             53
+WorkHexX             69
+WorkHexY             42
 ScriptModule         -
 ScriptFunc           -
 NoLogOut             0
@@ -6047,11 +6047,6 @@ MapY                 50
 MapObjType           2
 ProtoId              2067
 MapX                 58
-MapY                 50
-
-MapObjType           2
-ProtoId              5621
-MapX                 60
 MapY                 50
 
 MapObjType           2
@@ -13292,7 +13287,8 @@ MapX                 60
 MapY                 32
 Dir                  2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1103
 Critter_ParamIndex1  ST_AI_ID
@@ -13300,7 +13296,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  118
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -13312,7 +13308,8 @@ MapX                 81
 MapY                 30
 Dir                  5
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1103
 Critter_ParamIndex1  ST_AI_ID
@@ -13320,7 +13317,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  118
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -13336,7 +13333,8 @@ ProtoId              176
 MapX                 81
 MapY                 51
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1103
 Critter_ParamIndex1  ST_AI_ID
@@ -13344,7 +13342,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  118
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -13356,7 +13354,8 @@ MapX                 50
 MapY                 48
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1103
 Critter_ParamIndex1  ST_AI_ID
@@ -13364,7 +13363,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  118
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -13376,7 +13375,8 @@ MapX                 53
 MapY                 43
 Dir                  5
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1103
 Critter_ParamIndex1  ST_AI_ID
@@ -13384,7 +13384,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  1
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -13396,7 +13396,8 @@ MapX                 56
 MapY                 42
 Dir                  5
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1103
 Critter_ParamIndex1  ST_AI_ID
@@ -13404,7 +13405,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  1
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -13416,7 +13417,8 @@ MapX                 55
 MapY                 49
 Dir                  5
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1103
 Critter_ParamIndex1  ST_AI_ID
@@ -13424,7 +13426,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  1
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -13436,7 +13438,8 @@ MapX                 65
 MapY                 46
 Dir                  5
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1103
 Critter_ParamIndex1  ST_AI_ID
@@ -13444,7 +13447,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  1
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -13456,7 +13459,8 @@ MapX                 57
 MapY                 46
 Dir                  5
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1108
 Critter_ParamIndex1  ST_AI_ID
@@ -13464,7 +13468,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  1
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -13476,7 +13480,8 @@ MapX                 63
 MapY                 43
 Dir                  5
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1108
 Critter_ParamIndex1  ST_AI_ID
@@ -13484,7 +13489,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  11
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -13496,7 +13501,8 @@ MapX                 53
 MapY                 34
 Dir                  2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1104
 Critter_ParamIndex1  ST_AI_ID
@@ -13504,7 +13510,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  28
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -13516,7 +13522,8 @@ MapX                 51
 MapY                 35
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1105
 Critter_ParamIndex1  ST_AI_ID
@@ -13524,7 +13531,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  30
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -13536,15 +13543,16 @@ MapX                 69
 MapY                 37
 Dir                  1
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1106
 Critter_ParamIndex1  ST_AI_ID
 Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
-Critter_ParamValue2  0
+Critter_ParamValue2  30
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -13568,7 +13576,8 @@ MapX                 67
 MapY                 58
 Dir                  2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1103
 Critter_ParamIndex1  ST_AI_ID
@@ -13576,7 +13585,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  1
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -13588,7 +13597,8 @@ MapX                 68
 MapY                 62
 Dir                  5
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1103
 Critter_ParamIndex1  ST_AI_ID
@@ -13596,7 +13606,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  1
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -13608,7 +13618,8 @@ MapX                 50
 MapY                 76
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1103
 Critter_ParamIndex1  ST_AI_ID
@@ -13616,7 +13627,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  0
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -13635,7 +13646,8 @@ Dir                  3
 ScriptName           trader
 FuncName             _TraderInit
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1103
 Critter_ParamIndex1  ST_AI_ID
@@ -13643,7 +13655,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  1
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -14915,11 +14927,6 @@ MapX                 57
 MapY                 77
 LightDistance        8
 LightIntensity       50
-
-MapObjType           2
-ProtoId              5621
-MapX                 64
-MapY                 71
 
 MapObjType           2
 ProtoId              2141

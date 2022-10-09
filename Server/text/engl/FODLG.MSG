@@ -530,4 +530,18 @@
 {5120}{}{Fugitive}
 {5130}{}{Fugitive}
 {5140}{}{Fugitive}
+{5150}{}{Fugitive}
 {5160}{}{Eli}
+{5170}{}{Champion}
+{5180}{}{Helacyton type  1}
+{5181}{}{A strange creature resembling Master's pets.}
+{5190}{}{Angry helacyton type  1}
+{5191}{}{A strange creature resembling Master's pets.}
+{5200}{}{Helacyton type  2}
+{5201}{}{A strange creature resembling Master's pets.}
+{5210}{}{Angry helacyton type  2}
+{5211}{}{A strange creature resembling Master's pets.}
+{5220}{}{Helacyton type  3}
+{5221}{}{A strange creature resembling Master's pets.}
+{5230}{}{Henrietta}
+{5231}{}{Skin of this animal looks like one big callus.}

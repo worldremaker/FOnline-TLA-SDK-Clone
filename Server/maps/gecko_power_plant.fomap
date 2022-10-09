@@ -2,8 +2,8 @@
 Version              2
 MaxHexX              168
 MaxHexY              150
-WorkHexX             0
-WorkHexY             0
+WorkHexX             70
+WorkHexY             63
 ScriptModule         -
 ScriptFunc           -
 NoLogOut             0

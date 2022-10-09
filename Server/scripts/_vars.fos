@@ -1,7 +1,7 @@
 #ifndef __VARS__
 #define __VARS__
 /*************************************************************************************
-***  VARS  *****  COUNT: 00000535  ***************************************************
+***  VARS  *****  COUNT: 00000538  ***************************************************
 *************************************************************************************/
 
 
@@ -446,9 +446,11 @@
 #define LVAR_special_soldier_holo                    (5624)
 #define LVAR_special_trapper_holo                    (5625)
 #define LVAR_special_doll_holo                       (5626)
-#define LVAR_special_zerg_laboratory                 (5627)
+#define LVAR_special_encounter_zerg_laboratory       (5627)
 #define LVAR_enc_ocean_trader_familiar               (5628)
-#define LVAR_special_doughnut_warehouse              (5629)
+#define LVAR_special_encounter_doughnut_warehouse    (5629)
+#define LVAR_special_encounter_bax_church            (5630)
+#define LVAR_special_encounter_atom_church           (5631)
 #define LVAR_enc_loyality_hubologists                (5650)
 #define LVAR_enc_loyality_ncr                        (5651)
 #define LVAR_enc_loyality_vcity                      (5652)
@@ -465,6 +467,7 @@
 #define LVAR_fixboy_power_armor                      (6000)
 #define LVAR_fixboy_700_nitro_express                (6001)
 #define LVAR_fixboy_ammo_press_operator              (6002)
+#define LVAR_fixboy_default                          (6003)
 #define LVAR_timeout                                 (6160)
 #define LVAR_timeout1                                (6161)
 #define LVAR_timeout2                                (6162)
@@ -4305,7 +4308,7 @@ $	5626	1	special_doll_holo	0	0	1	0
 Признак, игрок нашел локацию c третьим голодиском
 **********
 
-$	5627	1	special_zerg_laboratory	0	0	1	0
+$	5627	1	special_encounter_zerg_laboratory	0	0	1	0
 **********
 Локальная, признак, посетил ли игрок специальную локацию "Zerg's Laboratory".
 **********
@@ -4322,9 +4325,19 @@ $	5628	1	enc_ocean_trader_familiar	0	0	5	0
 5 - совсем поссорились
 **********
 
-$	5629	1	special_doughnut_warehouse	0	0	1	0
+$	5629	1	special_encounter_doughnut_warehouse	0	0	1	0
 **********
 Локальная, признак, посетил ли игрок специальную локацию "Склад заброшенных пончиков".
+**********
+
+$	5630	1	special_encounter_bax_church	0	0	1	0
+**********
+Локальная, признак, посетил ли игрок специальную локацию "Церковь Брока и Зандера".
+**********
+
+$	5631	1	special_encounter_atom_church	0	0	1	0
+**********
+Локальная, признак, посетил ли игрок специальную локацию "Церковь Атома".
 **********
 
 $	5650	1	enc_loyality_hubologists	0	0	0	4
@@ -4438,6 +4451,12 @@ $	6002	1	fixboy_ammo_press_operator	0	0	1	0
 Может ли игрок управлять станком, производящим патроны.
 0 - нет,
 1 - да.
+**********
+
+$	6003	1	fixboy_default	1	0	1	0
+**********
+Проверка игрока на способность изготавливать вещи на стандартных станках.
+1 = да.
 **********
 
 $	6160	1	timeout	0	0	0	4

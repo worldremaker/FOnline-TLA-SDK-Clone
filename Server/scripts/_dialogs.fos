@@ -593,6 +593,7 @@
 #define DIALOG_v13_xarn                                (1907)
 #define DIALOG_v13_goris                               (1908)
 #define DIALOG_v13_guard                               (1909)
+#define DIALOG_atoll_trader                            (2304)
 #define DIALOG_bos_koen                                (3100)
 #define DIALOG_bos_cruz                                (3101)
 #define DIALOG_bos_malogarzt                           (3102)

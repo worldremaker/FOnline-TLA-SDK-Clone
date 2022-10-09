@@ -6,113 +6,113 @@ lang=russ engl
 
 [dialog]
 &
-1 1000 NOT_ANSWER_CLOSE_DIALOG 0#
-2 1010d*_var n name_mem_npc_player = 0 r*_var n name_mem_npc_player = 1 #
-2 1020d*_var n name_mem_npc_player = 1 #
-14 1030d*_param p ST_INTELLECT < 4 @
-2 2000 NOT_ANSWER_CLOSE_DIALOG 0#
-3 2010#
-10 2020#
-0 2030#
-9 2040#
-54 2050d*_var p q_redd_marion_wan = 3 #
-56 2060d*_var p q_redd_marion_vinamingo = 2 #
-59 2070d*_var p q_redd_marion_vinamingo = 5 #
-60 2080d*_var p q_redd_marion_vinamingo = 7 #
-62 2090d*_var p q_redd_marion_vinamingo > 10 *_var p q_redd_marion_vinamingo < 15 #
-66 2100d*_var p q_redd_marion_vinamingo = 15 #
-71 2110d*_var p q_redd_marion_vinamingo = 4 #
-67 2120d*_var p q_redd_marion_vinamingo = 17 @
-3 3000 NOT_ANSWER_CLOSE_DIALOG 0#
-4 3010#
-8 3020#
-0 3030@
-4 4000 NOT_ANSWER_CLOSE_DIALOG 0#
-5 4010@
-5 5000 NOT_ANSWER_CLOSE_DIALOG 0#
-6 5010#
-9 5020#
-10 5030#
-0 5040@
-6 6000 NOT_ANSWER_CLOSE_DIALOG 0#
-7 6010#
-5 6020#
-0 6030@
-7 7000 NOT_ANSWER_CLOSE_DIALOG 0#
-8 7010#
-0 7020@
-8 8000 NOT_ANSWER_CLOSE_DIALOG 0#
-6 8010#
-9 8020#
-10 8030#
-0 8040@
-9 9000 NOT_ANSWER_CLOSE_DIALOG 0#
-13 9010#
-55 9020d*_var p q_redd_marion_vinamingo = 0 #
-0 9030#
-50 9040d*_script dialog@d_GroupPresent 0  *_var p q_redd_marion_wan = 0 #
-50 9050d*_script dialog@d_NotGroupPresent 0  *_var p q_redd_marion_wan = 0 @
-10 10000 NOT_ANSWER_CLOSE_DIALOG 0#
-65507 10010#
-8 10020#
-0 10030@
-11 11000 NOT_ANSWER_CLOSE_DIALOG 0#
-8 11010#
-10 11020#
-0 11030@
-12 12000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 12010#
-65507 12020@
-13 13000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 13010@
-14 14000 NOT_ANSWER_CLOSE_DIALOG 0@
-50 15000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 15010d*_script dialog@d_NotGroupPresent 0  #
-53 15020d*_script dialog@d_NotGroupPresent 0  #
-51 15030d*_script dialog@d_GroupPresent 0  @
-51 16000 NOT_ANSWER_CLOSE_DIALOG 0#
-52 16010#
-0 16020@
-52 17000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 17010r*_script redd_q_wanamingo@r_GotoHunter 1 0 @
-53 18000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 18010@
-54 19000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 19010r*_var p q_redd_marion_wan = 7 *_item p PID_BOTTLE_CAPS + 10000 *_param p ST_EXPERIENCE + 3000 @
-55 20000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 20010r*_var p q_redd_marion_vinamingo = 1 #
-0 20020@
-56 21000 NOT_ANSWER_CLOSE_DIALOG 0#
-57 21010@
-57 22000 NOT_ANSWER_CLOSE_DIALOG 0#
-58 22010@
-58 23000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 23010r*_param p ST_EXPERIENCE + 200 *_var p q_redd_marion_vinamingo = 3 @
-59 24000 NOT_ANSWER_CLOSE_DIALOG 0#
-70 24010r*_var p q_redd_marion_vinamingo = 6 *_param p ST_EXPERIENCE + 200 @
-60 25000 NOT_ANSWER_CLOSE_DIALOG 0#
-61 25010@
-61 26000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 26010r*_param p ST_EXPERIENCE + 200 *_var p q_redd_marion_vinamingo = 8 @
-62 27000 NOT_ANSWER_CLOSE_DIALOG 0#
-63 27010@
-63 28000 NOT_ANSWER_CLOSE_DIALOG 0#
-64 28010@
-64 29000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 29010@
-66 30000 NOT_ANSWER_CLOSE_DIALOG 0#
-67 30010r*_var p q_redd_marion_vinamingo = 16 @
-67 31000 NOT_ANSWER_CLOSE_DIALOG 0#
-68 31010d*_var p q_redd_marion_vinamingo = 17 #
-0 31020d*_var p q_redd_marion_vinamingo = 16 @
-68 32000 NOT_ANSWER_CLOSE_DIALOG 0#
-69 32010@
-69 33000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 33010r*_param p ST_EXPERIENCE + 600 *_param p ST_KARMA - 10 *_param p REPUTATION_REDDING - 1 *_var p q_redd_marion_vinamingo = 18 @
-70 34000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 34010@
-71 35000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 35010r*_param p ST_EXPERIENCE + 600 *_param p ST_KARMA + 10 *_param p REPUTATION_REDDING + 1 *_var p q_redd_marion_vinamingo = 18 &
+1 1000 None 0 #
+2 1010 D _var n name_mem_npc_player = 0 R _var n name_mem_npc_player = 1 #
+2 1020 D _var n name_mem_npc_player = 1 #
+14 1030 D _param p ST_INTELLECT < 4 @
+2 2000 None 0 #
+3 2010 #
+10 2020 #
+0 2030 #
+9 2040 #
+54 2050 D _var p q_redd_marion_wan = 3 #
+56 2060 D _var p q_redd_marion_vinamingo = 2 #
+59 2070 D _var p q_redd_marion_vinamingo = 5 #
+60 2080 D _var p q_redd_marion_vinamingo = 7 #
+62 2090 D _var p q_redd_marion_vinamingo > 10 D _var p q_redd_marion_vinamingo < 15 #
+66 2100 D _var p q_redd_marion_vinamingo = 15 #
+71 2110 D _var p q_redd_marion_vinamingo = 4 #
+67 2120 D _var p q_redd_marion_vinamingo = 17 @
+3 3000 None 0 #
+4 3010 #
+8 3020 #
+0 3030 @
+4 4000 None 0 #
+5 4010 @
+5 5000 None 0 #
+6 5010 #
+9 5020 #
+10 5030 #
+0 5040 @
+6 6000 None 0 #
+7 6010 #
+5 6020 #
+0 6030 @
+7 7000 None 0 #
+8 7010 #
+0 7020 @
+8 8000 None 0 #
+6 8010 #
+9 8020 #
+10 8030 #
+0 8040 @
+9 9000 None 0 #
+13 9010 #
+55 9020 D _var p q_redd_marion_vinamingo = 0 #
+0 9030 #
+50 9040 D _script dialog@d_GroupPresent 0  D _var p q_redd_marion_wan = 0 #
+50 9050 D _script dialog@d_NotGroupPresent 0  D _var p q_redd_marion_wan = 0 @
+10 10000 None 0 #
+65507 10010 #
+8 10020 #
+0 10030 @
+11 11000 None 0 #
+8 11010 #
+10 11020 #
+0 11030 @
+12 12000 None 0 #
+0 12010 #
+65507 12020 @
+13 13000 None 0 #
+0 13010 @
+14 14000 None 0 @
+50 15000 None 0 #
+0 15010 D _script dialog@d_NotGroupPresent 0  #
+53 15020 D _script dialog@d_NotGroupPresent 0  #
+51 15030 D _script dialog@d_GroupPresent 0  @
+51 16000 None 0 #
+52 16010 #
+0 16020 @
+52 17000 None 0 #
+0 17010 R _script redd_q_wanamingo@r_GotoHunter 1 0 @
+53 18000 None 0 #
+0 18010 @
+54 19000 None 0 #
+0 19010 R _var p q_redd_marion_wan = 7 R _item p PID_BOTTLE_CAPS + 10000 R _param p ST_EXPERIENCE + 3000 @
+55 20000 None 0 #
+0 20010 R _var p q_redd_marion_vinamingo = 1 #
+0 20020 @
+56 21000 None 0 #
+57 21010 @
+57 22000 None 0 #
+58 22010 @
+58 23000 None 0 #
+0 23010 R _param p ST_EXPERIENCE + 200 R _var p q_redd_marion_vinamingo = 3 @
+59 24000 None 0 #
+70 24010 R _var p q_redd_marion_vinamingo = 6 R _param p ST_EXPERIENCE + 200 @
+60 25000 None 0 #
+61 25010 @
+61 26000 None 0 #
+0 26010 R _param p ST_EXPERIENCE + 200 R _var p q_redd_marion_vinamingo = 8 @
+62 27000 None 0 #
+63 27010 @
+63 28000 None 0 #
+64 28010 @
+64 29000 None 0 #
+0 29010 @
+66 30000 None 0 #
+67 30010 R _var p q_redd_marion_vinamingo = 16 @
+67 31000 None 0 #
+68 31010 D _var p q_redd_marion_vinamingo = 17 #
+0 31020 D _var p q_redd_marion_vinamingo = 16 @
+68 32000 None 0 #
+69 32010 @
+69 33000 None 0 #
+0 33010 R _param p ST_EXPERIENCE + 600 R _param p ST_KARMA - 10 R _var p q_redd_marion_vinamingo = 18 R _param p REPUTATION_REDDING + 1 @
+70 34000 None 0 #
+0 34010 @
+71 35000 None 0 #
+0 35010 R _param p ST_EXPERIENCE + 600 R _param p ST_KARMA + 10 R _var p q_redd_marion_vinamingo = 18 R _param p REPUTATION_REDDING + 2 &
 
 [russ]
 {100}{}{Шериф}

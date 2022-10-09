@@ -17,17 +17,17 @@ lang=russ engl
 4 2010 D _param p ST_INTELLECT > 3 #
 0 2020 @
 3 3000 None 0 #
-21 3010 D _var p q_den_jane_psycho = 1 D _item p PID_MENTATS > 0 D _item p PID_BUFFOUT > 0 D _item p PID_PSYCHO > 0 R _var p den_jane_job_counter - 1 R _var p q_den_jane_psycho = 3 R _item p PID_BOTTLE_CAPS + 600 R _param p ST_EXPERIENCE + 100 R _item n PID_MENTATS + 1 R _item p PID_MENTATS - 1 R _item p PID_BUFFOUT - 1 R _item n PID_BUFFOUT + 1 R _item n PID_PSYCHO + 1 R _item p PID_PSYCHO - 1 R _item n PID_BOTTLE_CAPS - 600 R _param p REPUTATION_DEN + 1 #
+21 3010 D _var p q_den_jane_psycho = 1 D _item p PID_MENTATS > 0 D _item p PID_BUFFOUT > 0 D _item p PID_PSYCHO > 0 R _var p den_jane_job_counter - 1 R _var p q_den_jane_psycho = 3 R _item p PID_BOTTLE_CAPS + 600 R _item n PID_MENTATS + 1 R _item p PID_MENTATS - 1 R _item p PID_BUFFOUT - 1 R _item n PID_BUFFOUT + 1 R _item n PID_PSYCHO + 1 R _item p PID_PSYCHO - 1 R _param p REPUTATION_DEN + 1 R _param p ST_EXPERIENCE + 600 #
 29 3020 D _var p q_den_jane_vodka = 3 D _item p PID_BOOZE > 49 R _var p den_jane_job_counter - 1 R _var p q_den_jane_vodka = 4 R _item p PID_BOOZE - 50 R _item p PID_BOTTLE_CAPS + 600 R _param p ST_EXPERIENCE + 600 R _param p REPUTATION_DEN + 1 #
 9 3030 D _var p q_den_jane_radio = 0 D _var p den_jane_job_counter < 3 D _item n PID_RADIO < 1 #
 11 3040 D _var p q_den_jane_radio = 1 #
 11 3050 D _var p q_den_jane_radio = 3 #
-6 3060 D _var p den_jane_job_counter < 3 D _var p q_den_jane_hunt = 0 D _item n PID_HUNTING_RIFLE < 1 #
+6 3060 D _var p den_jane_job_counter < 3 D _var p q_den_jane_hunt = 0 D _item n PID_HUNTING_RIFLE < 1 D _param p ST_PERCEPTION > 4 #
 15 3070 D _var p q_den_jane_hunt = 1 #
 24 3080 D _var p q_den_jane_dolg = 1 #
-32 3090 D _var p q_den_jane_meat = 3 D _item p PID_IGUANA_ON_A_STICK > 19 D _item p PID_MEAT_JERKY > 29 R _var p q_den_jane_meat = 4 R _var p den_jane_job_counter - 1 R _item p PID_MEAT_JERKY - 30 R _item p PID_IGUANA_ON_A_STICK - 20 R _param p ST_EXPERIENCE + 300 R _item p PID_BOTTLE_CAPS + 300 R _param p REPUTATION_DEN + 1 #
+32 3090 D _var p q_den_jane_meat = 3 D _item p PID_IGUANA_ON_A_STICK > 19 D _item p PID_MEAT_JERKY > 29 R _var p q_den_jane_meat = 4 R _var p den_jane_job_counter - 1 R _item p PID_MEAT_JERKY - 30 R _item p PID_IGUANA_ON_A_STICK - 20 R _param p ST_EXPERIENCE + 300 R _param p REPUTATION_DEN + 1 R _item p PID_BOTTLE_CAPS + 400 #
 35 3100 D _var p q_den_jane_stim = 3 R _var p q_den_jane_stim = 4 R _item p PID_STIMPAK - 10 R _item n PID_STIMPAK + 10 R _var p den_jane_job_counter - 1 R _param p ST_EXPERIENCE + 300 R _item p PID_BOTTLE_CAPS + 1900 R _item n PID_BOTTLE_CAPS - 1900 R _param p REPUTATION_DEN + 1 #
-38 3110 D _item p PID_SHOTGUN > 0 D _item p PID_10MM_SMG > 0 D _item p PID_14MM_PISTOL > 0 D _var p q_den_jane_guns = 3 R _var p den_jane_job_counter - 1 R _var p q_den_jane_guns = 4 R _param p ST_EXPERIENCE + 350 R _item p PID_BOTTLE_CAPS + 3500 R _item n PID_BOTTLE_CAPS - 3500 R _item n PID_14MM_PISTOL + 1 R _item n PID_10MM_SMG + 1 R _item n PID_SHOTGUN + 1 R _item p PID_SHOTGUN - 1 R _item p PID_14MM_PISTOL - 1 R _item p PID_10MM_SMG - 1 R _item n PID_10MM_AP + 2 R _item n PID_14MM_AP + 3 R _item n PID_10MM_JHP + 4 R _item n PID_SHOTGUN_SHELLS + 4 R _param p REPUTATION_DEN + 1 #
+38 3110 D _item p PID_SHOTGUN > 0 D _item p PID_10MM_SMG > 0 D _item p PID_14MM_PISTOL > 0 D _var p q_den_jane_guns = 3 R _var p den_jane_job_counter - 1 R _var p q_den_jane_guns = 4 R _item p PID_BOTTLE_CAPS + 3500 R _item n PID_14MM_PISTOL + 1 R _item n PID_10MM_SMG + 1 R _item n PID_SHOTGUN + 1 R _item p PID_SHOTGUN - 1 R _item p PID_14MM_PISTOL - 1 R _item p PID_10MM_SMG - 1 R _item n PID_10MM_AP + 2 R _item n PID_14MM_AP + 3 R _item n PID_10MM_JHP + 4 R _item n PID_SHOTGUN_SHELLS + 4 R _param p REPUTATION_DEN + 1 R _param p ST_EXPERIENCE + 2000 #
 40 3120 D _var p q_den_jane_armor = 3 D _item p PID_LEATHER_ARMOR > 2 R _var p q_den_jane_armor = 4 R _var p den_jane_job_counter - 1 R _item p PID_LEATHER_ARMOR - 3 R _param p ST_EXPERIENCE + 1000 R _item p PID_BOTTLE_CAPS + 2000 R _param p REPUTATION_DEN + 1 #
 42 3130 D _item p PID_LEATHER_JACKET > 9 D _var p mod_baltas_armor1 = 0 D _var p q_mod_baltas_armor = 1 R _item p PID_BOTTLE_CAPS + 2450 R _item n PID_BOTTLE_CAPS - 2450 R _var p mod_baltas_armor1 = 1 R _item p PID_LEATHER_JACKET - 10 R _item n PID_LEATHER_JACKET + 10 #
 5 3140 #
@@ -75,8 +75,8 @@ lang=russ engl
 0 14010 R _var p q_den_jane_radio = 1 R _var p den_jane_job_counter + 1 R _item p PID_VIC_RADIO + 10 #
 3 14020 @
 15 15000 None 0 #
-17 15010 D _item p PID_HUNTING_RIFLE > 0 R _var p den_jane_job_counter - 1 R _var p q_den_jane_hunt = 3 R _item p PID_HUNTING_RIFLE - 1 R _param p ST_EXPERIENCE + 400 R _item p PID_BOTTLE_CAPS + 400 #
-17 15020 D _item p PID_SCOPED_HUNTING_RIFLE > 0 D _item p PID_HUNTING_RIFLE < 1 R _var p den_jane_job_counter - 1 R _var p q_den_jane_hunt = 3 R _item p PID_SCOPED_HUNTING_RIFLE - 1 R _param p ST_EXPERIENCE + 500 R _item p PID_BOTTLE_CAPS + 500 #
+17 15010 D _item p PID_HUNTING_RIFLE > 0 R _var p den_jane_job_counter - 1 R _var p q_den_jane_hunt = 3 R _item p PID_HUNTING_RIFLE - 1 R _param p ST_EXPERIENCE + 400 R _param p ST_EXPERIENCE + 600 R _item p PID_BOTTLE_CAPS + 600 #
+17 15020 D _item p PID_SCOPED_HUNTING_RIFLE > 0 D _item p PID_HUNTING_RIFLE < 1 R _var p den_jane_job_counter - 1 R _var p q_den_jane_hunt = 3 R _item p PID_SCOPED_HUNTING_RIFLE - 1 R _param p ST_EXPERIENCE + 750 R _item p PID_BOTTLE_CAPS + 750 #
 16 15030 @
 16 16000 None 0 @
 17 17000 None 0 @
@@ -199,11 +199,11 @@ lang=russ engl
 {14010}{}{Ладно, давай отнесу.}
 {14020}{}{Лучше я задам вопрос.}
 {15000}{}{Да?}
-{15010}{}{Вот, держи!}
-{15020}{}{Вот, держи!}
+{15010}{}{Вот, держи! [Отдать винтовку]}
+{15020}{}{Вот, держи! [Отдать винтовку с прицелом]}
 {15030}{}{Еще нет.}
 {16000}{}{Я все еще жду.@@Окей.@@Поскорее бы.}
-{17000}{}{Ого, надо будет проверить ее в деле. Вот тебе 400 монет.}
+{17000}{}{Ого, надо будет проверить ее в деле. Вот твоя зарплата.}
 {18000}{}{Нету, но если найдешь по упаковке психо, боффаута и ментата, буду тебе благодарен. У меня и на такое клиенты найдутся.}
 {18010}{}{Хорошо, я принесу тебе это.}
 {18020}{}{Мне это не интересно.}

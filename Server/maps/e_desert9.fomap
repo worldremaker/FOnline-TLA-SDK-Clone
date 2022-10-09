@@ -2,8 +2,8 @@
 Version              2
 MaxHexX              146
 MaxHexY              146
-WorkHexX             77
-WorkHexY             76
+WorkHexX             68
+WorkHexY             70
 ScriptModule         -
 ScriptFunc           -
 NoLogOut             0
@@ -23344,5 +23344,25 @@ ProtoId              3853
 MapX                 90
 MapY                 80
 Scenery_ToEntire     11
+
+MapObjType           2
+ProtoId              2067
+MapX                 51
+MapY                 70
+
+MapObjType           2
+ProtoId              2067
+MapX                 51
+MapY                 71
+
+MapObjType           2
+ProtoId              2067
+MapX                 50
+MapY                 70
+
+MapObjType           2
+ProtoId              2067
+MapX                 49
+MapY                 70
 
 

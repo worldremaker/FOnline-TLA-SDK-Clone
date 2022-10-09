@@ -898,6 +898,18 @@
 {2545}{}{22vcity}
 {2546}{}{electri1:15, electric:15, elevator:20, elevato1:15, steam:20, steam:15}
 
+# Map 260, base 2610
+{2610}{}{Intro}
+{2615}{}{17arroyo}
+{2616}{}{gntlwin1:25, gntlwind:25, animal1:20, animal:20, gustwind:5, gustwin1:5}
+
+# Map 261, base 2620
+{2620}{}{Intro - initialization}
+{2625}{}{02 - Into The Dust.ogg}
+{2625}{}{06 - Cluster Decay.ogg}
+{2625}{}{06 - Stranglet.ogg}
+{2626}{}{electri1:15, electric:15, elevator:20, elevato1:15, steam:20, steam:15}
+
 # Map 301, base 3020
 {3020}{}{Desert Encounter 1}
 {3025}{}{07desert}
@@ -1613,25 +1625,213 @@
 {145112}{}{255}
 {145113}{}{170}
 
+# Desert encounter 1, pid 101, base 201000
+{201000}{}{Desert}
+{201005}{}{Ordinary desert.}
+
+# Desert encounter 2, pid 102, base 202000
+{202000}{}{Desert}
+{202005}{}{Ordinary desert.}
+
+# Desert encounter 3, pid 103, base 203000
+{203000}{}{Desert}
+{203005}{}{Ordinary desert.}
+
+# Desert encounter 4, pid 104, base 204000
+{204000}{}{Desert}
+{204005}{}{Ordinary desert.}
+
+# Desert encounter 5, pid 105, base 205000
+{205000}{}{Desert}
+{205005}{}{Ordinary desert.}
+
+# Desert encounter 6, pid 106, base 206000
+{206000}{}{Desert}
+{206005}{}{Ordinary desert.}
+
+# Desert encounter 7, pid 107, base 207000
+{207000}{}{Desert}
+{207005}{}{Ordinary desert.}
+
+# Desert encounter 8, pid 108, base 208000
+{208000}{}{Desert}
+{208005}{}{Ordinary desert.}
+
+# Desert encounter 9, pid 109, base 209000
+{209000}{}{Desert}
+{209005}{}{Ordinary desert.}
+
+# Desert encounter 10, pid 110, base 210000
+{210000}{}{Desert}
+{210005}{}{Ordinary desert.}
+
+# Desert encounter 11, pid 111, base 211000
+{211000}{}{Desert}
+{211005}{}{Ordinary desert.}
+
+# Desert encounter 12, pid 112, base 212000
+{212000}{}{Desert}
+{212005}{}{Ordinary desert.}
+
+# Mountain encounter 1, pid 121, base 221000
+{221000}{}{Mountains}
+{221005}{}{Area around the mountains.}
+
+# Mountain encounter 2, pid 122, base 222000
+{222000}{}{Mountains}
+{222005}{}{Area around the mountains.}
+
+# Mountain encounter 3, pid 123, base 223000
+{223000}{}{Mountains}
+{223005}{}{Area around the mountains.}
+
+# Mountain encounter 4, pid 124, base 224000
+{224000}{}{Mountains}
+{224005}{}{Area around the mountains.}
+
+# Mountain encounter 5, pid 125, base 225000
+{225000}{}{Mountains}
+{225005}{}{Area around the mountains.}
+
+# Mountain encounter 6, pid 126, base 226000
+{226000}{}{Mountains}
+{226005}{}{Area around the mountains.}
+
+# Mountain encounter 7, pid 127, base 227000
+{227000}{}{Mountains}
+{227005}{}{Area around the mountains.}
+
+# Cave encounter 0, pid 140, base 240000
+{240000}{}{Cave}
+{240005}{}{A cave in the mountains.}
+
+# Cave encounter 1, pid 141, base 241000
+{241000}{}{Cave}
+{241005}{}{A cave in the mountains.}
+
+# Cave encounter 2, pid 142, base 242000
+{242000}{}{Cave}
+{242005}{}{A cave in the mountains.}
+
+# Cave encounter 3, pid 143, base 243000
+{243000}{}{Cave}
+{243005}{}{A cave in the mountains.}
+
+# Cave encounter 4, pid 144, base 244000
+{244000}{}{Cave}
+{244005}{}{A cave in the mountains.}
+
+# Cave encounter 5, pid 145, base 245000
+{245000}{}{Cave}
+{245005}{}{A cave in the mountains.}
+
+# Cave encounter 6, pid 146, base 246000
+{246000}{}{Cave}
+{246005}{}{A cave in the mountains.}
+
+# City encounter 1, pid 161, base 261000
+{261000}{}{Ruins}
+{261005}{}{Ruins of a dead city.}
+
+# City encounter 2, pid 162, base 262000
+{262000}{}{Ruins}
+{262005}{}{Ruins of a dead city.}
+
+# City encounter 3, pid 163, base 263000
+{263000}{}{Ruins}
+{263005}{}{Ruins of a dead city.}
+
+# City encounter 4, pid 164, base 264000
+{264000}{}{Ruins}
+{264005}{}{Ruins of a dead city.}
+
+# City encounter 5, pid 165, base 265000
+{265000}{}{Ruins}
+{265005}{}{Ruins of a dead city.}
+
+# City encounter 6, pid 166, base 266000
+{266000}{}{Ruins}
+{266005}{}{Ruins of a dead city.}
+
+# City encounter 7, pid 167, base 267000
+{267000}{}{Ruins}
+{267005}{}{Ruins of a dead city.}
+
+# City encounter 8, pid 168, base 268000
+{268000}{}{Ruins}
+{268005}{}{Ruins of a dead city.}
+
+# Coast encounter , pid 181, base 281000
+{281000}{}{Coast}
+{281005}{}{Oceanic coast.}
+
+# Coast encounter 2, pid 182, base 282000
+{282000}{}{Coast}
+{282005}{}{Oceanic coast.}
+
+# Coast encounter 3, pid 183, base 283000
+{283000}{}{Coast}
+{283005}{}{Oceanic coast.}
+
+# Coast encounter 4, pid 184, base 284000
+{284000}{}{Coast}
+{284005}{}{Oceanic coast.}
+
+# Coast encounter 5, pid 185, base 285000
+{285000}{}{Coast}
+{285005}{}{Oceanic coast.}
+
+# Coast encounter 6, pid 186, base 286000
+{286000}{}{Coast}
+{286005}{}{Oceanic coast.}
+
+# Coast encounter 7, pid 187, base 287000
+{287000}{}{Coast}
+{287005}{}{Oceanic coast.}
+
+# Coast encounter 8, pid 188, base 288000
+{288000}{}{Coast}
+{288005}{}{Oceanic coast.}
+
+# Coast encounter 9, pid 189, base 289000
+{289000}{}{Coast}
+{289005}{}{Oceanic coast.}
+
+# Coast encounter 10, pid 190, base 290000
+{290000}{}{Coast}
+{290005}{}{Oceanic coast.}
+
+# Coast encounter 11, pid 191, base 291000
+{291000}{}{Coast}
+{291005}{}{Oceanic coast.}
+
+# Coast encounter 12, pid 192, base 292000
+{292000}{}{Coast}
+{292005}{}{Oceanic coast.}
+
 # Ocean encounter 1, pid 193, base 293000
-{293000}{}{Остров}
-{293005}{}{Вы видите остров. Возможно, там кто-то есть.}
+{293000}{}{Isle}
+{293005}{}{You see an isle. Perhaps, there is someone.}
 
 # Ocean encounter 2, pid 194, base 294000
-{294000}{}{Остров}
-{294005}{}{Вы видите остров. Возможно, там кто-то есть.}
+{294000}{}{Isle}
+{294005}{}{You see an isle. Perhaps, there is someone.}
 
 # Ocean encounter 3, pid 195, base 295000
-{295000}{}{Остров}
-{295005}{}{Вы видите остров. Возможно, там кто-то есть.}
+{295000}{}{Isle}
+{295005}{}{You see an isle. Perhaps, there is someone.}
 
 # Ocean encounter 4, pid 196, base 296000
-{296000}{}{Плот}
+{296000}{}{Raft}
 {296005}{}{Вы видите дрейфующий плот.}
 
 # Ocean encounter 5, pid 197, base 297000
-{297000}{}{Плот}
+{297000}{}{Raft}
 {297005}{}{Вы видите плот под парусом с людьми на борту.}
+
+# Wanamingo cavern , pid 202, base 302000
+{302000}{}{Cave ванаминго}
+{302005}{}{Тут, по словам шерифа, располагается логово ванаминго.}
 
 # Dead caravan, pid 203, base 303000
 {303000}{}{Остатки каравана Даппо}
@@ -1670,11 +1870,11 @@
 {313005}{}{Ферма, на которой, по словам Джо завелась гигантская хищная оса.}
 
 # Mutants cave, pid 214, base 314000
-{314000}{}{Пещера мутантов}
+{314000}{}{Cave мутантов}
 {314005}{}{Логово мутантов обнаружено. Необходимо срочно сообщить о находке капитану Хартманну, пока мутанты не изменили место дислокации.}
 
 # Mutants cave, pid 215, base 315000
-{315000}{}{Пещера мутантов}
+{315000}{}{Cave мутантов}
 {315005}{}{В этом месте вас ожидают гвардейцы Города-Убежища. Зачистите пещеры от оборзевших мутантов.}
 
 # Vampire cave, pid 216, base 316000
@@ -1682,7 +1882,7 @@
 {316005}{}{На этой ферме по ночам что-то происходит с браминами. Разберитесь в чем дело и сообщите Гришему в Модок.}
 
 # Vampire cave, pid 217, base 317000
-{317000}{}{Странная пещера}
+{317000}{}{Странная Cave}
 {317005}{}{У вас появился уникальный шанс исцелить вампира. Но ждать он будет недолго.}
 
 # Vampire cave, pid 218, base 318000
@@ -1728,6 +1928,14 @@
 {326005}{}{You see an abandoned warehouse.}
 {326030}{}{art\intrface\WM_WRHS.png}
 
+# Intro 1, pid 260, base 360000
+{360000}{}{Intro}
+{360005}{}{Intro location - you are not supposed to see this.}
+
+# Intro 2, pid 261, base 361000
+{361000}{}{Intro - initialization}
+{361005}{}{Intro location - you are not supposed to see this.}
+
 
 #
 # Worldmap Encounter messages
@@ -1744,13 +1952,14 @@
 {10000023}{}{Do you wish to encounter: @lex player@.}
 {10000024}{}{Do you wish to encounter: @lex player@ group.}
 
-# Encounter Table 0
+# Encounter Table 0 (Fallout 1 + FOnline global table)
 {10030000}{}{A party of raiders}
 {10030010}{}{Some radscorpions}
 {10030020}{}{Giant rats}
 {10030030}{}{A merchant party}
 {10030040}{}{<Special>}
 {10030050}{}{кого-то неизвестного}
+{10030060}{}{The church of Brock and Xander}
 
 # Encounter Table 1
 {10030500}{}{A party of raiders}
@@ -1974,7 +2183,7 @@
 {10035900}{}{Пристанище Детей Пустоши}
 {10035910}{}{заброшенный аванпост Рыцарей Пустоши}
 {10035920}{}{заброшенную деревеньку. Даже с расстояния ощущается зло, исходящее от нее}
-{10035930}{}{заброшенный склад пончиков}
+{10035930}{}{the lost doughnut warehouse}
 
 # Encounter Table 12
 {10036000}{}{A pack of golden geckos and a family of radscorpions}
@@ -2009,7 +2218,7 @@
 {10036290}{}{A group of trappers}
 {10036300}{}{A man guarding a bridge}
 {10036310}{}{King Arthur's Knights fighting a rat}
-{10036320}{}{заброшенный склад пончиков}
+{10036320}{}{the lost doughnut warehouse}
 
 # Encounter Table 13
 {10036500}{}{Toxic waste dump}
@@ -2978,7 +3187,8 @@
 {10054220}{}{The Cafe of Broken Dreams}
 {10054230}{}{The Mad scientist's lab}
 {10054240}{}{заброшенный аванпост Рыцарей Пустоши}
-{10054250}{}{заброшенный склад пончиков}
+{10054250}{}{the lost doughnut warehouse}
+{10054260}{}{the ruins of a church}
 
 # Encounter Table 49
 {10054500}{}{A pack of fire geckos}
@@ -3042,7 +3252,7 @@
 {10055780}{}{The Unwashed Villagers hunting a spammer}
 {10055790}{}{заброшенную лабораторию безумного ученого}
 {10055800}{}{заброшенный аванпост Рыцарей Пустоши}
-{10055810}{}{заброшенный склад пончиков}
+{10055810}{}{the lost doughnut warehouse}
 
 # Encounter Table 52
 {10056000}{}{A pack of deathclaws}
@@ -3133,6 +3343,7 @@
 {10057630}{}{Some mobsters fighting a gang}
 {10057640}{}{Some mobsters}
 {10057650}{}{A traveler}
+{10057660}{}{the ruins of a church}
 
 # Encounter Table 56
 {10058000}{}{Toxic waste dump}
@@ -3204,6 +3415,7 @@
 {10059160}{}{Hubologists}
 {10059170}{}{насекомых-мутантов}
 {10059180}{}{палатку наркодилеров, о которой говорила Нэнси по радио}
+{10059190}{}{the ruins of a church}
 
 # Encounter Table 59
 {10059500}{}{A band of mercenaries}
@@ -3244,6 +3456,8 @@
 {10060140}{}{Hubologists fighting mercenaries}
 {10060150}{}{Hubologists fending off a press gang}
 {10060160}{}{Hubologists}
+{10060170}{}{группу насекомых-мутантов}
+{10060180}{}{разрушенную церковь}
 
 # Encounter Table 61
 {10060500}{}{Toxic waste dump}
@@ -3274,6 +3488,7 @@
 {10060750}{}{A tin woodsman}
 {10060760}{}{The Unwashed Villagers hunting a spammer}
 {10060770}{}{The Cafe of Broken Dreams}
+{10060780}{}{группу насекомых-мутантов}
 
 # Encounter Table 62
 {10061000}{}{Toxic waste dump}
@@ -3624,9 +3839,9 @@
 
 {10068010}{}{мель}
 {10068020}{}{несколько водяных крыс}
-{10068030}{}{островок, кишаший крысами}
+{10068030}{}{Isleок, кишаший крысами}
 {10068040}{}{водяных крыс-переростков}
-{10068050}{}{островок с гнездом мантисов}
+{10068050}{}{Isleок с гнездом мантисов}
 {10068060}{}{дрейфующий плот}
 {10068070}{}{торговца}
 
@@ -3634,11 +3849,11 @@
 
 {10068200}{}{мель}
 {10068210}{}{голодных и злых водяных крыс}
-{10068220}{}{островок, кишаший крысами}
+{10068220}{}{Isleок, кишаший крысами}
 {10068230}{}{мутировавших водяных крыс}
-{10068240}{}{островок с гнездом мантисов}
-{10068250}{}{остров с несколькими осами-переростками}
-{10068260}{}{остров с осиным гнездом}
+{10068240}{}{Isleок с гнездом мантисов}
+{10068250}{}{Isle с несколькими осами-переростками}
+{10068260}{}{Isle с осиным гнездом}
 {10068270}{}{дрейфующий плот}
 {10068280}{}{торговца}
 

@@ -2,8 +2,8 @@
 Version              2
 MaxHexX              210
 MaxHexY              210
-WorkHexX             113
-WorkHexY             80
+WorkHexX             101
+WorkHexY             120
 ScriptModule         -
 ScriptFunc           -
 NoLogOut             0
@@ -14512,26 +14512,6 @@ ProtoId              2207
 MapX                 88
 MapY                 126
 
-MapObjType           0
-ProtoId              361
-MapX                 92
-MapY                 126
-Dir                  2
-Critter_Cond         1
-Critter_CondExt      1
-Critter_ParamIndex0  ST_DIALOG_ID
-Critter_ParamValue0  0
-Critter_ParamIndex1  ST_AI_ID
-Critter_ParamValue1  137
-Critter_ParamIndex2  ST_BAG_ID
-Critter_ParamValue2  0
-Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
-Critter_ParamIndex4  ST_NPC_ROLE
-Critter_ParamValue4  0
-Critter_ParamIndex5  ST_REPLICATION_TIME
-Critter_ParamValue5  0
-
 MapObjType           2
 ProtoId              2067
 MapX                 94
@@ -14712,14 +14692,6 @@ MapObjType           2
 ProtoId              5194
 MapX                 86
 MapY                 128
-
-MapObjType           2
-ProtoId              2612
-MapX                 93
-MapY                 128
-LightColor           99994000
-LightDistance        4
-LightIntensity       50
 
 MapObjType           2
 ProtoId              5231

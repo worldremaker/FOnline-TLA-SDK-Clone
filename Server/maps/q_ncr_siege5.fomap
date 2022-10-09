@@ -2,8 +2,8 @@
 Version              2
 MaxHexX              140
 MaxHexY              150
-WorkHexX             82
-WorkHexY             99
+WorkHexX             38
+WorkHexY             53
 ScriptModule         -
 ScriptFunc           -
 NoLogOut             0
@@ -15260,7 +15260,7 @@ MapY                 59
 Item_InContainer     1
 Item_ItemSlot        1
 Item_AmmoPid         95
-Item_AmmoCount       12
+Item_AmmoCount       10
 Item_Val3            95
 Item_Val4            12
 
@@ -16946,7 +16946,7 @@ MapY                 68
 Item_InContainer     1
 Item_ItemSlot        2
 Item_AmmoPid         95
-Item_AmmoCount       12
+Item_AmmoCount       10
 
 MapObjType           1
 ProtoId              95

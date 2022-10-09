@@ -1,9 +1,9 @@
 [Header]
-Version              2
+Version              3
 MaxHexX              182
 MaxHexY              160
-WorkHexX             86
-WorkHexY             145
+WorkHexX             120
+WorkHexY             42
 ScriptModule         -
 ScriptFunc           -
 NoLogOut             0
@@ -303,7 +303,7 @@ tile       80   24             art\tiles\cabrik01.frm
 tile       82   24             art\tiles\cabrik01.frm
 tile       84   24             art\tiles\curb16.frm
 tile       86   24             art\tiles\curb18.frm
-roof       86   24             art\tiles\cbld1088.frm
+roof       86   24             art\tiles\CBLD1088.FRM
 tile       88   24             art\tiles\curb08.frm
 tile       90   24             art\tiles\road03.frm
 tile       92   24             art\tiles\road02.frm
@@ -356,14 +356,14 @@ tile       74   26             art\tiles\cabrik01.frm
 tile       76   26             art\tiles\cabrik01.frm
 tile       78   26             art\tiles\cabrik01.frm
 tile       80   26             art\tiles\cabrik01.frm
-roof       80   26             art\tiles\cbld1013.frm
+roof       80   26             art\tiles\CBLD1013.FRM
 tile       82   26             art\tiles\cabrik01.frm
-roof       82   26             art\tiles\cbld1100.frm
+roof       82   26             art\tiles\CBLD1100.FRM
 tile       84   26             art\tiles\curb16.frm
 tile       86   26             art\tiles\curb16.frm
-roof       86   26             art\tiles\cbld1098.frm
+roof       86   26             art\tiles\CBLD1098.FRM
 tile       88   26             art\tiles\curb08.frm
-roof       88   26             art\tiles\cbld1097.frm
+roof       88   26             art\tiles\CBLD1097.FRM
 tile       90   26             art\tiles\road03.frm
 tile       92   26             art\tiles\road13.frm
 tile       94   26             art\tiles\road12.frm
@@ -418,19 +418,19 @@ tile       68   28             art\tiles\cabrik01.frm
 tile       70   28             art\tiles\cabrik01.frm
 tile       72   28             art\tiles\cabrik01.frm
 tile       74   28             art\tiles\cabrik01.frm
-roof       74   28             art\tiles\cbld1008.frm
+roof       74   28             art\tiles\CBLD1008.FRM
 tile       76   28             art\tiles\cabrik01.frm
-roof       76   28             art\tiles\cbld1000.frm
+roof       76   28             art\tiles\CBLD1000.FRM
 tile       78   28             art\tiles\cabrik01.frm
 tile       80   28             art\tiles\cabrik01.frm
-roof       80   28             art\tiles\cbld1023.frm
+roof       80   28             art\tiles\CBLD1023.FRM
 tile       82   28             art\tiles\cabrik01.frm
-roof       82   28             art\tiles\cbld1069.frm
+roof       82   28             art\tiles\CBLD1069.FRM
 tile       84   28             art\tiles\curb16.frm
 tile       86   28             art\tiles\curb21.frm
-roof       86   28             art\tiles\cbld1107.frm
+roof       86   28             art\tiles\CBLD1107.FRM
 tile       88   28             art\tiles\curb39.frm
-roof       88   28             art\tiles\cbld1106.frm
+roof       88   28             art\tiles\CBLD1106.FRM
 tile       90   28             art\tiles\road10.frm
 tile       92   28             art\tiles\road14.frm
 tile       94   28             art\tiles\road25.frm
@@ -487,15 +487,15 @@ tile       68   30             art\tiles\cabrik01.frm
 tile       70   30             art\tiles\cabrik01.frm
 tile       72   30             art\tiles\cabrik01.frm
 tile       74   30             art\tiles\cabrik01.frm
-roof       74   30             art\tiles\cbld1003.frm
+roof       74   30             art\tiles\CBLD1003.FRM
 tile       76   30             art\tiles\cabrik01.frm
-roof       76   30             art\tiles\cbld1015.frm
+roof       76   30             art\tiles\CBLD1015.FRM
 tile       78   30             art\tiles\cabrik01.frm
-roof       78   30             art\tiles\cbld1014.frm
+roof       78   30             art\tiles\CBLD1014.FRM
 tile       80   30             art\tiles\cabrik01.frm
-roof       80   30             art\tiles\cbld1013.frm
+roof       80   30             art\tiles\CBLD1013.FRM
 tile       82   30             art\tiles\cabrik01.frm
-roof       82   30             art\tiles\cbld1069.frm
+roof       82   30             art\tiles\CBLD1069.FRM
 tile       84   30             art\tiles\curb16.frm
 tile       86   30             art\tiles\curb27.frm
 tile       88   30             art\tiles\edg6007.frm
@@ -559,15 +559,15 @@ tile       68   32             art\tiles\cabrik01.frm
 tile       70   32             art\tiles\cabrik01.frm
 tile       72   32             art\tiles\cabrik01.frm
 tile       74   32             art\tiles\cabrik01.frm
-roof       74   32             art\tiles\cbld1008.frm
+roof       74   32             art\tiles\CBLD1008.FRM
 tile       76   32             art\tiles\cabrik01.frm
-roof       76   32             art\tiles\cbld1007.frm
+roof       76   32             art\tiles\CBLD1007.FRM
 tile       78   32             art\tiles\cabrik01.frm
-roof       78   32             art\tiles\cbld1024.frm
+roof       78   32             art\tiles\CBLD1024.FRM
 tile       80   32             art\tiles\cabrik01.frm
-roof       80   32             art\tiles\cbld1023.frm
+roof       80   32             art\tiles\CBLD1023.FRM
 tile       82   32             art\tiles\cabrik01.frm
-roof       82   32             art\tiles\cbld1069.frm
+roof       82   32             art\tiles\CBLD1069.FRM
 tile       84   32             art\tiles\curb16.frm
 tile       86   32             art\tiles\curb22.frm
 tile       88   32             art\tiles\curb33.frm
@@ -632,19 +632,19 @@ tile       64   34             art\tiles\cabrik01.frm
 tile       66   34             art\tiles\cabrik01.frm
 tile       68   34             art\tiles\cabrik01.frm
 tile       70   34             art\tiles\cabrik01.frm
-roof       70   34             art\tiles\cbld1005.frm
+roof       70   34             art\tiles\CBLD1005.FRM
 tile       72   34             art\tiles\cabrik01.frm
-roof       72   34             art\tiles\cbld1004.frm
+roof       72   34             art\tiles\CBLD1004.FRM
 tile       74   34             art\tiles\cabrik01.frm
-roof       74   34             art\tiles\cbld1003.frm
+roof       74   34             art\tiles\CBLD1003.FRM
 tile       76   34             art\tiles\cabrik01.frm
-roof       76   34             art\tiles\cbld1015.frm
+roof       76   34             art\tiles\CBLD1015.FRM
 tile       78   34             art\tiles\cabrik01.frm
-roof       78   34             art\tiles\cbld1014.frm
+roof       78   34             art\tiles\CBLD1014.FRM
 tile       80   34             art\tiles\cabrik01.frm
-roof       80   34             art\tiles\cbld1013.frm
+roof       80   34             art\tiles\CBLD1013.FRM
 tile       82   34             art\tiles\cabrik01.frm
-roof       82   34             art\tiles\cbld1069.frm
+roof       82   34             art\tiles\CBLD1069.FRM
 tile       84   34             art\tiles\curb16.frm
 tile       86   34             art\tiles\curb16.frm
 tile       88   34             art\tiles\curb26.frm
@@ -708,23 +708,23 @@ tile       60   36             art\tiles\cabrik01.frm
 tile       62   36             art\tiles\cabrik01.frm
 tile       64   36             art\tiles\cabrik01.frm
 tile       66   36             art\tiles\cabrik01.frm
-roof       66   36             art\tiles\cbld1012.frm
+roof       66   36             art\tiles\CBLD1012.FRM
 tile       68   36             art\tiles\cabrik01.frm
-roof       68   36             art\tiles\cbld1011.frm
+roof       68   36             art\tiles\CBLD1011.FRM
 tile       70   36             art\tiles\cabrik01.frm
-roof       70   36             art\tiles\cbld1010.frm
+roof       70   36             art\tiles\CBLD1010.FRM
 tile       72   36             art\tiles\cabrik01.frm
-roof       72   36             art\tiles\cbld1009.frm
+roof       72   36             art\tiles\CBLD1009.FRM
 tile       74   36             art\tiles\cabrik01.frm
-roof       74   36             art\tiles\cbld1008.frm
+roof       74   36             art\tiles\CBLD1008.FRM
 tile       76   36             art\tiles\cabrik01.frm
-roof       76   36             art\tiles\cbld1007.frm
+roof       76   36             art\tiles\CBLD1007.FRM
 tile       78   36             art\tiles\cabrik01.frm
-roof       78   36             art\tiles\cbld1024.frm
+roof       78   36             art\tiles\CBLD1024.FRM
 tile       80   36             art\tiles\cabrik01.frm
-roof       80   36             art\tiles\cbld1023.frm
+roof       80   36             art\tiles\CBLD1023.FRM
 tile       82   36             art\tiles\cabrik01.frm
-roof       82   36             art\tiles\cbld1069.frm
+roof       82   36             art\tiles\CBLD1069.FRM
 tile       84   36             art\tiles\curb21.frm
 tile       86   36             art\tiles\curb30.frm
 tile       88   36             art\tiles\curb32.frm
@@ -809,27 +809,27 @@ tile       56   38             art\tiles\curb20.frm
 tile       58   38             art\tiles\curb16.frm
 tile       60   38             art\tiles\cabrik01.frm
 tile       62   38             art\tiles\cabrik01.frm
-roof       62   38             art\tiles\cbld1022.frm
+roof       62   38             art\tiles\CBLD1022.FRM
 tile       64   38             art\tiles\cabrik01.frm
-roof       64   38             art\tiles\cbld1021.frm
+roof       64   38             art\tiles\CBLD1021.FRM
 tile       66   38             art\tiles\cabrik01.frm
-roof       66   38             art\tiles\cbld1020.frm
+roof       66   38             art\tiles\CBLD1020.FRM
 tile       68   38             art\tiles\cabrik01.frm
-roof       68   38             art\tiles\cbld1019.frm
+roof       68   38             art\tiles\CBLD1019.FRM
 tile       70   38             art\tiles\cabrik01.frm
-roof       70   38             art\tiles\cbld1018.frm
+roof       70   38             art\tiles\CBLD1018.FRM
 tile       72   38             art\tiles\cabrik01.frm
-roof       72   38             art\tiles\cbld1017.frm
+roof       72   38             art\tiles\CBLD1017.FRM
 tile       74   38             art\tiles\cabrik01.frm
-roof       74   38             art\tiles\cbld1016.frm
+roof       74   38             art\tiles\CBLD1016.FRM
 tile       76   38             art\tiles\cabrik01.frm
-roof       76   38             art\tiles\cbld1015.frm
+roof       76   38             art\tiles\CBLD1015.FRM
 tile       78   38             art\tiles\cabrik01.frm
-roof       78   38             art\tiles\cbld1014.frm
+roof       78   38             art\tiles\CBLD1014.FRM
 tile       80   38             art\tiles\cabrik01.frm
-roof       80   38             art\tiles\cbld1013.frm
+roof       80   38             art\tiles\CBLD1013.FRM
 tile       82   38             art\tiles\cabrik01.frm
-roof       82   38             art\tiles\cbld1035.frm
+roof       82   38             art\tiles\CBLD1035.FRM
 tile       84   38             art\tiles\curb22.frm
 tile       86   38             art\tiles\curb33.frm
 tile       88   38             art\tiles\edgs003.frm
@@ -912,31 +912,31 @@ tile       52   40             art\tiles\edg6007.frm
 tile       54   40             art\tiles\edg6005.frm
 tile       56   40             art\tiles\curb24.frm
 tile       58   40             art\tiles\curb16.frm
-roof       58   40             art\tiles\cbld2000.frm
+roof       58   40             art\tiles\CBLD2000.FRM
 tile       60   40             art\tiles\cabrik01.frm
-roof       60   40             art\tiles\cbld1033.frm
+roof       60   40             art\tiles\CBLD1033.FRM
 tile       62   40             art\tiles\cabrik01.frm
-roof       62   40             art\tiles\cbld1032.frm
+roof       62   40             art\tiles\CBLD1032.FRM
 tile       64   40             art\tiles\cabrik01.frm
-roof       64   40             art\tiles\cbld1031.frm
+roof       64   40             art\tiles\CBLD1031.FRM
 tile       66   40             art\tiles\cabrik01.frm
-roof       66   40             art\tiles\cbld1030.frm
+roof       66   40             art\tiles\CBLD1030.FRM
 tile       68   40             art\tiles\cabrik01.frm
-roof       68   40             art\tiles\cbld1029.frm
+roof       68   40             art\tiles\CBLD1029.FRM
 tile       70   40             art\tiles\cabrik01.frm
-roof       70   40             art\tiles\cbld1028.frm
+roof       70   40             art\tiles\CBLD1028.FRM
 tile       72   40             art\tiles\cabrik01.frm
-roof       72   40             art\tiles\cbld1027.frm
+roof       72   40             art\tiles\CBLD1027.FRM
 tile       74   40             art\tiles\cabrik01.frm
-roof       74   40             art\tiles\cbld1026.frm
+roof       74   40             art\tiles\CBLD1026.FRM
 tile       76   40             art\tiles\cabrik01.frm
-roof       76   40             art\tiles\cbld1025.frm
+roof       76   40             art\tiles\CBLD1025.FRM
 tile       78   40             art\tiles\cabrik01.frm
-roof       78   40             art\tiles\cbld1024.frm
+roof       78   40             art\tiles\CBLD1024.FRM
 tile       80   40             art\tiles\cabrik01.frm
-roof       80   40             art\tiles\cbld1023.frm
+roof       80   40             art\tiles\CBLD1023.FRM
 tile       82   40             art\tiles\cabrik01.frm
-roof       82   40             art\tiles\cbld1069.frm
+roof       82   40             art\tiles\CBLD1069.FRM
 tile       84   40             art\tiles\curb16.frm
 tile       86   40             art\tiles\curb27.frm
 tile       88   40             art\tiles\edgs002.frm
@@ -1018,35 +1018,35 @@ tile       48   42             art\tiles\road10.frm
 tile       50   42             art\tiles\road16.frm
 tile       52   42             art\tiles\road17.frm
 tile       54   42             art\tiles\curb41.frm
-roof       54   42             art\tiles\cbld2004.frm
+roof       54   42             art\tiles\CBLD2004.FRM
 tile       56   42             art\tiles\curb23.frm
-roof       56   42             art\tiles\cbld2003.frm
+roof       56   42             art\tiles\CBLD2003.FRM
 tile       58   42             art\tiles\curb16.frm
-roof       58   42             art\tiles\cbld2002.frm
+roof       58   42             art\tiles\CBLD2002.FRM
 tile       60   42             art\tiles\cabrik01.frm
-roof       60   42             art\tiles\cbld2001.frm
+roof       60   42             art\tiles\CBLD2001.FRM
 tile       62   42             art\tiles\cabrik01.frm
-roof       62   42             art\tiles\cbld1045.frm
+roof       62   42             art\tiles\CBLD1045.FRM
 tile       64   42             art\tiles\cabrik01.frm
-roof       64   42             art\tiles\cbld1044.frm
+roof       64   42             art\tiles\CBLD1044.FRM
 tile       66   42             art\tiles\cabrik01.frm
-roof       66   42             art\tiles\cbld1043.frm
+roof       66   42             art\tiles\CBLD1043.FRM
 tile       68   42             art\tiles\cabrik01.frm
-roof       68   42             art\tiles\cbld1042.frm
+roof       68   42             art\tiles\CBLD1042.FRM
 tile       70   42             art\tiles\cabrik01.frm
-roof       70   42             art\tiles\cbld1041.frm
+roof       70   42             art\tiles\CBLD1041.FRM
 tile       72   42             art\tiles\cabrik01.frm
-roof       72   42             art\tiles\cbld1040.frm
+roof       72   42             art\tiles\CBLD1040.FRM
 tile       74   42             art\tiles\cabrik01.frm
-roof       74   42             art\tiles\cbld1039.frm
+roof       74   42             art\tiles\CBLD1039.FRM
 tile       76   42             art\tiles\cabrik01.frm
-roof       76   42             art\tiles\cbld1038.frm
+roof       76   42             art\tiles\CBLD1038.FRM
 tile       78   42             art\tiles\cabrik01.frm
-roof       78   42             art\tiles\cbld1037.frm
+roof       78   42             art\tiles\CBLD1037.FRM
 tile       80   42             art\tiles\cabrik01.frm
-roof       80   42             art\tiles\cbld1036.frm
+roof       80   42             art\tiles\CBLD1036.FRM
 tile       82   42             art\tiles\cabrik01.frm
-roof       82   42             art\tiles\cbld1069.frm
+roof       82   42             art\tiles\CBLD1069.FRM
 tile       84   42             art\tiles\curb16.frm
 tile       86   42             art\tiles\curb26.frm
 tile       88   42             art\tiles\edg7003.frm
@@ -1126,35 +1126,35 @@ tile       48   44             art\tiles\road21.frm
 tile       50   44             art\tiles\road02.frm
 tile       52   44             art\tiles\road02.frm
 tile       54   44             art\tiles\curb11.frm
-roof       54   44             art\tiles\cbld2008.frm
+roof       54   44             art\tiles\CBLD2008.FRM
 tile       56   44             art\tiles\curb16.frm
-roof       56   44             art\tiles\cbld2007.frm
+roof       56   44             art\tiles\CBLD2007.FRM
 tile       58   44             art\tiles\curb16.frm
-roof       58   44             art\tiles\cbld2006.frm
+roof       58   44             art\tiles\CBLD2006.FRM
 tile       60   44             art\tiles\cabrik01.frm
-roof       60   44             art\tiles\cbld2005.frm
+roof       60   44             art\tiles\CBLD2005.FRM
 tile       62   44             art\tiles\cabrik01.frm
-roof       62   44             art\tiles\cbld1057.frm
+roof       62   44             art\tiles\CBLD1057.FRM
 tile       64   44             art\tiles\cabrik01.frm
-roof       64   44             art\tiles\cbld1056.frm
+roof       64   44             art\tiles\CBLD1056.FRM
 tile       66   44             art\tiles\cabrik01.frm
-roof       66   44             art\tiles\cbld1055.frm
+roof       66   44             art\tiles\CBLD1055.FRM
 tile       68   44             art\tiles\cabrik01.frm
-roof       68   44             art\tiles\cbld1054.frm
+roof       68   44             art\tiles\CBLD1054.FRM
 tile       70   44             art\tiles\cabrik01.frm
-roof       70   44             art\tiles\cbld1053.frm
+roof       70   44             art\tiles\CBLD1053.FRM
 tile       72   44             art\tiles\cabrik01.frm
-roof       72   44             art\tiles\cbld1052.frm
+roof       72   44             art\tiles\CBLD1052.FRM
 tile       74   44             art\tiles\cabrik01.frm
-roof       74   44             art\tiles\cbld1051.frm
+roof       74   44             art\tiles\CBLD1051.FRM
 tile       76   44             art\tiles\cabrik01.frm
-roof       76   44             art\tiles\cbld1050.frm
+roof       76   44             art\tiles\CBLD1050.FRM
 tile       78   44             art\tiles\cabrik01.frm
-roof       78   44             art\tiles\cbld1049.frm
+roof       78   44             art\tiles\CBLD1049.FRM
 tile       80   44             art\tiles\cabrik01.frm
-roof       80   44             art\tiles\cbld1048.frm
+roof       80   44             art\tiles\CBLD1048.FRM
 tile       82   44             art\tiles\cabrik01.frm
-roof       82   44             art\tiles\cbld1069.frm
+roof       82   44             art\tiles\CBLD1069.FRM
 tile       84   44             art\tiles\curb16.frm
 tile       86   44             art\tiles\curb22.frm
 tile       88   44             art\tiles\curb37.frm
@@ -1240,35 +1240,35 @@ tile       48   46             art\tiles\road19.frm
 tile       50   46             art\tiles\road02.frm
 tile       52   46             art\tiles\road02.frm
 tile       54   46             art\tiles\curb11.frm
-roof       54   46             art\tiles\cbld2013.frm
+roof       54   46             art\tiles\CBLD2013.FRM
 tile       56   46             art\tiles\curb16.frm
-roof       56   46             art\tiles\cbld2012.frm
+roof       56   46             art\tiles\CBLD2012.FRM
 tile       58   46             art\tiles\curb16.frm
-roof       58   46             art\tiles\cbld2011.frm
+roof       58   46             art\tiles\CBLD2011.FRM
 tile       60   46             art\tiles\cabrik01.frm
-roof       60   46             art\tiles\cbld2010.frm
+roof       60   46             art\tiles\CBLD2010.FRM
 tile       62   46             art\tiles\cabrik01.frm
-roof       62   46             art\tiles\cbld2009.frm
+roof       62   46             art\tiles\CBLD2009.FRM
 tile       64   46             art\tiles\cabrik01.frm
-roof       64   46             art\tiles\cbld1067.frm
+roof       64   46             art\tiles\CBLD1067.FRM
 tile       66   46             art\tiles\cabrik01.frm
-roof       66   46             art\tiles\cbld1066.frm
+roof       66   46             art\tiles\CBLD1066.FRM
 tile       68   46             art\tiles\cabrik01.frm
-roof       68   46             art\tiles\cbld1065.frm
+roof       68   46             art\tiles\CBLD1065.FRM
 tile       70   46             art\tiles\cabrik01.frm
-roof       70   46             art\tiles\cbld1064.frm
+roof       70   46             art\tiles\CBLD1064.FRM
 tile       72   46             art\tiles\cabrik01.frm
-roof       72   46             art\tiles\cbld1063.frm
+roof       72   46             art\tiles\CBLD1063.FRM
 tile       74   46             art\tiles\cabrik01.frm
-roof       74   46             art\tiles\cbld1062.frm
+roof       74   46             art\tiles\CBLD1062.FRM
 tile       76   46             art\tiles\cabrik01.frm
-roof       76   46             art\tiles\cbld1061.frm
+roof       76   46             art\tiles\CBLD1061.FRM
 tile       78   46             art\tiles\cabrik01.frm
-roof       78   46             art\tiles\cbld1060.frm
+roof       78   46             art\tiles\CBLD1060.FRM
 tile       80   46             art\tiles\cabrik01.frm
-roof       80   46             art\tiles\cbld1059.frm
+roof       80   46             art\tiles\CBLD1059.FRM
 tile       82   46             art\tiles\cabrik01.frm
-roof       82   46             art\tiles\cbld1058.frm
+roof       82   46             art\tiles\CBLD1058.FRM
 tile       84   46             art\tiles\curb16.frm
 tile       86   46             art\tiles\curb16.frm
 tile       88   46             art\tiles\curb08.frm
@@ -1362,35 +1362,35 @@ tile       48   48             art\tiles\road02.frm
 tile       50   48             art\tiles\road02.frm
 tile       52   48             art\tiles\road09.frm
 tile       54   48             art\tiles\curb11.frm
-roof       54   48             art\tiles\cbld2019.frm
+roof       54   48             art\tiles\CBLD2019.FRM
 tile       56   48             art\tiles\curb16.frm
-roof       56   48             art\tiles\cbld2018.frm
+roof       56   48             art\tiles\CBLD2018.FRM
 tile       58   48             art\tiles\curb16.frm
-roof       58   48             art\tiles\cbld2017.frm
+roof       58   48             art\tiles\CBLD2017.FRM
 tile       60   48             art\tiles\cabrik01.frm
-roof       60   48             art\tiles\cbld2016.frm
+roof       60   48             art\tiles\CBLD2016.FRM
 tile       62   48             art\tiles\cabrik01.frm
-roof       62   48             art\tiles\cbld2015.frm
+roof       62   48             art\tiles\CBLD2015.FRM
 tile       64   48             art\tiles\cabrik01.frm
-roof       64   48             art\tiles\cbld1078.frm
+roof       64   48             art\tiles\CBLD1078.FRM
 tile       66   48             art\tiles\cabrik01.frm
-roof       66   48             art\tiles\cbld1077.frm
+roof       66   48             art\tiles\CBLD1077.FRM
 tile       68   48             art\tiles\cabrik01.frm
-roof       68   48             art\tiles\cbld1076.frm
+roof       68   48             art\tiles\CBLD1076.FRM
 tile       70   48             art\tiles\cabrik01.frm
-roof       70   48             art\tiles\cbld1075.frm
+roof       70   48             art\tiles\CBLD1075.FRM
 tile       72   48             art\tiles\cabrik01.frm
-roof       72   48             art\tiles\cbld1074.frm
+roof       72   48             art\tiles\CBLD1074.FRM
 tile       74   48             art\tiles\cabrik01.frm
-roof       74   48             art\tiles\cbld1073.frm
+roof       74   48             art\tiles\CBLD1073.FRM
 tile       76   48             art\tiles\cabrik01.frm
-roof       76   48             art\tiles\cbld1072.frm
+roof       76   48             art\tiles\CBLD1072.FRM
 tile       78   48             art\tiles\cabrik01.frm
-roof       78   48             art\tiles\cbld1071.frm
+roof       78   48             art\tiles\CBLD1071.FRM
 tile       80   48             art\tiles\cabrik01.frm
-roof       80   48             art\tiles\cbld1070.frm
+roof       80   48             art\tiles\CBLD1070.FRM
 tile       82   48             art\tiles\cabrik01.frm
-roof       82   48             art\tiles\cbld1069.frm
+roof       82   48             art\tiles\CBLD1069.FRM
 tile       84   48             art\tiles\curb16.frm
 tile       86   48             art\tiles\curb16.frm
 tile       88   48             art\tiles\curb08.frm
@@ -1486,35 +1486,35 @@ tile       48   50             art\tiles\road02.frm
 tile       50   50             art\tiles\road38.frm
 tile       52   50             art\tiles\road09.frm
 tile       54   50             art\tiles\curb11.frm
-roof       54   50             art\tiles\cbld2026.frm
+roof       54   50             art\tiles\CBLD2026.FRM
 tile       56   50             art\tiles\curb16.frm
-roof       56   50             art\tiles\cbld2025.frm
+roof       56   50             art\tiles\CBLD2025.FRM
 tile       58   50             art\tiles\curb16.frm
-roof       58   50             art\tiles\cbld2024.frm
+roof       58   50             art\tiles\CBLD2024.FRM
 tile       60   50             art\tiles\cabrik01.frm
-roof       60   50             art\tiles\cbld2023.frm
+roof       60   50             art\tiles\CBLD2023.FRM
 tile       62   50             art\tiles\cabrik01.frm
-roof       62   50             art\tiles\cbld2022.frm
+roof       62   50             art\tiles\CBLD2022.FRM
 tile       64   50             art\tiles\cabrik01.frm
-roof       64   50             art\tiles\cbld2021.frm
+roof       64   50             art\tiles\CBLD2021.FRM
 tile       66   50             art\tiles\cabrik01.frm
-roof       66   50             art\tiles\cbld2020.frm
+roof       66   50             art\tiles\CBLD2020.FRM
 tile       68   50             art\tiles\cabrik01.frm
-roof       68   50             art\tiles\cbld1086.frm
+roof       68   50             art\tiles\CBLD1086.FRM
 tile       70   50             art\tiles\cabrik01.frm
-roof       70   50             art\tiles\cbld1085.frm
+roof       70   50             art\tiles\CBLD1085.FRM
 tile       72   50             art\tiles\cabrik01.frm
-roof       72   50             art\tiles\cbld1084.frm
+roof       72   50             art\tiles\CBLD1084.FRM
 tile       74   50             art\tiles\cabrik01.frm
-roof       74   50             art\tiles\cbld1083.frm
+roof       74   50             art\tiles\CBLD1083.FRM
 tile       76   50             art\tiles\cabrik01.frm
-roof       76   50             art\tiles\cbld1082.frm
+roof       76   50             art\tiles\CBLD1082.FRM
 tile       78   50             art\tiles\cabrik01.frm
-roof       78   50             art\tiles\cbld1081.frm
+roof       78   50             art\tiles\CBLD1081.FRM
 tile       80   50             art\tiles\cabrik01.frm
-roof       80   50             art\tiles\cbld1080.frm
+roof       80   50             art\tiles\CBLD1080.FRM
 tile       82   50             art\tiles\cabrik01.frm
-roof       82   50             art\tiles\cbld1079.frm
+roof       82   50             art\tiles\CBLD1079.FRM
 tile       84   50             art\tiles\curb17.frm
 tile       86   50             art\tiles\curb16.frm
 tile       88   50             art\tiles\curb08.frm
@@ -1612,33 +1612,33 @@ tile       50   52             art\tiles\road02.frm
 tile       52   52             art\tiles\road09.frm
 tile       54   52             art\tiles\curb11.frm
 tile       56   52             art\tiles\curb16.frm
-roof       56   52             art\tiles\cbld2032.frm
+roof       56   52             art\tiles\CBLD2032.FRM
 tile       58   52             art\tiles\curb16.frm
-roof       58   52             art\tiles\cbld2031.frm
+roof       58   52             art\tiles\CBLD2031.FRM
 tile       60   52             art\tiles\cabrik01.frm
-roof       60   52             art\tiles\cbld2030.frm
+roof       60   52             art\tiles\CBLD2030.FRM
 tile       62   52             art\tiles\cabrik01.frm
-roof       62   52             art\tiles\cbld2029.frm
+roof       62   52             art\tiles\CBLD2029.FRM
 tile       64   52             art\tiles\cabrik01.frm
-roof       64   52             art\tiles\cbld2042.frm
+roof       64   52             art\tiles\CBLD2042.FRM
 tile       66   52             art\tiles\cabrik01.frm
-roof       66   52             art\tiles\cbld1096.frm
+roof       66   52             art\tiles\CBLD1096.FRM
 tile       68   52             art\tiles\cabrik01.frm
-roof       68   52             art\tiles\cbld1095.frm
+roof       68   52             art\tiles\CBLD1095.FRM
 tile       70   52             art\tiles\cabrik01.frm
-roof       70   52             art\tiles\cbld1094.frm
+roof       70   52             art\tiles\CBLD1094.FRM
 tile       72   52             art\tiles\cabrik01.frm
-roof       72   52             art\tiles\cbld1093.frm
+roof       72   52             art\tiles\CBLD1093.FRM
 tile       74   52             art\tiles\cabrik01.frm
-roof       74   52             art\tiles\cbld1092.frm
+roof       74   52             art\tiles\CBLD1092.FRM
 tile       76   52             art\tiles\cabrik01.frm
-roof       76   52             art\tiles\cbld1091.frm
+roof       76   52             art\tiles\CBLD1091.FRM
 tile       78   52             art\tiles\cabrik01.frm
-roof       78   52             art\tiles\cbld1090.frm
+roof       78   52             art\tiles\CBLD1090.FRM
 tile       80   52             art\tiles\cabrik01.frm
-roof       80   52             art\tiles\cbld1089.frm
+roof       80   52             art\tiles\CBLD1089.FRM
 tile       82   52             art\tiles\cabrik01.frm
-roof       82   52             art\tiles\cbld1088.frm
+roof       82   52             art\tiles\CBLD1088.FRM
 tile       84   52             art\tiles\curb16.frm
 tile       86   52             art\tiles\curb16.frm
 tile       88   52             art\tiles\curb44.frm
@@ -1743,35 +1743,35 @@ tile       50   54             art\tiles\road02.frm
 tile       52   54             art\tiles\road09.frm
 tile       54   54             art\tiles\curb12.frm
 tile       56   54             art\tiles\curb16.frm
-roof       56   54             art\tiles\cbld2026.frm
+roof       56   54             art\tiles\CBLD2026.FRM
 tile       58   54             art\tiles\curb16.frm
-roof       58   54             art\tiles\cbld2039.frm
+roof       58   54             art\tiles\CBLD2039.FRM
 tile       60   54             art\tiles\cabrik01.frm
-roof       60   54             art\tiles\cbld2038.frm
+roof       60   54             art\tiles\CBLD2038.FRM
 tile       62   54             art\tiles\cabrik01.frm
-roof       62   54             art\tiles\cbld2037.frm
+roof       62   54             art\tiles\CBLD2037.FRM
 tile       64   54             art\tiles\cabrik01.frm
-roof       64   54             art\tiles\cbld2036.frm
+roof       64   54             art\tiles\CBLD2036.FRM
 tile       66   54             art\tiles\cabrik01.frm
-roof       66   54             art\tiles\cbld2035.frm
+roof       66   54             art\tiles\CBLD2035.FRM
 tile       68   54             art\tiles\cabrik01.frm
-roof       68   54             art\tiles\cbld1105.frm
+roof       68   54             art\tiles\CBLD1105.FRM
 tile       70   54             art\tiles\cabrik01.frm
-roof       70   54             art\tiles\cbld1104.frm
+roof       70   54             art\tiles\CBLD1104.FRM
 tile       72   54             art\tiles\cabrik01.frm
-roof       72   54             art\tiles\cbld1103.frm
+roof       72   54             art\tiles\CBLD1103.FRM
 tile       74   54             art\tiles\cabrik01.frm
-roof       74   54             art\tiles\cbld1102.frm
+roof       74   54             art\tiles\CBLD1102.FRM
 tile       76   54             art\tiles\cabrik01.frm
-roof       76   54             art\tiles\cbld1101.frm
+roof       76   54             art\tiles\CBLD1101.FRM
 tile       78   54             art\tiles\cabrik01.frm
-roof       78   54             art\tiles\cbld1100.frm
+roof       78   54             art\tiles\CBLD1100.FRM
 tile       80   54             art\tiles\cabrik01.frm
-roof       80   54             art\tiles\cbld1099.frm
+roof       80   54             art\tiles\CBLD1099.FRM
 tile       82   54             art\tiles\cabrik01.frm
-roof       82   54             art\tiles\cbld1098.frm
+roof       82   54             art\tiles\CBLD1098.FRM
 tile       84   54             art\tiles\curb16.frm
-roof       84   54             art\tiles\cbld1097.frm
+roof       84   54             art\tiles\CBLD1097.FRM
 tile       86   54             art\tiles\curb16.frm
 tile       88   54             art\tiles\curb09.frm
 tile       90   54             art\tiles\road03.frm
@@ -1877,9 +1877,9 @@ tile       52   56             art\tiles\road13.frm
 tile       54   56             art\tiles\curb11.frm
 tile       56   56             art\tiles\curb16.frm
 tile       58   56             art\tiles\curb16.frm
-roof       58   56             art\tiles\cbld2041.frm
+roof       58   56             art\tiles\CBLD2041.FRM
 tile       60   56             art\tiles\curb16.frm
-roof       60   56             art\tiles\cbld2040.frm
+roof       60   56             art\tiles\CBLD2040.FRM
 tile       62   56             art\tiles\curb16.frm
 tile       64   56             art\tiles\curb16.frm
 tile       66   56             art\tiles\curb16.frm
@@ -1891,9 +1891,9 @@ tile       76   56             art\tiles\curb16.frm
 tile       78   56             art\tiles\curb16.frm
 tile       80   56             art\tiles\curb16.frm
 tile       82   56             art\tiles\curb16.frm
-roof       82   56             art\tiles\cbld1107.frm
+roof       82   56             art\tiles\CBLD1107.FRM
 tile       84   56             art\tiles\curb16.frm
-roof       84   56             art\tiles\cbld1106.frm
+roof       84   56             art\tiles\CBLD1106.FRM
 tile       86   56             art\tiles\curb16.frm
 tile       88   56             art\tiles\curb08.frm
 tile       90   56             art\tiles\road03.frm
@@ -18366,7 +18366,8 @@ Dir                  1
 ScriptName           trader
 FuncName             _TraderInit
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1102
 Critter_ParamIndex1  ST_AI_ID
@@ -18374,7 +18375,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  1
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  2
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18386,7 +18387,8 @@ MapX                 116
 MapY                 99
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1101
 Critter_ParamIndex1  ST_AI_ID
@@ -18394,7 +18396,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  12
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  2
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18406,7 +18408,8 @@ MapX                 122
 MapY                 79
 Dir                  2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1100
 Critter_ParamIndex1  ST_AI_ID
@@ -18414,7 +18417,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  30
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  2
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18425,7 +18428,8 @@ ProtoId              441
 MapX                 130
 MapY                 108
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1100
 Critter_ParamIndex1  ST_AI_ID
@@ -18433,7 +18437,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  28
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  2
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18445,7 +18449,8 @@ MapX                 118
 MapY                 79
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1101
 Critter_ParamIndex1  ST_AI_ID
@@ -18453,7 +18458,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  15
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  2
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18465,7 +18470,8 @@ MapX                 121
 MapY                 85
 Dir                  5
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1101
 Critter_ParamIndex1  ST_AI_ID
@@ -18473,7 +18479,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  15
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  2
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18492,7 +18498,8 @@ MapX                 97
 MapY                 56
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1104
 Critter_ParamIndex1  ST_AI_ID
@@ -18500,7 +18507,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  20
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18512,7 +18519,8 @@ MapX                 97
 MapY                 59
 Dir                  4
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1104
 Critter_ParamIndex1  ST_AI_ID
@@ -18520,7 +18528,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  20
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18532,7 +18540,8 @@ MapX                 100
 MapY                 55
 Dir                  2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1104
 Critter_ParamIndex1  ST_AI_ID
@@ -18540,7 +18549,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  20
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18565,7 +18574,8 @@ ProtoId              24
 MapX                 99
 MapY                 102
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1105
 Critter_ParamIndex1  ST_AI_ID
@@ -18573,7 +18583,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  20
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18585,7 +18595,8 @@ MapX                 94
 MapY                 99
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1105
 Critter_ParamIndex1  ST_AI_ID
@@ -18593,7 +18604,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  28
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18605,7 +18616,8 @@ MapX                 95
 MapY                 103
 Dir                  4
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1105
 Critter_ParamIndex1  ST_AI_ID
@@ -18613,7 +18625,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  30
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18625,7 +18637,8 @@ MapX                 83
 MapY                 77
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1107
 Critter_ParamIndex1  ST_AI_ID
@@ -18633,17 +18646,11 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  20
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
 Critter_ParamValue5  0
-
-MapObjType           1
-ProtoId              7
-MapX                 83
-MapY                 77
-Item_InContainer     1
 
 MapObjType           0
 ProtoId              46
@@ -18651,7 +18658,8 @@ MapX                 50
 MapY                 81
 Dir                  2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1106
 Critter_ParamIndex1  ST_AI_ID
@@ -18659,7 +18667,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  22
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18671,7 +18679,8 @@ MapX                 48
 MapY                 83
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1106
 Critter_ParamIndex1  ST_AI_ID
@@ -18679,7 +18688,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  20
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18691,7 +18700,8 @@ MapX                 48
 MapY                 85
 Dir                  4
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1106
 Critter_ParamIndex1  ST_AI_ID
@@ -18699,7 +18709,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  20
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18710,7 +18720,8 @@ ProtoId              24
 MapX                 53
 MapY                 85
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1106
 Critter_ParamIndex1  ST_AI_ID
@@ -18718,7 +18729,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  30
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18737,7 +18748,8 @@ MapX                 116
 MapY                 28
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1108
 Critter_ParamIndex1  ST_AI_ID
@@ -18745,7 +18757,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  15
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  2
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18757,7 +18769,8 @@ MapX                 117
 MapY                 32
 Dir                  4
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1108
 Critter_ParamIndex1  ST_AI_ID
@@ -18765,7 +18778,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  9
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  2
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18777,7 +18790,8 @@ MapX                 114
 MapY                 45
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1108
 Critter_ParamIndex1  ST_AI_ID
@@ -18785,7 +18799,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  26
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  2
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18797,7 +18811,8 @@ MapX                 116
 MapY                 63
 Dir                  4
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1108
 Critter_ParamIndex1  ST_AI_ID
@@ -18805,7 +18820,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  26
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  2
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18816,7 +18831,8 @@ ProtoId              25
 MapX                 124
 MapY                 53
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1108
 Critter_ParamIndex1  ST_AI_ID
@@ -18824,7 +18840,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  0
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18836,7 +18852,8 @@ MapX                 122
 MapY                 42
 Dir                  5
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1108
 Critter_ParamIndex1  ST_AI_ID
@@ -18844,7 +18861,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  11
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  2
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18856,7 +18873,8 @@ MapX                 113
 MapY                 58
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1108
 Critter_ParamIndex1  ST_AI_ID
@@ -18864,7 +18882,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  11
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  2
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18876,7 +18894,8 @@ MapX                 77
 MapY                 124
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1108
 Critter_ParamIndex1  ST_AI_ID
@@ -18884,7 +18903,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  11
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18895,7 +18914,8 @@ ProtoId              54
 MapX                 62
 MapY                 99
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1108
 Critter_ParamIndex1  ST_AI_ID
@@ -18903,7 +18923,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  11
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18915,7 +18935,8 @@ MapX                 31
 MapY                 67
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1108
 Critter_ParamIndex1  ST_AI_ID
@@ -18923,7 +18944,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  11
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  2
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18935,7 +18956,8 @@ MapX                 32
 MapY                 64
 Dir                  2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1108
 Critter_ParamIndex1  ST_AI_ID
@@ -18943,7 +18965,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  36
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  2
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18954,7 +18976,8 @@ ProtoId              53
 MapX                 77
 MapY                 106
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1108
 Critter_ParamIndex1  ST_AI_ID
@@ -18962,7 +18985,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  11
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18973,7 +18996,8 @@ ProtoId              52
 MapX                 80
 MapY                 113
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1108
 Critter_ParamIndex1  ST_AI_ID
@@ -18981,7 +19005,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  11
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -18993,7 +19017,8 @@ MapX                 79
 MapY                 100
 Dir                  2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1108
 Critter_ParamIndex1  ST_AI_ID
@@ -19001,7 +19026,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  11
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -19013,7 +19038,8 @@ MapX                 81
 MapY                 109
 Dir                  1
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1108
 Critter_ParamIndex1  ST_AI_ID
@@ -19021,7 +19047,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  11
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -19032,7 +19058,8 @@ ProtoId              56
 MapX                 78
 MapY                 112
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1108
 Critter_ParamIndex1  ST_AI_ID
@@ -19040,7 +19067,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  11
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -19052,7 +19079,8 @@ MapX                 84
 MapY                 100
 Dir                  1
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1108
 Critter_ParamIndex1  ST_AI_ID
@@ -19060,7 +19088,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  30
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -19071,7 +19099,8 @@ ProtoId              24
 MapX                 84
 MapY                 117
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1108
 Critter_ParamIndex1  ST_AI_ID
@@ -19079,7 +19108,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  30
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -19091,7 +19120,8 @@ MapX                 63
 MapY                 124
 Dir                  5
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1108
 Critter_ParamIndex1  ST_AI_ID
@@ -19099,7 +19129,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  9
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -19111,7 +19141,8 @@ MapX                 61
 MapY                 110
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1108
 Critter_ParamIndex1  ST_AI_ID
@@ -19119,7 +19150,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  30
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -19131,7 +19162,8 @@ MapX                 84
 MapY                 75
 Dir                  2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1107
 Critter_ParamIndex1  ST_AI_ID
@@ -19139,7 +19171,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  30
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -19151,7 +19183,8 @@ MapX                 119
 MapY                 28
 Dir                  2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1108
 Critter_ParamIndex1  ST_AI_ID
@@ -19159,7 +19192,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  36
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  2
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -19171,7 +19204,8 @@ MapX                 93
 MapY                 117
 Dir                  1
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1108
 Critter_ParamIndex1  ST_AI_ID
@@ -19179,7 +19213,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  36
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -19191,7 +19225,8 @@ MapX                 91
 MapY                 118
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1108
 Critter_ParamIndex1  ST_AI_ID
@@ -19199,7 +19234,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  36
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -19211,7 +19246,8 @@ MapX                 93
 MapY                 120
 Dir                  5
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1108
 Critter_ParamIndex1  ST_AI_ID
@@ -19219,7 +19255,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  36
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -19231,7 +19267,8 @@ MapX                 63
 MapY                 59
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1107
 Critter_ParamIndex1  ST_AI_ID
@@ -19239,7 +19276,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  30
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -19301,7 +19338,8 @@ MapX                 79
 MapY                 105
 Dir                  1
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1108
 Critter_ParamIndex1  ST_AI_ID
@@ -19309,7 +19347,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  11
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -19321,7 +19359,8 @@ MapX                 70
 MapY                 67
 Dir                  2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1103
 Critter_ParamIndex1  ST_AI_ID
@@ -19329,7 +19368,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  11
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
@@ -19341,7 +19380,8 @@ MapX                 71
 MapY                 109
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  1103
 Critter_ParamIndex1  ST_AI_ID
@@ -19349,7 +19389,7 @@ Critter_ParamValue1  0
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  0
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  33
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME

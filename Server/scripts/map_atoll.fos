@@ -1,0 +1,14 @@
+// Author: Dagnir
+#include "_macros.fos"
+
+void _MapInit(Map &map, bool firstTime)
+{
+    Critter @ [] critters;
+    map.GetCritters(0,FIND_LIFE|FIND_ONLY_NPC, critters);
+    
+    for(uint i = 0; i<critters.length();i++)
+    {
+		critters[i].StatBase[ST_REPLICATION_TIME] = 480;
+    }
+
+}

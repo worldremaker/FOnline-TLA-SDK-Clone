@@ -32,7 +32,7 @@ lang=russ engl
 22 6010 D _var p q_den_leanna_wine = 1 #
 14 6020 D _var p q_den_jane_vodka = 1 D _item n PID_BOOZE > 49 #
 17 6030 D _var p q_den_jane_vodka = 1 D _item n PID_BOOZE < 50 #
-20 6040 D _var p q_klam_bob_water = 2 D _item p PID_BOTTLE_FULL > 19 R _var p q_klam_bob_water = 3 R _item n PID_BOOZE + 200 R _item p PID_BOTTLE_CAPS + 400 R _item n PID_BOTTLE_CAPS - 400 R _param p ST_EXPERIENCE + 300 R _item p PID_BOTTLE_FULL - 20 #
+20 6040 D _var p q_klam_bob_water = 2 D _item p PID_BOTTLE_FULL > 19 R _var p q_klam_bob_water = 3 R _item n PID_BOOZE + 200 R _item p PID_BOTTLE_CAPS + 400 R _item n PID_BOTTLE_CAPS - 400 R _param p ST_EXPERIENCE + 1500 R _item p PID_BOTTLE_FULL - 20 #
 21 6050 D _var p q_den_leanna_buy = 1 #
 5 6060 #
 8 6070 @

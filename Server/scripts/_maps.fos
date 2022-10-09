@@ -60,6 +60,8 @@
 #define LOCATION_SpecialDollHolo                    (72)
 #define LOCATION_SpecialZergEncounter               (73)
 #define LOCATION_SpecialDoughnutsWarehouse          (74)
+#define LOCATION_SpecialAtomChurch                  (75)
+#define LOCATION_SpecialBaxChurch                   (76)
 
 #define LOCATION_DesertEncounter1                   (101)
 #define LOCATION_DesertEncounter2                   (102)
