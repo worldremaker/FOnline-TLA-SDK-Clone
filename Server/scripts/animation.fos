@@ -496,6 +496,8 @@ bool critter_animation_substitute(int animType, uint crTypeBase, uint anim1Base,
 	case ANIM2_LOOT:             anim2 = ANIM2_PICKUP;            break;
 	case ANIM2_STEAL:            anim2 = ANIM2_USE;               break;
 	case ANIM2_PUSH:             anim2 = ANIM2_PUNCH_RIGHT;       break;
+	case ANIM2_SHOW_WEAPON:      anim2 = ANIM2_USE;               break;
+	case ANIM2_HIDE_WEAPON:      anim2 = ANIM2_USE;               break;
 
 	case ANIM2_KNOCK_BACK:            anim2 = ANIM2_KNOCK_FRONT;            break;
 	case ANIM2_LAYDOWN_BACK:          anim2 = ANIM2_LAYDOWN_FRONT;          break;
@@ -715,8 +717,8 @@ bool critter_animation_fallout(uint crType, uint& anim1, uint& anim2, uint& anim
 	case ANIM2_NO_RECOIL:
 	case ANIM2_RELOAD:
 	case ANIM2_REPAIR:
-		anim1ex = ANIM2_FALLOUT_PREPARE_WEAPON;
-		anim2ex = ANIM2_FALLOUT_TURNOFF_WEAPON;
+		anim1ex = anim1;
+		anim2 = ANIM2_FALLOUT_PREPARE_WEAPON; anim2ex = ANIM2_FALLOUT_TURNOFF_WEAPON;
 		break;
 
 	// ANIM2_BEGIN_COMBAT

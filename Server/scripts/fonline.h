@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 20.02.2011
-// Server version 406, MSVS2008
+// Last update 02.03.2011
+// Server version 411, MSVS2008
 // Default calling convention - cdecl
 //
 
@@ -324,6 +324,7 @@ struct GameOptions
 	uint   MaxNameLength;
 	uint   DlgTalkMinTime;
 	uint   DlgBarterMinTime;
+	uint   MinimumOfflineTime;
 
 	bool   AbsoluteOffsets;
 	uint   SkillBegin;
@@ -525,6 +526,8 @@ struct ScriptArray
 
 	bool   IsArrayOfHandles;
 	int    ElementSize;
+	int    CmpFuncId;
+	int    SubTypeId;
 
 	uint   GetSize()      {return Buffer->NumElements;}
 	void*  At(uint index) {return Buffer->Data + index * ElementSize;}
@@ -1838,7 +1841,7 @@ inline void static_asserts()
 	STATIC_ASSERT(sizeof(Mutex)       == 24  );
 	STATIC_ASSERT(sizeof(Spinlock)    == 4   );
 	STATIC_ASSERT(sizeof(GameOptions) == 1176);
-	STATIC_ASSERT(sizeof(ScriptArray) == 28  );
+	STATIC_ASSERT(sizeof(ScriptArray) == 36  );
 	STATIC_ASSERT(sizeof(SpriteInfo)  == 36  );
 	STATIC_ASSERT(sizeof(Field)       == 92  );
 #ifdef __MAPPER

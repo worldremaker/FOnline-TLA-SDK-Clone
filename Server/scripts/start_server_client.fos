@@ -75,6 +75,7 @@
 	__DlgTalkMinTime            = 100000;
 	__DlgBarterMinTime          = 50000;
 	__EncounterTime             = 5000;
+	__MinimumOfflineTime        = 180000; // 3 minutes
 
 	// Look modifiers
 	__LookChecks = 0; // See Look checks in _defines.fos
