@@ -436,7 +436,7 @@ uint cte_ShowLoc(Critter& cr, int identifier, uint& rate)
 }
 
 // Обработка событий
-bool _GlobalProcess(Critter& cr, int type, Item@ car, uint& x, uint& y, uint& toX, uint& toY, uint& speed, uint& encounterDescriptor, bool& waitForAnswer)
+bool _GlobalProcess(Critter& cr, int type, Item@ car, float& x, float& y, float& toX, float& toY, float& speed, uint& encounterDescriptor, bool& waitForAnswer)
 {
 	//DL("type: " + type + "; coords " + x + ":" + y + "; pointTo " + toX + ":" + toY + "cr.Id" + cr.Id + "; speed" + speed);
 	Traveller@ t = TravellerFromCritter(cr.Id);

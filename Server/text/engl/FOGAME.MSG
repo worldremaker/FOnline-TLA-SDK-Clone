@@ -762,6 +762,7 @@
 {10256}{}{Car is broken.}
 {10257}{}{The car doesn't fit for so many people, remove some.}
 {10258}{}{Your charisma doesn't let you lead so many people, remove some.}
+{10259}{}{Can't disconnect from the group of being on the water.}
 # Drugs
 {10300}{}{You gained @lex value@ @lex name@.}
 {10301}{}{You lost @lex value@ @lex name@.}

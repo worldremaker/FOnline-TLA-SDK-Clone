@@ -400,7 +400,8 @@
 #define ST_SCALE_FACTOR             (116) // Hardcoded
 #define ST_WALK_TIME                (117) // Hardcoded
 #define ST_RUN_TIME                 (118) // Hardcoded
-// 119..149
+#define ST_GLOBAL_MAP_MOVE_COUNTER  (119)
+// 120..149
 #ifdef PLAYERS_3D
 	// Initial values of animation 3d layers
 #define ST_ANIM3D_LAYERS            (150) // Hardcoded
@@ -520,7 +521,7 @@
 #define PE_FLOWER_CHILD             (343) // Todo
 #define PE_PATHFINDER               (344)
 #define PE_ANIMAL_FRIEND            (345) // Todo
-#define PE_SCOUT                    (346) // Hardcoded
+#define PE_SCOUT                    (346)
 #define PE_MYSTERIOUS_STRANGER      (347) // Todo
 #define PE_RANGER                   (348)
 #define PE_QUICK_POCKETS            (349) // Hardcoded
@@ -1125,25 +1126,20 @@
 #define CRTYPE_ARCANUM_GEN_CR_END   (699)
 
 // Global map events
-#define GLOBAL_PROCESS_MOVE         (0)
+#define GLOBAL_PROCESS_MOVE         (0) // Called every __GlobalMapMoveTime
 #define GLOBAL_PROCESS_ENTER        (1)
 #define GLOBAL_PROCESS_START_FAST   (2)
 #define GLOBAL_PROCESS_START        (3)
 #define GLOBAL_PROCESS_SET_MOVE     (4)
 #define GLOBAL_PROCESS_STOPPED      (5)
 #define GLOBAL_PROCESS_NPC_IDLE     (6) // Called every __CritterIdleTick
-//#define GLOBAL_PROCESS_NEW_ZONE     (6) not implemented
-#define GLOBAL_MAP_BASE_SPEED       (2000) // Base speed, 0.5 second per pixel, 1000 is 1 second per pixel
+#define GLOBAL_PROCESS_KICK         (7)
+#define GLOBAL_MAP_BASE_SPEED       (2.0f) // Base speed, 2 pixels per second
 
 // Global map walk types
 #define GM_WALK_GROUND              (0)
 #define GM_WALK_FLY                 (1)
 #define GM_WALK_WATER               (2)
-
-// Global map relief (GetGlobalMapRelief)
-#define GM_RELIEF_WATER             (15)
-//  0,    1,    2,    3,    4,    5,     6,    7,     8,    9,    10,   11,    12,   13,    14
-// 1.5f, 1.4f, 1.3f, 1.2f, 1.1f, 1.0f, 0.95f, 0.9f, 0.85f, 0.8f, 0.75f, 0.7f, 0.65f, 0.6f, 0.55f
 
 // AngelScript properties
 #define AS_ALLOW_UNSAFE_REFERENCES      (1)  // true
@@ -1218,6 +1214,50 @@
 #define CONSTANTS_PICTURE           (3)
 #define CONSTANTS_HASH              (4)
 
+// Game images
+#define IMAGE_RELIEF                (0) // Global map relief
+
+// Paths
+	// Client and mapper paths
+#define PT_ROOT                     (0)
+#define PT_DATA                     (1)
+#define PT_ART                      (2)
+#define PT_ART_CRITTERS             (3)
+#define PT_ART_INTRFACE             (4)
+#define PT_ART_INVEN                (5)
+#define PT_ART_ITEMS                (6)
+#define PT_ART_MISC                 (7)
+#define PT_ART_SCENERY              (8)
+#define PT_ART_SKILLDEX             (9)
+#define PT_ART_SPLASH               (10)
+#define PT_ART_TILES                (11)
+#define PT_ART_WALLS                (12)
+#define PT_TEXTURES                 (13)
+#define PT_EFFECTS                  (14)
+#define PT_MAPS                     (15)
+#define PT_SND_MUSIC                (16)
+#define PT_SND_SFX                  (17)
+#define PT_SCRIPTS                  (18)
+#define PT_VIDEO                    (19)
+#define PT_TEXTS                    (20)
+#define PT_SAVE                     (21)
+#define PT_FONTS                    (22)
+#define PT_CACHE                    (23)
+	// Server paths
+#define PT_SERVER_ROOT              (30)
+#define PT_SERVER_DATA              (31)
+#define PT_SERVER_TEXTS             (32)
+#define PT_SERVER_DIALOGS           (33)
+#define PT_SERVER_MAPS              (34)
+#define PT_SERVER_PRO_ITEMS         (35)
+#define PT_SERVER_PRO_CRITTERS      (36)
+#define PT_SERVER_SCRIPTS           (37)
+#define PT_SERVER_SAVE              (38)
+#define PT_SERVER_CLIENTS           (39)
+#define PT_SERVER_BANS              (40)
+	// Other
+#define PT_MAPPER_DATA              (45)
+
 
 #ifndef SKIP_PRAGMAS
 
@@ -1235,7 +1275,7 @@
 // Also recommended use "__" prefix in var name.
 #pragma globalvar "bool __MainStoryLineActive = true"
 #pragma globalvar "uint __PermanentDeath = 0" // Number of deaths to account blocking, zero to disable
-#pragma globalvar "int __GeometryType = 0" // See GEOMETRY_* constants, assigned in config.fos InitializeGeometry()
+#pragma globalvar "int  __GeometryType = 0"   // See GEOMETRY_* constants, assigned in config.fos InitializeGeometry()
 #pragma globalvar "uint __HitAimEyes  = 60"
 #pragma globalvar "uint __HitAimHead  = 40"
 #pragma globalvar "uint __HitAimGroin = 30"
@@ -1244,6 +1284,7 @@
 #pragma globalvar "uint __HitAimLegs  = 20"
 #pragma globalvar "bool __NoPvpMaps = false" // Отключение нопвп режима активно
 #pragma globalvar "uint __MaxLifeLevelSoftCap = 0" // Максимальный уровень персонажа, на котором происходит увеличение хп. 0  = не используется
+#pragma globalvar "uint __EncounterTime = 0" // Как часто пробовать создать энкаунтер, в миллисекундах
 
 ///
 /// Critter data parameters

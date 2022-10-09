@@ -12,8 +12,6 @@ import bool OnUseExplode(Critter& cr, Item& explode, Critter@ targetCr, Item@ ta
 import bool UseItemOnCar(Critter& cr, Item& car, Item& item) from "car";
 import bool UseSkillOnCar(Critter& cr, Item& car, int skill) from "car";
 import void WorldmapInit() from "worldmap";
-import void FindEncounter(Critter@[]& group, Item@ car, uint x, uint y, uint& encounterDescriptor, bool& waitForAnswer, bool empty) from "worldmap";
-import void InviteToEncounter(Critter@[]& group, Item@ car, uint encounterDescriptor, int combatMode, uint& mapId, uint16& hexX, uint16& hexY, uint8& dir) from "worldmap";
 import void SetStartLocation(Critter& cr) from "replication";
 import void SetReplicationTime(Critter& cr) from "replication";
 import void ReplicateCritter(Critter& cr) from "replication";
@@ -125,9 +123,15 @@ bool start()
 	SetItemDataMask(ITEM_DATA_MASK_CONTAINER,mask3);
 	SetItemDataMask(ITEM_DATA_MASK_MAP,mask4);
 
+	// Global map initialization
 	WorldmapInit();
+
+	// Caravans initialization
 	CaravansInit();
+
+	// NoPvP initialization
 	SetNoPvp();
+
 	return true;
 }
 
@@ -163,172 +167,6 @@ void finish()
 uint loop()
 {
 	return 0; // Disable
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// Output:
-//  Critter& cr - who called this function, in most times is leader of group;
-//  x,y - current position;
-//  toX, toY - destination position;
-//  speed - speed of group, must set in GLOBAL_PROCESS_SET_MOVE; also you can type -1 to stop group;
-//  if encounterDescriptor != 0 than global_invite calls;
-//  if waitForAnswer == false than global_invite calls after this function, else call after leader confirm invite;
-// Call types see in Global map events in _defines.fos
-void global_process(int type, Critter& cr, Item@ car, uint& x, uint& y, uint& toX, uint& toY, uint& speed, uint& encounterDescriptor, bool& waitForAnswer)
-{
-	int walkType=(valid(car)?car.Proto.Car_MovementType:GM_WALK_GROUND);
-
-	if(type==GLOBAL_PROCESS_MOVE)
-	{
-		Critter@[]@ group=cr.GetGlobalGroup();
-
-		// Validate charisma
-		Critter@ leader=group[0];
-		if(int(group.length())>leader.Stat[ST_CHARISMA]+leader.Perk[PE_MAGNETIC_PERSONALITY])
-		{
-			leader.SayMsg(SAY_NETMSG,TEXTMSG_GAME,STR_CRIT_BAD_CHARISMA);
-			speed=uint(-1); // Stop
-			return;
-		}
-
-		// Try find encounter
-		FindEncounter(group,car,x,y,encounterDescriptor,waitForAnswer,false);
-	}
-	else if(type==GLOBAL_PROCESS_ENTER)
-	{
-		// Enter to empty encounter
-		if(walkType==GM_WALK_WATER && GetGlobalMapRelief(x,y)==GM_RELIEF_WATER)
-		{
-			// Find land
-			bool landFounded=false;
-			const int maxx=__GlobalMapWidth*__GlobalMapZoneLength;
-			const int maxy=__GlobalMapHeight*__GlobalMapZoneLength;
-			for(int ox=-1;ox<=1;ox++)
-			{
-				for(int oy=-1;oy<=1;oy++)
-				{
-					int xx=x+ox;
-					int yy=y+oy;
-					if(xx>=0 && xx<maxx && yy>=0 && yy<maxy && GetGlobalMapRelief(xx,yy)!=GM_RELIEF_WATER)
-					{
-						FindEncounter(cr.GetGlobalGroup(),car,xx,yy,encounterDescriptor,waitForAnswer,true);
-						ox=oy=2; // Exit from loop
-						landFounded=true;
-					}
-				}
-			}
-
-			if(not landFounded) FindEncounter(cr.GetGlobalGroup(),car,x,y,encounterDescriptor,waitForAnswer,true);
-		}
-		else
-		{
-			FindEncounter(cr.GetGlobalGroup(),car,x,y,encounterDescriptor,waitForAnswer,true);
-		}
-	}
-	else if(type==GLOBAL_PROCESS_SET_MOVE)
-	{
-		Critter@[]@ group=cr.GetGlobalGroup();
-
-		// Validate charisma
-		Critter@ leader=group[0];
-		if(int(group.length())>leader.Stat[ST_CHARISMA]+leader.Perk[PE_MAGNETIC_PERSONALITY])
-		{
-			leader.SayMsg(SAY_NETMSG,TEXTMSG_GAME,STR_CRIT_BAD_CHARISMA);
-			return;
-		}
-
-		// Calculate speed
-		speed=GLOBAL_MAP_BASE_SPEED;
-		if(cr.GetAccess()>=ACCESS_TESTER) speed*=20; // All, exclude clients have highly speed
-
-		if(valid(car))
-		{
-			// Validate car
-			uint strNum=0;
-			if(group.length()>car.Proto.Car_CrittersCapacity) strNum=STR_CAR_CRIT_OVERLOAD;
-			else if(car.CarFuel==0) strNum=STR_CAR_FUEL_EMPTY;
-			else if(car.CarDeterioration>=car.Proto.Car_MaxDeterioration) strNum=STR_CAR_BROKEN;
-			if(strNum!=0)
-			{
-				leader.SayMsg(SAY_NETMSG,TEXTMSG_GAME,strNum);
-				speed=0;
-				return;
-			}
-
-			speed=car.Proto.Car_Speed*GLOBAL_MAP_BASE_SPEED/20;
-
-			// Find near water for boats
-			// In radius of one zone (left, top, right, bottom)
-			if(car.Proto.Car_MovementType==GM_WALK_WATER)
-			{
-				if(::GetGlobalMapRelief(x,y)!=GM_RELIEF_WATER)
-				{
-					const int maxx=__GlobalMapWidth*__GlobalMapZoneLength;
-					const int maxy=__GlobalMapHeight*__GlobalMapZoneLength;
-					const int[] ox={-1,0,1,0};
-					const int[] oy={0,-1,0,1};
-					for(int i=1,ii=__GlobalMapZoneLength;i<=ii;i++)
-					{
-						for(int j=0;j<4;j++)
-						{
-							int xx=x+ox[j]*i;
-							int yy=y+oy[j]*i;
-							if(xx>=0 && xx<maxx && yy>=0 && yy<maxy && ::GetGlobalMapRelief(xx,yy)==GM_RELIEF_WATER)
-							{
-								x=uint(xx);
-								y=uint(yy);
-								// Exit from loop
-								j=4;
-								i=ii;
-							}
-						}
-					}
-				}
-			}
-		}
-		else
-		{
-			// Pathfinder perk bonus
-			int speedDiv=100-cr.Perk[PE_PATHFINDER]*25;
-			if(speedDiv<=0) speedDiv=1;
-			speed=speed*100/speedDiv;
-		}
-	}
-	else if(type==GLOBAL_PROCESS_NPC_IDLE)
-	{
-		// Critter& cr - is npc who call idle
-		// Process npc group on global map
-		if(x==toX && y==toY) // Stopped
-		{
-			// if you want enter to location under group than type
-			// encounterDescriptor=uint(-1);
-			// waitForAnswer=false;
-		}
-	}
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// Call on invite to encaunter.
-// If mapId != 0 than group enter to it.
-void global_invite(Critter& leader, Item@ car, uint encounterDescriptor, int combatMode, uint& mapId, uint16& hexX, uint16& hexY, uint8& dir)
-{
-	if(encounterDescriptor==uint(-1))
-	{
-		Location@[] locations;
-		if(GetLocations(leader.WorldX,leader.WorldY,0,locations)!=0)
-		{
-			Location@ loc=locations[0];
-			Map@ map=loc.GetMapByIndex(0);
-			if(valid(map) && map.GetEntireCoords(0,0,hexX,hexY))
-			{
-				mapId=map.Id;
-				dir=0xFF;
-			}
-		}
-		return;
-	}
-
-	InviteToEncounter(leader.GetGlobalGroup(),car,encounterDescriptor,combatMode,mapId,hexX,hexY,dir);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -662,7 +662,7 @@ void _CaravanLeaderOnDead(Critter& leader, Critter@ killer)
 }
 
 // глобальная карта
-bool _CaravanLeaderOnGlobal(Critter& leader, int type, Item@ car, uint& x, uint& y, uint& toX, uint& toY, uint& speed, uint& encounterDescriptor, bool& waitForAnswer)
+bool _CaravanLeaderOnGlobal(Critter& leader, int type, Item@ car, float& x, float& y, float& toX, float& toY, float& speed, uint& encounterDescriptor, bool& waitForAnswer)
 {
 	Critter@[]@ group=leader.GetGlobalGroup();
 
@@ -719,7 +719,7 @@ bool _CaravanLeaderOnGlobal(Critter& leader, int type, Item@ car, uint& x, uint&
 			uint endX = loc.WorldX;
 			uint endY = loc.WorldY;
 
-			if ((endX == x) and (endY == y))
+			if ((endX == uint(x)) and (endY == uint(y)))
 			{
 				// маршрут закончен
 				if (_EndCaravan(leader))

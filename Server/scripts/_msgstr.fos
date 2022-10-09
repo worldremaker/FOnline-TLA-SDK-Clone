@@ -452,6 +452,7 @@
 #define STR_CAR_BROKEN                  (10256)
 #define STR_CAR_CRIT_OVERLOAD           (10257)
 #define STR_CRIT_BAD_CHARISMA           (10258)
+#define STR_CANT_KICK_ON_WATER          (10259)
 // Drugs
 #define STR_DRUG_STAT_GAIN              (10300)
 #define STR_DRUG_STAT_LOSE              (10301)

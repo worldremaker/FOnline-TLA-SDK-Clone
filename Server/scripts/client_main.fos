@@ -165,10 +165,10 @@ void render_iface(uint layer)
 		// bool  __GmapActive - активна ли глобальная карта и все ли следующие нижеприведенные переменные корректны;
 		// bool  __GmapWait   - включен режим ожидания ответа о подтверждении энкаунтера;
 		// float __GmapZoom   - текущий масштаб, не забывайте учитывать его при рисовании на карте;
-		// int   __GmapOffsetX, __GmapOffsetY - смещение карты от нулевой координаты (верхний-левый угол);
-		// int   __GmapGroupX , __GmapGroupY  - координаты группы игрока;
-		// int   __GmapMoveX  , __GmapMoveY   - координаты точки назначения;
-		// float __GmapSpeedX , __GmapSpeedY  - скорость передвижения каждые 50мс, без учета рельефа.
+		// int   __GmapOffsetX/Y   - смещение карты от нулевой координаты (верхний-левый угол);
+		// int   __GmapGroupCurX/Y - координаты группы игрока;
+		// int   __GmapGroupToX/Y  - координаты точки назначения;
+		// float __GmapGroupSpeed  - текущая скорость передвижения.
 		// Для примера, расчет текущего пикселя группы:
 		// x = __GmapGroupX / __GmapZoom + __GmapOffsetX, y = __GmapGroupY / __GmapZoom + __GmapOffsetY.
 	}

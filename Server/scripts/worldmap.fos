@@ -1089,7 +1089,7 @@ void FindEncounter(Critter@[]& group, Item@ car, uint x, uint y, uint& encounter
 		return;
 	}
 
-	bool isWater=(GetGlobalMapRelief(x,y)==GM_RELIEF_WATER);
+	bool isWater=(GetGlobalMapRelief(x,y)==0);
 	int walkType=(valid(car)?car.Proto.Car_MovementType:GM_WALK_GROUND);
 	bool walkWaterOrFly=(walkType==GM_WALK_WATER || walkType==GM_WALK_FLY);
 	if(walkType==GM_WALK_GROUND && isWater) return;
@@ -1297,7 +1297,16 @@ void InviteToEncounter(Critter@[]& group, Item@ car, uint encounterDescriptor, i
 	if(valid(fe.Encounter)) AssignChecks(fe.Encounter.Checks,group);
 }
 
+uint GetGlobalMapRelief(uint x, uint y)
+{
+	// Used low four bits of image
+	// Zero is water
+	return GetImageColor(IMAGE_RELIEF,x,y)&0xF;
+}
+
 void WorldmapInit()
 {
+	LoadImage(IMAGE_RELIEF,"relief_tla.png",1,PT_SERVER_MAPS);
+
 #include "worldmap_init.fos"
 }

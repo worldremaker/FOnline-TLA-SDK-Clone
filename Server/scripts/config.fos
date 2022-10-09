@@ -76,6 +76,8 @@ void InitializeGame() // Export
 	__GlobalMapHeight           = 30; // Maximum 100
 	__GlobalMapZoneLength       = 50; // Maximum 500
 	__GlobalMapMaxGroupCount    = 10;
+	__GlobalMapMoveTime         = 250;
+	__EncounterTime             = 5000;
 	__DeadHitPoints             = -20;
 	__BagRefreshTime            = 60; // Real minutes
 	__WisperDist                = 2;
@@ -89,7 +91,6 @@ void InitializeGame() // Export
 	__PermanentDeath            = 0; // Disable
 	__DlgTalkMinTime            = 100000;
 	__DlgBarterMinTime          = 50000;
-	__EncounterTime             = 5000;
 	__MinimumOfflineTime        = 180000; // 3 minutes
 	__MainStoryLineActive       = true;
 	__NoPvpMaps                 = true; 

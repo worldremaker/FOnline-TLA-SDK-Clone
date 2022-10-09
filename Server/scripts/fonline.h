@@ -310,7 +310,7 @@ struct GameOptions
 	uint   GlobalMapWidth;
 	uint   GlobalMapHeight;
 	uint   GlobalMapZoneLength;
-	uint   EncounterTime;
+	uint   GlobalMapMoveTime;
 	uint   BagRefreshTime;
 	uint   AttackAnimationsMinDist;
 	uint   WhisperDist;
@@ -1051,18 +1051,15 @@ struct Item
 
 struct GlobalMapGroup
 {
-	CrVec    CritMove;
+	CrVec    Group;
 	Critter* Rule;
 	uint     CarId;
-	int      WXi,WYi;
-	float    WXf,WYf;
-	int      MoveX,MoveY;
-	float    SpeedX,SpeedY;
+	float    CurX, CurY;
+	float    ToX, ToY;
+	float    Speed;
 	bool     IsSetMove;
 	uint     TimeCanFollow;
-	uint     NextEncaunter;
 	bool     IsMultiply;
-	uint     MoveLastTick;
 	uint     ProcessLastTick;
 	uint     EncounterDescriptor;
 	uint     EncounterTick;
@@ -1826,7 +1823,7 @@ inline void static_asserts()
 
 	STATIC_ASSERT(offsetof(TemplateVar, Flags)              == 68  );
 	STATIC_ASSERT(offsetof(NpcPlane, RefCounter)            == 88  );
-	STATIC_ASSERT(offsetof(GlobalMapGroup, EncounterForce)  == 84  );
+	STATIC_ASSERT(offsetof(GlobalMapGroup, EncounterForce)  == 64  );
 	STATIC_ASSERT(offsetof(Item, IsNotValid)                == 118 );
 	STATIC_ASSERT(offsetof(CritterTimeEvent, Identifier)    == 12  );
 	STATIC_ASSERT(offsetof(Critter, RefCounter)             == 9336);

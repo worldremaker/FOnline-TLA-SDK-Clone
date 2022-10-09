@@ -175,7 +175,7 @@ bool _FuncName(Critter& cr, Critter& talkCr, bool attach, uint talkCount)
 // uint talkCount - всего разговаривающих, включа€ новое присоединение/отсоединение.
 // ѕри возвращении true - диалог начинаетс€, false - не начинаетс€; актуально при attach == true.
 	// CRITTER_EVENT_GLOBAL_PROCESS
-bool _FuncName(Critter& cr, int type, Item@ car, uint& x, uint& y, uint& toX, uint& toY, uint& speed, uint& encounterDescriptor, bool& waitForAnswer)
+bool _FuncName(Critter& cr, int type, Item@ car, float& x, float& y, float& toX, float& toY, float& speed, uint& encounterDescriptor, bool& waitForAnswer)
 // ќбработка глобальной карты.
 // ѕри возвращении true - глобальный обработчик не запускаетс€, false - запуск глобального обработчика.
 	// CRITTER_EVENT_GLOBAL_INVITE
