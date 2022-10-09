@@ -295,7 +295,7 @@ class Traveller
 
 	// Проверка маршрута и уточнение координат конечной точки маршрута
 	// Актуально только для TYPE_TRAVEL
-	bool ValidateRoute(uint16& worldX, uint16& worldY)
+	bool ValidateRoute(float& worldX, float& worldY)
 	{
 		if(this.MapIdTo == 0)
 			return false;

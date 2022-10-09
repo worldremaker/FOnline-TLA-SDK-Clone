@@ -633,6 +633,14 @@ void SpawnHubBooks(Map & map)
 	}
 }
 
+// debug
+void _SpawnBooks(Critter& cr, int,int,int)
+{
+	Map@ map = cr.GetMap();
+	if(valid(map))
+		SpawnHubBooks(map);
+}
+
 void r_BeginQuest(Critter& player, Critter@ npc)
 {
 

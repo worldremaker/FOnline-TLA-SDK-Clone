@@ -1,7 +1,7 @@
 #ifndef __VARS__
 #define __VARS__
 /*************************************************************************************
-***  VARS  *****  COUNT: 00000540  ***************************************************
+***  VARS  *****  COUNT: 00000541  ***************************************************
 *************************************************************************************/
 
 
@@ -311,6 +311,7 @@
 #define LVAR_ncr_crv_reset_counter                   (4290)
 #define LVAR_ncr_books_quest_next_reset              (4291)
 #define LVAR_q_ncr_hate_patrol                       (4292)
+#define GVAR_ncr_hate_patrol_timeout                 (4293)
 #define LVAR_q_redd_wade_caravan_escort              (4300)
 #define LVAR_q_redd_savinel_caravan_escort           (4301)
 #define LVAR_q_redd_stan_caravan_escort              (4302)
@@ -3249,6 +3250,11 @@ q_ncr_hate_patrol
 9) Еще один патруль. Удачи!
 10)Очередной патруль завершен. Обратитесь к капралу за наградой.
 11)Вы успешно выполнили задание капрала Хейта и получили награду.
+**********
+
+$	4293	0	ncr_hate_patrol_timeout	0	0	0	4
+**********
+таймаут на повторное взятие квеста патруль нкр
 **********
 
 $	4300	1	q_redd_wade_caravan_escort	0	0	11	1
