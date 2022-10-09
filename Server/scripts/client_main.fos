@@ -28,6 +28,7 @@ import bool CritterGenerateCheck(int[]& data) from "parameters";
 import void InitNameColorizing() from "name_colorizing";
 import bool TryColorizeCritter(CritterCl& cr) from "name_colorizing";
 import bool PlayerIgnored(CritterCl& cr) from "ignore_list";
+import bool IgnorePlayer(string& message) from "ignore_list";
 import void InitIgnoreList() from "ignore_list";
 import void InitChosenTabs() from "chosen_tabs";
 import void DrawChosenTabs() from "chosen_tabs";
@@ -344,6 +345,13 @@ bool out_message(string& message, int& sayType)
 			RunServerScriptUnsafe("nopvp_maps@unsafe_CritterToGlobal",0,0,0,null,null);
 			return false;
 		}
+		if(message.length() > 8 && substring(message, 0, 8) == "~ignore ")
+		{
+			IgnorePlayer(message);
+			InitIgnoreList();
+			return false;
+		}
+			
 		return true;
 	}
 
