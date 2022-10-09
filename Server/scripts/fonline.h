@@ -1320,6 +1320,11 @@ struct MapObject
 	uint16 MapY;
 	int16  Dir;
 
+	uint   UID;
+	uint   ContainerUID;
+	uint   ParentUID;
+	uint   ParentChildIndex;
+
 	uint   LightRGB;
 	uint8  LightDay;
 	uint8  LightDirOff;
@@ -1355,13 +1360,11 @@ struct MapObject
 			uint   PicInvHash;
 
 			uint   Count;
+			uint8  ItemSlot;
 
 			uint8  BrokenFlags;
 			uint8  BrokenCount;
 			uint16 Deterioration;
-
-			bool   InContainer;
-			uint8  ItemSlot;
 
 			uint16 AmmoPid;
 			uint   AmmoCount;
@@ -1453,6 +1456,7 @@ struct ProtoMap
 	} Header;
 
 	MapObjectVec MObjects;
+	uint         LastObjectUID;
 
 	struct Tile
 	{
@@ -1480,6 +1484,7 @@ struct ProtoMap
 	}
 #endif
 
+#ifdef __SERVER
 	SceneryToClientVec WallsToSend;
 	SceneryToClientVec SceneriesToSend;
 	uint HashTiles;
@@ -1491,6 +1496,7 @@ struct ProtoMap
 	MapObjectVec SceneriesVec;
 	MapObjectVec GridsVec;
 	uint8*       HexFlags;
+#endif
 
 	EntiresVec MapEntires;
 
@@ -1548,6 +1554,8 @@ struct Map
 
 	uint16 GetMaxHexX()                       {return Proto->Header.MaxHexX;}
 	uint16 GetMaxHexY()                       {return Proto->Header.MaxHexY;}
+
+#ifdef __SERVER
 	bool   IsHexTrigger(uint16 hx, uint16 hy) {return FLAG(Proto->HexFlags[hy*GetMaxHexX() + hx], FH_TRIGGER);}
 	bool   IsHexTrap(uint16 hx, uint16 hy)    {return FLAG(HexFlags[hy * GetMaxHexX() + hx], FH_WALK_ITEM);}
 	bool   IsHexCritter(uint16 hx, uint16 hy) {return FLAG(HexFlags[hy * GetMaxHexX() + hx], FH_CRITTER | FH_DEAD_CRITTER);}
@@ -1555,6 +1563,7 @@ struct Map
 	uint16 GetHexFlags(uint16 hx, uint16 hy)  {return (HexFlags[hy * GetMaxHexX() + hx] <<8 ) | Proto->HexFlags[hy * GetMaxHexX() + hx];}
 	bool   IsHexPassed(uint16 hx, uint16 hy)  {return !FLAG(GetHexFlags(hx, hy), FH_NOWAY);}
 	bool   IsHexRaked(uint16 hx, uint16 hy)   {return !FLAG(GetHexFlags(hx, hy), FH_NOSHOOT);}
+#endif
 };
 
 struct ProtoLocation
@@ -1825,10 +1834,13 @@ inline void static_asserts()
 	STATIC_ASSERT(offsetof(CritterCl, ItemSlotArmor)        == 4288);
 	STATIC_ASSERT(offsetof(MapEntire, Dir)                  == 8   );
 	STATIC_ASSERT(offsetof(SceneryToClient, Reserved1)      == 30  );
-	STATIC_ASSERT(offsetof(ProtoMap, HexFlags)              == 332 );
 	STATIC_ASSERT(offsetof(Map, RefCounter)                 == 794 );
 	STATIC_ASSERT(offsetof(ProtoLocation, GeckVisible)      == 92  );
 	STATIC_ASSERT(offsetof(Location, RefCounter)            == 286 );
+
+#ifdef __SERVER
+	STATIC_ASSERT(offsetof(ProtoMap, HexFlags)              == 336 );
+#endif
 }
 
 #endif // __FONLINE__

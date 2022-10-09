@@ -98,12 +98,16 @@
 // void    TabSetName(int tab, string@+ subName)
 
 /// MapperObject
-/// Shared parameters
-// const   uint8 MapObjType
-// const   uint16 ProtoId
-// const   uint16 MapX
-// const   uint16 MapY
+// Shared parameters
+// const uint8  MapObjType
+// const uint16 ProtoId
+// const uint16 MapX
+// const uint16 MapY
 // uint8   Dir
+// const uint UID;
+// const uint ContainerUID;
+// const uint ParentUID;
+// const uint ParentChildIndex;
 // string  ScriptName
 // string  FuncName
 // uint    LightColor
