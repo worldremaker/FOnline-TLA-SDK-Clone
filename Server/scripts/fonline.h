@@ -3,7 +3,7 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 02.03.2011
+// Last update 03.03.2011
 // Server version 411, MSVS2008
 // Default calling convention - cdecl
 //
@@ -540,15 +540,15 @@ struct CritterType
 	char SoundName[64];
 	uint Alias;
 	uint Multihex;
+	int  AnimType;
 
-	bool Is3d;
 	bool CanWalk;
 	bool CanRun;
 	bool CanAim;
 	bool CanArmor;
 	bool CanRotate;
 
-	bool Anim1[37]; // _ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
+	bool Anim1[37]; // A..Z 0..9
 };
 
 struct ProtoItem
@@ -629,7 +629,6 @@ struct ProtoItem
 		struct
 		{
 			bool   NoWear;
-			bool   IsNeedAct;
 
 			bool   IsUnarmed;
 			uint8  UnarmedTree;
@@ -752,7 +751,6 @@ struct ProtoItem
 	bool   LockerIsChangeble() {if(IsDoor()) return true; if(IsContainer()) return Container.Changeble!=0; return false;}
 	bool   IsGrouped()         {return IsDrug() || IsAmmo() || IsMisc() || (IsWeapon() && WeapIsGrouped());}
 	bool   IsWeared()          {return Type == ITEM_ARMOR || (Type == ITEM_WEAPON && WeapIsWeared());}
-	bool   WeapIsNeedAct()     {return Weapon.IsNeedAct;}
 	bool   WeapIsWeared()      {return !Weapon.NoWear;}
 	bool   WeapIsGrouped()     {return Weapon.NoWear;}
 	bool   IsCanPickUp()       {return FLAG(Flags, ITEM_CAN_PICKUP);}
