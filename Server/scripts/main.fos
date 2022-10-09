@@ -102,6 +102,9 @@ bool start()
 	SetSendParameter(ST_HANDS_ITEM_AND_MODE,true);
 	// Scale factor
 	SetSendParameter(ST_SCALE_FACTOR,true);
+	// Walk / Run speed
+	SetSendParameter(ST_WALK_TIME,true);
+	SetSendParameter(ST_RUN_TIME,true);
 
 	// Send item data masks
 	//              SortValue Info Reserved0 PicMapHash   PicInvHash   AnimWaitBase AnimStay[2] AnimShow[2] AnimHide[2] Flags        Rate LightIntensity LightDistance LightFlags LightColor   ScriptId TrapValue Count        Cost         ScriptValues[10]                                                                          Shared data 8 bytes

@@ -36,7 +36,7 @@
 #define ANIM1_CROUCH                 (0x0100)
 #define ANIM1_PRONE                  (0x0200)
 #define ANIM1_SHIELD                 (0x1000) // Arcanum
-#define ANIM1_PALETTE #(num)         (((num) & 5) << (ANIM1_FLAGS_BITS + 8)) // Arcanum
+#define ANIM1_PALETTE #(num)         (((num) & 3) << (ANIM1_FLAGS_BITS + 8)) // Arcanum
 	// Weapons
 #define ANIM1_UNARMED                (1) // Hardcoded
 #define ANIM1_KNIFE                  (4)

@@ -278,7 +278,7 @@ string@ ProcessArcanum(uint crType, uint anim1, uint anim2, uint& pass, uint& fl
 
 	// Check palette index
 	uint palette = anim1 >> (ANIM1_FLAGS_BITS + 8);
-	palette &= 5; // Clamp to 0..3
+	palette &= 3; // Clamp to 0..3
 
 	// Check Shield flag
 	if(anim1 & ANIM1_SHIELD != 0)
@@ -409,7 +409,7 @@ string@ ProcessArcanum(uint crType, uint anim1, uint anim2, uint& pass, uint& fl
 ///z - crafting (only one file found, hmmbsxaz.ART)
 
 	// Append palette
-//	if(palette != 0) animName += "$" + palette;
+	if(palette != 0) animName += "$" + palette;
 
 	animName += ".art";
 	return animName;

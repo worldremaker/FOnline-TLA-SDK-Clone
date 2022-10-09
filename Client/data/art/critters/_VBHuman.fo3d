@@ -1,4 +1,3 @@
-
 #
 # VanBuren humans template
 #
@@ -779,7 +778,7 @@ Anim Anim1Knife Anim2IdleStunned     %anim_file% %anim%_Com_1H_Stunned_01
 Anim Anim1Knife Anim2Walk            %anim_file% %anim%_Com_1H_Walk_01
 Anim Anim1Knife Anim2ShowWeapon      %anim_file% %anim%_Com_1H_Equip_01
 Anim Anim1Knife Anim2HideWeapon      %anim_file% %anim%_Com_1H_Unequip_01
-Anim Anim1Knife Anim2Fidget1         %anim_file% %anim%_Def_1H_Fidget_01
+Anim Anim1Knife Anim2Fidget          %anim_file% %anim%_Def_1H_Fidget_01
 Anim Anim1Knife Anim2BeginCombat     %anim_file% %anim%_Def_1H_to_Com_01
 Anim Anim1Knife Anim2IdleCombat      %anim_file% %anim%_Com_1H_Idle_01
 Anim Anim1Knife Anim2EndCombat       %anim_file% %anim%_Com_1H_to_Def_01
@@ -814,7 +813,7 @@ Anim Anim1HeavyRifle Anim2IdleStunned     %anim_file% %anim%_Com_2HH_Stunned_01
 Anim Anim1HeavyRifle Anim2Walk            %anim_file% %anim%_Com_2HH_Walk_01
 Anim Anim1HeavyRifle Anim2ShowWeapon      %anim_file% %anim%_Com_2HH_Equip_01
 Anim Anim1HeavyRifle Anim2HideWeapon      %anim_file% %anim%_Com_2HH_Unequip_01
-Anim Anim1HeavyRifle Anim2Fidget1         %anim_file% %anim%_Def_2HH_Fidget_01
+Anim Anim1HeavyRifle Anim2Fidget          %anim_file% %anim%_Def_2HH_Fidget_01
 Anim Anim1HeavyRifle Anim2BeginCombat     %anim_file% %anim%_Def_2HH_to_Com_01
 Anim Anim1HeavyRifle Anim2IdleCombat      %anim_file% %anim%_Com_2HH_Idle_01
 Anim Anim1HeavyRifle Anim2EndCombat       %anim_file% %anim%_Com_2HH_to_Def_01

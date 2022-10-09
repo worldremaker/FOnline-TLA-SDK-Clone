@@ -1674,7 +1674,22 @@ void Shield(Critter& cr, int on, int, int)
 		cr.SetAnims(0, 0, 0);
 }
 
+void Palette(Critter& cr, int index, int, int)
+{
+	cr.SetAnims(0, ANIM1_PALETTE(index), 0);
+}
 
+void SetWalk(Critter& cr, int time, int off, int)
+{
+	cr.StatBase[ST_WALK_TIME] = time;
+	cr.ModeBase[MODE_NO_WALK] = off;
+}
+
+void SetRun(Critter& cr, int time, int off, int)
+{
+	cr.StatBase[ST_RUN_TIME] = time;
+	cr.ModeBase[MODE_NO_RUN] = off;
+}
 
 
 

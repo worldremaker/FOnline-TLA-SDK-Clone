@@ -306,7 +306,7 @@
 #pragma crdata "Addiction    470 476"
 #pragma crdata "Karma        480 497"
 #pragma crdata "Damage       500 506"
-#pragma crdata "Mode         510 538"
+#pragma crdata "Mode         510 549"
 #pragma crdata "Trait        550 565"
 #pragma crdata "Reputation   570 599"
 //#pragma crdata "GoodEvilList 600 799"
@@ -433,9 +433,11 @@
 #define ST_BASE_CRTYPE              (112) // Hardcoded
 #define ST_DEAD_BLOCKER_ID          (113)
 #define ST_CURRENT_ARMOR_PERK       (114)
-#define ST_TALK_DISTANCE            (115) // Hardcoded; if zero than taked __TalkDistance
+#define ST_TALK_DISTANCE            (115) // Hardcoded, if zero than taked __TalkDistance
 #define ST_SCALE_FACTOR             (116) // Hardcoded
-// 117..149
+#define ST_WALK_TIME                (117) // Hardcoded
+#define ST_RUN_TIME                 (118) // Hardcoded
+// 119..149
 #ifdef PLAYERS_3D
 	// Initial values of animation 3d layers
 #define ST_ANIM3D_LAYERS            (150) // Hardcoded
@@ -671,7 +673,7 @@
 
 	/// Modes
 #define MODE_BEGIN                 (510)
-#define MODE_END                   (538)
+#define MODE_END                   (549)
 #define MODE_COUNT                 (MODE_END-MODE_BEGIN+1)
 #define MODE_HIDE                   (510) // Состояние скрытности                                   Hardcoded
 #define MODE_NO_STEAL               (511) // Нельзя обворовать                                      Hardcoded
@@ -697,12 +699,14 @@
 #define MODE_NO_KNOCK               (531) // Не может быть сбит с ног
 #define MODE_NO_LOOT                (532) // Нельзя лутать                                          Hardcoded
 #define MODE_NO_SUPPLY              (533) // Не приходят охотники за головами при смерти нпц
-#define MODE_NO_KARMA_ON_KILL       (534) // При смерти не производится перерасчета кармы игрока-убийцы.
-#define MODE_BARTER_ONLY_CASH       (535) // При бартере нпц принимает оплату только наличными.
+#define MODE_NO_KARMA_ON_KILL       (534) // При смерти не производится перерасчета кармы игрока-убийцы
+#define MODE_BARTER_ONLY_CASH       (535) // При бартере нпц принимает оплату только наличными
 #define MODE_NO_PUSH                (536) // Can't be pushed                                        Hardcoded
 #define MODE_NO_UNARMED             (537) // Not have unarmed attacks                               Hardcoded
 #define MODE_NO_AIM                 (538) // Critter can't do aim attacks                           Hardcoded
-// 539..549
+#define MODE_NO_WALK                (539) // Critter can't walk                                     Hardcoded
+#define MODE_NO_RUN                 (540) // Critter can't run                                      Hardcoded
+// 541..549
 
 	/// Traits
 #define TRAIT_BEGIN                (__TraitBegin)
