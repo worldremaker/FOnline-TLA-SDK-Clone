@@ -27,7 +27,7 @@ bool _Bah(Critter& br, Critter& target)
 	// Kill brahmin
 	Map@ map = br.GetMap();
 	br.Say(SAY_SHOUT, "Mooo");
-	br.ToDead(COND_DEAD_EXPLODE, null);
+	br.ToDead(ANIM2_DEAD_EXPLODE, null);
 	ExplodeEx(map, br.HexX, br.HexY, PID_EXPLODE_ROCKET, 2, Random(30, 60), DAMAGE_EXPLODE, 2, 0);
 
 	// Create new

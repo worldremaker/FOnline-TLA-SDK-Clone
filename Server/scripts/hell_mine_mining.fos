@@ -22,7 +22,7 @@ bool s_MG(Critter& cr, Scenery& sc, int skill, Item@ item) // Mine Gold
 	}
 	else
 	{
-		cr.Animate(ANIM1_HAMMER, ANIM2_2D_SWING, null, true, true);
+		cr.Animate(ANIM1_HAMMER, ANIM2_SWING_1H, null, true, true);
 	}
 
 	int successChance = (cr.Stat[ST_ENDURANCE)+cr.Stat[ST_STRENGTH) * 4);
@@ -60,7 +60,7 @@ bool s_Mine(Critter& cr, Scenery& sc, int skill, Item@ item)
 	}
 	else
 	{
-		cr.Animate(ANIM1_HAMMER, ANIM2_2D_SWING, null, true, true);
+		cr.Animate(ANIM1_HAMMER, ANIM2_SWING_1H, null, true, true);
 	}
 
 	int successChance = (cr.Stat[ST_LUCK]) * 10;

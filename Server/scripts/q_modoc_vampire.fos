@@ -17,7 +17,7 @@
 #define QVAMP_VAMP_KILLED      (8) // статус квеста: Игрок убил вампира.
 #define ENTIRE_SPAWN_BAT       (33) // Номер гекса, на котором появится летучая мышь. (ферма)
 #define ENTIRE_MOVETO_BAT      (34) // Номер гекса, к которому отправится летучая мышь.
-#define NPC_PID_BAT            (NPC_PID_VBBat) 
+#define NPC_PID_BAT            (NPC_PID_VBBat)
 #define STR_SEENPLAYER         (5970) // Номер строки из файла FOTEXT, которую произносит мышь.
 #define STR_NOT_NIGHT          (5971) // Отличное место для наблюдений. Осталось дождаться ночи и выяснить, что происходит с браминами.
 #define STR_DONT_SHOOT         (5972) // Не стреляй, давай поговорим!
@@ -29,7 +29,7 @@ import void SetLocationDeleteTime(Location& loc, uint time) from "location";
 import void _DeletableMapInit(Map& map, bool firstTime) from "location";
 import bool GetNearEntire(Map& map, int number, uint16& hx, uint16& hy) from "entire";
 import bool AddWalkPlane(Critter& npc, uint priority, uint16 hexX, uint16 hexY, uint8 dir, bool run, uint cut) from "npc_planes";
- 
+
 // Отображение локации "Ферма с вампиром" для игрока.
 void r_ShowVampireFarm(Critter& player, Critter@ npc)
 {
@@ -47,8 +47,8 @@ void r_ShowVampireFarm(Critter& player, Critter@ npc)
 void _VampireFarmInit(Map& map, bool firstTime)
 {
 	map.SetLoopTime(1, 65000);
-	_DeletableMapInit(map, firstTime); 
-	map.SetEvent(MAP_EVENT_FINISH, "_VampireFarmFinish");	
+	_DeletableMapInit(map, firstTime);
+	map.SetEvent(MAP_EVENT_FINISH, "_VampireFarmFinish");
 }
 
 void _VampireFarmFinish(Map& map, bool deleted)
@@ -66,7 +66,7 @@ void _VampireFarmFinish(Map& map, bool deleted)
 		if(valid(qVar) && qVar == QVAMP_FARM_KNOWN)
 		{
 			qVar = 0;
-		}		
+		}
 	}
 }
 
@@ -74,7 +74,7 @@ void _VampireFarmFinish(Map& map, bool deleted)
 void _BrahminInit(Critter& cr, bool firstTime)
 {
 	cr.StatBase[ST_DIALOG_ID] = DIALOG_mob_ill_brahmin;
-	cr.ToKnockout(true, 1000, cr.HexX, cr.HexY);
+	cr.ToKnockout(KNOCKOUT_ANIM2_DEFAULT(true), 1000, cr.HexX, cr.HexY);
 }
 
 // Триггер, переключающий статус квеста. Должны быть расположены на карте в линию
@@ -155,13 +155,13 @@ void _VampireCaveInit(Map& map, bool firstTime)
 		Location@ loc = map.GetLocation();
 		if(!valid(loc))
 			return;
-		SetLocationDeleteTime(loc, GAME_WEEK(2));	
+		SetLocationDeleteTime(loc, GAME_WEEK(2));
 		loc.AutoGarbage = false;
 	}
-	
+
 	map.SetLoopTime(1, 65000);
 	map.SetEvent(MAP_EVENT_IN_CRITTER, "_VampireCaveInCritter");
-	_DeletableMapInit(map, firstTime); 		
+	_DeletableMapInit(map, firstTime);
 }
 
 
@@ -229,7 +229,7 @@ uint r_TryCureVampire(Critter& cr, Critter@ npc, int val)
 	else if(activePid==PID_PARAMEDICS_BAG)
 	{
 		sk += 50;
-		if(Random(0,30)==0) 
+		if(Random(0,30)==0)
 			cr.DeleteItem(PID_PARAMEDICS_BAG,1);
 	}
 	if(sk >= 80)

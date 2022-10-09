@@ -41,7 +41,7 @@ void _TurretInit(Critter& turret, bool firstTime)
 
 uint cte_KillTurret(Critter& cr, int identifier, uint& rate)
 {
-	if(!cr.IsDead()) cr.ToDead(COND_DEAD_FRONT,null);
+	if(!cr.IsDead()) cr.ToDead(ANIM2_DEAD_FRONT,null);
 	return TIME_TO_DEATH;
 }
 

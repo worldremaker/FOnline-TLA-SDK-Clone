@@ -9,7 +9,7 @@
 void _DeadInit(Critter& cr, bool firstTime)
 {
 	if (!cr.IsDead())
-		cr.ToDead(COND_DEAD_LASER, null);
+		cr.ToDead(ANIM2_DEAD_LASER, null);
 	cr.StatBase[ST_REPLICATION_TIME]=-1;
 	if (firstTime)
 	{
@@ -26,7 +26,7 @@ void _DungeonInit(Map& map, bool firstTime)
 {
 	if (!firstTime)
 		return;
-	
+
 	Item@[] chests;
 	if (map.GetItems(PID_CHEST, chests)>0)
 	{

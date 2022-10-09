@@ -36,7 +36,7 @@ void _GhostInit(Critter& ghost, bool firstTime)
 	}
 	else if (ghost.Cond != COND_DEAD && GetGhostIsDead() == GHOST_DEAD)
 	{
-		ghost.ToDead(COND_DEAD_BURN_RUN,null);
+		ghost.ToDead(ANIM2_DEAD_BURN_RUN,null);
 	}
 
 	ghost.SetEvent(CRITTER_EVENT_ATTACKED, "_GhostAttacked");
@@ -114,7 +114,7 @@ void r_KillGhost(Critter& player, Critter@ ghost, int val)
 	// confirm that ghost killed through quest dialog
 	SetGhostIsDead(GHOST_DEAD);
 	// kill ghost
-	ghost.ToDead(COND_DEAD_BURN_RUN,null);
+	ghost.ToDead(ANIM2_DEAD_BURN_RUN,null);
 	// run new dialog through time event
 	CreateTimeEvent(__FullSecond + 60, "e_RunTreasureDialog", player.Id, false);
 }

@@ -116,7 +116,7 @@ void _FuncName(Critter& cr, Item& item)
 void _FuncName(Critter& cr, Item& item, uint8 fromSlot)
 // При смене позиции у итема.
 	// CRITTER_EVENT_KNOCKOUT
-void _FuncName(Critter& cr, bool faceUp, uint lostAp, uint knockDist)
+void _FuncName(Critter& cr, uint anim2begin, uint anim2idle, uint anim2end, uint lostAp, uint knockDist)
 // При уходе в накаут.
 	// CRITTER_EVENT_SMTH_DEAD
 void _FuncName(Critter& cr, Critter& fromCr, Critter@ killer)
@@ -144,7 +144,7 @@ void _FuncName(Critter& cr, Critter& fromCr, Item& item)
 void _FuncName(Critter& cr, Critter& fromCr, Item& item, uint8 fromSlot)
 // Когда криттер в области видимости меняет местоположение итема. См. CRITTER_EVENT_MOVE_ITEM.
 	// CRITTER_EVENT_SMTH_KNOCKOUT
-void _FuncName(Critter& cr, Critter& fromCr, bool faceUp, uint loastAp, uint knockDist)
+void _FuncName(Critter& cr, Critter& fromCr, uint anim2begin, uint anim2idle, uint anim2end, uint lostAp, uint knockDist)
 // Когда криттер в области видимости уходит в накаут. См. CRITTER_EVENT_KNOCKOUT.
 	// CRITTER_EVENT_PLANE_BEGIN
 int _FuncName(Critter& cr, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem)

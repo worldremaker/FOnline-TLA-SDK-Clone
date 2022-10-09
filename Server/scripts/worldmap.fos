@@ -828,7 +828,7 @@ void ParseEncounterObject(CEncounterObject@ obj, Map@ map, uint16 posX, uint16 p
 
 		if(obj.Dead)
 		{
-			npc.ToDead(Random(0,1)==0?COND_DEAD_FRONT:COND_DEAD_BACK,null);
+			npc.ToDead(Random(0,1)==0?ANIM2_DEAD_FRONT:ANIM2_DEAD_BACK,null);
 		}
 		else
 		{

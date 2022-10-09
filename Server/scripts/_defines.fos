@@ -65,28 +65,9 @@
 #define DLGSTR #(dialogId,strNum)   (1000000000+(dialogId)*100000+(strNum))
 
 // Critter conditions
-#define COND_LIFE                   (1) // Криттер жив
-#define COND_KNOCKOUT               (2) // Криттер упал
-#define COND_DEAD                   (3) // Криттер умер
-#define COND_NOT_IN_GAME            (4) // Криттер не в игре
-	// Conditions Ex
-		// COND_KNOCKOUT
-#define COND_KNOCKOUT_FRONT         (1)
-#define COND_KNOCKOUT_BACK          (2)
-		// COND_DEAD
-#define COND_DEAD_FRONT             (1)
-#define COND_DEAD_BACK              (2)
-#define COND_DEAD_BURST             (3)
-#define COND_DEAD_BLOODY_SINGLE     (4)
-#define COND_DEAD_BLOODY_BURST      (5)
-#define COND_DEAD_PULSE             (6)
-#define COND_DEAD_PULSE_DUST        (7)
-#define COND_DEAD_LASER             (8)
-#define COND_DEAD_EXPLODE           (9)
-#define COND_DEAD_FUSED             (10)
-#define COND_DEAD_BURN              (11)
-#define COND_DEAD_BURN2             (12)
-#define COND_DEAD_BURN_RUN          (13)
+#define COND_LIFE                   (1)
+#define COND_KNOCKOUT               (2)
+#define COND_DEAD                   (3)
 
 // Gender
 #define GENDER_MALE                 (0)
@@ -284,10 +265,10 @@
 #define ACTION_DODGE                (14) //          0 - front, 1 - back
 #define ACTION_DAMAGE               (15) //          0 - front, 1 - back
 #define ACTION_DAMAGE_FORCE			(24) //          0 - front, 1 - back
-#define ACTION_KNOCKOUT             (16) //   s      0 - front, 1 - back
-#define ACTION_STANDUP              (17) //   s
+#define ACTION_KNOCKOUT             (16) //   s      0 - knockout anim2begin
+#define ACTION_STANDUP              (17) //   s      0 - knockout anim2end
 #define ACTION_FIDGET               (18) // l
-#define ACTION_DEAD                 (19) //   s      dead type (see COND_DEAD_*)
+#define ACTION_DEAD                 (19) //   s      dead type anim2 (see Anim2 in _animation.fos)
 #define ACTION_CONNECT              (20) //
 #define ACTION_DISCONNECT           (21) //
 #define ACTION_RESPAWN              (22) //   s
@@ -1167,6 +1148,9 @@
 #define CRTYPE_3D_THORN_SLINGER     (314)
 #define CRTYPE_3D_WASP_GIANT        (315)
 #define CRTYPE_3D_WEEDLING          (316)
+	// Arcanum
+#define CRTYPE_ARCANUM_GEN_CR_BEGIN (600)
+#define CRTYPE_ARCANUM_GEN_CR_END   (699)
 
 // Global map events
 #define GLOBAL_PROCESS_MOVE         (0)

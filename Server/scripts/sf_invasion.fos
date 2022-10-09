@@ -107,7 +107,7 @@ void _DeadPaladinInit(Critter& cr, bool firstTime)
 	}
 	if(not cr.IsDead())
 	{
-		cr.ToDead(Random(COND_DEAD_BURST,COND_DEAD_EXPLODE), null);
+		cr.ToDead(Random(ANIM2_DEAD_BURST,ANIM2_DEAD_EXPLODE), null);
 	}
 	cr.StatBase[ST_REPLICATION_TIME] = -1;
 }

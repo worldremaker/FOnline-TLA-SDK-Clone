@@ -298,7 +298,7 @@ void r_GotoHunter(Critter& player, Critter@ npc, int val)
 	c=GetCrittersByRole(map,x,y,20,2,critters);//r17 - не въехал, кто это с NPC_ROLE = 2, таких нет на карте
 	DL("cr after adding npc2"+c.length());//r17
 	for(uint i=0;i<critters.length();i++)
-		critters[i].ToDead(COND_DEAD_BLOODY_SINGLE, null);
+		critters[i].ToDead(ANIM2_DEAD_BLOODY_SINGLE, null);
 
 	critters.resize(0);
 	c=GetCrittersByRole(map,x,y,20,1,critters);
@@ -412,7 +412,7 @@ void r_GotoHunter(Critter& player, Critter@ npc, int val)
 
 	for(uint i=0;i<critters.length();i++)
 	{
-		critters[i].ToDead(COND_DEAD_BLOODY_SINGLE, null);
+		critters[i].ToDead(ANIM2_DEAD_BLOODY_SINGLE, null);
 		critters[i].StatBase[ST_REPLICATION_TIME] = 60 * 24 * 365;
 	}
 	critters.resize(0);

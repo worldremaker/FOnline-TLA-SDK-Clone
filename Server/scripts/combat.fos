@@ -1388,15 +1388,21 @@ void ApplyDamage(AttackStruct &attack, Critter &target, uint rounds, bool isCrit
   if(isDead)
   {
     bool burst=attack.IsBurst;
-    uint8 deadType;
+    uint deadType;
 
-    if(target.IsKnockout()) deadType=target.CondExt;
+    if(target.IsKnockout())
+    {
+    	if(target.Anim2Knockout==ANIM2_KNOCK_FRONT || target.Anim2Knockout==ANIM2_LAYDOWN_FRONT)
+			deadType=ANIM2_DEAD_PRONE_FRONT;
+		else
+			deadType=ANIM2_DEAD_PRONE_BACK;
+    }
     else
     {
       if(attackFront)
-        deadType=COND_DEAD_FRONT;
+        deadType=ANIM2_DEAD_FRONT;
       else
-        deadType=COND_DEAD_BACK;
+        deadType=ANIM2_DEAD_BACK;
 
       switch(dmgType)
       {
@@ -1405,31 +1411,30 @@ void ApplyDamage(AttackStruct &attack, Critter &target, uint rounds, bool isCrit
       case DAMAGE_NORMAL:
         if(burst)
         {
-          if(isCritical || isBloodyMess) deadType=COND_DEAD_BLOODY_BURST;
-          else deadType=COND_DEAD_BURST;
+          if(isCritical || isBloodyMess) deadType=ANIM2_DEAD_BLOODY_BURST;
+          else deadType=ANIM2_DEAD_BURST;
         }
         else
         {
-          if(isCritical || isBloodyMess) deadType=COND_DEAD_BLOODY_SINGLE;
+          if(isCritical || isBloodyMess) deadType=ANIM2_DEAD_BLOODY_SINGLE;
         }
         break;
       case DAMAGE_LASER:
-        deadType=COND_DEAD_LASER;
+        deadType=ANIM2_DEAD_LASER;
         break;
       case DAMAGE_FIRE:
-        if(Random(0,2)==0) deadType=COND_DEAD_BURN;
-        else if(Random(0,1)==0) deadType=COND_DEAD_BURN2;
-        else deadType=COND_DEAD_BURN_RUN;
+        if(Random(0,1)==0) deadType=ANIM2_DEAD_BURN;
+        else deadType=ANIM2_DEAD_BURN_RUN;
         break;
       case DAMAGE_PLASMA:
-        deadType=COND_DEAD_FUSED;
+        deadType=ANIM2_DEAD_FUSED;
         break;
       case DAMAGE_ELECTR:
-        if(Random(0,1)==0) deadType=COND_DEAD_PULSE;
-        else deadType=COND_DEAD_PULSE_DUST;
+        if(Random(0,1)==0) deadType=ANIM2_DEAD_PULSE;
+        else deadType=ANIM2_DEAD_PULSE_DUST;
         break;
       case DAMAGE_EXPLODE:
-        deadType=COND_DEAD_EXPLODE;
+        deadType=ANIM2_DEAD_EXPLODE;
         break;
       default:
         break;
@@ -1478,13 +1483,13 @@ void ApplyDamage(AttackStruct &attack, Critter &target, uint rounds, bool isCrit
         if (knockDist>0)
         {
           map.GetHexCoordWall(target.HexX, target.HexY, knockHx, knockHy, 180.0f, knockDist);
-          target.ToKnockout(attackFront,0,knockHx,knockHy);
+          target.ToKnockout(KNOCKOUT_ANIM2_DEFAULT(attackFront),0,knockHx,knockHy);
         }
         else
-          target.ToKnockout(attackFront,0,target.HexX,target.HexY);
+          target.ToKnockout(KNOCKOUT_ANIM2_DEFAULT(attackFront),0,target.HexX,target.HexY);
       }
       else
-        target.ToKnockout(attackFront,0,target.HexX,target.HexY);
+        target.ToKnockout(KNOCKOUT_ANIM2_DEFAULT(attackFront),0,target.HexX,target.HexY);
     }
     if (targetAp < currentAp) target.StatBase[ST_CURRENT_AP]=100*targetAp;
   }
@@ -1783,7 +1788,7 @@ void CriticalFailure(Critter &cr, ProtoItem& weapon, uint8 weaponUse, ProtoItem@
 
   if (FLAG(eff,MF_LOST_NEXT_TURN)) { cr.StatBase[ST_CURRENT_AP]=-100*cr.Stat[ST_ACTION_POINTS]; cr.StatBase[ST_MOVE_AP]=0;}
 
-  if (FLAG(eff,MF_KNOCKED_DOWN) && !cr.IsKnockout()) cr.ToKnockout(true,cr.Perk[PE_QUICK_RECOVERY]!=0?1:3,cr.HexX,cr.HexY);
+  if (FLAG(eff,MF_KNOCKED_DOWN) && !cr.IsKnockout()) cr.ToKnockout(KNOCKOUT_ANIM2_DEFAULT(true),cr.Perk[PE_QUICK_RECOVERY]!=0?1:3,cr.HexX,cr.HexY);
 
   if (FLAG(eff, MF_CRIPPLED_RANDOM_LIMB) && cr.Mode[MODE_NO_LOOSE_LIMBS]==0)
   {
@@ -1814,10 +1819,10 @@ void CriticalFailure(Critter &cr, ProtoItem& weapon, uint8 weaponUse, ProtoItem@
 
   if(cr.Stat[ST_CURRENT_HP]<1)
   {
-    if(cr.Stat[ST_CURRENT_HP]>__DeadHitPoints && cr.Mode[MODE_NO_KNOCK]==0) { if (!cr.IsKnockout()) cr.ToKnockout(true,0,cr.HexX,cr.HexY); }
+    if(cr.Stat[ST_CURRENT_HP]>__DeadHitPoints && cr.Mode[MODE_NO_KNOCK]==0) { if (!cr.IsKnockout()) cr.ToKnockout(KNOCKOUT_ANIM2_DEFAULT(true),0,cr.HexX,cr.HexY); }
     else
     {
-      cr.ToDead(COND_DEAD_FRONT,null);
+      cr.ToDead(ANIM2_DEAD_FRONT,null);
       allEff[2]|=MF_WAS_KILLED;
     }
   }

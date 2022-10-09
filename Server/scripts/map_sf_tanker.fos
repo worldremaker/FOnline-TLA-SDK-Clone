@@ -155,7 +155,7 @@ void r_GrantPlayer(Critter & player, Critter @ npc)
 //  вестовые мертвые панки
 void _DeadsInit(Critter & cr, bool firstTime)
 {
-	if(!cr.IsDead()) cr.ToDead(COND_DEAD_FRONT,null);
+	if(!cr.IsDead()) cr.ToDead(ANIM2_DEAD_FRONT,null);
 	cr.StatBase[ST_REPLICATION_TIME] = -1;
 	cr.SetEvent(CRITTER_EVENT_SMTH_USE_SKILL, "_SmthUseSkill");
 }

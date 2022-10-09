@@ -1619,5 +1619,65 @@ void FixPlayer(Critter& admin, int id, int, int)
 	}
 }
 
+void SetAnim1(Critter& cr, int value, int, int)
+{
+	cr.SetAnims(0, value, 0);
+}
+
+void Pos(Critter& cr, int newPos, int, int)
+{
+	// 0 - stand, 1 - crouch, 2 - prone
+	int curPos = ((cr.Anim1Life & ANIM1_CROUCH) != 0 ? 1 : ((cr.Anim1Life & ANIM1_PRONE) != 0 ? 2 : 0));
+	switch(curPos)
+	{
+	case 0:
+		switch(newPos)
+		{
+		case 1: cr.Animate(0, ANIM2_CROUCH, null, true, true); break;
+		case 2: cr.Animate(0, ANIM2_CROUCH, null, true, true); cr.Animate(ANIM1_CROUCH, ANIM2_PRONE, null, false, true); break;
+		default: break;
+		}
+		break;
+	case 1:
+		switch(newPos)
+		{
+		case 0: cr.Animate(0, ANIM2_STAND, null, true, true); break;
+		case 2: cr.Animate(0, ANIM2_PRONE, null, true, true); break;
+		default: break;
+		}
+		break;
+	case 2:
+		switch(newPos)
+		{
+		case 0: cr.Animate(0, ANIM2_CROUCH, null, true, true); cr.Animate(ANIM1_CROUCH, ANIM2_STAND, null, false, true); break;
+		case 1: cr.Animate(0, ANIM2_CROUCH, null, true, true); break;
+		default: break;
+		}
+		break;
+	default:
+		break;
+	}
+	switch(newPos)
+	{
+	case 0: cr.SetAnims(0, 0, 0);            break;
+	case 1: cr.SetAnims(0, ANIM1_CROUCH, 0); break;
+	case 2: cr.SetAnims(0, ANIM1_PRONE, 0);  break;
+	default: break;
+	}
+}
+
+void Shield(Critter& cr, int on, int, int)
+{
+	if(on != 0)
+		cr.SetAnims(0, ANIM1_SHIELD, 0);
+	else
+		cr.SetAnims(0, 0, 0);
+}
+
+
+
+
+
+
 
 

@@ -1087,7 +1087,7 @@ void critter_dead(Critter& cr, Critter@ killer)
 {
 	Map@ map=cr.GetMap();
 	// Move inventory items to ground
-	if((cr.CondExt==COND_DEAD_PULSE_DUST || cr.CondExt==COND_DEAD_EXPLODE) && _CritCanDropItemsOnDead(cr))
+	if((cr.Anim2Dead==ANIM2_DEAD_PULSE_DUST || cr.Anim2Dead==ANIM2_DEAD_EXPLODE) && _CritCanDropItemsOnDead(cr))
 	{
 		// Drop all, exclude armor
 		Item@[] items;
@@ -1097,7 +1097,7 @@ void critter_dead(Critter& cr, Critter@ killer)
 		if(valid(map))
 		{
 			// Disable drop of hidden items
-			for(uint i=0,j=items.length();i<j;i++) 
+			for(uint i=0,j=items.length();i<j;i++)
 			{
 				if(FLAG(items[i].Flags,ITEM_GAG)) @items[i]=null;
 				else if(FLAG(items[i].Flags,ITEM_HIDDEN)) @items[i]=null;
@@ -1186,7 +1186,7 @@ void critter_change_item(Critter& cr, Item& item, uint8 fromSlot)
 	// Armor changing
 	if(item.GetType()==ITEM_ARMOR && (fromSlot==SLOT_ARMOR || toSlot==SLOT_ARMOR))
 	{
-		if(not cr.IsAnim3d())
+		if(GetCritterAnimType(cr.CrType)!=ANIM_TYPE_3D)
 		{
 			// Default dude
 			bool isMale=(cr.Stat[ST_GENDER]==GENDER_MALE);

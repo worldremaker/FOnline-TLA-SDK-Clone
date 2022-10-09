@@ -1,12 +1,13 @@
 #ifndef __MACROS__
 #define __MACROS__
 
-#include "_defines.fos" // Generic constants
-#include "_math.fos" // Math macros
-#include "_vars.fos" // Game vars
-#include "_maps.fos" // Maps and locations
-#include "_dialogs.fos" // Dialogs
-#include "_itempid.fos" // Items pids
+#include "_defines.fos"   // Generic constants
+#include "_math.fos"      // Math macros
+#include "_vars.fos"      // Game vars
+#include "_maps.fos"      // Maps and locations
+#include "_dialogs.fos"   // Dialogs
+#include "_itempid.fos"   // Items pids
+#include "_animation.fos" // Animations
 
 // Pointer validation macro
 // Example: if(valid(ptr))... if(not valid(ptr))...

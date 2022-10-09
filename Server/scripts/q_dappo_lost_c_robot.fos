@@ -149,7 +149,7 @@ void _DeadMenInit(Critter& npc, bool firstTime)
 	// караванщики мертвы
 	if(not npc.IsDead())
 	{
-		npc.ToDead(COND_DEAD_BURST, null);
+		npc.ToDead(ANIM2_DEAD_BURST, null);
 	}
 	npc.StatBase[ST_REPLICATION_TIME] = -1;
 	npc.StatBase[ST_DIALOG_ID] = DIALOG_all_q_dappo_deadmen;

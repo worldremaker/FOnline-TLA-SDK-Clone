@@ -20,7 +20,7 @@ void r_HaircutToLongHairDude(Critter& player, Critter@ tray)
 	FlushScreen(player,false,500);
 	FlushScreen(player,true,5000);
 
-	if(not player.IsAnim3d())
+	if(GetCritterAnimType(player.CrType)!=ANIM_TYPE_3D)
 	{
 		Item@ armor=player.GetItem(0,SLOT_ARMOR);
 		if(valid(armor)) player.MoveItem(armor.Id,0,SLOT_INV);
@@ -41,7 +41,7 @@ void r_HaircutToDefaultDude(Critter& player, Critter@ kitty)
 	FlushScreen(player,false,500);
 	FlushScreen(player,true,5000);
 
-	if(not player.IsAnim3d())
+	if(GetCritterAnimType(player.CrType)!=ANIM_TYPE_3D)
 	{
 		Item@ armor=player.GetItem(0,SLOT_ARMOR);
 		if(valid(armor)) player.MoveItem(armor.Id,0,SLOT_INV);

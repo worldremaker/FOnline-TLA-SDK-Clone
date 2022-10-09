@@ -13,36 +13,36 @@ import void SetWear(Item& item, int wearProcent) from "repair";
 #define MESSAGE_ATTACK_ME       (32)
 #define PLANE_LOOT              (30)
 
-uint LastDeadId=0;
+uint   LastDeadId = 0;
 uint[] CollectedNpcIds;
 
 void _NpcInit(Critter& npc, bool firstTime)
 {
-	uint bt=npc.Stat[ST_BODY_TYPE];
-	if(bt>=BT_MEN && bt<=BT_GHOUL)
+	uint bt = npc.Stat[ST_BODY_TYPE];
+	if(bt >= BT_MEN && bt <= BT_GHOUL)
 	{
-		npc.SetEvent(CRITTER_EVENT_MESSAGE,"_NpcMessage");
-		npc.SetEvent(CRITTER_EVENT_DEAD,"_NpcDead");
-		npc.SetEvent(CRITTER_EVENT_SMTH_DEAD,"_NpcSmthDead");
-		npc.SetEvent(CRITTER_EVENT_SMTH_USE_SKILL,"_NpcSmthUseSkill");
-		npc.SetEvent(CRITTER_EVENT_PLANE_END,"_NpcPlaneEnd");
-		npc.SetEvent(CRITTER_EVENT_STEALING, "_NpcStealing");
-		npc.SetEvent(CRITTER_EVENT_SMTH_USE_ITEM, "_NpcSmthUseItem");
+		npc.SetEvent(CRITTER_EVENT_MESSAGE       , "_NpcMessage"     );
+		npc.SetEvent(CRITTER_EVENT_DEAD          , "_NpcDead"        );
+		npc.SetEvent(CRITTER_EVENT_SMTH_DEAD     , "_NpcSmthDead"    );
+		npc.SetEvent(CRITTER_EVENT_SMTH_USE_SKILL, "_NpcSmthUseSkill");
+		npc.SetEvent(CRITTER_EVENT_PLANE_END     , "_NpcPlaneEnd"    );
+		npc.SetEvent(CRITTER_EVENT_STEALING      , "_NpcStealing"    );
+		npc.SetEvent(CRITTER_EVENT_SMTH_USE_ITEM , "_NpcSmthUseItem" );
 		npc.SetEvent(CRITTER_EVENT_SMTH_DROP_ITEM, "_NpcSmthDropItem");
 
 		Item@[] items;
-		npc.GetItems(-1,items);
+		npc.GetItems(-1, items);
 		bool favrtAmmoSet = false;
-		bool favrtWpnSet = false;
-		for(uint i=0,j=items.length();i<j;i++)
+		bool favrtWpnSet  = false;
+		for(uint i = 0, j = items.length(); i < j; i++)
 		{
-			SetWear(items[i],Random(80,95));
-			if(items[i].GetType()==ITEM_WEAPON&&!favrtWpnSet)
+			SetWear(items[i], Random(80, 95));
+			if(items[i].GetType() == ITEM_WEAPON && !favrtWpnSet)
 			{
 				npc.SetFavoriteItem(SLOT_HAND1, items[i].GetProtoId());
 				favrtWpnSet = true;
 			}
-		/*	if(items[i].GetType()==ITEM_AMMO&&!favrtAmmoSet)
+		/*	if(items[i].GetType() == ITEM_AMMO && !favrtAmmoSet)
 			{
 				npc.SetFavoriteItem(SLOT_HAND2, items[i].GetProtoId());
 				favrtAmmoSet = true;
@@ -55,22 +55,24 @@ void _NpcInit(Critter& npc, bool firstTime)
 Critter@ GetCritterForLooting(Critter& lootCr)
 {
 	// Collect npc
-	Critter@ result=null;
-	lootCr.SendMessage(MESSAGE_COLLECT_NPC,0,MESSAGE_TO_WHO_SEES_ME);
-	if(CollectedNpcIds.length()>0)
+	Critter@ result = null;
+	lootCr.SendMessage(MESSAGE_COLLECT_NPC, 0, MESSAGE_TO_WHO_SEES_ME);
+	if(CollectedNpcIds.length() > 0)
 	{
 		// Find better looter
-		for(uint i=0,j=CollectedNpcIds.length();i<j;i++)
+		for(uint i = 0, j = CollectedNpcIds.length(); i < j; i++)
 		{
-			Critter@ cr=GetCritter(CollectedNpcIds[i]);
-			if(cr.GetPlanes(PLANE_LOOT,null)==0)
+			Critter@ cr = GetCritter(CollectedNpcIds[i]);
+			if(cr.GetPlanes(PLANE_LOOT,null) == 0)
 			{
-				@result=cr;
+				@result = cr;
 				break;
 			}
 		}
+
 		// Get random npc
-		if(not valid(result)) @result=GetCritter(CollectedNpcIds[Random(0,CollectedNpcIds.length()-1)]);
+		if(not valid(result)) @result = GetCritter(CollectedNpcIds[Random(0, CollectedNpcIds.length() - 1)]);
+
 		// Free handles
 		CollectedNpcIds.resize(0);
 	}
@@ -82,9 +84,9 @@ void _NpcSmthUseItem(Critter& npc, Critter& fromCr, Item& item, Critter@ onCritt
 	if(fromCr.IsPlayer() && npc.IsLife())
 	{
 		uint pid = item.GetProtoId();
-		if(pid==PID_PLASTIC_EXPLOSIVES || pid==PID_MINE || pid==PID_TOGGLE_SWITCH || pid==PID_DYNAMITE)
+		if(pid == PID_PLASTIC_EXPLOSIVES || pid == PID_MINE || pid == PID_TOGGLE_SWITCH || pid == PID_DYNAMITE)
 		{
-			AddAttackPlane(npc, 0, fromCr,__RunOnCombat);
+			AddAttackPlane(npc, 0, fromCr, __RunOnCombat);
 			npc.SendMessage(MESSAGE_ATTACK_HIM, fromCr.Id, MESSAGE_TO_ALL_ON_MAP);
 		}
 	}
@@ -95,9 +97,9 @@ void _NpcSmthDropItem(Critter& npc, Critter& fromCr, Item& item)
 	if(fromCr.IsPlayer() && npc.IsLife())
 	{
 		uint pid = item.GetProtoId();
-		if(pid==PID_ACTIVE_PLASTIC_EXPLOSIVE || pid==PID_ACTIVE_MINE || pid==PID_ACTIVE_DYNAMITE)
+		if(pid == PID_ACTIVE_PLASTIC_EXPLOSIVE || pid == PID_ACTIVE_MINE || pid == PID_ACTIVE_DYNAMITE)
 		{
-			AddAttackPlane(npc, 0, fromCr,__RunOnCombat);
+			AddAttackPlane(npc, 0, fromCr, __RunOnCombat);
 			npc.SendMessage(MESSAGE_ATTACK_HIM, fromCr.Id, MESSAGE_TO_ALL_ON_MAP);
 		}
 	}
@@ -105,103 +107,63 @@ void _NpcSmthDropItem(Critter& npc, Critter& fromCr, Item& item)
 
 void _NpcMessage(Critter& npc, Critter& fromCr, int message, int value)
 {
-	if(message==MESSAGE_COLLECT_NPC)
+	if(message == MESSAGE_COLLECT_NPC)
 	{
 		if(not npc.IsDead()) CollectedNpcIds.insertLast(npc.Id);
 	}
-	else if(message==MESSAGE_ATTACK_HIM)
+	else if(message == MESSAGE_ATTACK_HIM)
 	{
-		if(fromCr.Stat[ST_TEAM_ID]==npc.Stat[ST_TEAM_ID] && npc.IsLife())
+		if(fromCr.Stat[ST_TEAM_ID] == npc.Stat[ST_TEAM_ID] && npc.IsLife())
 		{
-			Critter@ target=GetCritter(value);
-			if(valid(target)) AddAttackPlane(npc,0,target,__RunOnCombat);
+			Critter@ target = GetCritter(value);
+			if(valid(target)) AddAttackPlane(npc, 0, target, __RunOnCombat);
 		}
 	}
-	else if(message==MESSAGE_ATTACK_ME)
+	else if(message == MESSAGE_ATTACK_ME)
 	{
-		Critter@ target=GetCritter(value);
-		if(valid(target)) AddAttackPlane(npc,0,target,__RunOnCombat);
+		Critter@ target = GetCritter(value);
+		if(valid(target)) AddAttackPlane(npc, 0, target, __RunOnCombat);
 	}
 }
 
 void _NpcDead(Critter& npc, Critter@ killer)
 {
+	// Loot
 	NpcPlane@[] planes;
-	if(npc.GetPlanes(PLANE_LOOT,planes)>0)
+	if(npc.GetPlanes(PLANE_LOOT, planes) > 0)
 	{
-		Critter@ cr=GetCritterForLooting(npc);
+		Critter@ cr = GetCritterForLooting(npc);
 		if(valid(cr))
 		{
 			// Copy planes
-			for(uint i=0,j=planes.length();i<j;i++) cr.AddPlane(planes[i]);
+			for(uint i = 0, j = planes.length(); i < j; i++) cr.AddPlane(planes[i]);
 		}
 	}
+
+	// Encounters loyality
 	if(valid(killer) && killer.IsPlayer())
 	{
-	uint team=npc.Stat[ST_TEAM_ID];
-	if(team==TEAM_EncounterHubologist)
+		uint varId = 0;
+		switch(npc.Stat[ST_TEAM_ID])
 		{
-			GameVar@ var = GetLocalVar(LVAR_enc_loyality_hubologists, killer.Id);
-			var += 1;
+		case TEAM_EncounterHubologist: varId = LVAR_enc_loyality_hubologists; break;
+		case TEAM_EncounterNCR:        varId = LVAR_enc_loyality_ncr;         break;
+		case TEAM_EncounterVC:         varId = LVAR_enc_loyality_vcity;       break;
+		case TEAM_EncounterRedding:    varId = LVAR_enc_loyality_redding;     break;
+		case TEAM_EncounterBroken:     varId = LVAR_enc_loyality_broken;      break;
+		case TEAM_EncounterGecko:      varId = LVAR_enc_loyality_gecko;       break;
+		case TEAM_EncounterArroyo:     varId = LVAR_enc_loyality_arroyo;      break;
+		case TEAM_EncounterKlamath:    varId = LVAR_enc_loyality_klamath;     break;
+		case TEAM_EncounterModoc:      varId = LVAR_enc_loyality_modoc;       break;
+		case TEAM_EncounterDen:        varId = LVAR_enc_loyality_den;         break;
+		case TEAM_EncounterReno:       varId = LVAR_enc_loyality_reno;        break;
+		case TEAM_EncounterEnclave:    varId = LVAR_enc_loyality_enclave;     break;
+		case TEAM_EncounterSF:         varId = LVAR_enc_loyality_sf;          break;
+		default: break;
 		}
-	else if(team==TEAM_EncounterNCR)
+		if(varId != 0)
 		{
-			GameVar@ var = GetLocalVar(LVAR_enc_loyality_ncr, killer.Id);
-			var += 1;
-		}
-	else if(team==TEAM_EncounterVC)
-		{
-			GameVar@ var = GetLocalVar(LVAR_enc_loyality_vcity, killer.Id);
-			var += 1;
-		}
-	else if(team==TEAM_EncounterRedding)
-		{
-			GameVar@ var = GetLocalVar(LVAR_enc_loyality_redding, killer.Id);
-			var += 1;
-		}
-	else if(team==TEAM_EncounterBroken)
-		{
-			GameVar@ var = GetLocalVar(LVAR_enc_loyality_broken, killer.Id);
-			var += 1;
-		}
-	else if(team==TEAM_EncounterGecko)
-		{
-			GameVar@ var = GetLocalVar(LVAR_enc_loyality_gecko, killer.Id);
-			var += 1;
-		}
-	else if(team==TEAM_EncounterArroyo)
-		{
-			GameVar@ var = GetLocalVar(LVAR_enc_loyality_arroyo, killer.Id);
-			var += 1;
-		}
-	else if(team==TEAM_EncounterKlamath)
-		{
-			GameVar@ var = GetLocalVar(LVAR_enc_loyality_klamath, killer.Id);
-			var += 1;
-		}
-	else if(team==TEAM_EncounterModoc)
-		{
-			GameVar@ var = GetLocalVar(LVAR_enc_loyality_modoc, killer.Id);
-			var += 1;
-		}
-	else if(team==TEAM_EncounterDen)
-		{
-			GameVar@ var = GetLocalVar(LVAR_enc_loyality_den, killer.Id);
-			var += 1;
-		}
-	else if(team==TEAM_EncounterReno)
-		{
-			GameVar@ var = GetLocalVar(LVAR_enc_loyality_reno, killer.Id);
-			var += 1;
-		}
-	else if(team==TEAM_EncounterEnclave)
-		{
-			GameVar@ var = GetLocalVar(LVAR_enc_loyality_enclave, killer.Id);
-			var +=1;
-		}
-	else if(team==TEAM_EncounterSF)
-		{
-			GameVar@ var = GetLocalVar(LVAR_enc_loyality_sf, killer.Id);
+			GameVar@ var = GetLocalVar(varId, killer.Id);
 			var += 1;
 		}
 	}
@@ -209,42 +171,44 @@ void _NpcDead(Critter& npc, Critter@ killer)
 
 void _NpcSmthDead(Critter& npc, Critter& fromCrit, Critter@ killer)
 {
-	if(fromCrit.Id!=LastDeadId)
+	if(fromCrit.Id != LastDeadId)
 	{
-		if(fromCrit.ItemsCount()>0 && _CritCanDropItemsOnDead(fromCrit))
+		if(fromCrit.ItemsCount() > 0 && _CritCanDropItemsOnDead(fromCrit))
 		{
-			Critter@ cr=GetCritterForLooting(fromCrit);
-			if(valid(cr)) AddWalkPlane(cr,0,PLANE_LOOT,fromCrit.Id,fromCrit.HexX,fromCrit.HexY,6,false,1);
+			Critter@ cr = GetCritterForLooting(fromCrit);
+			if(valid(cr)) AddWalkPlane(cr, 0, PLANE_LOOT, fromCrit.Id, fromCrit.HexX, fromCrit.HexY, 6, false, 1);
 		}
-		LastDeadId=fromCrit.Id;
+		LastDeadId = fromCrit.Id;
 	}
 }
 
 void _NpcSmthUseSkill(Critter& npc, Critter& fromCr, int skill, Critter@ onCritter, Item@ onItem, Scenery@ onScenery)
 {
-	if((skill==SKILL_LOOT_CRITTER || skill==SK_STEAL) && valid(onCritter) && npc.GetPlanes(PLANE_LOOT,onCritter.Id,null)>0) AddAttackPlane(npc,AI_PLANE_ATTACK_PRIORITY+1,fromCr,__RunOnCombat);
+	if((skill == SKILL_LOOT_CRITTER || skill == SK_STEAL) && valid(onCritter) && npc.GetPlanes(PLANE_LOOT, onCritter.Id, null) > 0)
+		AddAttackPlane(npc,AI_PLANE_ATTACK_PRIORITY+1,fromCr,__RunOnCombat);
 
 }
 
 int _NpcPlaneEnd(Critter& npc, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem)
 {
-	if(plane.Identifier==PLANE_LOOT && reason==REASON_SUCCESS)
+	if(plane.Identifier == PLANE_LOOT && reason == REASON_SUCCESS)
 	{
-		Critter@ cr=::GetCritter(plane.IdentifierExt);
+		Critter@ cr = GetCritter(plane.IdentifierExt);
 		if(valid(cr) && cr.IsDead())
 		{
 			Item@[] items;
-			cr.GetItems(SLOT_INV,items);
-			cr.GetItems(SLOT_HAND1,items);
-			cr.GetItems(SLOT_HAND2,items);
-			npc.GetMap().GetItems(cr.HexX,cr.HexY,items);
+			cr.GetItems(SLOT_INV  , items);
+			cr.GetItems(SLOT_HAND1, items);
+			cr.GetItems(SLOT_HAND2, items);
+			npc.GetMap().GetItems(cr.HexX, cr.HexY, items);
 
-			for(uint i=0,j=items.length();i<j;i++)
+			for(uint i = 0, j = items.length(); i < j; i++)
 			{
-				int type=items[i].GetType();
-				if(type<ITEM_ARMOR || type>ITEM_KEY) @items[i]=null;
+				int type = items[i].GetType();
+				if(type < ITEM_ARMOR || type > ITEM_KEY) @items[i] = null; // Skip
 			}
-			MoveItems(items,npc);
+
+			MoveItems(items, npc);
 			_CritAnimatePickup(npc);
 			npc.Wait(__Breaktime);
 		}

@@ -74,6 +74,7 @@
 	__PermanentDeath            = 0; // Disable
 	__DlgTalkMinTime            = 100000;
 	__DlgBarterMinTime          = 50000;
+	__EncounterTime             = 5000;
 
 	// Look modifiers
 	__LookChecks = 0; // See Look checks in _defines.fos
@@ -143,6 +144,10 @@
 	// __AlwaysRun Specifed in config
 	__AlwaysRunMoveDist     = 1;
 	__AlwaysRunUseDist      = 5;
+	__CritterFidgetTime     = 50000;
+	__Anim2CombatBegin      = ANIM2_BEGIN_COMBAT;
+	__Anim2CombatIdle       = ANIM2_IDLE_COMBAT;
+	__Anim2CombatEnd        = ANIM2_END_COMBAT;
 
 	// Next vars defined in client config file, if you want override it, than uncomment need vars
 	// __Animation3dSmoothTime = 250; // In milliseconds

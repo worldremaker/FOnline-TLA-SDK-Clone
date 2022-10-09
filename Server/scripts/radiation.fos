@@ -75,7 +75,7 @@ void AffectRadiation(Critter& cr, int value) // Export
 
 	if(levelVal>=RADIATION_DEAD_DOSE)
 	{
-		cr.ToDead(COND_DEAD_FUSED,null);
+		cr.ToDead(ANIM2_DEAD_FUSED,null);
 		cr.SayMsg(SAY_NETMSG,TEXTMSG_GAME,STR_RADIATION_DIE);
 	}
 }
@@ -146,7 +146,7 @@ void ChangeStage(Critter& cr, uint stage, bool gain)
 				else if(statIndex==ST_CURRENT_HP)
 				{
 					cr.StatBase[ST_CURRENT_HP]+=statAmount;
-					if(cr.Stat[ST_CURRENT_HP]<=0) cr.ToDead(COND_DEAD_FUSED,null);
+					if(cr.Stat[ST_CURRENT_HP]<=0) cr.ToDead(ANIM2_DEAD_FUSED,null);
 				}
 			}
 			else // Reduce effect

@@ -725,116 +725,115 @@ Layer 15
 # %anim_file% %anim%_Com_Una_Pickup_01
 # %anim_file% %anim%_Def_Una_Use_01 (not converted)
 
-# Unarmed Knife Club Hammer Spear Pistol Uzi Shootgun Rifle Minigun Rocket Launcher
-#   A        D    E    F      G     H     I     J       K      L           M
-# Unarmed  - A
-# 1 handed - D E F G H I J
-# 2 handed - K L M
+# Unarmed
+# 1 handed - Knife Club Hammer Spear Pistol SMG Shootgun
+# 2 handed - HeavyRifle Minigun RocketLauncher Flamer
 
 # Unarmed
-Anim A 1  %anim_file% %anim%_Def_Una_Idle_01
-Anim A 2  %anim_file% %anim%_Com_Una_Stunned_01
-Anim A 3  %anim_file% %anim%_Com_Una_Walk_01
-Anim A 4  %anim_file% %anim%_Com_Una_Limp_01
-Anim A 5  %anim_file% %anim%_Com_Una_Run_01
-Anim A 6  %anim_file% %anim%_Com_Una_PanicRun_01
-Anim A 7  %anim_file% %anim%_Com_Una_Equip_01
-Anim A 8  %anim_file% %anim%_Com_Una_Unequip_01
-Anim A 12 %anim_file% %anim%_Def_Una_Pickup_01
-Anim A 13 %anim_file% %anim%_Com_1H_Switch_Weapons_01
-Anim A 14 %anim_file% %anim%_Com_1H_Switch_Weapons_01
-Anim A 15 %anim_file% %anim%_Def_Una_to_Com_01
-Anim A 16 %anim_file% %anim%_Com_Una_Idle_01
-Anim A 17 %anim_file% %anim%_Com_Una_To_Def_01
-Anim A 18 %anim_file% %anim%_Com_Una_Punch_Jab_02
-Anim A 19 %anim_file% %anim%_Com_Una_Punch_Jab_01
-Anim A 20 %anim_file% %anim%_Def_Una_Fidget_MedSkill_01
-Anim A 21 %anim_file% %anim%_Com_Una_Kick_Roundhouse_01
-Anim A 22 %anim_file% %anim%_Com_Una_Kick_Snap_01
-Anim A 23 %anim_file% %anim%_Def_Una_Fidget_Medskill_02
-Anim A 40 %anim_file% %anim%_Com_Una_Dodge_01
-Anim A 42 %anim_file% %anim%_Com_Una_DmgFr_01
-Anim A 44 %anim_file% %anim%_Com_Una_DmgFrMult_01
-Anim A 46 %anim_file% %anim%_Com_Una_Walk_DmgFr_01
-Anim A 48 %anim_file% %anim%_Com_Una_Limp_DmgFr_01
-Anim A 50 %anim_file% %anim%_Com_Una_Run_DmgFr_01
-Anim A 52 %anim_file% %anim%_Com_Una_Knock_ProneB_01
-Anim A 53 %anim_file% %anim%_Com_Una_Knock_ProneF_01
-Anim A 54 %anim_file% %anim%_Com_Una_Laydown_ProneB_01
-Anim A 55 %anim_file% %anim%_Com_Una_Laydown_ProneF_01
-Anim A 56 %anim_file% %anim%_ProneB_Una_Idle_01
-Anim A 57 %anim_file% %anim%_ProneF_Una_Idle_01
-Anim A 58 %anim_file% %anim%_ProneB_Una_to_Com_01
-Anim A 59 %anim_file% %anim%_ProneF_Una_to_Com_01
-Anim A 60 %anim_file% %anim%_ProneB_Una_DmgFr_01
-Anim A 61 %anim_file% %anim%_ProneF_Una_DmgFr_01
-Anim A 62 %anim_file% %anim%_ProneB_Una_DmgFrMult_01
-Anim A 63 %anim_file% %anim%_ProneF_Una_DmgFrMult_01
-Anim A 64 %anim_file% %anim%_ProneB_Una_Twitch_01
-Anim A 65 %anim_file% %anim%_ProneF_Una_Twitch_01
-Anim A 66 %anim_file% %anim%_ProneB_Una_Death_01
-Anim A 67 %anim_file% %anim%_ProneF_Una_Death_01
+Anim Anim1Unarmed Anim2Idle                %anim_file% %anim%_Def_Una_Idle_01
+Anim Anim1Unarmed Anim2IdleStunned         %anim_file% %anim%_Com_Una_Stunned_01
+Anim Anim1Unarmed Anim2Walk                %anim_file% %anim%_Com_Una_Walk_01
+Anim Anim1Unarmed Anim2Limp                %anim_file% %anim%_Com_Una_Limp_01
+Anim Anim1Unarmed Anim2Run                 %anim_file% %anim%_Com_Una_Run_01
+Anim Anim1Unarmed Anim2PanicRun            %anim_file% %anim%_Com_Una_PanicRun_01
+Anim Anim1Unarmed Anim2ShowWeapon          %anim_file% %anim%_Com_Una_Equip_01
+Anim Anim1Unarmed Anim2HideWeapon          %anim_file% %anim%_Com_Una_Unequip_01
+Anim Anim1Unarmed Anim2PickUp              %anim_file% %anim%_Def_Una_Pickup_01
+Anim Anim1Unarmed Anim2Use                 %anim_file% %anim%_Com_1H_Switch_Weapons_01
+Anim Anim1Unarmed Anim2SwitchItems         %anim_file% %anim%_Com_1H_Switch_Weapons_01
+Anim Anim1Unarmed Anim2BeginCombat         %anim_file% %anim%_Def_Una_to_Com_01
+Anim Anim1Unarmed Anim2IdleCombat          %anim_file% %anim%_Com_Una_Idle_01
+Anim Anim1Unarmed Anim2EndCombat           %anim_file% %anim%_Com_Una_To_Def_01
+Anim Anim1Unarmed Anim2PunchRight          %anim_file% %anim%_Com_Una_Punch_Jab_02
+Anim Anim1Unarmed Anim2PunchLeft           %anim_file% %anim%_Com_Una_Punch_Jab_01
+Anim Anim1Unarmed Anim2PunchCombo          %anim_file% %anim%_Def_Una_Fidget_MedSkill_01
+Anim Anim1Unarmed Anim2KickHi              %anim_file% %anim%_Com_Una_Kick_Roundhouse_01
+Anim Anim1Unarmed Anim2KickLo              %anim_file% %anim%_Com_Una_Kick_Snap_01
+Anim Anim1Unarmed Anim2KickCombo           %anim_file% %anim%_Def_Una_Fidget_Medskill_02
+Anim Anim1Unarmed Anim2DodgeFront          %anim_file% %anim%_Com_Una_Dodge_01
+Anim Anim1Unarmed Anim2DamageFront         %anim_file% %anim%_Com_Una_DmgFr_01
+Anim Anim1Unarmed Anim2DamageMulFront      %anim_file% %anim%_Com_Una_DmgFrMult_01
+Anim Anim1Unarmed Anim2WalkDamageFront     %anim_file% %anim%_Com_Una_Walk_DmgFr_01
+Anim Anim1Unarmed Anim2LimpDamageFront     %anim_file% %anim%_Com_Una_Limp_DmgFr_01
+Anim Anim1Unarmed Anim2RunDamageFront      %anim_file% %anim%_Com_Una_Run_DmgFr_01
+Anim Anim1Unarmed Anim2KnockFront          %anim_file% %anim%_Com_Una_Knock_ProneB_01
+Anim Anim1Unarmed Anim2KnockBack           %anim_file% %anim%_Com_Una_Knock_ProneF_01
+Anim Anim1Unarmed Anim2LaydownFront        %anim_file% %anim%_Com_Una_Laydown_ProneB_01
+Anim Anim1Unarmed Anim2LaydownBack         %anim_file% %anim%_Com_Una_Laydown_ProneF_01
+Anim Anim1Unarmed Anim2IdleProneFront      %anim_file% %anim%_ProneB_Una_Idle_01
+Anim Anim1Unarmed Anim2IdleProneBack       %anim_file% %anim%_ProneF_Una_Idle_01
+Anim Anim1Unarmed Anim2StandupFront        %anim_file% %anim%_ProneB_Una_to_Com_01
+Anim Anim1Unarmed Anim2StandupBack         %anim_file% %anim%_ProneF_Una_to_Com_01
+Anim Anim1Unarmed Anim2DamageProneFront    %anim_file% %anim%_ProneB_Una_DmgFr_01
+Anim Anim1Unarmed Anim2DamageProneBack     %anim_file% %anim%_ProneF_Una_DmgFr_01
+Anim Anim1Unarmed Anim2DamageMulProneFront %anim_file% %anim%_ProneB_Una_DmgFrMult_01
+Anim Anim1Unarmed Anim2DamageMulProneBack  %anim_file% %anim%_ProneF_Una_DmgFrMult_01
+Anim Anim1Unarmed Anim2TwitchProneFront    %anim_file% %anim%_ProneB_Una_Twitch_01
+Anim Anim1Unarmed Anim2TwitchProneBack     %anim_file% %anim%_ProneF_Una_Twitch_01
+Anim Anim1Unarmed Anim2DeadProneFront      %anim_file% %anim%_ProneB_Una_Death_01
+Anim Anim1Unarmed Anim2DeadProneBack       %anim_file% %anim%_ProneF_Una_Death_01
 
 # 1 handed
-Anim D 1  %anim_file% %anim%_Def_1H_Idle_01
-Anim D 2  %anim_file% %anim%_Com_1H_Stunned_01
-Anim D 3  %anim_file% %anim%_Com_1H_Walk_01
-Anim D 7  %anim_file% %anim%_Com_1H_Equip_01
-Anim D 8  %anim_file% %anim%_Com_1H_Unequip_01
-Anim D 9  %anim_file% %anim%_Def_1H_Fidget_01
-Anim D 15 %anim_file% %anim%_Def_1H_to_Com_01
-Anim D 16 %anim_file% %anim%_Com_1H_Idle_01
-Anim D 17 %anim_file% %anim%_Com_1H_to_Def_01
-Anim D 24 %anim_file% %anim%_Com_1H_Melee_Thrust_01
-Anim D 26 %anim_file% %anim%_Com_1H_Melee_Slash_01
-Anim D 27 %anim_file% %anim%_Com_2HC_Melee_Slash_01
-Anim D 28 %anim_file% %anim%_Com_1H_Throw_01
-Anim D 29 %anim_file% %anim%_Com_1H_Gun_Shoot_01
-Anim D 30 %anim_file% %anim%_Com_1H_Gun_Burst_01
-Anim D 31 %anim_file% %anim%_Com_1H_Gun_Sweep_01
-Anim D 32 %anim_file% %anim%_Com_1H_Gun_Butt_01
-Anim D 34 %anim_file% %anim%_Com_1H_Gun_NoRecoil_01
-Anim D 35 %anim_file% %anim%_Com_1H_Maintenance_01
-Anim D 36 %anim_file% %anim%_Com_1H_Maintenance_01
-Anim D 40 %anim_file% %anim%_Com_1H_Dodge_01
-Anim D 42 %anim_file% %anim%_Com_1H_DmgFr_01
-Anim D 44 %anim_file% %anim%_Com_1H_DmgFrMult_01
-Anim D 46 %anim_file% %anim%_Com_1H_Walk_DmgFr_01
-Anim D 52 %anim_file% %anim%_Com_1H_Knock_ProneB_01
-Anim D 54 %anim_file% %anim%_Com_1H_Laydown_ProneB_01
-Anim D 58 %anim_file% %anim%_ProneB_1H_to_Com_01
-AnimEqual 1 E D
-AnimEqual 1 F D
-AnimEqual 1 G D
-AnimEqual 1 H D
-AnimEqual 1 I D
-AnimEqual 1 J D
+Anim Anim1Knife Anim2Idle            %anim_file% %anim%_Def_1H_Idle_01
+Anim Anim1Knife Anim2IdleStunned     %anim_file% %anim%_Com_1H_Stunned_01
+Anim Anim1Knife Anim2Walk            %anim_file% %anim%_Com_1H_Walk_01
+Anim Anim1Knife Anim2ShowWeapon      %anim_file% %anim%_Com_1H_Equip_01
+Anim Anim1Knife Anim2HideWeapon      %anim_file% %anim%_Com_1H_Unequip_01
+Anim Anim1Knife Anim2Fidget1         %anim_file% %anim%_Def_1H_Fidget_01
+Anim Anim1Knife Anim2BeginCombat     %anim_file% %anim%_Def_1H_to_Com_01
+Anim Anim1Knife Anim2IdleCombat      %anim_file% %anim%_Com_1H_Idle_01
+Anim Anim1Knife Anim2EndCombat       %anim_file% %anim%_Com_1H_to_Def_01
+Anim Anim1Knife Anim2Thrust1H        %anim_file% %anim%_Com_1H_Melee_Thrust_01
+Anim Anim1Knife Anim2Swing1H         %anim_file% %anim%_Com_1H_Melee_Slash_01
+Anim Anim1Knife Anim2Swing2H         %anim_file% %anim%_Com_2HC_Melee_Slash_01
+Anim Anim1Knife Anim2Throw           %anim_file% %anim%_Com_1H_Throw_01
+Anim Anim1Knife Anim2Single          %anim_file% %anim%_Com_1H_Gun_Shoot_01
+Anim Anim1Knife Anim2Burst           %anim_file% %anim%_Com_1H_Gun_Burst_01
+Anim Anim1Knife Anim2Sweep           %anim_file% %anim%_Com_1H_Gun_Sweep_01
+Anim Anim1Knife Anim2Butt            %anim_file% %anim%_Com_1H_Gun_Butt_01
+Anim Anim1Knife Anim2NoRecoil        %anim_file% %anim%_Com_1H_Gun_NoRecoil_01
+Anim Anim1Knife Anim2Reload          %anim_file% %anim%_Com_1H_Maintenance_01
+Anim Anim1Knife Anim2Repair          %anim_file% %anim%_Com_1H_Maintenance_01
+Anim Anim1Knife Anim2DodgeFront      %anim_file% %anim%_Com_1H_Dodge_01
+Anim Anim1Knife Anim2DamageFront     %anim_file% %anim%_Com_1H_DmgFr_01
+Anim Anim1Knife Anim2DamageMulFront  %anim_file% %anim%_Com_1H_DmgFrMult_01
+Anim Anim1Knife Anim2WalkDamageFront %anim_file% %anim%_Com_1H_Walk_DmgFr_01
+Anim Anim1Knife Anim2KnockFront      %anim_file% %anim%_Com_1H_Knock_ProneB_01
+Anim Anim1Knife Anim2LaydownFront    %anim_file% %anim%_Com_1H_Laydown_ProneB_01
+Anim Anim1Knife Anim2StandupFront    %anim_file% %anim%_ProneB_1H_to_Com_01
+AnimEqual 1 Anim1Club     Anim1Knife
+AnimEqual 1 Anim1Hammer   Anim1Knife
+AnimEqual 1 Anim1Spear    Anim1Knife
+AnimEqual 1 Anim1Pistol   Anim1Knife
+AnimEqual 1 Anim1SMG      Anim1Knife
+AnimEqual 1 Anim1Shootgun Anim1Knife
 
 # 2 handed
-Anim K 1  %anim_file% %anim%_Def_2HH_Idle_01
-Anim K 2  %anim_file% %anim%_Com_2HH_Stunned_01
-Anim K 3  %anim_file% %anim%_Com_2HH_Walk_01
-Anim K 7  %anim_file% %anim%_Com_2HH_Equip_01
-Anim K 8  %anim_file% %anim%_Com_2HH_Unequip_01
-Anim K 9  %anim_file% %anim%_Def_2HH_Fidget_01
-Anim K 15 %anim_file% %anim%_Def_2HH_to_Com_01
-Anim K 16 %anim_file% %anim%_Com_2HH_Idle_01
-Anim K 17 %anim_file% %anim%_Com_2HH_to_Def_01
-Anim K 28 %anim_file% %anim%_Com_2HH_Throw_01
-Anim K 29 %anim_file% %anim%_Com_2HH_Gun_Shoot_01
-Anim K 30 %anim_file% %anim%_Com_2HH_Gun_Burst_01
-Anim K 31 %anim_file% %anim%_Com_2HH_Gun_Sweep_01
-Anim K 32 %anim_file% %anim%_Com_2HH_Gun_Butt_01
-Anim K 33 %anim_file% %anim%_Com_2HH_Gun_Burst_01
-Anim K 34 %anim_file% %anim%_Com_2HH_Gun_NoRecoil_01
-Anim K 35 %anim_file% %anim%_Com_2HH_Maintenance_01
-Anim K 36 %anim_file% %anim%_Com_2HH_Maintenance_01
-Anim K 40 %anim_file% %anim%_Com_2HH_Dodge_01
-Anim K 42 %anim_file% %anim%_Com_2HH_DmgFr_01
-Anim K 44 %anim_file% %anim%_Com_2HH_DmgFrMult_01
-Anim K 46 %anim_file% %anim%_Com_2HH_Walk_DmgFr_01
-Anim K 52 %anim_file% %anim%_Com_2HH_Knock_ProneB_01
-Anim K 54 %anim_file% %anim%_Com_2HH_Laydown_ProneB_01
-Anim K 58 %anim_file% %anim%_Com_ProneB_2HH_to_Com_01
-AnimEqual 1 L K
-AnimEqual 1 M K
+Anim Anim1HeavyRifle Anim2Idle            %anim_file% %anim%_Def_2HH_Idle_01
+Anim Anim1HeavyRifle Anim2IdleStunned     %anim_file% %anim%_Com_2HH_Stunned_01
+Anim Anim1HeavyRifle Anim2Walk            %anim_file% %anim%_Com_2HH_Walk_01
+Anim Anim1HeavyRifle Anim2ShowWeapon      %anim_file% %anim%_Com_2HH_Equip_01
+Anim Anim1HeavyRifle Anim2HideWeapon      %anim_file% %anim%_Com_2HH_Unequip_01
+Anim Anim1HeavyRifle Anim2Fidget1         %anim_file% %anim%_Def_2HH_Fidget_01
+Anim Anim1HeavyRifle Anim2BeginCombat     %anim_file% %anim%_Def_2HH_to_Com_01
+Anim Anim1HeavyRifle Anim2IdleCombat      %anim_file% %anim%_Com_2HH_Idle_01
+Anim Anim1HeavyRifle Anim2EndCombat       %anim_file% %anim%_Com_2HH_to_Def_01
+Anim Anim1HeavyRifle Anim2Throw           %anim_file% %anim%_Com_2HH_Throw_01
+Anim Anim1HeavyRifle Anim2Single          %anim_file% %anim%_Com_2HH_Gun_Shoot_01
+Anim Anim1HeavyRifle Anim2Burst           %anim_file% %anim%_Com_2HH_Gun_Burst_01
+Anim Anim1HeavyRifle Anim2Sweep           %anim_file% %anim%_Com_2HH_Gun_Sweep_01
+Anim Anim1HeavyRifle Anim2Butt            %anim_file% %anim%_Com_2HH_Gun_Butt_01
+Anim Anim1HeavyRifle Anim2Flame           %anim_file% %anim%_Com_2HH_Gun_Burst_01
+Anim Anim1HeavyRifle Anim2NoRecoil        %anim_file% %anim%_Com_2HH_Gun_NoRecoil_01
+Anim Anim1HeavyRifle Anim2Reload          %anim_file% %anim%_Com_2HH_Maintenance_01
+Anim Anim1HeavyRifle Anim2Repair          %anim_file% %anim%_Com_2HH_Maintenance_01
+Anim Anim1HeavyRifle Anim2DodgeFront      %anim_file% %anim%_Com_2HH_Dodge_01
+Anim Anim1HeavyRifle Anim2DamageFront     %anim_file% %anim%_Com_2HH_DmgFr_01
+Anim Anim1HeavyRifle Anim2DamageMulFront  %anim_file% %anim%_Com_2HH_DmgFrMult_01
+Anim Anim1HeavyRifle Anim2WalkDamageFront %anim_file% %anim%_Com_2HH_Walk_DmgFr_01
+Anim Anim1HeavyRifle Anim2KnockFront      %anim_file% %anim%_Com_2HH_Knock_ProneB_01
+Anim Anim1HeavyRifle Anim2LaydownFront    %anim_file% %anim%_Com_2HH_Laydown_ProneB_01
+Anim Anim1HeavyRifle Anim2StandupFront    %anim_file% %anim%_Com_ProneB_2HH_to_Com_01
+AnimEqual 1 Anim1Minigun        Anim1HeavyRifle
+AnimEqual 1 Anim1RocketLauncher Anim1HeavyRifle
+AnimEqual 1 Anim1Flamer         Anim1HeavyRifle

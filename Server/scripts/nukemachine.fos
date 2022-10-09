@@ -98,7 +98,7 @@ void TryHitSomeOne(Critter & player, Scenery& nukeMashine)
 				if(_CheckStat(target, ST_AGILITY, 0))
 				{
 					target.SayMsg(SAY_NETMSG, TEXTMSG_TEXT,STR_DODGE);
-					_CritAnimate(target, ANIM2_2D_DODGE_WEAPON);
+					_CritAnimate(target, ANIM2_DODGE_FRONT);
 
 					Critter @[] critters;
 					if(map.GetCrittersHex(target.HexX, target.HexY, PLAYERS_SRCH_RADIUS, FIND_ALL|FIND_ONLY_PLAYERS,   critters)>0)

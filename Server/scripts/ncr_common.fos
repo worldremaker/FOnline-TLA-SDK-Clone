@@ -403,7 +403,7 @@ void Healthy2Ill(Critter & brahmin)
 	brahmin.SetScript("_IllBrahminInit");
 	brahmin.StatBase[ST_DIALOG_ID] = DIALOG_mob_ill_brahmin;
 	brahmin.StatBase[ST_NPC_ROLE] = NPC_ROLE_ILL_BRAHMIN;
-	brahmin.ToKnockout(true, 5, brahmin.HexX, brahmin.HexY);
+	brahmin.ToKnockout(KNOCKOUT_ANIM2_DEFAULT(true), 5, brahmin.HexX, brahmin.HexY);
 	brahmin.SetEvent(CRITTER_EVENT_SMTH_USE_ITEM,"e_OnSmthUseItem");
 }
 
@@ -413,7 +413,7 @@ void Ill2Healthy(Critter & brahmin)
 	brahmin.StatBase[ST_DIALOG_ID] = DIALOG_mob_brahmin;
 	brahmin.StatBase[ST_NPC_ROLE] = NPC_ROLE_HEALTHY_BRAHMIN;
 	brahmin.SetEvent(CRITTER_EVENT_SMTH_USE_ITEM,"");
-	brahmin.ToDead(COND_DEAD_FRONT,null);
+	brahmin.ToDead(ANIM2_DEAD_FRONT,null);
 	brahmin.ToLife();
 }
 
@@ -473,7 +473,7 @@ void _IllBrahminInit(Critter & brahmin, bool firstTime)
 {
 	brahmin.StatBase[ST_DIALOG_ID] = DIALOG_mob_ill_brahmin;
 	brahmin.StatBase[ST_NPC_ROLE] = NPC_ROLE_ILL_BRAHMIN;
-	brahmin.ToKnockout(true, 1000, brahmin.HexX, brahmin.HexY);
+	brahmin.ToKnockout(KNOCKOUT_ANIM2_DEFAULT(true), 1000, brahmin.HexX, brahmin.HexY);
 	brahmin.SetEvent(CRITTER_EVENT_SMTH_USE_ITEM,"e_OnSmthUseItem");
 }
 

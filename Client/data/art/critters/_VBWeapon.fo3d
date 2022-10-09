@@ -6,6 +6,6 @@
 Model %name%.x
 Speed 3.0
 
-Anim A 29 ModelFile %name%_Single
-Anim A 30 ModelFile %name%_Burst
-Anim A 31 ModelFile %name%_Sweep
+Anim Anim1Unarmed Anim2Single ModelFile %name%_Single
+Anim Anim1Unarmed Anim2Burst  ModelFile %name%_Burst
+Anim Anim1Unarmed Anim2Sweep  ModelFile %name%_Sweep

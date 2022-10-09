@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 26.01.2011
-// Server version 403, MSVS2008
+// Last update 18.02.2011
+// Server version 404, MSVS2008
 // Default calling convention - cdecl
 //
 
@@ -48,7 +48,7 @@ struct Critter;
 struct Client;
 struct Npc;
 struct CritterCl;
-struct Scenery;
+struct MapObject;
 struct MapEntire;
 struct SceneryToClient;
 struct ProtoMap;
@@ -102,8 +102,8 @@ typedef vector<Npc*> PcVec;
 typedef vector<Npc*>::iterator PcVecIt;
 typedef vector<Item*> ItemVec;
 typedef vector<Item*>::iterator ItemVecIt;
-typedef vector<Scenery*> SceneryVec;
-typedef vector<Scenery*>::iterator SceneryVecIt;
+typedef vector<MapObject*> MapObjectVec;
+typedef vector<MapObject*>::iterator MapObjectVecIt;
 typedef vector<Map*> MapVec;
 typedef vector<Map*>::iterator MapVecIt;
 typedef vector<Location*> LocVec;
@@ -304,6 +304,7 @@ struct GameOptions
 	uint   GlobalMapWidth;
 	uint   GlobalMapHeight;
 	uint   GlobalMapZoneLength;
+	uint   EncounterTime;
 	uint   BagRefreshTime;
 	uint   AttackAnimationsMinDist;
 	uint   WhisperDist;
@@ -451,6 +452,10 @@ struct GameOptions
 	int    AlwaysRunUseDist;
 	string KeyboardRemap;
 	int    KeyboardRemapRefCount;
+	uint   CritterFidgetTime;
+	uint   Anim2CombatBegin;
+	uint   Anim2CombatIdle;
+	uint   Anim2CombatEnd;
 
 	// Mapper
 	string ClientPath;
@@ -1142,7 +1147,7 @@ struct Critter
 	uint   BaseType;
 	uint8  Dir;
 	uint8  Cond;
-	uint8  CondExt;
+	uint8  ReservedCE;
 	uint8  Reserved0;
 	uint   ScriptId;
 	uint   ShowCritterDist1;
@@ -1158,7 +1163,14 @@ struct Critter
 	uint16 MapPid;
 	uint16 Reserved2;
 	int    Params[MAX_PARAMS];
-	uint   Reserved3[10];
+	uint   Anim1Life;
+	uint   Anim1Knockout;
+	uint   Anim1Dead;
+	uint   Anim2Life;
+	uint   Anim2Knockout;
+	uint   Anim2Dead;
+	uint   Anim2KnockoutEnd;
+	uint   Reserved3[3];
 	char   Lexems[LEXEMS_SIZE];
 	uint   Reserved4[8];
 	bool   ClientToDelete;
@@ -1331,7 +1343,12 @@ struct CritterCl
 	uint      ContourColor;
 	Uint16Vec LastHexX,LastHexY;
 	uint8     Cond;
-	uint8     CondExt;
+	uint      Anim1Life;
+	uint      Anim1Knockout;
+	uint      Anim1Dead;
+	uint      Anim2Life;
+	uint      Anim2Knockout;
+	uint      Anim2Dead;
 	uint      Flags;
 	uint      BaseType,BaseTypeAlias;
 	uint      ApRegenerationTick;
@@ -1354,7 +1371,7 @@ struct CritterCl
 	Item*     ItemSlotArmor;
 };
 
-struct Scenery
+struct MapObject
 {
 	uint8  MapObjType;
 	uint16 ProtoId;
@@ -1379,7 +1396,8 @@ struct Scenery
 		struct
 		{
 			uint8  Cond;
-			uint8  CondExt;
+			uint   Anim1;
+			uint   Anim2;
 			int16  ParamIndex[MAPOBJ_CRITTER_PARAMS];
 			int    ParamValue[MAPOBJ_CRITTER_PARAMS];
 		} MCritter;
@@ -1391,10 +1409,9 @@ struct Scenery
 			uint8  AnimStayBegin;
 			uint8  AnimStayEnd;
 			uint16 AnimWait;
-			uint16 PicMap;
-			uint16 PicInv;
 			uint8  InfoOffset;
-			uint8  Reserved[11];
+			uint   PicMapHash;
+			uint   PicInvHash;
 
 			uint   Count;
 
@@ -1424,10 +1441,9 @@ struct Scenery
 			uint8  AnimStayBegin;
 			uint8  AnimStayEnd;
 			uint16 AnimWait;
-			uint16 PicMap;
-			uint16 PicInv;
 			uint8  InfoOffset;
-			uint8  Reserved[11];
+			uint   PicMapHash;
+			uint   PicInvHash;
 
 			bool   CanUse;
 			bool   CanTalk;
@@ -1438,22 +1454,9 @@ struct Scenery
 
 			uint16 ToMapPid;
 			uint   ToEntire;
-			uint16 ToMapX;
-			uint16 ToMapY;
 			uint8  ToDir;
 		} MScenery;
-
-		struct
-		{
-			uint   Buffer[25];
-		} MAlign;
 	};
-
-	struct _RunTime
-	{
-		int   BindScriptId;
-		int   RefCounter;
-	} RunTime;
 };
 
 struct MapEntire
@@ -1508,7 +1511,7 @@ struct ProtoMap
 		uint   UnpackedDataLen;
 	} Header;
 
-	SceneryVec MObjects;
+	MapObjectVec MObjects;
 
 	struct Tile
 	{
@@ -1541,11 +1544,11 @@ struct ProtoMap
 	uint HashWalls;
 	uint HashScen;
 
-	SceneryVec CrittersVec;
-	SceneryVec ItemsVec;
-	SceneryVec SceneriesVec;
-	SceneryVec GridsVec;
-	uint8*     HexFlags;
+	MapObjectVec CrittersVec;
+	MapObjectVec ItemsVec;
+	MapObjectVec SceneriesVec;
+	MapObjectVec GridsVec;
+	uint8*       HexFlags;
 
 	EntiresVec MapEntires;
 
@@ -1834,7 +1837,7 @@ inline void static_asserts()
 	STATIC_ASSERT(sizeof(ProtoItem)   == 184 );
 	STATIC_ASSERT(sizeof(Mutex)       == 24  );
 	STATIC_ASSERT(sizeof(Spinlock)    == 4   );
-	STATIC_ASSERT(sizeof(GameOptions) == 1152);
+	STATIC_ASSERT(sizeof(GameOptions) == 1176);
 	STATIC_ASSERT(sizeof(ScriptArray) == 28  );
 	STATIC_ASSERT(sizeof(SpriteInfo)  == 36  );
 	STATIC_ASSERT(sizeof(Field)       == 92  );
@@ -1852,8 +1855,7 @@ inline void static_asserts()
 	STATIC_ASSERT(offsetof(Critter, RefCounter)             == 9316);
 	STATIC_ASSERT(offsetof(Client, LanguageMsg)             == 9384);
 	STATIC_ASSERT(offsetof(Npc, Reserved)                   == 9340);
-	STATIC_ASSERT(offsetof(CritterCl, ItemSlotArmor)        == 4264);
-	STATIC_ASSERT(offsetof(Scenery, RunTime.RefCounter)     == 244 );
+	STATIC_ASSERT(offsetof(CritterCl, ItemSlotArmor)        == 4288);
 	STATIC_ASSERT(offsetof(MapEntire, Dir)                  == 8   );
 	STATIC_ASSERT(offsetof(SceneryToClient, Reserved1)      == 30  );
 	STATIC_ASSERT(offsetof(ProtoMap, HexFlags)              == 332 );

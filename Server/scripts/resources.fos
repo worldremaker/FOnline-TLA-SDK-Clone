@@ -53,7 +53,7 @@ int16[][][] ToolsSettings=
 		//Sledgehammer
 		{PID_SLEDGEHAMMER, PID_SUPER_SLEDGE},
 		{ANIM1_HAMMER,     ANIM1_HAMMER},
-		{ANIM2_2D_SWING,   ANIM2_2D_SWING},
+		{ANIM2_SWING_1H,   ANIM2_SWING_1H},
 		{2074, 2075, 2079, 2080, 2092, 2093, 2428, 2429, 2430, 2431, 2435, 3273, 3580},
 		{0},
 		{PID_ROCK},
@@ -65,7 +65,7 @@ int16[][][] ToolsSettings=
 		//Sledgehammer
 		{PID_SLEDGEHAMMER, PID_SUPER_SLEDGE},
 		{ANIM1_HAMMER,     ANIM1_HAMMER},
-		{ANIM2_2D_SWING,   ANIM2_2D_SWING},
+		{ANIM2_SWING_1H,   ANIM2_SWING_1H},
 		{2069, 2070, 2072, 2073, 2078, 2081, 2090, 2091, 2688},
 		{0},
 		{PID_ROCK, PID_MINERAL, PID_METAL_ORE},
@@ -86,7 +86,7 @@ int16[][][] ToolsSettings=
 		{70,              100},
 	}
 };
-CTool[] Tools; 
+CTool[] Tools;
 // Класс стандартной обработки
 ToolDefault defTool;
 
@@ -578,7 +578,7 @@ class ToolDefault : IResourceDemand, IResourceResult, IResourceGetTimeouts, IRes
 	{
 		master.TimeoutBase[TO_SK_OUTDOORSMAN]=OUTDOORSMAN_TIMEOUT(master);
 	}
-	
+
 	void OnAddExp(Critter& master, uint16 toolPid, uint count, uint16 newItemsPid)
 	{
 		//do nothing
@@ -602,7 +602,7 @@ class ToolAxe : IResourceDemand, IResourceResult
 			return false;
 		}
 	}
-	
+
 	uint OnResult(Critter& master, Item@ onItem, Scenery@ onScenery, uint16 toolPid, uint count, uint16 newItemsPid)
 	{
 		uint[] adResourceCount;

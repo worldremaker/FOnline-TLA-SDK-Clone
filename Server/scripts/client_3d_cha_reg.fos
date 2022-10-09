@@ -33,7 +33,7 @@ int  RegGender   = GENDER_MALE;
 uint RegTabCount = 6;
 
 // Demo animations for character
-const uint[] ChaAnim2 = {ANIM2_3D_IDLE, ANIM2_3D_PUNCH_COMBO, ANIM2_3D_IDLE_COMBAT, ANIM2_3D_KICK_COMBO};
+const uint[] ChaAnim2 = {ANIM2_IDLE, ANIM2_PUNCH_COMBO, ANIM2_IDLE_COMBAT, ANIM2_KICK_COMBO};
 
 
 class ChaRegScreen : IGUIElementCallbackInit, IGUIElementCallbackDraw
@@ -69,7 +69,7 @@ class ChaRegScreen : IGUIElementCallbackInit, IGUIElementCallbackDraw
 		ChaLayers.resize(ANIM3D_LAYERS_COUNT);
 		RotateTick     = 0;
 		AnimChangeTick = 0;
-		AnimIndex      = ANIM2_3D_IDLE;
+		AnimIndex      = ANIM2_IDLE;
 	}
 
 	void OnInit()
@@ -141,11 +141,11 @@ class ChaRegScreen : IGUIElementCallbackInit, IGUIElementCallbackDraw
 					ChaPositionCur[11] += y;
 					ChaPositionCur[12] += x;
 					ChaPositionCur[13] += y;
-					DrawCritter3d(1, chosen.CrType, chosen.GetAnim1(), ANIM2_3D_IDLE, chosen.Anim3dLayer, ChaPositionCur, 0);
+					DrawCritter3d(1, chosen.CrType, chosen.GetAnim1(), ANIM2_IDLE, chosen.Anim3dLayer, ChaPositionCur, 0);
 				}
 				else
 				{
-					DrawCritter2d(chosen.CrType, chosen.GetAnim1(), ANIM2_2D_STAY, int(ChaPosition[3]) % 360 / 60,
+					DrawCritter2d(chosen.CrType, chosen.GetAnim1(), ANIM2_IDLE, int(ChaPosition[3]) % 360 / 60,
 						ChaRegion[0] + x, ChaRegion[1] + y, ChaRegion[2] + x, ChaRegion[3] + y, false, true, 0);
 				}
 			}
