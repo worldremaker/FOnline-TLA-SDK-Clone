@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 25.03.2011
-// Server version 420, MSVS2008
+// Last update 30.03.2011
+// Server version 423, MSVS2008
 // Default calling convention - cdecl
 //
 
@@ -114,7 +114,7 @@ typedef vector<Location*> LocVec;
 typedef vector<Location*>::iterator LocVecIt;
 
 // Generic
-EXPORT extern void (*Log)(const char* func, const char* frmt, ...);
+EXPORT extern void (*Log)(const char* frmt, ...);
 
 #define STATIC_ASSERT(a)            {static int arr[(a)?1:-1];}
 #define BIN__N(x)                   (x) | x>>3 | x>>6 | x>>9
@@ -1130,7 +1130,7 @@ struct Critter
 	uint   HomeMap;
 	uint16 HomeX;
 	uint16 HomeY;
-	uint8  HomeOri;
+	uint8  HomeDir;
 	uint8  Reserved11;
 	uint16 ProtoId;
 	uint   Reserved12;

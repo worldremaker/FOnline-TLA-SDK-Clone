@@ -3,7 +3,7 @@
 // Engine data
 GameOptions* Game;
 asIScriptEngine* ASEngine;
-void (*Log)(const char* func, const char* frmt, ...);
+void (*Log)(const char* frmt, ...);
 
 // Extern data definition
 _GlobalVars GlobalVars;
