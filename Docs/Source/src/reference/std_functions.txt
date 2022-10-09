@@ -576,6 +576,17 @@ int findLastNotOf(const string &in str, const string &in set, int startAt);
  */
 string@[]@ split(const string &in str, const string &in delimiter);
 
+/** \~russian Разбивает указанную строку на подстроки, используя указанный разделитель.
+ *
+ * @param  str        Разбиваемая строка.
+ * @param  delimiter  Строка, которая используется в качестве разделителя.
+ *
+ * @return Массив, элементы которого содержат подстроки данной строки,
+ *         разделенные строкой @a delimiter. В итоговый массив не включаются пустые элементы, а так же убираются пробелы/табы/перенос_строки из итоговых элементов.
+ *
+ */
+string@[]@ splitEx(const string &in str, const string &in delimiter);
+
 /** \~russian Объединяет строки из заданного массива в одну строку, разделяя их при этом указанной строкой.
  *
  * @param  str        Массив объединяемых строк.
@@ -618,6 +629,48 @@ string@ strlwr(const string &in str);
  * @return String @a str in uppercase.
  */
 string@ strupr(const string &in str);
+
+/** \~russian Высчитывает хэш строки. Основное назначение - высчитывать хэш пути к файлу изображения
+ * 
+ * @param  str  Cтрока от которой высчитывается хэш (символ "/" в исходной строке будет автоматически заменен на "\"). Регистр значения не имеет.
+ * @return Хэш строки
+ * 
+ ** \~english 
+ * 
+ * @param  str  Strings of which is calculated hash ("/" character in the original string will be automatically replaced by "\"). Function is case-insensitive.
+ * @return String hash
+ * 
+ ** \~
+ * @see Item::PicMap
+ * @see ItemCl::PicMap
+ * @see Item::PicInv
+ * @see ItemCl::PicInv
+ */
+uint GetStrHash(string@ str);
+
+//@}
+
+/**
+ * \~russian @name Прочее
+ */
+//@{
+
+/** \~russian Возвращает вид криттера (Fallout, Tactics, Arcanum, etc) по номеру CritterType
+ * 
+ * @param  crType  номер типа криттера.
+ * @return вид криттера. Значения в Anim types _animation.fos.
+ *
+ */
+int GetCritterAnimType(uint crType);
+
+/** \~russian возвращает значение Alias из CritterTypes.fos */
+uint GetCritterAlias(uint crType)
+
+/** \~russian возвращает значение TypeName из CritterTypes.fos */
+string@ GetCritterTypeName(uint crType)
+
+/** \~russian возвращает значение SoundName из CritterTypes.fos */
+string@ GetCritterSoundName(uint crType)
 
 //@}
 

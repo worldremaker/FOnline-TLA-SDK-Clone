@@ -101,6 +101,15 @@ public:
 
     /** \~russian Позволяет узнать, бежал ли криттер в момент срабатывания событий триггера или предмета. */
     bool IsRuning;
+	
+	/** \~russian Уточняет состояние криттера. Используется для анимаций. */
+	const uint Life;
+	
+	/** \~russian Уточняет состояние криттера. Используется для анимаций. */
+	const uint Knockout;
+	
+	/** \~russian Уточняет состояние криттера. Используется для анимаций. */
+	const uint Dead;
 
     /** \~russian Массив значений параметров криттера.
      *
@@ -253,7 +262,7 @@ public:
 
     /** \~russian Принудительно вызывает событие #CRITTER_EVENT_KNOCKOUT. */
     /** \~english Invokes #CRITTER_EVENT_KNOCKOUT event. */
-    void EventKnockout(bool faceUp, uint lostAp, uint knockDist);
+    void EventKnockout(uint anim2begin, uint anim2idle, uint anim2end, uint lostAp, uint knockDist);
 
     /** \~russian Принудительно вызывает событие #CRITTER_EVENT_SMTH_STEALING. */
     /** \~english Invokes #CRITTER_EVENT_SMTH_STEALING event. */
@@ -285,7 +294,7 @@ public:
 
     /** \~russian Принудительно вызывает событие #CRITTER_EVENT_SMTH_KNOCKOUT. */
     /** \~english Invokes #CRITTER_EVENT_SMTH_KNOCKOUT event. */
-    void EventSmthKnockout(Critter& fromCrit, bool faceUp, uint lostAp, uint knockDist);
+    void EventSmthKnockout(Critter& fromCrit, uint anim2begin, uint anim2idle, uint anim2end, uint lostAp, uint knockDist);
 
     /** \~russian Принудительно вызывает событие #CRITTER_EVENT_BARTER. */
     /** \~english Invokes #CRITTER_EVENT_BARTER event. */
@@ -1072,18 +1081,19 @@ public:
 
     /** \~russian Убивает криттера.
      *
-     * @param  deadType  Тип анимации смерти
+     * @param  anim2     Тип анимации смерти
      *                   (см. <b>COND_DEAD_...</b> в @link CritterConditions Critter extended conditions@endlink).
      * @param  killer    Указатель на криттера-убийцу.
      *
      * @see    IsDead
      */
-    void ToDead(uint8 deadType, Critter@+ killer);
+    void ToDead(uint anim2, Critter@+ killer);
 
     /** \~russian Посылает криттера в нокаут.
      *
-     * @param   faceUp            Указывает, упасть ли криттеру лицом вверх (@c true)
-     *                            или вниз (@c false).
+     * @param   anim2begin        анимации начала накаута
+     * @param   anim2idle         анимации нахождения в накауте
+     * @param   anim2end          анимации выхода из накаута
      * @param   lostAp            Количество очков действия, необходимых для поднятия с земли.
      * @param   knockHx, knockHy  Гекс, на который падает криттер.
      *
@@ -1095,7 +1105,7 @@ public:
      *
      * @see     IsKnockout
      */
-    bool ToKnockout(bool faceUp, uint lostAp, uint16 knockHx, uint16 knockHy);
+    bool ToKnockout(uint anim2begin, uint anim2idle, uint anim2end, uint lostAp, uint16 knockHx, uint16 knockHy);
 
     /** \~russian Возвращает мертвого криттера к жизни.
      *
@@ -1158,9 +1168,15 @@ public:
      *          @c false – в противном случае.
      */
     bool IsAnim1(uint index);
-
-    /** \~russian Позволяет проверить, имеет ли криттер 3D анимацию. */
-    bool IsAnim3d();
+	
+	/** \~russian Для смены данных значений на постоянной основе (например, положение сидя, лежа).
+     *
+     * @param  cond   Для какого состаяния применить значения (см. COND_* в _defines.fos), при нуле применяется ко всем трем.
+     * @param  anim1  Значения анимаций.
+     * @param  anim2  Значения анимаций.
+     *
+     */
+	void SetAnims(int cond, uint anim1, uint anim2);
 
     //@}
 
@@ -1429,8 +1445,9 @@ public:
 
     /** \~russian Заставляет криттера подождать указанное количество времени.
      *
-     * Функция прекращает свою работу после окончания таймаута.
-     *
+     * Функция прекращает свою работу после окончания таймаута.\n
+	 * \b Примечание: Если функция вызвана во время движения @ref term_critter "персонажа", то он остановится.
+	 * 
      * @param  ms  Время (в миллисекундах, 1 секунда = 1000 миллисекунд), которое криттер должен ждать.
      *
      * @see    CRITTER_EVENT_IDLE

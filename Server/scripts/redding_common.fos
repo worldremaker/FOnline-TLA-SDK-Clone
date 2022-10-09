@@ -13,16 +13,16 @@ class CGuardsManagerForNCR : CGuardsManager
 	CGuardsManagerForNCR()
 	{
 		super();
-		dialog = DIALOG_redd_regulator;
+		Dialog = DIALOG_redd_regulator;
 	}
 }
 
 // класс с алгоритмом
-CGuardsManagerForNCR grd;
+CGuardsManagerForNCR Grd;
 
 bool GuardItemTest(Item@ item) // export
 {
-	return grd.GuardItemTest(item);
+	return Grd.GuardItemTest(item);
 }
 
 // Усиление нпц

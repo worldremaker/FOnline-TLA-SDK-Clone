@@ -49,17 +49,17 @@ public:
     /** (?) */
     const uint Weight;
 	
-	/** \~russian */
+	/** \~russian Стартовое значение параметра заряда */
 	uint8 IndicatorStart;
 	
-	/** \~russian Стартовое значение параметра заряда */
+	/** \~russian Максимальное значение индикатора заряда */
 	uint8 IndicatorMax;
 
-    /** (?) Максимальное значение индикатора заряда */
-    const uint16 PicMap;
+    /** \~russian Изображение на карте (хэш пути) */
+    const uint PicMap;
 
-    /** (?) */
-    const uint16 PicInv;
+    /** \~russian Изображение в инвентаре (хэш пути) */
+    const uint PicInv;
 
     /** (?) */
     const uint8 Sound;
@@ -120,9 +120,6 @@ public:
      * \~ @weight 260
      */
     //@{
-
-    /** \~russian Используется ли в анимации подготовка и завершение. */
-    const bool Weapon_RequiresActivation;
 
     /** \~russian Безоружная атака. */
     const bool Weapon_IsUnarmed;

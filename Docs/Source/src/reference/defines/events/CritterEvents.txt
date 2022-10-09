@@ -216,7 +216,23 @@
  * \~ @see Critter::EventUseSkill
  *         #ITEM_EVENT_SKILL
  */
-#define CRITTER_EVENT_USE_SKILL              (20)
+#define CRITTER_EVENT_USE_SKILL              (21)
+
+/** \~russian Вызывается при использовании кем-то навыка на данном криттере.
+ *
+ * @code
+ * bool _FuncName(Critter& whoUse, int skill)
+ * @endcode
+ *
+ * @param  whoUse  Криттер использующий скилл
+ * @param  skill   Используемый скилл
+ *                  (см. @link Skills Навыки@endlink и @link SpecialSkillValues Special Skill Values@endlink).
+ *
+ * @return При @c false вызывается глобальный обработчик #critter_use_skill
+ *         При @c true – выход.
+ *
+ */
+#define CRITTER_EVENT_USE_SKILL_ON_ME         (22)
 
 //@}
 
@@ -245,6 +261,21 @@
  *          #critter_use_item
  */
 #define CRITTER_EVENT_USE_ITEM               (19)
+
+/** \~russian Вызывается при использовании какого-либо предмета на данном криттере.
+ *
+ * @code
+ * bool _FuncName(Critter& whoUse, Item& item)
+ * @endcode
+ *
+ * @param  whoUse  Криттер использовавший предмет.
+ * @param  Item&   Используемый предмет.
+ *
+ * @return При @c false вызывается глобальный обработчик #critter_use_item.
+ *         При @c true – выход.
+ *
+ */
+#define CRITTER_EVENT_USE_ITEM_ON_ME          (20)
 
 /** \~russian Вызывается при появлении предмета в поле зрения.
  *
@@ -326,7 +357,7 @@
  * \~ @see Critter::EventMoveItem
  *         #ITEM_EVENT_MOVE
  */
-#define CRITTER_EVENT_MOVE_ITEM              (22)
+#define CRITTER_EVENT_MOVE_ITEM              (24)
 
 //@}
 

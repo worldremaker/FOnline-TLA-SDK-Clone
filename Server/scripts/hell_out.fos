@@ -15,16 +15,16 @@ class CGuardsManagerForHell : CGuardsManager
 	CGuardsManagerForHell()
 	{
 		super();
-		dialog = DIALOG_hell_guard;
+		Dialog = DIALOG_hell_guard;
 	}
 }
 
 // класс с алгоритмом
-CGuardsManagerForHell grd;
+CGuardsManagerForHell Grd;
 
 bool GuardItemTest(Item@ item) // export
 {
-	return grd.GuardItemTest(item);
+	return Grd.GuardItemTest(item);
 }
 
 ///////////

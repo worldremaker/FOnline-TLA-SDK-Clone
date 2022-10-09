@@ -158,7 +158,7 @@ public:
      * @return @c true – если у криттера есть такой ключ; @c false – если такого ключа нет.
      */
     bool CheckKey(uint doorId);
-
+	
     /** \~russian Позволяет включить/отключить видимость криттера в клиенте в совокупности с его освещением и яйцом прозрачности.
      *
      * @param  visible  Устанавливаемое значение.
@@ -191,9 +191,6 @@ public:
      * \~english @name Animation
      */
     //@{
-
-    /** \~russian Позволяет проверить, используется ли криттером трехмерная модель. */
-    bool IsAnim3d();
 
     /** \~russian Позволяет проверить, существует ли указанная анимация для криттера.
      *
@@ -261,14 +258,6 @@ public:
     /** \~russian Направление, в которое повернут криттер. */
     const uint8 Dir;
 
-    /** \~russian Уточняет состояние криттера.
-     *
-     * См. @link CritterConditions Extended critter conditions@endlink.
-     *
-     ** \~english Critter's extended condition (see @link CritterConditions Extended critter conditions@endlink).
-     */
-    const uint8 CondExt;
-
     /** \~russian Флаги криттера, предназначенные только для чтения.
      *
      *  См. @link CritterExtraFlags Critter extra flags@endlink.
@@ -278,8 +267,12 @@ public:
     /** \~russian Массив значений параметров криттера. */
     DataVal Param;
 	
-	/** \~russian Если данная строка не пустая, то выводится над головой криттера */
-	string NameOnHead
+	/**	\~russian Если данная строка не пустая, то выводится над головой криттера, в противном случае выводится имя криттера.
+	 *
+	 * См @link __ShowNpcNames@endlink.
+	 *
+	 */
+	string NameOnHead;
     
 	/** \~russian Цвет имени над головой криттера */
     uint NameColor;
@@ -289,5 +282,14 @@ public:
 
     /** \~russian Значения слоев 3D-модели криттера. Значения смотрите в @b _animations.fos, <b>3d models layers</b>. */
     int[]@ Anim3dLayer;
+	
+	/** \~russian Уточняет состояние криттера. Используется для анимаций. */
+	const uint Life;
+	
+	/** \~russian Уточняет состояние криттера. Используется для анимаций. */
+	const uint Knockout;
+	
+	/** \~russian Уточняет состояние криттера. Используется для анимаций. */
+	const uint Dead;
 }
 

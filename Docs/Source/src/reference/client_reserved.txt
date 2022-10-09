@@ -179,21 +179,23 @@ void item_drop(ItemCl& item);
 
 /** \~russian Вызывается перед проигрыванием 2D анимации.
  *
- * @param  cr     Криттер, для которого проигрывается анимация.
- * @param  anim1  Первый индекс анимации (см. @b ANIM1_* в @b _animation.fos).
- * @param  anim2  Второй индекс анимации (см. @b ANIM2_2D_* в @b _animation.fos).
- * @param  item   Указатель на предмет, используемый в анимации.
+ * @param  animateStay  Указывает воспроизводится сейчас какое-либо действие (@a false) или анимация стойки (@a true).
+ * @param  cr           Криттер, для которого проигрывается анимация.
+ * @param  anim1        Первый индекс анимации (см. @b ANIM1_* в @b _animation.fos).
+ * @param  anim2        Второй индекс анимации (см. @b ANIM2_2D_* в @b _animation.fos).
+ * @param  item         Указатель на предмет, используемый в анимации.
  */
-void animation2d_process(CritterCl& cr, uint anim1, uint anim2, ItemCl@ item);
+void animation2d_process(bool animateStay, CritterCl& cr, uint anim1, uint anim2, ItemCl@ item);
 
 /** \~russian Вызывается перед проигрыванием 3D анимации.
  *
- * @param  cr     Криттер, для которого проигрывается анимация.
- * @param  anim1  Первый индекс анимации (см. @b ANIM1_* в @b _animation.fos).
- * @param  anim2  Второй индекс анимации (см. @b ANIM2_3D_* в @b _animation.fos).
- * @param  item   Указатель на предмет, используемый в анимации.
+ * @param  animateStay  Указывает воспроизводится сейчас какое-либо действие (@a false) или анимация стойки (@a true).
+ * @param  cr           Криттер, для которого проигрывается анимация.
+ * @param  anim1        Первый индекс анимации (см. @b ANIM1_* в @b _animation.fos).
+ * @param  anim2        Второй индекс анимации (см. @b ANIM2_3D_* в @b _animation.fos).
+ * @param  item         Указатель на предмет, используемый в анимации.
  */
-void animation3d_process(CritterCl& cr, uint anim1, uint anim2, ItemCl@ item);
+void animation3d_process(bool animateStay, CritterCl& cr, uint anim1, uint anim2, ItemCl@ item);
 
 /** (?) */
 uint item_cost(ItemCl& item, CritterCl& chosen, CritterCl& npc, bool sell);
@@ -312,11 +314,43 @@ void combat_result(uint[]& data);
  * @param  target       Цель.
  * @param  weapon       Используемое игроком оружие.
  * @param  weaponMode   Режим атаки оружия.
- * старшие четыре бита - прицел (см. @link HitLocations Hit Locations@endlink),
- * младшие четыре бита - тип использования (0 – primary, 1 – secondary, 2 – third).
+ * старшие четыре бита  Прицел (см. @link HitLocations Hit Locations@endlink),
+ * младшие четыре бита  Тип использования (0 – primary, 1 – secondary, 2 – third).
  *
  */
 int to_hit(CritterCl& chosen, CritterCl& target, ProtoItem& weapon, uint8 weaponMode);
+
+/** \~russian Функция вызываемая в момент загрузки нужной анимации.
+ * 
+ * @param  animType      Тип анимации криттера (новый параметр, указывается в CritterTypes.cfg);
+ * @param  crType        Тип криттера;
+ * @param  anim1, anim2  Индексы анимации;
+ * @param  pass          Номер вызова функции, изменяется пользователем, если не удалось загрузить анимацию и данный параметр был изменен, то функция вызовется вновь (в некоторых случаях нужно пробовать загрузить разные файлы для одной анимации);
+ * @param  flags         Флаги, на данный момент два - взять первый или последний кадр из анимации (см. Anim loading flags в _animation.fos);
+ * @param  ox, &oy       Смещения для анимации, в пикселях.
+ *
+ * @return  путь и имя файла
+ *
+ */
+string@ critter_animation(int animType, uint crType, uint anim1, uint anim2, uint& pass, uint& flags, int& ox, int& oy);
+
+/** \~russian Если не удалось загрузить анимацию (и uint& pass не изменился), то вызывается данная функция для определения замены анимации (например, удар левой рукой можно заменить на удар правой).
+ *
+ * animTypeТип                            Тип анимации криттера (новый параметр, указывается в CritterTypes.cfg);
+ * uint crTypeBase, anim1Base, anim2Base  Базовый тип криттера и анимации, с которых все начиналось;
+ * uint& crType, &anim1, &anim2           Тип криттера и текущие анимации для замены.
+ *
+ * @return  @a true, если замена нашлась (движок еще дополнительно проверяет изменились ли на самом деле crType, anim1, anim2), @a false - нет замены, анимация не будет загружена и проиграна.
+ *
+ */
+bool critter_animation_substitute(int animType, uint crTypeBase, uint anim1Base, uint anim2Base, uint& crType, uint& anim1, uint& anim2);
+
+/** \~russian Т.к. анимации фаллаута все еще загружаются движком (требуется дополнительный расчет смещений, склейка двух анимаций), то для определения соответствий анимаций вызывается данная функция, т.е. вместо critter_animation для анимаций фаллаута вызывается данная функция.
+ *
+ * @return @a true, если анимация присутствует, @a false - нет.
+ *
+ */
+bool critter_animation_fallout(uint crType, uint& anim1, uint& anim2, uint& anim1ex, uint& anim2ex, uint& flags);
 
 //@}
 

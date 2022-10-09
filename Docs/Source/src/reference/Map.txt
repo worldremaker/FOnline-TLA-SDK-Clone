@@ -662,6 +662,21 @@ public:
      * @see    CountEntire
      */
     bool GetEntireCoords(uint8 entire, uint8 num, uint16& hexX, uint16& hexY);
+	
+	/** \~russian Расширенная версия функции @ref GetEntireCoords, возвращающая направление (Dir) */
+	bool GetEntireCoords(int entire, uint skip, uint16& hexX, uint16& hexY, uint8& dir);
+	
+	/** \~russian Для поиска ближайшего гекса.
+	*
+	* @param entire  Номер энтайра, если -1, то будет то будет возвращен ближайший валидный номер.
+	*
+	* @return @a true, в случае успеха.
+	*
+	*/
+	bool GetNearEntireCoords(int& entire, uint16& hexX, uint16& hexY);
+	
+	/** \~russian Расширенная версия функции @ref GetNearEntireCoords, возвращающая направление (Dir) */
+	bool GetNearEntireCoords(int& entire, uint16& hexX, uint16& hexY, uint8& dir);
 
     /** \~russian Позволяет получить координаты гексагона, достигнутого при трассировке по указанной траектории.
      *

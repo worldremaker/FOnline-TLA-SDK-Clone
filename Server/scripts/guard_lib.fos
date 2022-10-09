@@ -86,86 +86,86 @@ import bool AddWalkPlane(Critter& npc, uint priory, uint16 hexX, uint16 hexY, ui
 
 // НЕ РЕАЛИЗОВАННО
 class TPlayerCard { // карточка игрока за которым следит охрана
-	uint id; //id игрока
-	int8 alertCount; // счетчик предупреждений
-	int8 alertType; // тип предупреждения (покачто не используеться)
-	int8 time; // тайм аут - чтобы убирать из списка устаревшие записи (покачто не используеться)
+	uint Id; //id игрока
+	int8 AlertCount; // счетчик предупреждений
+	int8 AlertType; // тип предупреждения (покачто не используеться)
+	int8 Time; // тайм аут - чтобы убирать из списка устаревшие записи (покачто не используеться)
 };
 
 // НЕ РЕАЛИЗОВАННО
 class TGuardCard { // карточка охранника
-	uint id; //id охранника
-	uint targer; //цель
-	uint job; //задание
-	int8 time; // тайм аут - охраннику надоедает выполять задание (покачто не используеться)
+	uint Id; //id охранника
+	uint Targer; //цель
+	uint Job; //задание
+	int8 Time; // тайм аут - охраннику надоедает выполять задание (покачто не используеться)
 };
 
 // прототип системы охраны
 class CGuardsManager
 {
 	//НЕ РЕАЛИЗОВАННО
-	TGuardCard[] guards; //охранники
-	TPlayerCard[] players; //игроки
+	TGuardCard[] Guards; //охранники
+	TPlayerCard[] Players; //игроки
 
 	// системные массивы
 	// нужно переделать в class
-	uint[] observing; //Массив с id игроков за которыми следит охрана
-	int8[] alertCount; // счетчик предупреждений
-	int8[] alertType; // тип предупреждения (покачто не используеться)
-	int8[] timeOut; // тайм аут (покачто не используеться)
+	uint[] Observing; //Массив с id игроков за которыми следит охрана
+	int8[] AlertCount; // счетчик предупреждений
+	int8[] AlertType; // тип предупреждения (покачто не используеться)
+	int8[] TimeOut; // тайм аут (покачто не используеться)
 
 	// настройки системы
 
 	// фдаг таймера создался-ли таймер (CreateTimeEvent)
 	//НЕ РЕАЛИЗОВАННО
-	int timer_flag;
+	int TimerFlag;
 
 	// номер диалога откуда беруться сообщения
-	int dialog;
+	int Dialog;
 
 	// прибавка к зрению
-	// дистанция_обзора = npc.perception + perception_add
-	int perception_add;
+	// дистанция_обзора = npc.perception + PerceptionAdd
+	int PerceptionAdd;
 
 	// максимум предупреждений
-	int max_alert;
+	int MaxAlert;
 
 	// если нпс снял столько жизней жизней (или больше) у нарушителя
 	// то нпс прекращяет атаку (если игрок убрал оружие)
-	int atack_minus_hp;
+	int AtackMinusHp;
 
 	// время тайм-аута после которого охраннику надоедает гоняться за нарушителем
 	//НЕ РЕАЛИЗОВАННО
-	int atack_timeout;
+	int AtackTimeout;
 
 	// таблица приоритетов предупреждений. если 0 то игнор этого типа.
-	int[] alert_priority;
+	int[] AlertPriority;
 
 	// инициализация
 	CGuardsManager()
 	{
-		dialog=0;
-		max_alert=MAX_ALERT;
-		perception_add=PERCEPTION_ADD;
-		atack_minus_hp=ATACK_MINUS_HP;
+		Dialog=0;
+		MaxAlert=MAX_ALERT;
+		PerceptionAdd=PERCEPTION_ADD;
+		AtackMinusHp=ATACK_MINUS_HP;
 
-		alert_priority.resize(ALERT_TYPE_MAX);
-		timer_flag=0;
-		atack_timeout=0;
+		AlertPriority.resize(ALERT_TYPE_MAX);
+		TimerFlag=0;
+		AtackTimeout=0;
 	}
 
 	// начинаем наблюдение за игроком
 	int AddObserving(Critter@ player)
 	{
-		int i=FindInArray(observing, player.Id);
+		int i=FindInArray(Observing, player.Id);
 		if (i==-1)
 		{
 			int8 zero=0;
-			observing.insertLast(player.Id);
-			alertCount.insertLast(zero);
-			alertType.insertLast(zero);
-			timeOut.insertLast(zero);
-			return observing.length()-1;
+			Observing.insertLast(player.Id);
+			AlertCount.insertLast(zero);
+			AlertType.insertLast(zero);
+			TimeOut.insertLast(zero);
+			return Observing.length()-1;
 		} else
 			return i;
 	}
@@ -173,16 +173,16 @@ class CGuardsManager
 	// удаляем игрока из Observing
 	void DelObserving(uint index)
 	{
-		observing.removeAt(index);
-		alertCount.removeAt(index);
-		alertType.removeAt(index);
-		timeOut.removeAt(index);
+		Observing.removeAt(index);
+		AlertCount.removeAt(index);
+		AlertType.removeAt(index);
+		TimeOut.removeAt(index);
 	}
 
 	// удаляем игрока из Observing
 	void DelObserving(Critter@ player)
 	{
-		int i=FindInArray(observing, player.Id);
+		int i=FindInArray(Observing, player.Id);
 		if (i!=-1)
 			DelObserving(i);
 	}
@@ -193,23 +193,23 @@ class CGuardsManager
 	{
 		if (alertLevel==0) return;
 
-		string tmp=max_alert;
-		// нужна проверка на alertType
-		if (alertLevel > max_alert) {
-			npc.SayMsg(SAY_SHOUT_ON_HEAD, TEXTMSG_DLG, DLGSTR(dialog,3));
-			int minhp = bastard.Stat[ST_CURRENT_HP] - atack_minus_hp;
+		string tmp=MaxAlert;
+		// нужна проверка на AlertType
+		if (alertLevel > MaxAlert) {
+			npc.SayMsg(SAY_SHOUT_ON_HEAD, TEXTMSG_DLG, DLGSTR(Dialog,3));
+			int minhp = bastard.Stat[ST_CURRENT_HP] - AtackMinusHp;
 			if (minhp<0) minhp=0;
 			AddAttackPlane(npc,0,bastard,minhp);
 		} else
-		if (alertLevel>max_alert/2) {
-			npc.SayMsg(SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR(dialog,2));
+		if (alertLevel>MaxAlert/2) {
+			npc.SayMsg(SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR(Dialog,2));
 			if (npc.IsNoPlanes())
 			  AddWalkPlane(npc, 0, bastard.HexX, bastard.HexY,
 				GetDirection(npc.HexX, npc.HexY, bastard.HexX, bastard.HexY), false, 3);
 		} else
 		{
 			//npc.SetDir(GetDirection(npc.HexX, npc.HexY, bastard.HexX, bastard.HexY));
-			npc.SayMsg(SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR(dialog,1));
+			npc.SayMsg(SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR(Dialog,1));
 		}
 	}
 
@@ -217,29 +217,29 @@ class CGuardsManager
 	void GuardObserving(Critter@ npc, bool modifyAlertCount)
 	{
 		uint myMap=npc.GetMapId();
-		for (uint i=0; i<observing.length(); i++)
+		for (uint i=0; i<Observing.length(); i++)
 		{
 			// проходимся по listObserving в поисках плохих мальчиков
-			Critter@ player=GetCritter(observing[i]);
+			Critter@ player=GetCritter(Observing[i]);
 			if (valid(player)) {
 				if ((myMap!=player.GetMapId()) || (player.Stat[ST_CURRENT_HP]<=0)) {
 					// после смерти не вызываеться on_remove_critter поэтому игрок может 'телепортироваться'
 					DelObserving(player);
 					continue;
 				}
-				if (GetCrittersDistantion(npc, player) < uint(npc.Stat[ST_PERCEPTION]+perception_add) ) // кто подошел близко
+				if (GetCrittersDistantion(npc, player) < uint(npc.Stat[ST_PERCEPTION]+PerceptionAdd) ) // кто подошел близко
 				if (GuardItemTest(_CritGetItemHand(player)))
 				{ // и все еще держит пушку в руках
-					if (modifyAlertCount && (alertCount[i]<max_alert*2))
-						alertCount[i]++;
-					GuardWarn(npc, player, alertCount[i]);
+					if (modifyAlertCount && (AlertCount[i]<MaxAlert*2))
+						AlertCount[i]++;
+					GuardWarn(npc, player, AlertCount[i]);
 				} else // если он убрал пушку то успокаиваемся
 				{
-					if (alertCount[i]<=-max_alert)
+					if (AlertCount[i]<=-MaxAlert)
 					  DelObserving(player);
 					// отключил это поведение
 					//if (modifyAlertCount)
-					//	alertCount[i]--;
+					//	AlertCount[i]--;
 				}
 
 
@@ -274,9 +274,9 @@ class CGuardsManager
 
 		if (GuardItemTest(_CritGetItemHand(player))) { // если достал пушку
 			int i=AddObserving(player); // то начинаем наблюдать...
-			alertType[i]=ALERT_TYPE_SHOWGUN;//запоминаем тип нарушения
+			AlertType[i]=ALERT_TYPE_SHOWGUN;//запоминаем тип нарушения
 			// если стоит близко то выдаем предупреждение
-			if (GetCrittersDistantion(guard, player) < uint(guard.Stat[ST_PERCEPTION]+perception_add))
+			if (GetCrittersDistantion(guard, player) < uint(guard.Stat[ST_PERCEPTION]+PerceptionAdd))
 				GuardWarn(guard, player, i);
 		}
 	}
@@ -288,8 +288,8 @@ class CGuardsManager
 		if (not player.IsPlayer()) return;
 
 		int idx=-1;
-		if (FindInArray(observing, player.Id, idx)) // если нашли
-			if (alertCount[idx] <= 0) // если нет притензий
+		if (FindInArray(Observing, player.Id, idx)) // если нашли
+			if (AlertCount[idx] <= 0) // если нет притензий
 				DelObserving(idx); // забываем про него
 	}
 
@@ -317,29 +317,29 @@ class CGuardsManager
 			if (GetCrittersDistantion(guard, player) < (__LookMinimum*2))
 				if (whatInHand.GetProtoId()==PID_RED_RYDER_BB_GUN || whatInHand.GetProtoId()==PID_ZIP_GUN)
 				{ // на близком растоянии охранник замечает стремное оружие
-					guard.SayMsg(SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR(dialog,7));
+					guard.SayMsg(SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR(Dialog,7));
 					return;
 				}
 
 			int index=AddObserving(player); // то начинаем наблюдать...
-			alertType[index]=ALERT_TYPE_SHOWGUN;//запоминаем тип нарушения
-			if (GetCrittersDistantion(guard, player) < uint(guard.Stat[ST_PERCEPTION]+perception_add))
+			AlertType[index]=ALERT_TYPE_SHOWGUN;//запоминаем тип нарушения
+			if (GetCrittersDistantion(guard, player) < uint(guard.Stat[ST_PERCEPTION]+PerceptionAdd))
 			{
-				alertCount[index]++;
-				GuardWarn(guard, player, alertCount[index]); // выдаем предупреждение
+				AlertCount[index]++;
+				GuardWarn(guard, player, AlertCount[index]); // выдаем предупреждение
 			}
 		} else
 		{
 			if (item.GetType()==ITEM_WEAPON && fromSlot==SLOT_HAND1)
-			if (GetCrittersDistantion(guard, player) < uint(guard.Stat[ST_PERCEPTION]+perception_add))
+			if (GetCrittersDistantion(guard, player) < uint(guard.Stat[ST_PERCEPTION]+PerceptionAdd))
 			// если игрок убрал оружие
 			{
-				int i=FindInArray(observing, player.Id);
+				int i=FindInArray(Observing, player.Id);
 				if (i!=-1)
-					if ((alertCount[i]>max_alert) && (alertType[i]==ALERT_TYPE_SHOWGUN)) {
-						//alertCount[i]=max_alert; // перестаем атаковать игрока
-						alertCount[i]--;
-						guard.SayMsg(SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR(dialog,4));
+					if ((AlertCount[i]>MaxAlert) && (AlertType[i]==ALERT_TYPE_SHOWGUN)) {
+						//AlertCount[i]=MaxAlert; // перестаем атаковать игрока
+						AlertCount[i]--;
+						guard.SayMsg(SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR(Dialog,4));
 					}
 			}
 		}
@@ -351,8 +351,8 @@ class CGuardsManager
 		if(num==MESSAGE_PLEASE_KILL_ME_I_AM_IDIOT)
 		{
 			int index = AddObserving(player);
-			alertCount[index] = alertCount[index] + max_alert;
-			alertType[index] = ALERT_TYPE_ENTER_ON_DENY;
+			AlertCount[index] = AlertCount[index] + MaxAlert;
+			AlertType[index] = ALERT_TYPE_ENTER_ON_DENY;
 			//GuardWarn (...)
 			AddAttackPlane(guard, 0, player, __DeadHitPoints);// Мочим!
 		}
@@ -369,26 +369,26 @@ class CGuardsManager
 		// игрок чтото использовал
 		// и не факт что на себя, но покачто тут старый код
 
-		if (GetCrittersDistantion(guard, player) < uint(guard.Stat[ST_PERCEPTION]+perception_add))
+		if (GetCrittersDistantion(guard, player) < uint(guard.Stat[ST_PERCEPTION]+PerceptionAdd))
 		{
 				uint16 itemType=item.GetType();
 				switch (itemType) {
 				case(ITEM_DRUG):
 					if(Present(item.GetProtoId(),Pids_DrugsAlcohol)) {
-						guard.SayMsg(SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR(dialog,5));
+						guard.SayMsg(SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR(Dialog,5));
 						//guard.Say(SAY_NORM_ON_HEAD, "Эх счаз бы тоже пивка наебнуть");
 						int index=AddObserving(player);
-						alertCount[index]++;
-						alertType[index]=ALERT_TYPE_ALCO;
-						if (alertCount[index]>max_alert) GuardWarn(guard, player, alertCount[index]);
+						AlertCount[index]++;
+						AlertType[index]=ALERT_TYPE_ALCO;
+						if (AlertCount[index]>MaxAlert) GuardWarn(guard, player, AlertCount[index]);
 					}
 					if(Present(item.GetProtoId(),Pids_Drugs)) {
-						guard.SayMsg(SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR(dialog,6));
+						guard.SayMsg(SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR(Dialog,6));
 						//guard.Say(SAY_NORM_ON_HEAD, "Ну как? Нормально торкнуло?");
 						int index=AddObserving(player);
-						alertCount[index]=alertCount[index] + max_alert;
-						alertType[index]=ALERT_TYPE_DRUG;
-						if (alertCount[index]>max_alert) GuardWarn(guard, player, alertCount[index]);
+						AlertCount[index]=AlertCount[index] + MaxAlert;
+						AlertType[index]=ALERT_TYPE_DRUG;
+						if (AlertCount[index]>MaxAlert) GuardWarn(guard, player, AlertCount[index]);
 					}
 				break;
 				}
@@ -425,7 +425,7 @@ class CGuardsManager
 		// звук выстрела хорошо слышно - множим дистанцию на 4
 		// может исключать из множителя WeaponLaser? - лазер по идее не слышно
 		if ( GetCrittersDistantion(guard, player) <
-			 (uint(guard.Stat[ST_PERCEPTION]+perception_add)*4) )
+			 (uint(guard.Stat[ST_PERCEPTION]+PerceptionAdd)*4) )
 			if(
 					(weapon.GetProtoId()!=PID_RED_RYDER_BB_GUN) // игнорим эту фигню  =)
 					and (
@@ -435,17 +435,17 @@ class CGuardsManager
 			  )
 			{
 				int index=AddObserving(player);
-				alertType[index]=ALERT_TYPE_SHOT;
-				if ((alertCount[index]==0)&&(not isDead)) { // если это превое нарушение и объект не умер
+				AlertType[index]=ALERT_TYPE_SHOT;
+				if ((AlertCount[index]==0)&&(not isDead)) { // если это превое нарушение и объект не умер
 					guard.SetDir(GetDirection(guard.HexX, guard.HexY, player.HexX, player.HexY));
-					guard.SayMsg(SAY_SHOUT_ON_HEAD, TEXTMSG_DLG, DLGSTR(dialog,8));
-					alertCount[index]++;
+					guard.SayMsg(SAY_SHOUT_ON_HEAD, TEXTMSG_DLG, DLGSTR(Dialog,8));
+					AlertCount[index]++;
 				} else {
-					alertCount[index]=alertCount[index]+max_alert+1;
+					AlertCount[index]=AlertCount[index]+MaxAlert+1;
 					if (isDead) // если обьект умер
 						AddAttackPlane(guard, 0, player); // тогда наказываем нарушителя
 						else
-						GuardWarn(guard, player, alertCount[index]); // иначе плановое постреливание
+						GuardWarn(guard, player, AlertCount[index]); // иначе плановое постреливание
 				}
 			}
 	}
@@ -460,15 +460,15 @@ class CGuardsManager
 		AddAttackPlane(guard, 0, thief, thief.Stat[ST_MAX_LIFE] / 2);
 		/*
 		int index=grd.AddObserving(fromCrit);
-		grd.alertCount[index]=+max_alert;
-		grd.GuardWarn(guard, fromCrit, grd.alertCount[index]);
+		grd.AlertCount[index]=+MaxAlert;
+		grd.GuardWarn(guard, fromCrit, grd.AlertCount[index]);
 		*/
 	}
 
 	// наблюдение за подозрительными личностями.
 	uint EventObserving(Critter@ guard)
 	{
-		if (observing.length()==0) return OBSERV_PERIOD*2;
+		if (Observing.length()==0) return OBSERV_PERIOD*2;
 
 		if (not valid(guard)) {
 			Log("Not valid npc from TimeEventGetCritter");

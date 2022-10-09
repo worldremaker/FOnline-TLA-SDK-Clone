@@ -50,19 +50,19 @@ public:
      */
     uint16 Info;
 
-    /** \~russian Картинка в инвентаре.
+    /** \~russian Изображение в инвентаре.
      *
-     * Номер берется по строке в @b INVEN.LST.
+     * Номер вычисляется с помощью функции @ref GetStrHash.
      * При нулевом значении данные берутся из прототипа.
      */
-    uint16 PicInv;
+    uint PicInv;
 
-    /** \~russian Картинка на карте.
+    /** \~russian Изображение на карте.
      *
-     * Номер берется по строке в @b *.LST.
+     * Номер вычисляется с помощью функции @ref GetStrHash.
      * При нулевом значении данные берутся из прототипа.
      */
-    uint16 PicMap;
+    uint PicMap;
 
     /** \~russian Сортировочное число.
      *
@@ -119,9 +119,8 @@ public:
      * @see AddItem
      * @see GetItem
      * @see GetItems
-     * @see ServerGlobals#MoveItemToCont
-     * @see ServerGlobals#MoveItemsContainers
-     * @see ServerGlobals#MoveItemsContToCritter
+     * @see MoveItem
+     * @see MoveItems
      */
     uint SpecialId;
 

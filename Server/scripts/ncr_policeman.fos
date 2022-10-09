@@ -23,16 +23,16 @@ class CGuardsManagerForNCR : CGuardsManager
 	CGuardsManagerForNCR()
 	{
 		super();
-		dialog = DIALOG_ncr_policeman;
+		Dialog = DIALOG_ncr_policeman;
 	}
 }
 
 // класс с алгоритмом
-CGuardsManagerForNCR grd;
+CGuardsManagerForNCR Grd;
 
 bool GuardItemTest(Item@ item) // export
 {
-	return grd.GuardItemTest(item);
+	return Grd.GuardItemTest(item);
 }
 
 

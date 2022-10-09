@@ -185,6 +185,15 @@ bool __RtAlwaysRun;
 
 bool __TbAlwaysRun;
 
+/** \~russian Всегда бежать, по-умолчанию false */
+bool __AlwaysRun;
+
+/** \~russian бежать при клике, при расстоянии больше-равно, чем данное значение */
+uint __AlwaysRunMoveDist;
+
+/** \~russian бежать при использовании/разговоре/etc, при расстоянии больше-равно, чем данное значение */
+uint __AlwaysRunUseDist;
+
 //@}
 
 /**
@@ -276,13 +285,6 @@ uint __LookMinimum;
 
 /** \~russian Количество хит-поинтов, при котором наступает смерть криттера. */
 int __DeadHitPoints;
-
-/** \~russian Название дополнительного файла с настройками интерфейса.
- *
- * Движок в первую очередь будет брать значения из этого файла, а если их нет,
- * то из базовых файлов (default*.ini).
- */
-string __UserInterface;
 
 /** \~russian Время обновления сумок, используемое по-умолчанию.
  *
@@ -384,6 +386,13 @@ uint __LookSneakDir3;
 
 /** \~russian Вес (в граммах), за который который навык скрытности уменьшается на 1%. */
 uint __LookWeight;
+
+/** \~russian Текущая позиция мыши. */
+int __MouseX;
+int __MouseY;
+
+/** \~russian частоты вызова @ref GLOBAL_PROCESS_MOVE . */
+uint __EncounterTime;
 
 //@{
 
@@ -557,24 +566,6 @@ uint GetScriptId(string& scriptName, string& funcDeclaration);
  * @see    GetScriptId
  */
 string@ GetScriptName(uint scriptId);
-
-/** \~russian Загружает шрифт.
- *
- * @param  font  Номер шрифта.
- * @param  fontFileName  Имя файла шрифта.
- *
- * @return Возвращает true в случае успеха.
- *
- */
-bool LoadFont(int font, string& fontFileName);
-
-/** \~russian Устанавливает шрифт по-умолчанию и его цвет.
- *
- * @param  font  Номер шрифта.
- * @param  color  Цвет шрифта.
- *
- */
-void SetDefaultFont(int font, uint color);
 
 //@}
 
@@ -779,6 +770,9 @@ void DeleteNpc(Critter& npc);
  * @return
  */
 bool SwapCritters(Critter& cr1, Critter& cr2, bool withInventory, bool withVars);
+
+/** \~russian  Для выборки криттеров с глобальной карты */
+uint GetGlobalMapCritters(uint16 worldX, uint16 worldY, uint radius, int findType, Critter@[]@+ critters);
 
 /** \~russian Позволяет определить собственную функцию
  *            определения значения для указанного параметра криттера.
@@ -1046,7 +1040,7 @@ uint WorldItemCount(uint16 protoId);
 void GetTime(uint16& year, uint16& month, uint16& day_of_week, uint16& day,
              uint16& hour, uint16& minute, uint16& second, uint16& milliseconds);
 
-/** \~russian Вычисляет игровое время по указанной полной секунде.
+/** \~russian возвращает время и дату по указанной полной секунде.
  *
  * @param  [in]   fullSecond  Игровое время в полных секундах.
  * @param  [out]  year        Год, полученный по полной секунде.

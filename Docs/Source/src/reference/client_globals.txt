@@ -114,6 +114,34 @@ bool __ShowNpcNames;
 /** \~english @ref term_critter "Critters" names visibility. */
 bool __ShowCritId;
 
+/** \~russian Скрывать ли пароль в окне логина */
+bool __HidePassword;
+
+/** \~russian активна ли глобальная карта и все ли следующие нижеприведенные переменные корректны. */
+bool __GmapActive;
+
+/** \~russian включен режим ожидания ответа о подтверждении энкаунтера. */
+bool __GmapWait;
+
+/** \~russian текущий масштаб, не забывайте учитывать его при рисовании на карте. */
+float __GmapZoom;
+
+/** \~russian смещение карты от нулевой координаты (верхний-левый угол). */
+int __GmapOffsetX;
+int __GmapOffsetY;
+
+/** \~russian координаты группы игрока. */
+int __GmapGroupX
+int __GmapGroupY;
+
+/** \~russian координаты точки назначения. */
+int __GmapMoveX;
+int __GmapMoveY;
+
+/** \~russian скорость передвижения каждые 50мс. */
+float __GmapSpeedX;
+float __GmapSpeedY;
+
 /** \~russian Путь к папке клиента. */
 /** \~english Path to client folder. */
 string __ClientPath;
@@ -121,6 +149,9 @@ string __ClientPath;
 /** \~russian Путь к папке сервера. */
 /** \~english Path to server folder. */
 string __ServerPath;
+
+/** \~russian индикация открытой консоли. */
+bool __ConsoleActive;
 
 /** \~russian Боевые сообщения
  *
@@ -133,6 +164,22 @@ string __ServerPath;
  * - @c 1 – verbose.
  */
 int __CombatMessagesType;
+
+/** \~russian Для определения анимаций боевого режима. */
+uint __Anim2CombatBegin;
+
+/** \~russian Для определения анимаций боевого режима. */
+uint __Anim2CombatIdle;
+
+/** \~russian Для определения анимаций боевого режима. */
+uint __Anim2CombatEnd;
+
+/** \~russian частота вызова анимации "дурачества".
+ *
+ * Определяется по формуле Random(__CritterFidgetTime, __CritterFidgetTime * 2)
+ *
+ */
+uint __CritterFidgetTime;
 
 /**
  * \~russian @name Настройки сети
@@ -219,6 +266,22 @@ bool IsTurnBased();
 
 /** (?) */
 uint16 GetCurrentMapPid();
+
+/** \~russian Для взятия действий чузена
+ *
+ * @param actions  Массив состоит из блоков по семь переменных, первая это тип, остальные шесть это параметры. Значение типов и параметров смотрите в _client_defines.fos Chosen actions
+ * 
+ * @return (?)
+ *
+ */
+uint GetChosenActions(uint[]@ actions);
+
+/** \~russian Для установки действий чузена
+ *
+ * @param actions  Массив состоит из блоков по семь переменных, первая это тип, остальные шесть это параметры. Значение типов и параметров смотрите в _client_defines.fos Chosen actions
+ *
+ */
+void SetChosenActions(uint[]@ actions);
 
 /** \~russian Возвращает описание последней ошибки.
  *
@@ -498,6 +561,24 @@ string@ ReplaceText(const string& text, const string& replace, int i);
  * @see    ItemCl#Lexems
  */
 string@ FormatTags(const string& text, const string@+ lexems);
+
+/** \~russian Загружает шрифт.
+ *
+ * @param  font  Номер шрифта.
+ * @param  fontFileName  Имя файла шрифта.
+ *
+ * @return Возвращает true в случае успеха.
+ *
+ */
+bool LoadFont(int font, string& fontFileName);
+
+/** \~russian Устанавливает шрифт по-умолчанию и его цвет.
+ *
+ * @param  font  Номер шрифта.
+ * @param  color  Цвет шрифта.
+ *
+ */
+void SetDefaultFont(int font, uint color);
 
 //@}
 
@@ -1084,6 +1165,22 @@ uint GetCrittersPath(uint16 fromHx, uint16 fromHy,
     uint16 toHx, uint16 toHy,
     float angle, uint dist, int findType, CritterCl@[]@+ critters,
     uint16& preBlockHx, uint16& preBlockHy, uint16& blockHx, uint16& blockHy);
+
+//@}
+
+/**
+ * \~russian @name Прочие функции
+ */
+//@{
+
+/** \~russian Подключает дополнительные ini файлы.
+ *
+ * @param  iniName  Путь к ini файлу. Если имя имеет слеши, то поиск производится из корня data, если нет, то в папке data/art/intrface/.
+Движком автоматически добавляется default.ini.
+ * @return true в случае успеха.
+ *
+ */
+bool AppendIfaceIni(string& iniName)
 
 //@}
 

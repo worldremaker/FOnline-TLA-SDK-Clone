@@ -4,8 +4,6 @@
 
 @subpage page_spechexes
 
-@subpage page_mapscfg
-
 @subpage page_locationscfg
 
 */

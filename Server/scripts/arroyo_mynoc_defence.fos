@@ -23,11 +23,56 @@
 #define ARROYO_POS_Y ( 3 * __GlobalMapZoneLength - __GlobalMapZoneLength/2 )	// локация с рейдерами.
 
 
-// Проверка доступности квеста для группы этот квест можно взять если в группе емть НПС.
-// Так же могут участвовать игоки бравшие квест ранее, но квест они не выполняют и опыт не получают.
-uint r_CheckQuest( Critter& player, Critter@ npc ) {
+bool d_IsGroupExist(Critter& player, Critter@ npc)
+{
+	Critter@[] group;
+	Critter@ leader = GetCritter( GetLeaderId( player ) );
+	group.insertLast(@leader);
+	leader.GetFollowGroup( FIND_ALL, group );
+	if(group.length()>1)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
 
-	// Находим группу в которой состоит игрок и лидера группы.
+bool d_IsGroupNotExist(Critter& player, Critter@ npc)
+{
+	return (not d_IsGroupExist(player,null));
+}
+
+bool d_IsQuestGroupLevelRight(Critter& player, Critter@ npc)
+{
+	Critter@[] group;
+	Critter@ leader = GetCritter( GetLeaderId( player ) );
+	group.insertLast(@leader);
+	leader.GetFollowGroup( FIND_ALL, group );
+
+	// Проверяем уровни группы в которой состоит игрок берущий квест
+	// если кто-то из участников группы не соответствует по уровню - отправляем на вариант диалога DIALOG_NUM_LVL
+	for( uint i=0; i < group.length(); i++ )
+	{
+		// Если в группе есть НПС - пропускаем его, он может быть любого уровня.
+		if ( group[i].IsNpc() ) continue;
+
+		// Если хоть один из участников группы не соответсвует требованиям - отправляем на вариант диалога DIALOG_NUM_LVL
+		if ( group[i].StatBase[ST_LEVEL] < MIN_LVL || group[i].StatBase[ST_LEVEL] > MAX_LVL ) {
+			return false;
+		}
+	}
+	return true;
+}
+
+bool d_IsQuestGroupLevelNotRight(Critter& player, Critter@ npc)
+{
+	return (not d_IsQuestGroupLevelRight(player,null));
+}
+
+bool d_IsQuestGroupHaveGoodKarma(Critter& player, Critter@ npc)
+{
 	Critter@[] group;
 	Critter@ leader = GetCritter( GetLeaderId( player ) );
 	group.insertLast(@leader);
@@ -46,34 +91,34 @@ uint r_CheckQuest( Critter& player, Critter@ npc ) {
 		}
 	}
 	if ( GroupKarma <= -20 || ArroyoRep <= -10 ){
-		return DIALOG_NUM_KARMA;
+		return false;
 	}
-
-	// Проверяем размер группы в которой состоит игрок берущий квест,
-	// если размер группы меньше необходимого - отправляем на вариант диалога DIALOG_NUM_COUNT
-	if ( group.length() < MIN_PLAYERS ) {
-		return DIALOG_NUM_COUNT;
-	}
-
-	// Проверяем уровни группы в которой состоит игрок берущий квест
-	// если кто-то из участников группы не соответствует по уровню - отправляем на вариант диалога DIALOG_NUM_LVL
-	for( uint i=0; i < group.length(); i++ )
+	else
 	{
-		// Если в группе есть НПС - пропускаем его, он может быть любого уровня.
-		if ( group[i].IsNpc() ) continue;
-
-		// Если хоть один из участников группы не соответсвует требованиям - отправляем на вариант диалога DIALOG_NUM_LVL
-		if ( group[i].StatBase[ST_LEVEL] < MIN_LVL || group[i].StatBase[ST_LEVEL] > MAX_LVL ) {
-			return DIALOG_NUM_LVL;
-		}
+		return true;
 	}
+}
 
+bool d_IsQuestGroupHaveBadKarma(Critter& player, Critter@ npc)
+{
+	return (not d_IsQuestGroupHaveGoodKarma(player, null));
+}
+
+bool d_IsQuestActive(Critter& player, Critter@ npc)
+{
 	// Если квест уже взят другой группой - отправляем на вариант диалога DIALOG_QUEST_USED
 	if ( ! TimeOutIsFree() ){
-		return DIALOG_QUEST_USED;
+		return true;
 	}
-	return 0;
+	else
+	{
+		return false;
+	}
+}
 
+bool d_IsQuestNotActive(Critter& player, Critter@ npc)
+{
+	return (not d_IsQuestActive(player,null));
 }
 
 

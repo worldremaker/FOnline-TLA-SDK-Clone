@@ -89,9 +89,14 @@ lang=russ engl
 0 25030 D _param p ST_INTELLECT < 4 #
 6 25040 D _param p ST_INTELLECT < 4 @
 26 26000 None 0 #
-13 26010 D _param p ST_LEVEL > 2 R _script arroyo_mynoc_defence@r_CheckQuest 0  #
-12 26020 D _param p ST_INTELLECT > 3 D _param p ST_LEVEL < 3 #
-6 26030 D _param p ST_INTELLECT > 3 @
+12 26010 D _script arroyo_mynoc_defence@d_IsGroupNotExist 0  D _script arroyo_mynoc_defence@d_IsQuestGroupLevelNotRight 0  #
+13 26020 D _script arroyo_mynoc_defence@d_IsGroupNotExist 0  D _script arroyo_mynoc_defence@d_IsQuestGroupLevelRight 0  D _script arroyo_mynoc_defence@d_IsQuestGroupHaveGoodKarma 0  D _script arroyo_mynoc_defence@d_IsQuestNotActive 0  #
+28 26030 D _script arroyo_mynoc_defence@d_IsGroupExist 0  D _script arroyo_mynoc_defence@d_IsQuestGroupLevelNotRight 0  #
+29 26040 D _script arroyo_mynoc_defence@d_IsQuestActive 0  D _script arroyo_mynoc_defence@d_IsGroupExist 0  #
+30 26050 D _script arroyo_mynoc_defence@d_IsGroupExist 0  D _script arroyo_mynoc_defence@d_IsQuestGroupHaveBadKarma 0  D _script arroyo_mynoc_defence@d_IsQuestNotActive 0  #
+32 26060 D _script arroyo_mynoc_defence@d_IsGroupNotExist 0  D _script arroyo_mynoc_defence@d_IsQuestActive 0  #
+33 26070 D _script arroyo_mynoc_defence@d_IsGroupNotExist 0  D _script arroyo_mynoc_defence@d_IsQuestGroupHaveBadKarma 0  D _script arroyo_mynoc_defence@d_IsQuestNotActive 0  #
+6 26080 D _param p ST_INTELLECT > 3 @
 102 27000 None 0 #
 0 27010 D _param p ST_INTELLECT < 4 #
 106 27020 D _param p ST_INTELLECT < 4 #
@@ -157,9 +162,14 @@ lang=russ engl
 106 47010 #
 0 47020 @
 126 48000 None 0 #
-112 48010 D _param p ST_INTELLECT < 4 D _param p ST_LEVEL < 3 #
-113 48020 D _param p ST_INTELLECT < 4 D _param p ST_LEVEL > 2 R _script arroyo_mynoc_defence@r_CheckQuest 0  #
-106 48030 D _param p ST_INTELLECT < 4 @
+112 48010 D _script arroyo_mynoc_defence@d_IsGroupNotExist 0  D _script arroyo_mynoc_defence@d_IsQuestGroupLevelNotRight 0  #
+113 48020 D _script arroyo_mynoc_defence@d_IsGroupNotExist 0  D _script arroyo_mynoc_defence@d_IsQuestGroupLevelRight 0  D _script arroyo_mynoc_defence@d_IsQuestGroupHaveGoodKarma 0  D _script arroyo_mynoc_defence@d_IsQuestNotActive 0  #
+28 48030 D _script arroyo_mynoc_defence@d_IsGroupExist 0  D _script arroyo_mynoc_defence@d_IsQuestGroupLevelNotRight 0  #
+29 48040 D _script arroyo_mynoc_defence@d_IsQuestActive 0  D _script arroyo_mynoc_defence@d_IsGroupExist 0  #
+30 48050 D _script arroyo_mynoc_defence@d_IsGroupExist 0  D _script arroyo_mynoc_defence@d_IsQuestGroupHaveBadKarma 0  D _script arroyo_mynoc_defence@d_IsQuestNotActive 0  #
+32 48060 D _script arroyo_mynoc_defence@d_IsGroupNotExist 0  D _script arroyo_mynoc_defence@d_IsQuestActive 0  #
+33 48070 D _script arroyo_mynoc_defence@d_IsGroupNotExist 0  D _script arroyo_mynoc_defence@d_IsQuestGroupHaveBadKarma 0  D _script arroyo_mynoc_defence@d_IsQuestNotActive 0  #
+106 48080 D _param p ST_INTELLECT < 4 @
 27 49000 None 0 #
 0 49010 D _param p ST_INTELLECT > 3 #
 0 49020 D _param p ST_INTELLECT < 4 @
@@ -174,11 +184,24 @@ lang=russ engl
 13 52020 D _param p ST_CHARISMA < 10 D _param p SK_SPEECH > 80 D _param p ST_INTELLECT > 3 #
 13 52030 D _param p ST_CHARISMA < 10 D _param p SK_SPEECH < 81 D _param p SK_SPEECH > 40 D _param p PE_SMOOTH_TALKER > 0 D _param p ST_INTELLECT > 3 #
 0 52040 D _param p ST_INTELLECT > 3 #
-65507 52050 #
+65507 52050 D _param p ST_INTELLECT > 3 #
 13 52060 D _param p ST_INTELLECT < 4 D _param p ST_CHARISMA = 10 #
 13 52070 D _param p ST_INTELLECT < 4 D _param p ST_CHARISMA < 10 D _param p SK_SPEECH > 80 #
 13 52080 D _param p ST_INTELLECT < 4 D _param p ST_CHARISMA < 10 D _param p SK_SPEECH < 81 D _param p SK_SPEECH > 40 D _param p PE_SMOOTH_TALKER > 0 #
-13 52090 D _param p ST_INTELLECT < 4 &
+13 52090 D _param p ST_INTELLECT < 4 @
+32 53000 None 0 #
+0 53010 D _param p ST_INTELLECT > 3 #
+0 53020 D _param p ST_INTELLECT < 4 @
+33 54000 None 0 #
+13 54010 D _param p ST_CHARISMA = 10 D _param p ST_INTELLECT > 3 #
+13 54020 D _param p ST_CHARISMA < 10 D _param p SK_SPEECH > 80 D _param p ST_INTELLECT > 3 #
+13 54030 D _param p ST_CHARISMA < 10 D _param p SK_SPEECH < 81 D _param p SK_SPEECH > 40 D _param p PE_SMOOTH_TALKER > 0 D _param p ST_INTELLECT > 3 #
+0 54040 D _param p ST_INTELLECT > 3 #
+65507 54050 D _param p ST_INTELLECT > 3 #
+65507 54060 D _param p ST_CHARISMA = 10 D _param p ST_INTELLECT < 4 #
+65507 54070 D _param p ST_INTELLECT < 4 D _param p ST_CHARISMA < 10 D _param p SK_SPEECH > 80 #
+65507 54080 D _param p ST_INTELLECT < 4 D _param p SK_SPEECH < 81 D _param p SK_SPEECH > 40 D _param p PE_SMOOTH_TALKER > 0 D _param p ST_CHARISMA < 10 #
+65507 54090 D _param p ST_INTELLECT < 4 &
 
 [russ]
 {100}{}{Минок}
@@ -268,9 +291,14 @@ lang=russ engl
 {25030}{}{Твоя надоел. Утомлять совсем. Моя уходить. [Уходите]}
 {25040}{}{Моя интересно... Э-э-э... Твоя рассказывать?..}
 {26000}{}{Город охранаяю. А что это ты любопытн@sex@|ый||ая| так @sex@|ой||ая|?}
-{26010}{}{Может вам тут нужна какая-то помощь, у меня как раз есть свободное время?}
-{26020}{}{Может вам тут нужна какая-то помощь, у меня как раз есть свободное время?..}
-{26030}{}{Понятно. Ещё кое-что...}
+{26010}{}{Может вам тут нужна какая-то помощь, у меня как раз есть свободное время?..}
+{26020}{}{Может вам тут нужна какая-то помощь, у меня как раз есть свободное время?}
+{26030}{}{Может вам тут нужна какая-то помощь, у нас как раз есть свободное время?}
+{26040}{}{Может вам тут нужна какая-то помощь, у нас как раз есть свободное время?}
+{26050}{}{Может вам тут нужна какая-то помощь, у нас как раз есть свободное время?}
+{26060}{}{Может вам тут нужна какая-то помощь, у меня как раз есть свободное время?}
+{26070}{}{Может вам тут нужна какая-то помощь, у меня как раз есть свободное время?}
+{26080}{}{Понятно. Ещё кое-что...}
 {27000}{}{Привет, реплицированн@sex@|ый||ая|! Что-то ищешь?}
 {27010}{}{А-а-а... [Глубоко вздыхаете и уходите]}
 {27020}{}{Моя хочет знать... Очень надо... Твоя рассказывать?}
@@ -339,7 +367,12 @@ lang=russ engl
 {48000}{}{Ох и трудн@sex@|ый||ая| ты... Город я охранаяю. Стерегу, значит, от бандитов всяких... Понимаешь?}
 {48010}{}{Моя тоже мочь... Охранять! Моя сильный воин! Моя помогать! Твоя хотеть?}
 {48020}{}{Моя тоже мочь... Охранять! Моя сильный воин! Моя помогать! Твоя хотеть?}
-{48030}{}{Моя умный! Моя сразу всё понимать! Твоя говорить мне другое...}
+{48030}{}{Наша тоже мочь... Охранять! Наша сильные воины! Наша помогать! Твоя хотеть?}
+{48040}{}{Наша тоже мочь... Охранять! Наша сильные воины! Наша помогать! Твоя хотеть?}
+{48050}{}{Наша тоже мочь... Охранять! Наша сильные воины! Наша помогать! Твоя хотеть?}
+{48060}{}{Моя тоже мочь... Охранять! Моя сильный воин! Моя помогать! Твоя хотеть?}
+{48070}{}{Моя тоже мочь... Охранять! Моя сильный воин! Моя помогать! Твоя хотеть?}
+{48080}{}{Моя умный! Моя сразу всё понимать! Твоя говорить мне другое...}
 {49000}{}{Нет, это не серьёзно, @sex@|парень||детка|. Там банда рейдеров, собери нормальную команду. Нужно человека четыре, не меньше. Тогда возвращайся.}
 {49010}{}{Ладно. Пойду поищу людей. [Уходите]}
 {49020}{}{Умгх. Моя идтить. [Уходите]}
@@ -359,6 +392,19 @@ lang=russ engl
 {52070}{}{Всё неправда! Наша очень хороший. Правда-правда!!! Твоя верить? Мы помогать!}
 {52080}{}{Всё неправда! Наша очень хороший. Правда-правда!!! Твоя верить? Мы помогать!}
 {52090}{}{Твоя глупый! Моя уходить! [Уходите]}
+{53000}{}{Ну, вообще-то мне уже вызвалась помогать одна шайка... Знаешь, не доверяю я им. В общем подожду ещё немного, приходи попозже.}
+{53010}{}{Ладно. Зайду позже. [Уходите]}
+{53020}{}{Агр! Моя воин. Моя вернётся потом. [Уходите]}
+{54000}{}{Не доверяю я тебе. Слишком уж репутация у тебя нехорошая. Может это ты грабишь наши караваны?}
+{54010}{}{Ну, что-ты! Это всё слухи, поверь мне. Так как на счет помощи?}
+{54020}{}{Ну, что-ты! Это всё слухи, поверь мне. Так как на счет помощи?}
+{54030}{}{Ну, что-ты! Это всё слухи, поверь мне. Так как на счет помощи?}
+{54040}{}{Ну, ладно. Тебе-же хуже. [Уходите]}
+{54050}{}{Ах ты скотина неблагодарная! Ну, держись! [Атаковать]}
+{54060}{}{Всё неправда! Моя очень хороший. Правда-правда!!! Твоя верить? Моя помогать!}
+{54070}{}{Всё неправда! Моя очень хороший. Правда-правда!!! Твоя верить? Моя помогать!}
+{54080}{}{Всё неправда! Моя очень хороший. Правда-правда!!! Твоя верить? Моя помогать!}
+{54090}{}{Твоя глупый! Моя уходить! [Уходите]}
 
 [engl]
 {100}{}{Mynoc}

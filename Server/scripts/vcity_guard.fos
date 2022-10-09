@@ -22,16 +22,16 @@ class CGuardsManagerForVault : CGuardsManager
 	CGuardsManagerForVault()
 	{
 		super();
-		dialog = DIALOG_vc_guard;
+		Dialog = DIALOG_vc_guard;
 	}
 }
 
 // класс с алгоритмом
-CGuardsManagerForVault grd;
+CGuardsManagerForVault Grd;
 
 bool GuardItemTest(Item@ item) // export
 {
-	return grd.GuardItemTest(item);
+	return Grd.GuardItemTest(item);
 }
 
 

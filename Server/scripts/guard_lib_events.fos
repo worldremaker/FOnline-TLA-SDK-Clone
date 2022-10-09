@@ -20,51 +20,51 @@ void _GuardInit(Critter& npc, bool firstTime)
 
 uint cte_Observing(Critter& npc, int identifier, uint& stage)
 {
-	return grd.EventObserving(npc);
+	return Grd.EventObserving(npc);
 }
 
 void _GuardOnAddCritter(Critter& crit, Critter& showCrit)
 {
-	grd.EventOnAddCritter(crit, showCrit);
+	Grd.EventOnAddCritter(crit, showCrit);
 }
 
 void _GuardOnRemoveCritter(Critter& crit, Critter& hideCrit)
 {
-	grd.EventOnRemoveCritter(crit,hideCrit);
+	Grd.EventOnRemoveCritter(crit,hideCrit);
 }
 
 int _GuardEndPlane(Critter& npc, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem)
 {
-	grd.EventEndPlane(npc);
+	Grd.EventEndPlane(npc);
 	return PLANE_RUN_GLOBAL;
 }
 
 void _GuardOnMoveItem(Critter& crit, Critter& fromCrit, Item& item, uint8 fromSlot)
 {
-	grd.EventOnMoveItem(crit, fromCrit, item, fromSlot);
+	Grd.EventOnMoveItem(crit, fromCrit, item, fromSlot);
 }
 
 void _GuardOnMessage(Critter& crit, Critter& fromCrit, int message, int value)
 {
-	grd.EventOnMessage(crit, fromCrit, message, value);
+	Grd.EventOnMessage(crit, fromCrit, message, value);
 }
 
 void _GuardOnUseItem(Critter& crit, Critter& fromCrit, Item& item, Critter@ onCritter, Item@ onItem, Scenery@ onScenery)
 {
-	grd.EventOnUseItem(crit, fromCrit, item, onCritter, onItem, onScenery);
+	Grd.EventOnUseItem(crit, fromCrit, item, onCritter, onItem, onScenery);
 }
 
 void _GuardOnDropItem(Critter& crit, Critter& fromCrit, Item& item)//r17
 {
-	grd.EventOnDropItem(crit, fromCrit, item);
+	Grd.EventOnDropItem(crit, fromCrit, item);
 }
 
 void _GuardOnSmthAttack(Critter& crit, Critter& fromCrit, Critter& target)
 {
-	grd.EventOnSmthAttack(crit, fromCrit, target);
+	Grd.EventOnSmthAttack(crit, fromCrit, target);
 }
 
 void _GuardStealing(Critter& crit, Critter& fromCrit, Critter& thief, bool success, Item& item, uint count)
 {
-	grd.EventStealing(crit, fromCrit, thief, success, item, count);
+	Grd.EventStealing(crit, fromCrit, thief, success, item, count);
 }
