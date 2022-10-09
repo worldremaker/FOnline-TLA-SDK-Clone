@@ -27,7 +27,7 @@ void InitializeGame() // Export
 	__NoAnswerShuffle           = false;
 	__FixBoyDefaultExperience   = 50;
 	__SneakDivider              = 6;
-	__LevelCap                  = 36;
+	__LevelCap                  = 666;
 	__LevelCapAddExperience     = true;
 	__LookNormal                = 20;
 	__LookMinimum               = 3;
