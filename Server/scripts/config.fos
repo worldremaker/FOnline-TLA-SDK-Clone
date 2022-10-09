@@ -295,9 +295,9 @@ void InitializeGeometry()
 		__MapHexHeight     = 16;
 		__MapHexLineHeight = 12;
 		__MapTileOffsX     = -8;
-		__MapTileOffsY     = 32;
+		__MapTileOffsY     = 34;
 		__MapRoofOffsX     = -8;
-		__MapRoofOffsY     = -66;
+		__MapRoofOffsY     = -64;
 		__MapRoofSkipSize  = 2;
 		__MapCameraAngle   = 25.7f;
 		__MapSmoothPath    = true;
