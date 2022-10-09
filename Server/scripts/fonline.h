@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 18.03.2011
-// Server version 417, MSVS2008
+// Last update 25.03.2011
+// Server version 420, MSVS2008
 // Default calling convention - cdecl
 //
 
@@ -114,7 +114,7 @@ typedef vector<Location*> LocVec;
 typedef vector<Location*>::iterator LocVecIt;
 
 // Generic
-EXPORT extern void (*Log)(const char* frmt, ...);
+EXPORT extern void (*Log)(const char* func, const char* frmt, ...);
 
 #define STATIC_ASSERT(a)            {static int arr[(a)?1:-1];}
 #define BIN__N(x)                   (x) | x>>3 | x>>6 | x>>9
@@ -1221,7 +1221,7 @@ struct Critter
 	uint16   IntellectCacheValue;
 	uint     LookCacheValue;
 	uint     StartBreakTime;
-	int	     BreakTime;
+	uint     BreakTime;
 	uint     WaitEndTick;
 	int      DisableSend;
 	uint     AccessContainerId;
@@ -1477,7 +1477,7 @@ struct ProtoMap
 	TileVecVec TilesField;
 	TileVecVec RoofsField;
 
-	TileVec& GetTiles(WORD hx, WORD hy, bool is_roof)
+	TileVec& GetTiles(uint16 hx, uint16 hy, bool is_roof)
 	{
 		uint index = hy * Header.MaxHexX + hx;
 		return is_roof ? RoofsField[index] : TilesField[index];
@@ -1797,49 +1797,50 @@ inline int GetDistantion(int x1, int y1, int x2, int y2)
 
 inline void static_asserts()
 {
-	STATIC_ASSERT(sizeof(uint)        == 4   );
-	STATIC_ASSERT(sizeof(uint16)      == 2   );
-	STATIC_ASSERT(sizeof(uint8)       == 1   );
-	STATIC_ASSERT(sizeof(int)         == 4   );
-	STATIC_ASSERT(sizeof(int16)       == 2   );
+	STATIC_ASSERT(sizeof(char)        == 1   );
 	STATIC_ASSERT(sizeof(int8)        == 1   );
+	STATIC_ASSERT(sizeof(int16)       == 2   );
+	STATIC_ASSERT(sizeof(int)         == 4   );
+	STATIC_ASSERT(sizeof(int64)       == 8   );
+	STATIC_ASSERT(sizeof(uint8)       == 1   );
+	STATIC_ASSERT(sizeof(uint16)      == 2   );
+	STATIC_ASSERT(sizeof(uint)        == 4   );
+	STATIC_ASSERT(sizeof(uint64)      == 8   );
 	STATIC_ASSERT(sizeof(bool)        == 1   );
-	STATIC_ASSERT(sizeof(string)      == 28  );
-	STATIC_ASSERT(sizeof(IntVec)      == 16  );
-	STATIC_ASSERT(sizeof(IntMap)      == 12  );
-	STATIC_ASSERT(sizeof(IntSet)      == 12  );
+	STATIC_ASSERT(sizeof(string)      == 24  );
+	STATIC_ASSERT(sizeof(IntVec)      == 12  );
+	STATIC_ASSERT(sizeof(IntMap)      == 24  );
+	STATIC_ASSERT(sizeof(IntSet)      == 24  );
 	STATIC_ASSERT(sizeof(IntPair)     == 8   );
-	STATIC_ASSERT(sizeof(GameVar)     == 28  );
 	STATIC_ASSERT(sizeof(ProtoItem)   == 908 );
 	STATIC_ASSERT(sizeof(Mutex)       == 24  );
-	STATIC_ASSERT(sizeof(Spinlock)    == 4   );
-	STATIC_ASSERT(sizeof(GameOptions) == 1200);
+	STATIC_ASSERT(sizeof(GameOptions) == 1152);
 	STATIC_ASSERT(sizeof(ScriptArray) == 36  );
 	STATIC_ASSERT(sizeof(SpriteInfo)  == 36  );
-	STATIC_ASSERT(sizeof(Field)       == 92  );
+	STATIC_ASSERT(sizeof(Field)       == 76  );
 #ifdef __MAPPER
 	STATIC_ASSERT(sizeof(Sprite)      == 116 );
 #else
 	STATIC_ASSERT(sizeof(Sprite)      == 108 );
 #endif
 
-	STATIC_ASSERT(offsetof(TemplateVar, Flags)              == 76  );
+	STATIC_ASSERT(offsetof(TemplateVar, Flags)              == 68  );
 	STATIC_ASSERT(offsetof(NpcPlane, RefCounter)            == 88  );
-	STATIC_ASSERT(offsetof(GlobalMapGroup, EncounterForce)  == 88  );
+	STATIC_ASSERT(offsetof(GlobalMapGroup, EncounterForce)  == 84  );
 	STATIC_ASSERT(offsetof(Item, IsNotValid)                == 118 );
 	STATIC_ASSERT(offsetof(CritterTimeEvent, Identifier)    == 12  );
-	STATIC_ASSERT(offsetof(Critter, RefCounter)             == 9312);
-	STATIC_ASSERT(offsetof(Client, LanguageMsg)             == 9380);
-	STATIC_ASSERT(offsetof(Npc, Reserved)                   == 9336);
-	STATIC_ASSERT(offsetof(CritterCl, ItemSlotArmor)        == 4288);
+	STATIC_ASSERT(offsetof(Critter, RefCounter)             == 9336);
+	STATIC_ASSERT(offsetof(Client, LanguageMsg)             == 9404);
+	STATIC_ASSERT(offsetof(Npc, Reserved)                   == 9356);
+	STATIC_ASSERT(offsetof(CritterCl, ItemSlotArmor)        == 4260);
 	STATIC_ASSERT(offsetof(MapEntire, Dir)                  == 8   );
 	STATIC_ASSERT(offsetof(SceneryToClient, Reserved1)      == 30  );
-	STATIC_ASSERT(offsetof(Map, RefCounter)                 == 794 );
-	STATIC_ASSERT(offsetof(ProtoLocation, GeckVisible)      == 92  );
-	STATIC_ASSERT(offsetof(Location, RefCounter)            == 286 );
+	STATIC_ASSERT(offsetof(Map, RefCounter)                 == 774 );
+	STATIC_ASSERT(offsetof(ProtoLocation, GeckVisible)      == 76  );
+	STATIC_ASSERT(offsetof(Location, RefCounter)            == 282 );
 
 #ifdef __SERVER
-	STATIC_ASSERT(offsetof(ProtoMap, HexFlags)              == 336 );
+	STATIC_ASSERT(offsetof(ProtoMap, HexFlags)              == 304 );
 #endif
 }
 

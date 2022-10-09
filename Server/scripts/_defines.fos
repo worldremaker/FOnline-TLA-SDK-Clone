@@ -2,9 +2,9 @@
 #define __DEFINES__
 
 // 3d players mod, uncomment for use
-#define PLAYERS_3D             // Enable 3d players
-#define PLAYERS_3D_NO_HEAD     // No head slot
-#define PLAYERS_3D_VAULT_SUITE // Vault suite by default, not naked
+// #define PLAYERS_3D             // Enable 3d players
+// #define PLAYERS_3D_NO_HEAD     // No head slot
+// #define PLAYERS_3D_VAULT_SUITE // Vault suite by default, not naked
 
 // Say types
 #define SAY_NORM                    (1)
@@ -1210,6 +1210,13 @@
 #define GEOMETRY_FALLOUT            (0)
 #define GEOMETRY_TACTICS            (1)
 #define GEOMETRY_ARCANUM            (2)
+
+// Constants collections
+#define CONSTANTS_PARAM             (0)
+#define CONSTANTS_ITEM              (1)
+#define CONSTANTS_DEFINE            (2)
+#define CONSTANTS_PICTURE           (3)
+#define CONSTANTS_HASH              (4)
 
 
 #ifndef SKIP_PRAGMAS

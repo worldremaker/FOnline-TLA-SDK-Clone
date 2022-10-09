@@ -3,7 +3,7 @@
 // Engine data
 GameOptions* Game;
 asIScriptEngine* ASEngine;
-void (*Log)(const char* frmt, ...);
+void (*Log)(const char* func, const char* frmt, ...);
 
 // Extern data definition
 _GlobalVars GlobalVars;
@@ -90,7 +90,7 @@ EXPORT void DllMainEx(bool compiler)
 	{
 		const char* name;
 		void* ptr;
-		if(ASEngine->GetGlobalPropertyByIndex(i,&name,NULL,NULL,NULL,&ptr) < 0) continue;
+		if(ASEngine->GetGlobalPropertyByIndex(i, &name, NULL, NULL, NULL, &ptr) < 0) continue;
 
 #define REGISTER_GLOBAL_VAR(type, gvar) else if(!strcmp(#gvar, name)) GlobalVars.gvar = (type*)ptr
 		REGISTER_GLOBAL_VAR(int , CurX);

@@ -332,14 +332,14 @@ bool out_message(string& message, int& sayType)
 			Message("Names colorizer refreshed.");
 			return false;
 		}
-		
+
 		if(message == "~ignorelist")
 		{
 			InitIgnoreList();
 			Message("Ignore List refreshed.");
 			return false;
 		}
-		
+
 		return true;
 	}
 
@@ -1590,7 +1590,6 @@ void animation3d_process(bool animateStay, CritterCl& cr, uint anim1, uint anim2
 	// Change values
 	uint8 mode = 0;
 	uint16 armorPid   = (valid(cr.GetSlotProto(SLOT_ARMOR, mode)) ? cr.GetSlotProto(SLOT_ARMOR, mode).ProtoId : 0);
-	uint16 headPid    = 0;
 	uint16 weapPid    = (valid(item) ? item.GetProtoId() : cr.GetSlotProto(SLOT_HAND1, mode).ProtoId);
 	uint16 weapExPid  = (valid(cr.GetSlotProto(SLOT_HAND2, mode)) ? cr.GetSlotProto(SLOT_HAND2, mode).ProtoId : 0);
 	ItemCl@ armorItem = cr.GetItem(0, SLOT_ARMOR);
@@ -1599,6 +1598,9 @@ void animation3d_process(bool animateStay, CritterCl& cr, uint anim1, uint anim2
 #ifndef PLAYERS_3D_NO_HEAD
 	uint16 headPid    = (valid(cr.GetSlotProto(SLOT_HEAD,  mode)) ? cr.GetSlotProto(SLOT_HEAD,  mode).ProtoId : 0);
 	ItemCl@ headItem  = cr.GetItem(0, SLOT_HEAD);
+#endif
+#ifdef PLAYERS_3D_NO_HEAD
+	uint16 headPid    = 0;
 #endif
 
 	bool weapBigGun = false;
