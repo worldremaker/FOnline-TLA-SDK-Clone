@@ -9,6 +9,9 @@
 {7}{}{PID_METAL_ARMOR_MK_II@Укрепите слабые места на броне, а затем обработайте напильником и отполируйте до блеска для лучше защиты от лазерного оружия.@SK_REPAIR 60@SK_REPAIR 100@PID_METAL_ARMOR 1&PID_METAL_TRASH 2&PID_WELDING 1@PID_SUPER_TOOL_KIT 1&PID_MOUSE_SKIN 1@PID_METAL_ARMOR_MK_II 1@exp 100 }
 {8}{}{PID_TESLA_ARMOR@Установите на свою металлическую броню катушки Тесла, чтобы они рассеивали заряды энергооружия. И не забудьте про шапочку из фольги!@SK_REPAIR 50&SK_SCIENCE 50@SK_REPAIR 130&SK_SCIENCE 150@PID_METAL_ARMOR_MK_II 1&PID_METAL_TRASH 2&PID_PUMP_PARTS 4&PID_V15_COMPUTER_PART 3&PID_MICRO_FUSION_CELL 50@PID_SUPER_TOOL_KIT 1&PID_BIG_BOOK_OF_SCIENCE 1@PID_TESLA_ARMOR 1@exp 300 }
 {9}{}{PID_HARDENED_POWER_ARMOR@Эта заводская сборка ну просто никуда не годится. Броню можно перекалить и местами приварить дополнительную защиту. Главное - сумейте её потом собрать обратно.@SK_REPAIR 120@SK_SCIENCE 80&SK_REPAIR 150&ST_STRENGTH 8@PID_POWERED_ARMOR 1&PID_BOTTLE_FULL 10&PID_FIREWOOD 5&PID_WELDING 3&PID_METAL_TRASH 2@PID_SLEDGEHAMMER 1&PID_TECHNICAL_MANUAL 1&PID_BIG_BOOK_OF_SCIENCE 1&PID_DEANS_ELECTRONICS 1&PID_SUPER_TOOL_KIT 1@PID_HARDENED_POWER_ARMOR 1@exp 500 }
+{10}{}{PID_CHITIN_ARMOR@Разломать панцирь на мелкие куски. Осторожно помешивая, опустить в кипящие химикаты. 
+На медленном огне варить смесь до растворения хитина и получения однородной массы.
+Расплав слоями перенести на ткань, каждый слой ткани и расплава отформовать по фигуре.@SK_REPAIR 50@SK_REPAIR 110&SK_OUTDOORSMAN 100&ST_INTELLECT 6@PID_RADSCORPION_PARTS 8&PID_CHEMICALS 1&PID_RAGS 1&PID_METAL_TRASH 2&PID_LEATHER_ARMOR 1&PID_BOTTLE_FULL 1@PID_SUPER_TOOL_KIT 1@PID_CHITIN_ARMOR 1@exp 800 script fix_boy@fix_ChitinArmor}
 
 #Патроны
 
@@ -122,7 +125,6 @@
 {921}{}{PID_SANDBAG_EMPTY@Сшейте мешок из кусков ткани.@@SK_OUTDOORSMAN 20@PID_RAGS 4&PID_POCKET_LINT 1@PID_SHIV 1@PID_SANDBAG_EMPTY 1@exp 30 }
 {922}{}{PID_SANDBAG_1@Если наполнить этот мешок песком, получится... мешок с песком!@@@PID_SANDBAG_EMPTY 1@PID_SHOVEL 1@PID_SANDBAG_1 1@exp 10 }
 {923}{}{PID_SANDBAG_EMPTY@Если вдруг понадобился пустой мешок, то можно просто взять заполненный и освободить его от содержимого.@@@PID_SANDBAG_1 1@@PID_SANDBAG_EMPTY 1@}
-
 
 #Уникальное оружие
 

@@ -19,7 +19,8 @@
 #define PID_COMBAT_ARMOR_MK_II              (381)
 #define PID_BROTHERHOOD_COMBAT_ARMOR        (239)
 #define PID_BLACK_COMBAT_ARMOR              (547)
-#define PID_MIRELURK_ARMOR                  (586)
+#define PID_CHITIN_ARMOR                    (586)
+#define PID_CHITIN_ARMOR_MK_II              (596)
 
 // Heavy
 #define PID_POWERED_ARMOR                   (3)
@@ -734,6 +735,9 @@
 #define PID_DYNAMITE                        (51) // Has timer
 #define PID_PLASTIC_EXPLOSIVES              (85)
 #define PID_MINE                            (544)
+
+// Craft recipes
+#define PID_CHITIN_ARMOR_RECIPE             (597)
 
 /******************************************************************
 ***************       Misc2                         ***************

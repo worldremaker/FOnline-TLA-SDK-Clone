@@ -5,10 +5,12 @@
 
 #include "_macros.fos"
 #include "_npc_pids.fos"
+#define STR_ROBOT_ITEM_SEE         (1)
 
 import void InitCowboy(Map& map, bool firstTime) from "klam_cowboy";
 import void InitDantonKilling(Map& map, bool firstTime) from "klam_danton_killing";
 import void ActivateMobScript(Map& map) from "mob";
+import void _CollectorInit(Critter& cr, bool firstTime) from "collector";
 
 void _KlamathGrazInit(Map& map, bool firstTime)
 {
@@ -34,3 +36,18 @@ void _BrahmaSmthUseItem(Critter& cr, Critter& fromCr, Item& item, Critter@ onCri
 }
 
 
+void _RobotInit(Critter& cr, bool firstTime)
+{
+	_CollectorInit(cr, firstTime);
+	cr.SetEvent(CRITTER_EVENT_PLANE_BEGIN, "_RobotPlaneBegin");
+}
+
+int _RobotPlaneBegin(Critter& cr, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem)
+{
+	if(plane.Type == AI_PLANE_PICK && uint(cr.Stat[ST_VAR2]) < __FullSecond)
+	{
+		cr.StatBase[ST_VAR2] = __FullSecond + __TimeMultiplier * 5;
+		cr.SayMsg(SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR (cr.Stat[ST_DIALOG_ID],1));
+	}	
+	return PLANE_RUN_GLOBAL;
+}

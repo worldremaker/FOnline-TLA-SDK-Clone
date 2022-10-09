@@ -164,6 +164,8 @@
 437    art\skilldex\ENDUR.FRM     # NCR Gain Endurance
 438    art\skilldex\BARTER.FRM    # NCR Gain Barter
 439    art\skilldex\REPAIR.FRM    # NCR Gain Repair
+440    art\skilldex\NIGHTVIZ.FRM  # Modoc Vampire Accuracy
+441    art\skilldex\NIGHTPER.FRM  # Modoc Vampire Regeneration
 
 470    art\skilldex\NUKACOLA.FRM  # Nuka-Cola
 471    art\skilldex\BUFFOUTS.FRM  # Buffout

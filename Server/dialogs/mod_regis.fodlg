@@ -54,9 +54,9 @@ lang=russ
 17 17000 None 0 #
 0 17010 R _param p ST_EXPERIENCE + 2000 R _var p mod_vampire_reaction = 1 @
 18 18000 None 0 #
-19 18010 D _var p q_mod_joe_vampire = 6 R _var p q_mod_joe_vampire = 9 R _param p PE_GHOST + 1 R _var p mod_vampire_reaction = 2 #
-23 18020 D _var p q_mod_joe_vampire = 6 R _var p q_mod_joe_vampire = 9 R _param p PE_NIGHT_VISION + 1 R _var p mod_vampire_reaction = 2 #
-20 18030 D _param p SK_SPEECH > 108 D _var p q_mod_joe_vampire = 6 R _var p q_mod_joe_vampire = 9 R _param p PE_NIGHT_VISION + 1 R _param p PE_GHOST + 1 R _var p mod_vampire_reaction = 2 @
+19 18010 D _var p q_mod_joe_vampire = 6 R _var p q_mod_joe_vampire = 9 R _var p mod_vampire_reaction = 2 R _param p PE_VAMPIRE_REGENERATION + 1 #
+23 18020 D _var p q_mod_joe_vampire = 6 R _var p q_mod_joe_vampire = 9 R _var p mod_vampire_reaction = 2 R _param p PE_VAMPIRE_ACCURACY + 1 #
+20 18030 D _param p SK_SPEECH > 108 D _var p q_mod_joe_vampire = 6 R _var p q_mod_joe_vampire = 9 R _var p mod_vampire_reaction = 2 R _param p PE_VAMPIRE_ACCURACY + 1 R _param p PE_VAMPIRE_REGENERATION + 1 @
 19 19000 None 0 #
 21 19010 @
 20 20000 None 0 #
@@ -121,13 +121,13 @@ lang=russ
 {16010}{}{Очень хорошо. Поздравляю!}
 {17000}{}{Ну не вышло. Ладно , что теперь. Прощай. Думаю мы больше не увидимся. То ранчо я трогать не стану. Иди...}
 {17010}{}{Прощай.}
-{18000}{}{Я  твой кровный должник. Давай в благодарность научу  чему-нибудь. Вот смотри, я могу научить тебя лучше прятаться, или лучше видеть в темноте. Выбирай.}
-{18010}{}{С  детства обожаю прятки. Поучи меня прятаться.}
+{18000}{}{Я  твой кровный должник. Давай в благодарность научу  чему-нибудь. Вот смотри, я могу научить тебя быстрее заживлять раны, или лучше видеть в темноте. Выбирай.}
+{18010}{}{Раны, говоришь? Это мне пригодится. Поучи меня.}
 {18020}{}{Всю жизнь было интересно, а что там люди в темноте делают. Научи меня видеть в темноте}
 {18030}{}{А что, тому и другому не можешь что ли?}
 {19000}{}{Как скажешь. Расслабься, мне нужно будет тебя загипнотизировать ненадолго…}
 {19010}{}{Ой...}
-{20000}{}{Да могу, конечно, просто было интересно, что ты выберешь. Научу и прятаться и видеть. Расслабься, мне нужно будет тебя загипнотизировать ненадолго…
+{20000}{}{Да могу, конечно, просто было интересно, что ты выберешь. Научу и прятаться и восстанавливаться. Расслабься, мне нужно будет тебя загипнотизировать ненадолго…
 }
 {20010}{}{Ой...}
 {21000}{}{[Скалясь и довольно потирая руки] Ну вот и готово! Мой долг благодарности исполнен, и  я покидаю тебя. Думаю, мы больше не увидимся.

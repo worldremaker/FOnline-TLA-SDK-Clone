@@ -619,7 +619,9 @@
 #define PE_NCR_ENDURANCE            (437)
 #define PE_NCR_BARTER               (438)
 #define PE_NCR_REPAIR               (439)
-// 440..469
+#define PE_VAMPIRE_ACCURACY         (440)
+#define PE_VAMPIRE_REGENERATION     (441)
+// 442..469
 
 	/// Addictions
 #define ADDICTION_BEGIN            (__AddictionBegin)

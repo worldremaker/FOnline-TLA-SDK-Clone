@@ -102,20 +102,29 @@ bool s_RooneyGrave(Critter& player, Scenery& scenery, int skill, Item@ item)
 	return true;
 }
 
+#define STR_POISONED_NO_QUEST    (1)
+
 void _PoisonedInit(Critter &cr, bool firstTime)
 {
-
 	cr.ToKnockout(KNOCKOUT_ANIM2_DEFAULT(true), 1000, cr.HexX, cr.HexY);
-	cr.SetEvent(CRITTER_EVENT_SMTH_USE_ITEM,"_SmthUseItem");
+	cr.SetEvent(CRITTER_EVENT_USE_ITEM_ON_ME,"_SmthUseItem");
 }
 
-void _SmthUseItem(Critter& cr, Critter& fromCr, Item& item, Critter@ onCritter, Item@ onItem, Scenery@ onScenery)
+	// CRITTER_EVENT_USE_ITEM_ON_ME
+bool _SmthUseItem(Critter& cr, Critter& whoUse, Item& item)
 {
-	if(!valid(onCritter)) return;
-	if(onCritter.Id==cr.Id&&item.GetProtoId()==PID_ANTIDOTE)
+	if(item.GetProtoId()==PID_ANTIDOTE)
 	{
-		RunDialog(fromCr, 1353, cr.HexX, cr.HexY, false);
+		GameVar@ qVar = GetLocalVar(LVAR_q_redd_doctor_poisoned, cr.Id);
+		if(valid(qVar) && qVar == 1)
+		{		
+			RunDialog(whoUse, 1353, cr.HexX, cr.HexY, false);
+			return true;
+		}else{
+			cr.SayMsg(SAY_EMOTE, TEXTMSG_DLG, DLGSTR(cr.Stat[ST_DIALOG_ID], STR_POISONED_NO_QUEST));
+		}
 	}
+	return false;
 }
 
 // Квест "На Связи" Доктор Джонсон

@@ -161,6 +161,7 @@ void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, uint8 weaponM
   // baseToHit used for all targets, adjusted for distance and other target-dependent qualities every time it is necessary
   int baseToHit=skillVal;
   if (eyeDamage) baseToHit-=25;
+  if (cr.Perk[PE_VAMPIRE_ACCURACY]>0 && IS_NIGHT(__Hour)) baseToHit+=13; // Quest pe
   if (!isUnarmed)
   {
     if (cr.Trait[TRAIT_ONE_HANDER]!=0) baseToHit+=(FLAG(weapon.Flags,ITEM_TWO_HANDS)?-40:20);

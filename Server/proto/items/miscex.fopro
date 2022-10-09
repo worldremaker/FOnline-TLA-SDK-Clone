@@ -316,6 +316,18 @@ Weight=20000
 Material=1
 
 [Proto]
+Pid=597
+Type=6
+PicMapName=art\items\smalbox2.frm
+PicInvName=art\inven\paper1.frm
+Flags=402653214
+DisableEgg=1
+Volume=1
+SoundId=48
+Material=7
+MiscEx.StartVal3=12732588
+
+[Proto]
 Pid=600
 Type=6
 PicMapName=art\items\smalbox2.frm

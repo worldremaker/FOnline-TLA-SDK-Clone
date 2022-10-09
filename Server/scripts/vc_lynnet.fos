@@ -189,9 +189,19 @@ void t_Arest(Critter& cr, Scenery& trigger, bool entered, uint8 dir)
 			qVar = 4;
 			CancelMerc(cr);	
 			cr.TransitToMap(cr.GetMap().Id, HEX_PRISON);
-			cr.SayMsg(SAY_SHOUT, TEXTMSG_DLG, DLGSTR(DIALOG_vc_telman, STR_PRISONER_SHOUT));
+			uint[] values = {cr.Id};
+			CreateTimeEvent(__FullSecond+__TimeMultiplier*1, "e_PrisonerTalk", values, false);
+			
 		}
 	} 
+}
+
+uint e_PrisonerTalk(uint[]@ values)
+{
+	Critter@ cr = GetCritter(values[0]);
+	if(valid(cr))
+		cr.SayMsg(SAY_NORM, TEXTMSG_DLG, DLGSTR(DIALOG_vc_telman, STR_PRISONER_SHOUT));
+	return 0;
 }
 
 // Подлог

@@ -151,6 +151,9 @@ uint r_GiveBuggyToPlayer(Critter& player, Critter@ npc)
 	Item@ car=map.AddItem(hx,hy,PID_BUGGY,1);
 
 	if(not valid(car)) FORCE_DIALOG;
+	GameVar@ isQuest = GetLocalVar(LIVAR_is_quest_item, car.Id);
+	if(valid(isQuest))
+		isQuest = 1;
 	car.LockerId=keyId;
 	car.CarFuel=car.Proto.Car_FuelTank;
 	car.Update();

@@ -593,3 +593,40 @@ void _VictimsOutCritter(Map& map, Critter& cr)
 	if(valid(qVar) && qVar == 2 && map.GetNpcCount(17, FIND_LIFE|FIND_ONLY_NPC) == 4)
 		qVar = 3;
 }
+
+// Рецепт на изготовление хитиновой брони
+#define STR_CANT_LEARN   (3515) // Вы не сумели запомнить содержимое рецепта. Вот если бы вы были немного опытнее...
+#define STR_LEARNED      (3516) // Вы выучили рецепт усовершенствования кожаной брони с помощью хитиновых панцирей гигантских жуков.
+void r_GetChitinArmor(Critter& player, Critter@ npc)
+{
+	Item@ item = player.AddItem(PID_CHITIN_ARMOR_RECIPE, 1);
+	if(valid(item))
+	{
+		item.SetScript("_RecipeInit");
+	}
+}
+
+void _RecipeInit(Item& item, bool firstTime)
+{
+	item.SetEvent(ITEM_EVENT_SKILL, "_RecipeSkill");
+}
+
+bool _RecipeSkill(Item& item, Critter& cr, int skill)
+{
+	if(skill == SK_SCIENCE)
+	{
+		GameVar@ recipeKnown = GetLocalVar(LVAR_sf_chitin_armor_recipe_known, cr.Id);
+		if(recipeKnown == 0)
+		{
+			if(cr.Stat[ST_INTELLECT] < 6 || cr.Skill[SK_SCIENCE] < 90 || cr.Skill[SK_OUTDOORSMAN] < 100)
+			{
+				cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_CANT_LEARN);
+				return true;
+			}
+			cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_LEARNED);
+			recipeKnown = 1;
+			return true;
+		}
+	}
+	return false;
+}

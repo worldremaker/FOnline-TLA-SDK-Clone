@@ -196,7 +196,7 @@ lang=russ
 67 67000 None 0 #
 68 67010 R _item p PID_BOTTLE_CAPS + 9000 R _item p PID_COMBAT_ARMOR_MK_II + 1 R _item p PID_BOZAR + 1 R _item p PID_TURBO_PLASMA_RIFLE + 1 R _param p ST_EXPERIENCE + 18000 R _param p REPUTATION_VAULT_CITY + 5 @
 68 68000 None 0 #
-69 68010 D _var p vc_guard_rank = 3 R _var p vc_guard_rank = 4 R _param p ST_ACTION_POINTS + 1 R _script dialog@r_InfoMessage 1 11 @
+69 68010 D _var p vc_guard_rank = 3 R _var p vc_guard_rank = 4 R _param p ST_ACTION_POINTS + 1 R _script dialog@r_InfoMessage 1 11 R _item p PID_BLACK_COMBAT_ARMOR + 1 @
 69 69000 None 0 #
 0 69010 @
 70 70000 None 0 #

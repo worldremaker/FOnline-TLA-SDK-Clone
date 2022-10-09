@@ -144,3 +144,25 @@ bool d_CheckNotBlackHere(Critter & player, Critter @ npc)
 {
 	return (!d_CheckIsBlackHere(player, npc));
 }
+
+// Проказник Баркус
+#define STR_BARKUS_MALE         (1)
+#define STR_BARKUS_FEMALE       (2)
+void _BarkusInit(Critter& cr, bool firstTime)
+{
+	cr.ShowCritterDist1 = 8;
+	cr.SetEvent(CRITTER_EVENT_SHOW_CRITTER_1, "_BarkusShowCr");
+}
+
+void _BarkusShowCr(Critter& cr, Critter& showCrit)
+{
+	if(uint(cr.Stat[ST_VAR2])< __FullSecond && showCrit.IsPlayer() && showCrit.IsLife())
+	{
+		GameVar@ qVar = GetLocalVar(LVAR_q_vc_amanda_help_joshua, showCrit.Id);
+		if(valid(qVar) && qVar.GetValue() >= 7)
+		{
+			cr.SayMsg(SAY_NORM, TEXTMSG_TEXT, DLGSTR(cr.Stat[ST_DIALOG_ID],(cr.Stat[ST_GENDER] == 0 ? STR_BARKUS_MALE : STR_BARKUS_FEMALE)));
+			cr.StatBase[ST_VAR2] = __FullSecond + __TimeMultiplier*30; // Не чаще двух раз в минуту
+		}
+	}
+}

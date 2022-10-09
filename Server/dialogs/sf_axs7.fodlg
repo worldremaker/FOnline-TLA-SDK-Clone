@@ -24,7 +24,7 @@ lang=russ engl
 30 2080 D _var p sf_hubb_status = 0 D _var p q_sf_ahs7_invitations = 0 D _var p q_main_quest > 2 #
 39 2090 D _var p q_sf_ahs7_invitations > 0 D _var p q_sf_ahs7_invitations < 5 #
 43 2100 D _var p sf_hubb_status = 1 #
-57 2110 D _var p q_sf_ahs7_escort < 3 D _script dialog@d_TimeoutOk 0  @
+57 2110 D _var p q_sf_ahs7_escort < 3 D _script dialog@d_TimeoutOk 0  D _var p sf_hubb_status = 3 @
 3 3000 None 0 #
 4 3010 @
 4 4000 None 0 #

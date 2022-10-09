@@ -43,7 +43,7 @@ void SetTraveller(uint crId, bool isTransit, uint entireNum, uint timeWaitLoc, u
 	if(!valid(cr))
 		return;
 	cr.ModeBase[MODE_GECK] = 1;
-	cr.ModeBase[MODE_NO_HOME] = 1;
+	//cr.ModeBase[MODE_NO_HOME] = 1;
 	Traveller@ t = Traveller(crId);
 	t.TravelType = ( isTransit ? TYPE_TRANSIT : TYPE_TRAVEL);
 	t.EntireTo = entireNum;
@@ -228,6 +228,7 @@ class Traveller
 			return false;
 		if(cr.TransitToMap(this.MapIdTo, this.EntireTo))
 		{
+			cr.SetHomePos(cr.HexX, cr.HexY, cr.Dir);
 			return true;
 		}
 		return false;
@@ -451,6 +452,7 @@ bool _GlobalProcess(Critter& cr, int type, Item@ car, uint& x, uint& y, uint& to
 			{
 				if(cr.TransitToMap(t.MapIdTo, t.EntireTo))
 				{
+					cr.SetHomePos(cr.HexX, cr.HexY, cr.Dir);
 					t.Followers.resize(0);
 					t.Save();
 					t.SheduleChooseLocation();

@@ -165,6 +165,7 @@
 #define NPC_PID_GiantBeetle                 (488) // Гигантский жук(PE_SLAYER, PE_BETTER_CRITICALS)
 
 #define NPC_PID_BlackArmoredRebel           (489) // Мятежник, прочный
+#define NPC_PID_GiantBeetle_2               (490)
 #define NPC_PID_CaveRobber_male_1           (499) // Рандомные бандиты в пещерах
 #define NPC_PID_CaveRobber_female_1         (500)
 #define NPC_PID_CaveRobber_male_2           (501)

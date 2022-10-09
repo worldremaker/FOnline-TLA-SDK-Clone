@@ -182,7 +182,15 @@ uint dlg_SellCar(Critter& player, Critter@ tray, string@ lexems)
 	uint forceDialog=0;
 	Item@ car=GetPlayerCar(player,forceDialog);
 	if(not valid(car)) lexems="$sell_cost0";
-	else lexems="$sell_cost"+(GetCarCost(car.GetProtoId())/2);
+	else
+	{
+		uint cost=GetCarCost(car.GetProtoId())/2;
+		GameVar@ isQuest = GetLocalVar(LIVAR_is_quest_item, car.Id);
+		if(valid(isQuest) && isQuest == 1)
+			cost = 0;
+		lexems="$sell_cost"+cost;
+	}
+	
 	return forceDialog;
 }
 
@@ -192,6 +200,9 @@ uint r_SellCar(Critter& player, Critter@ tray, int val)
 	Item@ car=GetPlayerCar(player,forceDialog);
 	if(not valid(car)) return forceDialog;
 	uint cost=GetCarCost(car.GetProtoId())/2;
+	GameVar@ isQuest = GetLocalVar(LIVAR_is_quest_item, car.Id);
+	if(valid(isQuest) && isQuest == 1)
+		cost = 0;
 	Item@ key=_CritGetItemHand(player);
 	if(valid(key) && key.GetType()==ITEM_KEY && key.LockerId==car.LockerId) DeleteItem(key);
 	DeleteItem(car);

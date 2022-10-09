@@ -1,7 +1,7 @@
 #ifndef __VARS__
 #define __VARS__
 /*************************************************************************************
-***  VARS  *****  COUNT: 00000531  ***************************************************
+***  VARS  *****  COUNT: 00000534  ***************************************************
 *************************************************************************************/
 
 
@@ -46,6 +46,7 @@
 #define GVAR_redd_marion_wan_location                (162)
 #define GVAR_redd_marion_wan_timeout                 (163)
 #define GVAR_enc_ocean_trader_alive                  (164)
+#define LIVAR_is_quest_item                          (1000)
 #define GVAR_modoc_brahmin_escaped                   (1299)
 #define GVAR_raiders_dead                            (1600)
 #define GVAR_ending_arroyo_independence              (1800)
@@ -364,6 +365,8 @@
 #define LVAR_sf_honomer_playerid                     (4436)
 #define LMVAR_sf_lab_honomer_inside                  (4437)
 #define LVAR_sf_lab_failed                           (4438)
+#define LVAR_sf_chitin_armor_recipe_known            (4439)
+#define LVAR_q_sf_tigang_recipe                      (4440)
 #define LVAR_scen_enclave_soldier                    (4500)
 #define LVAR_scen_enclave_scient                     (4501)
 #define LVAR_scen_bos_soldier                        (4502)
@@ -824,6 +827,11 @@ $	164	0	enc_ocean_trader_alive	1	0	1	0
 0 - нежив.
 
 Если мёртв, то уже нельзя встретить энкаунтер с ним.
+**********
+
+$	1000	5	is_quest_item	0	0	1	0
+**********
+Переменная для предметов. Признак- предмет=квестовый.
 **********
 
 $	1299	0	modoc_brahmin_escaped	0	0	0	4
@@ -2041,7 +2049,7 @@ $	3307	1	q_mod_joe_giant_wasp	0	0	3	1
 3 - игрок сдал квест
 **********
 
-$	3308	1	q_mod_joe_vampire	0	0	10	1
+$	3308	1	q_mod_joe_vampire	0	0	11	1
 **********
 локальная, квестовая, статус квеста
 "Ночь нежна"
@@ -2056,6 +2064,7 @@ $	3308	1	q_mod_joe_vampire	0	0	10	1
 8 - игрок убил вампира
 9 - игрок излечил вампира и получил от того награду
 10 - игрок сдал квест
+11 - сдал квест, получен перк
 **********
 
 $	3309	1	mod_vampire_farm_location	0	0	0	4
@@ -3694,6 +3703,18 @@ $	4437	4	sf_lab_honomer_inside	0	0	1	0
 $	4438	1	sf_lab_failed	0	0	1	0
 **********
 локальная, признак, что игрока заметили в лаборатории
+**********
+
+$	4439	1	sf_chitin_armor_recipe_known	0	0	1	0
+**********
+Локальная, признак, что игрок может производить хитиновую броню.
+**********
+
+$	4440	1	q_sf_tigang_recipe	0	0	2	1
+**********
+статус квеста "купить рецепт"
+1 - узнал о возможности купить рецепт
+2 - купил
 **********
 
 $	4500	1	scen_enclave_soldier	0	0	10	0

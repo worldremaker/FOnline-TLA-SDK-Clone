@@ -203,8 +203,16 @@ void ReplicateCritter(Critter& cr) // Export
 			Map@ dropMap=cr.GetMap();
 			Item@[] items;
 			cr.GetItems(-1,items);
-			// Disable drop of hidden items
-			for(uint i=0,j=items.length();i<j;i++) if(FLAG(items[i].Flags,ITEM_HIDDEN)) @items[i]=null;
+			// Disable drop of hidden items and sandbags (10/03/11)
+			for(uint i=0,j=items.length();i<j;i++) 
+			{
+				if(FLAG(items[i].Flags,ITEM_GAG))
+				{
+					Item@ item = items[i];
+					if(valid(item)) DeleteItem(item);
+					@items[i]=null;
+				}else if(FLAG(items[i].Flags,ITEM_HIDDEN)) @items[i]=null;
+			}
 			if(valid(dropMap)) MoveItems(items,dropMap,cr.HexX,cr.HexY);
 			else DeleteItems(items);
 		}

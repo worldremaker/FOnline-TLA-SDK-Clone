@@ -462,6 +462,7 @@ int to_hit(CritterCl& chosen, CritterCl& target, ProtoItem& weapon, uint8 weapon
     // TODO: light penalty
 
     if(chosen.Damage[DAMAGE_EYE] != 0) toHit -= 25;
+    if(chosen.Perk[PE_VAMPIRE_ACCURACY] != 0 && IS_NIGHT(__Hour)) toHit += 13;
     if(target.IsKnockout()) toHit += 40;
     toHit += target.GetMultihex() * 15;
 
@@ -1713,7 +1714,8 @@ void animation3d_process(bool animateStay, CritterCl& cr, uint anim1, uint anim2
 	case PID_COMBAT_ARMOR:
 	case PID_COMBAT_ARMOR_MK_II:
 	case PID_BROTHERHOOD_COMBAT_ARMOR:
-	case PID_MIRELURK_ARMOR:
+	case PID_CHITIN_ARMOR_MK_II:
+	case PID_CHITIN_ARMOR:
 	case PID_BLACK_COMBAT_ARMOR:
 		bodyAtr     = ATTRIBUTE_Body_CombatArmor;
 		handsAtr    = ATTRIBUTE_Hands_CombatArmor;

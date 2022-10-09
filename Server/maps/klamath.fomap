@@ -1,9 +1,9 @@
 [Header]
-Version              2
+Version              3
 MaxHexX              181
 MaxHexY              175
-WorkHexX             34
-WorkHexY             174
+WorkHexX             59
+WorkHexY             76
 ScriptModule         -
 ScriptFunc           -
 NoLogOut             0
@@ -9537,7 +9537,8 @@ ProtoId              10
 MapX                 84
 MapY                 43
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5055
 Critter_ParamIndex1  ST_AI_ID
@@ -9777,7 +9778,8 @@ MapX                 96
 MapY                 47
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5055
 Critter_ParamIndex1  ST_AI_ID
@@ -10419,7 +10421,8 @@ MapX                 63
 MapY                 56
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  218
 Critter_ParamIndex1  ST_AI_ID
@@ -11205,7 +11208,8 @@ MapX                 56
 MapY                 61
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  200
 Critter_ParamIndex1  ST_AI_ID
@@ -11691,7 +11695,8 @@ MapX                 65
 MapY                 64
 Dir                  2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  219
 Critter_ParamIndex1  ST_AI_ID
@@ -12432,7 +12437,8 @@ MapX                 65
 MapY                 69
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  220
 Critter_ParamIndex1  ST_AI_ID
@@ -12959,7 +12965,8 @@ MapX                 123
 MapY                 73
 Dir                  5
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  206
 Critter_ParamIndex1  ST_AI_ID
@@ -13093,7 +13100,8 @@ MapX                 127
 MapY                 75
 Dir                  1
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  206
 Critter_ParamIndex1  ST_AI_ID
@@ -13217,7 +13225,8 @@ Dir                  3
 ScriptName           trader
 FuncName             _TraderInit
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  207
 Critter_ParamIndex1  ST_AI_ID
@@ -13246,7 +13255,8 @@ ProtoId              71
 MapX                 118
 MapY                 75
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  206
 Critter_ParamIndex1  ST_AI_ID
@@ -13266,7 +13276,8 @@ MapX                 121
 MapY                 75
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  206
 Critter_ParamIndex1  ST_AI_ID
@@ -13341,7 +13352,8 @@ Dir                  3
 ScriptName           trader
 FuncName             _TraderInit
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  213
 Critter_ParamIndex1  ST_AI_ID
@@ -13366,7 +13378,8 @@ MapX                 64
 MapY                 76
 Dir                  2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  216
 Critter_ParamIndex1  ST_AI_ID
@@ -15018,7 +15031,8 @@ MapX                 124
 MapY                 92
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  202
 Critter_ParamIndex1  ST_AI_ID
@@ -15044,7 +15058,8 @@ MapX                 125
 MapY                 93
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  200
 Critter_ParamIndex1  ST_AI_ID
@@ -15622,7 +15637,8 @@ Dir                  1
 ScriptName           trader
 FuncName             _TraderInit
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  210
 Critter_ParamIndex1  ST_AI_ID
@@ -15827,7 +15843,8 @@ MapX                 104
 MapY                 103
 Dir                  2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  204
 Critter_ParamIndex1  ST_AI_ID
@@ -15847,7 +15864,8 @@ MapX                 101
 MapY                 102
 Dir                  1
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  200
 Critter_ParamIndex1  ST_AI_ID
@@ -16066,7 +16084,8 @@ MapX                 120
 MapY                 103
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  202
 Critter_ParamIndex1  ST_AI_ID
@@ -16158,7 +16177,8 @@ MapX                 120
 MapY                 104
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  202
 Critter_ParamIndex1  ST_AI_ID
@@ -16270,7 +16290,8 @@ MapX                 90
 MapY                 106
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  200
 Critter_ParamIndex1  ST_AI_ID
@@ -17406,7 +17427,8 @@ MapY                 119
 ScriptName           map_klamath
 FuncName             _BrahmaInit
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  237
 Critter_ParamIndex1  ST_AI_ID
@@ -17570,7 +17592,8 @@ Dir                  2
 ScriptName           map_klamath
 FuncName             _BrahmaInit
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  235
 Critter_ParamIndex1  ST_AI_ID
@@ -18067,7 +18090,8 @@ Dir                  4
 ScriptName           map_klamath
 FuncName             _BrahmaInit
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  236
 Critter_ParamIndex1  ST_AI_ID
@@ -18747,7 +18771,8 @@ MapX                 82
 MapY                 132
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  234
 Critter_ParamIndex1  ST_AI_ID
@@ -21302,7 +21327,8 @@ MapX                 99
 MapY                 103
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  200
 Critter_ParamIndex1  ST_AI_ID
@@ -21322,7 +21348,8 @@ MapX                 101
 MapY                 105
 Dir                  5
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  200
 Critter_ParamIndex1  ST_AI_ID
@@ -21342,7 +21369,8 @@ MapX                 95
 MapY                 98
 Dir                  5
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  200
 Critter_ParamIndex1  ST_AI_ID
@@ -21362,7 +21390,8 @@ MapX                 105
 MapY                 92
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  202
 Critter_ParamIndex1  ST_AI_ID
@@ -21382,7 +21411,8 @@ MapX                 107
 MapY                 93
 Dir                  1
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  202
 Critter_ParamIndex1  ST_AI_ID
@@ -21531,7 +21561,8 @@ MapX                 124
 MapY                 91
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  202
 Critter_ParamIndex1  ST_AI_ID
@@ -22006,7 +22037,8 @@ MapX                 98
 MapY                 93
 Dir                  2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  200
 Critter_ParamIndex1  ST_AI_ID
@@ -22026,7 +22058,8 @@ MapX                 97
 MapY                 94
 Dir                  4
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  200
 Critter_ParamIndex1  ST_AI_ID
@@ -22796,7 +22829,8 @@ MapX                 39
 MapY                 57
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  229
 Critter_ParamIndex1  ST_AI_ID
@@ -24823,7 +24857,8 @@ MapX                 109
 MapY                 143
 Dir                  1
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  202
 Critter_ParamIndex1  ST_AI_ID
@@ -33760,7 +33795,8 @@ MapX                 82
 MapY                 48
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5055
 Critter_ParamIndex1  ST_AI_ID
@@ -34539,10 +34575,11 @@ MapObjType           0
 ProtoId              74
 MapX                 53
 MapY                 80
-ScriptName           collector
-FuncName             _CollectorInit
+ScriptName           map_klamath
+FuncName             _RobotInit
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  232
 Critter_ParamIndex1  ST_AI_ID
@@ -34607,7 +34644,8 @@ MapX                 103
 MapY                 85
 Dir                  1
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  212
 Critter_ParamIndex1  ST_AI_ID
@@ -37596,7 +37634,8 @@ ProtoId              54
 MapX                 88
 MapY                 115
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  203
 Critter_ParamIndex1  ST_AI_ID
@@ -39126,7 +39165,8 @@ Dir                  3
 ScriptName           trader
 FuncName             _TraderInit
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  209
 Critter_ParamIndex1  ST_AI_ID
@@ -39158,7 +39198,8 @@ MapX                 79
 MapY                 103
 Dir                  5
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  205
 Critter_ParamIndex1  ST_AI_ID
@@ -39192,7 +39233,8 @@ Dir                  1
 ScriptName           trader
 FuncName             _TraderInit
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  208
 Critter_ParamIndex1  ST_AI_ID
@@ -39212,7 +39254,8 @@ MapX                 84
 MapY                 103
 Dir                  4
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  205
 Critter_ParamIndex1  ST_AI_ID
@@ -39282,7 +39325,8 @@ Dir                  2
 ScriptName           trader
 FuncName             _TraderInit
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  211
 Critter_ParamIndex1  ST_AI_ID
@@ -40144,7 +40188,8 @@ Dir                  2
 ScriptName           trader
 FuncName             _TraderInit
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  217
 Critter_ParamIndex1  ST_AI_ID
@@ -40187,7 +40232,8 @@ MapX                 97
 MapY                 74
 Dir                  2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  215
 Critter_ParamIndex1  ST_AI_ID
