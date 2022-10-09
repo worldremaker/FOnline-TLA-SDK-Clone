@@ -129,7 +129,9 @@ class HostileLocationInfo
 		this.LocId = CreateLocation(this.LocPid, this.LocX + Random(-1 * this.CoordDelta, this.CoordDelta), this.LocY + Random(-1 * this.CoordDelta, this.CoordDelta), null);
 		if(this.LocId == 0)
 			return false; // Ошибка при создании локации
+		DL("Location created ok. LocId = " + this.LocId);
 		this.LocCreated = true;
+		this.Save();
 		player.SetKnownLoc(true, this.LocId);
 		// Прописывание скриптов для карт локации, а также сохранение ключевой информации о квесте в Map::Data
 		Location@ loc = GetLocation(this.LocId);
@@ -159,15 +161,18 @@ class HostileLocationInfo
 		uint len = critters.length(); // Первоначальная длина массива
 		if (this.LocId == 0)
 			return 0;
+		DL("Locvald? LocId" + this.LocId);
 		Location@ loc = GetLocation(this.LocId);
 		if(!valid(loc))
 			return 0;
 		for(uint i = 0, l = loc.GetMapCount(); i < l; i++)
 		{
+			DL("Map#" + i);
 			Map@ map = loc.GetMapByIndex(i);
 			if(valid(map))
 			for(uint j = 0, m = map.GetNpcCount((ally ? NPC_ROLE_ALLY : NPC_ROLE_HOSTILE), findType); j < m; j++)
 			{
+				DL("j =" + j);
 				Critter@ cr = map.GetNpc((ally ? NPC_ROLE_ALLY : NPC_ROLE_HOSTILE), findType, j);
 				if(valid(cr)) critters.insertLast(@cr);
 			}
@@ -187,12 +192,12 @@ class HostileLocationInfo
 
 	void ResetQuest()
 	{
-		GameVar@ qVar = GetLocalVar(this.PlayerId, this.QVarNum);
+		GameVar@ qVar = GetLocalVar(this.QVarNum, this.PlayerId);
 		if(valid(qVar)) qVar = QUEST_FAIL_LOC_DELETED;
 
 		if(this.CVarNum != 0) // Сброс счетчика, если назначен
 		{
-			GameVar@ status = GetLocalVar(this.PlayerId, this.CVarNum);
+			GameVar@ status = GetLocalVar(this.CVarNum, this.PlayerId);
 			if(valid(status) && status.GetValue() != 0)
 				status = 0;
 		}
@@ -255,6 +260,7 @@ void _HostileMapInit(Map& map, bool firstTime)
 	{
 		for(uint i = 0, l = allies.length(); i < l; i++)
 		{
+			DL("Ally script set");
 			allies[i].SetScript("_AllyInit");
 		}
 	}

@@ -2,8 +2,8 @@
 Version              2
 MaxHexX              400
 MaxHexY              400
-WorkHexX             198
-WorkHexY             108
+WorkHexX             107
+WorkHexY             66
 ScriptModule         map_geck_city
 ScriptFunc           _MapInit
 NoLogOut             0
@@ -38083,7 +38083,7 @@ MapY                 62
 MapObjType           2
 ProtoId              2344
 MapX                 104
-MapY                 74
+MapY                 73
 
 MapObjType           2
 ProtoId              2344

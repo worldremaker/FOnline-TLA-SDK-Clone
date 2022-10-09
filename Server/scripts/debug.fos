@@ -470,3 +470,24 @@ void ShowLocation(Critter & player, int, int, int)
 			loc.Visible = true;
 	}
 }
+
+void AddMine(Critter& cr, int, int, int)
+{
+	Item@ item = cr.GetMap().AddItem(cr.HexX+1, cr.HexY+1,PID_ACTIVE_MINE,1);
+	item.SetScript("_MineInit");
+}
+
+void _MineInit(Item& item, bool firstTime)
+{
+item.TrapValue=150;
+SETFLAG(item.Flags,ITEM_TRAP);
+	item.SetEvent(ITEM_EVENT_WALK,"explode@_MineWalk");
+		item.Update();
+}
+
+import void SkillUp(Critter& player, int skill) from "stdlib";
+
+void UpSkill(Critter& cr, int crId, int skill, int)
+{
+	SkillUp(GetCritter(uint(crId)), skill);
+}

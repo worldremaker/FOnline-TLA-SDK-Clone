@@ -4,7 +4,8 @@
 #include "guard_lib_events.fos"
 
 #define STR_GRAVE              (5425)
-
+//#define DL#(s) (Log(s))
+#define DL#(s)
 // Скрипт охраны Hex'a
 
 class CGuardsManagerForNCR : CGuardsManager
@@ -116,3 +117,58 @@ void _SmthUseItem(Critter& cr, Critter& fromCr, Item& item, Critter@ onCritter, 
 		RunDialog(fromCr, 1353, cr.HexX, cr.HexY, false);
 	}
 }
+
+// Квест "На Связи" Доктор Джонсон
+#define DOCTOR_CHANNEL            (1717)
+#define STR_FIRST                 (3300)
+#define STR_LAST                  (3340)
+#define STR_BREAK_FIRST           (3341)
+#define STR_BREAK_LAST            (3343)
+
+// Проверка, в инвентаре игрока есть радио с нужной волной
+bool d_CheckRadio(Critter& player, Critter@ npc)
+{
+	Item@[] items;
+	player.GetItems(-1, items);
+	for(uint i=0, l=items.length(); i < l; i++)
+	{
+		if(items[i].GetProtoId() == PID_RADIO && items[i].RadioChannel == DOCTOR_CHANNEL) // TODO: вставить проверку канала
+			return true;
+	}
+	return false;
+}
+
+void r_Broadcast(Critter& player, Critter@ npc)
+{
+	DL("broadcat result");
+	CreateTimeEvent(__FullSecond + __TimeMultiplier*5, "e_BeginBroadcast", false);
+}
+
+uint e_BeginBroadcast(uint[]@ values) 
+{
+	DL("Begin broadcast");
+	GameVar@ status = GetGlobalVar(GVAR_redd_johnson_broadcast);
+	if(!valid(status) || status == 1)
+		return 0;
+	status = 1;
+	CreateTimeEvent(__FullSecond, "e_Broadcast", STR_FIRST, true);
+	return 0;
+}
+
+uint e_Broadcast(uint[]@ values) 
+{
+	DL("broadcast " + values[0]);
+	GameVar@ status = GetGlobalVar(GVAR_redd_johnson_broadcast);
+	if(!valid(status) || status == 0)
+		return 0;
+	if(values[0]>=STR_LAST)
+	{
+		status = 0;
+		return 0;
+	}
+	RadioMessageMsg(DOCTOR_CHANNEL, TEXTMSG_TEXT, values[0]);
+	values[0] = values[0] + 1;
+	return __TimeMultiplier*5;
+}
+
+

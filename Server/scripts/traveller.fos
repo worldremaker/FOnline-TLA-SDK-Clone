@@ -223,16 +223,13 @@ class Traveller
 		Critter@ cr = this.GetTraveller();
 		if(!valid(cr) || this.MapIdTo == 0)
 			return false;
-		//DL("mapId>0 , cr.valid/MapIdTo" + this.MapIdTo + "; entire: "+this.EntireTo);
 		Map@ map = GetMap(this.MapIdTo);
 		if(!valid(map) || map.CountEntire(this.EntireTo) == 0)
 			return false;
-		//	DL("map ok");
 		if(cr.TransitToMap(this.MapIdTo, this.EntireTo))
 		{
 			return true;
 		}
-		//DL("transit failed");
 		return false;
 	}
 
@@ -382,7 +379,6 @@ uint cte_Travel(Critter& cr, int identifier, uint& rate)
 // если нет, переносится c  помощью TransitToMap
 uint cte_Check(Critter& cr, int identifier, uint& rate)
 {
-	DL("Route check event fired");
 	Map@ map = cr.GetMap();
 	if(valid(map) && valid(map.GetLocation()) && !map.GetLocation().AutoGarbage)
 	{

@@ -539,6 +539,11 @@ $ 	1454	sf_bruce
 $ 	1455	sf_khung
 $ 	1456	sf_wei
 $	1457    sf_wolf
+$	1458 	sf_honomer
+$	1459	sf_lab_guard
+$	1460	sf_lab_laborant
+$	1461	sf_lab_comp
+$	1462	sf_lab_door_guard
 $	1500	nav_tomas
 $	1501	nav_samuel
 $	1502	nav_migel

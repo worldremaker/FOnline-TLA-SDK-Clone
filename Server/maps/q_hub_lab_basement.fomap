@@ -2,8 +2,8 @@
 Version              2
 MaxHexX              160
 MaxHexY              160
-WorkHexX             88
-WorkHexY             61
+WorkHexX             93
+WorkHexY             107
 ScriptModule         -
 ScriptFunc           -
 NoLogOut             0
@@ -3446,11 +3446,6 @@ MapX                 96
 MapY                 61
 
 MapObjType           2
-ProtoId              6004
-MapX                 70
-MapY                 84
-
-MapObjType           2
 ProtoId              6021
 MapX                 70
 MapY                 81
@@ -3459,11 +3454,6 @@ MapObjType           2
 ProtoId              6022
 MapX                 70
 MapY                 83
-
-MapObjType           2
-ProtoId              6008
-MapX                 82
-MapY                 88
 
 MapObjType           2
 ProtoId              6005
@@ -3961,11 +3951,6 @@ MapX                 70
 MapY                 73
 
 MapObjType           2
-ProtoId              6004
-MapX                 70
-MapY                 74
-
-MapObjType           2
 ProtoId              6021
 MapX                 70
 MapY                 61
@@ -3976,11 +3961,6 @@ MapX                 70
 MapY                 63
 
 MapObjType           2
-ProtoId              6004
-MapX                 70
-MapY                 64
-
-MapObjType           2
 ProtoId              6021
 MapX                 82
 MapY                 69
@@ -3989,11 +3969,6 @@ MapObjType           2
 ProtoId              6022
 MapX                 82
 MapY                 71
-
-MapObjType           2
-ProtoId              6004
-MapX                 82
-MapY                 72
 
 MapObjType           2
 ProtoId              6027
@@ -8441,6 +8416,11 @@ MapObjType           1
 ProtoId              134
 MapX                 59
 MapY                 86
+ScriptName           item
+FuncName             _GuardedItemInit
+Item_LockerDoorId    1
+Item_LockerComplexity 25
+Item_Val1            22
 
 MapObjType           2
 ProtoId              2013
@@ -8731,6 +8711,12 @@ MapObjType           1
 ProtoId              2019
 MapX                 82
 MapY                 70
+ScriptName           q_hub_lab
+FuncName             _DoorInit
+Item_LockerDoorId    1007
+Item_LockerComplexity 250
+Item_Val0            2
+Item_Val1            18
 
 MapObjType           1
 ProtoId              132
@@ -8836,6 +8822,9 @@ MapObjType           2
 ProtoId              2638
 MapX                 84
 MapY                 46
+ScriptName           scenery
+FuncName             s_Dialog
+Scenery_ParamsCount  1
 
 MapObjType           2
 ProtoId              2637
@@ -8851,6 +8840,10 @@ MapObjType           2
 ProtoId              2640
 MapX                 87
 MapY                 48
+ScriptName           scenery
+FuncName             s_Dialog
+Scenery_ParamsCount  1
+Scenery_Param0       1461
 
 MapObjType           2
 ProtoId              2141
@@ -10048,98 +10041,126 @@ MapObjType           1
 ProtoId              134
 MapX                 59
 MapY                 84
+ScriptName           item
+FuncName             _GuardedItemInit
+Item_LockerDoorId    1
+Item_LockerComplexity 50
+Item_Val1            22
 
 MapObjType           1
 ProtoId              134
 MapX                 59
 MapY                 92
+ScriptName           item
+FuncName             _GuardedItemInit
+Item_LockerDoorId    1
+Item_LockerComplexity 25
+Item_Val1            22
 
 MapObjType           1
 ProtoId              134
 MapX                 59
 MapY                 85
+ScriptName           item
+FuncName             _GuardedItemInit
+Item_LockerDoorId    1
+Item_LockerComplexity 25
+Item_Val1            22
 
 MapObjType           1
 ProtoId              134
 MapX                 59
 MapY                 93
+ScriptName           item
+FuncName             _GuardedItemInit
+Item_LockerDoorId    1
+Item_LockerComplexity 25
+Item_Val1            22
 
 MapObjType           0
 ProtoId              278
 MapX                 89
 MapY                 49
+ScriptName           q_hub_lab
+FuncName             _HubInit
 Critter_Cond         1
 Critter_CondExt      1
 Critter_ParamIndex0  ST_DIALOG_ID
-Critter_ParamValue0  0
+Critter_ParamValue0  1460
 Critter_ParamIndex1  ST_AI_ID
-Critter_ParamValue1  0
+Critter_ParamValue1  24
 Critter_ParamIndex2  ST_BAG_ID
-Critter_ParamValue2  0
+Critter_ParamValue2  118
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  4
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
-Critter_ParamValue5  0
+Critter_ParamValue5  -1
 
 MapObjType           0
 ProtoId              278
 MapX                 88
 MapY                 58
+ScriptName           q_hub_lab
+FuncName             _HubInit
 Critter_Cond         1
 Critter_CondExt      1
 Critter_ParamIndex0  ST_DIALOG_ID
-Critter_ParamValue0  0
+Critter_ParamValue0  1460
 Critter_ParamIndex1  ST_AI_ID
-Critter_ParamValue1  0
+Critter_ParamValue1  24
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  0
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  4
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
-Critter_ParamValue5  0
+Critter_ParamValue5  -1
 
 MapObjType           0
 ProtoId              278
 MapX                 62
 MapY                 85
 Dir                  3
+ScriptName           q_hub_lab
+FuncName             _HubInit
 Critter_Cond         1
 Critter_CondExt      1
 Critter_ParamIndex0  ST_DIALOG_ID
-Critter_ParamValue0  0
+Critter_ParamValue0  1460
 Critter_ParamIndex1  ST_AI_ID
-Critter_ParamValue1  0
+Critter_ParamValue1  24
 Critter_ParamIndex2  ST_BAG_ID
-Critter_ParamValue2  0
+Critter_ParamValue2  118
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  4
 Critter_ParamIndex4  ST_NPC_ROLE
-Critter_ParamValue4  0
+Critter_ParamValue4  22
 Critter_ParamIndex5  ST_REPLICATION_TIME
-Critter_ParamValue5  0
+Critter_ParamValue5  -1
 
 MapObjType           0
 ProtoId              176
 MapX                 66
 MapY                 87
+ScriptName           q_hub_lab
+FuncName             _HubInit
 Critter_Cond         1
 Critter_CondExt      1
 Critter_ParamIndex0  ST_DIALOG_ID
-Critter_ParamValue0  0
+Critter_ParamValue0  1460
 Critter_ParamIndex1  ST_AI_ID
-Critter_ParamValue1  0
+Critter_ParamValue1  24
 Critter_ParamIndex2  ST_BAG_ID
-Critter_ParamValue2  0
+Critter_ParamValue2  118
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  4
 Critter_ParamIndex4  ST_NPC_ROLE
-Critter_ParamValue4  0
+Critter_ParamValue4  22
 Critter_ParamIndex5  ST_REPLICATION_TIME
-Critter_ParamValue5  0
+Critter_ParamValue5  -1
 
 MapObjType           2
 ProtoId              6013
@@ -10395,68 +10416,310 @@ MapY                 83
 
 MapObjType           0
 ProtoId              369
-MapX                 71
-MapY                 60
-Dir                  3
-Critter_Cond         0
-Critter_CondExt      0
-Critter_ParamIndex0  ST_DIALOG_ID
-Critter_ParamValue0  0
-Critter_ParamIndex1  ST_AI_ID
-Critter_ParamValue1  0
-Critter_ParamIndex2  ST_BAG_ID
-Critter_ParamValue2  0
-Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
-Critter_ParamIndex4  ST_NPC_ROLE
-Critter_ParamValue4  0
-Critter_ParamIndex5  ST_REPLICATION_TIME
-Critter_ParamValue5  0
-
-MapObjType           0
-ProtoId              369
-MapX                 79
-MapY                 57
-Dir                  2
-Critter_Cond         0
-Critter_CondExt      0
-Critter_ParamIndex0  ST_DIALOG_ID
-Critter_ParamValue0  0
-Critter_ParamIndex1  ST_AI_ID
-Critter_ParamValue1  0
-Critter_ParamIndex2  ST_BAG_ID
-Critter_ParamValue2  0
-Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
-Critter_ParamIndex4  ST_NPC_ROLE
-Critter_ParamValue4  0
-Critter_ParamIndex5  ST_REPLICATION_TIME
-Critter_ParamValue5  0
-
-MapObjType           0
-ProtoId              369
 MapX                 84
 MapY                 70
 Dir                  3
-Critter_Cond         0
-Critter_CondExt      0
+ScriptName           q_hub_lab
+FuncName             _DoorGuardInit
+Critter_Cond         1
+Critter_CondExt      1
 Critter_ParamIndex0  ST_DIALOG_ID
-Critter_ParamValue0  0
+Critter_ParamValue0  1462
 Critter_ParamIndex1  ST_AI_ID
-Critter_ParamValue1  0
+Critter_ParamValue1  22
 Critter_ParamIndex2  ST_BAG_ID
 Critter_ParamValue2  0
 Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
+Critter_ParamValue3  4
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
-Critter_ParamValue5  0
+Critter_ParamValue5  -1
 
 MapObjType           2
 ProtoId              3853
 MapX                 90
 MapY                 68
 Scenery_ToEntire     1
+
+MapObjType           2
+ProtoId              6019
+MapX                 82
+MapY                 72
+
+MapObjType           2
+ProtoId              6019
+MapX                 70
+MapY                 74
+
+MapObjType           2
+ProtoId              6019
+MapX                 70
+MapY                 84
+
+MapObjType           2
+ProtoId              6019
+MapX                 82
+MapY                 88
+
+MapObjType           2
+ProtoId              6019
+MapX                 70
+MapY                 64
+
+MapObjType           2
+ProtoId              3852
+MapX                 81
+MapY                 82
+ScriptName           q_hub_lab
+FuncName             t_NpcDialog
+
+MapObjType           2
+ProtoId              3852
+MapX                 80
+MapY                 82
+ScriptName           q_hub_lab
+FuncName             t_NpcDialog
+
+MapObjType           2
+ProtoId              3852
+MapX                 79
+MapY                 83
+ScriptName           q_hub_lab
+FuncName             t_NpcDialog
+
+MapObjType           2
+ProtoId              3852
+MapX                 78
+MapY                 83
+ScriptName           q_hub_lab
+FuncName             t_NpcDialog
+
+MapObjType           2
+ProtoId              3852
+MapX                 77
+MapY                 84
+ScriptName           q_hub_lab
+FuncName             t_NpcDialog
+
+MapObjType           2
+ProtoId              3852
+MapX                 76
+MapY                 84
+ScriptName           q_hub_lab
+FuncName             t_NpcDialog
+
+MapObjType           2
+ProtoId              3852
+MapX                 75
+MapY                 84
+ScriptName           q_hub_lab
+FuncName             t_NpcDialog
+
+MapObjType           2
+ProtoId              3852
+MapX                 74
+MapY                 83
+ScriptName           q_hub_lab
+FuncName             t_NpcDialog
+
+MapObjType           2
+ProtoId              3852
+MapX                 73
+MapY                 83
+ScriptName           q_hub_lab
+FuncName             t_NpcDialog
+
+MapObjType           2
+ProtoId              3852
+MapX                 73
+MapY                 82
+ScriptName           q_hub_lab
+FuncName             t_NpcDialog
+
+MapObjType           2
+ProtoId              3852
+MapX                 72
+MapY                 81
+ScriptName           q_hub_lab
+FuncName             t_NpcDialog
+
+MapObjType           2
+ProtoId              3852
+MapX                 71
+MapY                 81
+ScriptName           q_hub_lab
+FuncName             t_NpcDialog
+
+MapObjType           2
+ProtoId              3853
+MapX                 83
+MapY                 71
+Scenery_ToEntire     19
+
+MapObjType           2
+ProtoId              3853
+MapX                 82
+MapY                 70
+Scenery_ToEntire     21
+
+MapObjType           2
+ProtoId              3853
+MapX                 73
+MapY                 48
+Scenery_ToEntire     20
+
+MapObjType           1
+ProtoId              241
+MapX                 84
+MapY                 70
+Item_InContainer     1
+Item_ItemSlot        2
+
+MapObjType           1
+ProtoId              34
+MapX                 84
+MapY                 70
+Item_InContainer     1
+Item_ItemSlot        1
+
+MapObjType           1
+ProtoId              144
+MapX                 84
+MapY                 70
+Item_InContainer     1
+
+MapObjType           1
+ProtoId              223
+MapX                 84
+MapY                 70
+Item_InContainer     1
+Item_LockerDoorId    1007
+
+MapObjType           1
+ProtoId              223
+MapX                 88
+MapY                 58
+Item_InContainer     1
+Item_LockerDoorId    1007
+
+MapObjType           1
+ProtoId              106
+MapX                 65
+MapY                 81
+Item_Count           3
+Item_InContainer     1
+
+MapObjType           1
+ProtoId              585
+MapX                 59
+MapY                 84
+Item_InContainer     1
+
+MapObjType           1
+ProtoId              113
+MapX                 59
+MapY                 92
+Item_InContainer     1
+
+MapObjType           1
+ProtoId              47
+MapX                 59
+MapY                 93
+Item_InContainer     1
+
+MapObjType           1
+ProtoId              73
+MapX                 59
+MapY                 93
+Item_InContainer     1
+
+MapObjType           1
+ProtoId              236
+MapX                 59
+MapY                 86
+Item_InContainer     1
+
+MapObjType           1
+ProtoId              591
+MapX                 59
+MapY                 85
+Item_InContainer     1
+
+MapObjType           1
+ProtoId              308
+MapX                 94
+MapY                 44
+Item_InContainer     1
+
+MapObjType           1
+ProtoId              377
+MapX                 92
+MapY                 44
+Item_Count           10
+Item_InContainer     1
+
+MapObjType           2
+ProtoId              3852
+MapX                 81
+MapY                 72
+ScriptName           q_hub_lab
+FuncName             t_CloseDoor
+
+MapObjType           2
+ProtoId              3852
+MapX                 81
+MapY                 71
+ScriptName           q_hub_lab
+FuncName             t_CloseDoor
+
+MapObjType           2
+ProtoId              3852
+MapX                 81
+MapY                 70
+ScriptName           q_hub_lab
+FuncName             t_CloseDoor
+
+MapObjType           2
+ProtoId              3852
+MapX                 81
+MapY                 69
+ScriptName           q_hub_lab
+FuncName             t_CloseDoor
+
+MapObjType           2
+ProtoId              3852
+MapX                 75
+MapY                 55
+ScriptName           q_hub_lab
+FuncName             t_Attack
+
+MapObjType           2
+ProtoId              3852
+MapX                 76
+MapY                 54
+ScriptName           q_hub_lab
+FuncName             t_Attack
+
+MapObjType           2
+ProtoId              3852
+MapX                 77
+MapY                 55
+ScriptName           q_hub_lab
+FuncName             t_Attack
+
+MapObjType           2
+ProtoId              3852
+MapX                 78
+MapY                 54
+ScriptName           q_hub_lab
+FuncName             t_Attack
+
+MapObjType           1
+ProtoId              41
+MapX                 59
+MapY                 86
+Item_Count           300
+Item_InContainer     1
 
 

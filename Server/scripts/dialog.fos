@@ -676,3 +676,8 @@ uint e_SayMessage(uint[]@ values)
 	cr.SayMsg(values[1], TEXTMSG_DLG, DLGSTR(did, values[2]));
 	return 0;
 }
+
+void r_SkillUp(Critter& player, Critter@ npc, int skill)
+{
+	SkillUp(player, skill);
+}

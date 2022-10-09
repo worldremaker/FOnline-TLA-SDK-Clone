@@ -470,6 +470,7 @@
 #define DIALOG_sf_bro_private                          (1439)
 #define DIALOG_sf_bro_paladin                          (1440)
 #define DIALOG_sf_emperor                              (1446)
+#define DIALOG_sf_honomer                              (1458)
 #define DIALOG_nav_tomas                               (1500)
 #define DIALOG_nav_samuel                              (1501)
 #define DIALOG_nav_migel                               (1502)

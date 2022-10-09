@@ -133,10 +133,10 @@ void CreateCity(Critter& player, Item& geck)
 	}
 	uint[] chief = {player.Id};
 	player.SayMsg(SAY_NETMSG,TEXTMSG_TEXT,STR_CREATION_END);
-	leader.TransitToGlobal(grp);
 	player.AddItem(PID_USED_GECK, 1);
 	SetAnyData(GECK_LEADER_KEY (locId),chief);
 	SetAnyData(GECK_CITY_KEY(locId), acceptedPlayers);
+	leader.TransitToGlobal(grp);
 }
 
 // Проверка, является ли криттер жителем данного города из ГЕККА

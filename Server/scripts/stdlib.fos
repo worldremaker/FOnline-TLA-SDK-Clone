@@ -301,3 +301,17 @@ bool TransitToMap(Critter& cr, int locPid, int mapIndex, int entranceNum)
 
      return cr.TransitToMap(map.Id, entranceNum);
 }
+
+
+// Устанавливает прирост навыка в зависимости от уровня навыка криттера
+#define STR_SKILL_UP                      (15)
+void SkillUp(Critter& player, int skill)
+{
+	uint value = 9; // Базовый прирост, навык меньше 81
+	if(player.Skill[skill] > 80 && player.Skill[skill] < 101)
+		value = 7;
+	if(player.Skill[skill] > 100)
+		value = 5;
+	player.SkillBase[skill] += value;
+	player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_SKILL_UP, "$skill @game "+(10000+skill)*10 + "@" + "$value" + value);
+}

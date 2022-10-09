@@ -2,10 +2,10 @@
 Version              2
 MaxHexX              202
 MaxHexY              180
-WorkHexX             78
-WorkHexY             93
-ScriptModule         -
-ScriptFunc           -
+WorkHexX             152
+WorkHexY             104
+ScriptModule         map_sf_hubb
+ScriptFunc           _MapInit
 NoLogOut             0
 Time                 720
 DayTime              300  600  1140 1380
@@ -16345,9 +16345,6 @@ MapObjType           1
 ProtoId              2018
 MapX                 150
 MapY                 101
-OffsetY              -61
-AnimStayBegin        7
-AnimStayEnd          7
 
 MapObjType           2
 ProtoId              5040
@@ -17989,9 +17986,6 @@ MapObjType           1
 ProtoId              2018
 MapX                 150
 MapY                 111
-OffsetY              -61
-AnimStayBegin        7
-AnimStayEnd          7
 
 MapObjType           2
 ProtoId              4012
@@ -24999,5 +24993,11 @@ MapObjType           2
 ProtoId              4277
 MapX                 93
 MapY                 132
+
+MapObjType           2
+ProtoId              3853
+MapX                 150
+MapY                 99
+Scenery_ToEntire     43
 
 

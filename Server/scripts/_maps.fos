@@ -133,6 +133,7 @@
 #define LOCATION_Quest_ModocVampireFarm             (216)
 #define LOCATION_Quest_ModocVampireCave             (217)
 #define LOCATION_Quest_HubJudgementFarm             (218)
+#define LOCATION_Quest_Hub_Lab                      (219)
 
 #define LOCATION_Warehouse                          (220)
 #define LOCATION_Warehouse1                         (221)

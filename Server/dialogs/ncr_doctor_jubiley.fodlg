@@ -29,60 +29,67 @@ lang=russ engl
 
 [dialog]
 &
-1 1000 NOT_ANSWER_CLOSE_DIALOG 0#
-7 1010d*_param p ST_INTELLECT < 4 #
-2 1020d*_param p ST_INTELLECT > 3 @
-2 2000 NOT_ANSWER_CLOSE_DIALOG 0#
-4 2010#
-3 2020d*_script dialog@d_NotTimeoutOk 0  #
-0 2030#
-10 2040d*_script dialog@d_TimeoutOk 0  #
-14 2050d*_var p ncr_jubiley_tails_status = 1 *_item p PID_SCORPION_TAIL > 4 r*_var p ncr_jubiley_tails_status = 2 *_item p PID_SCORPION_TAIL - 5 *_param p ST_EXPERIENCE + 100 *_item p PID_BOTTLE_CAPS + 50 *_item p PID_ANTIDOTE + 1 *_script dialog@r_SetUniqTO 1 60 #
-12 2060d*_var p ncr_jubiley_tails_status = 1 *_item p PID_SCORPION_TAIL > 4 *_param p SK_DOCTOR > 50 r*_var p ncr_jubiley_tails_status = 2 *_item p PID_SCORPION_TAIL - 5 *_param p ST_EXPERIENCE + 100 *_item p PID_HYPODERMIC_NEEDLE + 4 *_script dialog@r_SetUniqTO 1 60 @
-3 3000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 3010#
-15 3020d*_var p ncr_jubiley_tails_counter > 0 *_var p ncr_jubiley_tails_counter < 5 #
-16 3030d*_var p ncr_jubiley_tails_counter > 4 @
-4 4000 NOT_ANSWER_CLOSE_DIALOG 0#
-5 4010#
-6 4020#
-0 4030@
-5 5000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 5010d*_item p PID_BOTTLE_CAPS > 99 r*_item p PID_BOTTLE_CAPS - 100 *_item n PID_BOTTLE_CAPS + 100 *_script dialog@r_ToHeal 0  #
-0 5020@
-6 6000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 6010d*_item p PID_BOTTLE_CAPS > 399 r*_item p PID_BOTTLE_CAPS - 400 *_item n PID_BOTTLE_CAPS + 400 *_param p PE_DAMAGE_EYE = 0 *_param p PE_DAMAGE_RIGHT_ARM = 0 *_param p PE_DAMAGE_LEFT_ARM = 0 *_param p PE_DAMAGE_RIGHT_LEG = 0 *_param p PE_DAMAGE_LEFT_LEG = 0 #
-0 6020@
-7 7000 NOT_ANSWER_CLOSE_DIALOG 0#
-5 7010#
-0 7020@
-10 8000 NOT_ANSWER_CLOSE_DIALOG 0#
-11 8010@
-11 9000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 9010#
-0 9020d*_param p SK_DOCTOR > 79 *_var p ncr_jubiley_tails_counter > 14 r*_var p ncr_jubiley_tails_status = 1 #
-0 9030d*_param p SK_DOCTOR > 79 *_var p ncr_jubiley_tails_counter < 15 r*_var p ncr_jubiley_tails_status = 1 *_var p ncr_jubiley_tails_counter + 1 #
-0 9040d*_param p SK_DOCTOR < 80 *_var p ncr_jubiley_tails_counter < 9 r*_var p ncr_jubiley_tails_status = 1 *_var p ncr_jubiley_tails_counter + 1 #
-0 9050d*_param p SK_DOCTOR < 80 *_var p ncr_jubiley_tails_counter > 8 r*_var p ncr_jubiley_tails_status = 1 @
-12 10000 NOT_ANSWER_CLOSE_DIALOG 0#
-13 10010d*_param p ST_POISONING_LEVEL > 0 r*_param p ST_POISONING_LEVEL = 0 #
-0 10020d*_param p ST_POISONING_LEVEL = 0 @
-13 11000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 11010@
-14 12000 NOT_ANSWER_CLOSE_DIALOG 0#
-13 12010d*_param p ST_POISONING_LEVEL > 0 r*_param p ST_POISONING_LEVEL = 0 #
-0 12020d*_param p ST_POISONING_LEVEL = 0 @
-15 13000 NOT_ANSWER_CLOSE_DIALOG 0@
-16 14000 NOT_ANSWER_CLOSE_DIALOG 0#
-17 14010d*_var p ncr_jubiley_tails_counter > 2 r*_var p ncr_jubiley_tails_counter - 3 *_item p PID_STIMPAK + 1 #
-17 14020d*_var p ncr_jubiley_tails_counter > 2 *_param p SK_DOCTOR > 49 *_param p SK_FIRST_AID > 49 r*_var p ncr_jubiley_tails_counter - 3 *_item p PID_ANTIDOTE + 1 #
-17 14030d*_var p ncr_jubiley_tails_counter > 4 *_param p SK_DOCTOR > 99 r*_var p ncr_jubiley_tails_counter - 5 *_item p PID_BUFFOUT + 1 #
-17 14040d*_var p ncr_jubiley_tails_counter > 4 *_param p SK_FIRST_AID > 99 r*_var p ncr_jubiley_tails_counter - 5 *_item p PID_MENTATS + 1 #
-17 14050d*_var p ncr_jubiley_tails_counter > 9 *_param p SK_FIRST_AID > 99 *_param p SK_DOCTOR > 124 r*_var p ncr_jubiley_tails_counter - 10 *_item p PID_RAD_X + 1 #
-17 14060d*_var p ncr_jubiley_tails_counter > 9 *_param p SK_FIRST_AID > 124 *_param p SK_DOCTOR > 99 r*_var p ncr_jubiley_tails_counter - 10 *_item p PID_RADAWAY + 1 #
-17 14070d*_var p ncr_jubiley_tails_counter > 14 *_param p SK_DOCTOR > 149 *_param p SK_FIRST_AID > 149 r*_var p ncr_jubiley_tails_counter - 15 *_item p PID_PSYCHO + 1 #
-0 14080@
-17 15000 NOT_ANSWER_CLOSE_DIALOG 0&
+1 1000 None 0 #
+7 1010 D _param p ST_INTELLECT < 4 #
+2 1020 D _param p ST_INTELLECT > 3 @
+2 2000 None 0 #
+4 2010 #
+3 2020 D _script dialog@d_NotTimeoutOk 0  #
+0 2030 #
+10 2040 D _script dialog@d_TimeoutOk 0  #
+14 2050 D _var p ncr_jubiley_tails_status = 1 D _item p PID_SCORPION_TAIL > 4 R _var p ncr_jubiley_tails_status = 2 R _item p PID_SCORPION_TAIL - 5 R _param p ST_EXPERIENCE + 100 R _item p PID_BOTTLE_CAPS + 50 R _item p PID_ANTIDOTE + 1 R _script dialog@r_SetUniqTO 1 60 #
+12 2060 D _var p ncr_jubiley_tails_status = 1 D _item p PID_SCORPION_TAIL > 4 D _param p SK_DOCTOR > 50 R _var p ncr_jubiley_tails_status = 2 R _item p PID_SCORPION_TAIL - 5 R _param p ST_EXPERIENCE + 100 R _item p PID_HYPODERMIC_NEEDLE + 4 R _script dialog@r_SetUniqTO 1 60 #
+20 2070 D _var p q_redd_doc_radio > 0 D _var p q_redd_doc_radio < 5 D _var p q_redd_doc_radio_jubiley = 1 @
+3 3000 None 0 #
+0 3010 #
+15 3020 D _var p ncr_jubiley_tails_counter > 0 D _var p ncr_jubiley_tails_counter < 5 #
+16 3030 D _var p ncr_jubiley_tails_counter > 4 @
+4 4000 None 0 #
+5 4010 #
+6 4020 #
+0 4030 @
+5 5000 None 0 #
+0 5010 D _item p PID_BOTTLE_CAPS > 99 R _item p PID_BOTTLE_CAPS - 100 R _item n PID_BOTTLE_CAPS + 100 R _script dialog@r_ToHeal 0  #
+0 5020 @
+6 6000 None 0 #
+0 6010 D _item p PID_BOTTLE_CAPS > 399 R _item p PID_BOTTLE_CAPS - 400 R _item n PID_BOTTLE_CAPS + 400 R _param p PE_DAMAGE_EYE = 0 R _param p PE_DAMAGE_RIGHT_ARM = 0 R _param p PE_DAMAGE_LEFT_ARM = 0 R _param p PE_DAMAGE_RIGHT_LEG = 0 R _param p PE_DAMAGE_LEFT_LEG = 0 #
+0 6020 @
+7 7000 None 0 #
+5 7010 #
+0 7020 @
+10 8000 None 0 #
+11 8010 @
+11 9000 None 0 #
+0 9010 #
+0 9020 D _param p SK_DOCTOR > 79 D _var p ncr_jubiley_tails_counter > 14 R _var p ncr_jubiley_tails_status = 1 #
+0 9030 D _param p SK_DOCTOR > 79 D _var p ncr_jubiley_tails_counter < 15 R _var p ncr_jubiley_tails_status = 1 R _var p ncr_jubiley_tails_counter + 1 #
+0 9040 D _param p SK_DOCTOR < 80 D _var p ncr_jubiley_tails_counter < 9 R _var p ncr_jubiley_tails_status = 1 R _var p ncr_jubiley_tails_counter + 1 #
+0 9050 D _param p SK_DOCTOR < 80 D _var p ncr_jubiley_tails_counter > 8 R _var p ncr_jubiley_tails_status = 1 @
+12 10000 None 0 #
+13 10010 D _param p ST_POISONING_LEVEL > 0 R _param p ST_POISONING_LEVEL = 0 #
+0 10020 D _param p ST_POISONING_LEVEL = 0 @
+13 11000 None 0 #
+0 11010 @
+14 12000 None 0 #
+13 12010 D _param p ST_POISONING_LEVEL > 0 R _param p ST_POISONING_LEVEL = 0 #
+0 12020 D _param p ST_POISONING_LEVEL = 0 @
+15 13000 None 0 @
+16 14000 None 0 #
+17 14010 D _var p ncr_jubiley_tails_counter > 2 R _var p ncr_jubiley_tails_counter - 3 R _item p PID_STIMPAK + 1 #
+17 14020 D _var p ncr_jubiley_tails_counter > 2 D _param p SK_DOCTOR > 49 D _param p SK_FIRST_AID > 49 R _var p ncr_jubiley_tails_counter - 3 R _item p PID_ANTIDOTE + 1 #
+17 14030 D _var p ncr_jubiley_tails_counter > 4 D _param p SK_DOCTOR > 99 R _var p ncr_jubiley_tails_counter - 5 R _item p PID_BUFFOUT + 1 #
+17 14040 D _var p ncr_jubiley_tails_counter > 4 D _param p SK_FIRST_AID > 99 R _var p ncr_jubiley_tails_counter - 5 R _item p PID_MENTATS + 1 #
+17 14050 D _var p ncr_jubiley_tails_counter > 9 D _param p SK_FIRST_AID > 99 D _param p SK_DOCTOR > 124 R _var p ncr_jubiley_tails_counter - 10 R _item p PID_RAD_X + 1 #
+17 14060 D _var p ncr_jubiley_tails_counter > 9 D _param p SK_FIRST_AID > 124 D _param p SK_DOCTOR > 99 R _var p ncr_jubiley_tails_counter - 10 R _item p PID_RADAWAY + 1 #
+17 14070 D _var p ncr_jubiley_tails_counter > 14 D _param p SK_DOCTOR > 149 D _param p SK_FIRST_AID > 149 R _var p ncr_jubiley_tails_counter - 15 R _item p PID_PSYCHO + 1 #
+0 14080 @
+17 15000 None 0 @
+20 16000 None 0 #
+0 16010 #
+21 16020 D _script redding_common@d_CheckRadio 0  D _var p q_redd_doc_radio_jubiley = 1 D _item p PID_RADIO } 1 R _item p PID_RADIO - 1 R _var p q_redd_doc_radio_jubiley = 0 R _var p q_redd_doc_radio + 1 R _param p ST_EXPERIENCE + 500 @
+21 17000 None 0 #
+0 17010 D _var p q_redd_doc_radio ! 5 #
+0 17020 D _var p q_redd_doc_radio = 5 R _script redding_common@r_Broadcast 0  &
 
 [russ]
 {100}{}{Доктор}
@@ -99,6 +106,7 @@ lang=russ engl
 {2040}{}{Мне нужна работа. Есть что-нибудь?}
 {2050}{}{Я принес@sex@|||ла| хвосты, Док. Гони монеты.@@Это было несложно, Док. Для человека с моим опытом убить скорпиона не сложнее, чем муху прихлопнуть.@@Слушай док, награду неплохо бы увеличить. Скорпионы лезли из всех дыр. Я чудом остал@sex@|ся||ась| в живых.@@В следующий раз я хорошо подумаю, прежде чем соглашаться. Эти чертовы скорпы меня почти достали. Где обещаная плата?}
 {2060}{}{Док, я принес@sex@|||ла| хвосты. Я только подумал@sex@|||а|, может, вместо платы ты со мной поделишься инструментами? 3-4 шприца меня вполне устроят в качестве платы.@@5 хвостов, как было оговорено. Но деньги мне не нужны. У тебя есть лишние шприцы? Я возьму их в качестве платы.}
+{2070}{}{Привет, я от Джонсона, Реддинг.}
 {3000}{}{Не думаю.}
 {3010}{}{Все равно спасибо.}
 {3020}{}{Док, я притащил@sex@|||а| тебе уже чертову уйму этих хвостов. Возможно, у тебя найдутся какие-то лишние таблетки?@@Мне нужен какой-то стимул, чтобы продолжать снабжать тебя хвостами. Поделись химией, док?@@Юбилей, мы уже давно сотрудничаем. Если хочешь сотрудничество продолжить, гони колеса!}
@@ -144,6 +152,12 @@ lang=russ engl
 {14070}{}{Психо.@@Давай психо, а то его хрен достанешь.@@Мне нужен Психо.}
 {14080}{}{Мне ничего не нужно, док. [Уйти]@@В следующий раз, Юбилей, удачи. [Уйти]}
 {15000}{}{Без проблем, @pname@. Только рад тебе помочь.@@Забирай. Надеюсь, мы только укрепим наше сотрудничество.@@Надеюсь, медикаменты тебе пригодятся.}
+{16000}{}{От этого коновала? Ха. Ну и чего Безболезненный Джонсон хочет от старого доктора Юбилея?}
+{16010}{}{Прошу прощения, срочные дела. Вернусь через минуту.}
+{16020}{}{[Отдать рацию] Он предлагает собраться докторам на одном радиоканале, 1717, у него есть какие-то вопросы к вам.}
+{17000}{}{Хорошо, посмотрим. }
+{17010}{}{Мне пора, прощайте.}
+{17020}{}{Мне пора, прощайте.}
 
 [engl]
 {100}{}{Doctor.}
@@ -160,6 +174,7 @@ lang=russ engl
 {2040}{}{Мне нужна работа. Есть что-нибудь?}
 {2050}{}{Я принес@sex@|||ла| хвосты, Док. Гони монеты.@@Это было несложно, Док. Для человека с моим опытом убить скорпиона не сложнее, чем муху прихлопнуть.@@Слушай док, награду неплохо бы увеличить. Скорпионы лезли из всех дыр. Я чудом остал@sex@|ся||ась| в живых.@@В следующий раз я хорошо подумаю, прежде чем соглашаться. Эти чертовы скорпы меня почти достали. Где обещаная плата?}
 {2060}{}{Док, я принес@sex@|||ла| хвосты. Я только подумал@sex@|||а|, может, вместо платы ты со мной поделишься инструментами? 3-4 шприца меня вполне устроят в качестве платы.@@5 хвостов, как было оговорено. Но деньги мне не нужны. У тебя есть лишние шприцы? Я возьму их в качестве платы.}
+{2070}{}{Привет, я от Джонсона, Реддинг.}
 {3000}{}{error}
 {3010}{}{error}
 {3020}{}{Док, я притащил@sex@|||а| тебе уже чертову уйму этих хвостов. Возможно, у тебя найдутся какие-то лишние таблетки?@@Мне нужен какой-то стимул, чтобы продолжать снабжать тебя хвостами. Поделись химией, док?@@Юбилей, мы уже давно сотрудничаем. Если хочешь сотрудничество продолжить, гони колеса!}
@@ -204,4 +219,10 @@ lang=russ engl
 {14070}{}{Психо.@@Давай психо, а то его хрен достанешь.@@Мне нужен Психо.}
 {14080}{}{Мне ничего не нужно, док. [Уйти]@@В следующий раз, Юбилей, удачи. [Уйти]}
 {15000}{}{Без проблем, @pname@. Только рад тебе помочь.@@Забирай. Надеюсь, мы только укрепим наше сотрудничество.@@Надеюсь, медикаменты тебе пригодятся.}
+{16000}{}{От этого коновала? Ха. Ну и чего Безболезненный Джонсон хочет от старого доктора Юбилея?}
+{16010}{}{Прошу прощения, срочные дела. Вернусь через минуту.}
+{16020}{}{[Отдать рацию] Он предлагает собраться докторам на одном радиоканале, 1717, у него есть какие-то вопросы к вам.}
+{17000}{}{Хорошо, посмотрим. }
+{17010}{}{Мне пора, прощайте.}
+{17020}{}{Мне пора, прощайте.}
 

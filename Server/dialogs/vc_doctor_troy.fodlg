@@ -8,7 +8,7 @@ lang=russ engl
 &
 1 1000 None 0 #
 5 1010 D _param p ST_INTELLECT < 4 #
-2 1020 D _var p vc_guard_member = 0 D or D _script ncr_ratch@d_RatchTimeOutCheck 1 6160 @
+2 1020 D _param p ST_INTELLECT } 4 @
 2 2000 None 0 #
 3 2010 #
 0 2020 #
@@ -21,7 +21,8 @@ lang=russ engl
 24 2090 D _script dialog@d_NotTimeoutOk 0  D _var p q_vc_black_escort = 1 #
 25 2100 D _script dialog@d_TimeoutOk 0  D _var p q_vc_black_escort = 1 D _var p gcity_citizen > 0 D _var p vc_black_hired = 1 D _script map_geck_city@d_CanHireNpc 3 267 1 18 #
 26 2110 D _var p vc_black_hired = 2 #
-15 2120 D _var p vc_guard_rank > 0 @
+15 2120 D _var p vc_guard_rank > 0 #
+30 2130 D _var p q_redd_doc_radio > 0 D _var p q_redd_doc_radio < 5 D _var p q_redd_doc_radio_troy = 1 @
 3 3000 None 0 #
 4 3010 @
 4 4000 None 0 #
@@ -87,7 +88,12 @@ lang=russ engl
 26 26000 None 0 #
 0 26010 @
 27 27000 None 0 #
-0 27010 R _script dialog@r_ToHeal 0  R _param p DAMAGE_EYE = 0 R _param p DAMAGE_RIGHT_ARM = 0 R _param p DAMAGE_LEFT_ARM = 0 R _param p DAMAGE_RIGHT_LEG = 0 R _param p DAMAGE_LEFT_LEG = 0 R _script dialog@r_FadeOut 1 0 R _script dialog@r_SayMessageDelayed 3 1 40 1 &
+0 27010 R _script dialog@r_ToHeal 0  R _param p DAMAGE_EYE = 0 R _param p DAMAGE_RIGHT_ARM = 0 R _param p DAMAGE_LEFT_ARM = 0 R _param p DAMAGE_RIGHT_LEG = 0 R _param p DAMAGE_LEFT_LEG = 0 R _script dialog@r_FadeOut 1 0 R _script dialog@r_SayMessageDelayed 3 1 40 1 @
+30 28000 None 0 #
+31 28010 D _script redding_common@d_CheckRadio 0  D _item p PID_RADIO } 1 R _item p PID_RADIO - 1 R _param p ST_EXPERIENCE + 500 R _var p q_redd_doc_radio_troy = 0 R _var p q_redd_doc_radio + 1 @
+31 29000 None 0 #
+0 29010 D _var p q_redd_doc_radio = 5 R _script redding_common@r_Broadcast 0  #
+0 29020 D _var p q_redd_doc_radio ! 5 &
 
 [russ]
 {100}{}{Доктор Трой}
@@ -109,6 +115,7 @@ lang=russ engl
 {2100}{}{Я бы хотел@sex@|||а| вернуться к нашему разговоре о пожертвовании...}
 {2110}{}{Трой, я не могу найти доктора Блэка, вы не знаете, где он сейчас?}
 {2120}{}{Доктор Трой, я по вопросам снабжения.}
+{2130}{}{Доктор, у меня для вас сообщение от Безболезненного Джонсона.}
 {3000}{}{Я главный врач Города Убежища. Я забочусь обо всех гражданах Города Убежища и делаю все, что от меня зависит, чтобы все были здоровы.}
 {3010}{}{Понятно. Тогда, возможно, мы поговорим позже.}
 {4000}{}{Если вам понадобятся мои услуги, вы всегда можете найти меня здесь.}
@@ -176,6 +183,11 @@ lang=russ engl
 {26010}{}{Благодарю, док.}
 {27000}{}{Лейтенант? Разумеется, я поставлю вас на ноги. Прилягте здесь...}
 {27010}{}{Хорошо.}
+{28000}{}{Неожиданно. Что Джонсон хотел передать?}
+{28010}{}{Он попросил вручить вам это. [Отдать рацию] Собирается проводить какие-то консультации на канале 1717...}
+{29000}{}{Консультации по радио? Интересная мысль. Спасибо.}
+{29010}{}{Мне пора, прощайте, док!}
+{29020}{}{Мне пора, прощайте, док!}
 {100000001}{}{Вот и все. Передавайте привет Хартманну.}
 
 [engl]
@@ -198,6 +210,7 @@ lang=russ engl
 {2100}{}{Я бы хотел@sex@|||а| вернуться к нашему разговоре о пожертвовании...}
 {2110}{}{Трой, я не могу найти доктора Блэка, вы не знаете, где он сейчас?}
 {2120}{}{Доктор Трой, я по вопросам снабжения.}
+{2130}{}{Доктор, у меня для вас сообщение от Безболезненного Джонсона.}
 {3000}{}{Я главный врач Города Убежища. Я забочусь обо всех гражданах Города Убежища и делаю все, что от меня зависит, чтобы все были здоровы.}
 {3010}{}{Понятно. Тогда, возможно, мы поговорим позже.}
 {4000}{}{Если вам понадобятся мои услуги, вы всегда можете найти меня здесь.}
@@ -265,4 +278,9 @@ lang=russ engl
 {26010}{}{Благодарю, док.}
 {27000}{}{Лейтенант? Разумеется, я поставлю вас на ноги. Прилягте здесь...}
 {27010}{}{Хорошо.}
+{28000}{}{Неожиданно. Что Джонсон хотел передать?}
+{28010}{}{Он попросил вручить вам это. [Отдать рацию] Собирается проводить какие-то консультации на канале 1717...}
+{29000}{}{Консультации по радио? Интересная мысль. Спасибо.}
+{29010}{}{Мне пора, прощайте, док!}
+{29020}{}{Мне пора, прощайте, док!}
 

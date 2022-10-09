@@ -6,51 +6,58 @@ lang=russ engl
 
 [dialog]
 &
-1 1000 NOT_ANSWER_CLOSE_DIALOG 0#
-2 1010@
-2 2000 NOT_ANSWER_CLOSE_DIALOG 0#
-3 2010#
-65506 2020#
-8 2030d*var n name_mem_npc_player = 0r*script dialog@r_ToHeal 0 #
-7 2040#
-0 2050#
-13 2060d*var p q_chosen = 3@
-3 3000 NOT_ANSWER_CLOSE_DIALOG 0#
-4 3010#
-0 3020@
-4 4000 NOT_ANSWER_CLOSE_DIALOG 0#
-5 4010d*item p 41 > 599r*item p 41 - 600*item n 41 + 600*perk p DAMAGE_EYE = 0*perk p DAMAGE_RIGHT_ARM = 0*perk p DAMAGE_LEFT_ARM = 0*perk p DAMAGE_RIGHT_LEG = 0*perk p DAMAGE_LEFT_LEG = 0*script dialog@r_ToHeal 0 #
-6 4020@
-5 5000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 5010@
-6 6000 NOT_ANSWER_CLOSE_DIALOG 0#
-3 6010#
-65506 6020#
-8 6030d*var n name_mem_npc_player = 0r*script dialog@r_ToHeal 0 #
-7 6040#
-0 6050@
-7 7000 NOT_ANSWER_CLOSE_DIALOG 0#
-10 7010#
-9 7020#
-6 7030@
-8 8000 NOT_ANSWER_CLOSE_DIALOG 0#
-3 8010#
-0 8020@
-9 9000 NOT_ANSWER_CLOSE_DIALOG 0#
-10 9010#
-6 9020#
-0 9030@
-10 10000 NOT_ANSWER_CLOSE_DIALOG 0#
-11 10010@
-11 11000 NOT_ANSWER_CLOSE_DIALOG 0#
-12 11010@
-12 12000 NOT_ANSWER_CLOSE_DIALOG 0#
-6 12010#
-0 12020@
-13 13000 NOT_ANSWER_CLOSE_DIALOG 0#
-14 13010@
-14 14000 NOT_ANSWER_CLOSE_DIALOG 0#
-0 14010&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+65506 2020 #
+8 2030 D _var n name_mem_npc_player = 0 R _script dialog@r_ToHeal 0  #
+7 2040 #
+0 2050 #
+13 2060 D _var p q_chosen = 3 #
+15 2070 D _var p q_redd_doc_radio > 0 D _var p q_redd_doc_radio < 5 D _var p q_redd_doc_radio_fung = 1 @
+3 3000 None 0 #
+4 3010 #
+0 3020 @
+4 4000 None 0 #
+5 4010 D _item p PID_BOTTLE_CAPS > 599 R _item p PID_BOTTLE_CAPS - 600 R _item n PID_BOTTLE_CAPS + 600 R _param p DAMAGE_EYE = 0 R _param p DAMAGE_RIGHT_ARM = 0 R _param p DAMAGE_LEFT_ARM = 0 R _param p DAMAGE_RIGHT_LEG = 0 R _param p DAMAGE_LEFT_LEG = 0 R _script dialog@r_ToHeal 0  #
+6 4020 @
+5 5000 None 0 #
+0 5010 @
+6 6000 None 0 #
+3 6010 #
+65506 6020 #
+8 6030 D _var n name_mem_npc_player = 0 R _script dialog@r_ToHeal 0  #
+7 6040 #
+0 6050 @
+7 7000 None 0 #
+10 7010 #
+9 7020 #
+6 7030 @
+8 8000 None 0 #
+3 8010 #
+0 8020 @
+9 9000 None 0 #
+10 9010 #
+6 9020 #
+0 9030 @
+10 10000 None 0 #
+11 10010 @
+11 11000 None 0 #
+12 11010 @
+12 12000 None 0 #
+6 12010 #
+0 12020 @
+13 13000 None 0 #
+14 13010 @
+14 14000 None 0 #
+0 14010 @
+15 15000 None 0 #
+16 15010 D _var p q_redd_doc_radio_fung = 1 D _script redding_common@d_CheckRadio 0  D _item p PID_RADIO } 1 R _item p PID_RADIO - 1 R _param p ST_EXPERIENCE + 500 R _var p q_redd_doc_radio_fung = 0 R _var p q_redd_doc_radio + 1 #
+0 15020 @
+16 16000 None 0 #
+0 16010 D _var p q_redd_doc_radio ! 5 #
+0 16020 D _var p q_redd_doc_radio = 5 R _script redding_common@r_Broadcast 0  &
 
 [russ]
 {100}{}{Доктор Фунг}
@@ -66,6 +73,7 @@ lang=russ engl
 {2040}{}{Что вы можете рассказать мне об этом месте?}
 {2050}{}{До свидания.}
 {2060}{}{Привет, док. Мне нужно знать, не слышал ли ты ни о каких странных караванах из Реддинга за последнее время?}
+{2070}{}{Доктор, меня к вам направил Джонсон из Реддинга.}
 {3000}{}{Дайте-ка я взгляну. Xммм. Да. Но не задаром, конечно.}
 {3010}{}{Сколько?}
 {3020}{}{Проехали.}
@@ -102,6 +110,12 @@ lang=russ engl
 {13010}{}{Что с ними произошло? Раненый что-нибудь говорил?}
 {14000}{}{Похоже, на караван напали. Лазеры или что-то вроде того, тела были сожжены почти полностью, а этому бедняге «повезло». В бреду он напевает какую-то песню, не могу разобрать. И ещё он говорил что-то про человека в синем, прячущего смертельные ловушки в ямах, точно бред какой-то.}
 {14010}{}{Спасибо, док! [Уйти]}
+{15000}{}{Так. Правильно ли я понимаю, что Джонсон не смог справиться с вашим недугом, и отправил за помощью ко мне? Проблемы с психикой, угадал?}
+{15010}{}{Нет, все в порядке. Джонсон хочет слышать ваш голос по радио, на канале 1717. [Отдать рацию]}
+{15020}{}{Я расскажу в чем дело, как только найду рацию.}
+{16000}{}{Вот как... Благодарю. Хорошо, послушаем, что он скажет. А вам, любезн@sex@|ый||ая|, я все же советую обеспокоиться состоянием своего здоровья. Подлечиться вам не помешает, поверьте моему опыту.}
+{16010}{}{Я подумаю. Прощайте, доктор.}
+{16020}{}{Я подумаю. Прощайте, доктор.}
 
 [engl]
 {100}{}{Doctor Fung}
@@ -117,6 +131,7 @@ lang=russ engl
 {2040}{}{What can you tell me about this place?}
 {2050}{}{Goodbye.}
 {2060}{}{Hi, doc. I need to know, did you hear something about some strange caravans form Redding last time?}
+{2070}{}{Доктор, меня к вам направил Джонсон из Реддинга.}
 {3000}{}{Let;s take a look. Hmmmm. Yes. But not for free of course.}
 {3010}{}{How much?}
 {3020}{}{Forget it.}
@@ -153,4 +168,10 @@ lang=russ engl
 {13010}{}{What's happened with him? Did that injured man tell something else?}
 {14000}{}{It looks as if the caravan was attacked. Attackers had lasers or something alike, corpses were fully burned, but this poor fellow was «lucky». He hums some song while being delirious, i can't make out. And it's not all, he told something about man in blue, who sets traps in the dens, he is completely out of his mind.}
 {14010}{}{Thanks, Doc! [Go away]}
+{15000}{}{Так. Правильно ли я понимаю, что Джонсон не смог справиться с вашим недугом, и отправил за помощью ко мне? Проблемы с психикой, угадал?}
+{15010}{}{Нет, все в порядке. Джонсон хочет слышать ваш голос по радио, на канале 1717. [Отдать рацию]}
+{15020}{}{Нет, все не так. Я расскажу в чем дело, как только найду рацию.}
+{16000}{}{Вот как... Благодарю. Хорошо, послушаем, что он скажет. А вам, любезн@sex@|ый||ая|, я все же советую обеспокоиться состоянием своего здоровья. Подлечиться вам не помешает, поверьте моему опыту.}
+{16010}{}{Я подумаю. Прощайте, доктор.}
+{16020}{}{Я подумаю. Прощайте, доктор.}
 
