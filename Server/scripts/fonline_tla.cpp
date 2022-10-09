@@ -36,8 +36,9 @@ EXPORT int getParam_DamageResistance(CritterMutual& cr, uint index);
 EXPORT int getParam_DamageThreshold(CritterMutual& cr, uint index);
 EXPORT int getParam_RadiationResist(CritterMutual& cr, uint);
 EXPORT int getParam_PoisonResist(CritterMutual& cr, uint);
-EXPORT int getParam_Reputation(CritterMutual& cr, uint index);
 EXPORT int getParam_Timeout(CritterMutual& cr, uint index);
+EXPORT int getParam_Reputation(CritterMutual& cr, uint index);
+EXPORT void changedParam_Reputation(CritterMutual& cr, uint index, int oldValue);
 
 // Extended methods
 EXPORT bool Critter_IsInjured(CritterMutual& cr);
@@ -308,6 +309,11 @@ EXPORT int getParam_PoisonResist(CritterMutual& cr, uint)
 	return CLAMP(val, 0, 95);
 }
 
+EXPORT int getParam_Timeout(CritterMutual& cr, uint index)
+{
+	return (uint)cr.Params[index] > Game->FullSecond ? (uint)cr.Params[index] - Game->FullSecond : 0;
+}
+
 EXPORT int getParam_Reputation(CritterMutual& cr, uint index)
 {
 #ifdef __SERVER
@@ -322,9 +328,9 @@ EXPORT int getParam_Reputation(CritterMutual& cr, uint index)
 	return cr.Params[index];
 }
 
-EXPORT int getParam_Timeout(CritterMutual& cr, uint index)
+EXPORT void changedParam_Reputation(CritterMutual& cr, uint index, int oldValue)
 {
-	return (uint)cr.Params[index] > Game->FullSecond ? (uint)cr.Params[index] - Game->FullSecond : 0;
+	if(oldValue == 0x80000000) cr.Params[index] += 0x80000000;
 }
 
 /************************************************************************/
