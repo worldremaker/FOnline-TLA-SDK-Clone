@@ -8,6 +8,7 @@
 #include "_colors.fos"
 #include "_animation.fos"
 
+import void InitializeGame() from "config";
 import void InitTestScreen() from "client_screen_test";
 import void InitRadioScreen() from "radio";
 import void GUI_Init() from "client_gui";
@@ -39,6 +40,8 @@ import void PlayAnimSound(uint crType, int gender, uint anim1, uint anim2) from 
 // Call on client loaded or new client_main.fos script received.
 bool start()
 {
+	InitializeGame();
+
 	if(__ScreenWidth < 800 || __ScreenWidth > 1280 || __ScreenHeight < 600 || __ScreenHeight > 1024)
 	{
 		// Recomendation message
@@ -51,8 +54,6 @@ bool start()
 	AppendIfaceIni("players3d_headinv.ini");
  #endif
 #endif
-
-#include "start_server_client.fos"
 
 	LoadFont(FONT_COURIER_NEW_SMALL, "CourierNewSmall");
 	// SetDefaultFont(FONT_COURIER_NEW_SMALL, COLOR_TEXT);

@@ -8,6 +8,7 @@
 #include "_dialogs.fos"   // Dialogs
 #include "_itempid.fos"   // Items pids
 #include "_animation.fos" // Animations
+#include "_time.fos"      // Time
 
 // Pointer validation macro
 // Example: if(valid(ptr))... if(not valid(ptr))...
@@ -17,15 +18,6 @@
 #define FLAG      #(x,flag) (((x)&(flag))!=0)
 #define SETFLAG   #(x,flag) (x=(x)|(flag))
 #define UNSETFLAG #(x,flag) (x=((x)&(~(flag))))
-
-// Time
-#define REAL_MS     #(x) ((x)*__TimeMultiplier/1000)
-#define REAL_SECOND #(x) ((x)*__TimeMultiplier)
-#define REAL_MINUTE #(x) ((x)*__TimeMultiplier*60)
-#define REAL_HOUR   #(x) ((x)*__TimeMultiplier*3600)
-#define REAL_DAY    #(x) ((x)*__TimeMultiplier*86400)
-#define REAL_MONTH  #(x) ((x)*__TimeMultiplier*2592000)
-#define REAL_YEAR   #(x) ((x)*__TimeMultiplier*31536000)
 
 // Move
 #define _NpcWalk #(npc,hexX,hexY) npc.MoveToHex(hexX,hexY,0xFF,false,0)

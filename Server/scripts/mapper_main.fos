@@ -176,6 +176,8 @@
 
 #include "_mapper_defines.fos"
 
+import void InitializeGame() from "config";
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Call on new mapper instance creating.
 // Return true to handle event and close new instance or
@@ -189,6 +191,8 @@ bool new_instance(string commandLine)
 // Call on mapper loaded.
 void start()
 {
+	InitializeGame();
+
 	// Wall corners
 	uint16[] pids;
 	GetFastPrototypes(pids);
