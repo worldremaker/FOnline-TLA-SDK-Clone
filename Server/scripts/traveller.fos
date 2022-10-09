@@ -450,7 +450,7 @@ bool _GlobalProcess(Critter& cr, int type, Item@ car, uint& x, uint& y, uint& to
 		{
 			if(toX == x && toY == y) // Добрались до точки назначения
 			{
-				if(cr.TransitToMap(t.MapIdTo, t.EntireTo))
+				if(cr.TransitToMap(t.MapIdTo, t.EntireTo, true))
 				{
 					cr.SetHomePos(cr.HexX, cr.HexY, cr.Dir);
 					t.Followers.resize(0);

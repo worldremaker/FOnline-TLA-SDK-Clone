@@ -340,6 +340,11 @@ bool out_message(string& message, int& sayType)
 			return false;
 		}
 
+		if(message == "~globalmap")
+		{
+			RunServerScriptUnsafe("nopvp_maps@unsafe_CritterToGlobal",0,0,0,null,null);
+			return false;
+		}
 		return true;
 	}
 
