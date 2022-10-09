@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 17.03.2011
-// Server version 416, MSVS2008
+// Last update 18.03.2011
+// Server version 417, MSVS2008
 // Default calling convention - cdecl
 //
 
@@ -428,10 +428,6 @@ struct GameOptions
 	bool   ScrollCheck;
 	int    MouseSpeed;
 	bool   GlobalSound;
-	string MasterPath;
-	int    MasterPathRefCount;
-	string CritterPath;
-	int    CritterPathRefCount;
 	string FoDataPath;
 	int    FoDataPathRefCount;
 	int    Sleep;
@@ -1808,7 +1804,7 @@ inline void static_asserts()
 	STATIC_ASSERT(sizeof(ProtoItem)   == 908 );
 	STATIC_ASSERT(sizeof(Mutex)       == 24  );
 	STATIC_ASSERT(sizeof(Spinlock)    == 4   );
-	STATIC_ASSERT(sizeof(GameOptions) == 1264);
+	STATIC_ASSERT(sizeof(GameOptions) == 1200);
 	STATIC_ASSERT(sizeof(ScriptArray) == 36  );
 	STATIC_ASSERT(sizeof(SpriteInfo)  == 36  );
 	STATIC_ASSERT(sizeof(Field)       == 92  );
