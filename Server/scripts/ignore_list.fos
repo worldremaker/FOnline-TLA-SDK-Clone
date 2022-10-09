@@ -1,0 +1,31 @@
+// Author: rifleman17
+#include "_client_defines.fos"
+
+#define IGNORELIST_FILE_NAME        "IgnoreList.txt"
+
+import bool CompareName(string& crName, string& nameStr) from "name_colorizing";
+
+string[] ignoredPlayers;
+
+void InitIgnoreList()
+{
+	ignoredPlayers.resize(0);
+	file f;
+	string pName;
+	if(f.open(IGNORELIST_FILE_NAME, "r") == 0)
+	{
+		ignoredPlayers.insertLast(strlwr(f.readWord()));
+	}
+}
+
+
+bool PlayerIgnored(CritterCl& cr)
+{
+	string@ crName=strlwr(cr.Name);
+	for(uint i = 0, l = ignoredPlayers.length(); i < l; i++)
+	{
+		if(CompareName(crName, ignoredPlayers[i]))
+			return true;
+	}
+	return false;
+}

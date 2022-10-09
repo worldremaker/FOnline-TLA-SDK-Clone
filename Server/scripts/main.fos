@@ -40,6 +40,9 @@ import void NpcProcessLevel(Critter& npc) from "parameters";
 import bool IsPermanentDeath(uint id) from "replication";
 import bool SetPlayerStoryLineLocation(Critter & player)  from "q_main_intro";
 import void EditRadioSettings(Critter& player, Item& radio) from "radio";
+import void SetNoPvp() from "nopvp_maps";
+import void OnCritterMapOut(Critter& cr, Map& map) from "nopvp_maps";
+import void OnCitterMapIn(Critter& cr, Map& map) from "nopvp_maps";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Call on start server.
@@ -124,6 +127,7 @@ bool start()
 
 	WorldmapInit();
 	CaravansInit();
+	SetNoPvp();
 	return true;
 }
 
@@ -404,6 +408,12 @@ bool critter_stealing(Critter& cr, Critter& thief, Item& item, uint count)
 		return false;
 	}
 
+	if(cr.Mode[MODE_NO_PVP] != 0 || cr.Mode[MODE_NO_PVP] != 0)
+	{
+		thief.Say(SAY_NETMSG,"No PvP.");
+		return false;
+	}
+	
 	int dir1=cr.Dir;
 	int dir2=thief.Dir;
 	int kDir=MAX(dir1,dir2)-MIN(dir1,dir2);
@@ -1270,6 +1280,7 @@ void critter_change_item(Critter& cr, Item& item, uint8 fromSlot)
 // Call on something critter in to map.
 void map_critter_in(Map& map, Critter& cr)
 {
+	OnCitterMapIn(cr, map);
 	if(cr.IsPlayer())
 	{
 		uint16 locPid = map.GetLocation().GetProtoId();
@@ -1286,6 +1297,7 @@ void map_critter_in(Map& map, Critter& cr)
 // Call on something critter out from map.
 void map_critter_out(Map& map, Critter& cr)
 {
+	OnCritterMapOut(cr, map);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

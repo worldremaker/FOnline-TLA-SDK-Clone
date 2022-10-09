@@ -1,7 +1,7 @@
 #ifndef __VARS__
 #define __VARS__
 /*************************************************************************************
-***  VARS  *****  COUNT: 00000534  ***************************************************
+***  VARS  *****  COUNT: 00000535  ***************************************************
 *************************************************************************************/
 
 
@@ -49,6 +49,7 @@
 #define LIVAR_is_quest_item                          (1000)
 #define GVAR_modoc_brahmin_escaped                   (1299)
 #define GVAR_raiders_dead                            (1600)
+#define LMVAR_is_nopvp_map                           (1601)
 #define GVAR_ending_arroyo_independence              (1800)
 #define GVAR_ending_arroyo_todd                      (1801)
 #define GVAR_ending_arroyo_vc                        (1802)
@@ -844,6 +845,11 @@ $	1600	0	raiders_dead	0	0	0	4
 **********
 GVAR_RAIDERS_DEAD                       :=0;    //      (600)
 Поставил пока без ограничений.
+**********
+
+$	1601	4	is_nopvp_map	0	0	1	0
+**********
+Признак: на карте отключен пвп-режим
 **********
 
 $	1800	0	ending_arroyo_independence	0	0	0	4

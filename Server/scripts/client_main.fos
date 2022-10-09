@@ -27,6 +27,8 @@ import void CritterGenerate(int[]& data) from "parameters";
 import bool CritterGenerateCheck(int[]& data) from "parameters";
 import void InitNameColorizing() from "name_colorizing";
 import bool TryColorizeCritter(CritterCl& cr) from "name_colorizing";
+import bool PlayerIgnored(CritterCl& cr) from "ignore_list";
+import void InitIgnoreList() from "ignore_list";
 import void InitChosenTabs() from "chosen_tabs";
 import void DrawChosenTabs() from "chosen_tabs";
 #ifdef PLAYERS_3D
@@ -60,6 +62,7 @@ bool start()
 
 	GUI_Init();
 	InitNameColorizing();
+	InitIgnoreList();
 	// InitTestScreen();
 	InitRadioScreen();
 	InitChosenTabs();
@@ -311,6 +314,9 @@ bool map_message(string& message, uint16& hexX, uint16& hexY, uint& color, uint&
 // By default delay == [TextDelay + message length * 100] ms
 bool in_message(string& message, int& sayType, uint& critterId, uint& delay)
 {
+	CritterCl@ cr = GetCritter(critterId);
+	if(PlayerIgnored(cr))
+		return false;
 	return true;
 }
 
@@ -326,6 +332,14 @@ bool out_message(string& message, int& sayType)
 			Message("Names colorizer refreshed.");
 			return false;
 		}
+		
+		if(message == "~ignorelist")
+		{
+			InitIgnoreList();
+			Message("Ignore List refreshed.");
+			return false;
+		}
+		
 		return true;
 	}
 
