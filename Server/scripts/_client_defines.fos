@@ -422,6 +422,13 @@
 #define CHOSEN_PICK_CRIT          (15) // Critter id, (loot - 0, push - 1)
 #define CHOSEN_WRITE_HOLO         (16) // Holodisk id
 
+// Target types
+#define TARGET_SELF               (0)
+#define TARGET_SELF_ITEM          (1)
+#define TARGET_CRITTER            (2)
+#define TARGET_ITEM               (3)
+#define TARGET_SCENERY            (4)
+
 #endif // __CLIENT_DEFINES__
 
 
