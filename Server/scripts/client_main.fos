@@ -315,8 +315,7 @@ bool map_message(string& message, uint16& hexX, uint16& hexY, uint& color, uint&
 bool in_message(string& message, int& sayType, uint& critterId, uint& delay)
 {
 	CritterCl@ cr = GetCritter(critterId);
-	if(PlayerIgnored(cr))
-		return false;
+	if(valid(cr) && PlayerIgnored(cr)) return false;
 	return true;
 }
 
