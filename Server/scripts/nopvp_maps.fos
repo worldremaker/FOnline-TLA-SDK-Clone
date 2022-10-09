@@ -14,7 +14,7 @@ const uint[] noPvpMaps = {MAP_arroyo_temple_entrance,
 	MAP_ncr_council, MAP_ncr_ranch, MAP_ncr_bazaar,  MAP_redding_outer, MAP_redding_miners, 
 	MAP_vredding_lost, MAP_primal_tribe, 
 	MAP_broken, MAP_broken_basement,
-	MAP_sf_tanker, MAP_sf_dock, MAP_sf_china, MAP_sf_shuttle, MAP_sf_shi, MAP_sf_hubb, MAP_sf_tanker3, MAP_sf_emp, MAP_sf_bro, 
+	MAP_sf_tanker, MAP_sf_china, MAP_sf_shuttle, MAP_sf_shi, MAP_sf_hubb, MAP_sf_tanker3, MAP_sf_emp, MAP_sf_bro, 
 	MAP_repl_bank_den, MAP_repl_bank_klamath, MAP_repl_bank_redding, MAP_repl_bank_modoc, MAP_repl_bank_newreno, 
 	MAP_repl_bank_gecko, MAP_repl_bank_broken, MAP_repl_bank_ncr, MAP_repl_bank_sf, MAP_repl_bank_vcity, 
 	MAP_replication1, MAP_replication2, MAP_replication3, MAP_replication4};

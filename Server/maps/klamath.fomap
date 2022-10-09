@@ -1,9 +1,9 @@
 [Header]
-Version              3
+Version              4
 MaxHexX              181
 MaxHexY              175
-WorkHexX             160
-WorkHexY             121
+WorkHexX             113
+WorkHexY             117
 ScriptModule         -
 ScriptFunc           -
 NoLogOut             0
@@ -10113,6 +10113,7 @@ MapObjType           1
 ProtoId              158
 MapX                 65
 MapY                 54
+UID                  1
 
 MapObjType           2
 ProtoId              5622
@@ -10123,19 +10124,21 @@ MapObjType           1
 ProtoId              5
 MapX                 65
 MapY                 54
-Item_InContainer     1
+ContainerUID         3
 
 MapObjType           1
 ProtoId              127
 MapX                 65
 MapY                 54
-Item_InContainer     1
+UID                  2
+ContainerUID         3
 
 MapObjType           1
 ProtoId              272
 MapX                 65
 MapY                 54
-Item_InContainer     1
+UID                  3
+ContainerUID         2
 
 MapObjType           2
 ProtoId              5622
@@ -10291,19 +10294,21 @@ MapObjType           1
 ProtoId              81
 MapX                 90
 MapY                 55
-Item_InContainer     1
+ContainerUID         7
 
 MapObjType           1
 ProtoId              103
 MapX                 90
 MapY                 55
-Item_InContainer     1
+UID                  6
+ContainerUID         7
 
 MapObjType           1
 ProtoId              92
 MapX                 90
 MapY                 55
-Item_InContainer     1
+UID                  7
+ContainerUID         6
 
 MapObjType           2
 ProtoId              2067
@@ -10390,13 +10395,15 @@ MapObjType           1
 ProtoId              127
 MapX                 63
 MapY                 56
-Item_InContainer     1
+UID                  10
+ContainerUID         9
 
 MapObjType           1
 ProtoId              160
 MapX                 63
 MapY                 56
-Item_InContainer     1
+UID                  9
+ContainerUID         10
 Item_ItemSlot        1
 
 MapObjType           1
@@ -10638,13 +10645,15 @@ MapObjType           1
 ProtoId              284
 MapX                 96
 MapY                 58
-Item_InContainer     1
+UID                  13
+ContainerUID         12
 
 MapObjType           1
 ProtoId              4
 MapX                 96
 MapY                 58
-Item_InContainer     1
+UID                  12
+ContainerUID         13
 
 MapObjType           2
 ProtoId              5622
@@ -10810,12 +10819,13 @@ MapObjType           1
 ProtoId              250
 MapX                 101
 MapY                 59
+UID                  14
 
 MapObjType           1
 ProtoId              284
 MapX                 101
 MapY                 59
-Item_InContainer     1
+ContainerUID         14
 
 MapObjType           2
 ProtoId              5108
@@ -11177,19 +11187,19 @@ MapObjType           1
 ProtoId              19
 MapX                 56
 MapY                 61
-Item_InContainer     1
+ContainerUID         19
 
 MapObjType           1
 ProtoId              271
 MapX                 56
 MapY                 61
-Item_InContainer     1
+ContainerUID         19
 
 MapObjType           1
 ProtoId              272
 MapX                 56
 MapY                 61
-Item_InContainer     1
+ContainerUID         19
 
 MapObjType           2
 ProtoId              5595
@@ -11316,13 +11326,15 @@ MapObjType           1
 ProtoId              41
 MapX                 119
 MapY                 61
-Item_InContainer     1
+UID                  23
+ContainerUID         22
 
 MapObjType           1
 ProtoId              125
 MapX                 119
 MapY                 61
-Item_InContainer     1
+UID                  22
+ContainerUID         23
 
 MapObjType           2
 ProtoId              2680
@@ -11659,13 +11671,15 @@ MapObjType           1
 ProtoId              41
 MapX                 65
 MapY                 64
-Item_InContainer     1
+UID                  26
+ContainerUID         25
 
 MapObjType           1
 ProtoId              225
 MapX                 65
 MapY                 64
-Item_InContainer     1
+UID                  25
+ContainerUID         26
 
 MapObjType           2
 ProtoId              5594
@@ -12401,7 +12415,7 @@ MapObjType           1
 ProtoId              41
 MapX                 65
 MapY                 69
-Item_InContainer     1
+ContainerUID         1
 
 MapObjType           2
 ProtoId              5600
@@ -12919,13 +12933,15 @@ MapObjType           1
 ProtoId              41
 MapX                 123
 MapY                 73
-Item_InContainer     1
+UID                  28
+ContainerUID         27
 
 MapObjType           1
 ProtoId              4
 MapX                 123
 MapY                 73
-Item_InContainer     1
+UID                  27
+ContainerUID         28
 
 MapObjType           2
 ProtoId              5509
@@ -13049,25 +13065,27 @@ MapObjType           1
 ProtoId              284
 MapX                 127
 MapY                 75
-Item_InContainer     1
+ContainerUID         32
 
 MapObjType           1
 ProtoId              124
 MapX                 127
 MapY                 75
-Item_InContainer     1
+ContainerUID         32
 
 MapObjType           1
 ProtoId              41
 MapX                 127
 MapY                 75
-Item_InContainer     1
+UID                  31
+ContainerUID         32
 
 MapObjType           1
 ProtoId              236
 MapX                 127
 MapY                 75
-Item_InContainer     1
+UID                  32
+ContainerUID         31
 
 MapObjType           2
 ProtoId              5640
@@ -13225,19 +13243,21 @@ MapObjType           1
 ProtoId              41
 MapX                 121
 MapY                 75
-Item_InContainer     1
+ContainerUID         36
 
 MapObjType           1
 ProtoId              124
 MapX                 121
 MapY                 75
-Item_InContainer     1
+UID                  35
+ContainerUID         36
 
 MapObjType           1
 ProtoId              4
 MapX                 121
 MapY                 75
-Item_InContainer     1
+UID                  36
+ContainerUID         35
 
 MapObjType           2
 ProtoId              2067
@@ -13452,13 +13472,15 @@ MapObjType           1
 ProtoId              125
 MapX                 80
 MapY                 77
-Item_InContainer     1
+UID                  40
+ContainerUID         39
 
 MapObjType           1
 ProtoId              127
 MapX                 80
 MapY                 77
-Item_InContainer     1
+UID                  39
+ContainerUID         40
 
 MapObjType           2
 ProtoId              5508
@@ -14915,6 +14937,7 @@ ProtoId              64
 MapX                 124
 MapY                 92
 Dir                  3
+UID                  41
 Critter_Cond         1
 Critter_Anim1        0
 Critter_Anim2        0
@@ -14935,7 +14958,7 @@ MapObjType           1
 ProtoId              41
 MapX                 124
 MapY                 92
-Item_InContainer     1
+ContainerUID         41
 
 MapObjType           0
 ProtoId              52
@@ -14962,7 +14985,7 @@ MapObjType           1
 ProtoId              19
 MapX                 125
 MapY                 93
-Item_InContainer     1
+ContainerUID         1
 
 MapObjType           1
 ProtoId              2961
@@ -15430,19 +15453,21 @@ MapObjType           1
 ProtoId              45
 MapX                 135
 MapY                 98
-Item_InContainer     1
+ContainerUID         44
 
 MapObjType           1
 ProtoId              71
 MapX                 135
 MapY                 98
-Item_InContainer     1
+UID                  43
+ContainerUID         44
 
 MapObjType           1
 ProtoId              79
 MapX                 135
 MapY                 98
-Item_InContainer     1
+UID                  44
+ContainerUID         43
 
 MapObjType           2
 ProtoId              2067
@@ -15536,31 +15561,33 @@ MapObjType           1
 ProtoId              125
 MapX                 124
 MapY                 75
-Item_InContainer     1
+ContainerUID         49
 
 MapObjType           1
 ProtoId              124
 MapX                 124
 MapY                 75
-Item_InContainer     1
+ContainerUID         49
 
 MapObjType           1
 ProtoId              284
 MapX                 124
 MapY                 75
-Item_InContainer     1
+ContainerUID         49
 
 MapObjType           1
 ProtoId              4
 MapX                 124
 MapY                 75
-Item_InContainer     1
+UID                  48
+ContainerUID         49
 
 MapObjType           1
 ProtoId              41
 MapX                 124
 MapY                 75
-Item_InContainer     1
+UID                  49
+ContainerUID         48
 
 MapObjType           2
 ProtoId              3157
@@ -15763,13 +15790,15 @@ MapObjType           1
 ProtoId              19
 MapX                 101
 MapY                 102
-Item_InContainer     1
+UID                  52
+ContainerUID         51
 
 MapObjType           1
 ProtoId              41
 MapX                 101
 MapY                 102
-Item_InContainer     1
+UID                  51
+ContainerUID         52
 
 MapObjType           2
 ProtoId              5595
@@ -15983,13 +16012,15 @@ MapObjType           1
 ProtoId              40
 MapX                 120
 MapY                 103
-Item_InContainer     1
+UID                  55
+ContainerUID         54
 
 MapObjType           1
 ProtoId              284
 MapX                 120
 MapY                 103
-Item_InContainer     1
+UID                  54
+ContainerUID         55
 
 MapObjType           2
 ProtoId              2067
@@ -16076,13 +16107,15 @@ MapObjType           1
 ProtoId              41
 MapX                 120
 MapY                 104
-Item_InContainer     1
+UID                  58
+ContainerUID         57
 
 MapObjType           1
 ProtoId              4
 MapX                 120
 MapY                 104
-Item_InContainer     1
+UID                  57
+ContainerUID         58
 
 MapObjType           2
 ProtoId              2067
@@ -16189,7 +16222,7 @@ MapObjType           1
 ProtoId              19
 MapX                 90
 MapY                 106
-Item_InContainer     1
+ContainerUID         1
 
 MapObjType           2
 ProtoId              5595
@@ -17341,13 +17374,15 @@ MapObjType           1
 ProtoId              117
 MapX                 133
 MapY                 119
-Item_InContainer     1
+UID                  61
+ContainerUID         60
 
 MapObjType           1
 ProtoId              273
 MapX                 133
 MapY                 119
-Item_InContainer     1
+UID                  60
+ContainerUID         61
 
 MapObjType           2
 ProtoId              5508
@@ -17624,13 +17659,15 @@ MapObjType           1
 ProtoId              102
 MapX                 97
 MapY                 122
-Item_InContainer     1
+UID                  64
+ContainerUID         63
 
 MapObjType           1
 ProtoId              106
 MapX                 97
 MapY                 122
-Item_InContainer     1
+UID                  63
+ContainerUID         64
 
 MapObjType           2
 ProtoId              5640
@@ -18497,14 +18534,14 @@ MapY                 141
 
 MapObjType           0
 ProtoId              60
-MapX                 82
-MapY                 132
+MapX                 119
+MapY                 118
 Dir                  3
 Critter_Cond         1
 Critter_Anim1        0
 Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
-Critter_ParamValue0  234
+Critter_ParamValue0  242
 Critter_ParamIndex1  ST_AI_ID
 Critter_ParamValue1  17
 Critter_ParamIndex2  ST_BAG_ID
@@ -19718,6 +19755,7 @@ MapObjType           1
 ProtoId              129
 MapX                 53
 MapY                 71
+UID                  65
 Item_LockerDoorId    1
 Item_LockerComplexity 5
 Item_Val1            1
@@ -19752,6 +19790,7 @@ MapObjType           1
 ProtoId              157
 MapX                 38
 MapY                 76
+UID                  67
 
 MapObjType           1
 ProtoId              42
@@ -19772,51 +19811,55 @@ MapObjType           1
 ProtoId              126
 MapX                 53
 MapY                 71
+ContainerUID         65
 Item_Count           5
-Item_InContainer     1
 Item_Val1            5
 
 MapObjType           1
 ProtoId              75
 MapX                 38
 MapY                 76
-Item_InContainer     1
+ContainerUID         67
 
 MapObjType           1
 ProtoId              124
 MapX                 37
 MapY                 79
+UID                  70
+ContainerUID         69
 Item_Count           5
-Item_InContainer     1
 Item_Val1            5
 
 MapObjType           1
 ProtoId              103
 MapX                 37
 MapY                 79
+UID                  69
+ContainerUID         70
 Item_Count           2
-Item_InContainer     1
 Item_Val1            2
 
 MapObjType           1
 ProtoId              71
 MapX                 37
 MapY                 77
-Item_InContainer     1
+ContainerUID         73
 
 MapObjType           1
 ProtoId              103
 MapX                 37
 MapY                 77
+UID                  72
+ContainerUID         73
 Item_Count           2
-Item_InContainer     1
 Item_Val1            2
 
 MapObjType           1
 ProtoId              106
 MapX                 37
 MapY                 77
-Item_InContainer     1
+UID                  73
+ContainerUID         72
 
 MapObjType           2
 ProtoId              2993
@@ -22602,19 +22645,21 @@ MapObjType           1
 ProtoId              19
 MapX                 56
 MapY                 61
-Item_InContainer     1
+ContainerUID         19
 
 MapObjType           1
 ProtoId              271
 MapX                 56
 MapY                 61
-Item_InContainer     1
+UID                  18
+ContainerUID         19
 
 MapObjType           1
 ProtoId              272
 MapX                 56
 MapY                 61
-Item_InContainer     1
+UID                  19
+ContainerUID         18
 
 MapObjType           1
 ProtoId              2850
@@ -23543,6 +23588,7 @@ MapObjType           1
 ProtoId              166
 MapX                 107
 MapY                 132
+UID                  82
 
 MapObjType           1
 ProtoId              158
@@ -25736,13 +25782,15 @@ MapObjType           1
 ProtoId              161
 MapX                 97
 MapY                 139
-Item_InContainer     1
+UID                  77
+ContainerUID         76
 
 MapObjType           1
 ProtoId              163
 MapX                 97
 MapY                 139
-Item_InContainer     1
+UID                  76
+ContainerUID         77
 
 MapObjType           1
 ProtoId              157
@@ -25753,19 +25801,21 @@ MapObjType           1
 ProtoId              384
 MapX                 99
 MapY                 138
-Item_InContainer     1
+UID                  81
+ContainerUID         80
 
 MapObjType           1
 ProtoId              538
 MapX                 99
 MapY                 138
-Item_InContainer     1
+UID                  80
+ContainerUID         81
 
 MapObjType           1
 ProtoId              284
 MapX                 107
 MapY                 132
-Item_InContainer     1
+ContainerUID         82
 
 MapObjType           2
 ProtoId              4019
@@ -36926,31 +36976,31 @@ MapObjType           1
 ProtoId              124
 MapX                 79
 MapY                 103
-Item_InContainer     1
+ContainerUID         84
 
 MapObjType           1
 ProtoId              41
 MapX                 79
 MapY                 103
-Item_InContainer     1
+ContainerUID         84
 
 MapObjType           1
 ProtoId              124
 MapX                 84
 MapY                 103
-Item_InContainer     1
+ContainerUID         88
 
 MapObjType           1
 ProtoId              41
 MapX                 84
 MapY                 103
-Item_InContainer     1
+ContainerUID         88
 
 MapObjType           1
 ProtoId              236
 MapX                 84
 MapY                 103
-Item_InContainer     1
+ContainerUID         88
 
 MapObjType           2
 ProtoId              2398
@@ -36981,13 +37031,15 @@ MapObjType           1
 ProtoId              41
 MapX                 69
 MapY                 113
-Item_InContainer     1
+UID                  91
+ContainerUID         90
 
 MapObjType           1
 ProtoId              40
 MapX                 69
 MapY                 113
-Item_InContainer     1
+UID                  90
+ContainerUID         91
 
 MapObjType           2
 ProtoId              2672
@@ -37043,7 +37095,7 @@ MapObjType           1
 ProtoId              276
 MapX                 74
 MapY                 112
-Item_InContainer     1
+ContainerUID         1
 
 MapObjType           2
 ProtoId              2799
@@ -37698,19 +37750,22 @@ MapObjType           1
 ProtoId              74
 MapX                 78
 MapY                 117
-Item_InContainer     1
+UID                  93
+ContainerUID         92
 
 MapObjType           1
 ProtoId              6
 MapX                 78
 MapY                 117
-Item_InContainer     1
+UID                  92
+ContainerUID         93
 
 MapObjType           0
 ProtoId              64
 MapX                 79
 MapY                 103
 Dir                  5
+UID                  84
 Critter_Cond         1
 Critter_Anim1        0
 Critter_Anim2        0
@@ -37731,13 +37786,15 @@ MapObjType           1
 ProtoId              124
 MapX                 81
 MapY                 117
-Item_InContainer     1
+UID                  95
+ContainerUID         94
 
 MapObjType           1
 ProtoId              41
 MapX                 81
 MapY                 117
-Item_InContainer     1
+UID                  94
+ContainerUID         95
 
 MapObjType           0
 ProtoId              59
@@ -37767,6 +37824,7 @@ ProtoId              67
 MapX                 84
 MapY                 103
 Dir                  4
+UID                  88
 Critter_Cond         1
 Critter_Anim1        0
 Critter_Anim2        0
@@ -37787,49 +37845,53 @@ MapObjType           1
 ProtoId              124
 MapX                 85
 MapY                 116
-Item_InContainer     1
+ContainerUID         97
 
 MapObjType           1
 ProtoId              41
 MapX                 85
 MapY                 116
-Item_InContainer     1
+UID                  96
+ContainerUID         97
 
 MapObjType           1
 ProtoId              236
 MapX                 85
 MapY                 116
-Item_InContainer     1
+UID                  97
+ContainerUID         96
 
 MapObjType           1
 ProtoId              125
 MapX                 87
 MapY                 113
-Item_InContainer     1
+ContainerUID         102
 
 MapObjType           1
 ProtoId              124
 MapX                 87
 MapY                 113
-Item_InContainer     1
+ContainerUID         102
 
 MapObjType           1
 ProtoId              284
 MapX                 87
 MapY                 113
-Item_InContainer     1
+ContainerUID         102
 
 MapObjType           1
 ProtoId              4
 MapX                 87
 MapY                 113
-Item_InContainer     1
+UID                  101
+ContainerUID         102
 
 MapObjType           1
 ProtoId              41
 MapX                 87
 MapY                 113
-Item_InContainer     1
+UID                  102
+ContainerUID         101
 
 MapObjType           0
 ProtoId              95
@@ -37946,44 +38008,44 @@ MapObjType           1
 ProtoId              276
 MapX                 89
 MapY                 76
-Item_InContainer     1
+ContainerUID         109
 
 MapObjType           1
 ProtoId              125
 MapX                 89
 MapY                 76
-Item_InContainer     1
+ContainerUID         109
 
 MapObjType           1
 ProtoId              124
 MapX                 89
 MapY                 76
-Item_InContainer     1
+ContainerUID         109
 
 MapObjType           1
 ProtoId              159
 MapX                 89
 MapY                 76
-Item_InContainer     1
+ContainerUID         109
 
 MapObjType           1
 ProtoId              284
 MapX                 89
 MapY                 76
-Item_InContainer     1
+ContainerUID         109
 
 MapObjType           1
 ProtoId              225
 MapX                 89
 MapY                 76
-Item_InContainer     1
+ContainerUID         109
 
 MapObjType           1
 ProtoId              284
 MapX                 97
 MapY                 72
+ContainerUID         111
 Item_Count           3
-Item_InContainer     1
 
 MapObjType           2
 ProtoId              5593
@@ -38069,42 +38131,45 @@ MapObjType           1
 ProtoId              65
 MapX                 89
 MapY                 76
+UID                  109
 
 MapObjType           1
 ProtoId              276
 MapX                 91
 MapY                 90
-Item_InContainer     1
+ContainerUID         116
 
 MapObjType           1
 ProtoId              125
 MapX                 91
 MapY                 90
-Item_InContainer     1
+ContainerUID         116
 
 MapObjType           1
 ProtoId              124
 MapX                 91
 MapY                 90
-Item_InContainer     1
+ContainerUID         116
 
 MapObjType           1
 ProtoId              159
 MapX                 91
 MapY                 90
-Item_InContainer     1
+ContainerUID         116
 
 MapObjType           1
 ProtoId              284
 MapX                 91
 MapY                 90
-Item_InContainer     1
+UID                  115
+ContainerUID         116
 
 MapObjType           1
 ProtoId              225
 MapX                 91
 MapY                 90
-Item_InContainer     1
+UID                  116
+ContainerUID         115
 
 MapObjType           2
 ProtoId              2067
@@ -38424,12 +38489,13 @@ MapObjType           1
 ProtoId              151
 MapX                 97
 MapY                 72
+UID                  111
 
 MapObjType           1
 ProtoId              284
 MapX                 99
 MapY                 86
-Item_InContainer     1
+ContainerUID         1
 
 MapObjType           2
 ProtoId              2141
@@ -38721,19 +38787,21 @@ MapObjType           1
 ProtoId              41
 MapX                 77
 MapY                 89
-Item_InContainer     1
+ContainerUID         119
 
 MapObjType           1
 ProtoId              117
 MapX                 77
 MapY                 89
-Item_InContainer     1
+UID                  118
+ContainerUID         119
 
 MapObjType           1
 ProtoId              4
 MapX                 77
 MapY                 89
-Item_InContainer     1
+UID                  119
+ContainerUID         118
 
 MapObjType           2
 ProtoId              4592
@@ -38792,5 +38860,26 @@ ProtoId              3853
 MapX                 53
 MapY                 71
 Scenery_ToEntire     87
+
+MapObjType           0
+ProtoId              60
+MapX                 82
+MapY                 132
+Dir                  3
+Critter_Cond         1
+Critter_Anim1        0
+Critter_Anim2        0
+Critter_ParamIndex0  ST_DIALOG_ID
+Critter_ParamValue0  234
+Critter_ParamIndex1  ST_AI_ID
+Critter_ParamValue1  17
+Critter_ParamIndex2  ST_BAG_ID
+Critter_ParamValue2  13
+Critter_ParamIndex3  ST_TEAM_ID
+Critter_ParamValue3  4
+Critter_ParamIndex4  ST_NPC_ROLE
+Critter_ParamValue4  0
+Critter_ParamIndex5  ST_REPLICATION_TIME
+Critter_ParamValue5  0
 
 

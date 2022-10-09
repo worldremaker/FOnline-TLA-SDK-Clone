@@ -14,7 +14,7 @@ lang=russ engl
 0 2010 D _param p ST_INTELLECT > 3 #
 0 2020 D _param p ST_INTELLECT < 4 #
 4 2030 D _script merc@d_NpcIsNotPlayerMerc 0  D _param p ST_INTELLECT > 3 D _script merc@d_NpcIsMerc 0  @
-4 3000 None 0 #
+4 3000 merc@dlg_Master 0 #
 0 3010 #
 5 3020 D _var p loyality > 1 R _var p loyality - 1 #
 6 3030 D _var p loyality { 1 @

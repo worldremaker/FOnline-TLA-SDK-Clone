@@ -13,7 +13,7 @@ lang=russ engl
 5 1040 D _var p q_sf_lo_pan_blackmail = 2 D _script merc@d_NpcIsNotMerc 0  @
 2 2000 None 0 #
 0 2010 @
-3 3000 None 0 #
+3 3000 merc@dlg_Master 0 #
 0 3010 @
 4 4000 None 0 #
 0 4010 #

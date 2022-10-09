@@ -95,7 +95,15 @@ const int[] DialogData=
    3,         TEXTMSG_TEXT, SAY_NORM,          8028,       NoNextStr,    T_NoAction,
 // диалог №4. q_hub_lab. Реплики Хономера
    4,         TEXTMSG_TEXT, SAY_NORM,          StrFirst,   8029,         T_SaySelf,
-   4,         TEXTMSG_TEXT, SAY_NORM,          8029,       StrFirst,     T_SaySelf
+   4,         TEXTMSG_TEXT, SAY_NORM,          8029,       StrFirst,     T_SaySelf,
+// диалог №5. vcity_common. Диалог двух посетителей бара
+   5,         TEXTMSG_TEXT, SAY_NORM,          StrFirst,   8032,         T_SaySelf,
+   5,         TEXTMSG_TEXT, SAY_NORM,          8032,       8033,         T_SendMsg,
+   5,         TEXTMSG_TEXT, SAY_NORM,          8033,       8034,         T_SendMsg, 
+   5,         TEXTMSG_TEXT, SAY_NORM,          8034,       8035,         T_SendMsg, 
+   5,         TEXTMSG_TEXT, SAY_NORM,          8035,       8036,         T_SendMsg,
+   5,         TEXTMSG_TEXT, SAY_NORM,          8036,       8037,         T_SendMsg,
+   5,         TEXTMSG_TEXT, SAY_NORM,          8037,       StrFirst,    T_NoAction,    
 };
 
 #define D_Dialog #(phrase)     (DialogData[phrase*TableColumns])

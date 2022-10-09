@@ -149,3 +149,13 @@ void r_CancelMerc(Critter & player, Critter @ npc, int varNum)
 		}
 	}
 }
+
+// ‘ункции-диалоги
+// »м€ хоз€ина
+void dlg_Master(Critter& player, Critter@ npc, string@ masterName)
+{	
+	if(!IS_DIALOG_GENERATED(masterName) || !valid(npc)) 
+		return;
+	masterName = "$mastername";
+	masterName +=GetPlayerName(npc.MasterId);
+}

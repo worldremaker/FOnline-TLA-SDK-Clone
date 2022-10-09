@@ -1,6 +1,7 @@
 // Author: rif leman17
 
 #include "_macros.fos"
+#include "_msgstr.fos"
 
 #define LOC_PID_MIN 				(1)// начало диапазона кодов прототипов локаций
 #define LOC_PID_MAX 				(LOCATION_PrimalTribe)// конец диапазона кодов прототипов локаций
@@ -11,7 +12,7 @@
 #define BASE_XP_LVL3				(950)
 #define BASE_XP_LVL4				(1200)
 #define LOC_NAME #(mapId)   		((mapId + 100) * 1000 )// поиск названия локации в файле FOGM.msg
-#define NPC_NAME #(dialogId)   		((dialogId)*1000+100)// поиск имени НПЦ в файле FODLG.msg
+#define NPC_NAME #(dialogId)   		(STR_NPC_NAME(dialogId, 1))// поиск имени НПЦ в файле FODLG.msg
 
 
 // Почтальон выдает квест доставить письмо случайному адресату(нпц). Опыт рассчитывается в зависимости от расстояния между локацией, на которой стоит почтальон и локацией получателя.
@@ -64,6 +65,7 @@ LetterInfo@ GetRandomLetterInfo(uint startLoc)
 	li.NpcDidRec = uint(cr.Stat[ST_DIALOG_ID]);
 	li.LocPidRec = locPid;
 	li.MapPidRec = map.GetProtoId();
+	//Log("new letter. Dialog:" + li.NpcDidRec + "; локация:" + li.LocPidRec + "Карта: " + li.MapPidRec );
 	return li;
 }
 

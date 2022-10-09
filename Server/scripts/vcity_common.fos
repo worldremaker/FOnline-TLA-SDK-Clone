@@ -166,3 +166,31 @@ void _BarkusShowCr(Critter& cr, Critter& showCrit)
 		}
 	}
 }
+
+
+// Диалог посетителей бара у стойки
+#define ROLE_BAR_TALKER            (56) // Роль говорунов
+
+import void BeginDialog(Critter& cr, int dialog) from "npc_dialog";
+
+void _BarTalkerInit(Critter& cr, bool firstTime)
+{
+	cr.SetEvent(CRITTER_EVENT_MESSAGE, "npc_dialog@_NpcMessage");
+}
+
+void t_RunNpcDialog(Critter& player, Scenery& trigger, bool entered, uint8 dir)
+{
+	if(!entered || !player.IsPlayer()) 
+		return;
+	Map@ map=player.GetMap();
+	if(!valid(map))
+		return;
+	GameVar @ lastDialog = GetLocalVar(LMVAR_vc_last_bar_dialog, map.Id);
+	if(valid(lastDialog) && uint(lastDialog.GetValue())<__FullSecond)
+	{
+		lastDialog = __FullSecond + REAL_MINUTE(30);
+		Critter @ cr = map.GetNpc(ROLE_BAR_TALKER, FIND_LIFE|FIND_ONLY_NPC, 0);
+		if(valid(cr))
+			BeginDialog(cr, 5);
+	}
+}

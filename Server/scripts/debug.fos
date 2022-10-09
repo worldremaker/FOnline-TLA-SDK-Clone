@@ -491,3 +491,22 @@ void UpSkill(Critter& cr, int crId, int skill, int)
 {
 	SkillUp(GetCritter(uint(crId)), skill);
 }
+
+void CancelInvul(Critter& player, int,int,int)
+{
+	Map@ map = player.GetMap();
+	if(valid(map))
+	{
+		Critter@[] critters;
+		if(map.GetCritters(0, FIND_ALL|FIND_ONLY_NPC, critters) > 0)
+		{
+			for(uint i=0,l=critters.length();i < l; i++)
+			{
+				Critter@ cr = critters[i];
+				if(valid(cr))
+					cr.ModeBase[MODE_INVULNERABLE] = 0;
+			}
+		}
+	}
+	player.Say(SAY_NETMSG,"Success");
+}

@@ -158,7 +158,7 @@ uint e_CancelContract(uint[]@ values)
 		}
 		else
 		{
-			if(masterId == merc.MasterId) // ’оз€ин уже мог сменитьс€
+			if(masterId == uint(merc.MasterId)) // ’оз€ин уже мог сменитьс€
 				CancelContract(merc);				
 		}
 		
@@ -365,6 +365,48 @@ void _NancySkill(Critter& cr, Critter& fromCr, int skill, Critter@ onCritter, It
 			}
 		}
 	}
+}
+
+void _NancyMapInit(Map& mapNancy, bool firstTime)
+{
+	Location@ loc = mapNancy.GetLocation();
+	Location@[] locations;
+	Map@ map;
+	if(valid(loc) && GetAllLocations(LOCATION_Quest_Sid_And_Nancy, locations) > 0)
+	{
+		for(uint i = 0, l = locations.length(); i < l; i++)
+		{
+			if(locations[i].Id == loc.Id)
+				continue;
+			@map = locations[i].GetMapByIndex(0);
+			if(valid(map) && map.GetCritters(0, FIND_ALL|FIND_ONLY_PLAYERS, null) == 0)
+				DeleteLocation(locations[i].Id);
+		}
+	}
+}
+
+// —лучайные замки дл€ сундуков. »наче брали ключ и мультами фармили
+void _LockerInit(Item& locker, bool firstTime)
+{
+	if(!firstTime) return;
+	Map @ map = GetMap(locker.MapId);
+	if(!valid(map)) return;
+	uint keyId=Random(10000,50000);
+	locker.LockerId = keyId;
+	locker.LockerComplexity = Random(120, 180);
+	Critter @[] critters;
+	if (map.GetCritters(PID_KEY_BEARER, FIND_ALL|FIND_ONLY_NPC, critters)>0)
+	{
+		Critter @ npc = critters[0];
+		if(!valid(npc)) return;
+		Item@ key=npc.AddItem(PID_KEY,1);
+		if(valid(key))
+		{
+			key.LockerId=keyId;
+			key.Update();
+		}
+	}
+	locker.Update();
 }
 
 // Ћодка

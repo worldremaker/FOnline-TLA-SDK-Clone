@@ -110,7 +110,7 @@ lang=russ engl
 54 37000 None 0 #
 55 37010 @
 55 38000 None 0 #
-56 38010 D _script q_dappo_lost_c_robot@d_HasHolodisk 1 0 R _var p ncr_buster_lost_c_status = 3 R _param p ST_EXPERIENCE + 1500 R _item p PID_BOTTLE_CAPS + 1500 R _script q_dappo_lost_c_robot@r_RemoveHolodisk 1 15 @
+56 38010 D _script q_dappo_lost_c_robot@d_HasHolodisk 1 51 R _var p ncr_buster_lost_c_status = 3 R _param p ST_EXPERIENCE + 1500 R _item p PID_BOTTLE_CAPS + 1500 R _script q_dappo_lost_c_robot@r_RemoveHolodisk 1 15 @
 56 39000 None 0 #
 0 39010 @
 60 40000 None 0 #
