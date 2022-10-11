@@ -1609,7 +1609,7 @@ void animation3d_process(bool animateStay, CritterCl& cr, uint anim1, uint anim2
 
 #ifndef PLAYERS_3D_NO_HEAD
 	uint16 headPid    = (valid(cr.GetSlotProto(SLOT_HEAD,  mode)) ? cr.GetSlotProto(SLOT_HEAD,  mode).ProtoId : 0);
-	ItemCl@ headItem  = cr.GetItem(0, SLOT_HEAD);
+	@headItem         = cr.GetItem(0, SLOT_HEAD);
 #endif
 #ifdef PLAYERS_3D_NO_HEAD
 	uint16 headPid    = 0;

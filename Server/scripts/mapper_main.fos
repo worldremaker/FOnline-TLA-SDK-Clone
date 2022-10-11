@@ -45,6 +45,8 @@
 // void    MoveScreen(uint16 hexX, uint16 hexY, uint speed)
 // int     GetKeybLang() const
 // string@ GetIfaceIniStr(string& key)
+// bool    LoadFont(int font, string& fontFileName)
+// void    SetDefaultFont(int font, uint color)
 //
 // void    Log(string& text) const
 // string@ GetLastError() const
