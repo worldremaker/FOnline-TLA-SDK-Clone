@@ -50,7 +50,7 @@ lang=russ engl
 12 12000 None 0 #
 0 12010 @
 13 13000 None 0 #
-0 13010 D _var p q_bh_kit_caravan_escort = 8 R _var p q_bh_kit_caravan_escort = 0 R _item p PID_BOTTLE_CAPS + 1000 R _param p ST_EXPERIENCE + 3500 @
+0 13010 D _var p q_bh_kit_caravan_escort = 8 R _var p q_bh_kit_caravan_escort = 0 R _item p PID_BOTTLE_CAPS + 1000 R _script dialog@r_QuestReward1 0  @
 14 14000 caravan@dlg_GenResetCaravanText 0 #
 0 14010 D _script caravan@d_CheckHasEnoughMoney 1 5 R _script caravan@r_ResetCaravanStatus 1 5 #
 0 14020 @

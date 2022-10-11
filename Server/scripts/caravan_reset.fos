@@ -14,7 +14,10 @@ const uint[] crvCosts = {
 	CARAVAN_SAVINEL_REDD_NR,    LVAR_q_redd_savinel_caravan_escort, LVAR_redd_crv_reset_counter,   6000,      2000,                    3000,      4000,                     7000,
 	CARAVAN_STANWELL_REDD_NCR,  LVAR_q_redd_stan_caravan_escort,    LVAR_redd_crv_reset_counter,   10000,     1000,                    3000,      2000,                     15000,
 	CARAVAN_HAL_NCR_REDD,       LVAR_q_ncr_redding_caravan_escort,  LVAR_ncr_crv_reset_counter,    5000,      3000,                    3000,      3000,                     7000,
-	CARAVAN_KIT_BH_GECKO,       LVAR_q_bh_kit_caravan_escort,       LVAR_bh_crv_reset_counter,     4000,      4000,                    1000,      2000,                     10000
+	CARAVAN_KIT_BH_GECKO,       LVAR_q_bh_kit_caravan_escort,       LVAR_bh_crv_reset_counter,     4000,      4000,                    1000,      2000,                     10000,
+	CARAVAN_SELMA_ARR_VC,		LVAR_q_arroyo_selma_caravan_escort, LVAR_arroyo_crv_reset_counter, 5000,      1000,                    1000,      2000,                     6000,
+	CARAVAN_GAYZUN_ARR_SF,      LVAR_q_arroyo_gayzum_caravan_escort,LVAR_arroyo_crv_reset_counter, 6000,      3000,                    2000,      4000,                     8000,
+	CARAVAN_LAUMER_ARR_NCR,     LVAR_q_arroyo_laumer_caravan_escort,LVAR_arroyo_crv_reset_counter, 7000,      4000,                    1000,      3000,                     12000
 };
 
 #define ROW_COUNT     (6) // число строк в таблице отмывки провалов

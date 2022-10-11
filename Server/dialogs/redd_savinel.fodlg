@@ -8,10 +8,10 @@ lang=russ engl
 &
 1 1000 None 0 #
 2 1010 D _param p ST_INTELLECT > 3 D _var p name_mem_npc_player = 0 R _var p name_mem_npc_player = 1 #
-3 1020 D _script caravan@d_CaravanEndedOrNotStarted 0  D _param p ST_INTELLECT > 3 D _script caravan@d_PlayerHasNoCaravanFailures 0  D _var p name_mem_npc_player = 1 #
+3 1020 D _param p ST_INTELLECT > 3 D _var p name_mem_npc_player = 1 D _script caravan@d_NotStatus 1 1 D _script caravan@d_NotStatus 1 4 D _script caravan@d_NotHasFailures 0  #
 8 1030 D _param p ST_INTELLECT < 4 #
-95 1040 D _script caravan@d_IsCaravanStatus 1 1 D _script caravan@d_HasPlayerRequest 0  D _param p ST_INTELLECT > 3 D _script caravan@d_PlayerHasNoCaravanFailures 0  #
-98 1050 D _param p ST_INTELLECT > 3 D _script caravan@d_IsCaravanStatus 1 4 D _script caravan@d_PlayerHasNoCaravanFailures 0  #
+95 1040 D _param p ST_INTELLECT > 3 D _script caravan@d_PlayerHired 0  D _script caravan@d_Status 1 1 #
+98 1050 D _param p ST_INTELLECT > 3 D _script caravan@d_Status 1 4 D _script caravan@d_NotHasFailures 0  #
 100 1060 D _var p q_redd_savinel_caravan_escort = 7 #
 101 1070 D _var p q_redd_savinel_caravan_escort = 4 #
 102 1080 D _var p q_redd_savinel_caravan_escort = 3 #
@@ -19,10 +19,10 @@ lang=russ engl
 103 1100 D _var p q_redd_savinel_caravan_escort = 6 #
 105 1110 D _var p q_redd_savinel_caravan_escort = 8 D _param p ST_INTELLECT > 3 #
 106 1120 D _var p q_redd_savinel_caravan_escort = 10 D _param p ST_INTELLECT > 3 #
-10 1130 D _script caravan@d_NotHasPlayerRequest 0  D _script caravan@d_NotIsFullParty 0  D _script caravan@d_IsCaravanStatus 1 1 D _script caravan@d_PlayerHasNoCaravanFailures 0  D _param p ST_INTELLECT > 3 D _var p name_mem_npc_player = 1 #
-36 1140 D _script caravan@d_NotHasPlayerRequest 0  D _script caravan@d_IsFullParty 0  D _script caravan@d_IsCaravanStatus 1 1 D _param p ST_INTELLECT > 3 D _script caravan@d_PlayerHasNoCaravanFailures 0  D _var p name_mem_npc_player = 1 #
-30 1150 D _script caravan@d_PlayerHasNoCaravanFailures 0  D _script caravan@d_IsCaravanStatus 1 1 D _param p ST_INTELLECT > 3 D _var p name_mem_npc_player = 0 D _script caravan@d_NotIsFullParty 0  R _var p name_mem_npc_player = 1 #
-33 1160 D _var p name_mem_npc_player = 0 D _script caravan@d_IsCaravanStatus 1 1 D _param p ST_INTELLECT > 3 D _script caravan@d_IsFullParty 0  D _script caravan@d_PlayerHasNoCaravanFailures 0  R _var p name_mem_npc_player = 1 @
+10 1130 D _script caravan@d_NotIsFullParty 0  D _script caravan@d_IsCaravanStatus 1 1 D _param p ST_INTELLECT > 3 D _var p name_mem_npc_player = 1 D _script caravan@d_NotPlayerHired 0  D _script caravan@d_NotHasFailures 0  #
+36 1140 D _script caravan@d_IsFullParty 0  D _param p ST_INTELLECT > 3 D _var p name_mem_npc_player = 1 D _script caravan@d_Status 1 1 D _script caravan@d_NotHasFailures 0  D _script caravan@d_NotPlayerHired 0  #
+30 1150 D _param p ST_INTELLECT > 3 D _var p name_mem_npc_player = 0 D _script caravan@d_NotIsFullParty 0  D _script caravan@d_NotHasFailures 0  D _script caravan@d_Status 1 1 D _script caravan@d_NotPlayerHired 0  R _var p name_mem_npc_player = 1 #
+33 1160 D _var p name_mem_npc_player = 0 D _param p ST_INTELLECT > 3 D _script caravan@d_IsFullParty 0  D _script caravan@d_Status 1 1 D _script caravan@d_NotHasFailures 0  D _script caravan@d_NotPlayerHired 0  R _var p name_mem_npc_player = 1 @
 2 2000 None 0 #
 5 2010 #
 6 2020 #
@@ -86,7 +86,7 @@ lang=russ engl
 0 19010 @
 98 20000 None 0 #
 0 20010 #
-99 20020 D _script caravan@d_HasPlayerRequest 0  @
+99 20020 D _script caravan@d_PlayerHired 0  @
 99 21000 None 0 #
 0 21010 R _script caravan@r_ContinueCaravan 0  @
 100 22000 None 0 #
@@ -100,9 +100,9 @@ lang=russ engl
 109 25010 #
 0 25020 @
 105 26000 None 0 #
-0 26010 D _var p q_redd_savinel_caravan_escort = 8 R _var p q_redd_savinel_caravan_escort = 11 R _item p PID_BOTTLE_CAPS + 1500 R _param p ST_EXPERIENCE + 5000 @
+0 26010 D _var p q_redd_savinel_caravan_escort = 8 R _var p q_redd_savinel_caravan_escort = 11 R _script dialog@r_QuestReward2 0  R _item p PID_BOTTLE_CAPS + 1500 @
 106 27000 None 0 #
-0 27010 D _var p q_redd_savinel_caravan_escort = 10 R _item p PID_BOTTLE_CAPS + 1500 R _item p PID_BOTTLE_CAPS + 200 R _var p q_redd_savinel_caravan_escort = 11 R _param p ST_EXPERIENCE + 5000 @
+0 27010 D _var p q_redd_savinel_caravan_escort = 10 R _item p PID_BOTTLE_CAPS + 1500 R _item p PID_BOTTLE_CAPS + 200 R _var p q_redd_savinel_caravan_escort = 11 R _script dialog@r_QuestReward2 0  @
 107 28000 None 0 @
 108 29000 None 0 @
 109 30000 None 0 #
@@ -139,9 +139,9 @@ lang=russ engl
 {3000}{}{Да, в чем дело?}
 {3010}{}{Тебе нужен охранник, да?}
 {3020}{}{Чем вы торгуете?}
-{3030}{}{Почему вы ждете до 21 числа? }
+{3030}{}{А почему нельзя выйти раньше?}
 {3040}{}{Нет, ничего. До свидания.}
-{3050}{}{Почему вы ждете до 21 числа? }
+{3050}{}{А пораньше выйти никак?}
 {4000}{}{Чтоб не толкаться с другими караванами на выходе, мы идем по своей очереди, в 3 часа дня.Подходи ко мне, если захочешь получить работу.}
 {4010}{}{Чем вы торгуете?}
 {4020}{}{Ясно. До свидания.}

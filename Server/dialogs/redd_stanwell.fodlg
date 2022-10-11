@@ -14,13 +14,13 @@ lang=russ engl
 105 1050 D _param p ST_INTELLECT > 3 D _var p name_mem_npc_player = 1 D _var p q_redd_stan_caravan_escort = 8 D _script caravan@d_IsCaravanReversed 0  R _script map_redding_miners@r_PrepareCaravan 0  #
 113 1060 D _param p ST_INTELLECT > 3 D _var p name_mem_npc_player = 1 D _script caravan@d_HasPlayerRequest 0  D _script caravan@d_IsCaravanStatus 1 1 D _script caravan@d_IsCaravanReversed 0  #
 112 1070 D _param p ST_INTELLECT > 3 D _var p name_mem_npc_player = 1 D _var p q_redd_stan_caravan_escort = 8 D _script caravan@d_IsCaravanReversed 0  D _script caravan@d_NotHasPlayerRequest 0  #
-106 1080 D _param p ST_INTELLECT > 3 D _var p name_mem_npc_player = 1 D _var p q_redd_stan_caravan_escort = 10 D _script caravan@d_CaravanEndedOrNotStarted 0  D _script caravan@d_NotIsCaravanReversed 0  R _param p ST_EXPERIENCE + 6000 R _var p q_redd_stan_caravan_escort = 0 R _item p PID_BOTTLE_CAPS + 4000 #
-106 1090 D _param p ST_INTELLECT > 3 D _var p q_redd_stan_caravan_escort = 8 D _script caravan@d_CaravanEndedOrNotStarted 0  D _script caravan@d_NotIsCaravanReversed 0  R _param p ST_EXPERIENCE + 6000 R _var p q_redd_stan_caravan_escort = 0 R _item p PID_BOTTLE_CAPS + 4000 #
+106 1080 D _param p ST_INTELLECT > 3 D _var p name_mem_npc_player = 1 D _var p q_redd_stan_caravan_escort = 10 D _script caravan@d_CaravanEndedOrNotStarted 0  D _script caravan@d_NotIsCaravanReversed 0  R _var p q_redd_stan_caravan_escort = 0 R _item p PID_BOTTLE_CAPS + 4000 R _script dialog@r_QuestReward3 0  #
+106 1090 D _param p ST_INTELLECT > 3 D _var p q_redd_stan_caravan_escort = 8 D _script caravan@d_CaravanEndedOrNotStarted 0  D _script caravan@d_NotIsCaravanReversed 0  R _var p q_redd_stan_caravan_escort = 0 R _item p PID_BOTTLE_CAPS + 4000 R _script dialog@r_QuestReward3 0  #
 101 1100 D _var p q_redd_stan_caravan_escort = 4 #
 102 1110 D _var p q_redd_stan_caravan_escort = 3 #
 103 1120 D _var p q_redd_stan_caravan_escort = 5 #
 104 1130 D _var p q_redd_stan_caravan_escort = 6 #
-4 1140 D _var p name_mem_npc_player = 1 D _script caravan@d_CanJoin 0  D _script caravan@d_IsCaravanStatus 1 1 D _script caravan@d_PlayerHasNoCaravanFailures 0  #
+4 1140 D _var p name_mem_npc_player = 1 D _script caravan@d_CanJoin 0  D _script caravan@d_IsCaravanStatus 1 1 D _script caravan@d_PlayerHasNoCaravanFailures 0  D _script caravan@d_NotHasPlayerRequest 0  #
 2 1150 D _var p name_mem_npc_player = 1 D _script caravan@d_CaravanEndedOrNotStarted 0  @
 2 2000 None 1 #
 4 2010 #
@@ -99,8 +99,8 @@ lang=russ engl
 12 25010 R _var p q_redd_stan_caravan_escort = 0 #
 111 25020 @
 105 26000 None 1 #
-110 26010 D _var p q_redd_stan_caravan_escort = 8 R _var p q_redd_stan_caravan_escort = 11 R _item p PID_BOTTLE_CAPS + 4000 R _param p ST_EXPERIENCE + 6000 #
-111 26020 D _var p q_redd_stan_caravan_escort = 10 R _var p q_redd_stan_caravan_escort = 11 R _item p PID_BOTTLE_CAPS + 4000 R _param p ST_EXPERIENCE + 6000 @
+110 26010 D _var p q_redd_stan_caravan_escort = 8 R _var p q_redd_stan_caravan_escort = 11 R _item p PID_BOTTLE_CAPS + 4000 R _script dialog@r_QuestReward3 0  #
+111 26020 D _var p q_redd_stan_caravan_escort = 10 R _var p q_redd_stan_caravan_escort = 11 R _item p PID_BOTTLE_CAPS + 4000 R _script dialog@r_QuestReward3 0  @
 106 27000 None 1 #
 0 27010 #
 0 27020 #

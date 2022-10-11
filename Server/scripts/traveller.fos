@@ -323,7 +323,8 @@ class Traveller
 		}
 		else
 		{
-			cr.ChangeTimeEvent(indexes[0], TIME_CHECK, 0);
+			// Если событие уже существует, не отменяем
+			//cr.ChangeTimeEvent(indexes[0], TIME_CHECK, 0);
 		}
 	}
 }
@@ -457,6 +458,10 @@ bool _GlobalProcess(Critter& cr, int type, Item@ car, float& x, float& y, float&
 					t.Save();
 					t.SheduleChooseLocation();
 					t.SheduleTravel(true);
+					// Сброс проверок на застревание при достижении точки назначения
+					uint[] indexes;
+					if(cr.GetTimeEvents(CTE_CHECK, indexes, null, null) != 0)
+						cr.EraseTimeEvents(CTE_CHECK);
 					return true;
 				}
 			}

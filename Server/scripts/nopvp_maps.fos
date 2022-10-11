@@ -19,7 +19,7 @@ const uint[] noPvpMaps = {MAP_arroyo_temple_entrance,
 	MAP_repl_bank_gecko, MAP_repl_bank_broken, MAP_repl_bank_ncr, MAP_repl_bank_sf, MAP_repl_bank_vcity, 
 	MAP_replication1, MAP_replication2, MAP_replication3, MAP_replication4};
 	
-const int[] excludeDialogs = {DIALOG_ncr_westin, DIALOG_ncr_smit, DIALOG_sf_citizen_shue, DIALOG_vc_shrim, DIALOG_vc_kohl, DIALOG_vc_randal, DIALOG_vc_ed, DIALOG_sf_kuraru, DIALOG_sf_bruce, DIALOG_sf_khung, DIALOG_sf_wei, DIALOG_sf_imbot,DIALOG_sf_master_khung, DIALOG_sf_kuraru, DIALOG_redd_wade, DIALOG_redd_savinel, DIALOG_redd_stanwell, DIALOG_ncr_hal,
+const int[] excludeDialogs = {DIALOG_mod_aureliano,DIALOG_arroyo_gayzum, DIALOG_arroyo_laumer, DIALOG_arroyo_selma, DIALOG_vc_mutant_charley, DIALOG_ncr_westin, DIALOG_ncr_smit, DIALOG_sf_citizen_shue, DIALOG_vc_shrim, DIALOG_vc_kohl, DIALOG_vc_randal, DIALOG_vc_ed, DIALOG_sf_kuraru, DIALOG_sf_bruce, DIALOG_sf_khung, DIALOG_sf_wei, DIALOG_sf_imbot,DIALOG_sf_master_khung, DIALOG_sf_kuraru, DIALOG_redd_wade, DIALOG_redd_savinel, DIALOG_redd_stanwell, DIALOG_ncr_hal,
 DIALOG_bh_kit, DIALOG_ncr_hate, DIALOG_vc_shrim, DIALOG_vc_guard_fighter};
 const int[] btInvul = {BT_MEN, BT_WOMEN, BT_CHILDREN, BT_SUPER_MUTANT, BT_GHOUL};
 

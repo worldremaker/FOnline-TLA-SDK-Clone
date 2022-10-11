@@ -90,10 +90,10 @@ lang=russ engl
 103 20000 None 0 #
 0 20010 D _param p ST_INTELLECT > 3 @
 104 21000 None 0 #
-0 21010 R _item p PID_BOTTLE_CAPS + 1000 R _var p q_redd_wade_caravan_escort = 11 R _param p ST_EXPERIENCE + 2500 #
-0 21020 R _item p PID_BOTTLE_CAPS + 1000 R _var p q_redd_wade_caravan_escort = 11 R _param p ST_EXPERIENCE + 2500 @
+0 21010 R _item p PID_BOTTLE_CAPS + 1000 R _var p q_redd_wade_caravan_escort = 11 R _script dialog@r_QuestReward1 0  #
+0 21020 R _item p PID_BOTTLE_CAPS + 1000 R _var p q_redd_wade_caravan_escort = 11 R _script dialog@r_QuestReward1 0  @
 105 22000 None 0 #
-0 22010 R _item p PID_BOTTLE_CAPS + 1000 R _item p PID_BOTTLE_CAPS + 200 R _param p ST_EXPERIENCE + 2000 R _var p q_redd_wade_caravan_escort = 11 &
+0 22010 R _item p PID_BOTTLE_CAPS + 1000 R _item p PID_BOTTLE_CAPS + 200 R _var p q_redd_wade_caravan_escort = 11 R _script dialog@r_QuestReward1 0  &
 
 [russ]
 {100}{}{Бен Вэйд}

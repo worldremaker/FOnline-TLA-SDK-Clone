@@ -342,3 +342,15 @@ void r_ShowCave(Critter& player, Critter@ npc)
 		r_ShowLocation2(player, npc, LVAR_q_vc_hartmann_clear_cave, LVAR_vc_dead_ally_counter, LOCATION_Quest_VCity_Attack_Cave, x, y);
 	}
 }
+
+
+// Нанимаемый мутант
+
+void _CharleyInit(Critter& cr, bool firstTime)
+{
+	cr.StatBase[ST_MAX_LIFE] = 600;
+	cr.StatBase[ST_CURRENT_HP] = cr.Stat[ST_MAX_LIFE];
+	cr.SkillBase[SK_BARTER] = 1;
+	cr.StatBase[ST_ACTION_POINTS] = 12;
+	cr.SkillBase[SK_BIG_GUNS] = 250;
+}

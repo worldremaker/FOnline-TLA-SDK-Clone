@@ -510,3 +510,10 @@ void CancelInvul(Critter& player, int,int,int)
 	}
 	player.Say(SAY_NETMSG,"Success");
 }
+
+import void QuestRewardExperience(Critter& cr, uint8 base) from "stdlib";
+
+void QuestReward(Critter& cr, int base, int, int)
+{
+	QuestRewardExperience(cr, base);
+}

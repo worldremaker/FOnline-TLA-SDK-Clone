@@ -97,6 +97,8 @@ import bool TransitToMap(Critter& cr, int locPid, int mapIndex, int entranceNum)
 
 import void SkillUp(Critter& player, int skill) from "stdlib";
 
+import void QuestRewardExperience(Critter& cr, uint8 base) from "stdlib";
+
 // Импорты с других модулей.
 import void DropDrugEffects(Critter& cr) from "drugs";
 import void DropRadiation(Critter& cr) from "radiation";

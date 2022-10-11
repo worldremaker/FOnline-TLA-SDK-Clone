@@ -154,6 +154,7 @@ $	319	mod_brahmin_boy
 $	320	mod_farmer_q
 $	321     mod_maria
 $	322     mod_regis
+$	323		mod_aureliano
 $	400	vc_citizen
 $	401	vc_non_citizen
 $	402	vc_guard
@@ -214,6 +215,7 @@ $	456	vc_killer
 $	457	vc_telman
 $	458	vc_guard_witness
 $	459	vc_guardsman_quest
+$	460 vc_mutant_charley
 $	501	gecko_garold
 $	502	gecko_citizen
 $	503	gecko_citizen_glow
@@ -271,6 +273,7 @@ $	639	bh_typhon
 $	640	bh_zaius
 $	641	bh_mutant_female
 $	642	bh_kit
+$	643 bh_ghoul_follower
 $	700	nr_kitty
 $	701	nr_casino_guard
 $	702	nr_barmen
@@ -349,6 +352,8 @@ $	774	nr_jeweller
 $	775	nr_barmen_desp
 $	776	nr_jowey
 $	777 nr_natasha
+$	778	nr_marodeur
+$	779	nr_ramirez
 $	1000	ncr_dufus
 $	1001	ncr_miky
 $	1002	ncr_trader_buster
@@ -618,6 +623,9 @@ $	1654	arroyo_cameron
 $	1655	arroyo_mynoc
 $	1656	arroyo_meet
 $	1657	arroyo_hub_guard
+$	1678	arroyo_gayzum
+$	1679	arroyo_laumer
+$	1680	arroyo_selma
 $	1700	trib_sulik
 $	1701	trib_manota
 $	1702	trib_naiara

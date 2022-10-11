@@ -160,7 +160,8 @@ CaravanGuardInfo [] GetNpcGuards(uint guardsNum)
 // если фраза сказана - функция вернет true, иначе false
 bool _SayNervous(Critter& guard, uint msgID, uint boost)
 {
-	if (Random(guard.NervosityLvl+boost, 6)>=6)
+	DL2("try say nrv" + DLGSTR(guard.Stat[ST_DIALOG_ID],msgID));
+	if (Random(guard.NervosityLvl+boost, 6)>=5)
 	{
 		guard.SayMsg(SAY_NORM_ON_HEAD,TEXTMSG_DLG,DLGSTR(guard.Stat[ST_DIALOG_ID],msgID));
 		return true;
@@ -204,7 +205,8 @@ void _GuardIdle(Critter& guard)
 
 		if (guard.IdleCount>=20)
 		{
-			if (_SayNervous(guard,PHRASE_BORING,2))
+			DL2("NextPhrase");
+			if (_SayNervous(guard,PHRASE_BORING,3))
 			{
 				guard.IdleCount=0;
 				guard.SendMessage(MSG_WHERE_IS_DA_LEADER, guard.Id, MESSAGE_TO_ALL_ON_MAP);
@@ -376,9 +378,6 @@ void _DefaultGuardInit(Critter& guard, bool firstTime)
 	guard.SetEvent(CRITTER_EVENT_ATTACKED,"_GuardAttacked");
 	guard.SetEvent(CRITTER_EVENT_IDLE,"_GuardIdle");
 
-		DL("Guard init");
-
-
 	// охранников не ограбить
 	guard.ModeBase[MODE_NO_STEAL]=1;
 	// торговать они не будут
@@ -445,6 +444,7 @@ void _BomberInit(Critter& guard, bool firstTime)
 	_DefaultGuardInit(guard,firstTime);
 
 	guard.ModeBase[MODE_NO_BARTER]=0;
+	guard.ModeBase[MODE_UNLIMITED_AMMO] = 1;
 }
 void _AnaferonInit(Critter& guard, bool firstTime)
 {
@@ -473,6 +473,7 @@ void _AnaferonInit(Critter& guard, bool firstTime)
 
 	// default init
 	_DefaultGuardInit(guard,firstTime);
+	guard.ModeBase[MODE_UNLIMITED_AMMO] = 1;
 }
 void _VasyaInit(Critter& guard, bool firstTime)
 {
@@ -536,12 +537,17 @@ void _KillerInit(Critter& guard, bool firstTime)
 		//#define PID_SUPER_STIMPAK
 		guard.AddItem(PID_SUPER_STIMPAK, 15);
 		//#define PID_JET                             (259)
-		guard.AddItem(PID_JET, 10);
+		guard.AddItem(PID_JET, 4);
 		//#define PID_PSYCHO                          (110)
-		guard.AddItem(PID_PSYCHO, 10);
+		guard.AddItem(PID_PSYCHO, 2);
 
 	}
 	guard.SkillBase[SK_ENERGY_WEAPONS]=280;
+	guard.SkillBase[SK_MELEE_WEAPONS]=200;
+	guard.PerkBase[PE_BETTER_CRITICALS] = Random(0,1);	
+	guard.PerkBase[PE_SNIPER] = 1;
+	guard.ModeBase[MODE_NO_LOOT] = 0;
+	
 
 	// default init
 	_DefaultGuardInit(guard,firstTime);
@@ -579,6 +585,8 @@ void _ZombieInit(Critter& guard, bool firstTime)
 	guard.StatBase[ST_ELECTRO_RESIST] = 100;
 	guard.StatBase[ST_EMP_RESIST] = 100;
 	guard.SkillBase[SK_MELEE_WEAPONS]=300;
+	guard.PerkBase[PE_SLAYER] = 1;
+	guard.PerkBase[PE_BETTER_CRITICALS] = 1;
 
 		// default init
 	_DefaultGuardInit(guard,firstTime);

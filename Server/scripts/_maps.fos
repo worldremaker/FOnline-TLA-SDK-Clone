@@ -151,6 +151,8 @@
 #define LOCATION_Warehouse_First                    (LOCATION_Warehouse)
 #define LOCATION_Warehouse_Last                     (LOCATION_Warehouse6)
 
+#define LOCATION_WrightKidnap                       (227)
+
 #define LOCATION_IntroMartin                        (260)
 #define LOCATION_IntroInit                          (261)
 
@@ -376,6 +378,8 @@
 
 #define MAP_geck01                                  (252)
 #define MAP_geck02                                  (253)
+
+#define MAP_q_nr_wri_kidnap                         (254)
 
 #define MAP_intro_martin                            (260)
 #define MAP_intro_init                              (261)

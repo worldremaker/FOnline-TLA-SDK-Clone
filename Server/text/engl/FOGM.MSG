@@ -906,6 +906,11 @@
 {2545}{}{22vcity}
 {2546}{}{electri1:15, electric:15, elevator:20, elevato1:15, steam:20, steam:15}
 
+# Map 254, base 2550
+{2550}{}{Marodeurs Hideout}
+{2555}{}{07desert}
+{2556}{}{gustwind:20, gustwin1:20, rattle:15, rattle1:15, vulture:15, vulture1:15}
+
 # Map 260, base 2610
 {2610}{}{Intro}
 {2615}{}{17arroyo}
@@ -1935,6 +1940,10 @@
 {326000}{}{Warehouse}
 {326005}{}{You see an abandoned warehouse.}
 {326030}{}{art\intrface\WM_WRHS.png}
+
+# Wright Kidnappers hideout, pid 227, base 327000
+{327000}{}{Kidnappers}
+{327005}{}{You see a kidnappers hideout.}
 
 # Intro 1, pid 260, base 360000
 {360000}{}{Intro}

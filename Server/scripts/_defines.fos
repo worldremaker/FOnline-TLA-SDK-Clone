@@ -734,7 +734,7 @@
 
 	/// Mercenary settings
 #define MERC_BEGIN                  (800)
-#define MERC_END                    (809)
+#define MERC_END                    (810)
 #define MERC_COUNT                  (MERC_END-MERC_BEGIN+1)
 #define MERC_MASTER_ID              (800) // Id хозяина мерка
 #define MERC_ALWAYS_RUN             (801) // Признак, мерк перемещаетя бегом при следовании за хозяином
@@ -746,6 +746,7 @@
 #define MERC_ASSIST_MASTER          (807) // Признак: если хозяин атакует цель, мерк присоединяется к атаке
 #define MERC_CANCEL_TIME            (808) // Время завершения службы
 #define MERC_CANCEL_ON_GLOBAL       (809) // Признак: мерк отменяет службу, если хозяин вышел на глобальную карту.
+#define MERC_WAIT_FOR_MASTER        (810) // Признак: мерк ожидает хозяина на конкретном месте
 
 //
 // 830..999

@@ -1,7 +1,7 @@
 #ifndef __VARS__
 #define __VARS__
 /*************************************************************************************
-***  VARS  *****  COUNT: 00000554  ***************************************************
+***  VARS  *****  COUNT: 00000569  ***************************************************
 *************************************************************************************/
 
 
@@ -19,6 +19,7 @@
 #define GVAR_mod_baltas_armor                        (12)
 #define GVAR_mod_baltas_armour_count                 (13)
 #define GVAR_den_ghost_is_dead                       (14)
+#define LLVAR_loc_defenders_hostile                  (15)
 #define LVAR_hell_visits                             (20)
 #define GVAR_base_sierra_rule                        (100)
 #define GVAR_base_mariposa_rule                      (101)
@@ -57,6 +58,9 @@
 #define GVAR_ending_arroyo_arrest_tribal             (1804)
 #define GVAR_ending_arroyo_arrest_shaman             (1805)
 #define GVAR_ending_arroyo_arrest_klint              (1806)
+#define LVAR_q_arroyo_selma_caravan_escort           (1807)
+#define LVAR_q_arroyo_gayzum_caravan_escort          (1808)
+#define LVAR_q_arroyo_laumer_caravan_escort          (1809)
 #define GVAR_ending_v13_fugitives                    (1811)
 #define GVAR_ending_v13_dclaw_revival                (1812)
 #define GVAR_ending_v13_dclaw_genocide               (1813)
@@ -84,6 +88,11 @@
 #define LVAR_can_repair_armour_special               (2204)
 #define UVAR_repair_complete_time                    (2205)
 #define UVAR_repair_item_pid                         (2206)
+#define LVAR_comp_riddle_map_id                      (2207)
+#define LVAR_comp_riddle_proto                       (2208)
+#define LVAR_comp_riddle_hex_x                       (2209)
+#define LVAR_comp_riddle_hex_y                       (2210)
+#define LVAR_doughnuts_counter                       (2211)
 #define LVAR_terminal_player_id                      (3029)
 #define LVAR_sex_exp                                 (3030)
 #define LVAR_scen_fraction                           (3031)
@@ -194,6 +203,7 @@
 #define LLVAR_loc_mod_vampire_cave_quester_id        (3312)
 #define LLVAR_loc_delete_time                        (3313)
 #define LVAR_mod_vampire_reaction                    (3314)
+#define LVAR_q_mod_aureliano_caravan_escort          (3315)
 #define LVAR_geck_garold_train                       (3500)
 #define GVAR_geck_skitr_hired                        (3501)
 #define LVAR_geck_skitr_transit                      (3502)
@@ -214,6 +224,9 @@
 #define LVAR_q_nr_jessy_corsi                        (3704)
 #define LVAR_q_nr_jessy_dealer                       (3705)
 #define LVAR_nr_jessy_jet_counter                    (3706)
+#define LVAR_q_nr_wri_kidnap                         (3707)
+#define LLVAR_nr_wri_guard_dead                      (3708)
+#define LVAR_nr_wri_kidnap_notify_time               (3709)
 #define LVAR_ncr_elize_slavers                       (4000)
 #define LVAR_q_ncr_merk_job1                         (4001)
 #define LVAR_ncr_merc_test_status                    (4100)
@@ -397,6 +410,7 @@
 #define LVAR_q_arroyo_cassidy_letter                 (4705)
 #define LVAR_q_arroyo_proof_of_death                 (4706)
 #define LVAR_q_arroyo_letter_to_linnett              (4707)
+#define LVAR_arroyo_crv_reset_counter                (4708)
 #define LVAR_scenery_axe_lasttime                    (4800)
 #define LVAR_q_v13_dclaw                             (4900)
 #define LVAR_q_v13_dclaweggs                         (4902)
@@ -559,6 +573,7 @@
 #define LVAR_q_vc_letter_to_todd                     (8848)
 #define LVAR_vc_knows_about_delivery                 (8849)
 #define LMVAR_vc_last_bar_dialog                     (8850)
+#define LVAR_vc_mut_charley_hired                    (8851)
 
 
 /*************************************************************************************
@@ -679,6 +694,11 @@ $	14	0	den_ghost_is_dead	0	0	1	0
 
 0 - призрак жив
 1 - призрак мёртв
+**********
+
+$	15	3	loc_defenders_hostile	0	0	1	0
+**********
+Локальная, для карты. Признак, НПЦ на карте агрессивны или нет
 **********
 
 $	20	1	hell_visits	0	0	0	4
@@ -906,6 +926,21 @@ $	1806	0	ending_arroyo_arrest_klint	0	0	0	4
 Счётчик успешных доказательств вины Клинта(Квест на разоблачение наркоманов).
 **********
 
+$	1807	1	q_arroyo_selma_caravan_escort	0	0	11	0
+**********
+статус каравана Сэлмы
+**********
+
+$	1808	1	q_arroyo_gayzum_caravan_escort	0	0	11	0
+**********
+статус каравана Сэлмы
+**********
+
+$	1809	1	q_arroyo_laumer_caravan_escort	0	0	11	0
+**********
+статус каравана Сэлмы
+**********
+
 $	1811	0	ending_v13_fugitives	0	0	0	0
 **********
 Беглец
@@ -1049,6 +1084,40 @@ $	2205	2	repair_complete_time	0	0	0	4
 $	2206	2	repair_item_pid	0	0	0	4
 **********
 Переменная для НПЦ - ремонтника. Код ремонтируемого предмета
+**********
+
+$	2207	1	comp_riddle_map_id	0	0	0	4
+**********
+computor.fos
+взламываемые наукой компьютеры
+код карты, на которой стоит компьютер
+**********
+
+$	2208	1	comp_riddle_proto	0	0	0	4
+**********
+computor.fos
+взламываемые наукой компьютеры
+прототип scenery компьютера
+**********
+
+$	2209	1	comp_riddle_hex_x	0	0	0	4
+**********
+computor.fos
+взламываемые наукой компьютеры
+координата по оси икс взламываемого компьютера
+**********
+
+$	2210	1	comp_riddle_hex_y	0	0	0	4
+**********
+computor.fos
+взламываемые наукой компьютеры
+координата по оси игрек взламываемого компьютера
+**********
+
+$	2211	1	doughnuts_counter	0	0	20	0
+**********
+счетчик съеденых пончиков
+при достижении максимума должен обнуляться
 **********
 
 $	3029	1	terminal_player_id	0	0	0	4
@@ -2141,6 +2210,11 @@ $	3314	1	mod_vampire_reaction	0	0	2	0
 2 - игрок исцелил вампира
 **********
 
+$	3315	1	q_mod_aureliano_caravan_escort	0	0	11	0
+**********
+статус каравана хосэ
+**********
+
 $	3500	1	geck_garold_train	0	0	1	0
 **********
 Было ли обучение у Гарольда или нет.
@@ -2322,6 +2396,29 @@ $	3706	1	nr_jessy_jet_counter	3	0	10	0
 старт 3
 мин 0
 макс 10
+**********
+
+$	3707	1	q_nr_wri_kidnap	0	0	8	1
+**********
+Квестовая, статус квеста "Похищение"
+1. взял квест
+2. заплатил за Райта
+3. убил охранника
+4. Сын райта на свободе, мародеры живы
+5. Сын райта на свободе, мародеры мертвы
+6. Сын райте погиб, мародеры живы
+7. Сын райта погиб, мародеры метры
+8. Квест сдан
+**********
+
+$	3708	3	nr_wri_guard_dead	0	0	0	4
+**********
+Локальная для карты, без границ. Используется для сохранения Id мертвого охранника Райта.
+**********
+
+$	3709	1	nr_wri_kidnap_notify_time	0	0	0	4
+**********
+время последнего разговора с игроком от нпц
 **********
 
 $	4000	1	ncr_elize_slavers	0	0	10	0
@@ -3998,6 +4095,15 @@ $	4707	1	q_arroyo_letter_to_linnett	0	0	4	1
 4 - не смог взять задание.
 **********
 
+$	4708	1	arroyo_crv_reset_counter	15	0	15	0
+**********
+Счетчик "отмытых провалов" для квестов на сопровождение и охрану караванов.
+
+Счетчик для караванов Арройо
+
+Локальная, максимум = 15
+**********
+
 $	4800	1	scenery_axe_lasttime	0	0	0	4
 **********
 Время последнего использования топора.
@@ -5110,6 +5216,11 @@ $	8850	4	vc_last_bar_dialog	0	0	0	4
 **********
 локальная, для карты, без границ
 время последнего диалога между нпц
+**********
+
+$	8851	1	vc_mut_charley_hired	0	0	1	0
+**********
+локальная, признак нанят ли мутант. Устанавлиается для НПЦ
 **********
 
 **************************************************************************************

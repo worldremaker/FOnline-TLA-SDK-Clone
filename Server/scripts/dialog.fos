@@ -681,3 +681,40 @@ void r_SkillUp(Critter& player, Critter@ npc, int skill)
 {
 	SkillUp(player, skill);
 }
+
+void r_QuestReward(Critter& player, Critter@ npc, int base)
+{
+	QuestRewardExperience(player, base);
+}
+
+void r_QuestReward1(Critter& player, Critter@ npc)
+{
+	int base = 20;
+	if (player.Stat[ST_LEVEL] < 20)
+		base = 25;
+	if(player.Stat[ST_LEVEL]<10)
+		base = 30;
+	if(player.Stat[ST_LEVEL]<5)
+		base = 50;
+	QuestRewardExperience(player, base);
+}
+
+void r_QuestReward2(Critter& player, Critter@ npc)
+{
+	int base = 25;
+	if (player.Stat[ST_LEVEL] < 20)
+		base = 30;
+	if(player.Stat[ST_LEVEL]<10)
+		base = 60;
+	QuestRewardExperience(player, base);
+}
+
+void r_QuestReward3(Critter& player, Critter@ npc)
+{
+	int base = 35;
+	if (player.Stat[ST_LEVEL] < 20)
+		base = 40;
+	if(player.Stat[ST_LEVEL]<10)
+		base = 70;
+	QuestRewardExperience(player, base);
+}

@@ -166,10 +166,12 @@ void e_MercIdle(Critter& merc)
 				}
 				if(dist>merc.MercMasterDist )
 				{
-					AddWalkPlane(merc, 0, hX, hY, GetDir(merc, master), _AlwaysRun(merc), 1);
+					if(merc.Merc[MERC_WAIT_FOR_MASTER] == 0)
+						AddWalkPlane(merc, 0, hX, hY, GetDir(merc, master), _AlwaysRun(merc), 1);
 				}
 			}else{
-				merc.TransitToMap(map_master.Id, hX, hY, Random(0,5));
+					if(merc.Merc[MERC_WAIT_FOR_MASTER] == 0)
+						merc.TransitToMap(map_master.Id, hX, hY, Random(0,5));
 			}
 		}else{
 			merc.TransitToMap(map_master.Id, hX, hY, Random(0,5));
@@ -182,8 +184,14 @@ void e_MercIdle(Critter& merc)
 			return;
 		}
 		// хоз€ин на глобале
-		if(valid(merc.GetGlobalGroup())) return;
-		merc.TransitToGlobalGroup(master.Id);
+		if(merc.Merc[MERC_WAIT_FOR_MASTER] > 0)
+			return;
+		Critter@[] globalGroup = master.GetGlobalGroup();
+		if(valid(merc.GetGlobalGroup()) || !valid(globalGroup)) 
+			return;
+		Critter@ leader = globalGroup[0];
+		if(valid(leader) && leader.Stat[ST_CHARISMA] > int(globalGroup.length()))
+			merc.TransitToGlobalGroup(master.Id);
 	}
 }
 

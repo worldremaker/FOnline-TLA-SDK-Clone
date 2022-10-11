@@ -11,6 +11,10 @@
 #define CARAVAN_KIT_BH_GECKO                            (5) // Броукен-Хиллз - Гекко. Односторонний. Проводник: bh_kit. Отправление каждые сутки в 10:00
 #define PATROL_HATE_NCR                                 (6) // Односторонний ежедневный патруль рейнджеров.
 #define PATROL_SHRIM_VC                                 (7) // Односторонний ежедневный патруль гвардейцев ГУ.
+#define CARAVAN_SELMA_ARR_VC                            (8) // Двусторонний, Арройо-ГУ, отправление в 14:00
+#define CARAVAN_GAYZUN_ARR_SF                           (9) // Арройо-СФ, отправление в 19:00
+#define CARAVAN_LAUMER_ARR_NCR                          (10) // Арройо-НКР, отправление в 
+#define CARAVAN_HOSE_MOD_GECKO                          (11) // Модок-Гекко, односторонний 12:00
 /* ******************************************************************************************************************************************************** */
 // Коды прототипов караванщиков и сумки
 /* ******************************************************************************************************************************************************** */
@@ -83,13 +87,14 @@
 #define _SetJoinNext#(cr,crv) {uint q = GetQuestState(cr,crv.CaravanId); if(q==CARAVAN_QUEST_COMPLETE) SetQuestState(cr,crv.CaravanId, CARAVAN_PLAYER_JOIN_NEXT);}
 #define _SetSuccessNext #(cr,crv) {uint q = GetQuestState(cr,crv.CaravanId); if(q==CARAVAN_PLAYER_JOIN_NEXT) SetQuestState(cr,crv.CaravanId, CARAVAN_SUCCESS_NEXT);} // после первого или последующего успеха
 #define _SetPlayerJoin #(cr, crv){uint q = GetQuestState(cr,crv.CaravanId); if(q==CARAVAN_QUEST_TAKEN){_SetPlayerJoinFirst(cr, crv);} if(q==CARAVAN_QUEST_COMPLETE){_SetJoinNext(cr, crv);}}
-bool _CanPlayerJoinCaravan (Critter & cr,CaravanInfo & crv){uint q = GetQuestState(cr,crv.CaravanId); return (q==CARAVAN_QUEST_COMPLETE||q==CARAVAN_NOQUEST);} // после первого, последующего успеха или при взятом квесте
+bool _CanPlayerJoinCaravan (Critter & cr,CaravanInfo & crv){uint q = GetQuestState(cr,crv.CaravanId); return (q==CARAVAN_QUEST_COMPLETE||q==CARAVAN_NOQUEST || q==CARAVAN_QUEST_TAKEN);} // после первого, последующего успеха или при взятом квесте
 bool _GetPlayerQuestFailed (Critter & cr,CaravanInfo & crv){uint q = GetQuestState(cr,crv.CaravanId); return (q>=CARAVAN_FAILURE_PLAYER_THIEFT&&q<=CARAVAN_FAILURE_PLAYER_KILL_LEADER);} // игрок завалил ранее квест
 
 // Debug Log
 //#define DL#(s) (Log(s))
 #define DL#(s)
-
+//#define DL2 #(s) (Log("DL2" + s))
+#define DL2#(s)
 import void FindEncounter(Critter@[]& group, Item@ car, uint x, uint y, uint& encounterDescriptor, bool& waitForAnswer, bool empty) from "worldmap";
 import void InviteToEncounter(Critter@[]& group, Item@ car, uint encounterDescriptor, int combatMode, uint& mapId, uint16& hexX, uint16& hexY, uint8& dir) from "worldmap";
 import uint GetNearFullSecond(uint16 year, uint16 month, uint16 day, uint16 hour, uint16 minute, uint16 second) from "time";

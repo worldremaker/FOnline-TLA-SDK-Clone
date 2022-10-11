@@ -25,10 +25,8 @@ CaravanInfo @ _GetCaravan(uint idCaravan)
 
 	for(uint i = 0; i< Caravans.length(); i++)
 	{
-		DL("i =="+i+"id"+Caravans[i].CaravanId+"needed idcrv"+idCaravan);
 		if (Caravans[i].CaravanId == idCaravan)
 		{
-			DL("ok");
 			return Caravans[i];
 		}
 	}
@@ -60,9 +58,6 @@ void _SetupCaravan(uint idCaravan, uint8 crvType, uint8 speed, uint16 qVar, uint
 	ci.GlobalSpeedMultiplayer = speed;
 	ci.QuestVarNum = qVar;
 	ci.MaxGroup = maxGrp;
-
-	DL("setup caravan info ok/ Id"+idCaravan);
-
 }
 
 // настройка лидера каравана
@@ -78,12 +73,14 @@ void _SetupCaravanLeader(uint idCaravan, uint dialog, uint pid, uint bag, uint t
 	// внимание! если нпц - караван лидер уже был ранее добавлен, об удалении криттера при необходимости, нужно позаботиться дополнительно
 	// проверка ci.Leader.Id!=0
 	@ ci.Leader = CaravanLeaderInfo();
+	DL2("_SetupCaravanLeader 1. IdCaravan" + ci.CaravanId + "; Level" + ci.Leader.Level);
 	ci.Leader.DialogId = dialog;
 	ci.Leader.NpcPid = pid;
 	ci.Leader.BagId = bag;
 	ci.Leader.TeamId = team;
 	ci.Leader.AiPack = ai;;
 	ci.Leader.Level = level;
+	DL2("new level"+ci.Leader.Level);
 	ci.Leader.CaravanId = idCaravan;
 }
 
@@ -95,6 +92,7 @@ void _SetupCaravanLeader(uint idCaravan, Critter & leader)
 	CaravanInfo @ ci = _GetCaravan(idCaravan);
 	if(!valid(ci)) return;
 	@ ci.Leader = CaravanLeaderInfo();
+	DL2("_SetupCaravanLeader 2. " + idCaravan + " IdCaravan" + ci.CaravanId + "; Level" + ci.Leader.Level);
 	ci.Leader.DialogId = leader.StatBase[ST_DIALOG_ID];
 	ci.Leader.NpcPid = leader.GetProtoId();
 	ci.Leader.BagId = leader.StatBase[ST_BAG_ID];
@@ -102,6 +100,7 @@ void _SetupCaravanLeader(uint idCaravan, Critter & leader)
 	ci.Leader.AiPack = leader.StatBase[ST_AI_ID];
 	ci.Leader.CaravanId = idCaravan;
 	ci.Leader.CritterId = leader.Id;
+	DL2("new level"+ci.Leader.Level);
 	leader.CrvId = idCaravan;
 }
 
@@ -214,6 +213,8 @@ void _AddFollowerInfo(uint idCaravan, uint16 pid, uint dialog, uint team, uint b
 	f.DialogId = dialog;
 	f.TeamId = team;
 	f.BagId = bag;
+	
+	ci.Followers.insertLast(f);
 
 }
 
@@ -236,7 +237,7 @@ bool _SheduleCaravan(uint idCaravan, uint prepareDay, uint prepareHour, uint sta
 	values.insertLast(startHour);
 
 	uint time = GetNearFullSecond(0, 0, prepareDay, prepareHour, 0, 0);
-
+	DL2("_SheduleCaravan idCaravan = "+idCaravan);
 	return (CreateTimeEvent(time, "e_PrepareCaravan", values, false)>0);
 
 }
@@ -264,6 +265,7 @@ uint e_PrepareCaravan(uint[]@ values)
 		Log("Invalid LeaderInfo CaravanId="+idCaravan);
 		return 0;
 	}
+	DL2("e_PrepareCaravan idCaravan = "+ci.CaravanId + ";");
 	if(ci.Leader.CritterId!=0)
 	{
 		Critter @ leader = ci.Leader.GetLeader();
@@ -271,14 +273,12 @@ uint e_PrepareCaravan(uint[]@ values)
 		{
 			if(leader.IsDead())
 			{
-				DL("Leader dead. Next try");
 				return 60*60*4;
 			}
 		}
 	}
-
+	
 	uint time = GetNearFullSecond(0, 0, startDay, startHour, 0, 0);
-	DL("time to start:" +time);
 	if(CreateTimeEvent(time, "e_BeginCaravan", values, false)==0)
 	{
 		Log("Create BeginCaravan time event fail...");
@@ -302,7 +302,6 @@ uint e_BeginCaravan(uint[]@ values)
 	uint prepareHour = values[2];
 	uint startDay = values[3];
 	uint startHour = values[4];
-	DL("try found caravan");
 	CaravanInfo@ ci = _GetCaravan(idCaravan);
 	if(!valid(ci))
 	{
@@ -314,7 +313,6 @@ uint e_BeginCaravan(uint[]@ values)
 		Log("Invalid LeaderInfo CaravanId="+idCaravan);
 		return 0;
 	}
-	DL("caravan valid. Begin ctart");
 	StartCaravan(idCaravan);
 
 	uint time = GetNearFullSecond(0, 0, prepareDay, prepareHour, 0, 0);
@@ -335,10 +333,6 @@ void _CaravanLeaderInit(Critter & leader, bool firstTime)
 	{
 		li.CritterId = leader.Id;
 	}
-
-	// debug
-	//Map @ map = leader.GetMap();
-	//if(valid(map)) DL("Map Valid. pId = "+map.GetProtoId());
 
 	if(firstTime)
 	{
@@ -449,13 +443,11 @@ void FindCabPlace(Map& map, uint[] & x, uint[]& y, uint maxCabs )
 			i=0;
 		}
 	}
-	DL("Итого, точек найдено:"+x.length());
 }
 
 // сообщение от нпц
 void _CaravanLeaderOnMessage(Critter& leader, Critter& fromCr, int message, int value)
 {
-	DL("leader recievd message");
 	if(message==MSG_WHERE_IS_DA_LEADER)
 	{
 		 _MoveToCaravanLeader(fromCr, leader, Random(2,10));
@@ -466,15 +458,11 @@ void _CaravanLeaderOnMessage(Critter& leader, Critter& fromCr, int message, int 
 bool _CaravanLeaderOnInvite(Critter& leader, Item@ car, uint encounterDescriptor, int combatMode, uint& mapId, uint16& hexX, uint16& hexY, uint8& dir)
 {
 	Critter@[]@ group=leader.GetGlobalGroup();
-
-	DL("leader on encounter.");
-	//ToDo - проверить, что можно отказаться от этого пункта
 	InviteToEncounter(group, null, encounterDescriptor,combatMode, mapId, hexX, hexY, dir);
 	CaravanInfo@ ci = _GetCaravan(leader.CrvId);
 	if(!valid(ci)) return true;
 
 	if(!_CheckHasPlayerInGroup(group)){
-		DL("No player on encounter");
 		if(ci.Type==CRV_TYPE_ONEWAY_DELETELEADER||ci.Type==CRV_TYPE_ONEWAY_DELETELEADER_BOTH)
 		{
 			ci.CaravanStatus==CRV_STATUS_END;
@@ -502,10 +490,8 @@ bool _CaravanLeaderOnInvite(Critter& leader, Item@ car, uint encounterDescriptor
 	FindCabPlace(map, x, y, 100);//TODO: поставить нормальное ограничение, сейчас использую для проверки, сколько точек будет найдено
 
 	Item @[] cabItems;
-	DL("lx="+x.length()+"-y-"+y.length()+ " lc= " + ci.Cabs.length());
 	for(uint i=0, lx=x.length(), ly=y.length(), lc = ci.Cabs.length(); i<lx&&i<ly&&i<lc;i++)
 	{
-		DL("try place cab");
 		Item @ cab = ci.Cabs[i].PlaceCabOnMap(map, x[i], y[i], ci.IsReversed);
 
 		if(valid(cab))
@@ -522,7 +508,7 @@ bool _CaravanLeaderOnInvite(Critter& leader, Item@ car, uint encounterDescriptor
 	{
 		for(uint j = 0; j<ci.Followers.length(); j++)
 		{
-			ci.Followers[j]._AddNpcNearItem(map, cabItems[Random(0, (cabItems.length()-1))], 3);
+			ci.Followers[j]._AddNpcNearItem(map, cabItems[Random(0, (cabItems.length()-1))], 8);
 		}
 		// если есть повозки, проводник ходит от одной к другой
 		leader.SetEvent(CRITTER_EVENT_IDLE,"_CaravanLeaderIdleOnEncounter");
@@ -531,7 +517,7 @@ bool _CaravanLeaderOnInvite(Critter& leader, Item@ car, uint encounterDescriptor
 	}else{
 		if (ci.Followers.length()>0)
 		{
-			Critter @firstFollower = ci.Followers[0].AddNpcNearCritter(map, leader, 35);
+			Critter @firstFollower = ci.Followers[0].AddNpcNearCritter(map, leader, 1);
 			if(valid(firstFollower))
 			{
 				for( uint k =1; k<ci.Followers.length(); k++)
@@ -541,7 +527,7 @@ bool _CaravanLeaderOnInvite(Critter& leader, Item@ car, uint encounterDescriptor
 			}else{
 				for( uint k =1; k<ci.Followers.length(); k++)
 				{
-					ci.Followers[k]._AddNpcNearCritter(map, leader, 40);
+					ci.Followers[k]._AddNpcNearCritter(map, leader, 20);
 				}
 			}
 		}
@@ -629,7 +615,6 @@ void _CaravanLeaderOnSeeSmthDead(Critter& leader, Critter& fromCrit, Critter@ ki
 // смерть проводника = провал квеста всем игрокам
 void _CaravanLeaderOnDead(Critter& leader, Critter@ killer)
 {
-	DL("leader dead");
 	CaravanInfo@ ci = _GetCaravan(leader.CrvId);
 	if(!valid(ci))
 	{
@@ -655,7 +640,6 @@ void _CaravanLeaderOnDead(Critter& leader, Critter@ killer)
 	// удаляем проводника досрочно
 	if(ci.Type==CRV_TYPE_ONEWAY_DELETELEADER||ci.Type==CRV_TYPE_ONEWAY_DELETELEADER_BOTH)
 	{
-		DL("leader will be deleted");
 		CreateTimeEvent(__FullSecond+TIME_TO_DELETE_LEADER,"e_DeleteLeader",leader.Id,true);
 		// Обязательно сохраняем эвент. Иначе можно оказаться с двумя начлаьниками караванов.
 	}
@@ -768,30 +752,25 @@ void PrepareCaravan(uint CaravanId)
 	if(!valid(leader))
 	{
 		Critter@[] critters;
-		DL("searchin leader...");
 		if(GetCrittersByDialogId(ci.Leader.StartPos.GetMap(), ci.Leader.DialogId, ci.Leader.NpcPid, critters)>0)
 		{
-			DL("leaders here! count^"+critters.length());
 			@ leader = critters[0];
 			ci.Leader.SetLeaderCritter(leader);
 		}else{
 			if(GetCrittersByDialogId(ci.Leader.EndPos.GetMap(), ci.Leader.DialogId, ci.Leader.NpcPid, critters)>0)
 			{
-				DL("leaders here! count^"+critters.length());
 				@ leader = critters[0];
 				ci.Leader.SetLeaderCritter(leader);
 			}
 		}
 		if(!valid(leader))
 		{
-			DL("leader invalid");
 			if(!ci.Leader.PlaceLeaderCritterToPos(ci.Leader.StartPos)) return;
 		}
 	}
 
 	if (!ci.Leader.CheckLeaderInPos(true))
 	{
-	DL("try transit/ Leader not in pos");
 		if (!ci.Leader.TransitToPos(true)) return;
 	}
 
@@ -804,7 +783,6 @@ void PrepareCaravan(uint CaravanId)
 /* ********************************** Этап№2 отправление каравана *********************************** */
 void StartCaravan(uint CaravanId)
 {
-	DL("Start Caravan called/ Id+"+CaravanId);
 	CaravanInfo@ ci = _GetCaravan(CaravanId);
 	if(!valid(ci)) return;
 	Critter @ leader = ci.Leader.GetLeader();
@@ -813,15 +791,12 @@ void StartCaravan(uint CaravanId)
 	Map @ map = leader.GetMap();
 	if(!valid(map)) return;
 
-	DL("Count players ");
 	// проверка, хватает ли игроков
 	if(ci.PlayersRequested.length()==0) return;
 	uint curPlayersInGrp = 0;
 	// группа караванщиков
-	DL("efore push");
 	Critter @[] caravanGroup;
 	caravanGroup.insertLast(@leader);
-	DL("atfer push");
 	// всех игроков в группу, сколько разрешено
 	for(uint i=0; i<ci.PlayersRequested.length(); i++)
 	{
@@ -839,10 +814,8 @@ void StartCaravan(uint CaravanId)
 		if(curPlayersInGrp>=ci.MaxPlayers) break;
 	}
 	ci.PlayersRequested.resize(ci.MaxPlayers);
-	DL("cyckle");
 	if(curPlayersInGrp==0)
 	{
-		DL("no players");
 		return;
 	}
 	// число попыток, чтобы не завис цикл
@@ -1253,4 +1226,57 @@ bool d_IsCaravanReversed(Critter& player, Critter@ npc)
 bool d_NotIsCaravanReversed(Critter& player, Critter@ npc)
 {
 	return !d_IsCaravanReversed(player, npc);
+}
+
+
+// Обновленные функции
+bool d_PlayerHired(Critter& player, Critter@ npc)
+{
+	CaravanInfo@ ci = _GetCaravan(npc.CrvId);
+	if(valid(ci))
+	{
+		for(uint i = 0;i < ci.PlayersRequested.length(); i++)
+		{
+			if(ci.PlayersRequested[i] == player.Id)
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+bool d_NotPlayerHired(Critter& player, Critter@ npc)
+{
+	return !d_PlayerHired(player, npc);
+}
+
+bool d_HasFailures(Critter& player, Critter@ npc)
+{
+	CaravanInfo@ ci = _GetCaravan(npc.CrvId);
+	if(valid(ci))
+	{
+		return _GetPlayerQuestFailed (player, ci);
+	}
+	return false;
+}
+
+bool d_NotHasFailures(Critter& player, Critter@ npc)
+{
+	return !d_HasFailures(player, npc);
+}
+
+bool d_Status(Critter& player, Critter@ npc, int status)
+{
+	CaravanInfo@ ci = _GetCaravan(npc.CrvId);
+	if(valid(ci))
+	{
+		return ci.CaravanStatus == status;
+	}
+	return false;
+}
+
+bool d_NotStatus(Critter& player, Critter@ npc, int status)
+{
+	return !d_Status(player, npc, status);
 }

@@ -1,9 +1,9 @@
 [Header]
-Version              2
+Version              4
 MaxHexX              166
 MaxHexY              155
-WorkHexX             74
-WorkHexY             106
+WorkHexX             90
+WorkHexY             86
 ScriptModule         -
 ScriptFunc           -
 NoLogOut             0
@@ -8349,7 +8349,8 @@ MapX                 83
 MapY                 70
 Dir                  5
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5041
 Critter_ParamIndex1  ST_AI_ID
@@ -8384,7 +8385,8 @@ MapX                 91
 MapY                 70
 Dir                  5
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5041
 Critter_ParamIndex1  ST_AI_ID
@@ -8709,7 +8711,8 @@ MapX                 102
 MapY                 74
 Dir                  1
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5042
 Critter_ParamIndex1  ST_AI_ID
@@ -9111,7 +9114,8 @@ MapX                 102
 MapY                 78
 Dir                  1
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5040
 Critter_ParamIndex1  ST_AI_ID
@@ -9296,7 +9300,8 @@ MapX                 71
 MapY                 80
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5042
 Critter_ParamIndex1  ST_AI_ID
@@ -9540,7 +9545,8 @@ ProtoId              75
 MapX                 71
 MapY                 84
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5040
 Critter_ParamIndex1  ST_AI_ID
@@ -9745,7 +9751,8 @@ MapX                 102
 MapY                 85
 Dir                  1
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5040
 Critter_ParamIndex1  ST_AI_ID
@@ -9808,6 +9815,8 @@ MapObjType           2
 ProtoId              2011
 MapX                 83
 MapY                 86
+ScriptName           comp_riddle
+FuncName             s_Use
 
 MapObjType           2
 ProtoId              2043
@@ -9980,7 +9989,8 @@ MapX                 71
 MapY                 88
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5040
 Critter_ParamIndex1  ST_AI_ID
@@ -10150,7 +10160,8 @@ MapX                 102
 MapY                 90
 Dir                  1
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5042
 Critter_ParamIndex1  ST_AI_ID
@@ -10330,7 +10341,8 @@ MapX                 71
 MapY                 92
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5042
 Critter_ParamIndex1  ST_AI_ID
@@ -11848,8 +11860,10 @@ ProtoId              77
 MapX                 79
 MapY                 113
 Dir                  5
+UID                  23
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5042
 Critter_ParamIndex1  ST_AI_ID
@@ -12223,8 +12237,10 @@ ProtoId              77
 MapX                 88
 MapY                 116
 Dir                  3
+UID                  18
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5042
 Critter_ParamIndex1  ST_AI_ID
@@ -12253,8 +12269,10 @@ ProtoId              77
 MapX                 92
 MapY                 116
 Dir                  3
+UID                  20
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5042
 Critter_ParamIndex1  ST_AI_ID
@@ -12283,8 +12301,10 @@ ProtoId              78
 MapX                 96
 MapY                 116
 Dir                  3
+UID                  22
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5042
 Critter_ParamIndex1  ST_AI_ID
@@ -12347,6 +12367,8 @@ MapObjType           2
 ProtoId              2011
 MapX                 77
 MapY                 117
+ScriptName           comp_riddle
+FuncName             s_Use
 
 MapObjType           2
 ProtoId              2043
@@ -12373,8 +12395,10 @@ ProtoId              77
 MapX                 86
 MapY                 117
 Dir                  3
+UID                  17
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5042
 Critter_ParamIndex1  ST_AI_ID
@@ -12393,8 +12417,10 @@ ProtoId              77
 MapX                 90
 MapY                 117
 Dir                  3
+UID                  19
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5042
 Critter_ParamIndex1  ST_AI_ID
@@ -12413,8 +12439,10 @@ ProtoId              77
 MapX                 94
 MapY                 117
 Dir                  3
+UID                  21
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5042
 Critter_ParamIndex1  ST_AI_ID
@@ -12432,8 +12460,10 @@ MapObjType           0
 ProtoId              76
 MapX                 101
 MapY                 117
+UID                  2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5041
 Critter_ParamIndex1  ST_AI_ID
@@ -12451,8 +12481,10 @@ MapObjType           0
 ProtoId              76
 MapX                 103
 MapY                 117
+UID                  4
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5041
 Critter_ParamIndex1  ST_AI_ID
@@ -12470,8 +12502,10 @@ MapObjType           0
 ProtoId              76
 MapX                 105
 MapY                 117
+UID                  6
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5041
 Critter_ParamIndex1  ST_AI_ID
@@ -12496,8 +12530,10 @@ MapObjType           0
 ProtoId              76
 MapX                 107
 MapY                 117
+UID                  8
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5041
 Critter_ParamIndex1  ST_AI_ID
@@ -12515,8 +12551,10 @@ MapObjType           0
 ProtoId              76
 MapX                 109
 MapY                 117
+UID                  10
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5041
 Critter_ParamIndex1  ST_AI_ID
@@ -12679,8 +12717,10 @@ MapObjType           0
 ProtoId              76
 MapX                 101
 MapY                 120
+UID                  1
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5041
 Critter_ParamIndex1  ST_AI_ID
@@ -12698,8 +12738,10 @@ MapObjType           0
 ProtoId              76
 MapX                 103
 MapY                 120
+UID                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5041
 Critter_ParamIndex1  ST_AI_ID
@@ -12717,8 +12759,10 @@ MapObjType           0
 ProtoId              76
 MapX                 105
 MapY                 120
+UID                  5
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5041
 Critter_ParamIndex1  ST_AI_ID
@@ -12736,8 +12780,10 @@ MapObjType           0
 ProtoId              76
 MapX                 107
 MapY                 120
+UID                  7
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5041
 Critter_ParamIndex1  ST_AI_ID
@@ -12755,8 +12801,10 @@ MapObjType           0
 ProtoId              76
 MapX                 109
 MapY                 120
+UID                  9
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5041
 Critter_ParamIndex1  ST_AI_ID
@@ -12945,8 +12993,10 @@ ProtoId              77
 MapX                 86
 MapY                 123
 Dir                  4
+UID                  16
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5042
 Critter_ParamIndex1  ST_AI_ID
@@ -12965,8 +13015,10 @@ ProtoId              77
 MapX                 90
 MapY                 123
 Dir                  4
+UID                  14
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5042
 Critter_ParamIndex1  ST_AI_ID
@@ -12985,8 +13037,10 @@ ProtoId              77
 MapX                 94
 MapY                 123
 Dir                  4
+UID                  12
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5042
 Critter_ParamIndex1  ST_AI_ID
@@ -13040,8 +13094,10 @@ ProtoId              77
 MapX                 88
 MapY                 124
 Dir                  4
+UID                  15
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5042
 Critter_ParamIndex1  ST_AI_ID
@@ -13060,8 +13116,10 @@ ProtoId              77
 MapX                 92
 MapY                 124
 Dir                  4
+UID                  13
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5042
 Critter_ParamIndex1  ST_AI_ID
@@ -13080,8 +13138,10 @@ ProtoId              77
 MapX                 96
 MapY                 124
 Dir                  4
+UID                  11
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5042
 Critter_ParamIndex1  ST_AI_ID
@@ -14362,139 +14422,139 @@ MapObjType           1
 ProtoId              291
 MapX                 101
 MapY                 120
-Item_InContainer     1
+ContainerUID         1
 
 MapObjType           1
 ProtoId              291
 MapX                 101
 MapY                 117
-Item_InContainer     1
+ContainerUID         2
 
 MapObjType           1
 ProtoId              290
 MapX                 103
 MapY                 120
-Item_InContainer     1
+ContainerUID         3
 
 MapObjType           1
 ProtoId              290
 MapX                 103
 MapY                 117
-Item_InContainer     1
+ContainerUID         4
 
 MapObjType           1
 ProtoId              290
 MapX                 105
 MapY                 120
-Item_InContainer     1
+ContainerUID         5
 
 MapObjType           1
 ProtoId              290
 MapX                 105
 MapY                 117
-Item_InContainer     1
+ContainerUID         6
 
 MapObjType           1
 ProtoId              290
 MapX                 107
 MapY                 120
-Item_InContainer     1
+ContainerUID         7
 
 MapObjType           1
 ProtoId              290
 MapX                 107
 MapY                 117
-Item_InContainer     1
+ContainerUID         8
 
 MapObjType           1
 ProtoId              291
 MapX                 109
 MapY                 120
-Item_InContainer     1
+ContainerUID         9
 
 MapObjType           1
 ProtoId              291
 MapX                 109
 MapY                 117
-Item_InContainer     1
+ContainerUID         10
 
 MapObjType           1
 ProtoId              270
 MapX                 96
 MapY                 124
-Item_InContainer     1
+ContainerUID         11
 
 MapObjType           1
 ProtoId              270
 MapX                 94
 MapY                 123
-Item_InContainer     1
+ContainerUID         12
 
 MapObjType           1
 ProtoId              270
 MapX                 92
 MapY                 124
-Item_InContainer     1
+ContainerUID         13
 
 MapObjType           1
 ProtoId              270
 MapX                 90
 MapY                 123
-Item_InContainer     1
+ContainerUID         14
 
 MapObjType           1
 ProtoId              270
 MapX                 88
 MapY                 124
-Item_InContainer     1
+ContainerUID         15
 
 MapObjType           1
 ProtoId              270
 MapX                 86
 MapY                 123
-Item_InContainer     1
+ContainerUID         16
 
 MapObjType           1
 ProtoId              270
 MapX                 86
 MapY                 117
-Item_InContainer     1
+ContainerUID         17
 
 MapObjType           1
 ProtoId              270
 MapX                 88
 MapY                 116
-Item_InContainer     1
+ContainerUID         18
 
 MapObjType           1
 ProtoId              270
 MapX                 90
 MapY                 117
-Item_InContainer     1
+ContainerUID         19
 
 MapObjType           1
 ProtoId              270
 MapX                 92
 MapY                 116
-Item_InContainer     1
+ContainerUID         20
 
 MapObjType           1
 ProtoId              270
 MapX                 94
 MapY                 117
-Item_InContainer     1
+ContainerUID         21
 
 MapObjType           1
 ProtoId              270
 MapX                 96
 MapY                 116
-Item_InContainer     1
+ContainerUID         22
 
 MapObjType           1
 ProtoId              270
 MapX                 79
 MapY                 113
-Item_InContainer     1
+ContainerUID         23
 
 MapObjType           2
 ProtoId              2141

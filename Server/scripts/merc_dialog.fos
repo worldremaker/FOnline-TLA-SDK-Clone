@@ -150,6 +150,23 @@ void r_CancelMerc(Critter & player, Critter @ npc, int varNum)
 	}
 }
 
+void r_WaitMaster(Critter& player, Critter@ npc)
+{
+	Map@ map = player.GetMap();
+	if(!valid(map) || !valid(npc))
+		return;
+	Location@ loc = map.GetLocation();
+	if(valid(loc) && loc.AutoGarbage == true && !player.IsKnownLoc(true, loc.Id))
+		player.SetKnownLoc(true, loc.Id);
+	npc.MercBase[MERC_WAIT_FOR_MASTER] = 1;
+}
+
+void r_FollowMaster(Critter& player, Critter@ npc)
+{
+	if(valid(npc))
+		npc.MercBase[MERC_WAIT_FOR_MASTER] = 0;		
+}
+
 // ‘ункции-диалоги
 // »м€ хоз€ина
 void dlg_Master(Critter& player, Critter@ npc, string@ masterName)
