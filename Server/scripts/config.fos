@@ -273,6 +273,13 @@ void InitializeGame() // Export
 	__Anim2CombatEnd        = ANIM2_END_COMBAT;
 	__SplitTilesCollection  = true;
 
+	/// New slots allow here
+#ifdef PLAYERS_3D
+ #ifndef PLAYERS_3D_NO_HEAD
+	AllowSlot(SLOT_HEAD, "Head");
+ #endif
+#endif
+
 	InitializeGeometry();
 }
 
