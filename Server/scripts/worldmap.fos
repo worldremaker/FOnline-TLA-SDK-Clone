@@ -310,31 +310,31 @@ class CEncounterObject
 {
 	uint ObjectType;
 	uint16 Pid; // Proto id
-	uint Dialog;
-	string Script;
-	uint Distance; // Distance from players
+	uint DialogId;
+	string ScriptName;
+	uint DistanceLength; // Distance from players
 	CEncounterObject@[] Childs; // Items in inventory or container
 	CCheck[] Checks;
 	// Only for critter
-	uint Ratio;
-	bool Dead;
+	uint RatioValue;
+	bool IsDead;
 	// Only for item
 	uint Minimum;
 	uint Maximum;
-	uint Slot;
+	uint InvSlot;
 
 	CEncounterObject()
 	{
 		ObjectType=0;
 		Pid=0;
-		Dialog=0;
-		Script="";
-		Distance=0;
-		Ratio=0;
-		Dead=false;
+		DialogId=0;
+		ScriptName="";
+		DistanceLength=0;
+		RatioValue=0;
+		IsDead=false;
 		Minimum=0;
 		Maximum=0;
-		Slot=0;
+		InvSlot=0;
 	}
 
 	CEncounterObject@ NewCheck(uint type, uint index, uint8 operator, int value)
@@ -344,9 +344,9 @@ class CEncounterObject
 		return this;
 	}
 
-	CEncounterObject@ Dialog(uint dialog){Dialog=dialog; return this;}
-	CEncounterObject@ Script(string& script){Script=script; return this;}
-	CEncounterObject@ Distance(uint distance){Distance=distance; return this;}
+	CEncounterObject@ Dialog(uint dialog){DialogId=dialog; return this;}
+	CEncounterObject@ Script(string& script){ScriptName=script; return this;}
+	CEncounterObject@ Distance(uint distance){DistanceLength=distance; return this;}
 	CEncounterObject@ CheckRandom(int value){NewCheck(CHECK_RANDOM,0,0,value); return this;}
 	CEncounterObject@ CheckParam(uint index, uint8 operator, int value){NewCheck(CHECK_PARAM,index,operator,value); return this;}
 	CEncounterObject@ CheckParamAny(uint index, uint8 operator, int value){NewCheck(CHECK_PARAM_ANY,index,operator,value); return this;}
@@ -354,11 +354,9 @@ class CEncounterObject
 	CEncounterObject@ CheckLVarAny(uint index, uint8 operator, int value){NewCheck(CHECK_LVAR_ANY,index,operator,value); return this;}
 	CEncounterObject@ CheckGVar(uint index, uint8 operator, int value){NewCheck(CHECK_GVAR,index,operator,value); return this;}
 	CEncounterObject@ CheckHour(uint8 operator, int value){NewCheck(CHECK_HOUR,0,operator,value); return this;}
-	CEncounterObject@ Ratio(uint ratio){Ratio=ratio; return this;}
-	CEncounterObject@ Dead(bool dead){Dead=dead; return this;}
-	CEncounterObject@ Minimum(uint minimum){Minimum=minimum; return this;}
-	CEncounterObject@ Maximum(uint maximum){Maximum=maximum; return this;}
-	CEncounterObject@ Slot(uint slot){Slot=slot; return this;}
+	CEncounterObject@ Ratio(uint ratio){RatioValue=ratio; return this;}
+	CEncounterObject@ Dead(bool dead){IsDead=dead; return this;}
+	CEncounterObject@ Slot(uint slot){InvSlot=slot; return this;}
 
 	CEncounterObject@ AddItem(uint16 pid, uint min, uint max, uint slot)
 	{
@@ -367,7 +365,7 @@ class CEncounterObject
 		new_child.Pid=pid;
 		new_child.Minimum=min;
 		new_child.Maximum=max;
-		new_child.Slot=slot;
+		new_child.InvSlot=slot;
 		return this;
 	}
 }
@@ -415,8 +413,8 @@ class CEncounter
 {
 	uint Chance;
 	uint StrNum;
-	uint16 LocationPid;
-	bool Special;
+	uint16 LocPid;
+	bool IsSpecial;
 	uint[] Groups;
 	uint[] RatioMin;
 	uint[] RatioMax;
@@ -427,8 +425,8 @@ class CEncounter
 	{
 		Chance=0;
 		StrNum=0;
-		LocationPid=0;
-		Special=false;
+		LocPid=0;
+		IsSpecial=false;
 	}
 
 	CEncounter@ AddGroup(uint group, uint ratioMin, uint ratioMax)
@@ -457,8 +455,8 @@ class CEncounter
 		return this;
 	}
 
-	CEncounter@ LocationPid(uint16 locationPid){LocationPid=locationPid; return this;}
-	CEncounter@ Special(bool special){Special=special; return this;}
+	CEncounter@ LocationPid(uint16 locationPid){LocPid=locationPid; return this;}
+	CEncounter@ Special(bool special){IsSpecial=special; return this;}
 	CEncounter@ CheckRandom(int value){NewCheck(CHECK_RANDOM,0,0,value); return this;}
 	CEncounter@ CheckParam(uint index, uint8 operator, int value){NewCheck(CHECK_PARAM,index,operator,value); return this;}
 	CEncounter@ CheckParamAny(uint index, uint8 operator, int value){NewCheck(CHECK_PARAM_ANY,index,operator,value); return this;}
@@ -770,7 +768,7 @@ CFoundedEncounter@ GetNearFoundedEncounter(bool isWater, Critter@[]@ group, uint
 		if(ge.IsWater!=isWater) continue;
 		if(__FullSecond-ge.FullSecond>=FOUNDED_ENCOUNTER_LIVE_TIME) continue;
 		if(not ge.IsGenerated) continue;
-		if(valid(ge.Encounter) && ge.Encounter.Special && not CheckChecks(ge.Encounter.Checks,group)) continue;
+		if(valid(ge.Encounter) && ge.Encounter.IsSpecial && not CheckChecks(ge.Encounter.Checks,group)) continue;
 		if(uint(sqrt(float(POW2(ge.PositionX-x)+POW2(ge.PositionY-y))))>radius) continue;
 		if(group[0].Id==ge.OwnerId) continue;
 		if(not valid(GetLocation(ge.LocationId))) continue;
@@ -854,16 +852,16 @@ void ParseEncounterObject(CEncounterObject@ obj, Map@ map, uint16 posX, uint16 p
 				{
 					items.insertLast(child.Pid);
 					items.insertLast(count);
-					items.insertLast(child.Slot);
+					items.insertLast(child.InvSlot);
 				}
 			}
 		}
 
-		int[] params={ST_DIALOG_ID,obj.Dialog,ST_BAG_ID,BAG_Empty,ST_TEAM_ID,teamId,ST_REPLICATION_TIME,-1};
-		Critter@ npc=map.AddNpc(obj.Pid,posX,posY,reversDir,params,items,obj.Script);
+		int[] params={ST_DIALOG_ID,obj.DialogId,ST_BAG_ID,BAG_Empty,ST_TEAM_ID,teamId,ST_REPLICATION_TIME,-1};
+		Critter@ npc=map.AddNpc(obj.Pid,posX,posY,reversDir,params,items,obj.ScriptName);
 		if(not valid(npc)) return;
 
-		if(obj.Dead)
+		if(obj.IsDead)
 		{
 			npc.ToDead(Random(0,1)==0?ANIM2_DEAD_FRONT:ANIM2_DEAD_BACK,null);
 		}
@@ -921,7 +919,7 @@ void ActionFighting(Critter@[]& npcL, Critter@[]& npcR)
 Map@ GenerateEncounter(CFoundedEncounter@ fe, Critter@[]@ critters)
 {
 	CEncounter@ encounter=fe.Encounter;
-	uint16 locPid=(valid(encounter)?encounter.LocationPid:0);
+	uint16 locPid=(valid(encounter)?encounter.LocPid:0);
 	if(locPid==0) locPid=fe.LocationPids[Random(0,fe.LocationPids.length()-1)];
 
 	fe.LocationId=CreateLocation(locPid,fe.PositionX,fe.PositionY,null);
@@ -1036,8 +1034,8 @@ Map@ GenerateEncounter(CFoundedEncounter@ fe, Critter@[]@ critters)
 
 			if(not CheckChecks(obj.Checks,critters)) continue;
 
-			uint otherDistance=obj.Distance;
-			uint count=obj.Ratio*ratio/100;
+			uint otherDistance=obj.DistanceLength;
+			uint count=obj.RatioValue*ratio/100;
 			if(count==0) count=1;
 
 			uint16 oldPosX=startX,oldPosY=startY;

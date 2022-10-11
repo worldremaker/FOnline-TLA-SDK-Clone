@@ -112,16 +112,16 @@ ToolShowInfoInWeight toolShowInfoInWeight;
 ToolBottle toolBottle;
 void SetToolsExt()
 {
-	Tools[0].CallbackDemand(toolAxe,PID_AXE)
-			.CallbackResult(toolAxe,PID_FIREWOOD);
-	Tools[1].CallbackSetTimeouts(toolSuperSledge,PID_SUPER_SLEDGE);
-	Tools[2].CallbackSetTimeouts(toolSuperSledge,PID_SUPER_SLEDGE)
-	        .CallbackAddExp(toolGiveExpForOre,PID_METAL_ORE)
-			.CallbackResult(toolShowInfoInWeight,PID_METAL_ORE)
-			.CallbackResult(toolShowInfoInWeight,PID_MINERAL);
-	Tools[4].CallbackDemand(toolBottle,PID_BOTTLE_EMPTY)
-			.CallbackResult(toolBottle,PID_BOTTLE_AMMIAK)
-			.CallbackSetTimeouts(toolBottle,PID_BOTTLE_EMPTY);
+	Tools[0].SetCallbackDemand(toolAxe,PID_AXE)
+			.SetCallbackResult(toolAxe,PID_FIREWOOD);
+	Tools[1].SetCallbackSetTimeouts(toolSuperSledge,PID_SUPER_SLEDGE);
+	Tools[2].SetCallbackSetTimeouts(toolSuperSledge,PID_SUPER_SLEDGE)
+	        .SetCallbackAddExp(toolGiveExpForOre,PID_METAL_ORE)
+			.SetCallbackResult(toolShowInfoInWeight,PID_METAL_ORE)
+			.SetCallbackResult(toolShowInfoInWeight,PID_MINERAL);
+	Tools[4].SetCallbackDemand(toolBottle,PID_BOTTLE_EMPTY)
+			.SetCallbackResult(toolBottle,PID_BOTTLE_AMMIAK)
+			.SetCallbackSetTimeouts(toolBottle,PID_BOTTLE_EMPTY);
 }
 
 
@@ -147,11 +147,11 @@ class CStarter
 			tool.CallbackResult.resize(tool.NewItemsPids.length());
 			tool.CallbackSetTimeouts.resize(tool.ToolPids.length());
 			tool.CallbackAddExp.resize(tool.NewItemsPids.length());
-			tool.CallbackDemand(defTool)
-			    .CallbackResult(defTool)
-				.CallbackGetTimeouts(defTool)
-				.CallbackSetTimeouts(defTool)
-				.CallbackAddExp(defTool);
+			tool.SetCallbackDemand(defTool)
+			    .SetCallbackResult(defTool)
+				.SetCallbackGetTimeouts(defTool)
+				.SetCallbackSetTimeouts(defTool)
+				.SetCallbackAddExp(defTool);
 		}
 		SetToolsExt();
 	}
@@ -180,7 +180,7 @@ class CTool
 	IResourceGetTimeouts@ CallbackGetTimeouts;
 	IResourceSetTimeouts@[] CallbackSetTimeouts;
 	IResourceAddExp@[] CallbackAddExp;
-	CTool@ CallbackDemand(IResourceDemand@ callback)
+	CTool@ SetCallbackDemand(IResourceDemand@ callback)
 	{
 		for(uint i=0;i<ToolPids.length();i++)
 		{
@@ -188,7 +188,7 @@ class CTool
 		}
 		return this;
 	}
-	CTool@ CallbackResult(IResourceResult@ callback)
+	CTool@ SetCallbackResult(IResourceResult@ callback)
 	{
 		for(uint i=0;i<NewItemsPids.length();i++)
 		{
@@ -196,7 +196,7 @@ class CTool
 		}
 		return this;
 	}
-	CTool@ CallbackDemand(IResourceDemand@ callback, uint16 toolPid)
+	CTool@ SetCallbackDemand(IResourceDemand@ callback, uint16 toolPid)
 	{
 		int toolIdx=GetToolIdx(toolPid);
 		if(toolIdx!=-1)
@@ -209,7 +209,7 @@ class CTool
 		}
 		return this;
 	}
-	CTool@ CallbackResult(IResourceResult@ callback, uint16 newItemPid)
+	CTool@ SetCallbackResult(IResourceResult@ callback, uint16 newItemPid)
 	{
 		int16 newItemIdx=GetNewItemIdx(newItemPid);
 		if(newItemIdx!=-1)
@@ -222,12 +222,12 @@ class CTool
 		}
 		return this;
 	}
-	CTool@ CallbackGetTimeouts(IResourceGetTimeouts@ callback)
+	CTool@ SetCallbackGetTimeouts(IResourceGetTimeouts@ callback)
 	{
 		@CallbackGetTimeouts=callback;
 		return this;
 	}
-	CTool@ CallbackSetTimeouts(IResourceSetTimeouts@ callback)
+	CTool@ SetCallbackSetTimeouts(IResourceSetTimeouts@ callback)
 	{
 		for(uint i=0;i<ToolPids.length();i++)
 		{
@@ -235,7 +235,7 @@ class CTool
 		}
 		return this;
 	}
-	CTool@ CallbackSetTimeouts(IResourceSetTimeouts@ callback, uint16 toolPid)
+	CTool@ SetCallbackSetTimeouts(IResourceSetTimeouts@ callback, uint16 toolPid)
 	{
 		int toolIdx=GetToolIdx(toolPid);
 		if(toolIdx!=-1)
@@ -248,7 +248,7 @@ class CTool
 		}
 		return this;
 	}
-	CTool@ CallbackAddExp(IResourceAddExp@ callback)
+	CTool@ SetCallbackAddExp(IResourceAddExp@ callback)
 	{
 		for(uint i=0;i<NewItemsPids.length();i++)
 		{
@@ -256,7 +256,7 @@ class CTool
 		}
 		return this;
 	}
-	CTool@ CallbackAddExp(IResourceAddExp@ callback, uint16 newItemPid)
+	CTool@ SetCallbackAddExp(IResourceAddExp@ callback, uint16 newItemPid)
 	{
 		int16 newItemIdx=GetNewItemIdx(newItemPid);
 		if(newItemIdx!=-1)

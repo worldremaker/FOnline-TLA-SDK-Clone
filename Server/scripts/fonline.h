@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 04.05.2011
-// Server version 443, MSVS2008
+// Last update 26.08.2011
+// Server version 446, MSVS2008
 // Default calling convention - cdecl
 //
 
@@ -500,7 +500,7 @@ struct GameOptions
 	uint   ClientMapWidth;
 	uint   ClientMapHeight;
 
-	Sprite* (*GetDrawingSprites)(uint& count); // Array of currently drawing sprites, tree is sorted
+	Sprite** (*GetDrawingSprites)(uint& count); // Array of currently drawing sprites, tree is sorted
 	SpriteInfo* (*GetSpriteInfo)(uint sprId); // Sprite information
 	uint (*GetSpriteColor)(uint sprId, int x, int y, bool affectZoom); // Color of pixel on sprite
 	bool (*IsSpriteHit)(Sprite* sprite, int x, int y, bool checkEgg); // Is position hitting sprite
@@ -548,7 +548,6 @@ struct ScriptArray
 		uint8  Data[1];
 	} *Buffer;
 
-	bool   IsArrayOfHandles;
 	int    ElementSize;
 	int    CmpFuncId;
 	int    EqFuncId;
@@ -1825,7 +1824,7 @@ inline void static_asserts()
 	STATIC_ASSERT(sizeof(ProtoItem)   == 908 );
 	STATIC_ASSERT(sizeof(Mutex)       == 24  );
 	STATIC_ASSERT(sizeof(GameOptions) == 1184);
-	STATIC_ASSERT(sizeof(ScriptArray) == 40  );
+	STATIC_ASSERT(sizeof(ScriptArray) == 36  );
 	STATIC_ASSERT(sizeof(SpriteInfo)  == 36  );
 	STATIC_ASSERT(sizeof(Field)       == 76  );
 #ifdef __MAPPER

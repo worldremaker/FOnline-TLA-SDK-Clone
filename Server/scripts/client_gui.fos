@@ -39,10 +39,10 @@ class GUIElement : IGUIElementOpt
 		MousePressed.resize(MOUSE_CLICK_EXT4+1);
 		for(uint i=0,j=MousePressed.length();i<j;i++) MousePressed[i]=false;
 		SwitchEnabled=false;
-		@CallbackInit=null;
-		@CallbackDraw=null;
-		@CallbackMouseClick=null;
-		@CallbackKeyPress=null;
+		@InitCallback=null;
+		@DrawCallback=null;
+		@MouseClickCallback=null;
+		@KeyPressCallback=null;
 	}
 
 	void Draw(int screenX, int screenY)
@@ -50,15 +50,15 @@ class GUIElement : IGUIElementOpt
 		if(Surface.Id!=0) DrawSprite(Surface.Id,-1,screenX+PosX,screenY+PosY,0);
 		bool isDown=((MousePressed[MOUSE_CLICK_LEFT] || SwitchEnabled) && DownSpr.Id!=0);
 		if(isDown) DrawSprite(DownSpr.Id,-1,screenX+PosX,screenY+PosY,0);
-		if(Text!="") DrawText(Text,screenX+PosX,screenY+PosY,
+		if(Label!="") DrawText(Label,screenX+PosX,screenY+PosY,
 			Surface.Width!=0?Surface.Width:__ScreenWidth,(Surface.Height!=0?Surface.Height:__ScreenHeight)-(isDown?2:0),
 			IsTextInput && IsFocused?TextColorFocused:(isDown && TextColorDown!=0?TextColorDown:TextColor),Font,TextFlags);
-		if(not (CallbackDraw is null)) CallbackDraw.OnDraw();
+		if(not (DrawCallback is null)) DrawCallback.OnDraw();
 	}
 
 	bool MouseDown(int click)
 	{
-		if(DownSpr.Id!=0 || not (CallbackMouseClick is null) || IsTextInput)
+		if(DownSpr.Id!=0 || not (MouseClickCallback is null) || IsTextInput)
 		{
 			MousePressed[click]=true;
 			return true;
@@ -68,7 +68,7 @@ class GUIElement : IGUIElementOpt
 
 	void MouseUp(int click, bool isCollision)
 	{
-		if(not (CallbackMouseClick is null) && MousePressed[click] && isCollision) CallbackMouseClick.OnMouseClick(click);
+		if(not (MouseClickCallback is null) && MousePressed[click] && isCollision) MouseClickCallback.OnMouseClick(click);
 		MousePressed[click]=false;
 	}
 
@@ -79,9 +79,9 @@ class GUIElement : IGUIElementOpt
 	bool KeyPress(uint8 key)
 	{
 		uint8 letter=0;
-		bool result=ProcessKey(key,Text,letter);
-		if(Text.length()>InputMaxLen) Text.resize(InputMaxLen);
-		if(not (CallbackKeyPress is null)) CallbackKeyPress.OnKeyPress(key,letter);
+		bool result=ProcessKey(key,Label,letter);
+		if(Label.length()>InputMaxLen) Label.resize(InputMaxLen);
+		if(not (KeyPressCallback is null)) KeyPressCallback.OnKeyPress(key,letter);
 		return result;
 	}
 
@@ -97,10 +97,10 @@ class GUIElement : IGUIElementOpt
 	}
 
 	// Options
-	IGUIElementOpt@ CallbackInit(IGUIElementCallbackInit@ callback) { @CallbackInit=callback; return this; }
-	IGUIElementOpt@ CallbackDraw(IGUIElementCallbackDraw@ callback) { @CallbackDraw=callback; return this; }
-	IGUIElementOpt@ CallbackMouseClick(IGUIElementCallbackMouseClick@ callback) { @CallbackMouseClick=callback; return this; }
-	IGUIElementOpt@ CallbackKeyPress(IGUIElementCallbackKeyPress@ callback) { @CallbackKeyPress=callback; return this; }
+	IGUIElementOpt@ CallbackInit(IGUIElementCallbackInit@ callback) { @InitCallback=callback; return this; }
+	IGUIElementOpt@ CallbackDraw(IGUIElementCallbackDraw@ callback) { @DrawCallback=callback; return this; }
+	IGUIElementOpt@ CallbackMouseClick(IGUIElementCallbackMouseClick@ callback) { @MouseClickCallback=callback; return this; }
+	IGUIElementOpt@ CallbackKeyPress(IGUIElementCallbackKeyPress@ callback) { @KeyPressCallback=callback; return this; }
 
 	IGUIElementOpt@ Position(int x, int y)
 	{
@@ -158,8 +158,11 @@ class GUIElement : IGUIElementOpt
 
 	IGUIElementOpt@ Text(string@ text, int font, uint color, uint downColor, int flags)
 	{
-		if(text is null) Text="";
-		else Text=text; Font=font;
+		if(text is null)
+			Label="";
+		else
+			Label=text;
+		Font=font;
 		TextColor=color;
 		TextColorDown=downColor;
 		TextFlags=flags;
@@ -183,7 +186,7 @@ class GUIElement : IGUIElementOpt
 	// Info
 	int GetPosX() { return PosX; }
 	int GetPosY() { return PosY; }
-	string@ GetText() { return Text; }
+	string@ GetText() { return Label; }
 
 	// Data
 	int PosX;
@@ -191,7 +194,7 @@ class GUIElement : IGUIElementOpt
 	Sprite Surface;
 	Sprite DownSpr;
 	int DefaultPath;
-	string Text;
+	string Label;
 	int Font;
 	uint TextColor;
 	uint TextColorFocused;
@@ -202,10 +205,10 @@ class GUIElement : IGUIElementOpt
 	bool IsFocused;
 	bool[] MousePressed;
 	bool SwitchEnabled;
-	IGUIElementCallbackInit@ CallbackInit;
-	IGUIElementCallbackDraw@ CallbackDraw;
-	IGUIElementCallbackMouseClick@ CallbackMouseClick;
-	IGUIElementCallbackKeyPress@ CallbackKeyPress;
+	IGUIElementCallbackInit@ InitCallback;
+	IGUIElementCallbackDraw@ DrawCallback;
+	IGUIElementCallbackMouseClick@ MouseClickCallback;
+	IGUIElementCallbackKeyPress@ KeyPressCallback;
 }
 
 class GUIScreen : IGUIScreenOpt
@@ -232,9 +235,9 @@ class GUIScreen : IGUIScreenOpt
 		PosY=__ScreenHeight/2-Surface.Height/2;
 		LastX=0;
 		LastY=0;
-		@CallbackShow=null;
-		@CallbackHide=null;
-		@CallbackMove=null;
+		@ShowCallback=null;
+		@HideCallback=null;
+		@MoveCallback=null;
 	}
 
 	void Draw()
@@ -321,7 +324,7 @@ class GUIScreen : IGUIScreenOpt
 				LastX+=PosX-px;
 				LastY+=PosY-py;
 			}
-			if(not (CallbackMove is null) && (lastPosX!=PosX || lastPosY!=PosY)) CallbackMove.OnMove(PosX,PosY);
+			if(not (MoveCallback is null) && (lastPosX!=PosX || lastPosY!=PosY)) MoveCallback.OnMove(PosX,PosY);
 		}
 
 		for(uint i=0,j=Elements.length();i<j;i++) Elements[i].MouseMove(x,y);
@@ -346,15 +349,15 @@ class GUIScreen : IGUIScreenOpt
 	GUIScreen@ GetNewInstance()
 	{
 		GUIScreen screen=this;
-		IGUIScreenCallbackShow@ newCallback=CallbackShow;
+		IGUIScreenCallbackShow@ newCallback=ShowCallback;
 		for(uint i=0,j=Elements.length();i<j;i++) @screen.Elements[i]=Elements[i].GetNewInstance();
 		return @screen;
 	}
 
 	// Options
-	IGUIScreenOpt@ CallbackShow(IGUIScreenCallbackShow@ callback){@CallbackShow=callback; return this;}
-	IGUIScreenOpt@ CallbackHide(IGUIScreenCallbackHide@ callback){@CallbackHide=callback; return this;}
-	IGUIScreenOpt@ CallbackMove(IGUIScreenCallbackMove@ callback){@CallbackMove=callback; return this;}
+	IGUIScreenOpt@ CallbackShow(IGUIScreenCallbackShow@ callback){@ShowCallback=callback; return this;}
+	IGUIScreenOpt@ CallbackHide(IGUIScreenCallbackHide@ callback){@HideCallback=callback; return this;}
+	IGUIScreenOpt@ CallbackMove(IGUIScreenCallbackMove@ callback){@MoveCallback=callback; return this;}
 	IGUIScreenOpt@ Position(int x, int y){PosX=x; PosY=y; return this;}
 	IGUIScreenOpt@ CanMove(bool enabled){IsCanMove=enabled; return this;}
 	IGUIScreenOpt@ Modal(bool enabled){IsModal=enabled; return this;}
@@ -394,9 +397,9 @@ class GUIScreen : IGUIScreenOpt
 
 	bool IsHardcoded;
 	bool IsLMouseDown;
-	IGUIScreenCallbackShow@ CallbackShow;
-	IGUIScreenCallbackHide@ CallbackHide;
-	IGUIScreenCallbackMove@ CallbackMove;
+	IGUIScreenCallbackShow@ ShowCallback;
+	IGUIScreenCallbackHide@ HideCallback;
+	IGUIScreenCallbackMove@ MoveCallback;
 	GUIElement@[] Elements;
 }
 
@@ -599,7 +602,7 @@ void GUI_ShowScreen(int screenIndex, int p0, int p1, int p2)
 				if(ActiveScreens[i].Index==screenIndex)
 				{
 					ActiveScreens.removeAt(i);
-					if(not (screen.CallbackHide is null)) screen.CallbackHide.OnHide(p0,p1,p2);
+					if(not (screen.HideCallback is null)) screen.HideCallback.OnHide(p0,p1,p2);
 				}
 			}
 		}
@@ -621,17 +624,17 @@ void GUI_ShowScreen(int screenIndex, int p0, int p1, int p2)
 		for(uint i=0,j=screen.Elements.length();i<j;i++)
 		{
 			GUIElement@ e=screen.Elements[i];
-			if(not (e.CallbackInit is null))
+			if(not (e.InitCallback is null))
 			{
 				@LastElementOpt=e;
-				e.CallbackInit.OnInit();
+				e.InitCallback.OnInit();
 				@LastElementOpt=null;
 			}
 		}
 		// Then show
-		if(not (screen.CallbackShow is null))
+		if(not (screen.ShowCallback is null))
 		{
-			screen.CallbackShow.OnShow(p0,p1,p2);
+			screen.ShowCallback.OnShow(p0,p1,p2);
 		}
 		@LastScreenOpt=null;
 	}
@@ -649,9 +652,9 @@ void GUI_HideScreen(int screenIndex, int p0, int p1, int p2)
 			ActiveScreens.removeAt(i);
 
 			// Hide callback
-			if(not (screen.CallbackHide is null))
+			if(not (screen.HideCallback is null))
 			{
-				screen.CallbackHide.OnHide(p0,p1,p2);
+				screen.HideCallback.OnHide(p0,p1,p2);
 			}
 
 			// Restore cursor
