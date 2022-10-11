@@ -5,7 +5,7 @@
 // Author: rifleman17
 // NoPvp режим для некоторых карт на сервере
 // Если включен при первом запуске, нежелательно отключать без вайпа, иначе смешаются пвп и нопвп персонажи
-
+/*
 const uint[] noPvpMaps = {MAP_arroyo_temple_entrance, 
 	MAP_arroyo, MAP_arroyo_garden, MAP_arroyo_bridge, MAP_arroyo_temple, 
 	MAP_den, MAP_den_carstop, MAP_klamath, MAP_klamath_mall, 
@@ -18,7 +18,10 @@ const uint[] noPvpMaps = {MAP_arroyo_temple_entrance,
 	MAP_repl_bank_den, MAP_repl_bank_klamath, MAP_repl_bank_redding, MAP_repl_bank_modoc, MAP_repl_bank_newreno, 
 	MAP_repl_bank_gecko, MAP_repl_bank_broken, MAP_repl_bank_ncr, MAP_repl_bank_sf, MAP_repl_bank_vcity, 
 	MAP_replication1, MAP_replication2, MAP_replication3, MAP_replication4};
-	
+*/	
+
+const uint[] noPvpMaps = {MAP_klamath, MAP_klamath_mall,MAP_barter_ground};
+
 const int[] excludeDialogs = {DIALOG_mod_aureliano,DIALOG_arroyo_gayzum, DIALOG_arroyo_laumer, DIALOG_arroyo_selma, DIALOG_vc_mutant_charley, DIALOG_ncr_westin, DIALOG_ncr_smit, DIALOG_sf_citizen_shue, DIALOG_vc_shrim, DIALOG_vc_kohl, DIALOG_vc_randal, DIALOG_vc_ed, DIALOG_sf_kuraru, DIALOG_sf_bruce, DIALOG_sf_khung, DIALOG_sf_wei, DIALOG_sf_imbot,DIALOG_sf_master_khung, DIALOG_sf_kuraru, DIALOG_redd_wade, DIALOG_redd_savinel, DIALOG_redd_stanwell, DIALOG_ncr_hal,
 DIALOG_bh_kit, DIALOG_ncr_hate, DIALOG_vc_shrim, DIALOG_vc_guard_fighter};
 const int[] btInvul = {BT_MEN, BT_WOMEN, BT_CHILDREN, BT_SUPER_MUTANT, BT_GHOUL};
@@ -34,6 +37,7 @@ void OnCitterMapIn(Critter& cr, Map& map)
 	if(cr.IsPlayer() && IsNoPvpMap(map))
 	{
 		cr.ModeBase[MODE_NO_PVP] = 1;
+		cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 1);
 		if(cr.GetTimeEvents(CTE_NOPVP_OFF, null, null, null) == 0)
 		{
 			cr.AddTimeEvent("cte_NoPvpOff", TIME_CHECK, CTE_NOPVP_OFF);
@@ -58,7 +62,10 @@ void OnCritterMapOut(Critter& cr, Map& map)
 	if(valid(mapCr)&& IsNoPvpMap(mapCr))
 		return;
 	if(__NoPvpMaps && cr.IsPlayer() && cr.Mode[MODE_NO_PVP] > 0) // если но пвп карты не включены, персонаж получил нопвп режим другим способом, не отменяем
+	{
 		cr.ModeBase[MODE_NO_PVP] = 0;
+		cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 2);
+	}
 }
 
 bool IsNoPvpMap(Map& map)

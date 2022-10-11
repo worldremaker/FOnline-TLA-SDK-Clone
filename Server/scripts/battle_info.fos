@@ -46,8 +46,9 @@ class BattleTeam
 	uint[]  Requests;          // Id персонажей, подавших за€вку на участие в поединке в составе данной команды
 	uint[]  Players;           // Id персонажей, подтвердивших свое участие в поединке
 	uint    TeamKills;         // —четчик убийств, произведенных персонажами в составе группы
-	int     LastPeekedRequestId; //  од персонажа дл€ последней за€вки в команде, по которой было отправлено приглашение, получен ответ.
+	uint    LastPeekedRequestId; //  од персонажа дл€ последней за€вки в команде, по которой было отправлено приглашение, получен ответ.
 	bool    LastRequestAccepted;
+	int     BattlePoints;      // »гровые очки, исход€ из количества очков команды формируетс€ призовой фонд
 	bool 	Winner;
 	uint    Color;
 	
@@ -65,7 +66,7 @@ class BattleTeam
 	
 	bool HasRequest(uint crId)
 	{
-		return (FindInArray(this.Requests, crId) >= 0);
+		return (this.LastPeekedRequestId == crId || FindInArray(this.Requests, crId) >= 0);
 	}
 	
 	bool HasPlayer(uint crId)
@@ -120,6 +121,8 @@ class BattleTeam
 			{
 				if(cr.IsPlayer())
 				{
+					uint[] data = {this.Index, cr.Id};
+					CreateTimeEvent(__FullSecond+__TimeMultiplier*10, "e_CheckInvite", data, false);
 					cr.ShowScreen(SCREEN_DIALOGBOX,2,"answer_BattleInvite");
 					cr.Say(SAY_DIALOGBOX_TEXT,"¬нимание. Ќачинаетс€ поединок. ¬ы готовы прин€ть участие?");
 					cr.Say(SAY_DIALOGBOX_BUTTON(ANSWER_CONFIRM_INVITE),"ƒа");
@@ -142,9 +145,10 @@ class BattleTeam
 	
 	void RequestToPlayer(Location@ loc)
 	{
+		DL("Request confirmed");
 		if(!valid(loc))
 			return;
-		Map@ map = GetMap(StartMapIndex);//loc.GetMapByIndex(StartMapIndex);
+		Map@ map = GetMap(this.StartMapIndex);//loc.GetMapByIndex(StartMapIndex);
 		bool transit = true;
 		if(valid(map))
 		{
@@ -172,6 +176,7 @@ class BattleInfo
 {
 	uint LocId;               // Id локации, на которой идет поединок
 	uint8 Stage;              // “екуща€ стади€ событи€
+	uint8 MaxPlayers;
 	BattleTeam[] Teams;
 	
 	IBattleInfoStageChangedHandler@ StageChangedHandler;
@@ -215,18 +220,23 @@ class BattleInfo
 			DL("Adding Request. Team#" + team + "; crId = " + crId);
 			if(!this.Teams[team].HasRequest(crId))
 				this.Teams[team].Requests.insertLast(crId);
+			DL("1->" + (this.Teams[team].HasRequest(crId)?"has request" + crId : "no request" + crId));
+			crId = 1;
+			DL("2->" + (this.Teams[team].HasRequest(crId)?"has request" + crId : "no request" + crId));
 		}
 	}
 	
 	BattleTeam@ GetCritterTeam (uint crId)
 	{
+		DL("get cr team: " + crId);
 		for(uint i = 0, l = this.Teams.length(); i < l; i++)
 		{		
-			if((this.Stage == STAGE_PREPARE || this.Stage == STAGE_BEGIN )&& this.Teams[i].HasRequest(crId))
+			if(this.Stage < STAGE_FIGHT && this.Teams[i].HasRequest(crId))
 				return this.Teams[i];
 			if(this.Teams[i].HasPlayer(crId))
 				return this.Teams[i];
 		}
+		DL("team invalid");
 		return null;
 	}
 
@@ -243,7 +253,6 @@ class BattleInfo
 		int crId;
 		for(uint i = 0, l = this.Teams.length(); i < l; i++)
 		{
-			DL("i="+i+";l="+l);
 			if (!this.Teams[i].SendTeamInvite())
 				return false; // ¬ одной из команд некому отправл€ть приглашение
 		}
@@ -264,6 +273,7 @@ class BattleInfo
 		for(uint i = 0, l = this.Teams.length(); i < l; i++)
 		{
 			this.Teams[i].RequestToPlayer(GetLocation(this.LocId));
+			this.Teams[i].LastRequestAccepted = false;
 		}
 		// —ледующа€ итераци€ 2ой, 3ий, четвертый участник в каждой команде и т.д.
 		this.SendTeamsInvite();
@@ -287,6 +297,7 @@ class BattleInfo
 			this.Teams[i].TeamKills = 0;
 			this.Teams[i].LastPeekedRequestId = 0;
 			this.Teams[i].LastRequestAccepted = false;
+			this.Teams[i].BattlePoints = 0;
 		}
 	}
 	
@@ -301,7 +312,6 @@ class BattleInfo
 			{
 				for(uint i = 0, l = maps.length(); i < l; i++)
 				{
-					DL("setting map in script");
 					maps[i].SetEvent(MAP_EVENT_IN_CRITTER, "_BattleMapCritterIn");
 				}
 			}
@@ -367,7 +377,10 @@ class BattleInfo
 			for(uint i = 0, l = this.Teams.length(); i < l; i++)
 			{
 				if(this.Teams[i].CountAlive() > 0)
+				{
 					this.Teams[i].Winner = true;
+					this.Teams[i].BattlePoints += this.Teams[i].CountAlive(); // Ѕонус к очкам за живых членов команды
+				}
 			}
 		}
 		if(activeTeams < 2) // может быть ни одного победител€, если все мертвы
@@ -407,6 +420,16 @@ class BattleInfo
 			}
 		}
 	}
+		
+	BattleTeam@ GetWinnerTeam()
+	{
+		for(uint i = 0, l = this.Teams.length(); i < l; i++)
+		{
+			if(this.Teams[i].Winner)
+				return this.Teams[i];
+		}
+		return null;
+	}
 }
 
 // ¬спомогательные функции
@@ -415,18 +438,31 @@ class BattleInfo
 // ѕриглашение на участие
 void answer_BattleInvite(Critter& player, uint answerI, string& answerS)
 {
-	DL("Answer called");
+	DL("Answer called. Answ " + answerI);
 	BattleTeam@ bt = bInfo.GetCritterTeam(player.Id);
-	if(!valid(bt))
-		return;
-	if (answerI == ANSWER_CONFIRM_INVITE)
-	{	
-		bt.ConfirmInvite();
-	}	
-	if (answerI == ANSWER_REJECT_INVITE)
+	if(valid(bt) && bt.LastPeekedRequestId == player.Id)
 	{
-		bt.SendTeamInvite();
+		DL("team valid");
+		if (answerI == ANSWER_CONFIRM_INVITE)
+		{	
+			DL("Invite confirmed");
+			bt.ConfirmInvite();
+			return;
+		}
+		bt.SendTeamInvite();	
 	}
+}
+
+// ≈сли по каким то причинам последн€€ за€вка не получила ответа, или игрок слишком долго думает
+uint e_CheckInvite(uint[]@ values)
+{
+	BattleTeam@ bt = bInfo.Teams[values[0]];
+	uint crId = values[1];
+	if(crId == bt.LastPeekedRequestId)
+	{
+		bt.SendTeamInvite();	
+	}
+	return 0;
 }
 
 // ƒиалоги
@@ -588,6 +624,8 @@ void _BattleMapCritterDead(Map& map, Critter& cr, Critter@ killer)
 {
 	// ”битый должен быть членом одной из команд, чтобы убийство пошло в зачет
 	BattleTeam@ btDead = bInfo.GetCritterTeam(cr.Id);
+	if(valid(bInfo.Callback))
+		bInfo.Callback.OnCritterDead(cr, killer);
 	if(!valid(btDead))
 		return;
 	if(valid(killer))
@@ -595,6 +633,7 @@ void _BattleMapCritterDead(Map& map, Critter& cr, Critter@ killer)
 		BattleTeam@ btKiller = bInfo.GetCritterTeam(killer.Id);
 		if(valid(btKiller))
 		{	
+			btKiller.BattlePoints += GetPoints(cr, killer);
 			PlayerDeadMessage(cr, killer, map);
 			btKiller.TeamKills++;
 		}
@@ -679,7 +718,7 @@ string GetTeamPlayers(BattleTeam@ team)
 				@cr = GetCritter(bInfo.Stage>=STAGE_BEGIN ? team.Players[i] : team.Requests[i]);
 				if(valid(cr))
 				{
-					teamText += _PlayerName(cr) + " lvl: " + cr.Stat[ST_LEVEL];
+					teamText += _PlayerName(cr) + " (" + cr.Stat[ST_LEVEL] + ")";
 					if(cr.IsDead())
 						teamText += "[Dead]";
 					teamText += "\n";
@@ -694,6 +733,36 @@ string GetTeamPlayers(BattleTeam@ team)
 	}
 	DL(teamText);
 	return teamText;
+}
+
+int GetPoints(Critter@ cr, Critter@ killer)
+{
+	if(!valid(cr) ||!valid(killer))
+		return 0;
+	BattleTeam@ teamCr = bInfo.GetCritterTeam(cr.Id);
+	BattleTeam@ teamKiller = bInfo.GetCritterTeam(killer.Id);
+	if(!valid(teamCr) || !valid(teamKiller))
+		return -1;
+	int points = 1;
+	if(killer.IsPlayer())
+		points++;
+	if(cr.IsPlayer())
+		points++;
+	if(killer.Stat[ST_LEVEL] <= cr.Stat[ST_LEVEL])
+		points+=3;
+	if(cr.Stat[ST_LEVEL]>10)
+		points+=2;
+	if(cr.Stat[ST_LEVEL]>20)
+		points+=3;
+	if(cr.Stat[ST_LEVEL]>30)
+		points+=5;
+	if(killer.Stat[ST_LUCK]>4)
+		points++;
+	// ћаксимум за одного убитого 17 очков
+	// ћаксимум за бой, если команда убила всех противников
+	// 17*3*6 = 306
+	// „ем меньше участников, чем ниже их уровень, тем ниже шансы получить что-то полезное
+	return (teamCr.Index == teamKiller.Index ? (-1)*points : points);
 }
 
 void test (Critter& crp, int id ,int,int)

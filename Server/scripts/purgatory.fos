@@ -20,6 +20,7 @@
 #define ENTIRE_TEAM_3                        (35)
 #define ENTIRE_TEAM_4                        (36)
 
+#define _RndCont  #(containers) (containers[Random(0, containers.length()-1)])
 
 
 import bool GetNearEntire(Map& map, int number, uint16& hx, uint16& hy) from "entire";
@@ -59,18 +60,138 @@ class PurgatoryStageChangedHandler : IBattleInfoStageChangedHandler, IBattleInfo
 			{
 				loc.Visible = false;
 				loc.AutoGarbage = true;
+				CreateTimeEvent(__FullSecond+REAL_MINUTE(20), "e_DeletePurgatory", loc.Id, true);
 			}
+			BattleTeam@ winners = bInfo.GetWinnerTeam();
+			if(valid(winners))
+			{
+				Critter@[] players;
+				Map@ mapInfo = loc.GetMapByIndex(0);
+				mapInfo.GetCritters(0, FIND_ALL|FIND_ONLY_PLAYERS, players);
+				for(uint i = 0, l = players.length(); i < l; i++)
+				{
+					Critter@ player = players[i];
+					if(valid(player))
+						player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 7131, "$team" + (winners.Index+1));
+				}
+				int points = winners.BattlePoints;
+				int alive = winners.CountAlive();
+				Map@ map = loc.GetMapByIndex(1);
+				Item@[] containers;
+				Item@[] prizeContainers;
+				if(map.GetItemsByType(ITEM_TYPE_CONTAINER, containers) >0)
+				{
+					for(uint i = 0, l = containers.length(); i < l; i++)
+					{
+						if(containers[i].Val0 != 0)
+							prizeContainers.insertLast(containers[i]);
+					}
+					if(prizeContainers.length() > 0 && points > 0)
+					{
+						// Раздача призов
+						// Сначала обязательные призы
+						for(int i = 0; i < alive; i++)
+						{
+							_RndCont(prizeContainers).AddItem(PID_BOTTLE_CAPS, points*50, 0);
+							_RndCont(prizeContainers).AddItem(PID_METAL_ARMOR_MK_II, 1, 0);
+							_RndCont(prizeContainers).AddItem(PID_223_PISTOL, 1, 0);
+							_RndCont(prizeContainers).AddItem(PID_223_FMJ, points*2, 0);
+							_RndCont(prizeContainers).AddItem(PID_STIMPAK, 5, 0);
+						}
+						uint rnd = Random(1,3);
+						// ПА
+						if(points > 200 && rnd == 1)
+						{
+							_RndCont(prizeContainers).AddItem(PID_POWERED_ARMOR, 1, 0);
+							points-=50;						
+						}
+						if(points > 200)
+						{
+							_RndCont(prizeContainers).AddItem(PID_CATS_PAW_ISSUE_5, 2, 0);						
+						}
+						if(points > 200)
+						{
+							if(rnd == 1)
+							{
+								_RndCont(prizeContainers).AddItem(PID_M72_GAUSS_RIFLE, Random(1,2), 0);
+								_RndCont(prizeContainers).AddItem(PID_2MM_EC_AMMO, Random(333,444), 0);
+							}
+							if(rnd == 2)
+							{							
+								_RndCont(prizeContainers).AddItem(PID_VINDICATOR_MINIGUN, Random(1,2), 0);
+								_RndCont(prizeContainers).AddItem(PID_4_7MM_CASELESS, Random(4000,6000), 0);
+							}
+							if(rnd == 3)
+							{
+								_RndCont(prizeContainers).AddItem(PID_YK42B_PULSE_RIFLE, Random(1,2), 0);
+								_RndCont(prizeContainers).AddItem(PID_TURBO_PLASMA_RIFLE, Random(1,2), 0);
+								_RndCont(prizeContainers).AddItem(PID_MICRO_FUSION_CELL, Random(200,300), 0);
+							}
+							points-=50;						
+						}
+						if(points > 150)
+						{
+							for(int i = 0; i < alive; i++)
+							{
+								_RndCont(prizeContainers).AddItem(PID_COMBAT_ARMOR, 1, 0);
+								_RndCont(prizeContainers).AddItem(PID_FN_FAL_HPFA, 1, 0);
+								_RndCont(prizeContainers).AddItem(PID_AVENGER_MINIGUN, 1, 0);
+								_RndCont(prizeContainers).AddItem(PID_5MM_JHP, 500, 0);
+							}
+							points-=50;	
+						}
+						if(points > 100)
+						{
+							_RndCont(prizeContainers).AddItem(PID_SUPER_STIMPAK, 4*alive, 0);
+							_RndCont(prizeContainers).AddItem(PID_PSYCHO, 5*alive, 0);
+							_RndCont(prizeContainers).AddItem(PID_HYPO, 2*alive, 0);
+							points-=50;							
+						}
+						if(points > 50)
+						{
+							_RndCont(prizeContainers).AddItem(PID_SUPER_STIMPAK, 5*alive, 0);
+							_RndCont(prizeContainers).AddItem(PID_BUFFOUT, 2*alive, 0);
+							_RndCont(prizeContainers).AddItem(PID_JET, 2*alive, 0);
+							_RndCont(prizeContainers).AddItem(PID_BIG_BOOK_OF_SCIENCE, 2, 0);	
+							_RndCont(prizeContainers).AddItem(PID_FIRST_AID_BOOK, 2, 0);
+							_RndCont(prizeContainers).AddItem(PID_SCOUT_HANDBOOK, 2, 0);
+							_RndCont(prizeContainers).AddItem(PID_GUNS_AND_BULLETS, 2, 0);						
+						}
+					}
+				}
+				
+			}
+			
 		}
 	}
 	
 	void OnCritterDead(Critter& dead, Critter@ killer)
 	{
-	
+		BattleTeam@ btDead = bInfo.GetCritterTeam(dead.Id);
+		BattleTeam@ btKiller = bInfo.GetCritterTeam(killer.Id);
+		if(valid(btKiller) && valid(btDead) && killer.IsPlayer())
+		{
+			if(btKiller.Index == btDead.Index)
+			{
+				killer.StatBase[ST_REPLICATION_MONEY] -= 1000;
+				killer.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 7129);
+			}
+			else
+			{
+				uint xp = killer.Stat[ST_LEVEL] * 100;
+				killer.StatBase[ST_REPLICATION_MONEY] += 300;
+				killer.StatBase[ST_EXPERIENCE] += xp;
+				killer.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 7130, "$xp" + xp);
+			}
+		}
 	}
 }
 
-bool ReplicateCritterToBattle(Critter& cr, uint16& mapId, uint16& hexX, uint16& hexY)
+
+
+bool NeedReplicateCritterToBattle(Critter& cr)
 {
+	DL("replication called");
 	if(valid(bInfo) && cr.Stat[ST_NEXT_REPLICATION_MAP]>0 && cr.Stat[ST_NEXT_REPLICATION_ENTIRE]>0)
 	{
 		BattleTeam@ team = bInfo.GetCritterTeam(cr.Id);
@@ -79,17 +200,13 @@ bool ReplicateCritterToBattle(Critter& cr, uint16& mapId, uint16& hexX, uint16& 
 			if(team.StartMapIndex == uint(cr.Stat[ST_NEXT_REPLICATION_MAP]) &&
 			   team.StartEntire == uint(cr.Stat[ST_NEXT_REPLICATION_ENTIRE]))
 			{
-				mapId = team.StartMapIndex;
-				Map@ map = GetMap(mapId);
-				if(valid(map) && GetNearEntire(map, team.StartEntire, hexX, hexY))
-				{
-					cr.StatBase[ST_NEXT_REPLICATION_MAP] = 0;
-					cr.StatBase[ST_NEXT_REPLICATION_ENTIRE] = 0;
-					return true;
-				}
+				cr.StatBase[ST_REPLICATION_MONEY]+=cr.Stat[ST_REPLICATION_COST];
+				cr.StatBase[ST_REPLICATION_COUNT]-=1;
+				return true;
 			}
 		}
 	}
+	DL("false");
 	return false;
 }
 
@@ -134,6 +251,7 @@ uint e_RunPreparationStage(uint[]@ values)
 {
 	@bInfo = BattleInfo();
 	bInfo.SetStageHandler(stageHandler);
+	bInfo.SetCallBack(stageHandler);
 	Location@ loc = GetLocationByPid(LOCATION_Purgatory,0);
 	if(valid(loc))
 	{
@@ -284,6 +402,7 @@ void _PurgatoryMapIn(Map& map, Critter& cr)
 	if(cr.IsPlayer() && IsCritterInDeadZone(cr, map, 0, ENTIRE_NOPVP_FIRST, ENTIRE_NOPVP_LAST))
 	{
 		cr.ModeBase[MODE_NO_PVP] = 1;
+		cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 1);
 		if(cr.GetTimeEvents(CTE_NOPVP_OFF, null, null, null) == 0)
 		{
 			cr.AddTimeEvent("cte_NoPvpOff", TIME_CHECK, CTE_NOPVP_OFF);
@@ -297,6 +416,7 @@ void _PurgatoryMapOut(Map& map, Critter& cr)
 	if(valid(mapCr)&& IsCritterInDeadZone(cr, map, 0, ENTIRE_NOPVP_FIRST, ENTIRE_NOPVP_LAST))
 		return;
 	cr.ModeBase[MODE_NO_PVP] = 0;
+	cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 2);
 	_BattleMapCritterIn(map, cr);
 }
 
@@ -308,6 +428,7 @@ uint cte_NoPvpOff(Critter& cr, int identifier, uint& rate)
 	if(valid(map) && IsCritterInDeadZone(cr, map, 0, ENTIRE_NOPVP_FIRST, ENTIRE_NOPVP_LAST))
 		return TIME_CHECK;
 	cr.ModeBase[MODE_NO_PVP] = 0;
+	cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 2);
 	return 0;
 }
 
@@ -405,4 +526,26 @@ void _PurgatoryLoop(Map& map)
 			}		
 		}		
 	}
+}
+
+// Удаление локации после того, как время истекло
+uint e_DeletePurgatory(uint[]@ values)
+{
+	Location@ loc = GetLocation(values[0]);
+	if(valid(loc))
+	{
+		Map@ map;
+		Critter@[] critters;
+		for(uint i=0; i <3; i++)
+		{
+			@map = loc.GetMapByIndex(i);
+			map.GetCritters(0, FIND_ALL|FIND_ONLY_PLAYERS, critters);
+		}
+		for(uint i = 0, l = critters.length(); i < l; i++)
+		{
+			critters[i].SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 7128);
+		}
+		DeleteLocation(loc.Id);
+	}
+	return 0;
 }

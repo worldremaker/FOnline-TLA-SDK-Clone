@@ -2,8 +2,8 @@
 Version              4
 MaxHexX              160
 MaxHexY              160
-WorkHexX             61
-WorkHexY             63
+WorkHexX             109
+WorkHexY             97
 ScriptModule         map_atoll
 ScriptFunc           _MapInit
 NoLogOut             0
@@ -15089,6 +15089,8 @@ ProtoId              395
 MapX                 98
 MapY                 90
 Dir                  1
+ScriptName           map_atoll
+FuncName             _AtollTraderInit
 Critter_Cond         1
 Critter_Anim1        0
 Critter_Anim2        0

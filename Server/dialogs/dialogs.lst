@@ -845,5 +845,6 @@ $	21000	q_arroyo_rayders
 $	21100	purg_executor
 $	21101   purg_gate_keeper
 $   21102   purg_replicant
+$   21103   purg_comp
 
 ************************************************************

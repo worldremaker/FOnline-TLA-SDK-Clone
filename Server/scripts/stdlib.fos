@@ -309,7 +309,7 @@ bool TransitToMap(Critter& cr, int locPid, int mapIndex, int entranceNum)
 // base = база расчета опыта в процентах от уровня, от 1 до 25 макс
 void QuestRewardExperience(Critter& cr, uint8 base)
 {
-	cr.StatBase[ST_EXPERIENCE] += (cr.Stat[ST_LEVEL]*1000)*CLAMP(base, 1, 100)/100;	
+	cr.StatBase[ST_EXPERIENCE] += CLAMP((cr.Stat[ST_LEVEL]*1000)*CLAMP(base, 1, 100)/100, 0, 15000);	
 }
 
 // Устанавливает прирост навыка в зависимости от уровня навыка криттера
