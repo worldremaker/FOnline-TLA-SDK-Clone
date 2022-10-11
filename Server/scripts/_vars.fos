@@ -1,7 +1,7 @@
 #ifndef __VARS__
 #define __VARS__
 /*************************************************************************************
-***  VARS  *****  COUNT: 00000570  ***************************************************
+***  VARS  *****  COUNT: 00000579  ***************************************************
 *************************************************************************************/
 
 
@@ -158,6 +158,14 @@
 #define LVAR_q_den_kidnapping                        (3148)
 #define LVAR_den_kidnapping_status                   (3149)
 #define LVAR_den_kidnapping_tries                    (3150)
+#define LVAR_q_den_bill_racing_opening               (3151)
+#define LVAR_q_den_bill_racing_win                   (3152)
+#define LVAR_racing_check_points                     (3153)
+#define GVAR_racing_event                            (3154)
+#define GVAR_racing_winner                           (3155)
+#define GVAR_racing_winners_found                    (3156)
+#define LLVAR_racing_checkpoint_number               (3157)
+#define LVAR_racing_checkpoint_loc_id                (3158)
 #define LVAR_klam_sally_pay                          (3200)
 #define LVAR_q_klam_bob_water                        (3201)
 #define LVAR_klam_bakner_beer                        (3202)
@@ -384,6 +392,7 @@
 #define LVAR_sf_lab_failed                           (4438)
 #define LVAR_sf_chitin_armor_recipe_known            (4439)
 #define LVAR_q_sf_tigang_recipe                      (4440)
+#define GVAR_sf_emp_locker_id                        (4441)
 #define LVAR_scen_enclave_soldier                    (4500)
 #define LVAR_scen_enclave_scient                     (4501)
 #define LVAR_scen_bos_soldier                        (4502)
@@ -1793,6 +1802,52 @@ $	3150	1	den_kidnapping_tries	0	0	3	0
 локальная, максимум 3
 максимальное число попыток сходить в пещеру с работорговцами для пероснажа.
 после 3ей попытки родригес с игроком больше не пойдет
+**********
+
+$	3151	1	q_den_bill_racing_opening	0	0	2	1
+**********
+локальная, статус квеста "Смертельные Гонки: Открытие."
+**********
+
+$	3152	1	q_den_bill_racing_win	0	0	7	1
+**********
+локальная. статус квеста "Смертельные Гонки Западного побережья Гранд-Пасифик Американ."
+**********
+
+$	3153	1	racing_check_points	0	0	13	0
+**********
+локальная, максимум 13, счетчик посещенных чекпоинтов в смертельных гонках
+**********
+
+$	3154	0	racing_event	0	0	2	0
+**********
+глобальная, максимум 1, признак, что происходят Смертельные Гонки
+1 - гонки идут
+2 - гонки закончились
+**********
+
+$	3155	0	racing_winner	0	0	0	4
+**********
+глобальная, Id последнего победителя гонок
+**********
+
+$	3156	0	racing_winners_found	0	0	2	0
+**********
+
+1 - есть первый победитель
+2 - есть второй победитель
+**********
+
+$	3157	3	racing_checkpoint_number	0	0	13	0
+**********
+локальная для карты
+
+номер чекпоинта
+**********
+
+$	3158	1	racing_checkpoint_loc_id	0	0	0	4
+**********
+Id последнего открытого чекпоинта
 **********
 
 $	3200	1	klam_sally_pay	0	0	5	0
@@ -3858,6 +3913,12 @@ $	4440	1	q_sf_tigang_recipe	0	0	2	1
 статус квеста "купить рецепт"
 1 - узнал о возможности купить рецепт
 2 - купил
+**********
+
+$	4441	0	sf_emp_locker_id	0	0	0	4
+**********
+Глобальная, без границ.
+id сейфа императора, закрытого электронным замком.
 **********
 
 $	4500	1	scen_enclave_soldier	0	0	10	0

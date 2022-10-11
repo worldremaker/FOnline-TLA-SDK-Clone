@@ -1,0 +1,24 @@
+#define EVENT_RACING_PREPARE              (1)
+#define EVENT_RACING_BEGIN                (2)
+#define EVENT_RACING_RUN                  (3)
+#define EVENT_RACING_STOP                 (4)
+
+#define STATUS_NEVER_OCCURED              (0)
+#define STATUS_RUNNING                    (1)
+#define STATUS_OCCURED                    (2)
+#define STATUS_ENDED                      (3)
+
+#define GAME_MONTH #(mon)                 (mon*30*24*60*60)
+#define GAME_DAY #(day)                   (day*24*60*60)
+#define GAME_WEEK #(week)                 (GAME_DAY(7)* week)
+
+// void DeclareEvent(uint idx, string handler, uint timeOccure, bool timeAbsolute, bool defaultStart, uint nextEventIdx)
+// void DeclareCondition(uint idx, uint eventCondition, uint status)
+
+DeclareEvent(EVENT_RACING_PREPARE, "game_event_racing@e_RunPreparePhase", GAME_MONTH(4), false, true, EVENT_RACING_BEGIN);
+DeclareCondition(EVENT_RACING_PREPARE, EVENT_RACING_STOP, STATUS_OCCURED);
+DeclareEvent(EVENT_RACING_BEGIN, "game_event_racing@e_RunBeginPhase", GAME_WEEK(2), false, false, 0);
+DeclareCondition(EVENT_RACING_BEGIN, EVENT_RACING_PREPARE, STATUS_OCCURED);
+DeclareEvent(EVENT_RACING_RUN, "game_event_racing@e_RunRacingPhase", GAME_DAY(1), false, false, EVENT_RACING_STOP);
+DeclareEvent(EVENT_RACING_STOP, "game_event_racing@e_RunStopPhase", GAME_MONTH(1), false, false, EVENT_RACING_PREPARE);
+DeclareCondition(EVENT_RACING_STOP, EVENT_RACING_RUN, STATUS_OCCURED);

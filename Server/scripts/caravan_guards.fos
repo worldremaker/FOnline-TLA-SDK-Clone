@@ -354,7 +354,11 @@ void plane_MiscGoHomePos(Critter& guard)
 /*-------------------------инициализация-------------------------*/
 void _DefaultGuardInit(Critter& guard, bool firstTime)
 {
-
+	if(guard.IsDead())
+	{
+		DeleteNpc(guard);
+		return;
+	}
 	if(!firstTime)
 	{
 	  if (!valid(guard.GetMap()))

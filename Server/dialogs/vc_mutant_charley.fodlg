@@ -7,9 +7,9 @@ lang=russ
 [dialog]
 &
 1 1000 None 1 #
-2 1010 D _var n vc_mut_charley_hired = 0 D _script merc@d_NpcIsNotMerc 0  D _var p vc_guard_rank > 1 D _script merc@d_NpcIsNotMerc 0  D _var p vc_caves_counter } 3 R _param p MODE_NO_BARTER = 1 #
+2 1010 D _var n vc_mut_charley_hired = 0 D _script merc@d_NpcIsNotMerc 0  D _var p vc_guard_rank > 1 D _var p vc_caves_counter } 3 R _param p MODE_NO_BARTER = 1 #
 11 1020 D _var n vc_mut_charley_hired = 0 D _script merc@d_NpcIsNotMerc 0  D _var p vc_guard_rank { 1 R _param p MODE_NO_BARTER = 1 #
-12 1030 D _var p name_mem_npc_player = 1 D _var n vc_mut_charley_hired = 1 D _script merc@d_NpcIsMerc 0  D _script merc@d_NpcIsPlayerMerc 0  R _param p MODE_NO_BARTER = 1 #
+12 1030 D _var n vc_mut_charley_hired = 1 D _script merc@d_NpcIsMerc 0  D _script merc@d_NpcIsPlayerMerc 0  R _param p MODE_NO_BARTER = 1 #
 19 1040 D _var n vc_mut_charley_hired = 1 D _script merc@d_NpcIsMerc 0  D _script merc@d_NpcIsNotPlayerMerc 0  R _param p MODE_NO_BARTER = 0 #
 20 1050 D _var n vc_mut_charley_hired = 1 D _script merc@d_NpcIsNotMerc 0  #
 2 1060 D _var p vc_caves_counter < 3 D _var n vc_mut_charley_hired = 0 D _script merc@d_NpcIsNotMerc 0  @
@@ -36,7 +36,7 @@ lang=russ
 9 9000 None 0 #
 0 9010 #
 65507 9020 #
-0 9030 D _param p SK_SPEECH } 100 D _var p vc_mut_charley_hired = 0 R _script merc@r_AddMerc2Player 1 3 R _var n vc_mut_charley_hired = 1 R _var p vc_mut_charley_hired = 1 @
+0 9030 D _param p SK_SPEECH } 100 D _var p vc_mut_charley_hired = 0 R _var n vc_mut_charley_hired = 1 R _var p vc_mut_charley_hired = 1 R _script merc@r_AddMerc2Player 1 4 @
 11 10000 None 0 @
 12 11000 None 0 #
 13 11010 #

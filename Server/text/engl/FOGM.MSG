@@ -911,6 +911,11 @@
 {2555}{}{07desert}
 {2556}{}{gustwind:20, gustwin1:20, rattle:15, rattle1:15, vulture:15, vulture1:15}
 
+# Map 255, base 2560
+{2560}{}{Racing Checkpoint}
+{2565}{}{07desert}
+{2566}{}{gustwind:20, gustwin1:20, rattle:15, rattle1:15, vulture:15, vulture1:15}
+
 # Map 260, base 2610
 {2610}{}{Intro}
 {2615}{}{17arroyo}
@@ -1944,6 +1949,10 @@
 # Wright Kidnappers hideout, pid 227, base 327000
 {327000}{}{Kidnappers}
 {327005}{}{You see a kidnappers hideout.}
+
+# Den Racing Checkpoint, pid 228, base 328000
+{328000}{}{Checkpoint}
+{328005}{}{Контрольная точка маршрута Всесезонных Смертельных Гонок Западного побережья Гранд-Пасифик-Американ.}
 
 # Intro 1, pid 260, base 360000
 {360000}{}{Intro}

@@ -155,7 +155,7 @@ void dlg_PrisonerName(Critter& player, Critter@ npc, string@ lexems)
 			else
 				return true; // Второй вызов диалога, уже нужного
 			
-			player.Say(SAY_NETMSG, "DEBUG: подмена диалога...");
+			//player.Say(SAY_NETMSG, "DEBUG: подмена диалога...");
 			RunDialog(player, cr, DIALOG_vc_telman, false);
 			cr.MercBase[MERC_CANCEL_ON_GLOBAL] = 1;
 			return false;

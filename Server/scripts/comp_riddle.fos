@@ -45,7 +45,6 @@ ComputerRiddleInfo@ GetRiddleInfo(int mapId, int16 sceneryPid, int16 sceneryX, i
 	string key = _AnyDataKey(mapId, sceneryPid, sceneryX, sceneryY);
 	if(IsAnyData(key))
 	{
-		Log("returning");
 		return ComputerRiddleInfo(key);
 	}
 	return null;
@@ -254,25 +253,35 @@ void answer_TrySolve(Critter& player, uint answerI, string& answerS)
 		{
 			player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_SOLVED);
 			player.StatBase[ST_EXPERIENCE] += _GetXP(player);
-			Location@[] locations;
-			if(GetLocations(player.WorldX, player.WorldY, 300, locations) > 0)
-			{
-				Location@ loc = locations[Random(0, locations.length()-1)];
-				if(valid(loc))
-				{
-					Map@ map = loc.GetMapByIndex(0);
-					if(valid(map))
-					{
-						uint16 hx = 0, hy = 0;
-						if(map.GetEntireCoords(0, 0, hx, hy))
-						{
-							player.ViewMap(map, 50, hx, hy, 5);
-							player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_CAMERA);							
-						}
-					}						
-				}
-			}
+			player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_CAMERA);
+			CreateTimeEvent(__FullSecond + REAL_SECOND(1)/2, "e_ShowCamera", player.Id, false);
 		}
 	}
 }
 
+uint e_ShowCamera(uint[]@ values)
+{
+	Critter@ cr = GetCritter(values[0]);
+	if(valid(cr))
+	{
+		Location@[] locations;
+		if(GetLocations(cr.WorldX, cr.WorldY, 300, locations) > 0)
+		{
+			Location@ loc = locations[Random(0, locations.length()-1)];
+			if(valid(loc))
+			{
+				Map@ map = loc.GetMapByIndex(0);
+				if(valid(map))
+				{
+					uint16 hx = 0, hy = 0;
+					if(map.GetEntireCoords(0, 0, hx, hy))
+					{
+						cr.ViewMap(map, 50, hx, hy, 5);							
+					}
+				}						
+			}
+		}
+	
+	}
+	return 0;
+}

@@ -2873,7 +2873,7 @@
 	table.AddEncounter(  1, 10052770).Special(true).LocationPid(LOCATION_SpecialUnwashedEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_unwashed,'<',1).AssignLVar(LVAR_special_encounter_unwashed,'=',1);
 	table.AddEncounter(  1, 10052780).Special(true).LocationPid(LOCATION_SpecialCafeEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_gecko_find_woody,'<',1).AssignLVar(LVAR_gecko_find_woody,'=',1);
 	table.AddEncounter(  1, 10053200).Special(true).LocationPid(LOCATION_SpecialSoldierHolo).CheckParam(SK_OUTDOORSMAN,'>',119).CheckLVar(LVAR_special_soldier_holo,'=',0).AssignLVar(LVAR_special_soldier_holo,'=',1);
-	table.AddEncounter(  1, 10053210).Special(true).LocationPid(LOCATION_SpecialAndroid).CheckParam(ST_LEVEL,'>',15).CheckParam(SK_OUTDOORSMAN,'>',100).CheckLVar(LVAR_special_android,'=',2).AssignLVar(LVAR_special_android,'=',3);
+	table.AddEncounter(  1, 10053210).Special(true).LocationPid(LOCATION_SpecialAndroid).CheckParam(ST_CHARISMA,'<',2).CheckParam(ST_PERCEPTION,'>',7).CheckParam(ST_INTELLECT,'>',6).CheckParam(ST_LEVEL,'>',15).CheckParam(SK_OUTDOORSMAN,'>',100).CheckLVar(LVAR_special_android,'=',2).AssignLVar(LVAR_special_android,'=',3);
 	
 										// EPA_M (Area around the EPA)
 	@table=@EncounterTables[TABLE_EPA_M];
@@ -2894,7 +2894,7 @@
 	table.AddEncounter(  5, 10053180).Special(true).LocationPid(LOCATION_SpecialBridgeEncounter).CheckParam(ST_LEVEL,'>',9).CheckLVar(LVAR_special_encounter_bridge,'<',1).AssignLVar(LVAR_special_encounter_bridge,'=',1);
 	table.AddEncounter(  1, 10053190).Special(true).LocationPid(LOCATION_SpecialHolyEncounter2).CheckLVar(LVAR_special_encounter_holy1,'>',0).CheckLVar(LVAR_special_encounter_holy2,'<',1).AssignLVar(LVAR_special_encounter_holy2,'=',1);
 	table.AddEncounter(  1, 10053200).Special(true).LocationPid(LOCATION_SpecialSoldierHolo).CheckParam(SK_OUTDOORSMAN,'>',119).CheckLVar(LVAR_special_soldier_holo,'=',0).AssignLVar(LVAR_special_soldier_holo,'=',1);
-	table.AddEncounter(  1, 10053210).Special(true).LocationPid(LOCATION_SpecialAndroid).CheckParam(ST_LEVEL,'>',15).CheckParam(SK_OUTDOORSMAN,'>',100).CheckLVar(LVAR_special_android,'=',2).AssignLVar(LVAR_special_android,'=',3);
+	table.AddEncounter(  1, 10053210).Special(true).LocationPid(LOCATION_SpecialAndroid).CheckParam(ST_CHARISMA,'<',2).CheckParam(ST_PERCEPTION,'>',7).CheckParam(ST_INTELLECT,'>',6).CheckParam(ST_LEVEL,'>',15).CheckParam(SK_OUTDOORSMAN,'>',100).CheckLVar(LVAR_special_android,'=',2).AssignLVar(LVAR_special_android,'=',3);
 	
 										// EPA_C (Area around the EPA)
 	@table=@EncounterTables[TABLE_EPA_C];

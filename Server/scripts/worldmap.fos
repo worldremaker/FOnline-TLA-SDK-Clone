@@ -30,6 +30,8 @@ import void GenerateCavernEncounter(Map@ map, Critter@[]@ critters) from "cave_m
 #define CHECK_LVAR                             (2)
 #define CHECK_GVAR                             (3)
 #define CHECK_HOUR                             (4)
+#define CHECK_LVAR_ANY                         (5)
+#define CHECK_PARAM_ANY                        (6)
 #define ASSIGN_LVAR                            (10)
 
 #define ACTION_NONE                            (0)
@@ -346,7 +348,9 @@ class CEncounterObject
 	CEncounterObject@ Distance(uint distance){Distance=distance; return this;}
 	CEncounterObject@ CheckRandom(int value){NewCheck(CHECK_RANDOM,0,0,value); return this;}
 	CEncounterObject@ CheckParam(uint index, uint8 operator, int value){NewCheck(CHECK_PARAM,index,operator,value); return this;}
+	CEncounterObject@ CheckParamAny(uint index, uint8 operator, int value){NewCheck(CHECK_PARAM_ANY,index,operator,value); return this;}
 	CEncounterObject@ CheckLVar(uint index, uint8 operator, int value){NewCheck(CHECK_LVAR,index,operator,value); return this;}
+	CEncounterObject@ CheckLVarAny(uint index, uint8 operator, int value){NewCheck(CHECK_LVAR_ANY,index,operator,value); return this;}
 	CEncounterObject@ CheckGVar(uint index, uint8 operator, int value){NewCheck(CHECK_GVAR,index,operator,value); return this;}
 	CEncounterObject@ CheckHour(uint8 operator, int value){NewCheck(CHECK_HOUR,0,operator,value); return this;}
 	CEncounterObject@ Ratio(uint ratio){Ratio=ratio; return this;}
@@ -456,7 +460,9 @@ class CEncounter
 	CEncounter@ Special(bool special){Special=special; return this;}
 	CEncounter@ CheckRandom(int value){NewCheck(CHECK_RANDOM,0,0,value); return this;}
 	CEncounter@ CheckParam(uint index, uint8 operator, int value){NewCheck(CHECK_PARAM,index,operator,value); return this;}
+	CEncounter@ CheckParamAny(uint index, uint8 operator, int value){NewCheck(CHECK_PARAM_ANY,index,operator,value); return this;}
 	CEncounter@ CheckLVar(uint index, uint8 operator, int value){NewCheck(CHECK_LVAR,index,operator,value); return this;}
+	CEncounter@ CheckLVarAny(uint index, uint8 operator, int value){NewCheck(CHECK_LVAR_ANY,index,operator,value); return this;}
 	CEncounter@ CheckGVar(uint index, uint8 operator, int value){NewCheck(CHECK_GVAR,index,operator,value); return this;}
 	CEncounter@ CheckHour(uint8 operator, int value){NewCheck(CHECK_HOUR,0,operator,value); return this;}
 	CEncounter@ AssignLVar(uint index, uint8 operator, int value){NewCheck(ASSIGN_LVAR,index,operator,value); return this;}
@@ -568,6 +574,30 @@ bool CheckCompare(int val1, uint8 operator, int val2)
 	return false;
 }
 
+bool CheckCompareAnyParam(CCheck& check, Critter@[]& critters)
+{
+	for(uint i=0,j=critters.length();i<j;i++)
+	{
+		if(CheckCompare(critters[i].Param[check.Index],check.Operator,check.Value))
+			return true;
+	}
+	return false;
+}
+
+bool CheckCompareAnyVar(CCheck& check, Critter@[]& critters)
+{
+	for(uint i=0,j=critters.length();i<j;i++)
+	{
+		GameVar@ lvar=GetLocalVar(check.Index, critters[i].Id);
+		if(valid(lvar))
+		{
+			if(CheckCompare(lvar.GetValue(), check.Operator, check.Value))
+				return true;
+		}
+	}
+	return false;
+}
+
 void CheckAssignVar(GameVar& val1, uint8 operator, int val2)
 {
 	if(operator=='=') val1=val2;
@@ -579,7 +609,8 @@ void CheckAssignVar(GameVar& val1, uint8 operator, int val2)
 }
 
 bool CheckChecks(CCheck[]& checks, Critter@[]& critters)
-{
+{	
+	bool checkOk = false;
 	for(int i=0,j=checks.length();i<j;i++)
 	{
 		CCheck@ check=checks[i];
@@ -588,6 +619,7 @@ bool CheckChecks(CCheck[]& checks, Critter@[]& critters)
 		case CHECK_RANDOM: if(Random(1,100)>check.Value) return false; break;
 		case CHECK_HOUR: if(not CheckCompare(__Hour,check.Operator,check.Value)) return false; break;
 		case CHECK_PARAM: for(uint i=0,j=critters.length();i<j;i++) if(not CheckCompare(critters[i].Param[check.Index],check.Operator,check.Value)) return false; break;
+		case CHECK_PARAM_ANY: if(not CheckCompareAnyParam(check, critters)) return false; break;
 		case CHECK_LVAR:
 			// Log("Checking var"+check.Index);
 			for(uint i=0,j=critters.length();i<j;i++)
@@ -602,6 +634,7 @@ bool CheckChecks(CCheck[]& checks, Critter@[]& critters)
 				if(not CheckCompare(lvar.GetValue(),check.Operator,check.Value)) return false;
 			}
 			break;
+		case CHECK_LVAR_ANY: if(not CheckCompareAnyVar(check, critters)) return false; break;
 		case CHECK_GVAR:
 			{
 				GameVar@ gvar=GetGlobalVar(check.Index);

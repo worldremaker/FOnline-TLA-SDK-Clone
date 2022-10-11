@@ -210,10 +210,9 @@ class CaravanLeaderInfo
 	{
 
 		Map @ map = (startPos?this.StartPos.GetMap():this.EndPos.GetMap());
-		if (!valid(map)) return false;
-		DL("map invalid");
+		if (!valid(map)) 
+		return false;
 		Critter @ leader = this.GetLeader();
-		DL("leaderibfo invalid");
 		if (!valid(leader)) return false;
 		DL("Transit leader to position:"+(startPos?"1":"2"));
 		return leader.TransitToMap(map.Id, (startPos?this.StartPos.HexX:this.EndPos.HexX), (startPos?this.StartPos.HexY:this.EndPos.HexY), Random(0,5));

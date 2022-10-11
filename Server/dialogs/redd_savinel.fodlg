@@ -56,10 +56,7 @@ lang=russ engl
 0 9020 @
 10 10000 None 0 #
 0 10010 #
-35 10020 D _var p q_redd_savinel_caravan_escort = 0 D _script caravan@d_NotHasPlayerRequest 0  R _script caravan@r_PutPlayerRequest2Info 0  R _var p q_redd_savinel_caravan_escort = 1 #
-35 10030 D _var p q_redd_savinel_caravan_escort = 11 D _script caravan@d_NotHasPlayerRequest 0  R _script caravan@r_PutPlayerRequest2Info 0  #
-35 10040 D _var p q_redd_savinel_caravan_escort = 2 D _script caravan@d_NotHasPlayerRequest 0  R _script caravan@r_PutPlayerRequest2Info 0  #
-35 10050 D _var p q_redd_savinel_caravan_escort = 9 D _script caravan@d_NotHasPlayerRequest 0  R _script caravan@r_PutPlayerRequest2Info 0  @
+35 10020 D _script caravan@d_NotHasPlayerRequest 0  R _script caravan@r_PutPlayerRequest2Info 0  R _var p q_redd_savinel_caravan_escort = 1 @
 30 11000 None 0 #
 31 11010 #
 0 11020 #
@@ -165,9 +162,6 @@ lang=russ engl
 {10000}{}{Вовремя ты появил@sex@|ся||ась|. Выходим сегодня в 15 часов. Плачу полтора куска, когда доберемся до места. Что скажешь?}
 {10010}{}{Нет, мне это не интересно.[Уйти]}
 {10020}{}{Ладно, я с тобой.}
-{10030}{}{Ладно, я с тобой.}
-{10040}{}{Ладно, я с тобой.}
-{10050}{}{Ладно, я с тобой.}
 {11000}{}{Привет, меня зовут Энрико Савинелли. Если хочешь заработать, то ты обратил@sex@|ся||ась| по адресу. Я вожу караваны из Нью-Рено в Реддинг.И у меня есть место в караване для опытного охранника.}
 {11010}{}{А что перевозит твой караван?}
 {11020}{}{Нет, не хочу. [Уйти]}
@@ -273,9 +267,6 @@ lang=russ engl
 {10000}{}{10 знаком - доступен квест на караван. Норм инт}
 {10010}{}{Нет, мне это не интересно.[Уйти]}
 {10020}{}{Ладно, я с тобой.}
-{10030}{}{Ладно, я с тобой.}
-{10040}{}{Ладно, я с тобой.}
-{10050}{}{Ладно, я с тобой.}
 {11000}{}{незнаком. Доступен квест на караван. Норм инт, не было провалов.}
 {11010}{}{А что перевозит твой караван?}
 {11020}{}{Нет, не хочу. [Уйти]}

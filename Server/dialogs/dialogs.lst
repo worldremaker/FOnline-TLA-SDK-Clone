@@ -94,6 +94,12 @@ $	181	den_guard_cigr
 $	182	den_guard_gift
 $	183	den_guard_stpist
 $	188	den_bootlegger
+$	189	den_spectator
+$	190	den_bishop_guard
+$	191	den_bishop_bodyguard
+$	192	den_bishop_bill
+$	193	den_racing_mechanic
+$	194	den_racing_guard
 $	200	klam_child
 $	201	klam_trapper
 $	202	klam_civilian

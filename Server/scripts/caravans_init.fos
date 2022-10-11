@@ -354,8 +354,8 @@ _AddGuardInfo(CARAVAN_LAUMER_ARR_NCR,  NPC_PID_ToughFemaleThug, DIALOG_crvg_rat,
 _AddGuardInfo(CARAVAN_LAUMER_ARR_NCR,  NPC_PID_VaultCityPatrolMale, DIALOG_crvg_common_male, "caravan@_DefaultGuardInitUnlimAmmo", AIPACKET_BOUNTY_HUNTER, BAG_SF_Caravan_VaultCityPatrolMale, TEAM_QuestNpc, 45, 0, 0, 100, false);
 _SheduleCaravan(CARAVAN_LAUMER_ARR_NCR, 0, 6, 0, 10);
 //CARAVAN_HOSE_MOD_GECKO
-_SetupCaravan(CARAVAN_HOSE_MOD_GECKO, CRV_TYPE_ONEWAY_DELETELEADER, 2, 3315, 10);
-_SetupCaravanLeader(CARAVAN_HOSE_MOD_GECKO, 323, 71, 102, TEAM_QuestNpc, AIPACKET_GENERIC_GUARDS, 65);
+_SetupCaravan(CARAVAN_HOSE_MOD_GECKO, CRV_TYPE_ONEWAY_DELETELEADER, 1, 3315, 6);
+_SetupCaravanLeader(CARAVAN_HOSE_MOD_GECKO, 323, 71, 102, TEAM_QuestNpc, AIPACKET_GENERIC_GUARDS, 22);
 _SetupCaravanLiderPosition(CARAVAN_HOSE_MOD_GECKO, LOCATION_Modoc, MAP_modoc, 114, 90, true); 
 _SetupCaravanLiderPosition(CARAVAN_HOSE_MOD_GECKO, LOCATION_Gecko, MAP_gecko_settlement, 59, 32, false); 
 _AddRoutePoint(CARAVAN_HOSE_MOD_GECKO, 925, 275);

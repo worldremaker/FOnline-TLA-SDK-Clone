@@ -792,7 +792,11 @@ void StartCaravan(uint CaravanId)
 	if(!valid(map)) return;
 
 	// проверка, хватает ли игроков
-	if(ci.PlayersRequested.length()==0) return;
+	if(ci.PlayersRequested.length()==0)
+	{
+		ci.CaravanStatus = CRV_STATUS_BEFORE_START;
+		return;
+	}
 	uint curPlayersInGrp = 0;
 	// группа караванщиков
 	Critter @[] caravanGroup;

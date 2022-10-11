@@ -14,8 +14,8 @@ lang=russ engl
 11 1010 D _param p ST_INTELLECT < 4 #
 2 1020 D _var n name_mem_npc_player = 0 #
 3 1030 D _var n name_mem_npc_player = 1 D _param p REPUTATION_NCR < 30 #
-90 1040 D _param p REPUTATION_NCR > 29 D _var p name_mem_npc_player = 1 D _var p q_ncr_duppo_find_dasies = 0 #
-3 1050 D _var p q_ncr_duppo_find_dasies > 0 D _param p REPUTATION_NCR > 29 D _var p name_mem_player_npc = 1 @
+90 1040 D _param p REPUTATION_NCR > 29 D _var p q_ncr_duppo_find_dasies = 0 #
+3 1050 D _var p q_ncr_duppo_find_dasies > 0 D _param p REPUTATION_NCR > 29 @
 2 2000 None 0 #
 6 2010 #
 4 2020 R _var n name_mem_npc_player = 1 #

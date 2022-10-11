@@ -718,3 +718,10 @@ void r_QuestReward3(Critter& player, Critter@ npc)
 		base = 70;
 	QuestRewardExperience(player, base);
 }
+
+import bool CheckEventStatus(uint idx, uint status) from "game_event";
+
+bool d_GameEventStatus(Critter& player, Critter@ npc, int idx, int status)
+{
+	return CheckEventStatus(uint(idx), uint(status));
+}
