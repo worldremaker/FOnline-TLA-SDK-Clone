@@ -43,14 +43,14 @@ bool SearchWeapon( Item@ item, uint[]@ itemsAllowed  )
 {
 
 	if ( valid(item) ){
-		if (( item.GetType()==ITEM_WEAPON ) && ( itemsAllowed.length() > 0 )) { // если у игрока в руке оружие
+		if (( item.GetType()==ITEM_TYPE_WEAPON ) && ( itemsAllowed.length() > 0 )) { // если у игрока в руке оружие
 			for( uint i=0; i<itemsAllowed.length(); i++ ) {
 				if( item.GetProtoId() == itemsAllowed[i] ) {
 					return false;
 				}
 			}
 			return true;
-		} else if (( item.GetType()==ITEM_WEAPON ) && ( itemsAllowed.length() <= 0 )) {
+		} else if (( item.GetType()==ITEM_TYPE_WEAPON ) && ( itemsAllowed.length() <= 0 )) {
 			return true;
 		}
 		return false;

@@ -74,7 +74,7 @@ bool npc_plane_end(Critter& npc, NpcPlane& plane, int reason, Critter@ someCr, I
 	{
 		if(valid(someItem))
 		{
-			if(someItem.GetType()==ITEM_DOOR && !FLAG(someItem.LockerCondition,LOCKER_ISOPEN) &&
+			if(someItem.GetType()==ITEM_TYPE_DOOR && !FLAG(someItem.LockerCondition,LOCKER_ISOPEN) &&
 				AI_CAN_OPEN_DOORS(npc.Stat[ST_AI_ID]) && IsKeyAviable(npc,someItem.LockerId))
 			{
 				NpcPlane@ child=CreatePlane();
@@ -89,7 +89,7 @@ bool npc_plane_end(Critter& npc, NpcPlane& plane, int reason, Critter@ someCr, I
 				plane.SetChild(child);
 				return false; // Cancel deleting
 			}
-			else if(someItem.GetType()!=ITEM_DOOR)
+			else if(someItem.GetType()!=ITEM_TYPE_DOOR)
 			{
 				NpcPlane@ child=CreatePlane();
 				child.Type=AI_PLANE_PICK;
@@ -138,7 +138,7 @@ bool npc_plane_end(Critter& npc, NpcPlane& plane, int reason, Critter@ someCr, I
 	{
 		// Repair first broken weapon
 		Item@[] items;
-		uint count=npc.GetItemsByType(ITEM_WEAPON,items);
+		uint count=npc.GetItemsByType(ITEM_TYPE_WEAPON,items);
 		for(uint i=0;i<count;i++)
 		{
 			Item@ item=items[i];
@@ -284,7 +284,7 @@ bool npc_plane_run(Critter& npc, NpcPlane& plane, int reason, uint& r0, uint& r1
 
 		// Get all weapons and check it
 		Item@[] allWeapons;
-		npc.GetItemsByType(ITEM_WEAPON,allWeapons);
+		npc.GetItemsByType(ITEM_TYPE_WEAPON,allWeapons);
 		for(uint i=0,j=allWeapons.length();i<j;i++)
 			if(not CheckBattleWeapon(npc,allWeapons[i])) @allWeapons[i]=null;
 
@@ -552,7 +552,7 @@ bool CogitateFiring(Critter& cr, uint& mode, uint& aim) // in: targetId, 0; out:
     return true;
   }
 
-  if (weapon.GetType() != ITEM_WEAPON) return false;
+  if (weapon.GetType() != ITEM_TYPE_WEAPON) return false;
   ProtoItem@ protoWeapon = GetProtoItem(weapon.GetProtoId());
   ProtoItem@ protoAmmo = null;
   if (weapon.WeaponAmmoPid!=0) @protoAmmo = GetProtoItem(weapon.WeaponAmmoPid);
@@ -748,7 +748,7 @@ void SkillToBegin(int[]& skills, int skill)
 
 bool CheckBattleWeapon(Critter& npc, Item& weapon)
 {
-	if(weapon.GetType()!=ITEM_WEAPON) return false;
+	if(weapon.GetType()!=ITEM_TYPE_WEAPON) return false;
 	if(not npc.IsAnim1(weapon.Proto.Weapon_Anim1)) return false;
 	if(_ItemIsBroken(weapon)) return false;
 	if(FLAG(weapon.Flags,ITEM_TWO_HANDS) && (npc.Damage[DAMAGE_LEFT_ARM]!=0 || npc.Damage[DAMAGE_RIGHT_ARM]!=0)) return false;
@@ -761,7 +761,7 @@ bool IsAmmoForWeapon(Critter& npc, Item& weapon)
 	if(npc.CountItem(weapon.WeaponAmmoPid)>0) return true;
 	if(npc.CountItem(weapon.Proto.Weapon_DefaultAmmoPid)>0) return true;
 	Item@[] ammo;
-	for(uint i=0,j=npc.GetItemsByType(ITEM_AMMO,ammo);i<j;i++)
+	for(uint i=0,j=npc.GetItemsByType(ITEM_TYPE_AMMO,ammo);i<j;i++)
 	{
 		Item@ a=ammo[i];
 		if(a.Proto.Ammo_Caliber==weapon.Proto.Weapon_Caliber) return true;

@@ -52,7 +52,7 @@ void MoveItemsToContainer(Critter& cr) // Складывает все предметы из инвентаря в
 				{
 					for(uint i = 0, l = containers.length(); i < l; i++)
 					{
-						if(containers[i].GetType() == ITEM_CONTAINER)
+						if(containers[i].GetType() == ITEM_TYPE_CONTAINER)
 						{
 							AddPickPlane(cr, PUT_ITEMS_PRIORITY, containers[i], 0, true);
 							return;
@@ -64,7 +64,7 @@ void MoveItemsToContainer(Critter& cr) // Складывает все предметы из инвентаря в
 			}
 		}
 		// если нет спецконтейнера, кладем в ближайший
-		map.GetItemsByType(ITEM_CONTAINER, containers);
+		map.GetItemsByType(ITEM_TYPE_CONTAINER, containers);
 		uint distMin = map.GetWidth();
 		uint distCur = 0;
 		int ind = -1;
@@ -103,7 +103,7 @@ void SearchForItems(Critter& cr) // Поиск предметов, валяющихся на карте
 			if(FLAG(item.Flags,ITEM_GAG)) 
 				continue;
 			type = item.GetType();
-			if(type >= ITEM_ARMOR && type <= ITEM_KEY && map.GetPathLength(cr, item.HexX, item.HexY, 0) > 0)
+			if(type >= ITEM_TYPE_ARMOR && type <= ITEM_TYPE_KEY && map.GetPathLength(cr, item.HexX, item.HexY, 0) > 0)
 				AddPickPlane(cr, 0, item, 0, true);
 		}
 	}
@@ -115,7 +115,7 @@ int _CollectorPlaneEnd(Critter& cr, NpcPlane& plane, int reason, Critter@ someCr
 	{
 		Map@ map = cr.GetMap();
 		Item@ cont = map.GetItem(plane.Pick_HexX, plane.Pick_HexY, plane.Pick_Pid);
-		if(valid(cont) && reason == REASON_SUCCESS && cont.GetType() == ITEM_CONTAINER)
+		if(valid(cont) && reason == REASON_SUCCESS && cont.GetType() == ITEM_TYPE_CONTAINER)
 		{
 			Item@[] items;
 			if(cr.GetItems(SLOT_INV, items) > 0)

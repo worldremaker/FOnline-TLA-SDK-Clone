@@ -136,8 +136,8 @@
 // uint8   Item_BrokenCount
 // uint16  Item_Deterioration
 // uint8   Item_ItemSlot
-// uint16  Item_AmmoPid
-// uint    Item_AmmoCount
+// uint16  ITEM_TYPE_AMMOPid
+// uint    ITEM_TYPE_AMMOCount
 // uint    Item_LockerDoorId
 // uint16  Item_LockerCondition
 // uint16  Item_LockerComplexity

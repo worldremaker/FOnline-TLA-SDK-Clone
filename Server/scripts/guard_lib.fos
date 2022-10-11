@@ -254,7 +254,7 @@ class CGuardsManager
 	bool GuardItemTest(Item@ item)
 	{
 		if (valid(item))
-		  if (item.GetType()==ITEM_WEAPON) { // если у игрока в руке оружие
+		  if (item.GetType()==ITEM_TYPE_WEAPON) { // если у игрока в руке оружие
 			if (item.GetProtoId()==PID_SHIV) return false;// незамечаем заточку
 			return true;
 		  }
@@ -330,7 +330,7 @@ class CGuardsManager
 			}
 		} else
 		{
-			if (item.GetType()==ITEM_WEAPON && fromSlot==SLOT_HAND1)
+			if (item.GetType()==ITEM_TYPE_WEAPON && fromSlot==SLOT_HAND1)
 			if (GetCrittersDistantion(guard, player) < uint(guard.Stat[ST_PERCEPTION]+PerceptionAdd))
 			// если игрок убрал оружие
 			{
@@ -373,7 +373,7 @@ class CGuardsManager
 		{
 				uint16 itemType=item.GetType();
 				switch (itemType) {
-				case(ITEM_DRUG):
+				case(ITEM_TYPE_DRUG):
 					if(Present(item.GetProtoId(),Pids_DrugsAlcohol)) {
 						guard.SayMsg(SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR(Dialog,5));
 						//guard.Say(SAY_NORM_ON_HEAD, "Эх счаз бы тоже пивка наебнуть");

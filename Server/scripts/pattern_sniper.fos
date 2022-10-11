@@ -90,7 +90,7 @@ class SniperPattern : CommonPattern
 		uint8 mode = 0;
 		ProtoItem @ weapon = cr.GetSlotProto(SLOT_HAND1, mode);
 		if(!valid(weapon)) return false;
-		if(weapon.Type!=ITEM_WEAPON || _WeaponSkill(weapon,_WeaponModeUse(mode))!=SK_SMALL_GUNS) return false;
+		if(weapon.Type!=ITEM_TYPE_WEAPON || _WeaponSkill(weapon,_WeaponModeUse(mode))!=SK_SMALL_GUNS) return false;
 
 		Item @ weap = _CritGetItemHand(cr);
 		if(!valid(weap)) return false;
@@ -216,7 +216,7 @@ class SniperPattern : CommonPattern
 			ProtoItem @ weapon = sniper.GetSlotProto(SLOT_HAND1, mode);
 			if(valid(weapon))
 			{
-				if(weapon.Type==ITEM_WEAPON)
+				if(weapon.Type==ITEM_TYPE_WEAPON)
 				{
 					if(player.Stat[ST_CURRENT_HP]>30 &&
 					   sniper.Stat[ST_CURRENT_AP]<int(_WeaponApCost(weapon, _WeaponModeUse(mode))) &&

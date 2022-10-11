@@ -60,20 +60,22 @@
 #define ACCESSORY_CONTAINER         (3)
 
 // Items types
-#define ITEM_NONE                   (0)
-#define ITEM_ARMOR                  (1)
-#define ITEM_DRUG                   (2)
-#define ITEM_WEAPON                 (3)
-#define ITEM_AMMO                   (4)
-#define ITEM_MISC                   (5)
-#define ITEM_KEY                    (7)
-#define ITEM_CONTAINER              (8)
-#define ITEM_DOOR                   (9)
-#define ITEM_GRID                   (10)
-#define ITEM_GENERIC                (11)
-#define ITEM_WALL                   (12)
-#define ITEM_CAR                    (13)
-#define ITEM_MAGIC                  (20) // User types
+	// Internal types
+#define ITEM_TYPE_NONE              (0)
+#define ITEM_TYPE_ARMOR             (1)
+#define ITEM_TYPE_DRUG              (2)
+#define ITEM_TYPE_WEAPON            (3)
+#define ITEM_TYPE_AMMO              (4)
+#define ITEM_TYPE_MISC              (5)
+#define ITEM_TYPE_KEY               (7)
+#define ITEM_TYPE_CONTAINER         (8)
+#define ITEM_TYPE_DOOR              (9)
+#define ITEM_TYPE_GRID              (10)
+#define ITEM_TYPE_GENERIC           (11)
+#define ITEM_TYPE_WALL              (12)
+#define ITEM_TYPE_CAR               (13)
+	// User types
+#define ITEM_TYPE_MAGIC             (20)
 
 // Item flags
 #define ITEM_HIDDEN                 (0x00000001)

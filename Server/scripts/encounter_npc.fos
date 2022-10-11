@@ -37,12 +37,12 @@ void _NpcInit(Critter& npc, bool firstTime)
 		for(uint i = 0, j = items.length(); i < j; i++)
 		{
 			SetDeterioration(items[i], Random(80, 95));
-			if(items[i].GetType() == ITEM_WEAPON && !favrtWpnSet)
+			if(items[i].GetType() == ITEM_TYPE_WEAPON && !favrtWpnSet)
 			{
 				npc.SetFavoriteItem(SLOT_HAND1, items[i].GetProtoId());
 				favrtWpnSet = true;
 			}
-		/*	if(items[i].GetType() == ITEM_AMMO && !favrtAmmoSet)
+		/*	if(items[i].GetType() == ITEM_TYPE_AMMO && !favrtAmmoSet)
 			{
 				npc.SetFavoriteItem(SLOT_HAND2, items[i].GetProtoId());
 				favrtAmmoSet = true;
@@ -205,7 +205,7 @@ int _NpcPlaneEnd(Critter& npc, NpcPlane& plane, int reason, Critter@ someCr, Ite
 			for(uint i = 0, j = items.length(); i < j; i++)
 			{
 				int type = items[i].GetType();
-				if(type < ITEM_ARMOR || type > ITEM_KEY) @items[i] = null; // Skip
+				if(type < ITEM_TYPE_ARMOR || type > ITEM_TYPE_KEY) @items[i] = null; // Skip
 			}
 
 			MoveItems(items, npc);

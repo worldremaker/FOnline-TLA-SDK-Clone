@@ -51,12 +51,12 @@ bool CanRepair(Item@ item, Critter@ npc)
 	GameVar@ canRepair;
 	switch(type)
 	{
-		case ITEM_ARMOR:
+		case ITEM_TYPE_ARMOR:
 			@canRepair = GetLocalVar((Present(pid, SpecialArmours) ? VAR_CAN_REPAIR_ARMOUR_SPECIAL : VAR_CAN_REPAIR_ARMOUR), npc.Id);
 			if(valid(canRepair) && canRepair == 1)
 				return true;
 			break;
-		case ITEM_WEAPON:
+		case ITEM_TYPE_WEAPON:
 			@canRepair = GetLocalVar((Present(pid, SpecialWeapons) ? VAR_CAN_REPAIR_WEAPONS_SPECIAL : VAR_CAN_REPAIR_WEAPONS), npc.Id);
 			if(valid(canRepair) && canRepair == 1)
 				return true;
@@ -109,7 +109,7 @@ void GetItemFromRepair(Critter@ player, Critter@ npc)
 	if(!valid(pidRepair) || (pidRepair == 0))
 		return;
 	Item@ item = player.AddItem(pidRepair.GetValue(), 1);
-	if(valid(item) && item.GetType() == ITEM_WEAPON)
+	if(valid(item) && item.GetType() == ITEM_TYPE_WEAPON)
 	{
 		item.WeaponAmmoCount = 0;
 		item.Update();

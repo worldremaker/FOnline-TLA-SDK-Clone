@@ -136,7 +136,7 @@ uint TryCreateCar(Critter& player, uint16 protoCar)
 Item@ GetPlayerKey(Critter@ player)
 {
 	Item@ key=_CritGetItemHand(player);
-	if(not valid(key) || key.GetType()!=ITEM_KEY) return null;
+	if(not valid(key) || key.GetType()!=ITEM_TYPE_KEY) return null;
 	return key;
 }
 
@@ -204,7 +204,7 @@ uint r_SellCar(Critter& player, Critter@ tray, int val)
 	if(valid(isQuest) && isQuest == 1)
 		cost = 0;
 	Item@ key=_CritGetItemHand(player);
-	if(valid(key) && key.GetType()==ITEM_KEY && key.LockerId==car.LockerId) DeleteItem(key);
+	if(valid(key) && key.GetType()==ITEM_TYPE_KEY && key.LockerId==car.LockerId) DeleteItem(key);
 	DeleteItem(car);
 	player.AddItem(PID_BOTTLE_CAPS,cost);
 	return 0;

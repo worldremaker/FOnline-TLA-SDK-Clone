@@ -20,7 +20,7 @@ bool UseSkillOnLocker(Critter& cr, Item& locker, int skill) // Export
 
 	if(skill==SKILL_PICK_ON_GROUND)
 	{
-		if(locker.GetType()==ITEM_DOOR)
+		if(locker.GetType()==ITEM_TYPE_DOOR)
 		{
 			// NoOpen
 			if(FLAG(locker.LockerCondition,LOCKER_NOOPEN))
@@ -48,7 +48,7 @@ bool UseSkillOnLocker(Critter& cr, Item& locker, int skill) // Export
 			if(FLAG(locker.LockerCondition,LOCKER_ISOPEN)) locker.LockerClose();
 			else locker.LockerOpen();
 		}
-		else if(locker.GetType()==ITEM_CONTAINER)
+		else if(locker.GetType()==ITEM_TYPE_CONTAINER)
 		{
 			// NoOpen
 			if(FLAG(locker.LockerCondition,LOCKER_NOOPEN))
@@ -85,7 +85,7 @@ bool UseSkillOnLocker(Critter& cr, Item& locker, int skill) // Export
 	}
 	else if(skill==SK_STEAL)
 	{
-		if(locker.GetType()==ITEM_CONTAINER && FLAG(locker.LockerCondition,LOCKER_ISOPEN))
+		if(locker.GetType()==ITEM_TYPE_CONTAINER && FLAG(locker.LockerCondition,LOCKER_ISOPEN))
 			cr.ShowContainer(null,locker,locker.Proto.GroundLevel?TRANSFER_HEX_CONT_DOWN:TRANSFER_HEX_CONT_UP);
 		else
 			cr.SayMsg(SAY_NETMSG,TEXTMSG_GAME,STR_USE_NOTHING);
@@ -130,7 +130,7 @@ bool UseSkillOnLocker(Critter& cr, Item& locker, int skill) // Export
 		if(base>=Random(1,100))
 		{
 			locker.LockerOpen();
-			if(locker.GetType()==ITEM_CONTAINER) cr.ShowContainer(null,locker,locker.Proto.GroundLevel?TRANSFER_HEX_CONT_DOWN:TRANSFER_HEX_CONT_UP);
+			if(locker.GetType()==ITEM_TYPE_CONTAINER) cr.ShowContainer(null,locker,locker.Proto.GroundLevel?TRANSFER_HEX_CONT_DOWN:TRANSFER_HEX_CONT_UP);
 			cr.StatBase[ST_EXPERIENCE]+=50;
 			cr.AddScore(SCORE_CRACKER,1);
 		}
@@ -157,7 +157,7 @@ bool IsKeyAviable(Critter& cr, uint lockerId) // Export
 	if(lockerId==0) return true;
 	if(_CritFingersDoorId(cr.Id)==lockerId || _CritEyesDoorId(cr.Id)==lockerId) return true;
 	Item@[] keys;
-	for(uint i=0,j=cr.GetItemsByType(ITEM_KEY,keys);i<j;i++) if(keys[i].LockerId==lockerId) return true;
+	for(uint i=0,j=cr.GetItemsByType(ITEM_TYPE_KEY,keys);i<j;i++) if(keys[i].LockerId==lockerId) return true;
 	return false;
 }
 
@@ -165,7 +165,7 @@ uint GetKeyId(Critter& cr, uint lockerId) // Export
 {
 	if(lockerId==0 || _CritFingersDoorId(cr.Id)==lockerId || _CritEyesDoorId(cr.Id)==lockerId) return 0;
 	Item@[] keys;
-	for(uint i=0,j=cr.GetItemsByType(ITEM_KEY,keys);i<j;i++) if(keys[i].LockerId==lockerId) return keys[i].Id;
+	for(uint i=0,j=cr.GetItemsByType(ITEM_TYPE_KEY,keys);i<j;i++) if(keys[i].LockerId==lockerId) return keys[i].Id;
 	return 0;
 }
 
@@ -173,7 +173,7 @@ void SwitchState(Item& locker) // Export
 {
 	// Todo: show messages
 
-	if(locker.GetType()==ITEM_DOOR || locker.GetType()==ITEM_CONTAINER)
+	if(locker.GetType()==ITEM_TYPE_DOOR || locker.GetType()==ITEM_TYPE_CONTAINER)
 	{
 		// Check open aviability
 		if(not FLAG(locker.LockerCondition,LOCKER_NOOPEN))

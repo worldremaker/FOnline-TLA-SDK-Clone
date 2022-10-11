@@ -44,7 +44,7 @@ bool AddSandBag(Map & map, Critter& player, uint16 x, uint16 y, Item & sandBag)
 			if(!valid(item)) continue;
 			if(item.Id==sandBag.Id) continue;
 
-			if(item.GetType()==ITEM_CONTAINER||item.GetType()==ITEM_DOOR)
+			if(item.GetType()==ITEM_TYPE_CONTAINER||item.GetType()==ITEM_TYPE_DOOR)
 			{
 				// Найдена дверь или контейнер в нужных координатах, удаляем мешок, которым игрок пытался заблокировать проход или контейнер
 				DeleteItem(sandBag);

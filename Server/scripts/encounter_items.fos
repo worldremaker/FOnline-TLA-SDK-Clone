@@ -111,7 +111,7 @@ void GenerateItems(Map & map, Critter @[]@  grp)
 				{
 					for(uint j=0,l=items.length();j<l;j++)
 					{
-						if(items[j].GetType()==ITEM_CONTAINER)
+						if(items[j].GetType()==ITEM_TYPE_CONTAINER)
 						{
 							uint qty = _GetQty(idx);
 							if(qty>0)

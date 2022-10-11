@@ -840,7 +840,7 @@ void ParseEncounterObject(CEncounterObject@ obj, Map@ map, uint16 posX, uint16 p
 		Item@ item=map.AddItem(posX,posY,obj.Pid,1);
 		if(not valid(item)) return;
 
-		if(obj.Childs.length()>0 && item.GetType()==ITEM_CONTAINER)
+		if(obj.Childs.length()>0 && item.GetType()==ITEM_TYPE_CONTAINER)
 		{
 			for(uint i=0,j=obj.Childs.length();i<j;i++)
 			{

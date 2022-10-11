@@ -118,7 +118,7 @@ bool s_UseBarrel(Critter& player,Scenery& scenery,int skill,Item@ item)
 
 	if(!valid(hidingPlace)){return false;}
 
-	if(hidingPlace.GetType()== ITEM_CONTAINER)
+	if(hidingPlace.GetType()== ITEM_TYPE_CONTAINER)
 	{
 		hidingPlace.LockerOpen();
 		player.ShowContainer(null,hidingPlace,TRANSFER_HEX_CONT_UP);
@@ -667,7 +667,7 @@ void r_EndQuest(Critter& player, Critter@ npc, int noAward)
 	uint bookCount = player.CountItem(PID_HUBOLOGIST_BOOK);
 	if(bookCount<3) return;
 	Item @[] items;
-	if(player.GetItemsByType(ITEM_MISC, items)==0) return;
+	if(player.GetItemsByType(ITEM_TYPE_MISC, items)==0) return;
 	int sumCost = 0;
 	int counter = 0;
 	for(uint i = 0; i < items.length() && counter < 7; i++)

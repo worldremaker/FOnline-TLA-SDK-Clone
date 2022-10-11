@@ -113,7 +113,7 @@ class CommonPattern
 				// Износ оружия
 				SetDeterioration(item, Random(50,90));
 				// Удаление избыточных патронов
-				if(item.GetType()==ITEM_AMMO)
+				if(item.GetType()==ITEM_TYPE_AMMO)
 				{
 					_SubItem(item, uint(item.GetCount()-Random(1,30)));
 				}

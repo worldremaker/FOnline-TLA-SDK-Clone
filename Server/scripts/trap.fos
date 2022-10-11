@@ -16,7 +16,7 @@ bool _ValidForTrap(Item & onItem)
 {
 	bool isValid=false;
 	uint8 iType = onItem.GetType();
-	isValid = (iType==ITEM_DOOR||iType==ITEM_CONTAINER);
+	isValid = (iType==ITEM_TYPE_DOOR||iType==ITEM_TYPE_CONTAINER);
 
 	return isValid;
 }
@@ -182,7 +182,7 @@ void TrapDamagePlayer(Item & trap, Critter & player)
 	if(!_IsItemTrap(trap)) return;
 
 	// пока все только для гранат реализовано
-	if(trap.GetType()==ITEM_WEAPON)
+	if(trap.GetType()==ITEM_TYPE_WEAPON)
 	{
 		// c оружием просто - нужно выполнить нанесение дамага
 		uint weapPid = trap.GetProtoId();

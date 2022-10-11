@@ -761,7 +761,7 @@ void GlobalCar(Critter& iam, int crId, int, int)
 	if(valid(cr))
 	{
 		Item@[] items;
-		cr.GetItemsByType(ITEM_CAR,items);
+		cr.GetItemsByType(ITEM_TYPE_CAR,items);
 		for(uint i=0;i<items.length();i++)
 		{
 			Item@ car=items[i];
@@ -1013,7 +1013,7 @@ void TurretParam(Critter& cr, int, int , int)
 void CreateCar(Critter& cr, int pid, int ox, int oy)
 {
 	Item@ car=cr.GetMap().AddItem(cr.HexX+ox,cr.HexY+oy,pid,1);
-	if(not valid(car) || car.GetType()!=ITEM_CAR) return;
+	if(not valid(car) || car.GetType()!=ITEM_TYPE_CAR) return;
 
 	car.CarFuel=car.Proto.Car_TankVolume;
 	car.CarDeterioration=0;
@@ -1032,7 +1032,7 @@ void CreateCar(Critter& cr, int pid, int ox, int oy)
 void CreateCarPersonal(Critter& cr, int pid, int crId, int oy)
 {
 	Item@ car=cr.GetMap().AddItem(cr.HexX,cr.HexY+oy,pid,1);
-	if(not valid(car) || car.GetType()!=ITEM_CAR) return;
+	if(not valid(car) || car.GetType()!=ITEM_TYPE_CAR) return;
 
 	car.CarFuel=car.Proto.Car_TankVolume;
 	car.CarDeterioration=0;
@@ -1250,19 +1250,19 @@ void PatchItemFlags(Critter& cr, int, int, int)
 		bool canPickUp=false;
 		switch(item.GetType())
 		{
-		case ITEM_ARMOR:
-		case ITEM_DRUG:
-		case ITEM_WEAPON:
-		case ITEM_AMMO:
-		case ITEM_MISC:
-		case ITEM_KEY:
+		case ITEM_TYPE_ARMOR:
+		case ITEM_TYPE_DRUG:
+		case ITEM_TYPE_WEAPON:
+		case ITEM_TYPE_AMMO:
+		case ITEM_TYPE_MISC:
+		case ITEM_TYPE_KEY:
 			canPickUp=true;
 			break;
-		//case ITEM_MISC_EX:
-		case ITEM_CONTAINER:
+		//case ITEM_TYPE_MISC_EX:
+		case ITEM_TYPE_CONTAINER:
 			canPickUp=FLAG(item.Flags,ITEM_CAN_PICKUP);
 			break;
-		case ITEM_DOOR:
+		case ITEM_TYPE_DOOR:
 			SETFLAG(item.Flags,ITEM_NO_HIGHLIGHT);
 			break;
 		default:

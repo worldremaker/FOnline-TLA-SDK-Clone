@@ -6,7 +6,7 @@
 //        1 - в инвентаре НПЦ на той же карте,
 //		  2 - в контейнере на той же карте
 //		  3+ - если режим>2, то итем располагается гденибудь неподалеку от гекса с таким номером
-// респауну подвержены только итемы типов: ITEM_ARMOR, ITEM_DRUG, ITEM_WEAPON, ITEM_MISC, ITEM_KEY
+// респауну подвержены только итемы типов: ITEM_TYPE_ARMOR, ITEM_TYPE_DRUG, ITEM_TYPE_WEAPON, ITEM_TYPE_MISC, ITEM_TYPE_KEY
 // Eсть дополнительная возможность указать номер переменной (поле Val3), чье значение будет проверяться при попытке поднять итем
 // если значение переменной = 1, предмет будет поднят и после этого переменная будет установлена в 0
 
@@ -39,7 +39,7 @@ bool CheckItemValidToRespawn(Item @ item)
 	if(!valid(item)) return false;
 
 	uint8 protoType = item.GetType();
-	return protoType==ITEM_ARMOR||protoType==ITEM_DRUG||protoType==ITEM_WEAPON||protoType==ITEM_MISC||protoType==ITEM_KEY;
+	return protoType==ITEM_TYPE_ARMOR||protoType==ITEM_TYPE_DRUG||protoType==ITEM_TYPE_WEAPON||protoType==ITEM_TYPE_MISC||protoType==ITEM_TYPE_KEY;
 }
 
 bool e_ItemOnSkill(Item& item, Critter& cr, int skill)
@@ -192,7 +192,7 @@ Item@ RespawnItemNearEntire(Map & map, uint8 entire, uint16 protoId, uint count)
 Item@ RespawnItemContainer(Map & map, uint protoId, uint count)
 {
 	Item@[] containers;
-	map.GetItemsByType (ITEM_CONTAINER , containers);
+	map.GetItemsByType (ITEM_TYPE_CONTAINER , containers);
 
 	Item@ container = containers[Random(0, containers.length()-1)];
 	if(!valid(container)) return null;

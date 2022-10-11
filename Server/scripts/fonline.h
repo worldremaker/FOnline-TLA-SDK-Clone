@@ -12,9 +12,6 @@
 #error __SERVER / __CLIENT / __MAPPER any of this must be defined
 #endif
 
-#pragma pack(8)
-
-#define WIN32
 #define NDEBUG
 #define _WINDOWS
 #define _MBCS
@@ -702,20 +699,20 @@ struct ProtoItem
 	uint   Car_Entrance;
 	uint   Car_MovementType;
 
-	bool   IsItem()            {return Type != ITEM_GENERIC && Type != ITEM_WALL;}
-	bool   IsScen()            {return Type == ITEM_GENERIC;}
-	bool   IsWall()            {return Type == ITEM_WALL;}
-	bool   IsArmor()           {return Type == ITEM_ARMOR;}
-	bool   IsDrug()            {return Type == ITEM_DRUG;}
-	bool   IsWeapon()          {return Type == ITEM_WEAPON;}
-	bool   IsAmmo()            {return Type == ITEM_AMMO;}
-	bool   IsMisc()            {return Type == ITEM_MISC;}
-	bool   IsKey()             {return Type == ITEM_KEY;}
-	bool   IsContainer()       {return Type == ITEM_CONTAINER;}
-	bool   IsDoor()            {return Type == ITEM_DOOR;}
-	bool   IsGrid()            {return Type == ITEM_GRID;}
-	bool   IsGeneric()         {return Type == ITEM_GENERIC;}
-	bool   IsCar()             {return Type == ITEM_CAR;}
+	bool   IsItem()            {return Type != ITEM_TYPE_GENERIC && Type != ITEM_TYPE_WALL;}
+	bool   IsScen()            {return Type == ITEM_TYPE_GENERIC;}
+	bool   IsWall()            {return Type == ITEM_TYPE_WALL;}
+	bool   IsArmor()           {return Type == ITEM_TYPE_ARMOR;}
+	bool   IsDrug()            {return Type == ITEM_TYPE_DRUG;}
+	bool   IsWeapon()          {return Type == ITEM_TYPE_WEAPON;}
+	bool   IsAmmo()            {return Type == ITEM_TYPE_AMMO;}
+	bool   IsMisc()            {return Type == ITEM_TYPE_MISC;}
+	bool   IsKey()             {return Type == ITEM_TYPE_KEY;}
+	bool   IsContainer()       {return Type == ITEM_TYPE_CONTAINER;}
+	bool   IsDoor()            {return Type == ITEM_TYPE_DOOR;}
+	bool   IsGrid()            {return Type == ITEM_TYPE_GRID;}
+	bool   IsGeneric()         {return Type == ITEM_TYPE_GENERIC;}
+	bool   IsCar()             {return Type == ITEM_TYPE_CAR;}
 	bool   LockerIsChangeble() {if(IsDoor()) return true; if(IsContainer()) return Container_Changeble; return false;}
 	bool   IsCanPickUp()       {return FLAG(Flags, ITEM_CAN_PICKUP);}
 };
@@ -986,10 +983,10 @@ struct Item
 	uint   GetWeight()          {return GetCount() * Proto->Weight;}
 
 	// Armor
-	bool   IsArmor()            {return GetType() == ITEM_ARMOR;}
+	bool   IsArmor()            {return GetType() == ITEM_TYPE_ARMOR;}
 
 	// Weapon
-	bool   IsWeapon()                {return GetType() == ITEM_WEAPON;}
+	bool   IsWeapon()                {return GetType() == ITEM_TYPE_WEAPON;}
 	bool   WeapIsEmpty()             {return !Data.TechInfo.AmmoCount;}
 	bool   WeapIsFull()              {return Data.TechInfo.AmmoCount >= Proto->Weapon_MaxAmmoCount;}
 	uint   WeapGetAmmoCount()        {return Data.TechInfo.AmmoCount;}
@@ -1007,7 +1004,7 @@ struct Item
 	bool   ContIsChangeble()      {return Proto->Container_Changeble;}
 
 	// Door
-	bool   IsDoor()               {return GetType() == ITEM_DOOR;}
+	bool   IsDoor()               {return GetType() == ITEM_TYPE_DOOR;}
 
 	// Locker
 	bool   IsHasLocker()          {return IsDoor() || IsContainer();}
@@ -1809,6 +1806,8 @@ inline void static_asserts()
 	STATIC_ASSERT(sizeof(uint)        == 4   );
 	STATIC_ASSERT(sizeof(uint64)      == 8   );
 	STATIC_ASSERT(sizeof(bool)        == 1   );
+
+#if defined(_M_IX86)
 	STATIC_ASSERT(sizeof(string)      == 24  );
 	STATIC_ASSERT(sizeof(IntVec)      == 12  );
 	STATIC_ASSERT(sizeof(IntMap)      == 24  );
@@ -1844,6 +1843,7 @@ inline void static_asserts()
 #ifdef __SERVER
 	STATIC_ASSERT(offsetof(ProtoMap, HexFlags)              == 304 );
 #endif
+#endif // defined(_M_IX86)
 }
 
 #endif // __FONLINE__

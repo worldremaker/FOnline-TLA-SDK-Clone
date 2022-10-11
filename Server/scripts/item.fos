@@ -126,7 +126,7 @@ bool _GuardedItemSkill(Item& item, Critter& cr, int skill)
 				item.SetEvent(ITEM_EVENT_SKILL, "");
 				item.SetScript(null);
 			}
-			if(item.GetType() == ITEM_DOOR || item.GetType() == ITEM_CONTAINER)
+			if(item.GetType() == ITEM_TYPE_DOOR || item.GetType() == ITEM_TYPE_CONTAINER)
 			{
 				if(item.Val0 > 0)
 					CreateTimeEvent(__FullSecond + REAL_MINUTE(item.Val0 == 0? 2 : item.Val0), "e_AutoCloseDoor", item.Id, true);

@@ -208,7 +208,7 @@ int _NpcPlaneEnd(Critter& npc, NpcPlane& plane, int reason, Critter@ someCr, Ite
 			for(uint i=0,j=items.length();i<j;i++)
 			{
 				int type=items[i].GetType();
-				if(type<ITEM_ARMOR || type>ITEM_KEY) @items[i]=null;
+				if(type<ITEM_TYPE_ARMOR || type>ITEM_TYPE_KEY) @items[i]=null;
 			}
 			MoveItems(items,npc);
 			npc.SendMessage(MSG_CANCEL_PICKUP, plane.IdentifierExt, MESSAGE_TO_ALL_ON_MAP);

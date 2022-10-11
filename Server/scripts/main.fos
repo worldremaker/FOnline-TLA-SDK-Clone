@@ -353,10 +353,10 @@ bool critter_use_item(Critter& cr, Item& item, Critter@ targetCr, Item@ targetIt
 	if(OnUseExplode(cr,item,targetCr,targetItem,targetScen,param)) return true;
 
 	// Cars
-	if(valid(targetItem) && targetItem.GetType()==ITEM_CAR && UseItemOnCar(cr,targetItem,item)) return true;
+	if(valid(targetItem) && targetItem.GetType()==ITEM_TYPE_CAR && UseItemOnCar(cr,targetItem,item)) return true;
 
 	// Drugs
-	if(item.GetType()==ITEM_DRUG)
+	if(item.GetType()==ITEM_TYPE_DRUG)
 	{
 		if(useOnSelf) UseDrug(cr,item);
 		else if(valid(targetCr)) UseDrugOn(cr,targetCr,item);
@@ -412,13 +412,13 @@ bool critter_use_skill(Critter& cr, int skill, Critter@ targetCr, Item@ targetIt
 	bool isPlayer=cr.IsPlayer();
 
 	// Cars
-	if(valid(targetItem) && targetItem.GetType()==ITEM_CAR && UseSkillOnCar(cr,targetItem,skill)) return true;
+	if(valid(targetItem) && targetItem.GetType()==ITEM_TYPE_CAR && UseSkillOnCar(cr,targetItem,skill)) return true;
 
 	// Geiger counter
 	if(valid(targetItem) && targetItem.GetProtoId()==PID_GEIGER_COUNTER && UseSkillOnGeiger(cr,targetItem,skill)) return true;
 
 	// Doors or containers
-	if(valid(targetItem) && (targetItem.GetType()==ITEM_DOOR || targetItem.GetType()==ITEM_CONTAINER) && UseSkillOnLocker(cr,targetItem,skill)) return true;
+	if(valid(targetItem) && (targetItem.GetType()==ITEM_TYPE_DOOR || targetItem.GetType()==ITEM_TYPE_CONTAINER) && UseSkillOnLocker(cr,targetItem,skill)) return true;
 
 	switch(skill)
 	{
@@ -1052,7 +1052,7 @@ void critter_change_item(Critter& cr, Item& item, uint8 fromSlot)
 	uint8 toSlot=item.CritSlot;
 
 	// Armor changing
-	if(item.GetType()==ITEM_ARMOR && (fromSlot==SLOT_ARMOR || toSlot==SLOT_ARMOR))
+	if(item.GetType()==ITEM_TYPE_ARMOR && (fromSlot==SLOT_ARMOR || toSlot==SLOT_ARMOR))
 	{
 		if(GetCritterAnimType(cr.CrType)!=ANIM_TYPE_3D)
 		{
@@ -1241,7 +1241,7 @@ void items_crafted(Item@[]& items, uint[]& itemsCount, Item@[]& resources, Critt
 	{
 		// Unload weapons
 		Item@ item=items[i];
-		if(item.GetType()==ITEM_WEAPON && item.Proto.Weapon_MaxAmmoCount>0)
+		if(item.GetType()==ITEM_TYPE_WEAPON && item.Proto.Weapon_MaxAmmoCount>0)
 		{
 			item.WeaponAmmoCount=0;
 			item.Update();
@@ -1343,8 +1343,8 @@ void turn_based_process(Map& map, Critter& cr, bool beginTurn)
 			// In hands only HtH weapons
 			Item@ hand1=cr.GetItem(0,SLOT_HAND1);
 			Item@ hand2=cr.GetItem(0,SLOT_HAND2);
-			if((not valid(hand1) || hand1.GetType()!=ITEM_WEAPON || not hand1.Weapon_IsHtHAttack(0)) &&
-				(not valid(hand1) || hand1.GetType()!=ITEM_WEAPON || not hand1.Weapon_IsHtHAttack(0)))
+			if((not valid(hand1) || hand1.GetType()!=ITEM_TYPE_WEAPON || not hand1.Weapon_IsHtHAttack(0)) &&
+				(not valid(hand1) || hand1.GetType()!=ITEM_TYPE_WEAPON || not hand1.Weapon_IsHtHAttack(0)))
 			{
 				hthEvade=true;
 			}

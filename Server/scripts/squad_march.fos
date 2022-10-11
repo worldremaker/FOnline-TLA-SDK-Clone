@@ -359,14 +359,14 @@ class MarchQueue
 					// Проверяем, что у нпц в другом слоте
 					pid2 = cr.GetFavoriteItem(SLOT_HAND2);
 					@proto = GetProtoItem(pid2);
-					if(!valid(proto) || proto.Type != ITEM_WEAPON)
+					if(!valid(proto) || proto.Type != ITEM_TYPE_WEAPON)
 					{
-						if(cr.GetItemsByType(ITEM_WEAPON, weapons) > 0)
+						if(cr.GetItemsByType(ITEM_TYPE_WEAPON, weapons) > 0)
 						{
 
 							for(uint i = 0, l = weapons.length(); i < l; i++)
 							{
-								if(weapons[i].GetType() == ITEM_WEAPON && !weapons[i].Proto.Weapon_IsUnarmed)
+								if(weapons[i].GetType() == ITEM_TYPE_WEAPON && !weapons[i].Proto.Weapon_IsUnarmed)
 									pid2 = weapons[i].GetProtoId();
 							}
 						}
@@ -382,7 +382,7 @@ class MarchQueue
 						// Проверяем, что у нпц в другом слоте
 						pid2 = cr.GetFavoriteItem(SLOT_HAND2);
 						@proto = GetProtoItem(pid2);
-						if(!valid(proto) || proto.Type == ITEM_WEAPON)
+						if(!valid(proto) || proto.Type == ITEM_TYPE_WEAPON)
 							pid2 = PID_UNARMED; // Убирание оружия - имитируем с помощью выбора любимым оружием рукопашного удара
 						cr.DropPlanes();
 						cr.SetFavoriteItem(SLOT_HAND1, pid2);
