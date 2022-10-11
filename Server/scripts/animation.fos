@@ -268,15 +268,15 @@ string@ ProcessTactics(uint crType, uint anim1, uint anim2, uint& pass, uint& fl
 		case ANIM2_DEAD_FRONT:         animName += "Death";              break;
 		case ANIM2_DEAD_BACK:          animName += "Death";              break;
 		case ANIM2_DEAD_BLOODY_SINGLE: animName += "DeathBighole";       break;
-		case ANIM2_DEAD_BLOODY_BURST:  animName += "DeathFire";          break;
+		case ANIM2_DEAD_BLOODY_BURST:  animName += "DeathRiddled";       break;
 		case ANIM2_DEAD_BURST:         animName += "DeathRiddled";       break;
-		case ANIM2_DEAD_PULSE:         animName += "DeathRiddled";       break;
+		case ANIM2_DEAD_PULSE:         animName += "DeathMelt";          break;
 		case ANIM2_DEAD_PULSE_DUST:    animName += "DeathElectrify";     break; // ElectrifyOverlay
 		case ANIM2_DEAD_LASER:         animName += "DeathCutinhalf";     break;
-		case ANIM2_DEAD_FUSED:         animName += "DeathFire";          break; // FireOverlay
-		case ANIM2_DEAD_EXPLODE:       animName += "DeathMelt";          break; // MeltOverlay
-		case ANIM2_DEAD_BURN:          animName += "DeathExplode";       break;
-		case ANIM2_DEAD_BURN_RUN:      animName += "DeathElectrify";     break;
+		case ANIM2_DEAD_FUSED:         animName += "DeathMelt";          break; // MeltOverlay
+		case ANIM2_DEAD_EXPLODE:       animName += "DeathExplode";       break;
+		case ANIM2_DEAD_BURN:          animName += "DeathFire";          break; // FireOverlay
+		case ANIM2_DEAD_BURN_RUN:      animName += "DeathFire";          break; // FireOverlay
 		default: return null;
 		}
 	}

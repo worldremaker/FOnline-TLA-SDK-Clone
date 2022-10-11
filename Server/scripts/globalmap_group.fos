@@ -2,6 +2,7 @@
 #include "_macros.fos"
 #include "_msgstr.fos"
 #include "_math.fos"
+#include "entire.fos"
 
 import void FindEncounter(Critter@[]& group, Item@ car, uint x, uint y, uint& encounterDescriptor, bool& waitForAnswer, bool empty) from "worldmap";
 import void InviteToEncounter(Critter@[]& group, Item@ car, uint encounterDescriptor, int combatMode, uint& mapId, uint16& hexX, uint16& hexY, uint8& dir) from "worldmap";
@@ -251,6 +252,7 @@ void global_process(int processType, Critter& cr, Item@ car,
 		if(int(group.length()) > leader.Stat[ST_CHARISMA] + leader.Perk[PE_MAGNETIC_PERSONALITY])
 		{
 			leader.SayMsg(SAY_NETMSG, TEXTMSG_GAME, STR_CRIT_BAD_CHARISMA);
+			CheckForLocationWithoutParking(cr, car, curX, curY);
 			return;
 		}
 
@@ -269,6 +271,7 @@ void global_process(int processType, Critter& cr, Item@ car,
 			{
 				leader.SayMsg(SAY_NETMSG, TEXTMSG_GAME, strNum);
 				speed = 0.0f;
+				CheckForLocationWithoutParking(cr, car, curX, curY);
 				return;
 			}
 
@@ -409,6 +412,34 @@ void ScanZone(Critter@[]& group, int zx, int zy)
 				Location@ loc = GetLocation(locId);
 				if(valid(loc)) cr.SetKnownLoc(true, locId);
 			}
+		}
+	}
+}
+
+void CheckForLocationWithoutParking(Critter& cr, Item& car, float& curX, float& curY)
+{
+	Location@[] locations;
+	if(GetVisibleLocations(curX, curY, 0, cr, locations) != 0)
+	{
+		Location@ loc = locations[0];
+		Map@ map = loc.GetMapByIndex(0);
+
+		bool placeFounded = false;
+		Entire[] entires;
+		ParseEntires(map, entires, car.Proto.Car_Entrance);
+		for(uint i = 0; i < entires.length(); i++)
+		{
+			if(map.CheckPlaceForItem(entires[i].HexX, entires[i].HexY, car.GetProtoId()))
+			{
+				placeFounded = true;
+				break;
+			}
+		}
+
+		if(!placeFounded)
+		{
+			curX = loc.WorldX + int(loc.Radius) * (Random(0, 1) == 0 ? int(1) : int(-1));
+			curY = loc.WorldY + int(loc.Radius) * (Random(0, 1) == 0 ? int(1) : int(-1));
 		}
 	}
 }
