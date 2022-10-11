@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 11.11.2011
-// Server version 467, MSVS2008
+// Last update 14.11.2011
+// Server version 468, MSVS, GCC
 // Default calling convention - cdecl
 //
 
@@ -461,7 +461,6 @@ struct GameOptions
 	bool   VSync;
 	int    FlushVal;
 	int    BaseTexture;
-	int    ScreenClear;
 	int    Light;
 	string Host;
 	int    HostRefCount;
@@ -477,11 +476,11 @@ struct GameOptions
 	string Name;
 	int    NameRefCount;
 	int    ScrollDelay;
-	int    ScrollStep;
+	uint   ScrollStep;
 	bool   ScrollCheck;
 	string FoDataPath;
 	int    FoDataPathRefCount;
-	int    Sleep;
+	uint   FixedFPS;
 	bool   MsgboxInvert;
 	int    ChangeLang;
 	uint8  DefaultCombatMode;
@@ -493,7 +492,6 @@ struct GameOptions
 	int    ScreenWidth;
 	int    ScreenHeight;
 	int    MultiSampling;
-	bool   SoftwareSkinning;
 	bool   MouseScroll;
 	int    IndicatorType;
 	uint   DoubleClickTime;
@@ -661,7 +659,7 @@ struct ProtoItem
 	uint8  IndicatorStart;
 	uint8  IndicatorMax;
 	uint   HolodiskNum;
-	uint   StartValue[ITEM_MAX_SCRIPT_VALUES];
+	int    StartValue[ITEM_MAX_SCRIPT_VALUES];
 	uint8  BlockLines[ITEM_MAX_BLOCK_LINES];
 	uint16 ChildPids[ITEM_MAX_CHILDS];
 	uint8  ChildLines[ITEM_MAX_CHILDS][ITEM_MAX_CHILD_LINES];
@@ -1877,7 +1875,7 @@ inline void static_asserts()
 	STATIC_ASSERT(sizeof(IntPair)     == 8   );
 	STATIC_ASSERT(sizeof(ProtoItem)   == 908 );
 	STATIC_ASSERT(sizeof(Mutex)       == 24  );
-	STATIC_ASSERT(sizeof(GameOptions) == 1140);
+	STATIC_ASSERT(sizeof(GameOptions) == 1136);
 	STATIC_ASSERT(sizeof(ScriptArray) == 36  );
 	STATIC_ASSERT(sizeof(SpriteInfo)  == 36  );
 	STATIC_ASSERT(sizeof(Field)       == 76  );
