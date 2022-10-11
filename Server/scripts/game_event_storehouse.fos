@@ -46,7 +46,7 @@ uint e_CreateStoreHouse(uint[]@ values)
 		}
 	}
 	// Не найдена локация в данной области
-	uint locId = CreateLocation(LOCATION_DesertEncounter11, 
+	uint locId = CreateLocation(LOCATION_DesertEncounter12, 
 		GlobalCoords[idx][0] + Random(-1*LOC_DELTA, LOC_DELTA), 
 		GlobalCoords[idx][1] + Random(-1*LOC_DELTA, LOC_DELTA),
 		null);
@@ -62,6 +62,7 @@ uint e_CreateStoreHouse(uint[]@ values)
 			Map@ map = loc.GetMapByIndex(0);
 			if(valid(map))
 			{
+				map.SetScript("_MapInit");
 				Item@[] items;
 				map.GetItems(128, items);
 				if(items.length() > 0)
@@ -69,7 +70,7 @@ uint e_CreateStoreHouse(uint[]@ values)
 					GameVar@ contId = GetLocalVar(LLVAR_storehouse_cont_id, locId);
 					if(valid(contId))
 					{						
-						locId = items[0].Id;
+						contId = items[0].Id;
 						loc.Visible = false;
 						loc.AutoGarbage = false;
 						Entire[] entires;
@@ -81,7 +82,7 @@ uint e_CreateStoreHouse(uint[]@ values)
 							{
 								dir = GetDirection(entires[i].HexX, entires[i].HexY, hexX, hexY);
 								pid = Random(0,1) == 0 ? NPC_PID_JACKAL_SNIPER : NPC_PID_JACKAL_TERMINATOR;
-								int[] params = {ST_TEAM_ID, TEAM_Bandit, ST_BAG_ID, (pid == NPC_PID_JACKAL_SNIPER ? BAG_Sniper1 : BAG_Term1)};
+								int[] params = {ST_TEAM_ID, TEAM_Bandit, ST_NPC_ROLE, 17, ST_BAG_ID, (pid == NPC_PID_JACKAL_SNIPER ? BAG_Sniper1 : BAG_Term1)};
 								map.AddNpc(pid, entires[i].HexX, entires[i].HexY, dir, params, null, "encounter_npc@_NpcInit");
 							}
 						}
@@ -91,6 +92,28 @@ uint e_CreateStoreHouse(uint[]@ values)
 		}
 	}
 	return 0;
+}
+
+void _MapInit(Map& map, bool firstTime)
+{
+	map.SetEvent(MAP_EVENT_IN_CRITTER, "_MapInCritter");
+}
+
+void _MapInCritter(Map& map, Critter& cr)
+{
+	if(cr.IsPlayer())
+	{
+		Critter@[] npc;
+		if(map.GetCritters(0, FIND_LIFE|FIND_ONLY_NPC, npc) > 0)
+		{
+			for(uint i = 0, l = npc.length(); i < l; i++)
+			{
+				Critter@ hostile = npc[i];
+				if(valid(hostile) && hostile.Stat[ST_NPC_ROLE] == 17)
+					hostile.AddEnemyInStack(cr.Id);
+			}
+		}
+	}
 }
 
 void SaveLoot2Storehouse(uint16 WorldX, uint16 WorldY, Item@[] items)

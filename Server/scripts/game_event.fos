@@ -11,7 +11,7 @@
 
 #define _KeyEvent #(index) ("GE_" + index)
 #define _KeyManager ("GE_Manager")
-//#define DL #(s) (Log("traveller: " + s))
+//#define DL #(s) (Log("GE: " + s))
 #define DL #(s)
 
 class GameEventOccurCondition
@@ -202,6 +202,7 @@ class GameEventManager
 			for(uint j = 0, k = event.OccurConditions.length(); j < k; j++)
 			{
 				GameEvent@ condition = this.GetGameEventByIndex(event.OccurConditions[j].GameEventIndex);
+				DL("condition!" + "status:" +condition.Status + "Occer condirion:" + event.OccurConditions[j].Status);
 				if(!valid(condition) || condition.Status != event.OccurConditions[j].Status)
 				{
 					// не найден эвент, либо не удовлетворяет условиям
@@ -236,17 +237,20 @@ class GameEventManager
 
 uint e_GameEvent(uint[]@ values)
 {
+	DL("e_GameEvent");
 	uint key = values[0];
 	GameEventManager mng = GameEventManager();
 	mng.Load();
 	GameEvent@ event = mng.GetGameEventByIndex(key);
+	DL("valid event? status" + event.Status);
 	if(valid(event) && event.Status == STATUS_RUNNING)
 	{
 		event.Status = STATUS_OCCURED;
 		event.Save();
+		GameEvent@ nextEvent;
 		if(event.NextEventIndex > 0)
 		{
-			GameEvent@ nextEvent = mng.GetGameEventByIndex(event.NextEventIndex);
+			@ nextEvent = mng.GetGameEventByIndex(event.NextEventIndex);
 			if(valid(nextEvent) && mng.CanOccure(nextEvent))
 				nextEvent.Run();
 		}
@@ -255,7 +259,12 @@ uint e_GameEvent(uint[]@ values)
 			mng.CheckEventsCanOccure();
 		}
 		CreateTimeEvent(0, event.HandlerFunction, false);
-		event.Status = STATUS_ENDED;
+		if(event.NextEventIndex == event.AnyDataIndex && valid(nextEvent))
+		{
+			event.Status = STATUS_RUNNING;		
+		}else{
+			event.Status = STATUS_ENDED;		
+		}
 		event.Save();
 	}
 	mng.Save();
