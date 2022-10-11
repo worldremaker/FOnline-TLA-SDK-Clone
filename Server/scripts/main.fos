@@ -46,11 +46,16 @@ import void CheckAllGameEvents() from "game_event";
 import void PlaceLoot2Container(Map& map, Critter& cr) from "game_event_caches";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+// Called before world generation.
+void init()
+{
+	InitializeGame();
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
 // Call on start server.
 bool start()
 {
-	InitializeGame();
-
 	// Send info about others critters
 	// Remember:
 	// - all this info can be hacked in client;
@@ -1384,14 +1389,14 @@ void world_save(uint currentIndex, uint[]& deleteIndexes)
 
 // Call on player try register
 // Return true to allow, false to disallow
-bool player_registration(uint ip, string& name, string& password, uint& textMsg, uint& strNum)
+bool player_registration(uint ip, string& name, uint& textMsg, uint& strNum)
 {
 	return true;
 }
 
 // Call on player try login
 // Return true to allow, false to disallow
-bool player_login(uint ip, string& name, string& password, uint id, uint& textMsg, uint& strNum)
+bool player_login(uint ip, string& name, uint id, uint& textMsg, uint& strNum)
 {
 	if(__PermanentDeath>0 && IsPermanentDeath(id))
 	{

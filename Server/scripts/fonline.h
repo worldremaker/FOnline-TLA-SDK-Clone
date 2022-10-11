@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 26.08.2011
-// Server version 446, MSVS2008
+// Last update 07.09.2011
+// Server version 450, MSVS2008
 // Default calling convention - cdecl
 //
 
@@ -139,6 +139,7 @@ EXPORT extern void (*Log)(const char* frmt, ...);
 #define MAPOBJ_CRITTER_PARAMS       (40)
 #define MAX_PARAMETERS_ARRAYS       (100)
 #define MAX_NAME                    (30)
+#define PASS_HASH_SIZE              (32)
 #define MAX_STORED_IP               (20)
 #define MAX_HEX_OFFSET              (50)
 #define AP_DIVIDER                  (100)
@@ -428,8 +429,6 @@ struct GameOptions
 	int    ProxyPassRefCount;
 	string Name;
 	int    NameRefCount;
-	string Pass;
-	int    PassRefCount;
 	int    ScrollDelay;
 	int    ScrollStep;
 	bool   ScrollCheck;
@@ -1268,7 +1267,7 @@ struct Critter
 struct Client : Critter
 {
 	char   Name[MAX_NAME+1];
-	char   Pass[MAX_NAME+1];
+	char   PassHash[PASS_HASH_SIZE];
 	uint8  Access;
 	uint   LanguageMsg;
 };
@@ -1309,7 +1308,7 @@ struct CritterCl
 	string    Lexems;
 	int       LexemsRefCounter;
 	string    Avatar;
-	char      Password[MAX_NAME+1];
+	char      PasswordReg[MAX_NAME+1];
 
 	ItemVec   InvItems;
 	Item*     DefItemSlotHand;
@@ -1823,7 +1822,7 @@ inline void static_asserts()
 	STATIC_ASSERT(sizeof(IntPair)     == 8   );
 	STATIC_ASSERT(sizeof(ProtoItem)   == 908 );
 	STATIC_ASSERT(sizeof(Mutex)       == 24  );
-	STATIC_ASSERT(sizeof(GameOptions) == 1184);
+	STATIC_ASSERT(sizeof(GameOptions) == 1152);
 	STATIC_ASSERT(sizeof(ScriptArray) == 36  );
 	STATIC_ASSERT(sizeof(SpriteInfo)  == 36  );
 	STATIC_ASSERT(sizeof(Field)       == 76  );
