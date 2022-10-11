@@ -17,8 +17,8 @@ lang=russ engl
 16 1080 D _var p scen_ranger = 0 @
 2 2000 None 0 #
 4 2010 D _param p ST_INTELLECT > 3 #
-7 2020 D _var p q_ncr_hate_patrol = 0 #
-3 2030 D _var p q_ncr_hate_patrol > 0 @
+7 2020 D _var p q_ncr_hate_patrol < 2 #
+3 2030 D _var p q_ncr_hate_patrol } 2 @
 3 3000 None 0 #
 0 3010 @
 4 4000 None 0 #

@@ -670,6 +670,7 @@
 #define PID_FAKE_GECK                       (563)
 #define PID_USED_GECK                       (564)
 #define PID_FAKE_LETTER                     (600)
+#define PID_POT                             (601)
 
 // Special keys
 #define PID_ACCESS_CARD                     (140)

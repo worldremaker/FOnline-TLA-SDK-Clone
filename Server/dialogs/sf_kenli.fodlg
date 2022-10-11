@@ -77,7 +77,7 @@ lang=russ engl
 0 21010 #
 22 21020 @
 22 22000 None 0 #
-23 22010 D _var p q_sf_kenli_imperator_restore = 0 R _var p q_sf_kenli_imperator_restore = 1 R _script dialog@r_TimeoutSet 1 10080 #
+23 22010 D _var p q_sf_kenli_imperator_restore = 0 R _var p q_sf_kenli_imperator_restore = 1 R _script dialog@r_TimeoutSet 1 168 #
 0 22020 @
 23 23000 None 0 #
 0 23010 @

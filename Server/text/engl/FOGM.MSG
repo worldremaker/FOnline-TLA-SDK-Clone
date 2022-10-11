@@ -607,6 +607,14 @@
 # Map 186, base 1870
 {1870}{}{Abandoned doughnut warehouse - basement}
 {1875}{}{07desert}
+# Map 187, base 1880
+{1880}{}{Android lab entrance}
+{1885}{}{02 - Into The Dust.ogg}
+{1886}{}{gustwind:20, gustwin1:20, rattle:15, rattle1:15, vulture:15, vulture1:15}
+# Map 188, base 1890
+{1890}{}{Android lab basement}
+{1895}{}{12 - Kill Klesk.ogg}
+{1896}{}{electri1:15, electric:15, clank:10, clank1:10}
 
 # Map 190, base 1910
 {1910}{}{City Encounter 1}

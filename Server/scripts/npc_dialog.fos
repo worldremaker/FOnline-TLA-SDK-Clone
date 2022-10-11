@@ -147,6 +147,11 @@ void SayPhrase(Critter& cr, int dialog, int num)
 	AddMiscPlane(cr, 0, __FullSecond+WAIT_TIME, "npc_dialog@plane_NextPhrase");	
 }
 
+bool DialogEnded(Critter& cr)
+{
+	return D_PhraseType(cr.Stat[ST_VAR8]) == T_NoAction;
+}
+
 void plane_NextPhrase(Critter& cr)
 {
 	DL("plane_NextPhrase called. CrittedId:"+cr.Id +" type" + D_PhraseType(cr.Stat[ST_VAR8]));

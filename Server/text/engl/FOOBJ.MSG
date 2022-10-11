@@ -564,6 +564,8 @@
 {28001}{}{A razor tipped polearm. The shaft is wooden, and the tip is sharpened steel. Min ST: 4.}
 {28100}{}{Dixon's Eye}
 {28101}{}{A small jar containing a human eye suspended in some kind of liquid. The label says Corporal Dixon.}
+{28102}{}{Eye}
+{28103}{}{Human's Eye}
 {28200}{}{Clifton's Eye}
 {28201}{}{A small jar containing a human eye suspended in some kind of liquid. The label says General Clifton.}
 {28300}{}{Tommy Gun}
@@ -646,6 +648,8 @@
 {32101}{}{A human brain that has been enhanced by the addition of electronic and robotic attachments.}
 {32200}{}{Human Brain}
 {32201}{}{A typical human brain. Normally they are found in human skulls. Yuck.}
+{32202}{}{Human Brain}
+{32203}{}{A typical human brain. Normally they are found in human skulls. Yuck.}
 {32300}{}{Chimpanzee Brain}
 {32301}{}{A monkey brain. It's soft and squishy.}
 {32400}{}{Abnormal Brain}
@@ -852,6 +856,8 @@
 {42801}{}{A box of assorted medical supplies. Nothing I can make use of though.}
 {42900}{}{Gold Tooth}
 {42901}{}{This gold tooth used to belong to Jules, but it's yours now.}
+{42902}{}{Tooth}
+{42903}{}{Tooth}
 {43000}{}{Howitzer Shell}
 {43001}{}{A 75mm Howitzer shell. The casing has mostly corroded away, but you can make out these letters. EXP. 9-25-98.}
 {43100}{}{Ramirez Box, Closed}
@@ -1064,6 +1070,8 @@
 {53801}{}{Tube has been always looking like a tube. Steel and hollow inside.}
 {53900}{}{Meat}
 {53901}{}{This is a piece of meat.}
+{53902}{}{Liver}
+{53903}{}{This is a piece of human liver.}
 {54000}{}{Mouse skin}
 {54001}{}{Uhh, I don't know how did you get this but... congratulations =)}
 {54100}{}{Cigarettes}

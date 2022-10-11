@@ -400,7 +400,8 @@
 #define ST_SCALE_FACTOR             (116) // Hardcoded
 #define ST_WALK_TIME                (117) // Hardcoded
 #define ST_RUN_TIME                 (118) // Hardcoded
-// 119..149
+#define ST_NEXT_CRTYPE              (120)
+// 121..149
 #ifdef PLAYERS_3D
 	// Initial values of animation 3d layers
 #define ST_ANIM3D_LAYERS            (150) // Hardcoded
@@ -1120,6 +1121,8 @@
 #define CRTYPE_3D_THORN_SLINGER     (314)
 #define CRTYPE_3D_WASP_GIANT        (315)
 #define CRTYPE_3D_WEEDLING          (316)
+	// Tactics
+#define CRTYPE_TACTICS_RHUMANOID    (460)
 	// Arcanum
 #define CRTYPE_ARCANUM_GEN_CR_BEGIN (600)
 #define CRTYPE_ARCANUM_GEN_CR_END   (699)

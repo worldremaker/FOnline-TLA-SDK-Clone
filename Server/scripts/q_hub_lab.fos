@@ -182,7 +182,7 @@ bool _HonomerGlobalProcess(Critter& cr, int type, Item@ car, float& x, float& y,
 				if(loc.WorldX == x && loc.WorldY == y)
 				{
 					Map@ map = loc.GetMapByIndex(1);
-					cr.TransitToMap(map.Id, ENTIRE_LAB_ENTER);
+					cr.TransitToMap(map.Id, ENTIRE_LAB_ENTER, true);
 					loc.AutoGarbage = true;
 					cr.SetEvent(CRITTER_EVENT_IDLE, "_HonomerIdle");
 					GameVar@ pId = GetLocalVar(LVAR_sf_honomer_playerid, cr.Id);

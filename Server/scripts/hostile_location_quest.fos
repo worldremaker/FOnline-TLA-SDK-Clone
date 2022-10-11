@@ -252,7 +252,7 @@ void _HostileMapInit(Map& map, bool firstTime)
 	map.SetEvent(MAP_EVENT_CRITTER_DEAD, "_HostileMapCritterDead");
 	map.SetEvent(MAP_EVENT_IN_CRITTER, "_HostileMapInCritter");
 	HostileLocationInfo@ info = _InfoFromMap(map);
-	if(!valid(info))
+	if(!valid(info) || !info.Serialized())
 		return;
 	info.Load();
 	Critter@[] allies;
@@ -282,7 +282,7 @@ void _HostileMapInCritter(Map& map, Critter& cr)
 void _HostileMapCritterDead(Map& map, Critter& cr, Critter@ killer)
 {
 	HostileLocationInfo@ info = _InfoFromMap(map);
-	if(!valid(info))
+	if(!valid(info) || !info.Serialized())
 		return;
 	info.Load();
 	Critter@[] hostiles;

@@ -328,8 +328,9 @@ class GatesControl // Описание и методы охраняемых ворот
 		{
 			PassAccept @ pass = this.goodList[i];
 			if(!valid(pass) || pass.CancelTime < __FullSecond)
-			{		
-				data.removeLast();
+			{	
+				if(data.length()>0)
+					data.removeLast();
 				continue;
 			}
 			data.insertLast(pass.PlayerId);

@@ -23,7 +23,7 @@
 
 import void SetTraveller(uint crId, bool isTransit, uint entireNum, uint timeWaitLoc, uint timeWaitEnc, uint16[] locPids, bool visibleEncounters) from "traveller";
 import void UseDrug(Critter& cr, Item& drug) from "drugs";
-import void SetMonologue(Critter@ cr, uint16 firstStr, uint16 lastStr, uint nextMsg, uint nextDialog, uint8 sayType) from "monologue";
+import void SetMonologue(Critter@ cr, uint firstStr, uint lastStr, uint nextMsg, uint nextDialog, uint8 sayType) from "monologue";
 import bool AddWalkPlane(Critter& npc, uint priority, int identifier, uint identifierExt, uint16 hexX, uint16 hexY, uint8 dir, bool run, uint cut) from "npc_planes";
 import bool AddMiscPlane(Critter& npc, uint priority, uint waitSecond, string@ funcName) from "npc_planes";
 

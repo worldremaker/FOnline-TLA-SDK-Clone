@@ -112,6 +112,7 @@ void GetItemFromRepair(Critter@ player, Critter@ npc)
 	if(valid(item) && item.GetType() == ITEM_WEAPON)
 	{
 		item.WeaponAmmoCount = 0;
+		item.Update();
 	}
 	pidRepair = 0;
 }

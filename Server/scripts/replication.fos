@@ -295,6 +295,12 @@ void ReplicateCritter(Critter& cr) // Export
 	cr.DamageBase[DAMAGE_LEFT_ARM]=0;
 	cr.DamageBase[DAMAGE_RIGHT_LEG]=0;
 	cr.DamageBase[DAMAGE_LEFT_LEG]=0;
+	if(cr.Stat[ST_NEXT_CRTYPE]>0)
+	{
+		cr.ChangeCrType(cr.Stat[ST_NEXT_CRTYPE]);
+		cr.StatBase[ST_BASE_CRTYPE] = cr.Stat[ST_NEXT_CRTYPE];
+		cr.StatBase[ST_NEXT_CRTYPE] = 0;
+	}
 	cr.ToLife();
 	cr.StatBase[ST_CURRENT_HP]=cr.Stat[ST_MAX_LIFE];
 	cr.StatBase[ST_CURRENT_AP]=cr.Stat[ST_ACTION_POINTS]*100;

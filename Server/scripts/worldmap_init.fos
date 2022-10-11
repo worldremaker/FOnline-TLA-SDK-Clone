@@ -524,13 +524,18 @@
 		.AddItem(PID_BOTTLE_CAPS,0,15,SLOT_INV)
 		.AddItem(PID_SHOTGUN_SHELLS,1,1,SLOT_INV);
 
-										// DVMV_Wild_Dogs
+										// DVMV_Wild_Dogs. With deadman for Android encounter
 	@group=@EncounterGroups[GROUP_DVMV_Wild_Dogs];
 	group.TeamNum=0;
 	group.Position=POSITION_HUDDLE;
 	group.Spacing=3;
 	group.AddCritter(82).Ratio(80).Dialog(0).Script("mob@_MobInit");
-	group.AddCritter(210).Ratio(20).Dead(true).Dialog(0);
+	group.AddCritter(210).Ratio(15).Dead(true).Dialog(0);
+	group.AddCritter(34).Ratio(5).Dead(true).Dialog(10136).Script("se_android@_DeadInit")
+		.CheckParam(ST_LEVEL,'>',15)
+		.CheckParam(SK_OUTDOORSMAN,'>',101)
+		.CheckRandom(25)
+		.CheckLVar(LVAR_special_android,'=',0);
 
 										// DVMV_Mantis_Swarm
 	@group=@EncounterGroups[GROUP_DVMV_Mantis_Swarm];
@@ -2355,7 +2360,7 @@
 	table.AddEncounter( 10, 10042030).AddGroup(GROUP_WILD2_Mutated_Molerats, 2, 4).AddGroup(GROUP_Player                , 0, 0).Fighting(0,1);
 	table.AddEncounter( 10, 10042130).AddGroup(GROUP_WILD2_Mutated_Pig_Rats, 3, 6).AddGroup(GROUP_Player                , 0, 0).Fighting(0,1);
 	table.AddEncounter( 10, 10042140).AddGroup(GROUP_ARRO_Spore_Plants     , 4, 8);
-	table.AddEncounter( 10, 10042150).AddGroup(GROUP_DVMV_Wild_Dogs        , 3, 5).AddGroup(GROUP_WILD2_Hermit          , 1, 2).AddGroup(GROUP_WILD2_Mutated_Molerats, 5, 8).Fighting(0,2).Fighting(1,2);
+	table.AddEncounter( 210, 10042150).AddGroup(GROUP_DVMV_Wild_Dogs        , 3, 5).AddGroup(GROUP_WILD2_Hermit          , 1, 2).AddGroup(GROUP_WILD2_Mutated_Molerats, 5, 8).Fighting(0,2).Fighting(1,2);
 	table.AddEncounter(  1, 10042160).AddGroup(GROUP_WILD2_Hermit          , 1, 2).AddGroup(GROUP_DVMV_Wild_Dogs        , 3, 5).Fighting(0,1);
 	table.AddEncounter(  1, 10042170).AddGroup(GROUP_WILD2_Hermit          , 1, 2).AddGroup(GROUP_WILD2_Mutated_Pig_Rats, 3, 5).Fighting(0,1);
 	table.AddEncounter(  1, 10042180).AddGroup(GROUP_WILD2_Hermit          , 1, 2).AddGroup(GROUP_DVMV_Wild_Dogs        , 3, 5).AddGroup(GROUP_WILD2_Mutated_Molerats, 3, 6).Fighting(0,2).Fighting(1,2);
@@ -2763,7 +2768,7 @@
 	table.AddEncounter(  1, 10049760).Special(true).LocationPid(LOCATION_SpecialHolyEncounter1).CheckParam(ST_LEVEL,'>',9).CheckLVar(LVAR_special_encounter_holy1,'<',1).AssignLVar(LVAR_special_encounter_holy1,'=',1);
 	table.AddEncounter(  1, 10049770).Special(true).LocationPid(LOCATION_SpecialWoodsmanEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_woodsman,'<',1).AssignLVar(LVAR_special_encounter_woodsman,'=',1);
 	table.AddEncounter(  1, 10049780).Special(true).LocationPid(LOCATION_SpecialUnwashedEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_unwashed,'<',1).AssignLVar(LVAR_special_encounter_unwashed,'=',1);
-	table.AddEncounter(  1, 10053200).Special(true).LocationPid(LOCATION_SpecialSoldierHolo).CheckParam(SK_OUTDOORSMAN,'>',119).CheckLVar(LVAR_special_soldier_holo,'>',0).AssignLVar(LVAR_special_soldier_holo,'=',1);
+	table.AddEncounter(  1, 10053200).Special(true).LocationPid(LOCATION_SpecialSoldierHolo).CheckParam(SK_OUTDOORSMAN,'>',119).CheckLVar(LVAR_special_soldier_holo,'=',0).AssignLVar(LVAR_special_soldier_holo,'=',1);
 
 										// Raid_M (Areas patroled by the Raiders)
 	@table=@EncounterTables[TABLE_Raid_M];
@@ -2866,8 +2871,9 @@
 	table.AddEncounter(  1, 10052760).Special(true).LocationPid(LOCATION_SpecialWoodsmanEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_woodsman,'<',1).AssignLVar(LVAR_special_encounter_woodsman,'=',1);
 	table.AddEncounter(  1, 10052770).Special(true).LocationPid(LOCATION_SpecialUnwashedEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_unwashed,'<',1).AssignLVar(LVAR_special_encounter_unwashed,'=',1);
 	table.AddEncounter(  1, 10052780).Special(true).LocationPid(LOCATION_SpecialCafeEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_gecko_find_woody,'<',1).AssignLVar(LVAR_gecko_find_woody,'=',1);
-	table.AddEncounter(  1, 10053200).Special(true).LocationPid(LOCATION_SpecialSoldierHolo).CheckParam(SK_OUTDOORSMAN,'>',119).CheckLVar(LVAR_special_soldier_holo,'>',0).AssignLVar(LVAR_special_soldier_holo,'=',1);
-
+	table.AddEncounter(  1, 10053200).Special(true).LocationPid(LOCATION_SpecialSoldierHolo).CheckParam(SK_OUTDOORSMAN,'>',119).CheckLVar(LVAR_special_soldier_holo,'=',0).AssignLVar(LVAR_special_soldier_holo,'=',1);
+	table.AddEncounter(  1, 10053210).Special(true).LocationPid(LOCATION_SpecialAndroid).CheckParam(ST_LEVEL,'>',15).CheckParam(SK_OUTDOORSMAN,'>',100).CheckLVar(LVAR_special_android,'=',2).AssignLVar(LVAR_special_android,'=',3);
+	
 										// EPA_M (Area around the EPA)
 	@table=@EncounterTables[TABLE_EPA_M];
 	table.AddLocationPid(LOCATION_MountainEncounter1);
@@ -2886,8 +2892,9 @@
 	table.AddEncounter( 12, 10053170).AddGroup(GROUP_EPA_Floaters          , 6,10).AddGroup(GROUP_Player        , 0, 0).Fighting(0,1);
 	table.AddEncounter(  5, 10053180).Special(true).LocationPid(LOCATION_SpecialBridgeEncounter).CheckParam(ST_LEVEL,'>',9).CheckLVar(LVAR_special_encounter_bridge,'<',1).AssignLVar(LVAR_special_encounter_bridge,'=',1);
 	table.AddEncounter(  1, 10053190).Special(true).LocationPid(LOCATION_SpecialHolyEncounter2).CheckLVar(LVAR_special_encounter_holy1,'>',0).CheckLVar(LVAR_special_encounter_holy2,'<',1).AssignLVar(LVAR_special_encounter_holy2,'=',1);
-	table.AddEncounter(  1, 10053200).Special(true).LocationPid(LOCATION_SpecialSoldierHolo).CheckParam(SK_OUTDOORSMAN,'>',119).CheckLVar(LVAR_special_soldier_holo,'>',0).AssignLVar(LVAR_special_soldier_holo,'=',1);
-
+	table.AddEncounter(  1, 10053200).Special(true).LocationPid(LOCATION_SpecialSoldierHolo).CheckParam(SK_OUTDOORSMAN,'>',119).CheckLVar(LVAR_special_soldier_holo,'=',0).AssignLVar(LVAR_special_soldier_holo,'=',1);
+	table.AddEncounter(  1, 10053210).Special(true).LocationPid(LOCATION_SpecialAndroid).CheckParam(ST_LEVEL,'>',15).CheckParam(SK_OUTDOORSMAN,'>',100).CheckLVar(LVAR_special_android,'=',2).AssignLVar(LVAR_special_android,'=',3);
+	
 										// EPA_C (Area around the EPA)
 	@table=@EncounterTables[TABLE_EPA_C];
 	table.AddLocationPid(LOCATION_CityEncounter1);
@@ -3319,7 +3326,7 @@
 	table.AddEncounter(  1, 10062210).Special(true).LocationPid(LOCATION_SpecialWoodsmanEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_woodsman,'<',1).AssignLVar(LVAR_special_encounter_woodsman,'=',1);
 	table.AddEncounter(  1, 10062220).Special(true).LocationPid(LOCATION_SpecialUnwashedEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_unwashed,'<',1).AssignLVar(LVAR_special_encounter_unwashed,'=',1);
 	table.AddEncounter(  1, 10062230).Special(true).LocationPid(LOCATION_SpecialCafeEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_gecko_find_woody,'<',1).AssignLVar(LVAR_gecko_find_woody,'=',1);
-	table.AddEncounter(  1, 10053200).Special(true).LocationPid(LOCATION_SpecialSoldierHolo).CheckParam(SK_OUTDOORSMAN,'>',119).CheckLVar(LVAR_special_soldier_holo,'>',0).AssignLVar(LVAR_special_soldier_holo,'=',1);
+	table.AddEncounter(  1, 10053200).Special(true).LocationPid(LOCATION_SpecialSoldierHolo).CheckParam(SK_OUTDOORSMAN,'>',119).CheckLVar(LVAR_special_soldier_holo,'=',0).AssignLVar(LVAR_special_soldier_holo,'=',1);
 
 										// Wild5_M (Areas between San Francisco and NCR)
 	@table=@EncounterTables[TABLE_Wild5_M];
@@ -3416,7 +3423,7 @@
 	table.AddEncounter(  1, 10064700).Special(true).LocationPid(LOCATION_SpecialWoodsmanEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_woodsman,'<',1).AssignLVar(LVAR_special_encounter_woodsman,'=',1);
 	table.AddEncounter(  1, 10064710).Special(true).LocationPid(LOCATION_SpecialUnwashedEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_unwashed,'<',1).AssignLVar(LVAR_special_encounter_unwashed,'=',1);
 	table.AddEncounter(  1, 10064720).Special(true).LocationPid(LOCATION_SpecialCafeEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_gecko_find_woody,'<',1).AssignLVar(LVAR_gecko_find_woody,'=',1);
-	table.AddEncounter(  1, 10064730).Special(true).LocationPid(LOCATION_SpecialSoldierHolo).CheckParam(SK_OUTDOORSMAN,'>',119).CheckLVar(LVAR_special_soldier_holo,'>',0).AssignLVar(LVAR_special_soldier_holo,'=',1);
+	table.AddEncounter(  1, 10064730).Special(true).LocationPid(LOCATION_SpecialSoldierHolo).CheckParam(SK_OUTDOORSMAN,'>',119).CheckLVar(LVAR_special_soldier_holo,'=',0).AssignLVar(LVAR_special_soldier_holo,'=',1);
 	table.AddEncounter(  1, 10064740).Special(true).LocationPid(LOCATION_SpecialDoughnutsWarehouse).CheckLVar(LVAR_special_encounter_kotw,'>',0).CheckLVar(LVAR_special_encounter_doughnut_warehouse,'<',1).AssignLVar(LVAR_special_encounter_doughnut_warehouse,'=',1);
 
 										// VNNB_D (Vault 15 - New Reno - NCR - Broken Hills)

@@ -48,7 +48,7 @@ lang=russ engl
 0 12010 #
 13 12020 @
 13 13000 None 0 #
-0 13010 D _var p q_sf_ahs7_imperator_format = 0 R _var p q_sf_ahs7_imperator_format = 1 R _script dialog@r_TimeoutSet 1 10080 #
+0 13010 D _var p q_sf_ahs7_imperator_format = 0 R _var p q_sf_ahs7_imperator_format = 1 R _script dialog@r_TimeoutSet 1 468 #
 0 13020 @
 14 14000 None 0 #
 0 14010 @

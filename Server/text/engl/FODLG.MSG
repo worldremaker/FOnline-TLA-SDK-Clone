@@ -545,3 +545,4 @@
 {5221}{}{A strange creature resembling Master's pets.}
 {5230}{}{Henrietta}
 {5231}{}{Skin of this animal looks like one big callus.}
+{5240}{}{Android}

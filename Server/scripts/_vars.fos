@@ -1,7 +1,7 @@
 #ifndef __VARS__
 #define __VARS__
 /*************************************************************************************
-***  VARS  *****  COUNT: 00000541  ***************************************************
+***  VARS  *****  COUNT: 00000553  ***************************************************
 *************************************************************************************/
 
 
@@ -453,6 +453,18 @@
 #define LVAR_special_encounter_doughnut_warehouse    (5629)
 #define LVAR_special_encounter_bax_church            (5630)
 #define LVAR_special_encounter_atom_church           (5631)
+#define LVAR_special_android                         (5632)
+#define LIVAR_se_android_radio_listened              (5633)
+#define LLVAR_se_android_player_in                   (5634)
+#define LLVAR_se_android_player_id                   (5635)
+#define LLVAR_se_android_t_founded                   (5636)
+#define LLVAR_se_android_c_founded                   (5637)
+#define LLVAR_se_android_p_founded                   (5638)
+#define LLVAR_se_android_r_founded                   (5639)
+#define LLVAR_se_android_d_founded                   (5640)
+#define LLVAR_se_android_l_founded                   (5641)
+#define LIVAR_se_android_item_num                    (5642)
+#define LLVAR_se_android_mines_triggered             (5643)
 #define LVAR_enc_loyality_hubologists                (5650)
 #define LVAR_enc_loyality_ncr                        (5651)
 #define LVAR_enc_loyality_vcity                      (5652)
@@ -4356,6 +4368,69 @@ $	5630	1	special_encounter_bax_church	0	0	1	0
 $	5631	1	special_encounter_atom_church	0	0	1	0
 **********
 Локальная, признак, посетил ли игрок специальную локацию "Церковь Атома".
+**********
+
+$	5632	1	special_android	0	0	3	0
+**********
+доступ к специальному энкаунтеру Андроид
+1 - игрок нашел рацию 
+2 - игрок прослушал сообщение по рации и может найти локацию с лабораторией
+3 - игрок попал на локацию с лабораорией
+**********
+
+$	5633	5	se_android_radio_listened	0	0	1	0
+**********
+локальная для предмета, признак, что сообщение по радио прослушано
+**********
+
+$	5634	3	se_android_player_in	0	0	1	0
+**********
+локальная для локации, признак, что один игрок уже прошел внутрь
+**********
+
+$	5635	3	se_android_player_id	0	0	0	4
+**********
+локальная для локации, без границ, Id игрока, попавшего на операционный стол
+**********
+
+$	5636	3	se_android_t_founded	0	0	0	4
+**********
+
+**********
+
+$	5637	3	se_android_c_founded	0	0	0	4
+**********
+
+**********
+
+$	5638	3	se_android_p_founded	0	0	0	4
+**********
+
+**********
+
+$	5639	3	se_android_r_founded	0	0	0	4
+**********
+
+**********
+
+$	5640	3	se_android_d_founded	0	0	0	4
+**********
+
+**********
+
+$	5641	3	se_android_l_founded	0	0	0	4
+**********
+
+**********
+
+$	5642	5	se_android_item_num	0	0	0	4
+**********
+
+**********
+
+$	5643	3	se_android_mines_triggered	0	0	1	0
+**********
+Локальная для локации, признак - мины активированы.
 **********
 
 $	5650	1	enc_loyality_hubologists	0	0	0	4

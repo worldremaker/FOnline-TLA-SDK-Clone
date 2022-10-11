@@ -12,7 +12,12 @@
 #define CTE_RUN_MONOLOG         (60)
 #define CTE_NEXT_MESSAGE        (61)
 
-void SetMonologue(Critter@ cr, uint16 firstStr, uint16 lastStr, uint nextMsg, uint nextDialog, uint8 sayType) // Export
+bool MonologueRunning(Critter& cr) // Export
+{
+	return valid(GetMonologue(cr));
+}
+
+void SetMonologue(Critter@ cr, uint firstStr, uint lastStr, uint nextMsg, uint nextDialog, uint8 sayType) // Export
 {
 	Monologue@ m = Monologue(firstStr, lastStr, nextMsg, nextDialog, sayType, cr.Id);
 	if(valid(m))
@@ -38,7 +43,7 @@ class Monologue
 	{
 		this.CritterId = critterId;
 	}
-	Monologue(uint16 firstStr, uint16 lastStr, uint nextMsg, uint nextDialog, uint8 sayType, uint critterId)
+	Monologue(uint firstStr, uint lastStr, uint nextMsg, uint nextDialog, uint8 sayType, uint critterId)
 	{
 		this.FirstString = firstStr;
 		this.LastString = lastStr;
@@ -50,9 +55,9 @@ class Monologue
 		this.Save();
 	}
 	
-	uint16 FirstString;    // Номер первой строки в монологе
-	uint16 LastString;     // Номер последней строки
-	uint16 CurrentString;  // Текущая строка
+	uint FirstString;    // Номер первой строки в монологе
+	uint LastString;     // Номер последней строки
+	uint CurrentString;  // Текущая строка
 	uint   NextMessage;    // Время следующей фразы в монологе в секундах
 	uint   NextDialogue;   // Время следующего монолога
 	uint8  SayType;        // Тип разговора (шепот, эмоции итд)
