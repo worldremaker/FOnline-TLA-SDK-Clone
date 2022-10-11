@@ -66,9 +66,8 @@
 # Main theme
 {80}{}{01 - No Fate No Fear.ogg}
 # Intro, from 90 to 99
-{90}{}{TheLifeAfterIntro.avi}
-{91}{}{TheLifeAfterIntroSlide.avi}
-{91}{}{TheLifeAfterIntroSlideRU.ogg} # Sound
+{90}{}{TheLifeAfterIntro.ogv|TheLifeAfterIntro.ogg}
+{91}{}{TheLifeAfterIntroSlide.ogv|TheLifeAfterIntroSlideRU.ogg}
 
 ####################################################################################################################################
 #

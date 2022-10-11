@@ -214,7 +214,7 @@ void ReplicateCritter(Critter& cr) // Export
 				hellVisits+=1;
 
 				// Show hell video
-				if(hellVisits==1) PlayVideo(cr,"TheLifeAfterHell.avi",false);
+				if(hellVisits==1) PlayVideo(cr,"TheLifeAfterHell.ogv|TheLifeAfterHell.ogg",false);
 
 				// Permanent death
 				if(__PermanentDeath>0 && hellVisits>__PermanentDeath)
