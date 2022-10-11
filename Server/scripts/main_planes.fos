@@ -2,7 +2,7 @@
 #include "_macros.fos"
 #include "_npc_pids.fos"
 #include "npc_ai.fos"
-#include "tracing_util.fos"
+#include "linetracer_h.fos"
 
 import void SetDeterioration(Item& item, int deteriorationProcent) from "repair";
 import bool AddWalkPlane(Critter& npc, uint priority, uint16 hexX, uint16 hexY, uint8 dir, bool run, uint cut) from "npc_planes";
@@ -676,6 +676,44 @@ int ChooseAim(Critter& cr, Critter& target, ProtoItem@ weapon, uint8 mode, Proto
   return HIT_LOCATION_UNCALLED;
 }
 
+class CTraceFirstCritter : ITraceContext
+{
+	Critter@ Cr;
+	uint Mindist;
+	uint16 Gx;
+	uint16 Gy;
+	CTraceFirstCritter(uint16 gx, uint16 gy, uint16 mindist)
+	{
+		this.Gx=gx;
+		this.Gy=gy;
+		@this.Cr=null;
+		this.Mindist=mindist;
+	}
+	bool Exec(Map& map, uint16 hx, uint16 hy)
+	{
+		if(!map.IsHexRaked(hx,hy)) return true;
+		@Cr = map.GetCritter(hx, hy);
+		return valid(Cr) && Cr.Cond==COND_LIFE && GetDistantion(Gx,Gy,Cr.HexX,Cr.HexY) >= Mindist;
+	}
+}
+
+Critter@ TraceFirstCritter(uint16 hx, uint16 hy, uint16 tx, uint16 ty, Map& map, int dist, uint16 gx, uint16 gy, uint mindist)
+{
+	CTraceFirstCritter Tracer(gx,gy,mindist);
+	LineTracerHex(hx, hy, tx, ty, map, dist, Tracer);
+	return Tracer.Cr;
+}
+
+bool IsCurrentEnemy(Critter& cr, uint targetId)
+{
+	if(cr.CheckEnemyInStack(targetId)) return true;
+	array<NpcPlane@> plans;
+	cr.GetPlanes(plans); // cr.GetPlanesByType(AI_PLANE_ATTACK, plans);
+	for(uint i=0,j=plans.length();i<j;i++)
+		if(plans[i].Type==AI_PLANE_ATTACK && plans[i].Attack_TargId==targetId) return true;
+	return false;
+}
+
 bool ValidateBurst(Critter& cr, Critter& target, ProtoItem@ weapon, uint mode)
 {
   //cr.Say(SAY_NORM, "validating burst, ap: "+cr.Stat[ST_CURRENT_AP]+" of "+cr.Stat[ST_ACTION_POINTS]+", needed "+weapon.Weapon_ApCost);
@@ -690,7 +728,7 @@ bool ValidateBurst(Critter& cr, Critter& target, ProtoItem@ weapon, uint mode)
   uint16 tx = target.HexX;
   uint16 ty = target.HexY;
   Critter@ blocker = TraceFirstCritter(hx, hy, tx, ty, map, maxDist, hx, hy, 0);
-  if (valid(blocker) && !cr.CheckEnemyInStack(blocker.Id)) { /*blocker.Say(SAY_NORM, "I blocked the burst check");*/ return false; }
+  if (valid(blocker) && !IsCurrentEnemy(cr,blocker.Id)) { /*blocker.Say(SAY_NORM, "I blocked the burst check");*/ return false; }
 
   uint16 sx=hx;
   uint16 sy=hy;
@@ -700,7 +738,7 @@ bool ValidateBurst(Critter& cr, Critter& target, ProtoItem@ weapon, uint mode)
   map.MoveHexByDir(sx,sy,dir,1);
   map.MoveHexByDir(ex,ey,dir,1);
   @blocker = TraceFirstCritter(sx, sy, ex, ey, map, maxDist, hx, hy, 3);
-  if (valid(blocker) && !cr.CheckEnemyInStack(blocker.Id)) { /*blocker.Say(SAY_NORM, "I blocked the burst check");*/ return false; }
+  if (valid(blocker) && !IsCurrentEnemy(cr,blocker.Id)) { /*blocker.Say(SAY_NORM, "I blocked the burst check");*/ return false; }
 
   sx=hx;
   sy=hy;
@@ -710,7 +748,7 @@ bool ValidateBurst(Critter& cr, Critter& target, ProtoItem@ weapon, uint mode)
   map.MoveHexByDir(sx,sy,dir,1);
   map.MoveHexByDir(ex,ey,dir,1);
   @blocker = TraceFirstCritter(sx, sy, ex, ey, map, maxDist, hx, hy, 3);
-  if (valid(blocker) && !cr.CheckEnemyInStack(blocker.Id)) { /*blocker.Say(SAY_NORM, "I blocked the burst check");*/ return false; }
+  if (valid(blocker) && !IsCurrentEnemy(cr,blocker.Id)) { /*blocker.Say(SAY_NORM, "I blocked the burst check");*/ return false; }
 
   return true;
 }
