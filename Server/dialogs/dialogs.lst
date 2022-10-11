@@ -2,7 +2,6 @@
 ***  DIALOGS  *********  COUNT: 00000000  ********************************************
 **************************************************************************************
 $	10	all_default
-$	11 	q_radio_dj_quest_giver
 $	20	all_alco
 $	21	all_alco_w
 $	22	all_merchant
@@ -837,11 +836,14 @@ $	10133	se_kotw_dead
 $	10134	se_kotw_console1
 $	10135	se_kotw_console2
 $	10136   se_android_deadman
-$       10150   se_woodsman 
-$	10151   se_mengele
-$       10152   se_tim
+$	10150	se_woodsman 
+$	10151	se_mengele
+$	10152	se_tim
 $	11003	intro_martin
 $	11004	intro_hub_init
 $	21000	q_arroyo_rayders
+$	21100	purg_executor
+$	21101   purg_gate_keeper
+$   21102   purg_replicant
 
 ************************************************************

@@ -12,6 +12,8 @@ import void DeteriorateItem(Critter& cr, Item& item, int deteriorateCount) from 
 import void AffectPoison(Critter& cr, int value) from "poison";
 import void AffectRadiation(Critter& cr, int value) from "radiation";
 import void QuakeScreen(Map& map) from "effects";
+import uint GetSmokePenalty(Map@ map, Critter@ attacker, Critter@ target) from "smoke_grenade";
+import void SmokeBlast(Map& map, uint16 hexX, uint16 hexY, uint16 smokePid, uint ownerId) from "smoke_grenade";
 
 class AttackStruct
 {
@@ -249,7 +251,8 @@ void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, uint8 weaponM
   if (target.GetMultihex()>0) toHit+=15;
 
   toHit=CLAMP(toHit,5,95);
-
+  // smoke penalty
+   if (!isHthAttack)	toHit-=GetSmokePenalty(map, cr, target);
   // main roll
   int margin=toHit-Random(1,100);
 
@@ -408,7 +411,7 @@ void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, uint8 weaponM
       if (realTarget.GetMultihex()>0) toHit+=15;
       int blockers=map.GetCrittersPath(hx, hy, tx, ty, 0.0f, dist, FIND_LIFE, null);
       if (!realTarget.IsKnockout()) blockers--;
-      toHit-=10*blockers;
+	  toHit-=10*blockers;
       toHit=CLAMP(toHit,5,95);
     }
 
@@ -1091,6 +1094,12 @@ void ApplyDamage(AttackStruct &attack, Critter &target, uint rounds, bool isCrit
     target.Say(SAY_NETMSG,"No PvP.");
     return;
   }
+  // Мины от игроков, ушедших на глобал
+  if(targetIsPlayer && !validAttacker && target.Mode[MODE_NO_PVP]!=0)
+  {
+	target.Say(SAY_NETMSG,"No PvP.");
+    return;
+  }
 
   if(target.Mode[MODE_HIDE]!=0) target.ModeBase[MODE_HIDE]=0;
 
@@ -1625,9 +1634,14 @@ void CommenceExplosion(AttackStruct &attack, Map@ map, uint16 tx, uint16 ty, Cri
   else if (weapPid==PID_FRAG_GRENADE || weapPid==PID_HOLY_HAND_GRENADE) map.RunEffect(PID_EXPLODE_FIRE_SMALL,tx,ty,2);
   else if (weapPid==PID_PULSE_GRENADE) map.RunEffect(PID_EXPLODE_EMP,tx,ty,2);
   else if (weapPid==PID_PLASMA_GRENADE) map.RunEffect(PID_EXPLODE_PLASMA,tx,ty,2);
+  else if (weapPid==PID_SMOKE_GRENADE) SmokeBlast(map, tx, ty, PID_SMOKE, (valid(attack.Attacker)?attack.Attacker.Id : 0));
+  else if (weapPid==PID_MUSTARD_GAS_GRENADE) SmokeBlast(map, tx, ty, PID_MUSTARD_GAS, (valid(attack.Attacker)?attack.Attacker.Id : 0));
   else if (isRocket) map.RunEffect(PID_EXPLODE_ROCKET,tx,ty,1);
   else map.RunEffect(PID_EXPLODE_FIRE_BIG,tx,ty,2); // default case
 
+  if(weapPid==PID_MUSTARD_GAS_GRENADE || weapPid==PID_SMOKE_GRENADE)
+	return; // 
+  
   QuakeScreen(map);
 
   Critter@[] critsHit;
@@ -2050,7 +2064,9 @@ int RawToHit(Critter &cr, Critter &target, ProtoItem@ weapon, uint8 weaponUse, P
 
   if (target.IsKnockout()) toHit+=40;
   if (target.GetMultihex()>0) toHit+=15;
-
+  if (skillNum!=SK_UNARMED && skillNum!=SK_MELEE_WEAPONS)
+	toHit-=GetSmokePenalty(cr.GetMap(), cr, target);
+	
   return toHit;
 }
 

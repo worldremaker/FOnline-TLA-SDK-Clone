@@ -9,6 +9,7 @@ import void DropRadiation(Critter& cr) from "radiation";
 import void PlayVideo(Critter& cr, string& videoName, bool canStop) from "media";
 import void FindEncounter(Critter@[]& group, Item@ car, uint x, uint y, uint& encounterDescriptor, bool& waitForAnswer, bool empty) from "worldmap";
 import void InviteToEncounter(Critter@[]& group, Item@ car, uint encounterDescriptor, int combatMode, uint& mapId, uint16& hexX, uint16& hexY, uint8& dir) from "worldmap";
+import bool ReplicateCritterToBattle(Critter& cr, uint16& mapId, uint16& hexX, uint16& hexY) from "purgatory";
 
 const uint16 HellMapPid=MAP_replication_hell;
 const uint16[] ReplicatorsMapPids={MAP_replication1,MAP_replication2,MAP_replication3,MAP_replication4};
@@ -158,7 +159,7 @@ void ReplicateCritter(Critter& cr) // Export
 {
 	Map@ dieMap=cr.GetMap();
 	Map@ map=null;
-	uint16 hx=0,hy=0;
+	uint16 hx=0,hy=0, mapId=0;
 
 	// Check car
 	Item@[] cars;
@@ -196,8 +197,9 @@ void ReplicateCritter(Critter& cr) // Export
 	if(cr.IsPlayer())
 	{
 		bool dieMapIsHell=(valid(dieMap) && IsHellMap(dieMap.GetProtoId()));
-
-		if(cr.Stat[ST_REPLICATION_MONEY]<0)
+		bool customReplMap = ReplicateCritterToBattle(cr, mapId, hx, hy);
+		
+		if(not customReplMap && cr.Stat[ST_REPLICATION_MONEY]<0)
 		{
 			@map=GetMapByPid(HellMapPid,0);
 
@@ -220,7 +222,10 @@ void ReplicateCritter(Critter& cr) // Export
 		}
 		else
 		{
-			@map=GetNearReplicatorMap(cr);
+			if(customReplMap && mapId > 0)
+				@map = GetMap(mapId);
+			else
+				@map=GetNearReplicatorMap(cr);
 		}
 
 		if(not valid(map) || not GetEntireFreeHex(map,ENTIRE_REPLICATION,hx,hy))
@@ -256,14 +261,22 @@ void ReplicateCritter(Critter& cr) // Export
 			else
 				DeleteItems(items);
 		}
-
-		if(not dieMapIsHell)
+		if(customReplMap)
 		{
-			cr.StatBase[ST_REPLICATION_MONEY]-=cr.Stat[ST_REPLICATION_COST];
-			_CritAddItem(cr,PID_FLOWER,1);
-			if(cr.Stat[ST_REPLICATION_MONEY]>=100) _CritAddItem(cr,PID_RADIO,1); // Add radio
+			if (cr.Stat[ST_REPLICATION_COUNT] > 0)
+				cr.StatBase[ST_REPLICATION_COUNT]--;
+			cr.StatBase[ST_REPLICATION_MONEY]+=cr.Stat[ST_REPLICATION_COST]*2;
 		}
-		cr.StatBase[ST_REPLICATION_COUNT]++;
+		else
+		{
+			if(not dieMapIsHell)
+			{
+				cr.StatBase[ST_REPLICATION_MONEY]-=cr.Stat[ST_REPLICATION_COST];
+				_CritAddItem(cr,PID_FLOWER,1);
+				if(cr.Stat[ST_REPLICATION_MONEY]>=100) _CritAddItem(cr,PID_RADIO,1); // Add radio
+			}
+			cr.StatBase[ST_REPLICATION_COUNT]++;
+		}
 	}
 	else
 	{

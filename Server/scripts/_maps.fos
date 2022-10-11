@@ -7,7 +7,7 @@
 
 
 #define LOCATION_IS_CITY  #(locPid)                 (((locPid)>=LOCATION_Den && (locPid)<=LOCATION_Vault13 && (locPid)!=LOCATION_Cathedral && (locPid)!=LOCATION_MilitaryBase && (locPid)!=LOCATION_Sierra ) ||(locPid)==LOCATION_ReplicationHell)
-#define LOCATION_IS_OCEAN #(locPid)                 ((locPid)>=LOCATION_Den && (locPid)<=LOCATION_OceanTrader)
+#define LOCATION_IS_OCEAN #(locPid)                 ((locPid)>=LOCATION_OceanEncounter1 && (locPid)<=LOCATION_OceanTrader)
 
 #define LOCATION_Den                                (1)
 #define LOCATION_Klamath                            (2)
@@ -156,6 +156,7 @@
 #define LOCATION_Quest_RacingCheckpoint             (228)
 #define LOCATION_Quest_SiloAmbush                   (229)
 #define LOCATION_Quest_Silo                         (230)
+#define LOCATION_Purgatory                          (231)
 
 #define LOCATION_IntroMartin                        (260)
 #define LOCATION_IntroInit                          (261)
@@ -454,6 +455,10 @@
 #define MAP_q_silo3                                 (409)
 #define MAP_q_silo4                                 (410)
 #define MAP_q_silo5                                 (411)
+#define MAP_purgatory1                              (412)
+#define MAP_purgatory2                              (413)
+#define MAP_purgatory3                              (414)
+
 
 
 //************************************************************************/

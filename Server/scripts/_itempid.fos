@@ -124,6 +124,8 @@
 #define PID_PLASMA_GRENADE                  (26)  // Grouped
 #define PID_PULSE_GRENADE                   (27)  // Grouped
 #define PID_DOG_GRENADE                     (602) // Grouped
+#define PID_SMOKE_GRENADE                   (608) 
+#define PID_MUSTARD_GAS_GRENADE             (609) 
 	// Other
 #define PID_FLARE                           (79)  // Grouped
 #define PID_ACTIVE_FLARE                    (205) // Active
@@ -185,6 +187,8 @@
 #define PID_END_BOSS_KIFE                   (530)
 #define PID_END_BOSS_PLASMA_GUN             (531)
 #define PID_HOLY_HAND_GRENADE               (421) // Grenade
+#define PID_SIGNAL_PISTOL                   (610)
+#define PID_SIGNAL_ROCKET                   (611)
 
 /******************************************************************
 ***************       Ammo                          ***************
@@ -801,6 +805,9 @@
 ***************       Effects                       ***************
 ******************************************************************/
 
+// Smoke
+#define PID_SMOKE                           (606)
+#define PID_MUSTARD_GAS                     (607)
 // Explode
 #define PID_EXPLODE_FIRE_BIG                (4027)
 #define PID_EXPLODE_FIRE_SMALL              (4028)

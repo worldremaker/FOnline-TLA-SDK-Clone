@@ -95,7 +95,7 @@ bool TryRepairItem(Critter& cr, Item& item) // Export
 			cr.SayMsg(SAY_NETMSG,TEXTMSG_GAME,STR_DETERIORATION_SERVICE_FAIL);
 		}
 	}
-
+	SetItemCost(item);
 	item.Update();
 	cr.TimeoutBase[TO_SK_REPAIR]=REPAIR_TIMEOUT(cr);
 	return true;
@@ -110,7 +110,7 @@ void DeteriorateItem(Critter& cr, Item& item, int deteriorationCount) // Export
 	{
 		item.Deterioration=MAX_DETERIORATION;
 		item.BrokenCount++;
-
+		SetItemCost(item);
 		int brokenLvl=Random(0,item.BrokenCount/(MAX_BROKENS/4));
 
 		if(item.BrokenCount>=MAX_BROKENS || brokenLvl>=3) SETFLAG(item.BrokenFlags,BI_NOTRESC);
@@ -142,8 +142,23 @@ int GetDeteriorationProcent(Item& item) // Export
 	return CLAMP(value,0,100);
 }
 
-
-
+void SetItemCost(Item& item)
+{	
+	//item.Cost = item.Proto.Cost * CLAMP(100 - GetDeteriorationProcent(item), 5, 100)/ 100;
+	int wearPercent = GetDeteriorationProcent(item);
+	if (wearPercent == 100)
+	{
+		item.Cost = uint(item.Proto.Cost / 3);
+	}
+	else if (wearPercent > 75)
+	{
+		item.Cost = uint(2 * item.Proto.Cost / 3);
+	}
+	else
+	{
+		item.Cost = 0;
+	}	
+}
 
 
 

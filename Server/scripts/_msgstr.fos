@@ -564,6 +564,7 @@
 #define STR_NPC_PROTO_NAME              #(pid)     ((pid)*10)
 #define STR_NPC_PROTO_DESC              #(pid)     ((pid)*10+1)
 #define STR_NPC_NAME                    #(dlg,pid) ((dlg)!=0?100000+(dlg)*1000+100:STR_NPC_PROTO_NAME(pid))
+#define STR_NPC_NAME_DLG                #(dlg) 	   (100000+(dlg)*1000+100)
 #define STR_NPC_AVATAR                  #(dlg)     ((dlg)!=0?100000+(dlg)*1000+110:0)
 #define STR_NPC_INFO_LIFE               #(dlg,pid) ((dlg)!=0?100000+(dlg)*1000+200:STR_NPC_PROTO_DESC(pid))
 #define STR_NPC_FULL_INFO_LIFE          #(dlg,pid) ((dlg)!=0?100000+(dlg)*1000+210:STR_NPC_PROTO_DESC(pid))

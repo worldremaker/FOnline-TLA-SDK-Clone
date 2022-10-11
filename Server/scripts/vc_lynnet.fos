@@ -7,6 +7,7 @@
 #include "_npc_pids.fos"
 #include "_teams.fos"
 #include "entire.fos"
+#include "_msgstr.fos"
 
 
 // Наемный убийца, преследующий игрока, если тот отказался поддержать Линетт.
@@ -59,7 +60,6 @@ void _KillerSmthDead(Critter& cr, Critter& fromCr, Critter@ killer)
 #define ROLE_PRISONER               (1701)
 #define FORCE_DIALOG_FOUND_PRISONER (23) // Найден заключенный, можно давать квест
 #define FORCE_DIALOG_NOT_FOUND      (46) // Не найден заключенный, нельзя давать квест
-#define NPC_NAME #(dialogId)   		((dialogId)*1000+100)// поиск имени НПЦ в файле FODLG.msg
 #define HEX_FIRST                   (164)
 #define HEX_LAST                    (167)// Игрок должен находиться внутри многоугольника, ограниченного этими гексами
 #define HEX_PRISON                  (168)// Место заключения
@@ -134,7 +134,7 @@ void dlg_PrisonerName(Critter& player, Critter@ npc, string@ lexems)
 	Critter@ prisoner = GetCritter(crId.GetValue());
 	if(!valid(prisoner))
 		return;
-	lexems = "$name@msg DLG " + NPC_NAME(prisoner.Stat[ST_DIALOG_ID]) + "@";
+	lexems = "$name@msg DLG " + STR_NPC_NAME_DLG(prisoner.Stat[ST_DIALOG_ID]) + "@";
 	prisoner.SetEvent(CRITTER_EVENT_TALK, "_PrisonerTalk");
 }
 

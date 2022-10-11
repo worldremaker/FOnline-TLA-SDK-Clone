@@ -1352,7 +1352,14 @@
 {4120}{}{Quest Rocket Silo Command Center}
 {4125}{}{mbase34}
 {4126}{}{elevato1:25, elevator:25, electri1:15, electric:15, clank:10, clank1:10}
-
+# Map 412, base 4130
+{4130}{}{Purgatory Battle Ground}
+{4135}{}{07desert}
+{4136}{}{gustwind:20, gustwin1:20, rattle:15, rattle1:15, vulture:15, vulture1:15}
+# Map 413, base 414
+{4140}{}{HPurgatory Storage}
+{4145}{}{08vats}
+{4146}{}{electri1:15, electric:15, elevator:20, elevato1:15, steam:20, steam:15}
 #
 # Global map
 #
@@ -1986,6 +1993,10 @@
 # Rocket Silo Quest, pid 230, base 330000
 {330000}{}{Заброшенная ракетная шахта.}
 {330005}{}{Шахтная пусковая установка межконтинентальной баллистической ракеты.}
+
+# Hub Purgatory, pid 231, base 331000
+{331000}{}{Чистилище}
+{331005}{}{Арена групповых боев, на которой хабологи устраивают знаменитые мясорубки между реплицированными.}
 
 # Intro 1, pid 260, base 360000
 {360000}{}{Intro}

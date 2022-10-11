@@ -1,4 +1,4 @@
-# 3.0.4
+# 3.0.5
 
 [Proto]
 ProtoId=41
@@ -3767,6 +3767,28 @@ Weight=3000
 Volume=1
 Cost=1
 Material=2
+
+[Proto]
+ProtoId=606
+Type=5
+PicMap=art\scenery\steam01.frm
+PicInv=art\inven\donotuse.frm
+Flags=37761540
+DisableEgg=1
+SoundId=48
+Material=7
+LightColor=1879048191
+
+[Proto]
+ProtoId=607
+Type=5
+PicMap=art\scenery\steam02.frm
+PicInv=art\inven\donotuse.frm
+Flags=37761540
+DisableEgg=1
+SoundId=48
+Material=7
+LightColor=1877924994
 
 [Proto]
 ProtoId=810

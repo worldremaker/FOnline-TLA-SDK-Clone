@@ -1825,7 +1825,7 @@
 	group.Position=POSITION_CONE;
 	group.Spacing=4;	
 	group.Distance=10;
-	group.AddCritter(526).Ratio(40).Dialog(0).Script("i_pattern@_Sniper4Init")
+	group.AddCritter(526).Ratio(40).Dialog(0).Script("ai_pattern@_Sniper4Init")
 		.AddItem(PID_SNIPER_RIFLE,1,1,SLOT_HAND1)
 		.AddItem(PID_223_FMJ,40,70,SLOT_HAND2)		
 		.AddItem(PID_FRAG_GRENADE,0,2,SLOT_HAND1)

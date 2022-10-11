@@ -403,7 +403,9 @@
 #define ST_WALK_TIME                (117) // Hardcoded
 #define ST_RUN_TIME                 (118) // Hardcoded
 #define ST_NEXT_CRTYPE              (120)
-// 121..149
+#define ST_NEXT_REPLICATION_MAP     (121)
+#define ST_NEXT_REPLICATION_ENTIRE  (122)
+// 123..149
 #ifdef PLAYERS_3D
 	// Initial values of animation 3d layers
 #define ST_ANIM3D_LAYERS            (150) // Hardcoded
@@ -1207,6 +1209,7 @@
 #define CALIBER_HN_NEEDLER          (17)
 #define CALIBER_7_62MM              (18)
 #define CALIBER_700_NITRO_EXPRESS   (19)
+#define CALIBER_SIGNAL_ROCKET       (20)
 
 // Geomtry
 #define GEOMETRY_FALLOUT            (0)
