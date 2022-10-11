@@ -20,7 +20,7 @@ const uint[] crvCosts = {
 	CARAVAN_LAUMER_ARR_NCR,     LVAR_q_arroyo_laumer_caravan_escort,LVAR_arroyo_crv_reset_counter, 7000,      4000,                    1000,      3000,                     12000
 };
 
-#define ROW_COUNT     (6) // число строк в таблице отмывки провалов
+#define ROW_COUNT     (9) // число строк в таблице отмывки провалов
 #define COL_COUNT     (8) // число колонок в таблице
 #define CELL#(row, col) (crvCosts[(row<ROW_COUNT?row:0)*COL_COUNT + (col<COL_COUNT?col:0)])
 

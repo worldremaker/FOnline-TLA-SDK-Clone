@@ -517,3 +517,37 @@ void QuestReward(Critter& cr, int base, int, int)
 {
 	QuestRewardExperience(cr, base);
 }
+
+void PatchSafe(Critter& cr, int, int, int)
+{
+	Map@ map = GetMapByPid(145,0);
+	if(!valid(map))
+		return;
+	Item@ item = map.AddItem(88, 79, 501, 1);
+	if(valid(item))
+	{
+		item.Val2 = 8;
+		item.Val4 = 4441;
+		item.SetScript("electronic_lock@_LockedSkill");
+		item.Update();
+	}
+}
+
+void PatchBAX(Critter& cr, int, int, int)
+{
+	Map@[] maps;
+	Item@[] items;
+	GetAllMaps (MAP_bax_underground, maps);
+	for(uint i = 0, l = maps.length(); i<l;i++)
+	{
+		Map@ map = maps[i];
+		if(valid(map))
+			map.GetItems(PID_POWERED_ARMOR, items);
+	}
+	for(uint i = 0, l =items.length(); i<l;i++)
+	{
+		Item@ item = items[i];
+		if(valid(item))
+			DeleteItem(item);
+	}
+}

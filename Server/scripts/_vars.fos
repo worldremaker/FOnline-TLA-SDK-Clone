@@ -936,17 +936,17 @@ $	1806	0	ending_arroyo_arrest_klint	0	0	0	4
 Счётчик успешных доказательств вины Клинта(Квест на разоблачение наркоманов).
 **********
 
-$	1807	1	q_arroyo_selma_caravan_escort	0	0	11	0
+$	1807	1	q_arroyo_selma_caravan_escort	0	0	11	1
 **********
 статус каравана Сэлмы
 **********
 
-$	1808	1	q_arroyo_gayzum_caravan_escort	0	0	11	0
+$	1808	1	q_arroyo_gayzum_caravan_escort	0	0	11	1
 **********
 статус каравана Сэлмы
 **********
 
-$	1809	1	q_arroyo_laumer_caravan_escort	0	0	11	0
+$	1809	1	q_arroyo_laumer_caravan_escort	0	0	11	1
 **********
 статус каравана Сэлмы
 **********
@@ -1814,7 +1814,7 @@ $	3152	1	q_den_bill_racing_win	0	0	7	1
 локальная. статус квеста "Смертельные Гонки Западного побережья Гранд-Пасифик Американ."
 **********
 
-$	3153	1	racing_check_points	0	0	13	0
+$	3153	1	racing_check_points	0	0	14	0
 **********
 локальная, максимум 13, счетчик посещенных чекпоинтов в смертельных гонках
 **********
@@ -2271,7 +2271,7 @@ $	3314	1	mod_vampire_reaction	0	0	2	0
 2 - игрок исцелил вампира
 **********
 
-$	3315	1	q_mod_aureliano_caravan_escort	0	0	11	0
+$	3315	1	q_mod_aureliano_caravan_escort	0	0	11	1
 **********
 статус каравана хосэ
 **********

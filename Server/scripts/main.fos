@@ -43,7 +43,6 @@ import void OnCritterMapOut(Critter& cr, Map& map) from "nopvp_maps";
 import void OnCitterMapIn(Critter& cr, Map& map) from "nopvp_maps";
 import void DeclareEvents() from "game_event";
 import void CheckAllGameEvents() from "game_event";
-import bool _BallSkill(Item& item, Critter& cr, int skill) from "magic_ball";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Call on start server.
@@ -384,11 +383,11 @@ bool critter_use_item(Critter& cr, Item& item, Critter@ targetCr, Item@ targetIt
 	}
 
 	// Magic ball
-	/* if (pid==PID_MAGIC_8_BALL)
+	 if (pid==PID_MAGIC_8_BALL)
 	{
-		cr.SayMsg(SAY_EMOTE_ON_HEAD,TEXTMSG_TEXT,Random(1,2)==1?STR_MAGIC_BALL_YES:STR_MAGIC_BALL_NO);
+		//cr.SayMsg(SAY_EMOTE_ON_HEAD,TEXTMSG_TEXT,Random(1,2)==1?STR_MAGIC_BALL_YES:STR_MAGIC_BALL_NO);
 		return true;
-	} */
+	} 
 
 	// Cosmetic
 	if (pid==PID_COSMETIC_CASE && cr.Stat[ST_GENDER]==GENDER_FEMALE)

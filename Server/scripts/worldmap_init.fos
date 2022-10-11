@@ -1780,6 +1780,30 @@
 	group.Position=POSITION_CONE;
 	group.Spacing=2;
 	group.AddCritter(261).Ratio(100).Dialog(456).Script("vc_lynnet@_KillerInit");
+										// Carlos Jackals
+	@group=@EncounterGroups[GROUP_QUEST_Carlos_Jackals] ;
+	group.TeamNum=8;
+	group.Position=POSITION_CONE;
+	group.Spacing=4;	
+	group.Distance=10;
+	group.AddCritter(526).Ratio(40).Dialog(0).Script("i_pattern@_Sniper4Init")
+		.AddItem(PID_SNIPER_RIFLE,1,1,SLOT_HAND1)
+		.AddItem(PID_223_FMJ,40,70,SLOT_HAND2)		
+		.AddItem(PID_FRAG_GRENADE,0,2,SLOT_HAND1)
+		.AddItem(PID_SUPER_STIMPAK,3,4,SLOT_INV);
+	group.AddCritter(527).Ratio(40).Dialog(0).Script("ai_pattern@_Term3Init")
+		.AddItem(PID_ROCKET_LAUNCHER,1,1,SLOT_HAND1)
+		.AddItem(PID_EXPLOSIVE_ROCKET,5,5,SLOT_INV)
+		.AddItem(PID_MINIGUN,1,1,SLOT_HAND2)
+		.AddItem(PID_SUPER_STIMPAK,1,1,SLOT_INV)
+		.AddItem(PID_5MM_JHP,100,400,SLOT_INV)		
+		.AddItem(PID_FLAMER,1,1,SLOT_INV)
+		.AddItem(PID_FLAMETHROWER_FUEL,2,8,SLOT_INV);
+	group.AddCritter(526).Ratio(40).Dialog(0).Script("encounter_npc@_NpcInit")	
+		.AddItem(PID_FN_FAL,1,1,SLOT_HAND1)
+		.AddItem(PID_7_62MM_AMMO,0,20,SLOT_INV)
+		.AddItem(PID_STIMPAK,0,2,SLOT_INV)
+		.AddItem(PID_BOTTLE_CAPS,0,50,SLOT_INV);
 	
 	// Global tables
 	CEncounterTable globalTable;
@@ -1796,7 +1820,7 @@
 	globalTable.AddEncounter( 10, 10030050).AddGroup(GROUP_QUEST_Lynett_Hitman   , 1, 1).AddGroup(GROUP_Player            , 0, 0).Fighting(0,1).CheckLVar(LVAR_vc_lynett_refuse,'=',1).AssignLVar(LVAR_vc_lynett_refuse,'=',2);
 	globalTable.AddEncounter(  1, 10030060).Special(true).LocationPid(LOCATION_SpecialBaxChurch).CheckParam(ST_LEVEL,'>',9).CheckLVar(LVAR_special_encounter_bax_church,'<',1).CheckParam(ST_KARMA,'>',150).AssignLVar(LVAR_special_encounter_bax_church,'=',1);
 	globalTable.AddEncounter(  1, 10030070).Special(true).LocationPid(LOCATION_SpecialTim).CheckParam(ST_LEVEL,'>',9).CheckLVar(LVAR_special_encounter_tim,'<',1).AssignLVar(LVAR_special_encounter_tim,'=',1);
-	
+	globalTable.AddEncounter( 50, 10030080).AddGroup(GROUP_QUEST_Carlos_Jackals  , 2, 5).AddGroup(GROUP_Player            , 0, 0).Special(true).Fighting(0,1).CheckGVar(GVAR_racing_event,'=',1).CheckLVarAny(LVAR_q_den_bill_racing_win,'=',2).CheckParamAny(SK_SNEAK,'>', 140);
 	// Add yours special encounters here
 	AddTableToAllTables(globalTable);
 

@@ -540,7 +540,7 @@ void t_Win(Critter& player, Scenery& trigger, bool entered, uint8 dir)
 	GameVar@ winners = GetGlobalVar(GVAR_racing_winners_found); // найдены победители
 	GameVar@ winnerId = GetGlobalVar(GVAR_racing_winner);
 	GameVar@ counter = GetLocalVar(LVAR_racing_check_points, player.Id);
-	if(!valid(qStatus) || qStatus != 2 || !valid(winners) || !valid(winnerId) || !valid(counter) || counter <  13) 
+	if(!valid(qStatus) || qStatus != 2 || !valid(winners) || !valid(winnerId) || !valid(counter) || counter <  14) 
 		return;
 	player.Wait(500);
 	counter = 0;

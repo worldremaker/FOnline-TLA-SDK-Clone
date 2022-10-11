@@ -44,7 +44,7 @@ string GetCode(Item& item)
 
 void _LockedInit(Item& item, bool firstTime)
 {
-	item.SetEvent(1, "_LockedSkill");
+	item.SetEvent(ITEM_EVENT_SKILL, "_LockedSkill");
 	GameVar@ gId = _GlobalVar(item);
 	if(valid(gId))
 		gId = item.Id;
@@ -69,7 +69,7 @@ bool _LockedSkill(Item& item, Critter& player, int skill)
 			if(!valid(itemId))
 				return false;
 			itemId = item.Id;
-			player.ShowScreen(SCREEN_SAY, item.Id, "answer_LockedSkill");
+			player.ShowScreen(SCREEN_SAY, 0, "answer_LockedSkill");
 			player.SayMsg(SAY_SAY_TITLE, TEXTMSG_TEXT, STR_HEADER);
 			player.Say(SAY_SAY_TEXT, code);
 			return true;
@@ -91,8 +91,8 @@ void answer_LockedSkill(Critter& player, uint answerI, string& answerS)
 	if(GetCode(item) == answerS)
 	{
 		player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_OPEN);
-		if(FLAG(item.LockerCondition, LOCKER_NOOPEN))
-			item.LockerOpen();
+		item.LockerOpen();
+		player.ShowContainer(null,item,TRANSFER_HEX_CONT_UP);
 		if(_NewCodeAfterOpen(item))
 			 GenerateCode(item);
 		if(_CloseAtSeconds(item) > 0)

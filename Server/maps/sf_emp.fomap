@@ -7165,5 +7165,49 @@ MapObjType           1
 ProtoId              501
 MapX                 88
 MapY                 79
+UID                  1
+ScriptName           electronic_lock
+FuncName             _LockedInit
+Item_Val2            8
+Item_Val4            4441
+
+MapObjType           2
+ProtoId              3853
+MapX                 86
+MapY                 80
+Scenery_ToEntire     17
+
+MapObjType           1
+ProtoId              547
+MapX                 88
+MapY                 79
+ContainerUID         1
+
+MapObjType           1
+ProtoId              331
+MapX                 88
+MapY                 79
+ContainerUID         1
+Item_Count           3
+
+MapObjType           1
+ProtoId              397
+MapX                 88
+MapY                 79
+ContainerUID         1
+
+MapObjType           1
+ProtoId              110
+MapX                 88
+MapY                 79
+ContainerUID         1
+Item_Count           10
+
+MapObjType           1
+ProtoId              144
+MapX                 88
+MapY                 79
+ContainerUID         1
+Item_Count           20
 
 

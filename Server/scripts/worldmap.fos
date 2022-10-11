@@ -197,7 +197,8 @@ uint[][] PositionDirs={
 #define GROUP_HELL_Patrol_R                    (120)
 #define GROUP_HELL_Fugitives                   (121)
 #define GROUP_QUEST_Lynett_Hitman              (122)
-#define GROUP_MAX                              (123)
+#define GROUP_QUEST_Carlos_Jackals             (123)
+#define GROUP_MAX                              (124)
 
 #define TABLE_DstN                             (0) //Fallout 1 encounter tables, not in use
 #define TABLE_DstS                             (1)

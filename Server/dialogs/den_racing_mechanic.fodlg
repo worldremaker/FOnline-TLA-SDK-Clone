@@ -10,7 +10,7 @@ lang=russ engl
 2 1010 @
 2 2000 None 0 #
 3 2010 D _script game_event_racing@d_CanCheckThisPoint 0  D _var p racing_checkpoint_number < 13 R _script game_event_racing@r_NextCheckPoint 0  #
-4 2020 D _script game_event_racing@d_CanCheckThisPoint 0  D _var p racing_checkpoint_number } 13 @
+4 2020 D _script game_event_racing@d_CanCheckThisPoint 0  D _var p racing_checkpoint_number } 13 R _var p racing_checkpoint_number = 14 @
 3 3000 None 0 @
 4 4000 None 0 &
 

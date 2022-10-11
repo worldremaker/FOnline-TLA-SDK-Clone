@@ -7,9 +7,9 @@ lang=russ engl
 [dialog]
 &
 1 1000 None 0 #
-2 1010 D _param p ST_INTELLECT > 3 D _var p name_mem_npc_player = 0 R _var p name_mem_npc_player = 1 #
+2 1010 D _param p ST_INTELLECT > 3 D _var p name_mem_npc_player = 0 D _script caravan@d_NotHasFailures 0  R _var p name_mem_npc_player = 1 #
 3 1020 D _script caravan@d_CaravanEndedOrNotStarted 0  D _param p ST_INTELLECT > 3 D _script caravan@d_PlayerHasNoCaravanFailures 0  D _var p name_mem_npc_player = 1 D _var p q_arroyo_laumer_caravan_escort ! 8 D _var p q_arroyo_laumer_caravan_escort ! 10 #
-8 1030 D _param p ST_INTELLECT < 4 #
+8 1030 D _param p ST_INTELLECT < 4 D _script caravan@d_NotHasFailures 0  #
 95 1040 D _script caravan@d_IsCaravanStatus 1 1 D _script caravan@d_HasPlayerRequest 0  D _param p ST_INTELLECT > 3 D _script caravan@d_PlayerHasNoCaravanFailures 0  #
 98 1050 D _param p ST_INTELLECT > 3 D _script caravan@d_IsCaravanStatus 1 4 D _script caravan@d_PlayerHasNoCaravanFailures 0  #
 100 1060 D _var p q_arroyo_laumer_caravan_escort = 7 #
