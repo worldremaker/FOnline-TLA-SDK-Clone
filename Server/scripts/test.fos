@@ -1054,7 +1054,7 @@ void AllTo3d(Critter& cr, int, int, int)
 	cr.GetMap().GetCritters(0,FIND_ALL|FIND_ONLY_NPC,critters);
 	for(uint i=0,j=critters.length();i<j;i++)
 	{
-		int rnd=Random(200,228);
+		int rnd=Random(290,316);
 		critters[i].ChangeCrType(rnd);
 		critters[i].StatBase[ST_BASE_CRTYPE]=rnd;
 	}
