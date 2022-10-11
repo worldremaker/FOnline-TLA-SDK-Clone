@@ -347,7 +347,6 @@ void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, uint8 weaponM
     {
       Critter@[] critsLine;
       attack.Aim=HIT_LOCATION_UNCALLED;
-      baseToHit+=GetHitAim(aim);
       map.GetCrittersPath(hx, hy, tx, ty, 0.0f, wpnMaxDist, FIND_LIFE_AND_KO, critsLine);
       int bl=0;
       bool anyHit=false;
@@ -907,7 +906,6 @@ void CombatAttack(Critter& cr, Critter& target, ProtoItem& weapon, uint8 weaponM
     else
     {  // miss with missiles
       attack.Aim=HIT_LOCATION_UNCALLED;
-      baseToHit+=GetHitAim(aim);
 
       if (weaponSubtype == WS_THROWING) sharpshooter=0;
       uint16 bx=0;
