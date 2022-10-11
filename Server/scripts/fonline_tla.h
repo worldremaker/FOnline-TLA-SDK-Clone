@@ -13,7 +13,7 @@
 
 // AngelScript
 #include "angelscript.h"
-EXPORT extern asIScriptEngine* ASEngine;
+EXPORT_UNINITIALIZED asIScriptEngine* ASEngine;
 
 // Script global variables
 struct _GlobalVars

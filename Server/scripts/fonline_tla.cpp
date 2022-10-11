@@ -67,11 +67,13 @@ uint GetMultihex(CritterMutual& cr);
 /* Initialization                                                       */
 /************************************************************************/
 
-int __stdcall DllMain(void* module, unsigned long reason, void* reserved)
-{
-	// In this function all global variables is NOT initialized, use DllMainEx instead
-	return 1;
-}
+// In this functions (DllMain and DllLoad) all global variables is NOT initialized, use DllMainEx instead
+#if defined ( FO_WINDOWS )
+int __stdcall DllMain(void* module, unsigned long reason, void* reserved) { return 1; }
+#elif defined( FO_LINUX )
+void __attribute__((constructor)) DllLoad() {}
+void __attribute__((destructor)) DllUnload() {}
+#endif
 
 EXPORT void DllMainEx(bool compiler)
 {

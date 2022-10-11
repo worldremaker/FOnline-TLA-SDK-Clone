@@ -8,21 +8,66 @@
 // Default calling convention - cdecl
 //
 
-#if !defined(__SERVER) && !defined(__CLIENT) && !defined(__MAPPER)
-#error __SERVER / __CLIENT / __MAPPER any of this must be defined
+// Detect operating system
+#if defined ( _WIN32 ) || defined ( _WIN64 )
+# define FO_WINDOWS
+#elif defined ( __linux__ )
+# define FO_LINUX
+#else
+# error "Unknown operating system."
 #endif
 
-#define NDEBUG
-#define _WINDOWS
-#define _MBCS
-#define _CRT_SECURE_NO_WARNINGS
-#define _CRT_SECURE_NO_DEPRECATE
-#define _HAS_ITERATOR_DEBUGGING 0
-#define _SECURE_SCL 0
-#define _HAS_EXCEPTIONS 0
+// Detect compiler
+#if defined ( __GNUC__ )
+# define FO_GCC
+#elif defined ( _MSC_VER ) && !defined ( __MWERKS__ )
+# define FO_MSVC
+#else
+# error "Unknown compiler."
+#endif
 
-#define EXPORT extern "C" __declspec(dllexport)
+// Detect CPU
+#if ( defined ( FO_MSVC ) && defined ( _M_IX86 ) ) || ( defined ( FO_GCC ) && !defined ( __LP64__ ) )
+# define FO_X86
+#elif ( defined ( FO_MSVC ) && defined ( _M_X64 ) ) || ( defined ( FO_GCC ) && defined ( __LP64__ ) )
+# define FO_X64
+#else
+# error "Unknown CPU."
+#endif
 
+// Assert target
+#if !defined( __SERVER ) && !defined( __CLIENT ) && !defined( __MAPPER )
+# error __SERVER / __CLIENT / __MAPPER any of this must be defined
+#endif
+
+// Platform specific options
+#ifdef FO_WINDOWS
+# define NDEBUG
+# define _WINDOWS
+# define _MBCS
+# define _CRT_SECURE_NO_WARNINGS
+# define _CRT_SECURE_NO_DEPRECATE
+# define _HAS_ITERATOR_DEBUGGING 0
+# define _SECURE_SCL 0
+# define _HAS_EXCEPTIONS 0
+#endif
+
+#ifdef FO_WINDOWS
+# ifdef FO_MSVC
+#  define EXPORT                 extern "C" __declspec(dllexport)
+#  define EXPORT_UNINITIALIZED   extern "C" __declspec(dllexport) extern
+# else // GCC
+#  define EXPORT                 extern "C" __attribute__ ((dllexport))
+#  define EXPORT_UNINITIALIZED   extern "C" __attribute__ ((dllexport)) extern
+# endif
+#else
+# define EXPORT                  extern "C"
+# define EXPORT_UNINITIALIZED    extern "C"
+#endif
+
+// STL
+#include <stdlib.h>
+#include <string.h>
 #include <math.h>
 #include <string>
 #include <vector>
@@ -30,8 +75,7 @@
 #include <map>
 using namespace std;
 
-class asIScriptEngine;
-
+// FOnline types
 struct Mutex;
 struct Spinlock;
 struct SyncObj;
@@ -66,13 +110,19 @@ typedef Critter CritterMutual;
 typedef CritterCl CritterMutual;
 #endif
 
+typedef char             int8;
+typedef unsigned char    uint8;
+typedef short            int16;
+typedef unsigned short   uint16;
+typedef unsigned int     uint;
+#if defined ( FO_MSVC )
 typedef unsigned __int64 uint64;
-typedef unsigned int uint;
-typedef unsigned char uint8;
-typedef unsigned short uint16;
-typedef __int64 int64;
-typedef char int8;
-typedef short int16;
+typedef __int64          int64;
+#elif defined ( FO_GCC )
+# include <inttypes.h>
+typedef uint64_t         uint64;
+typedef int64_t          int64;
+#endif
 
 typedef pair<int, int> IntPair;
 typedef pair<uint, uint> UintPair;
@@ -111,7 +161,7 @@ typedef vector<Location*> LocVec;
 typedef vector<Location*>::iterator LocVecIt;
 
 // Generic
-EXPORT extern void (*Log)(const char* frmt, ...);
+EXPORT_UNINITIALIZED void (*Log)(const char* frmt, ...);
 
 #define STATIC_ASSERT(a)            {static int arr[(a)?1:-1];}
 #define BIN__N(x)                   (x) | x>>3 | x>>6 | x>>9
@@ -506,7 +556,7 @@ struct GameOptions
 	uint (*GetUseApCost)(CritterMutual& cr, Item& item, uint8 mode);
 	uint (*GetAttackDistantion)(CritterMutual& cr, Item& item, uint8 mode);
 };
-EXPORT extern GameOptions* Game;
+EXPORT_UNINITIALIZED GameOptions* Game;
 
 struct Mutex
 {
