@@ -3078,6 +3078,8 @@ StartValue_3=168652658
 [Proto]
 ProtoId=532
 Type=5
+ScriptModule=resources
+ScriptFunc=_ToolInit
 PicMap=art\items\box2.frm
 PicInv=art\inven\bott_empty.frm
 Flags=134217758
@@ -3753,6 +3755,18 @@ DisableEgg=1
 Weight=453
 Volume=1
 SoundId=48
+
+[Proto]
+ProtoId=605
+Type=5
+PicMap=art\items\box2.frm
+PicInv=art\inven\bott_amm.png
+Flags=134217758
+DisableEgg=1
+Weight=3000
+Volume=1
+Cost=1
+Material=2
 
 [Proto]
 ProtoId=810

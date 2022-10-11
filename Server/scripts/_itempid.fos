@@ -36,6 +36,7 @@
 // Quest
 #define PID_JUMPSUIT                        (558)
 #define PID_FAKE_JUMPSUIT                   (559)
+#define PID_BOTTLE_AMMIAK                   (605)
 
 /******************************************************************
 ***************       Weapons                       ***************

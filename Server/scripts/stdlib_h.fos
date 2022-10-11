@@ -103,4 +103,5 @@ import void QuestRewardExperience(Critter& cr, uint8 base) from "stdlib";
 import void DropDrugEffects(Critter& cr) from "drugs";
 import void DropRadiation(Critter& cr) from "radiation";
 import bool AddAttackPlane(Critter& npc, uint priority, uint critId) from "npc_planes";
-
+import Location@ CreateLocationForCritter(Critter& player, int locPid, int worldX, int worldY, int delta, int varNum) from "location";
+import void SetLocationDeleteTime(Location& loc, uint time) from "location";

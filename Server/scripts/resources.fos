@@ -29,6 +29,8 @@
 #define STR_WOOD_ADDED (3704)
 #define STR_TYPE_COUNT (3705)
 #define STR_TYPE_KG (3706)
+#define STR_NO_AMMIAK (3707)
+#define STR_AMMIAK_ADDED (3708)
 
 #define EXP_FOR_ORE (20)
 
@@ -84,6 +86,18 @@ int16[][][] ToolsSettings=
 		{1,               1},
 		{2,               1},
 		{70,              100},
+	},
+		{
+		//Multi tool
+		{PID_BOTTLE_EMPTY},
+		{0},
+		{0},
+		{42},
+		{1},
+		{PID_BOTTLE_AMMIAK},
+		{0},
+		{0},
+		{100},
 	}
 };
 CTool[] Tools;
@@ -95,6 +109,7 @@ ToolAxe toolAxe;
 ToolSuperSledge toolSuperSledge;
 ToolGiveExpForOre toolGiveExpForOre;
 ToolShowInfoInWeight toolShowInfoInWeight;
+ToolBottle toolBottle;
 void SetToolsExt()
 {
 	Tools[0].CallbackDemand(toolAxe,PID_AXE)
@@ -104,6 +119,9 @@ void SetToolsExt()
 	        .CallbackAddExp(toolGiveExpForOre,PID_METAL_ORE)
 			.CallbackResult(toolShowInfoInWeight,PID_METAL_ORE)
 			.CallbackResult(toolShowInfoInWeight,PID_MINERAL);
+	Tools[4].CallbackDemand(toolBottle,PID_BOTTLE_EMPTY)
+			.CallbackResult(toolBottle,PID_BOTTLE_AMMIAK)
+			.CallbackSetTimeouts(toolBottle,PID_BOTTLE_EMPTY);
 }
 
 
@@ -460,7 +478,7 @@ CTool@ GetTool(uint16 pid, uint16 source)
 	for(uint i=0;i<Tools.length();i++)
 	{
 		for(int16 k=0;k<int(Tools[i].ToolPids.length());k++)
-		{
+		{				
 			if(Tools[i].ToolPids[k]==pid)
 			{
 				for(int16 l=0;l<int(Tools[i].SourcePids.length());l++)
@@ -589,8 +607,76 @@ class ToolDefault : IResourceDemand, IResourceResult, IResourceGetTimeouts, IRes
 
 // Tools
 
+class ToolBottle : IResourceDemand, IResourceResult, IResourceSetTimeouts
+{
+	bool OnDemand(Critter& master, uint16 toolPid)
+	{
+		GameVar@ qVar = GetLocalVar(LVAR_q_mod_farrel_ammiak, master.Id);
+		if(valid(qVar) && qVar > 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;		
+		}
+	}
+	
+	uint OnResult(Critter& master, Item@ onItem, Scenery@ onScenery, uint16 toolPid, uint count, uint16 newItemsPid)
+	{
+		uint[] adResourceCount;
+		uint itemCount=1;
+		uint resourceCount=1;
+		if(valid(onItem))
+		{
+			if(IsAnyData("Resources_"+onItem.MapId+"_"+onItem.HexX+"_"+onItem.HexY+"_"+onItem.GetProtoId()))
+			{
+				if(GetAnyData("Resources_"+onItem.MapId+"_"+onItem.HexX+"_"+onItem.HexY+"_"+onItem.GetProtoId(),adResourceCount))
+				{
+					resourceCount=adResourceCount[0];
+				}
+			}
+			if(resourceCount==0)
+			{
+				master.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_NO_AMMIAK);
+				return 0;
+			}
+			uint[] anyData;
+			resourceCount = 0;
+			anyData.insertLast(resourceCount);
+			if(not SetAnyData("Resources_"+onItem.MapId+"_"+onItem.HexX+"_"+onItem.HexY+"_"+onItem.GetProtoId(), anyData))
+			{
+				Log("res: AnyData not created");
+			}else{
+				uint[] forTE;
+				forTE.insertLast(onItem.MapId);
+				forTE.insertLast(onItem.HexX);
+				forTE.insertLast(onItem.HexY);
+				forTE.insertLast(onItem.GetProtoId());
+				CreateTimeEvent(__FullSecond+TIME_FOR_RESOURCES_COUNT_RESP*5,"_AddResourcesCount",forTE,true);
+			}
+			Item@ tool = master.GetItem(toolPid, -1);
+			if((Random(1,6) + int(master.Stat[ST_LUCK]/4))>5 && valid(tool))
+			{
+				master.AddItem(PID_BOTTLE_AMMIAK, 1);
+				master.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_AMMIAK_ADDED);
+				_SubItem(tool, 1);	
+			}else{
+				master.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_NO_AMMIAK);
+			}
+		}
+		return 0;
+	}
+	
+	void OnSetTimeouts(Critter& master, uint16 toolPid, uint count, uint16 newItemsPid)
+	{
+	}
+}
+
+
 class ToolAxe : IResourceDemand, IResourceResult
 {
+	
 	bool OnDemand(Critter& master, uint16 toolPid)
 	{
 		if(Random(0,99)<(50+(master.StatBase[ST_AGILITY]*5)))

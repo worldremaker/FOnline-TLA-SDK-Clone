@@ -3,6 +3,7 @@
 #define EVENT_RACING_RUN                  (3)
 #define EVENT_RACING_STOP                 (4)
 #define EVENT_STOREHOUSE                  (5)
+#define EVENT_ROCKET                      (6)
 
 #define STATUS_NEVER_OCCURED              (0)
 #define STATUS_RUNNING                    (1)

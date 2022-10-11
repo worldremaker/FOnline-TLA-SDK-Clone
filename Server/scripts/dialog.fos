@@ -725,3 +725,16 @@ bool d_GameEventStatus(Critter& player, Critter@ npc, int idx, int status)
 {
 	return CheckEventStatus(uint(idx), uint(status));
 }
+
+bool d_NotLocationKnown(Critter& player, Critter@ npc, int locPid)
+{
+	return !player.IsKnownLoc(false, uint(locPid));
+}
+void r_CreateLocation(Critter& player, Critter@ npc, int locPid, int worldX, int worldY, int dayDelete, int varNum)
+{
+	// Создает локацию в радиусе двух зон от заданных координат
+	int delta = __GlobalMapZoneLength*2;
+	Location@ loc = CreateLocationForCritter(player, locPid, worldX, worldY, delta, varNum);
+	if(valid(loc))
+		SetLocationDeleteTime(loc, 60*60*24*dayDelete);
+}

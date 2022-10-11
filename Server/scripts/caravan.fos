@@ -649,8 +649,6 @@ void _CaravanLeaderOnDead(Critter& leader, Critter@ killer)
 bool _CaravanLeaderOnGlobal(Critter& leader, int type, Item@ car, float& x, float& y, float& toX, float& toY, float& speed, uint& encounterDescriptor, bool& waitForAnswer)
 {
 	Critter@[]@ group=leader.GetGlobalGroup();
-
-	//DL("leader on global");
 	CaravanInfo@ ci = _GetCaravan(leader.CrvId);
 	if(!valid(ci))
 	{
@@ -659,15 +657,8 @@ bool _CaravanLeaderOnGlobal(Critter& leader, int type, Item@ car, float& x, floa
 		Log("Caravan error; CaravanInfo not found");
 		return false;
 	}
-
-	if (type==GLOBAL_PROCESS_START_FAST)
+	if (type==GLOBAL_PROCESS_MOVE || type == GLOBAL_PROCESS_STOPPED)
 	{
-		// начало движения для проводника
-		// проводник сообщает по рации свои координаты - не требуется, или в будущем сделаем
-		// если это самое первое отправление из пункта А, или если это последующие выходы из энкаунтеров
-		// в этот момент в группе нет никого кроме лидера
-		// пока обойдемся без радио, толку от него нет
-	}else{
 		// во всех остальных случаях необходимо проверить, что в группе есть хотя бы один игрок
 		if(!_CheckHasPlayerInGroup(group))
 		{
@@ -675,25 +666,22 @@ bool _CaravanLeaderOnGlobal(Critter& leader, int type, Item@ car, float& x, floa
 			ci.TerminateCaravan();
 			return true;
 		}
-	}
-
-	if (type==GLOBAL_PROCESS_START)
-	{
-		// начало движения для игрока
-		// переключается статус квеста
+	}else{
 		for(uint i = 0; i<group.length(); i++)
 		{
 			if(group[i].IsPlayer())
-			{
 				_SetPlayerJoin(group[i], ci);
-			}
 		}
+	}
+	if(encounterDescriptor!=0)
+	{
+		return false; // Энкаунтер
 	}
 
 	ci.CaravanRoute.SetRouteDir(x, y, toX, toY);
 	// установка направления движения
 
-	if(type==GLOBAL_PROCESS_START || type==GLOBAL_PROCESS_STOPPED)
+	if(type != GLOBAL_PROCESS_MOVE)
 	{
 		// все точки маршрута пройдены или не назначены
 		if(ci.CaravanRoute.RouteEnded())
@@ -724,16 +712,10 @@ bool _CaravanLeaderOnGlobal(Critter& leader, int type, Item@ car, float& x, floa
 			}
 		}
 		speed = GLOBAL_MAP_BASE_SPEED*ci.GlobalSpeedMultiplayer;
-		waitForAnswer = false;
+		
 		return true;
 	}
-
-	// найден энкаунтер, вход на него обрабатываем сами
-	if(encounterDescriptor!=0)
-	{
-		return true;
-	}
-
+	waitForAnswer = false;
 	return false;
 }
 

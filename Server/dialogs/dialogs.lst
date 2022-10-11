@@ -280,6 +280,10 @@ $	640	bh_zaius
 $	641	bh_mutant_female
 $	642	bh_kit
 $	643 bh_ghoul_follower
+$	644	bh_tuko
+$	645	bh_wonderer
+$	646	bh_tramp
+$	647 bh_silo_computer
 $	700	nr_kitty
 $	701	nr_casino_guard
 $	702	nr_barmen

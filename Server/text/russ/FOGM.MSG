@@ -1321,7 +1321,31 @@
 {4070}{}{Church of Broc and Xander Underground}
 {4075}{}{16follow}
 {4076}{}{blank:100}
-
+# Map 407, base 4080
+{4080}{}{Quest Rocket Silo Enter}
+{4085}{}{07desert}
+{4085}{}{05 - Anesthetic.ogg}
+{4085}{}{07 - Echelon.ogg}
+{4085}{}{11 - Face to Face.ogg}
+{4085}{}{13 - Killadrone.ogg}
+{4085}{}{17 - Trinity.ogg}
+{4086}{}{gntlwin1:25, gntlwind:25, gustwind:10, rattle:15, rattle1:15, vulture:10}
+# Map 408, base 4090
+{4090}{}{Quest Rocket Silo Cave}
+{4095}{}{mbase34}
+{4096}{}{elevato1:25, elevator:25, electri1:15, electric:15, clank:10, clank1:10}
+# Map 409, base 4100
+{4100}{}{Quest Rocket Silo variant 1}
+{4105}{}{mbase34}
+{4106}{}{elevato1:25, elevator:25, electri1:15, electric:15, clank:10, clank1:10}
+# Map 410, base 4110
+{4110}{}{Quest Rocket Silo variant 2}
+{4115}{}{mbase34}
+{4116}{}{elevato1:25, elevator:25, electri1:15, electric:15, clank:10, clank1:10}
+# Map 411, base 4120
+{4120}{}{Quest Rocket Silo Command Center}
+{4125}{}{mbase34}
+{4126}{}{elevato1:25, elevator:25, electri1:15, electric:15, clank:10, clank1:10}
 #
 # Global map
 #
@@ -1951,6 +1975,15 @@
 # Den Racing Checkpont, pid 228, base 328000
 {328000}{}{Чекпоинт}
 {328005}{}{Контрольная точка маршрута Всесезонных Смертельных Гонок Западного побережья Гранд-Пасифик-Американ.}
+
+# Rocket Silo Quest Ambush, pid 229, base 329000
+{329000}{}{Место встречи}
+{329005}{}{Здесь вас ожидают друзья Туко.}
+
+# Rocket Silo Quest, pid 230, base 330000
+{330000}{}{Заброшенная ракетная шахта.}
+{330005}{}{Шахтная пусковая установка межконтинентальной баллистической ракеты.}
+
 
 # Intro 1, pid 260, base 360000
 {360000}{}{Интро}

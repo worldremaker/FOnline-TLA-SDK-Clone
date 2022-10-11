@@ -49,7 +49,7 @@ bool npc_plane_end(Critter& npc, NpcPlane& plane, int reason, Critter@ someCr, I
 	else if(reason==REASON_FIND_PATH_ERROR || reason==REASON_HEX_TOO_FAR) npc.Wait(20000);
 	else if(reason==REASON_GAG_CRITTER)
 	{
-		if(valid(someCr) && someCr.IsPlayer())
+		if(valid(someCr) && someCr.IsPlayer() && int(someCr.Id) != npc.Merc[MERC_MASTER_ID])
 		{
 			NpcPlane@ child=CreatePlane();
 			child.Type=AI_PLANE_ATTACK;

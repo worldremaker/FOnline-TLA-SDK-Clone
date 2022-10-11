@@ -564,6 +564,15 @@ void UpdateQuestStatus(Map@ map)
 	}
 	if(wrightDead || !marodeursAlive || (!wrightDead && !wrightAlive))
 		CreateTimeEvent(__FullSecond + REAL_HOUR(1), "e_DeleteQuestLocation", map.Id, true);
+	if(!marodeursAlive)
+	{
+		Location@ loc = map.GetLocation();
+		if(valid(loc))
+		{
+			GameVar@ allDead = GetLocalVar(LLVAR_nr_kidnap_all_marodeurs_dead, loc.Id);
+			allDead = 1;
+		}
+	}
 }
 
 uint e_DeleteQuestLocation(uint[]@ values)

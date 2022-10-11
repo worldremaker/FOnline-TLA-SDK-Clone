@@ -511,13 +511,6 @@ void CancelInvul(Critter& player, int,int,int)
 	player.Say(SAY_NETMSG,"Success");
 }
 
-import void QuestRewardExperience(Critter& cr, uint8 base) from "stdlib";
-
-void QuestReward(Critter& cr, int base, int, int)
-{
-	QuestRewardExperience(cr, base);
-}
-
 void PatchSafe(Critter& cr, int, int, int)
 {
 	Map@ map = GetMapByPid(145,0);
@@ -533,21 +526,25 @@ void PatchSafe(Critter& cr, int, int, int)
 	}
 }
 
-void PatchBAX(Critter& cr, int, int, int)
+import void RunGameEvent(uint idx) from "game_event";
+import void StopGameEvent(uint idx) from "game_event";
+
+void RunGameEvent(Critter& cr, int idx, int, int)
 {
-	Map@[] maps;
-	Item@[] items;
-	GetAllMaps (MAP_bax_underground, maps);
-	for(uint i = 0, l = maps.length(); i<l;i++)
+	RunGameEvent(idx);
+}
+
+void StopGameEvent(Critter& cr, int idx, int, int)
+{
+	StopGameEvent(idx);
+}
+
+void PatchTuko(Critter& cr, int, int, int)
+{
+	Map@ map = GetMapByPid(MAP_broken,0);
+	if(valid(map))
 	{
-		Map@ map = maps[i];
-		if(valid(map))
-			map.GetItems(PID_POWERED_ARMOR, items);
-	}
-	for(uint i = 0, l =items.length(); i<l;i++)
-	{
-		Item@ item = items[i];
-		if(valid(item))
-			DeleteItem(item);
+		int[] params = {ST_DIALOG_ID, 644, ST_TEAM_ID, 2, ST_BAG_ID, 96};
+		map.AddNpc(526, 206, 115, 3, params, null, null);
 	}
 }

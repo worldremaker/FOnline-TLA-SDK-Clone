@@ -1,7 +1,7 @@
 #ifndef __VARS__
 #define __VARS__
 /*************************************************************************************
-***  VARS  *****  COUNT: 00000583  ***************************************************
+***  VARS  *****  COUNT: 00000595  ***************************************************
 *************************************************************************************/
 
 
@@ -66,6 +66,14 @@
 #define GVAR_ending_v13_dclaw_revival                (1812)
 #define GVAR_ending_v13_dclaw_genocide               (1813)
 #define GVAR_ending_v13_dclaw_saved                  (1814)
+#define GVAR_missiles_canada                         (1815)
+#define GVAR_missiles_kishinev                       (1816)
+#define GVAR_missiles_baku                           (1817)
+#define GVAR_missiles_tokio                          (1818)
+#define GVAR_missiles_eburg                          (1819)
+#define GVAR_missiles_vladik                         (1820)
+#define GVAR_missiles_ray                            (1821)
+#define GVAR_missiles_fukusima                       (1822)
 #define UVAR_loyality                                (2010)
 #define UVAR_steal_exp_count                         (2011)
 #define UVAR_first_aid_count                         (2012)
@@ -215,6 +223,7 @@
 #define LLVAR_loc_delete_time                        (3313)
 #define LVAR_mod_vampire_reaction                    (3314)
 #define LVAR_q_mod_aureliano_caravan_escort          (3315)
+#define LVAR_q_mod_farrel_ammiak                     (3316)
 #define LVAR_geck_garold_train                       (3500)
 #define GVAR_geck_skitr_hired                        (3501)
 #define LVAR_geck_skitr_transit                      (3502)
@@ -228,6 +237,8 @@
 #define LVAR_bh_uran_discount                        (3607)
 #define LVAR_q_bh_marcus_escort                      (3608)
 #define LVAR_bh_escort_npc_id                        (3609)
+#define LVAR_q_bh_rocket_base                        (3610)
+#define LLVAR_silo_missile_launched                  (3611)
 #define LVAR_nr_jesus_train                          (3700)
 #define LVAR_q_nr_jessy_jet                          (3701)
 #define LVAR_q_nr_jessy_tulli                        (3702)
@@ -240,6 +251,7 @@
 #define LVAR_nr_wri_kidnap_notify_time               (3709)
 #define LVAR_q_nr_salvatore_kill                     (3710)
 #define LVAR_nr_kidnap_kills_counter                 (3711)
+#define LLVAR_nr_kidnap_all_marodeurs_dead           (3712)
 #define LVAR_ncr_elize_slavers                       (4000)
 #define LVAR_q_ncr_merk_job1                         (4001)
 #define LVAR_ncr_merc_test_status                    (4100)
@@ -980,6 +992,46 @@ $	1813	0	ending_v13_dclaw_genocide	0	0	0	0
 $	1814	0	ending_v13_dclaw_saved	0	0	0	0
 **********
 Счётчик спасённых яиц Когтей Смерти.
+**********
+
+$	1815	0	missiles_canada	0	0	0	4
+**********
+глобальная, без границ, счетчик запущенных в канаду ракет
+**********
+
+$	1816	0	missiles_kishinev	0	0	0	4
+**********
+
+**********
+
+$	1817	0	missiles_baku	0	0	0	4
+**********
+
+**********
+
+$	1818	0	missiles_tokio	0	0	0	4
+**********
+
+**********
+
+$	1819	0	missiles_eburg	0	0	0	4
+**********
+
+**********
+
+$	1820	0	missiles_vladik	0	0	0	4
+**********
+
+**********
+
+$	1821	0	missiles_ray	0	0	0	4
+**********
+
+**********
+
+$	1822	0	missiles_fukusima	0	0	0	4
+**********
+
 **********
 
 $	2010	2	loyality	5	0	10	0
@@ -2292,6 +2344,12 @@ $	3315	1	q_mod_aureliano_caravan_escort	0	0	11	1
 статус каравана хосэ
 **********
 
+$	3316	1	q_mod_farrel_ammiak	0	0	2	1
+**********
+1 - взят квест на аммиак
+2 - сдан хотя бы один раз
+**********
+
 $	3500	1	geck_garold_train	0	0	1	0
 **********
 Было ли обучение у Гарольда или нет.
@@ -2395,6 +2453,23 @@ $	3609	1	bh_escort_npc_id	0	0	0	4
 **********
 без границ, локальная
 используется для сохранения Id сопровождаемой шлюхе в квесте КОшачья Лапка
+**********
+
+$	3610	1	q_bh_rocket_base	0	0	5	1
+**********
+статус квеста "Рискованное дельце".
+1 - взят квест
+2 - поговорил в баре
+3 - наткнулся на бандитов
+4 - узнал координаты
+5 - открыл локацию с картой
+**********
+
+$	3611	3	silo_missile_launched	0	0	2	0
+**********
+локальная для карты
+1 - вставлен ключ
+2 - запуск произведен
 **********
 
 $	3700	1	nr_jesus_train	0	0	10	0
@@ -2512,6 +2587,11 @@ $	3710	1	q_nr_salvatore_kill	0	0	3	1
 $	3711	1	nr_kidnap_kills_counter	0	0	0	4
 **********
 Счетчик убитых нпц на карте
+**********
+
+$	3712	3	nr_kidnap_all_marodeurs_dead	0	0	1	0
+**********
+Локальная. для локации. Признак, что все мародеры мертвы.
 **********
 
 $	4000	1	ncr_elize_slavers	0	0	10	0

@@ -57,12 +57,16 @@ Location@ CreateLocationForCritter(Critter& player, int locPid, int worldX, int 
 	if(locId == 0) 
 		return null;
 	Location@ loc = GetLocation(locId);
-	GameVar@  var = GetLocalVar(varNum, player.Id);
-	if(!valid(var) || !valid(loc))
+	if(!valid(loc))
 		return null;
 	loc.AutoGarbage = false;
-	var = loc.Id;
 	player.SetKnownLoc(true, loc.Id);
+	if(varNum > 0)
+	{
+		GameVar@  var = GetLocalVar(varNum, player.Id);
+		if(valid(var))
+			var = loc.Id;
+	}
 	return loc;
 }
 #endif

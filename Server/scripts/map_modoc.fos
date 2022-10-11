@@ -101,3 +101,20 @@ uint e_ResetWaspLoc( uint[]@ values )
 	}
 	return 0;
 }
+
+
+// Квест "Морозко"
+void dlg_CountBottles(Critter& player, Critter@ npc, string@ lexems)
+{
+	if (IS_DIALOG_END(lexems) or IS_DIALOG_SAY_MODE(lexems))
+		return;
+	lexems = "$count" + _CritCountItem(player, PID_BOTTLE_AMMIAK);
+}
+
+void r_AllBottles(Critter& player, Critter@ npc)
+{
+	uint bottles = _CritCountItem(player, PID_BOTTLE_AMMIAK);
+	_CritDeleteItem(player, PID_BOTTLE_AMMIAK, bottles);
+	player.StatBase[ST_EXPERIENCE] += bottles*400;
+	_CritAddItem(player, PID_BOTTLE_CAPS, bottles*400);
+}

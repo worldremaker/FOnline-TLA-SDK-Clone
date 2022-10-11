@@ -315,6 +315,7 @@ _AddLootToCaravanCabs(CARAVAN_GAYZUN_ARR_SF, -1, PID_MICRO_FUSION_CELL, 12, 100,
 _AddLootToCaravanCabs(CARAVAN_GAYZUN_ARR_SF, -1, PID_ELECTRONIC_LOCKPICKS, 1, 2, 75, true);
 _AddLootToCaravanCabs(CARAVAN_GAYZUN_ARR_SF, -1, PID_MULTI_TOOL, 1, 2, 75, true);
 _AddLootToCaravanCabs(CARAVAN_GAYZUN_ARR_SF, -1, PID_V15_COMPUTER_PART, 10, 30, 100, true);
+_AddGuardInfo(CARAVAN_GAYZUN_ARR_SF,  NPC_PID_VaultCityPatrolMale, DIALOG_crvg_common_male, "caravan@_DefaultGuardInitUnlimAmmo", AIPACKET_BOUNTY_HUNTER, BAG_SF_Caravan_VaultCityPatrolMale, TEAM_QuestNpc, 35, 0, 0, 100, false);
 _AddGuardInfo(CARAVAN_GAYZUN_ARR_SF,  NPC_PID_NCRRangerMale, DIALOG_crvg_killerlolpro, "caravan@_KillerInit", AIPACKET_BOUNTY_HUNTER, BAG_Empty, TEAM_QuestNpc, 30, 1, 2, 15, true);
 _AddGuardInfo(CARAVAN_GAYZUN_ARR_SF,  NPC_PID_ToughGhoul, DIALOG_crvg_zombie, "caravan@_ZombieInit", AIPACKET_PARTY_SULIK_CUSTOM, BAG_Empty, TEAM_QuestNpc, 55, 4, 0, 15, true);
 _AddGuardInfo(CARAVAN_GAYZUN_ARR_SF,  NPC_PID_ToughFemaleThug, DIALOG_crvg_rat, "caravan@_RatInit", AIPACKET_PARTY_MACRAE_AGGRESSIVE, BAG_Empty, TEAM_QuestNpc, 55, 1, 0, 12, true);
@@ -348,8 +349,8 @@ _AddLootToCaravanCabs(CARAVAN_LAUMER_ARR_NCR, -1, PID_ROBOT_MOTIVATOR, 1, 2, 100
 _AddLootToCaravanCabs(CARAVAN_LAUMER_ARR_NCR, -1, PID_PLASMA_RIFLE, 1, 2, 75, true);
 _AddLootToCaravanCabs(CARAVAN_LAUMER_ARR_NCR, -1, PID_MAGNETO_LASER_PISTOL, 1, 2, 50, true);
 _AddLootToCaravanCabs(CARAVAN_LAUMER_ARR_NCR, -1, PID_WELDING, 5, 12, 75, true);
-_AddGuardInfo(CARAVAN_LAUMER_ARR_NCR,  NPC_PID_NCRRangerMale, DIALOG_crvg_killerlolpro, "caravan@_KillerInit", AIPACKET_BOUNTY_HUNTER, BAG_Empty, TEAM_QuestNpc, 30, 1, 2, 35, true);
-_AddGuardInfo(CARAVAN_LAUMER_ARR_NCR,  NPC_PID_ToughGhoul, DIALOG_crvg_zombie, "caravan@_ZombieInit", AIPACKET_PARTY_SULIK_CUSTOM, BAG_Empty, TEAM_QuestNpc, 55, 4, 0, 35, true);
+_AddGuardInfo(CARAVAN_LAUMER_ARR_NCR,  NPC_PID_NCRRangerMale, DIALOG_crvg_killerlolpro, "caravan@_KillerInit", AIPACKET_BOUNTY_HUNTER, BAG_Empty, TEAM_QuestNpc, 30, 1, 2, 15, true);
+_AddGuardInfo(CARAVAN_LAUMER_ARR_NCR,  NPC_PID_ToughGhoul, DIALOG_crvg_zombie, "caravan@_ZombieInit", AIPACKET_PARTY_SULIK_CUSTOM, BAG_Empty, TEAM_QuestNpc, 55, 4, 0, 15, true);
 _AddGuardInfo(CARAVAN_LAUMER_ARR_NCR,  NPC_PID_ToughFemaleThug, DIALOG_crvg_rat, "caravan@_RatInit", AIPACKET_PARTY_MACRAE_AGGRESSIVE, BAG_Empty, TEAM_QuestNpc, 55, 1, 0, 11, true);
 _AddGuardInfo(CARAVAN_LAUMER_ARR_NCR,  NPC_PID_VaultCityPatrolMale, DIALOG_crvg_common_male, "caravan@_DefaultGuardInitUnlimAmmo", AIPACKET_BOUNTY_HUNTER, BAG_SF_Caravan_VaultCityPatrolMale, TEAM_QuestNpc, 45, 0, 0, 100, false);
 _SheduleCaravan(CARAVAN_LAUMER_ARR_NCR, 0, 6, 0, 10);

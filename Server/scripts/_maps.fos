@@ -153,6 +153,8 @@
 
 #define LOCATION_WrightKidnap                       (227)
 #define LOCATION_Quest_RacingCheckpoint             (228)
+#define LOCATION_Quest_SiloAmbush                   (229)
+#define LOCATION_Quest_Silo                         (230)
 
 #define LOCATION_IntroMartin                        (260)
 #define LOCATION_IntroInit                          (261)
@@ -382,6 +384,7 @@
 
 #define MAP_q_nr_wri_kidnap                         (254)
 #define MAP_q_racing_checkpoint                     (255)
+#define MAP_q_silo_ambush                           (256)
 
 #define MAP_intro_martin                            (260)
 #define MAP_intro_init                              (261)
@@ -444,6 +447,13 @@
 #define MAP_atom_reactor                            (402)
 #define MAP_bax_church                              (405)
 #define MAP_bax_underground                         (406)
+
+#define MAP_q_silo1                                 (407)
+#define MAP_q_silo2                                 (408)
+#define MAP_q_silo3                                 (409)
+#define MAP_q_silo4                                 (410)
+#define MAP_q_silo5                                 (411)
+
 
 //************************************************************************/
 //*                                                                      */

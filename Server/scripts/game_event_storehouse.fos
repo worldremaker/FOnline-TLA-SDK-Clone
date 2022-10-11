@@ -57,6 +57,8 @@ uint e_CreateStoreHouse(uint[]@ values)
 		Location@ loc = GetLocation(locId);
 		if(valid(loc))
 		{
+			loc.AutoGarbage = false;
+			loc.Visible = false;
 			Map@ map = loc.GetMapByIndex(0);
 			if(valid(map))
 			{
