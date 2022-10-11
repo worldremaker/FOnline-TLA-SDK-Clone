@@ -31,8 +31,8 @@ import bool AddAttackPlane(Critter& npc, uint priority, uint critId) from "npc_p
 #define STR_PLAYER_JOINED      (7125) // Команда |@lex teamColor@@lex team@|@lex baseColor@ К сражению присоединяется |@lex teamColor@@lex name@. 
 #define STR_KILL               (7126) // Участник Испытания |@lex team1Color@@lex dead@|@lex baseColor@ убит участником по имени |@lex team2Color@@lex killer@. 
 
-#define DL #(s)                     (Log("" + s))
-//#define DL #(s)
+//#define DL #(s)                     (Log("" + s))
+#define DL #(s)
 
 interface IBattleTeamInviteCallback {void OnInvite(Critter@ cr, bool& transit, BattleTeam@ team);  void OnTransit(Critter@ cr);}
 interface IBattleInfoStageChangedHandler {void OnStageChanged(uint8 stage);}

@@ -41,6 +41,7 @@ class PurgatoryStageChangedHandler : IBattleInfoStageChangedHandler, IBattleInfo
 	{
 		if(bInfo.Stage == STAGE_FIGHT)
 		{
+			RadioMessageMsg(0, TEXTMSG_TEXT, 7132);
 			Location@ loc = GetLocationByPid(LOCATION_Purgatory,0);
 			if(valid(loc))
 			{
@@ -49,8 +50,15 @@ class PurgatoryStageChangedHandler : IBattleInfoStageChangedHandler, IBattleInfo
 				{
 					map.SetEvent(MAP_EVENT_LOOP_0 , "_PurgatoryLoop");
 					map.SetLoopTime(0, 25000);  // Раз в 25 секунд
+					Critter@[] players;
+					map.GetCritters(0, FIND_ALL|FIND_ONLY_PLAYERS, players);
+					for(uint i = 0, l = players.length(); i < l; i++)
+					{
+						players[i].SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 7132);
+					}
 				}
 			}
+			return;
 		}
 		if(bInfo.Stage == STAGE_FINISH)
 		{
@@ -385,7 +393,8 @@ uint e_RunFightStage(uint[]@ values)
 // четвертый этап: завершение боя после того, как истекло время
 uint e_RunEndStage(uint[]@ values)
 {	
-	bInfo.Finish();
+	if(bInfo.Stage == STAGE_FIGHT)
+		bInfo.Finish();
 	return 0;
 }
 

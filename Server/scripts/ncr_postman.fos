@@ -21,7 +21,7 @@
 // на выдачу письма вешается таймаут. Величина таймаута зависит от навыка красноречия игрока.
 // за базу был выбран коэффициент на основе выражения:  0 красноречия = 20 дней, 300 красноречия = 5 дней
 
-#define TIME_Q #(speechLvl)			((20 -(15*speechLvl/300))*60*24)// расчет таймаута в минутах в зависисмоти от навыка красноречия
+#define TIME_Q #(speechLvl)			((20 -(12*speechLvl/300))*60*24)// расчет таймаута в минутах в зависисмоти от навыка красноречия
 
 // случайное письмо
 // startLoc - код прототипа стартовой локации (чтобы не было доставления письма в ту же локацию, этот прототип исключается из возможных вариантов)
@@ -248,19 +248,24 @@ void dlg_GenLetter2Postman(Critter& player, Critter@ postman, string@ lexems)
 {
 	if (IS_DIALOG_END(lexems) or IS_DIALOG_SAY_MODE(lexems))
 		return;
-	// удаляем предыдущее письмо, если оно имеется
-	if (postman.CountItem(PID_POSTMAN_LETTER) > 0)
-		postman.DeleteItem(PID_POSTMAN_LETTER, postman.CountItem(PID_POSTMAN_LETTER));
-
 	// устанавливаем почтальону запрет на воровство игроком, чтобы не крали письма в надежде сдать тучу сразу
 	postman.ModeBase[MODE_NO_STEAL] = 1;
 	postman.ModeBase[MODE_NO_BARTER] = 1;
 	postman.ModeBase[MODE_NO_DROP] = 1;
-	Item@ item = postman.AddItem(PID_POSTMAN_LETTER, 1);
-	if (!valid(item))
-		return;
-	LetterInfo@ li = GetNewLetterInfo(postman.GetMap().GetLocation().GetProtoId(), player.Id);
-	li.SetItemLetterInfo(item);
+	Item@ item;
+	LetterInfo@ li;
+	if (postman.CountItem(PID_POSTMAN_LETTER) == 0)
+	{
+		@item = postman.AddItem(PID_POSTMAN_LETTER, 1);
+		@li = GetNewLetterInfo(postman.GetMap().GetLocation().GetProtoId(), player.Id);
+		li.SetItemLetterInfo(item);
+		item.SetScript("ncr_postman@_LetterInit");
+	}
+	else
+	{
+		@item = postman.GetItem(PID_POSTMAN_LETTER, -1);
+		@li = LetterInfo(item);
+	}	
 	lexems = li.GetLetterLexems();
 }
 
@@ -271,15 +276,7 @@ void r_GiveLetter(Critter& player, Critter@ postman)
 	Item@ letter = postman.GetItem(PID_POSTMAN_LETTER, -1);
 	if (!valid(letter))
 		return;
-	LetterInfo@ li = LetterInfo(letter);
-	if (!valid(li))
-		return;
-	Item@ newLetter = player.AddItem(PID_POSTMAN_LETTER, 1);
-	if (!valid(newLetter))
-		return;
-	li.SetItemLetterInfo(newLetter);
-	newLetter.SetScript("ncr_postman@_LetterInit");
-	postman.DeleteItem(PID_POSTMAN_LETTER, 1);
+	MoveItem(letter,1,player);
 }
 
 // награждение игрока
