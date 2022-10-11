@@ -2360,7 +2360,7 @@
 	table.AddEncounter( 10, 10042030).AddGroup(GROUP_WILD2_Mutated_Molerats, 2, 4).AddGroup(GROUP_Player                , 0, 0).Fighting(0,1);
 	table.AddEncounter( 10, 10042130).AddGroup(GROUP_WILD2_Mutated_Pig_Rats, 3, 6).AddGroup(GROUP_Player                , 0, 0).Fighting(0,1);
 	table.AddEncounter( 10, 10042140).AddGroup(GROUP_ARRO_Spore_Plants     , 4, 8);
-	table.AddEncounter( 210, 10042150).AddGroup(GROUP_DVMV_Wild_Dogs        , 3, 5).AddGroup(GROUP_WILD2_Hermit          , 1, 2).AddGroup(GROUP_WILD2_Mutated_Molerats, 5, 8).Fighting(0,2).Fighting(1,2);
+	table.AddEncounter( 10, 10042150).AddGroup(GROUP_DVMV_Wild_Dogs        , 3, 5).AddGroup(GROUP_WILD2_Hermit          , 1, 2).AddGroup(GROUP_WILD2_Mutated_Molerats, 5, 8).Fighting(0,2).Fighting(1,2);
 	table.AddEncounter(  1, 10042160).AddGroup(GROUP_WILD2_Hermit          , 1, 2).AddGroup(GROUP_DVMV_Wild_Dogs        , 3, 5).Fighting(0,1);
 	table.AddEncounter(  1, 10042170).AddGroup(GROUP_WILD2_Hermit          , 1, 2).AddGroup(GROUP_WILD2_Mutated_Pig_Rats, 3, 5).Fighting(0,1);
 	table.AddEncounter(  1, 10042180).AddGroup(GROUP_WILD2_Hermit          , 1, 2).AddGroup(GROUP_DVMV_Wild_Dogs        , 3, 5).AddGroup(GROUP_WILD2_Mutated_Molerats, 3, 6).Fighting(0,2).Fighting(1,2);
