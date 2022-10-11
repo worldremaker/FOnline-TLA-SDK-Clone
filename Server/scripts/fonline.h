@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 06.10.2011
-// Server version 455, MSVS2008
+// Last update 11.11.2011
+// Server version 467, MSVS2008
 // Default calling convention - cdecl
 //
 
@@ -126,6 +126,7 @@ typedef int64_t          int64;
 
 typedef pair<int, int> IntPair;
 typedef pair<uint, uint> UintPair;
+typedef pair<uint16, uint16> Uint16Pair;
 
 typedef vector<uint> UintVec;
 typedef vector<uint>::iterator UintVecIt;
@@ -134,6 +135,7 @@ typedef vector<uint16>::iterator Uint16VecIt;
 typedef vector<int> IntVec;
 typedef vector<int>::iterator IntVecIt;
 typedef vector<UintPair> UintPairVec;
+typedef vector<Uint16Pair> Uint16PairVec;
 typedef set<int> IntSet;
 typedef set<int>::iterator IntSetIt;
 typedef set<uint> UintSet;
@@ -1326,41 +1328,49 @@ struct Npc : Critter
 
 struct CritterCl
 {
-	uint      Id;
-	uint16    Pid;
-	uint16    HexX,HexY;
-	uint8     Dir;
-	int       Params[MAX_PARAMS];
-	uint      NameColor;
-	uint      ContourColor;
-	Uint16Vec LastHexX,LastHexY;
-	uint8     Cond;
-	uint      Anim1Life;
-	uint      Anim1Knockout;
-	uint      Anim1Dead;
-	uint      Anim2Life;
-	uint      Anim2Knockout;
-	uint      Anim2Dead;
-	uint      Flags;
-	uint      BaseType,BaseTypeAlias;
-	uint      ApRegenerationTick;
-	int16     Multihex;
+	uint          Id;
+	uint16        Pid;
+	uint16        HexX,HexY;
+	uint8         Dir;
+	int           Params[MAX_PARAMS];
+	uint          NameColor;
+	uint          ContourColor;
+	Uint16Vec     LastHexX,LastHexY;
+	uint8         Cond;
+	uint          Anim1Life;
+	uint          Anim1Knockout;
+	uint          Anim1Dead;
+	uint          Anim2Life;
+	uint          Anim2Knockout;
+	uint          Anim2Dead;
+	uint          Flags;
+	uint          BaseType,BaseTypeAlias;
+	uint          ApRegenerationTick;
+	int16         Multihex;
 
-	string    Name;
-	int       NameRefCounter;
-	string    NameOnHead;
-	int       NameOnHeadRefCounter;
-	string    Lexems;
-	int       LexemsRefCounter;
-	string    Avatar;
-	char      PasswordReg[MAX_NAME+1];
+	string        Name;
+	int           NameRefCounter;
+	string        NameOnHead;
+	int           NameOnHeadRefCounter;
+	string        Lexems;
+	int           LexemsRefCounter;
+	string        Avatar;
+	char          PasswordReg[MAX_NAME+1];
 
-	ItemVec   InvItems;
-	Item*     DefItemSlotHand;
-	Item*     DefItemSlotArmor;
-	Item*     ItemSlotMain;
-	Item*     ItemSlotExt;
-	Item*     ItemSlotArmor;
+	ItemVec       InvItems;
+	Item*         DefItemSlotHand;
+	Item*         DefItemSlotArmor;
+	Item*         ItemSlotMain;
+	Item*         ItemSlotExt;
+	Item*         ItemSlotArmor;
+
+	CritterCl*    ThisPtr[ MAX_PARAMETERS_ARRAYS ];
+	bool          ParamsIsChanged[ MAX_PARAMS ];
+	IntVec        ParamsChanged;
+	int           ParamLocked;
+
+	bool          IsRuning;
+	Uint16PairVec MoveSteps;
 };
 
 struct MapObject
@@ -1885,7 +1895,7 @@ inline void static_asserts()
 	STATIC_ASSERT(offsetof(Critter, RefCounter)             == 9336);
 	STATIC_ASSERT(offsetof(Client, LanguageMsg)             == 9404);
 	STATIC_ASSERT(offsetof(Npc, Reserved)                   == 9356);
-	STATIC_ASSERT(offsetof(CritterCl, ItemSlotArmor)        == 4260);
+	STATIC_ASSERT(offsetof(CritterCl, MoveSteps)            == 5684);
 	STATIC_ASSERT(offsetof(MapEntire, Dir)                  == 8   );
 	STATIC_ASSERT(offsetof(SceneryToClient, Reserved1)      == 30  );
 	STATIC_ASSERT(offsetof(Map, RefCounter)                 == 774 );
