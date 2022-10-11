@@ -136,7 +136,7 @@ EXPORT extern void (*Log)(const char* frmt, ...);
 #define GM_ZONES_FOG_SIZE           (2500)
 #define MAX_SCRIPT_NAME             (64)
 #define MAPOBJ_SCRIPT_NAME          (25)
-#define MAPOBJ_CRITTER_PARAMS       (15)
+#define MAPOBJ_CRITTER_PARAMS       (40)
 #define MAX_PARAMETERS_ARRAYS       (100)
 #define MAX_NAME                    (30)
 #define MAX_STORED_IP               (20)
