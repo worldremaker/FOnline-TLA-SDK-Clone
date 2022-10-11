@@ -527,7 +527,7 @@ void PatchSafe(Critter& cr, int, int, int)
 }
 
 import void RunGameEvent(uint idx) from "game_event";
-import void RunGameEvent(uint idx, uint time) from "game_event";
+//import void RunGameEvent(uint idx, uint time) from "game_event";
 import void StopGameEvent(uint idx) from "game_event";
 
 void RunGameEvent(Critter& cr, int idx, int, int)
@@ -537,7 +537,7 @@ void RunGameEvent(Critter& cr, int idx, int, int)
 
 void RunGameEventTime(Critter& cr, int idx, int time, int)
 {
-	RunGameEvent(idx, uint(time));
+	//RunGameEvent(idx, uint(time));
 }
 
 void StopGameEvent(Critter& cr, int idx, int, int)
