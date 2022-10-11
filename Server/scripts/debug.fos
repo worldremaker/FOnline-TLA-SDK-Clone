@@ -516,12 +516,12 @@ void PatchSafe(Critter& cr, int, int, int)
 	Map@ map = GetMapByPid(145,0);
 	if(!valid(map))
 		return;
-	Item@ item = map.AddItem(88, 79, 501, 1);
+	Item@ item = map.GetItem(88, 79, 501);
 	if(valid(item))
 	{
 		item.Val2 = 8;
 		item.Val4 = 4441;
-		item.SetScript("electronic_lock@_LockedSkill");
+		item.SetScript("electronic_lock@_LockedInit");
 		item.Update();
 	}
 }
@@ -546,5 +546,15 @@ void PatchTuko(Critter& cr, int, int, int)
 	{
 		int[] params = {ST_DIALOG_ID, 644, ST_TEAM_ID, 2, ST_BAG_ID, 96};
 		map.AddNpc(526, 206, 115, 3, params, null, null);
+	}
+}
+
+void PatchBar(Critter& cr, int, int, int)
+{
+	Map@ map = GetMapByPid(MAP_newr1,0);
+	if(valid(map))
+	{
+		int[] params = {ST_DIALOG_ID, 782, ST_TEAM_ID, 2, ST_BAG_ID, 96};
+		map.AddNpc(499, 56, 29, 1, params, null, null);
 	}
 }
