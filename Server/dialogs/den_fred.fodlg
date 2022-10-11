@@ -17,7 +17,7 @@ lang=russ engl
 4 3010 D _var p q_den_jane_dolg = 1 D _var p den_jane_trader_fred = 0 R _var p den_jane_trader_fred = 1 R _item p PID_BOTTLE_CAPS + 500 #
 9 3020 D _item n PID_STIMPAK < 1 #
 8 3030 D _item n PID_STIMPAK > 0 #
-10 3040 D _item p PID_STIMPAK > 2 D _var p q_den_fred_stim = 1 R _item p PID_BOTTLE_CAPS + 600 R _item p PID_STIMPAK - 3 R _param p ST_EXPERIENCE + 200 R _var p q_den_fred_stim = 2 R _item n PID_STIMPAK + 3 #
+10 3040 D _item p PID_STIMPAK > 2 D _var p q_den_fred_stim = 1 R _item p PID_BOTTLE_CAPS + 600 R _item p PID_STIMPAK - 3 R _param p ST_EXPERIENCE + 200 R _var p q_den_fred_stim = 2 #
 65506 3050 #
 0 3060 @
 4 4000 None 0 @

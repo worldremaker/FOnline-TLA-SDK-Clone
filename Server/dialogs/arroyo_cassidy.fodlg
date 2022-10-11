@@ -67,9 +67,9 @@ lang=russ engl
 0 18020 @
 19 19000 None 0 @
 20 20000 None 1 #
-21 20010 D _var p q_arroyo_cassidy_letter = 2 D _var p q_vc_cindy_letter = 2 D _item p PID_LETTER_TO_CASSIDY > 0 R _var p q_arroyo_cassidy_letter = 3 R _item p PID_LETTER_TO_CASSIDY - 1 R _param p ST_EXPERIENCE + 2000 R _param p ST_KARMA + 15 R _script dialog@r_SetUniqTO 1 44640 #
-21 20020 D _var p q_arroyo_cassidy_letter = 2 D _var p q_vc_cindy_letter = 1 D _item p PID_LETTER_TO_CASSIDY > 0 R _var p q_arroyo_cassidy_letter = 3 R _item p PID_LETTER_TO_CASSIDY - 1 R _param p ST_EXPERIENCE + 1500 R _param p ST_KARMA + 10 R _script dialog@r_SetUniqTO 1 44640 #
-24 20030 D _var p q_arroyo_cassidy_letter = 2 D _var p q_vc_cindy_letter = 0 R _var p q_arroyo_cassidy_letter = 3 R _param p ST_EXPERIENCE + 1000 R _script dialog@r_SetUniqTO 1 44640 #
+21 20010 D _var p q_arroyo_cassidy_letter = 2 D _var p q_vc_cindy_letter = 2 D _item p PID_LETTER_TO_CASSIDY > 0 R _var p q_arroyo_cassidy_letter = 3 R _var p q_vc_cindy_letter = 3 R _item p PID_LETTER_TO_CASSIDY - 1 R _param p ST_EXPERIENCE + 2000 R _param p ST_KARMA + 15 R _script dialog@r_SetUniqTO 1 44640 R _item p PID_BOTTLE_CAPS + 1500 #
+21 20020 D _var p q_arroyo_cassidy_letter = 2 D _var p q_vc_cindy_letter = 1 D _item p PID_LETTER_TO_CASSIDY > 0 R _var p q_arroyo_cassidy_letter = 3 R _var p q_vc_cindy_letter = 3 R _item p PID_LETTER_TO_CASSIDY - 1 R _param p ST_EXPERIENCE + 1500 R _param p ST_KARMA + 10 R _script dialog@r_SetUniqTO 1 44640 R _item p PID_BOTTLE_CAPS + 1500 #
+24 20030 D _var p q_arroyo_cassidy_letter = 2 D _var p q_vc_cindy_letter = 0 R _var p q_arroyo_cassidy_letter = 3 R _param p ST_EXPERIENCE + 1000 R _script dialog@r_SetUniqTO 1 44640 R _item p PID_BOTTLE_CAPS + 1200 #
 22 20040 D _var p q_arroyo_cassidy_letter = 2 D _var p q_vc_cindy_letter } 1 D _var p q_vc_cindy_letter { 2 D _item p PID_LETTER_TO_CASSIDY = 0 R _var p q_arroyo_cassidy_letter = 3 R _param p ST_EXPERIENCE + 1000 R _param p ST_KARMA + 10 R _script dialog@r_SetUniqTO 1 44640 #
 26 20050 #
 27 20060 #

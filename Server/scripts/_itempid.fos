@@ -54,6 +54,7 @@
 #define PID_44_MAGNUM_SPEEDLOADER           (398)
 #define PID_NEEDLER_PISTOL                  (388)  // HN Needler
 #define PID_PK12_GAUSS_PISTOL               (394)  // 2mm EC
+#define PID_MULTI_BARREL_GUN                (603)
 	// Rifles
 #define PID_HUNTING_RIFLE                   (10)
 #define PID_SCOPED_HUNTING_RIFLE            (287)
@@ -95,6 +96,7 @@
 #define PID_BOZAR                           (350)
 #define PID_LIGHT_SUPPORT_WEAPON            (355)
 #define PID_M60                             (387)  // 7.62
+#define PID_METAL_STORM                     (604)
 
 // Energo
 	// Laser
@@ -120,6 +122,7 @@
 #define PID_FRAG_GRENADE                    (25)  // Grouped
 #define PID_PLASMA_GRENADE                  (26)  // Grouped
 #define PID_PULSE_GRENADE                   (27)  // Grouped
+#define PID_DOG_GRENADE                     (602) // Grouped
 	// Other
 #define PID_FLARE                           (79)  // Grouped
 #define PID_ACTIVE_FLARE                    (205) // Active
@@ -138,6 +141,7 @@
 #define PID_SHIV                            (383)
 #define PID_SWITCHBLADE                     (319)
 #define PID_WAKIZASHI_BLADE                 (522)
+#define PID_ELI_KNIFE                       (595)
 	// Pricking
 #define PID_SPEAR                           (7)
 #define PID_SHARP_SPEAR                     (280)

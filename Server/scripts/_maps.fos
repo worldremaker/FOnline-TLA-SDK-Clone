@@ -65,6 +65,7 @@
 #define LOCATION_SpecialAtomChurch                  (75)
 #define LOCATION_SpecialBaxChurch                   (76)
 #define LOCATION_SpecialAndroid                     (77)
+#define LOCATION_SpecialTim                         (78)
 
 #define LOCATION_DesertEncounter1                   (101)
 #define LOCATION_DesertEncounter2                   (102)
@@ -317,6 +318,7 @@
 #define MAP_se_doughnut_basement                    (186)
 #define MAP_se_android_ground                       (187)
 #define MAP_se_android_basement                     (188)
+#define MAP_se_tim                                  (189)
 #define MAP_e_city1                                 (190)
 #define MAP_e_city2                                 (191)
 #define MAP_e_city3                                 (192)

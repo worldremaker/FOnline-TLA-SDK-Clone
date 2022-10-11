@@ -9,6 +9,13 @@ void _MapInit(Map &map, bool firstTime)
     for(uint i = 0; i<critters.length();i++)
     {
 		critters[i].StatBase[ST_REPLICATION_TIME] = 480;
+		Critter@ cr;
+		@cr = critters[i];
+		if(valid(cr))
+			{
+			int dialog = cr.Stat[ST_DIALOG_ID];
+			if (dialog == DIALOG_atoll_trader) cr.ModeBase[MODE_BARTER_ONLY_CASH]=1;
+			}
     }
 
 }

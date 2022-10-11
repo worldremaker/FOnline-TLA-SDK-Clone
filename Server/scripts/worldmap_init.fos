@@ -1795,6 +1795,7 @@
 	globalTable.AddEncounter( 15, 10033070).AddGroup(GROUP_Bounty_Hunter_High    , 2, 6).AddGroup(GROUP_Player            , 0, 0).Fighting(0,1).CheckParam(KARMA_PEDOBEAR,'>',1);
 	globalTable.AddEncounter( 10, 10030050).AddGroup(GROUP_QUEST_Lynett_Hitman   , 1, 1).AddGroup(GROUP_Player            , 0, 0).Fighting(0,1).CheckLVar(LVAR_vc_lynett_refuse,'=',1).AssignLVar(LVAR_vc_lynett_refuse,'=',2);
 	globalTable.AddEncounter(  1, 10030060).Special(true).LocationPid(LOCATION_SpecialBaxChurch).CheckParam(ST_LEVEL,'>',9).CheckLVar(LVAR_special_encounter_bax_church,'<',1).CheckParam(ST_KARMA,'>',150).AssignLVar(LVAR_special_encounter_bax_church,'=',1);
+	globalTable.AddEncounter(  1, 10030070).Special(true).LocationPid(LOCATION_SpecialTim).CheckParam(ST_LEVEL,'>',9).CheckLVar(LVAR_special_encounter_tim,'<',1).AssignLVar(LVAR_special_encounter_tim,'=',1);
 	
 	// Add yours special encounters here
 	AddTableToAllTables(globalTable);
@@ -2817,8 +2818,8 @@
 	table.AddEncounter(  2, 10051000).Special(true).LocationPid(LOCATION_SpecialToxicEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_toxic,'<',1).AssignLVar(LVAR_special_encounter_toxic,'=',1);
 	table.AddEncounter(  2, 10051010).Special(true).LocationPid(LOCATION_SpecialPariahsEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_pariah,'<',1).AssignLVar(LVAR_special_encounter_pariah,'=',1);
 	table.AddEncounter(  2, 10051020).Special(true).LocationPid(LOCATION_SpecialMadBrahminEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_brahmin,'<',1).AssignLVar(LVAR_special_encounter_brahmin,'=',1);
-	table.AddEncounter(100, 10051030).AddGroup(GROUP_NAV_Enclave_Patrol    , 4, 7).AddGroup(GROUP_Player, 0, 0).Fighting(0,1).CheckLVar(LVAR_enc_loyality_enclave,'>',5);
-	table.AddEncounter(100, 10051030).AddGroup(GROUP_NAV_Enclave_Patrol    , 4, 7).CheckLVar(LVAR_enc_loyality_enclave,'<',6);
+	table.AddEncounter(100, 10051030).AddGroup(GROUP_NAV_Enclave_Patrol    , 4, 7).AddGroup(GROUP_Player, 0, 0).Fighting(0,1).CheckLVar(LVAR_enc_loyality_enclave,'>',-1);
+	table.AddEncounter(100, 10051030).AddGroup(GROUP_NAV_Enclave_Patrol    , 4, 7).CheckLVar(LVAR_enc_loyality_enclave,'<',0);
 	table.AddEncounter(  1, 10051130).Special(true).LocationPid(LOCATION_SpecialWhaleEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_whale,'<',1).AssignLVar(LVAR_special_encounter_whale,'=',1);
 	table.AddEncounter(  1, 10051140).Special(true).LocationPid(LOCATION_SpecialHeadEncounter).CheckParam(ST_LEVEL,'>',9).CheckLVar(LVAR_special_encounter_head,'<',1).AssignLVar(LVAR_special_encounter_head,'=',1);
 	table.AddEncounter(  1, 10051150).Special(true).LocationPid(LOCATION_SpecialShuttleEncounter).CheckParam(ST_LEVEL,'>',5).CheckLVar(LVAR_special_encounter_shuttle,'<',1).AssignLVar(LVAR_special_encounter_shuttle,'=',1);
@@ -2832,8 +2833,8 @@
 	@table=@EncounterTables[TABLE_Nav_M];
 	table.AddLocationPid(LOCATION_MountainEncounter1);
 	table.AddLocationPid(LOCATION_MountainEncounter2);
-	table.AddEncounter(100, 10051500).AddGroup(GROUP_NAV_Enclave_Patrol    , 4, 7).AddGroup(GROUP_Player, 0, 0).Fighting(0,1).CheckLVar(LVAR_enc_loyality_enclave,'>',5);
-	table.AddEncounter(100, 10051500).AddGroup(GROUP_NAV_Enclave_Patrol    , 4, 7).CheckLVar(LVAR_enc_loyality_enclave,'<',6);
+	table.AddEncounter(100, 10051500).AddGroup(GROUP_NAV_Enclave_Patrol    , 4, 7).AddGroup(GROUP_Player, 0, 0).Fighting(0,1).CheckLVar(LVAR_enc_loyality_enclave,'>',-1);
+	table.AddEncounter(100, 10051500).AddGroup(GROUP_NAV_Enclave_Patrol    , 4, 7).CheckLVar(LVAR_enc_loyality_enclave,'<',0);
 	table.AddEncounter(  5, 10051600).Special(true).LocationPid(LOCATION_SpecialBridgeEncounter).CheckParam(ST_LEVEL,'>',9).CheckLVar(LVAR_special_encounter_bridge,'<',1).AssignLVar(LVAR_special_encounter_bridge,'=',1);
 	table.AddEncounter(  1, 10051610).Special(true).LocationPid(LOCATION_SpecialHolyEncounter2).CheckLVar(LVAR_special_encounter_holy1,'>',0).CheckLVar(LVAR_special_encounter_holy2,'<',1).AssignLVar(LVAR_special_encounter_holy2,'=',1);
 
@@ -2843,8 +2844,8 @@
 	table.AddLocationPid(LOCATION_CoastEncounter4);
 	table.AddLocationPid(LOCATION_CoastEncounter4);
 	table.AddLocationPid(LOCATION_CoastEncounter8);
-	table.AddEncounter(100, 10052000).AddGroup(GROUP_NAV_Enclave_Patrol    , 4, 7).AddGroup(GROUP_Player, 0, 0).Fighting(0,1).CheckLVar(LVAR_enc_loyality_enclave,'>',5);
-	table.AddEncounter(100, 10052000).AddGroup(GROUP_NAV_Enclave_Patrol    , 4, 7).CheckLVar(LVAR_enc_loyality_enclave,'<',6);
+	table.AddEncounter(100, 10052000).AddGroup(GROUP_NAV_Enclave_Patrol    , 4, 7).AddGroup(GROUP_Player, 0, 0).Fighting(0,1).CheckLVar(LVAR_enc_loyality_enclave,'>',-1);
+	table.AddEncounter(100, 10052000).AddGroup(GROUP_NAV_Enclave_Patrol    , 4, 7).CheckLVar(LVAR_enc_loyality_enclave,'<',0);
 
 										// EPA_D (Area around the EPA)
 	@table=@EncounterTables[TABLE_EPA_D];

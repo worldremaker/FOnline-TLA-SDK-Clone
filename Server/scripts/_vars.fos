@@ -1,7 +1,7 @@
 #ifndef __VARS__
 #define __VARS__
 /*************************************************************************************
-***  VARS  *****  COUNT: 00000553  ***************************************************
+***  VARS  *****  COUNT: 00000554  ***************************************************
 *************************************************************************************/
 
 
@@ -465,6 +465,7 @@
 #define LLVAR_se_android_l_founded                   (5641)
 #define LIVAR_se_android_item_num                    (5642)
 #define LLVAR_se_android_mines_triggered             (5643)
+#define LVAR_special_encounter_tim                   (5644)
 #define LVAR_enc_loyality_hubologists                (5650)
 #define LVAR_enc_loyality_ncr                        (5651)
 #define LVAR_enc_loyality_vcity                      (5652)
@@ -4431,6 +4432,11 @@ $	5642	5	se_android_item_num	0	0	0	4
 $	5643	3	se_android_mines_triggered	0	0	1	0
 **********
 Локальная для локации, признак - мины активированы.
+**********
+
+$	5644	1	special_encounter_tim	0	0	1	0
+**********
+Признак, посетил ли игрок локацию "Тим Кейн".
 **********
 
 $	5650	1	enc_loyality_hubologists	0	0	0	4

@@ -1,8 +1,8 @@
 [Header]
-Version              2
+Version              4
 MaxHexX              160
 MaxHexY              150
-WorkHexX             109
+WorkHexX             58
 WorkHexY             72
 ScriptModule         mob
 ScriptFunc           _MobsMapInit
@@ -5651,10 +5651,11 @@ MapY                 41
 MapObjType           0
 ProtoId              243
 MapX                 74
-MapY                 41
+MapY                 42
 Dir                  3
-Critter_Cond         1
-Critter_CondExt      1
+Critter_Cond         3
+Critter_Anim1        0
+Critter_Anim2        112
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  0
 Critter_ParamIndex1  ST_AI_ID
@@ -5666,7 +5667,7 @@ Critter_ParamValue3  0
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
-Critter_ParamValue5  0
+Critter_ParamValue5  -1
 
 MapObjType           2
 ProtoId              5232
@@ -7193,7 +7194,8 @@ MapX                 93
 MapY                 55
 Dir                  4
 Critter_Cond         3
-Critter_CondExt      10
+Critter_Anim1        0
+Critter_Anim2        102
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  0
 Critter_ParamIndex1  ST_AI_ID
@@ -7205,7 +7207,7 @@ Critter_ParamValue3  0
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
-Critter_ParamValue5  0
+Critter_ParamValue5  -1
 
 MapObjType           2
 ProtoId              5230
@@ -7382,8 +7384,9 @@ ProtoId              243
 MapX                 63
 MapY                 57
 Dir                  3
-Critter_Cond         1
-Critter_CondExt      1
+Critter_Cond         3
+Critter_Anim1        0
+Critter_Anim2        115
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  0
 Critter_ParamIndex1  ST_AI_ID
@@ -7395,7 +7398,7 @@ Critter_ParamValue3  0
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
-Critter_ParamValue5  0
+Critter_ParamValue5  -1
 
 MapObjType           2
 ProtoId              5621
@@ -8432,7 +8435,8 @@ ProtoId              477
 MapX                 105
 MapY                 64
 Critter_Cond         3
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        102
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  0
 Critter_ParamIndex1  ST_AI_ID
@@ -8444,7 +8448,7 @@ Critter_ParamValue3  0
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
-Critter_ParamValue5  0
+Critter_ParamValue5  -1
 
 MapObjType           2
 ProtoId              2067
@@ -8836,7 +8840,8 @@ ProtoId              477
 MapX                 106
 MapY                 67
 Critter_Cond         3
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        102
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  0
 Critter_ParamIndex1  ST_AI_ID
@@ -8848,14 +8853,15 @@ Critter_ParamValue3  0
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
-Critter_ParamValue5  0
+Critter_ParamValue5  -1
 
 MapObjType           0
 ProtoId              477
 MapX                 110
 MapY                 67
 Critter_Cond         3
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        102
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  0
 Critter_ParamIndex1  ST_AI_ID
@@ -8867,7 +8873,7 @@ Critter_ParamValue3  0
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
-Critter_ParamValue5  0
+Critter_ParamValue5  -1
 
 MapObjType           2
 ProtoId              5231
@@ -8949,7 +8955,8 @@ ProtoId              477
 MapX                 109
 MapY                 68
 Critter_Cond         3
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        102
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  0
 Critter_ParamIndex1  ST_AI_ID
@@ -8961,7 +8968,7 @@ Critter_ParamValue3  0
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
-Critter_ParamValue5  0
+Critter_ParamValue5  -1
 
 MapObjType           2
 ProtoId              5232
@@ -9018,8 +9025,9 @@ ProtoId              243
 MapX                 80
 MapY                 69
 Dir                  4
-Critter_Cond         1
-Critter_CondExt      1
+Critter_Cond         3
+Critter_Anim1        0
+Critter_Anim2        119
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  0
 Critter_ParamIndex1  ST_AI_ID
@@ -9031,7 +9039,7 @@ Critter_ParamValue3  0
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
-Critter_ParamValue5  0
+Critter_ParamValue5  -1
 
 MapObjType           2
 ProtoId              2742
@@ -9068,7 +9076,8 @@ ProtoId              477
 MapX                 105
 MapY                 69
 Critter_Cond         3
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        102
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  0
 Critter_ParamIndex1  ST_AI_ID
@@ -9080,14 +9089,15 @@ Critter_ParamValue3  0
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
-Critter_ParamValue5  0
+Critter_ParamValue5  -1
 
 MapObjType           0
 ProtoId              354
-MapX                 107
-MapY                 69
-Critter_Cond         1
-Critter_CondExt      1
+MapX                 105
+MapY                 68
+Critter_Cond         3
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  0
 Critter_ParamIndex1  ST_AI_ID
@@ -9099,7 +9109,7 @@ Critter_ParamValue3  0
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
-Critter_ParamValue5  0
+Critter_ParamValue5  -1
 
 MapObjType           2
 ProtoId              5652
@@ -9401,7 +9411,8 @@ ProtoId              477
 MapX                 107
 MapY                 71
 Critter_Cond         3
-Critter_CondExt      0
+Critter_Anim1        0
+Critter_Anim2        102
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  0
 Critter_ParamIndex1  ST_AI_ID
@@ -9413,7 +9424,7 @@ Critter_ParamValue3  0
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
-Critter_ParamValue5  0
+Critter_ParamValue5  -1
 
 MapObjType           2
 ProtoId              5233
@@ -9700,7 +9711,8 @@ ProtoId              477
 MapX                 106
 MapY                 73
 Critter_Cond         3
-Critter_CondExt      0
+Critter_Anim1        0
+Critter_Anim2        102
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  0
 Critter_ParamIndex1  ST_AI_ID
@@ -9712,7 +9724,7 @@ Critter_ParamValue3  0
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
-Critter_ParamValue5  0
+Critter_ParamValue5  -1
 
 MapObjType           2
 ProtoId              5242
@@ -10358,8 +10370,9 @@ MapObjType           0
 ProtoId              242
 MapX                 58
 MapY                 79
-Critter_Cond         1
-Critter_CondExt      1
+Critter_Cond         3
+Critter_Anim1        0
+Critter_Anim2        111
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  0
 Critter_ParamIndex1  ST_AI_ID
@@ -10371,15 +10384,16 @@ Critter_ParamValue3  0
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
-Critter_ParamValue5  0
+Critter_ParamValue5  -1
 
 MapObjType           0
 ProtoId              242
 MapX                 61
 MapY                 79
 Dir                  3
-Critter_Cond         1
-Critter_CondExt      1
+Critter_Cond         3
+Critter_Anim1        0
+Critter_Anim2        111
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  0
 Critter_ParamIndex1  ST_AI_ID
@@ -10391,7 +10405,7 @@ Critter_ParamValue3  0
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
-Critter_ParamValue5  0
+Critter_ParamValue5  -1
 
 MapObjType           2
 ProtoId              5204
@@ -12065,11 +12079,12 @@ MapY                 91
 
 MapObjType           0
 ProtoId              243
-MapX                 78
-MapY                 91
+MapX                 80
+MapY                 92
 Dir                  3
-Critter_Cond         1
-Critter_CondExt      1
+Critter_Cond         3
+Critter_Anim1        0
+Critter_Anim2        113
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  0
 Critter_ParamIndex1  ST_AI_ID
@@ -12081,7 +12096,7 @@ Critter_ParamValue3  0
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
-Critter_ParamValue5  0
+Critter_ParamValue5  -1
 
 MapObjType           2
 ProtoId              5230
@@ -12290,8 +12305,9 @@ ProtoId              243
 MapX                 64
 MapY                 93
 Dir                  4
-Critter_Cond         1
-Critter_CondExt      1
+Critter_Cond         3
+Critter_Anim1        0
+Critter_Anim2        112
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  0
 Critter_ParamIndex1  ST_AI_ID
@@ -12303,7 +12319,7 @@ Critter_ParamValue3  0
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
-Critter_ParamValue5  0
+Critter_ParamValue5  -1
 
 MapObjType           2
 ProtoId              5621
@@ -12806,8 +12822,10 @@ MapObjType           0
 ProtoId              243
 MapX                 103
 MapY                 97
-Critter_Cond         1
-Critter_CondExt      1
+Dir                  1
+Critter_Cond         3
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  0
 Critter_ParamIndex1  ST_AI_ID
@@ -12819,14 +12837,15 @@ Critter_ParamValue3  0
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
-Critter_ParamValue5  0
+Critter_ParamValue5  -1
 
 MapObjType           0
 ProtoId              243
 MapX                 108
 MapY                 97
-Critter_Cond         1
-Critter_CondExt      1
+Critter_Cond         3
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  0
 Critter_ParamIndex1  ST_AI_ID
@@ -12838,7 +12857,7 @@ Critter_ParamValue3  0
 Critter_ParamIndex4  ST_NPC_ROLE
 Critter_ParamValue4  0
 Critter_ParamIndex5  ST_REPLICATION_TIME
-Critter_ParamValue5  0
+Critter_ParamValue5  -1
 
 MapObjType           2
 ProtoId              5231

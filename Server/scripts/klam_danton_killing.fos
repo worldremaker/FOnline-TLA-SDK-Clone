@@ -10,6 +10,7 @@ void InitDantonKilling(Map& map, bool firstTime)
 {
 	Critter@ danton = map.GetNpc(ROLE_DANTON, FIND_ALL, 0);     if(not valid(danton)) { Log("ERROR: critter not valid"); return; }
 	danton.SetEvent(CRITTER_EVENT_DEAD, "_DantonDead");
+	danton.ModeBase[MODE_NO_SUPPLY] = 1;
 }
 
 void _DantonDead(Critter& danton, Critter@ player)

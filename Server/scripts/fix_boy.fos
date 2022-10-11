@@ -45,6 +45,12 @@ int fix_PowerArmor(Critter& player, int state)
 #define STR_NO_CHARGES                   (302)  // Станок или верстак в неработоспособном состоянии. Произведен максимум возможных предметов. Производство невозможно.
 
 /*                РЕЦЕПТЫ                 */
+
+int fix_AnyStuff(Critter& player, int state)
+{
+	return fix_Something(player, SCENERY_WORKBENCH, DEFAULT_RADIUS, LVAR_fixboy_default, state, 120, 100);
+}
+
 int fix_SuperSledge(Critter& player, int state)  // Рецепт на изготовление суперкувалды. Ши.
 {
 	return fix_Something(player, SCENERY_SHOE_WORKBENCH, DEFAULT_RADIUS, LVAR_sf_recipe_supersledge, state, DEFAULT_TIMEOUT_MINUTES(player), DEFAULT_CHARGES);

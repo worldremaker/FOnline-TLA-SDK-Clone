@@ -108,7 +108,7 @@ lang=russ engl
 26 26000 None 0 #
 27 26010 D _item p PID_REFINED_ORE > 0 R _item p PID_REFINED_ORE - 1 R _item p PID_BOTTLE_CAPS + 700 #
 0 26020 @
-27 27000 None 0 #
+27 27000 None 1 #
 27 27010 D _item p PID_REFINED_ORE > 0 R _item p PID_REFINED_ORE - 1 R _item p PID_BOTTLE_CAPS + 700 #
 0 27020 @
 28 28000 None 0 &

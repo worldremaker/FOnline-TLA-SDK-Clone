@@ -23,7 +23,7 @@ lang=russ engl
 3 3000 None 0 @
 5 4000 None 0 @
 6 5000 None 0 #
-0 5010 R _var p q_klam_smily_modoc = 2 R _item p PID_GECKO_PELT - 60 R _item p PID_BOTTLE_CAPS + 2000 R _param p ST_EXPERIENCE + 400 #
+0 5010 R _var p q_klam_smily_modoc = 2 R _item p PID_GECKO_PELT - 60 R _item p PID_BOTTLE_CAPS + 2000 R _param p ST_EXPERIENCE + 1400 #
 7 5020 @
 7 6000 None 0 @
 8 7000 None 0 @

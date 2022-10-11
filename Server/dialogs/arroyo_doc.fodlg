@@ -31,11 +31,11 @@ lang=russ engl
 6 5030 D _param p DAMAGE_LEFT_ARM = 0 D _param p DAMAGE_RIGHT_ARM = 1 #
 6 5040 D _param p DAMAGE_RIGHT_ARM = 1 D _param p DAMAGE_LEFT_ARM = 1 #
 6 5050 D _param p DAMAGE_LEFT_LEG = 1 D _param p DAMAGE_RIGHT_LEG = 0 #
-6 5060 D _param p DAMAGE_LEFT_LEG = 0 #
+6 5060 D _param p DAMAGE_LEFT_LEG = 0 D _param p DAMAGE_RIGHT_LEG = 1 #
 7 5070 D _param p DAMAGE_RIGHT_LEG = 1 D _param p DAMAGE_LEFT_LEG = 1 R _var p arroyo_doc_healing = 2 #
 6 5080 D _param p DAMAGE_EYE = 1 #
-10 5090 D _param n DAMAGE_RADIATED > 0 R _script dialog@r_DropRadiation 0  #
-10 5100 D _param n DAMAGE_POISONED > 0 R _param p ST_POISONING_LEVEL = 0 R _param p DAMAGE_POISONED = 0 #
+10 5090 D _param p DAMAGE_RADIATED > 0 R _script dialog@r_DropRadiation 0  #
+10 5100 D _param p DAMAGE_POISONED > 0 R _param p ST_POISONING_LEVEL = 0 R _param p DAMAGE_POISONED = 0 #
 11 5110 D _script dialog@d_IsAddict 0  #
 0 5120 @
 4 6000 None 0 #
