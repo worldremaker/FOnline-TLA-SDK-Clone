@@ -1036,7 +1036,8 @@ Map@ GenerateEncounter(CFoundedEncounter@ fe, Critter@[]@ critters)
 		uint toGroup=encounter.Actions[i+1];
 		uint action=encounter.Actions[i+2];
 
-		if(action==ACTION_FIGHTING) ActionFighting(crittersGrouops[fromGroup],crittersGrouops[toGroup]);
+		if(action==ACTION_FIGHTING && fromGroup<crittersGrouops.length() && toGroup<crittersGrouops.length())
+			ActionFighting(crittersGrouops[fromGroup],crittersGrouops[toGroup]);
 	}
 
 	fe.IsGenerated=true;
