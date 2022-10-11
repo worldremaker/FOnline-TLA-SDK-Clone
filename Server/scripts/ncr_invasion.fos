@@ -71,8 +71,8 @@ uint e_BeginInvasion(uint[]@ values)
 		FighterPattern fp = FighterPattern();
 		fp.ForceArmourLvl = map.GetData(0);
 
-		uint hX = 0;
-		uint hY = 0;
+		uint16 hX = 0;
+		uint16 hY = 0;
 
 		for(uint j=0;j<GANG_SIZE;j++)
 		{

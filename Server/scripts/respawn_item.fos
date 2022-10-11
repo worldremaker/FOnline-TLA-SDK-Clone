@@ -154,8 +154,8 @@ Item@ RespawnItemNearEntire(Map & map, uint8 entire, uint16 protoId, uint count)
 	if(eCount==0) return null;
 
 	uint numTry = 0;
-	uint hx = 0;
-	uint hy = 0;
+	uint16 hx = 0;
+	uint16 hy = 0;
 	Item@[] items;
 	bool foundItem = false;
 	while(numTry<10)

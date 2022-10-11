@@ -136,7 +136,7 @@ string DateTimeToString(uint gameTime)
 	uint16 year = 0;
 	uint16 month = 0;
 	uint16 dayOfWeek = 0;
-	int16 day = 0;
+	uint16 day = 0;
 	uint16 hour = 0;
 	uint16 minute = 0;
 	uint16 second = 0;

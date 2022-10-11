@@ -122,7 +122,7 @@ uint e_DclawKidBorn( uint[]@ values )
 Critter@ DclawKid( Map& map, uint EntSpawn )
 {
 
-	uint x=0,y=0;
+	uint16 x=0,y=0;
 
 	if ( !map.GetEntireCoords( EntSpawn, 0, x, y ) ) {
 		return null;

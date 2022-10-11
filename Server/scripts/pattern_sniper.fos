@@ -120,7 +120,7 @@ class SniperPattern : CommonPattern
 	{
 		uint16 x = sniper.HexX;
 		uint16 y = sniper.HexY;
-		uint16 dir = sniper.Dir;
+		uint8 dir = sniper.Dir;
 		if (!_GetRunAwayPoint(sniper, x, y, dir)) return;
 		AddWalkPlane(sniper, RUNAWAY_PRIORITY, PLANE_ID_RUNAWAY, 0, x, y, dir, true, 0);
 	}

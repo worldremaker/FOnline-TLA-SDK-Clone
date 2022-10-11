@@ -149,10 +149,10 @@ bool IsCritterInDeadZone(Critter & cr, Map & map, uint8 dir, uint8 hexFirst, uin
 bool BeamCrossing2Section(Map & map, uint8 hexNum1, uint8 hexNum2, uint16 beamX, uint16 beamY, uint8 dir)
 {
 	// 1. вычисляем координаты конечной точки луча
-	int16 hx0 = beamX;
-	int16 beamX2 = hx0;
-	int16 hy0 = beamY;
-	int16 beamY2 = hy0;
+	uint16 hx0 = beamX;
+	uint16 beamX2 = hx0;
+	uint16 hy0 = beamY;
+	uint16 beamY2 = hy0;
 	uint steps = 0;
 
 	while(hx0!=beamX2||hy0!=beamY2||steps==0)
@@ -164,10 +164,10 @@ bool BeamCrossing2Section(Map & map, uint8 hexNum1, uint8 hexNum2, uint16 beamX,
 	}
 
 	// координаты конечной точки высчитаны beamX2, beamY2
-	int16 hx1 = 0;
-	int16 hx2 = 0;
-	int16 hy1 = 0;
-	int16 hy2 = 0;
+	uint16 hx1 = 0;
+	uint16 hx2 = 0;
+	uint16 hy1 = 0;
+	uint16 hy2 = 0;
 	// координаты начальной и конечной точки отрезка между двумя гексами
 	if (!map.GetEntireCoords(hexNum1, 0, hx1, hy1)) return false;
 	if (!map.GetEntireCoords(hexNum2, 0, hx2, hy2)) return false;

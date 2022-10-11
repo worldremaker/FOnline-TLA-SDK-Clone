@@ -193,8 +193,7 @@ void global_process(int processType, Critter& cr, Item@ car,
 			}
 		}
 
-		int moveCounter = ++cr.StatBase[ST_GLOBAL_MAP_MOVE_COUNTER];
-		if(moveCounter % (__EncounterTime / __GlobalMapMoveTime) == 0)
+		if(++cr.GlobalMapMoveCounter % (__EncounterTime / __GlobalMapMoveTime) == 0)
 		{
 			Critter@[]@ group = cr.GetGlobalGroup();
 

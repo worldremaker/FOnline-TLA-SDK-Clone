@@ -279,7 +279,7 @@ void r_QuestDone( Critter& player, Critter@ npc )
 								player.GetMap().GetEntireCoords( 250, uint8 num, uint16& hexX, uint16& hexY );
 
 							}*/
-							uint x = 0, y = 0;
+							uint16 x = 0, y = 0;
 							if ( player.GetMap().GetEntireCoords( 250, 0, x, y ) ){
 								//GetFreeHex( player.GetMap(), 1, x, y);
 								AddWalkPlane( mercs[n], 10, x, y, 0, false, 0 );

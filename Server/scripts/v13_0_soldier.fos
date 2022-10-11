@@ -74,7 +74,9 @@ void _SoldierMined( Critter& soldier, Critter& dropper, Item& item )
 void _GuardianDead( Critter& soldier, Critter& guardian, Critter@ killer )
 {
 
-	uint CurMap, X = 0, Y = 0, Dir = 0;
+	uint CurMap = 0;
+	uint16 X = 0, Y = 0;
+	uint8 Dir = 0;
 	if ( !soldier.IsLife() ) return;
 	if ( guardian.Id == CurGuardian ) {
 		soldier.StatBase[ST_NPC_ROLE] = ROLE_GUARDIAN;

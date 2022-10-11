@@ -484,8 +484,9 @@ bool IsLocalNpc(Critter@ cr, Map@ map)
 	if(!valid(cr) || cr.IsPlayer() || !valid(map))
 		return false;
 	uint mapId = 0;
-	uint plug = 0;
-	cr.GetHomePos(mapId, plug, plug, plug);
+	uint16 hx = 0, hy = 0;
+	uint8 dir = 0;
+	cr.GetHomePos(mapId, hx, hy, dir);
 	return (mapId == map.Id);
 }
 

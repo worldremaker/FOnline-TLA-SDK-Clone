@@ -75,11 +75,11 @@ void TryHitSomeOne(Critter & player, Scenery& nukeMashine)
 	Map @map = player.GetMap();
 	if(!valid(map)) return;
 
-	uint x0 = nukeMashine.HexX;
-	uint y0 = nukeMashine.HexY;
+	uint16 x0 = nukeMashine.HexX;
+	uint16 y0 = nukeMashine.HexY;
 
-	uint x1 = x0;
-	uint y1 = y0;
+	uint16 x1 = x0;
+	uint16 y1 = y0;
 
 	uint dir = GetDirection(x0, y0, player.HexX, player.HexY);
 	bool targetHitted = false;

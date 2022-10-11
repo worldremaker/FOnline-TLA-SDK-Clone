@@ -264,7 +264,7 @@ void Guard_on_pick_item(Critter& guard, Item& hideItem, bool removed, Critter@ p
 	//Log("pickup detect");
 
 	if (not ItemTest(hideItem.GetProtoId())) {
-		uint i=0;
+		int i=0;
 		if (FindInArray(player_ok, picker.Id, i)) {
 			player_ok.removeAt(i);
 			guard.SayMsg(SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR(DIALOG_vc_gate_guard,1));

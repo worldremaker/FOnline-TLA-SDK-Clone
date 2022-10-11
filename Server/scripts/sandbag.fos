@@ -182,7 +182,7 @@ bool _SandBagUseOnMe(Item& item, Critter& cr, Item@ usedItem)
 	if(!valid(usedItem)) return false;
 
 	if(!IsSandBag(usedItem.GetProtoId())) return false;
-	uint x = 0; uint y = 0;
+	uint16 x = 0, y = 0;
 	Map @ map = item.GetMapPosition(x,y);
 	if(valid(map))
 	{
@@ -249,7 +249,7 @@ bool _SandBagSkill(Item& item, Critter& cr, int skill)
 void _SandBagDrop(Item& item, Critter& cr)
 {
 	if(!IsSandBag(item.GetProtoId())) return;
-	uint x = 0; uint y = 0;
+	uint16 x = 0, y = 0;
 	Map @ map = item.GetMapPosition(x,y);
 	if(valid(map))
 	{
@@ -296,8 +296,8 @@ void SandContour( Critter & cr, int len, int num, int)
 	Map @ map = cr.GetMap();
 	if(!valid(map)) return;
 	num = CLAMP(num-1,0,4);
-	uint x = cr.HexX;
-	uint y = cr.HexY;
+	uint16 x = cr.HexX;
+	uint16 y = cr.HexY;
 	for(int dir=0;dir<6;dir++)
 	{
 		for(int i = 0;i<len; i++)

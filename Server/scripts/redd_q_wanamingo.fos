@@ -400,8 +400,7 @@ void r_GotoHunter(Critter& player, Critter@ npc, int val)
 
 	if(CreateTimeEvent(game_time.GetValue(), "e_TimeExpired", 0, false)==0){DL("Time event create fail, "+GetLastError());} // эвент не создался, но оставим все как есть, поскольку удаление произойдет при следующей активации квеста кем-то
 
-	int x,y;
-	x=0; y=0;
+	uint16 x=0,y=0;
 	int c;
 
 	map.GetEntireCoords(1, 0, x, y);
@@ -469,7 +468,7 @@ uint e_TimeExpired(uint[]@ values)
 // спавнить ванаминго
 Critter@ SpawnWan(Map& map, uint8 EntSpawn, uint8 level)
 {
-	uint x=0,y=0;
+	uint16 x=0,y=0;
 	if (not map.GetEntireCoords(EntSpawn, 0, x, y)) {
 		Log("ERROR GetEntireCoords "+EntSpawn);
 		return null;
@@ -503,7 +502,7 @@ bool SpawnWan2()
 		if(not valid(globalCr)) continue;
 		Critter@ cr = SpawnWan(map, i+10, CLAMP(globalCr.Stat[ST_LEVEL],10,20));
 		if(not valid(cr)) continue;
-		uint x=0,y=0;
+		uint16 x=0,y=0;
 		bool r = map.GetEntireCoords(i+20, 0, x, y);
 		if(not r) continue;
 		cr.SetHomePos(x,y,Random(0,5));

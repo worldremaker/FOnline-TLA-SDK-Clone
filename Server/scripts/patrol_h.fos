@@ -95,7 +95,11 @@ class PatrolPoint
 		Map @map = GetMap(this.MapId);
 		if(!valid(map)) return false;
 
-		return GetNearEntire(map, this.EHexNum, x, y);
+		uint16 x_ = 0, y_ = 0;
+		bool result = GetNearEntire(map, this.EHexNum, x_, y_);
+		x = x_;
+		y = y_;
+		return result;
 	}
 }
 //маршрут патрулирования

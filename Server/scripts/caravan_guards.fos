@@ -359,9 +359,9 @@ void _DefaultGuardInit(Critter& guard, bool firstTime)
 	  {
 			DL("Critter on global. Trying transit to home pos");
 			uint mapId=0;
-			uint x=0;
-			uint y=0;
-			uint dir=0;
+			uint16 x=0;
+			uint16 y=0;
+			uint8 dir=0;
 			guard.GetHomePos (mapId, x, y, dir);
 			guard.TransitToMap(mapId, x, y, dir);
 			DL("kill guard");

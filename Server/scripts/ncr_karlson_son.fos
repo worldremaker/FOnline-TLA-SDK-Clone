@@ -108,8 +108,8 @@ int _PlaneEnd(Critter& cr, NpcPlane& plane, int reason, Critter@ someCr, Item@ s
 //~loadscript ncr_karlson_son
 void Run(Critter & cr)
 {
-	uint hX = cr.HexX;
-	uint hY = cr.HexY;
+	uint16 hX = cr.HexX;
+	uint16 hY = cr.HexY;
 
 	GetFreeHex(cr.GetMap(), RUN_RADIUS, hX, hY);
 

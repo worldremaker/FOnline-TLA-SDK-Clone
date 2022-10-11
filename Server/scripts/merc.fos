@@ -147,8 +147,8 @@ void e_MercIdle(Critter& merc)
 
 	if (valid(map_master))
 	{
-		uint hX = master.HexX;
-		uint hY = master.HexY;
+		uint16 hX = master.HexX;
+		uint16 hY = master.HexY;
 		GetFreeHex(map_master, 1, hX, hY);
 		if(valid(map_merc))
 		{

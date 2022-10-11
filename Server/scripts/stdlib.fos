@@ -156,7 +156,7 @@ void Warn(Critter& player, int npcRole)
 void DoorControl(Critter& player, uint entireNum, bool toOpen)
 {
 	Map@ map = player.GetMap();
-	uint x = 0, y = 0;
+	uint16 x = 0, y = 0;
 	if(valid(map) && map.GetEntireCoords(entireNum, 0, x, y))
 	{
 		Item@ door = map.GetDoor(x, y);

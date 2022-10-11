@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 30.03.2011
-// Server version 423, MSVS2008
+// Last update 09.04.2011
+// Server version 438, MSVS2008
 // Default calling convention - cdecl
 //
 
@@ -148,6 +148,7 @@ EXPORT extern void (*Log)(const char* frmt, ...);
 #define MAX_CRIT_TYPES              (1000)
 #define EFFECT_TEXTURES             (10)
 #define EFFECT_SCRIPT_VALUES        (10)
+#define CRITTER_USER_DATA_SIZE      (400)
 
 // Vars
 #define VAR_CALC_QUEST(tid,val)     ((tid)*1000+(val))
@@ -544,6 +545,7 @@ struct ScriptArray
 	bool   IsArrayOfHandles;
 	int    ElementSize;
 	int    CmpFuncId;
+	int    EqFuncId;
 	int    SubTypeId;
 
 	uint   GetSize()      {return Buffer->NumElements;}
@@ -1121,7 +1123,10 @@ struct Critter
 	uint   HoloInfo[MAX_HOLO_INFO];
 	uint   Reserved9[10];
 	int    Scores[SCORES_MAX];
-	uint   Reserved10[100];
+
+	// Binded with pragma bindfield
+	uint   GlobalMapMoveCounter;
+	uint8  UserData[CRITTER_USER_DATA_SIZE - sizeof(uint)];
 
 	// Npc data
 	uint   HomeMap;
@@ -1812,7 +1817,7 @@ inline void static_asserts()
 	STATIC_ASSERT(sizeof(ProtoItem)   == 908 );
 	STATIC_ASSERT(sizeof(Mutex)       == 24  );
 	STATIC_ASSERT(sizeof(GameOptions) == 1152);
-	STATIC_ASSERT(sizeof(ScriptArray) == 36  );
+	STATIC_ASSERT(sizeof(ScriptArray) == 40  );
 	STATIC_ASSERT(sizeof(SpriteInfo)  == 36  );
 	STATIC_ASSERT(sizeof(Field)       == 76  );
 #ifdef __MAPPER

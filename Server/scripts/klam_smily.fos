@@ -320,9 +320,16 @@ void r_GotoHunter(Critter& player, Critter@ npc, int val)
 
 	////////////////////////////////////////////
 
-	if (not map.GetEntireCoords(0, 0, x, y)) {
+	uint16 x_=0,y_=0;
+	if (not map.GetEntireCoords(0, 0, x_, y_))
+	{
 		x=110;
 		y=110;
+	}
+	else
+	{
+		x=x_;
+		y=y_;
 	}
 
 	// создадим каждой тваре по паре  =)

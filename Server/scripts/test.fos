@@ -1730,5 +1730,16 @@ void excep3()
 	int k=10/h;
 }
 
-
+void toDead(Critter& cr, int, int, int)
+{
+	cr.ToDead(ANIM2_DEAD_BLOODY_SINGLE,null);
+}
+void toLife(Critter& cr, int, int, int)
+{
+	cr.ToLife();
+}
+void toKO(Critter& cr, int, int, int)
+{
+	cr.ToKnockout(KNOCKOUT_ANIM2_DEFAULT(true),1000,cr.HexX,cr.HexY);
+}
 

@@ -220,7 +220,7 @@ void _HonomerIdle(Critter& cr)
 {
 	uint16 x = 0;
 	uint16 y = 0;
-	uint16 mapId = 0;
+	uint mapId = 0;
 	uint8 dir = 0;
 	cr.GetHomePos(mapId, x, y, dir);
 	if(valid(cr.GetMap()) && cr.GetMap().Id != mapId)
@@ -353,7 +353,7 @@ void _DoorGuardMessage(Critter& cr, Critter& fromCr, int message, int value)
 		uint16 hx = 0, hy = 0, x= 0, y = 0;		
 		uint8 d = 0;
 		uint mapId = 0;
-		fromCr.GetHomePos(x, y, d, mapId);
+		fromCr.GetHomePos(mapId, x, y, d);
 		if(cr.GetMap().GetEntireCoords(ENTIRE_DOOR_NEAR, 0, hx, hy) && hx != x && hy != y && hx > 0 && hy > 0)
 				fromCr.SetHomePos(hx, hy, 0);
 	}

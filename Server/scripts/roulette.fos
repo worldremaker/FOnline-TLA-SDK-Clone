@@ -97,7 +97,7 @@ void AddElements()
 
 void dlg_MakeBet(Critter& master, Critter@ croupier, string@ str) // Ветка выбора координат ставки
 {
-	uint coord=0;
+	int coord=0;
 	if(IS_DIALOG_SAY_MODE(str)) // Если игрок воспользовался функцией Say About
 	{
 		master.Say(SAY_APPEND,"\n");

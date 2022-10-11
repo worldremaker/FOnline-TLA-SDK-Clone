@@ -124,7 +124,7 @@ bool _TrySetupTrap(Item & door, Item @ trap, Critter & player)
 
 bool _SetDoorTrap(Item & door, uint trapPid)
 {
-	uint x = 0; uint y = 0;
+	uint16 x = 0, y = 0;
 	Map @map = door.GetMapPosition(x, y);
 
 	if(!valid(map)) return false;

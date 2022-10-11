@@ -46,7 +46,7 @@ void MoveItemsToContainer(Critter& cr) // Складывает все предметы из инвентаря в
 		{
 			uint16 hx = 0;
 			uint16 hy = 0;
-			if (map.GetEntireCoords(ENTIRE_CONTAINER, hx, hy, Random(0, entires-1)))
+			if (map.GetEntireCoords(ENTIRE_CONTAINER, Random(0, entires-1), hx, hy))
 			{
 				if(map.GetItems(hx, hy, containers) > 0)
 				{

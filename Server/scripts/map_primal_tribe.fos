@@ -404,7 +404,7 @@ uint GetCritters(Map@ map, Critter@[]@ arr, int npcRole, int findType)
 
 Critter@ SpawnRaider(Map& map, uint8 entGroup, uint8 entNum, uint16 npcPid, uint8 dir, uint dialog, uint bagId, uint level)
 {
-	uint x=0, y=0;
+	uint16 x=0, y=0;
 	if (not map.GetEntireCoords(entGroup, entNum, x, y))
 	{
 		Log("\n<Trib: Rangers Attack> Error: GetEntireCoords " + entGroup + ":" + entNum);

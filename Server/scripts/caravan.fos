@@ -401,12 +401,12 @@ const uint[] entires = {243,244,0}; // гексы на которых можно поставить, в перву
 void FindCabPlace(Map& map, uint[] & x, uint[]& y, uint maxCabs )
 {
 
-	uint hX = 0;
-	uint hY = 0;
-	uint oX1 = 0; // координаты объекта, повозка№1
-	uint oY1 = 0;
-	uint oX2 = 0; // координаты объекта повозка№2
-	uint oY2 = 0;
+	uint16 hX = 0;
+	uint16 hY = 0;
+	uint16 oX1 = 0; // координаты объекта, повозка№1
+	uint16 oY1 = 0;
+	uint16 oX2 = 0; // координаты объекта повозка№2
+	uint16 oY2 = 0;
 
 	// i - индекс номер гекса в массиве entires
 	// j = индекс гекса среди найденных на карте
@@ -584,8 +584,8 @@ void _CaravanLeaderIdleOnEncounter(Critter& leader)
 
 			leader.IdleCount = 0;
 			uint idx = Random(0, cabs.length()-1);
-			uint hx = cabs[idx].HexX;
-			uint hy = cabs[idx].HexY;
+			uint16 hx = cabs[idx].HexX;
+			uint16 hy = cabs[idx].HexY;
 			if(GetFreeHex(map, 4, hx, hy))
 			{
 				AddWalkPlane(leader, AI_PLANE_WALK_PRIORITY,  hx, hy, Random(0,5), (Random(0,5)==1?true:false), 1);
@@ -953,8 +953,8 @@ bool _EndCaravan(Critter & leader)
 	if(!valid(ci.Leader.EndPos)) return false;
 	Map @map = ci.Leader.EndPos.GetMap();
 	if(!valid(map)) return false;
-	uint hx = ci.Leader.EndPos.HexX;
-	uint hy = ci.Leader.EndPos.HexY;
+	uint16 hx = ci.Leader.EndPos.HexX;
+	uint16 hy = ci.Leader.EndPos.HexY;
 	if(!GetFreeHex(map, 3, hx, hy)) return false;
 	if(!leader.TransitToMap(map.Id, 0, true)) return false;
 	leader.SetHomePos(hx,hy, leader.Dir);

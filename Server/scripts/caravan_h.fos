@@ -225,8 +225,8 @@ class CaravanLeaderInfo
 	{
 		Map @ map = pos.GetMap();
 		if(!valid(map)) return false;
-		uint x = pos.HexX;
-		uint y = pos.HexY;
+		uint16 x = pos.HexX;
+		uint16 y = pos.HexY;
 		if(!GetFreeHex(map, 2, x, y)) return false;
 		int[] params={ST_DIALOG_ID, DialogId, ST_TEAM_ID, TeamId, ST_AI_ID, AiPack, ST_BAG_ID, BagId, ST_LEVEL, Level};
 		Critter @ leader = map.AddNpc(this.NpcPid, x, y, Random(0,5), params, null, null);
@@ -468,8 +468,8 @@ class CaravanGuardInfo
 	{
 		if(Random(1,100)>this.ChanceToJoin) return null;
 
-		uint hX = leader.HexX;
-		uint hY = leader.HexY;
+		uint16 hX = leader.HexX;
+		uint16 hY = leader.HexY;
 		if(!GetFreeHex(map, 4, hX, hY)) return  null;
 
 		int[] params={ST_DIALOG_ID, DialogId, ST_TEAM_ID, TeamId, ST_AI_ID, AiPack, ST_BAG_ID, BagId, ST_LEVEL, Level, ST_VAR1, ReactionNum, ST_VAR2, IsNervous};
@@ -499,8 +499,8 @@ class CaravanNpcFollowerInfo
 	// добавление нпц рядом с итемом
 	bool _AddNpcNearItem(Map & map, Item & item, uint8 dist)
 	{
-		uint hX = item.HexX;
-		uint hY = item.HexY;
+		uint16 hX = item.HexX;
+		uint16 hY = item.HexY;
 		if(!GetFreeHex(map, dist, hX, hY)) return false;
 
 		int[] params={ST_DIALOG_ID, DialogId};
@@ -515,8 +515,8 @@ class CaravanNpcFollowerInfo
 
 	Critter @ AddNpcNearCritter(Map & map, Critter & cr, uint8 dist)
 	{
-		uint hX = cr.HexX;
-		uint hY = cr.HexY;
+		uint16 hX = cr.HexX;
+		uint16 hY = cr.HexY;
 		if(!GetFreeHex(map, dist, hX, hY)) return null;
 
 		int[] params={ST_DIALOG_ID, DialogId};

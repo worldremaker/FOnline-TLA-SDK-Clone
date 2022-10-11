@@ -1006,7 +1006,7 @@ Map@ GenerateEncounter(CFoundedEncounter@ fe, Critter@[]@ critters)
 			uint16 oldPosX=startX,oldPosY=startY;
 			for(uint n=0;n<count;n++)
 			{
-				uint posX,posY;
+				uint16 posX,posY;
 				if(otherDistance>0 || position==POSITION_NONE)
 				{
 					posX=startX+Random(-5,5);

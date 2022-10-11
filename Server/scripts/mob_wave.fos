@@ -306,8 +306,8 @@ class WaveStep
 	void _DoActionSpawn(MobInfo & mi, Map & map) // Спавн мобов в нужном месте
 	{
 		DL("_DoActionSpawn called");
-		uint x = 0;
-		uint y = 0;
+		uint16 x = 0;
+		uint16 y = 0;
 		this.Point.GetCoords(map, x, y);
 		Critter @ mob;
 		DL("Triing get mob. radius ="+this.Radius+"x"+x+"Pid ="+mi.Pid);
@@ -324,8 +324,8 @@ class WaveStep
 		DL("_DoActionMove called");
 		Critter @ mob = mi.Mob();
 		if(!valid(mob)) return;
-		uint x = mob.HexX;
-		uint y = mob.HexY;
+		uint16 x = mob.HexX;
+		uint16 y = mob.HexY;
 		this.Point.GetCoords(map, x, y);
 		uint tries = 0;
 		while(tries<20)
@@ -348,8 +348,8 @@ class WaveStep
 		Critter @ mob = mi.Mob();
 		if(!valid(mob)) return;
 		mob.ModeBase[MODE_NO_HOME]=0;
-		uint x = mob.HexX;
-		uint y = mob.HexY;
+		uint16 x = mob.HexX;
+		uint16 y = mob.HexY;
 		this.Point.GetCoords(map, x, y);
 		if(GetFreeHex(map,this.Radius,x,y))
 		{
