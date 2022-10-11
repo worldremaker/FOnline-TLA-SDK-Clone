@@ -115,6 +115,11 @@ class GameEvent
 	void Run()
 	{
 		uint time = TimeIsAbsolute ? TimeOccur : __FullSecond + TimeOccur;
+		Run(time);
+	}
+	
+	void Run(uint time)
+	{
 		this.ServerTime = time;
 		if(TimeOccur>0 and time<__FullSecond)
 		{
@@ -213,6 +218,15 @@ class GameEventManager
 			return true;
 		}
 		return false;
+	}
+	
+	void RunEvent(uint idx, uint time)
+	{
+		GameEvent @event = this.GetGameEventByIndex(idx);
+		if(valid(event))
+		{
+			event.Run(time);			
+		}
 	}
 	
 	void RunEvent(uint idx)
@@ -334,6 +348,13 @@ void CheckAllGameEvents() // export
 	GameEventManager mng;
 	mng.Load();
 	mng.CheckEventsCanOccure();
+}
+
+void RunGameEvent(uint idx, uint time) // export
+{
+	GameEventManager mng;
+	mng.Load();
+	mng.RunEvent(idx, time);
 }
 
 void RunGameEvent(uint idx) // export

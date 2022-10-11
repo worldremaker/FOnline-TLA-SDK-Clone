@@ -177,6 +177,7 @@
 #define NPC_PID_Eli                         (516) // Странник Илай
 #define NPC_PID_JACKAL_SNIPER               (526)
 #define NPC_PID_JACKAL_TERMINATOR           (527)
+#define NPC_PID_Behemoth                    (528)
 
 
 /*const uint16[] Pids_AllNpc={
