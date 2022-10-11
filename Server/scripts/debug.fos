@@ -290,9 +290,9 @@ void id(Critter& player, int param0, int param1, int param2)
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // ~run debug ToMapEntire 42 0 0
-void ToMapEntire(Critter& player, int mapPid, int entire, int)
+void ToMapEntire(Critter& player, int mapPid, int entire, int skip)
 {
-	Map@ map=::GetMapByPid(mapPid,0);
+	Map@ map=::GetMapByPid(mapPid,skip);
 	if(valid(map))
 	{
 		player.TransitToMap(map.Id, entire);

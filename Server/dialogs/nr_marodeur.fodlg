@@ -7,7 +7,7 @@ lang=russ engl
 [dialog]
 &
 1 1000 None 1 #
-2 1010 D _var p loc_defenders_hostile = 0 D _param p MODE_HIDE = 0 #
+2 1010 D _var p loc_defenders_hostile = 0 D _param p MODE_HIDE = 0 D _var p q_nr_wri_kidnap = 1 #
 5 1020 D _var p loc_defenders_hostile = 0 D _var p q_nr_wri_kidnap = 2 #
 6 1030 D _var p loc_defenders_hostile = 0 D _param p SK_SNEAK { 50 D _param p MODE_HIDE = 1 R _var p loc_defenders_hostile = 1 R _script q_nr_wri_kidnap@r_Attack 0  #
 7 1040 D _var p loc_defenders_hostile = 1 R _script q_nr_wri_kidnap@r_Attack 0  #

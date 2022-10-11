@@ -1,7 +1,7 @@
 #ifndef __VARS__
 #define __VARS__
 /*************************************************************************************
-***  VARS  *****  COUNT: 00000579  ***************************************************
+***  VARS  *****  COUNT: 00000583  ***************************************************
 *************************************************************************************/
 
 
@@ -20,6 +20,7 @@
 #define GVAR_mod_baltas_armour_count                 (13)
 #define GVAR_den_ghost_is_dead                       (14)
 #define LLVAR_loc_defenders_hostile                  (15)
+#define LLVAR_storehouse_cont_id                     (16)
 #define LVAR_hell_visits                             (20)
 #define GVAR_base_sierra_rule                        (100)
 #define GVAR_base_mariposa_rule                      (101)
@@ -166,6 +167,7 @@
 #define GVAR_racing_winners_found                    (3156)
 #define LLVAR_racing_checkpoint_number               (3157)
 #define LVAR_racing_checkpoint_loc_id                (3158)
+#define LVAR_racing_sneakers_trap                    (3159)
 #define LVAR_klam_sally_pay                          (3200)
 #define LVAR_q_klam_bob_water                        (3201)
 #define LVAR_klam_bakner_beer                        (3202)
@@ -236,6 +238,8 @@
 #define LVAR_q_nr_wri_kidnap                         (3707)
 #define LLVAR_nr_wri_guard_dead                      (3708)
 #define LVAR_nr_wri_kidnap_notify_time               (3709)
+#define LVAR_q_nr_salvatore_kill                     (3710)
+#define LVAR_nr_kidnap_kills_counter                 (3711)
 #define LVAR_ncr_elize_slavers                       (4000)
 #define LVAR_q_ncr_merk_job1                         (4001)
 #define LVAR_ncr_merc_test_status                    (4100)
@@ -709,6 +713,13 @@ $	14	0	den_ghost_is_dead	0	0	1	0
 $	15	3	loc_defenders_hostile	0	0	1	0
 **********
 Локальная, для карты. Признак, НПЦ на карте агрессивны или нет
+**********
+
+$	16	3	storehouse_cont_id	0	0	0	4
+**********
+локальная для локации используемой в скрипте game_event_storehouse.fos
+
+указывается Id контейнера, в который складываются вещи, собранные на энкаунтерах мобами
 **********
 
 $	20	1	hell_visits	0	0	0	4
@@ -1838,7 +1849,7 @@ $	3156	0	racing_winners_found	0	0	2	0
 2 - есть второй победитель
 **********
 
-$	3157	3	racing_checkpoint_number	0	0	13	0
+$	3157	3	racing_checkpoint_number	0	0	14	0
 **********
 локальная для карты
 
@@ -1848,6 +1859,11 @@ $	3157	3	racing_checkpoint_number	0	0	13	0
 $	3158	1	racing_checkpoint_loc_id	0	0	0	4
 **********
 Id последнего открытого чекпоинта
+**********
+
+$	3159	1	racing_sneakers_trap	0	0	1	0
+**********
+специальная встреча с терминаторами для персонажей с высоким сником во время гонок
 **********
 
 $	3200	1	klam_sally_pay	0	0	5	0
@@ -2459,17 +2475,21 @@ $	3706	1	nr_jessy_jet_counter	3	0	10	0
 макс 10
 **********
 
-$	3707	1	q_nr_wri_kidnap	0	0	8	1
+$	3707	1	q_nr_wri_kidnap	0	0	12	1
 **********
 Квестовая, статус квеста "Похищение"
 1. взял квест
 2. заплатил за Райта
 3. убил охранника
-4. Сын райта на свободе, мародеры живы
-5. Сын райта на свободе, мародеры мертвы
-6. Сын райте погиб, мародеры живы
-7. Сын райта погиб, мародеры метры
-8. Квест сдан
+4. выводит райта из палатки
+5. Сын райта на свободе, мародеры живы
+6. Сын райта на свободе, мародеры мертвы
+7. Сын райте погиб, мародеры живы
+8. Сын райта погиб, мародеры метры
+9. Квест сдан, сын освобожден, мародеры выжили
+10. Квест сдан, сын погиб, мародеры выжили
+11. Квест сдан, сын освобожден, мародеры погибли
+12. Квест сдан, сын погиб, мародеры погибли
 **********
 
 $	3708	3	nr_wri_guard_dead	0	0	0	4
@@ -2480,6 +2500,18 @@ $	3708	3	nr_wri_guard_dead	0	0	0	4
 $	3709	1	nr_wri_kidnap_notify_time	0	0	0	4
 **********
 время последнего разговора с игроком от нпц
+**********
+
+$	3710	1	q_nr_salvatore_kill	0	0	3	1
+**********
+1 - взят квест
+2 - убил райта
+3 - получил награду
+**********
+
+$	3711	1	nr_kidnap_kills_counter	0	0	0	4
+**********
+Счетчик убитых нпц на карте
 **********
 
 $	4000	1	ncr_elize_slavers	0	0	10	0

@@ -7,10 +7,10 @@ lang=russ
 [dialog]
 &
 1 1000 None 1 #
-2 1010 D _var n vc_mut_charley_hired = 0 D _script merc@d_NpcIsNotMerc 0  D _var p vc_guard_rank > 1 D _var p vc_caves_counter } 3 R _param p MODE_NO_BARTER = 1 #
-11 1020 D _var n vc_mut_charley_hired = 0 D _script merc@d_NpcIsNotMerc 0  D _var p vc_guard_rank { 1 R _param p MODE_NO_BARTER = 1 #
-12 1030 D _var n vc_mut_charley_hired = 1 D _script merc@d_NpcIsMerc 0  D _script merc@d_NpcIsPlayerMerc 0  R _param p MODE_NO_BARTER = 1 #
-19 1040 D _var n vc_mut_charley_hired = 1 D _script merc@d_NpcIsMerc 0  D _script merc@d_NpcIsNotPlayerMerc 0  R _param p MODE_NO_BARTER = 0 #
+2 1010 D _var n vc_mut_charley_hired = 0 D _script merc@d_NpcIsNotMerc 0  D _var p vc_guard_rank > 1 D _var p vc_caves_counter } 3 R _param n MODE_NO_BARTER = 1 #
+11 1020 D _var n vc_mut_charley_hired = 0 D _script merc@d_NpcIsNotMerc 0  D _var p vc_guard_rank { 1 R _param n MODE_NO_BARTER = 1 #
+12 1030 D _var n vc_mut_charley_hired = 1 D _script merc@d_NpcIsMerc 0  D _script merc@d_NpcIsPlayerMerc 0  R _param n MODE_NO_BARTER = 0 #
+19 1040 D _var n vc_mut_charley_hired = 1 D _script merc@d_NpcIsMerc 0  D _script merc@d_NpcIsNotPlayerMerc 0  R _param n MODE_NO_BARTER = 1 #
 20 1050 D _var n vc_mut_charley_hired = 1 D _script merc@d_NpcIsNotMerc 0  #
 2 1060 D _var p vc_caves_counter < 3 D _var n vc_mut_charley_hired = 0 D _script merc@d_NpcIsNotMerc 0  @
 2 2000 None 0 #
@@ -43,7 +43,9 @@ lang=russ
 14 11020 D _script merc@d_CheckMercParamIsValue 2 810 0 R _script merc@r_WaitMaster 0  #
 15 11030 D _script merc@d_CheckMercParamIsNotValue 2 810 0 R _script merc@r_FollowMaster 0  #
 0 11040 #
-65506 11050 @
+65506 11050 #
+16 11060 #
+18 11070 @
 13 12000 None 0 #
 12 12010 @
 14 13000 None 0 @
@@ -60,7 +62,7 @@ lang=russ
 17 17010 R _script merc@r_SetMercParameter 2 806 0 #
 17 17020 R _script merc@r_SetMercParameter 2 806 1 @
 19 18000 None 0 @
-20 19000 None 0 &
+20 19000 merc@dlg_Master 0 &
 
 [russ]
 {100}{}{Чарли}
@@ -107,6 +109,8 @@ lang=russ
 {11030}{}{Ну всё, мы можем идти. Ты готов?}
 {11040}{}{Все в порядке, разговор закончен.@@Поговорим потом.@@Пока хватит.}
 {11050}{}{Давай посмотрим, что у тебя есть. [Бартер]}
+{11060}{}{Сменим дистанцию.}
+{11070}{}{Если на меня наехали...@@Если начнется драка...}
 {12000}{}{Стреляю из тяжелого оружия, или могу пользоваться кулаками.}
 {12010}{}{Хорошо. У меня еще к тебе вопросы.}
 {13000}{}{Хорошо, договорились. Не задерживайся.}

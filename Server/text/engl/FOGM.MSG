@@ -3702,8 +3702,8 @@
 {10064700}{}{A tin woodsman}
 {10064710}{}{The Unwashed Villagers hunting a spammer}
 {10064720}{}{The Cafe of Broken Dreams}
-{10064720}{}{strange abandoned house}
-{10064720}{}{abandoned doughnut warehouse}
+{10064730}{}{strange abandoned house}
+{10064740}{}{abandoned doughnut warehouse}
 
 # Encounter Table 70
 {10065000}{}{Toxic waste dump}

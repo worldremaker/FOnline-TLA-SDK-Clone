@@ -35,13 +35,13 @@ lang=russ engl
 0 8020 R _var p name_mem_npc_player = 1 @
 9 9000 None 0 #
 0 9010 #
-0 9020 R _var p name_mem_npc_player = 1 #
+0 9020 R _var p q_sf_tigang_recipe = 1 #
 12 9030 D _item p PID_BOTTLE_CAPS > 24999 D _var p q_sf_tigang_recipe < 2 @
 10 10000 None 0 #
 12 10010 D _item p PID_BOTTLE_CAPS > 24999 D _var p q_sf_tigang_recipe = 1 #
 11 10020 D _item p PID_BOTTLE_CAPS > 8999 #
 0 10030 #
-9 10040 D _param p SK_SPEECH > 80 D _param p ST_INTELLECT > 6 D _var p q_sf_tigang_recipe = 0 @
+9 10040 D _param p SK_SPEECH > 80 D _var p q_sf_tigang_recipe = 0 D _param p ST_INTELLECT > 5 @
 11 11000 None 0 #
 0 11010 D _item p PID_BOTTLE_CAPS } 9000 D _item p PID_RADSCORPION_PARTS } 4 R _item p PID_BOTTLE_CAPS - 9000 R _var p name_mem_npc_player = 1 R _item p PID_RADSCORPION_PARTS - 4 R _item p PID_CHITIN_ARMOR + 1 @
 12 12000 None 0 #

@@ -98,7 +98,7 @@ void PrepareRacing()
 			map.AddNpc(NPC_PID_BODYGUARD, entires[i].HexX, entires[i].HexY, 2, paramsBodyGuard, null, null);
 		}
 	}
-	CreateTimeEvent(__FullSecond + REAL_MINUTE(10), "e_AnnounceRadio", true);	
+	CreateTimeEvent(__FullSecond + REAL_MINUTE(20), "e_AnnounceRadio", true);	
 }
 
 uint e_AnnounceRadio(uint[]@ values)
@@ -112,7 +112,7 @@ uint e_AnnounceRadio(uint[]@ values)
 		{
 			RadioMessage(0, DateTimeToString(time));
 		}
-		return REAL_MINUTE(10);
+		return REAL_MINUTE(25);
 	}
 	return 0;
 }
@@ -564,10 +564,12 @@ void t_Win(Critter& player, Scenery& trigger, bool entered, uint8 dir)
 	if(racing_event == 1 && winners == 1)
 	{
 		// Второе место
-		winners = 1;
+		winners = 2;
 		racing_event = 2;
 		qStatus = 4;
-		StopRacing();
+		RadioMessageMsg(0, TEXTMSG_TEXT, 3957);
+		RadioMessage(0, GetPlayerName(winnerId.GetValue()));
+		StopRacing();//3957
 		return;
 	}
 	qStatus = 3;

@@ -2,6 +2,7 @@
 #define EVENT_RACING_BEGIN                (2)
 #define EVENT_RACING_RUN                  (3)
 #define EVENT_RACING_STOP                 (4)
+#define EVENT_STOREHOUSE                  (5)
 
 #define STATUS_NEVER_OCCURED              (0)
 #define STATUS_RUNNING                    (1)
@@ -22,3 +23,5 @@ DeclareCondition(EVENT_RACING_BEGIN, EVENT_RACING_PREPARE, STATUS_OCCURED);
 DeclareEvent(EVENT_RACING_RUN, "game_event_racing@e_RunRacingPhase", GAME_DAY(1), false, false, EVENT_RACING_STOP);
 DeclareEvent(EVENT_RACING_STOP, "game_event_racing@e_RunStopPhase", GAME_MONTH(1), false, false, EVENT_RACING_PREPARE);
 DeclareCondition(EVENT_RACING_STOP, EVENT_RACING_RUN, STATUS_OCCURED);
+DeclareEvent(EVENT_STOREHOUSE, "game_event_storehouse@e_CreateStoreHouse", GAME_MONTH(1), false, true, EVENT_STOREHOUSE);
+DeclareCondition(EVENT_STOREHOUSE, EVENT_STOREHOUSE, STATUS_OCCURED);

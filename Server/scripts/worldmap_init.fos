@@ -1820,7 +1820,8 @@
 	globalTable.AddEncounter( 10, 10030050).AddGroup(GROUP_QUEST_Lynett_Hitman   , 1, 1).AddGroup(GROUP_Player            , 0, 0).Fighting(0,1).CheckLVar(LVAR_vc_lynett_refuse,'=',1).AssignLVar(LVAR_vc_lynett_refuse,'=',2);
 	globalTable.AddEncounter(  1, 10030060).Special(true).LocationPid(LOCATION_SpecialBaxChurch).CheckParam(ST_LEVEL,'>',9).CheckLVar(LVAR_special_encounter_bax_church,'<',1).CheckParam(ST_KARMA,'>',150).AssignLVar(LVAR_special_encounter_bax_church,'=',1);
 	globalTable.AddEncounter(  1, 10030070).Special(true).LocationPid(LOCATION_SpecialTim).CheckParam(ST_LEVEL,'>',9).CheckLVar(LVAR_special_encounter_tim,'<',1).AssignLVar(LVAR_special_encounter_tim,'=',1);
-	globalTable.AddEncounter( 50, 10030080).AddGroup(GROUP_QUEST_Carlos_Jackals  , 2, 5).AddGroup(GROUP_Player            , 0, 0).Special(true).Fighting(0,1).CheckGVar(GVAR_racing_event,'=',1).CheckLVarAny(LVAR_q_den_bill_racing_win,'=',2).CheckParamAny(SK_SNEAK,'>', 140);
+	globalTable.AddEncounter( 50, 10030080).AddGroup(GROUP_QUEST_Carlos_Jackals  , 2, 5).AddGroup(GROUP_Player            , 0, 0).Special(true).Fighting(0,1).CheckGVar(GVAR_racing_event,'=',1).
+											CheckLVarAny(LVAR_q_den_bill_racing_win,'=',2).CheckParamAny(SK_SNEAK,'>', 140).CheckLVarAny(LVAR_racing_sneakers_trap,'=',0).AssignLVar(LVAR_racing_sneakers_trap,'=',1);
 	// Add yours special encounters here
 	AddTableToAllTables(globalTable);
 
@@ -3192,7 +3193,7 @@
 	table.AddEncounter( 20, 10059160).AddGroup(GROUP_FRAN_Elronologists    , 4, 8).CheckLVar(LVAR_enc_loyality_hubologists,'<',6);
 	table.AddEncounter( 20, 10059160).AddGroup(GROUP_FRAN_Elronologists    , 4, 8).AddGroup(GROUP_Player, 0, 0).Fighting(0,1).CheckLVar(LVAR_enc_loyality_hubologists,'>',5);
 	table.AddEncounter( 40, 10059170).AddGroup(GROUP_SF_Mirelurk           ,10,12).AddGroup(GROUP_Player          , 0, 0).CheckGVar(GVAR_sf_invasion_status,'>',0).Fighting(0,1);
-	table.AddEncounter( 35, 10059180).LocationPid(LOCATION_Quest_Sid_And_Nancy).CheckLVar(LVAR_q_sf_slim_sidnancy,'=',2).AssignLVar(LVAR_q_sf_slim_sidnancy,'=',3);
+	table.AddEncounter( 35, 10059180).Special(true).LocationPid(LOCATION_Quest_Sid_And_Nancy).CheckLVar(LVAR_q_sf_slim_sidnancy,'=',2).AssignLVar(LVAR_q_sf_slim_sidnancy,'=',3);
 
 										// Fran_M (Areas around San Francisco)
 	@table=@EncounterTables[TABLE_Fran_M];

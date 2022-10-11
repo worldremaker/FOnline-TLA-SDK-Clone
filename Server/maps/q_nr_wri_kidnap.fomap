@@ -2,8 +2,8 @@
 Version              4
 MaxHexX              146
 MaxHexY              146
-WorkHexX             100
-WorkHexY             74
+WorkHexX             36
+WorkHexY             56
 ScriptModule         q_nr_wri_kidnap
 ScriptFunc           _MapInit
 NoLogOut             0
@@ -12442,16 +12442,6 @@ MapX                 8
 MapY                 35
 
 MapObjType           2
-ProtoId              2049
-MapX                 17
-MapY                 58
-
-MapObjType           2
-ProtoId              2049
-MapX                 18
-MapY                 58
-
-MapObjType           2
 ProtoId              4012
 MapX                 8
 MapY                 46
@@ -12467,26 +12457,6 @@ MapX                 9
 MapY                 35
 
 MapObjType           2
-ProtoId              2049
-MapX                 18
-MapY                 57
-
-MapObjType           2
-ProtoId              2049
-MapX                 17
-MapY                 56
-
-MapObjType           2
-ProtoId              2049
-MapX                 9
-MapY                 46
-
-MapObjType           2
-ProtoId              2049
-MapX                 16
-MapY                 56
-
-MapObjType           2
 ProtoId              4012
 MapX                 9
 MapY                 48
@@ -12502,42 +12472,12 @@ MapX                 10
 MapY                 34
 
 MapObjType           2
-ProtoId              2049
-MapX                 17
-MapY                 59
-
-MapObjType           2
-ProtoId              2049
-MapX                 10
-MapY                 45
-
-MapObjType           2
-ProtoId              2049
-MapX                 10
-MapY                 46
-
-MapObjType           2
-ProtoId              2049
-MapX                 10
-MapY                 47
-
-MapObjType           2
-ProtoId              2049
-MapX                 10
-MapY                 48
-
-MapObjType           2
 ProtoId              4012
 MapX                 10
 MapY                 49
 
 MapObjType           2
 ProtoId              4012
-MapX                 10
-MapY                 50
-
-MapObjType           2
-ProtoId              4033
 MapX                 10
 MapY                 50
 
@@ -12545,36 +12485,6 @@ MapObjType           2
 ProtoId              4012
 MapX                 11
 MapY                 34
-
-MapObjType           2
-ProtoId              4032
-MapX                 11
-MapY                 46
-
-MapObjType           2
-ProtoId              2049
-MapX                 11
-MapY                 46
-
-MapObjType           2
-ProtoId              2049
-MapX                 11
-MapY                 47
-
-MapObjType           2
-ProtoId              2049
-MapX                 11
-MapY                 48
-
-MapObjType           2
-ProtoId              2049
-MapX                 11
-MapY                 49
-
-MapObjType           2
-ProtoId              2049
-MapX                 11
-MapY                 50
 
 MapObjType           2
 ProtoId              4012
@@ -12592,36 +12502,6 @@ MapX                 12
 MapY                 33
 
 MapObjType           2
-ProtoId              4032
-MapX                 12
-MapY                 47
-
-MapObjType           2
-ProtoId              2049
-MapX                 12
-MapY                 47
-
-MapObjType           2
-ProtoId              2049
-MapX                 12
-MapY                 48
-
-MapObjType           2
-ProtoId              2049
-MapX                 12
-MapY                 49
-
-MapObjType           2
-ProtoId              2049
-MapX                 12
-MapY                 50
-
-MapObjType           2
-ProtoId              2049
-MapX                 12
-MapY                 51
-
-MapObjType           2
 ProtoId              4012
 MapX                 12
 MapY                 52
@@ -12637,36 +12517,6 @@ MapX                 13
 MapY                 33
 
 MapObjType           2
-ProtoId              4032
-MapX                 13
-MapY                 49
-
-MapObjType           2
-ProtoId              2049
-MapX                 13
-MapY                 49
-
-MapObjType           2
-ProtoId              2049
-MapX                 13
-MapY                 50
-
-MapObjType           2
-ProtoId              2049
-MapX                 13
-MapY                 51
-
-MapObjType           2
-ProtoId              2049
-MapX                 13
-MapY                 52
-
-MapObjType           2
-ProtoId              2049
-MapX                 13
-MapY                 53
-
-MapObjType           2
 ProtoId              4012
 MapX                 13
 MapY                 54
@@ -12682,36 +12532,6 @@ MapX                 14
 MapY                 32
 
 MapObjType           2
-ProtoId              4032
-MapX                 14
-MapY                 50
-
-MapObjType           2
-ProtoId              2049
-MapX                 14
-MapY                 50
-
-MapObjType           2
-ProtoId              2049
-MapX                 14
-MapY                 51
-
-MapObjType           2
-ProtoId              2049
-MapX                 14
-MapY                 52
-
-MapObjType           2
-ProtoId              2049
-MapX                 14
-MapY                 53
-
-MapObjType           2
-ProtoId              2049
-MapX                 14
-MapY                 54
-
-MapObjType           2
 ProtoId              4012
 MapX                 14
 MapY                 55
@@ -12723,11 +12543,6 @@ MapY                 56
 
 MapObjType           2
 ProtoId              4012
-MapX                 14
-MapY                 56
-
-MapObjType           2
-ProtoId              4033
 MapX                 14
 MapY                 56
 
@@ -12735,36 +12550,6 @@ MapObjType           2
 ProtoId              4012
 MapX                 15
 MapY                 32
-
-MapObjType           2
-ProtoId              4032
-MapX                 15
-MapY                 52
-
-MapObjType           2
-ProtoId              2049
-MapX                 15
-MapY                 52
-
-MapObjType           2
-ProtoId              2049
-MapX                 15
-MapY                 53
-
-MapObjType           2
-ProtoId              2049
-MapX                 15
-MapY                 54
-
-MapObjType           2
-ProtoId              2049
-MapX                 15
-MapY                 55
-
-MapObjType           2
-ProtoId              2049
-MapX                 15
-MapY                 56
 
 MapObjType           2
 ProtoId              4012
@@ -12780,26 +12565,6 @@ MapObjType           2
 ProtoId              4012
 MapX                 16
 MapY                 31
-
-MapObjType           2
-ProtoId              4032
-MapX                 16
-MapY                 53
-
-MapObjType           2
-ProtoId              2049
-MapX                 16
-MapY                 53
-
-MapObjType           2
-ProtoId              2049
-MapX                 16
-MapY                 55
-
-MapObjType           2
-ProtoId              2049
-MapX                 16
-MapY                 57
 
 MapObjType           2
 ProtoId              4012
@@ -12815,21 +12580,6 @@ MapObjType           2
 ProtoId              4012
 MapX                 17
 MapY                 31
-
-MapObjType           2
-ProtoId              4032
-MapX                 17
-MapY                 55
-
-MapObjType           2
-ProtoId              2049
-MapX                 17
-MapY                 55
-
-MapObjType           2
-ProtoId              2049
-MapX                 17
-MapY                 57
 
 MapObjType           2
 ProtoId              4012
@@ -12845,16 +12595,6 @@ MapObjType           2
 ProtoId              4012
 MapX                 18
 MapY                 30
-
-MapObjType           2
-ProtoId              4032
-MapX                 18
-MapY                 56
-
-MapObjType           2
-ProtoId              2049
-MapX                 18
-MapY                 56
 
 MapObjType           2
 ProtoId              4012
@@ -15415,27 +15155,19 @@ ProtoId              4036
 MapX                 121
 MapY                 66
 
-MapObjType           2
-ProtoId              4037
-MapX                 18
-MapY                 57
-
-MapObjType           2
-ProtoId              4036
-MapX                 10
-MapY                 46
-
 MapObjType           0
 ProtoId              463
 MapX                 30
-MapY                 52
+MapY                 53
 Dir                  2
 UID                  1
+ScriptName           q_nr_wri_kidnap
+FuncName             _GuardInit
 Critter_Cond         1
 Critter_Anim1        0
 Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
-Critter_ParamValue0  0
+Critter_ParamValue0  780
 Critter_ParamIndex1  ST_AI_ID
 Critter_ParamValue1  209
 Critter_ParamIndex2  ST_BAG_ID
@@ -15447,40 +15179,17 @@ Critter_ParamValue4  2
 Critter_ParamIndex5  ST_REPLICATION_TIME
 Critter_ParamValue5  0
 
-MapObjType           0
-ProtoId              416
-MapX                 21
-MapY                 50
-Dir                  3
-Critter_Cond         1
-Critter_Anim1        0
-Critter_Anim2        0
-Critter_ParamIndex0  ST_DIALOG_ID
-Critter_ParamValue0  0
-Critter_ParamIndex1  ST_AI_ID
-Critter_ParamValue1  0
-Critter_ParamIndex2  ST_BAG_ID
-Critter_ParamValue2  0
-Critter_ParamIndex3  ST_TEAM_ID
-Critter_ParamValue3  0
-Critter_ParamIndex4  ST_NPC_ROLE
-Critter_ParamValue4  0
-Critter_ParamIndex5  ST_REPLICATION_TIME
-Critter_ParamValue5  0
-
 MapObjType           1
 ProtoId              11
 MapX                 30
-MapY                 52
+MapY                 53
 ContainerUID         1
-Item_ItemSlot        1
 
 MapObjType           1
 ProtoId              32
 MapX                 30
-MapY                 52
+MapY                 53
 ContainerUID         1
-Item_ItemSlot        2
 
 MapObjType           0
 ProtoId              408
@@ -15497,7 +15206,7 @@ Critter_ParamValue0  779
 Critter_ParamIndex1  ST_AI_ID
 Critter_ParamValue1  209
 Critter_ParamIndex2  ST_BAG_ID
-Critter_ParamValue2  0
+Critter_ParamValue2  67
 Critter_ParamIndex3  ST_TEAM_ID
 Critter_ParamValue3  8
 Critter_ParamIndex4  ST_NPC_ROLE
@@ -15520,7 +15229,7 @@ Critter_ParamValue0  778
 Critter_ParamIndex1  ST_AI_ID
 Critter_ParamValue1  209
 Critter_ParamIndex2  ST_BAG_ID
-Critter_ParamValue2  0
+Critter_ParamValue2  67
 Critter_ParamIndex3  ST_TEAM_ID
 Critter_ParamValue3  8
 Critter_ParamIndex4  ST_NPC_ROLE
@@ -15543,7 +15252,7 @@ Critter_ParamValue0  778
 Critter_ParamIndex1  ST_AI_ID
 Critter_ParamValue1  209
 Critter_ParamIndex2  ST_BAG_ID
-Critter_ParamValue2  0
+Critter_ParamValue2  67
 Critter_ParamIndex3  ST_TEAM_ID
 Critter_ParamValue3  8
 Critter_ParamIndex4  ST_NPC_ROLE
@@ -15566,7 +15275,7 @@ Critter_ParamValue0  778
 Critter_ParamIndex1  ST_AI_ID
 Critter_ParamValue1  209
 Critter_ParamIndex2  ST_BAG_ID
-Critter_ParamValue2  0
+Critter_ParamValue2  67
 Critter_ParamIndex3  ST_TEAM_ID
 Critter_ParamValue3  8
 Critter_ParamIndex4  ST_NPC_ROLE
@@ -15588,7 +15297,7 @@ Critter_ParamValue0  778
 Critter_ParamIndex1  ST_AI_ID
 Critter_ParamValue1  209
 Critter_ParamIndex2  ST_BAG_ID
-Critter_ParamValue2  0
+Critter_ParamValue2  67
 Critter_ParamIndex3  ST_TEAM_ID
 Critter_ParamValue3  8
 Critter_ParamIndex4  ST_NPC_ROLE
@@ -15611,7 +15320,7 @@ Critter_ParamValue0  778
 Critter_ParamIndex1  ST_AI_ID
 Critter_ParamValue1  208
 Critter_ParamIndex2  ST_BAG_ID
-Critter_ParamValue2  0
+Critter_ParamValue2  67
 Critter_ParamIndex3  ST_TEAM_ID
 Critter_ParamValue3  8
 Critter_ParamIndex4  ST_NPC_ROLE
@@ -15634,7 +15343,7 @@ Critter_ParamValue0  778
 Critter_ParamIndex1  ST_AI_ID
 Critter_ParamValue1  208
 Critter_ParamIndex2  ST_BAG_ID
-Critter_ParamValue2  0
+Critter_ParamValue2  67
 Critter_ParamIndex3  ST_TEAM_ID
 Critter_ParamValue3  8
 Critter_ParamIndex4  ST_NPC_ROLE
@@ -15657,7 +15366,7 @@ Critter_ParamValue0  778
 Critter_ParamIndex1  ST_AI_ID
 Critter_ParamValue1  208
 Critter_ParamIndex2  ST_BAG_ID
-Critter_ParamValue2  0
+Critter_ParamValue2  67
 Critter_ParamIndex3  ST_TEAM_ID
 Critter_ParamValue3  8
 Critter_ParamIndex4  ST_NPC_ROLE
@@ -15680,7 +15389,7 @@ Critter_ParamValue0  778
 Critter_ParamIndex1  ST_AI_ID
 Critter_ParamValue1  208
 Critter_ParamIndex2  ST_BAG_ID
-Critter_ParamValue2  0
+Critter_ParamValue2  67
 Critter_ParamIndex3  ST_TEAM_ID
 Critter_ParamValue3  8
 Critter_ParamIndex4  ST_NPC_ROLE
@@ -15703,7 +15412,7 @@ Critter_ParamValue0  778
 Critter_ParamIndex1  ST_AI_ID
 Critter_ParamValue1  208
 Critter_ParamIndex2  ST_BAG_ID
-Critter_ParamValue2  0
+Critter_ParamValue2  67
 Critter_ParamIndex3  ST_TEAM_ID
 Critter_ParamValue3  8
 Critter_ParamIndex4  ST_NPC_ROLE
@@ -15726,7 +15435,7 @@ Critter_ParamValue0  778
 Critter_ParamIndex1  ST_AI_ID
 Critter_ParamValue1  208
 Critter_ParamIndex2  ST_BAG_ID
-Critter_ParamValue2  0
+Critter_ParamValue2  67
 Critter_ParamIndex3  ST_TEAM_ID
 Critter_ParamValue3  8
 Critter_ParamIndex4  ST_NPC_ROLE
@@ -15749,7 +15458,7 @@ Critter_ParamValue0  778
 Critter_ParamIndex1  ST_AI_ID
 Critter_ParamValue1  208
 Critter_ParamIndex2  ST_BAG_ID
-Critter_ParamValue2  0
+Critter_ParamValue2  67
 Critter_ParamIndex3  ST_TEAM_ID
 Critter_ParamValue3  8
 Critter_ParamIndex4  ST_NPC_ROLE
@@ -15792,7 +15501,7 @@ Critter_ParamValue0  778
 Critter_ParamIndex1  ST_AI_ID
 Critter_ParamValue1  209
 Critter_ParamIndex2  ST_BAG_ID
-Critter_ParamValue2  0
+Critter_ParamValue2  67
 Critter_ParamIndex3  ST_TEAM_ID
 Critter_ParamValue3  8
 Critter_ParamIndex4  ST_NPC_ROLE
@@ -15815,7 +15524,7 @@ Critter_ParamValue0  778
 Critter_ParamIndex1  ST_AI_ID
 Critter_ParamValue1  209
 Critter_ParamIndex2  ST_BAG_ID
-Critter_ParamValue2  0
+Critter_ParamValue2  67
 Critter_ParamIndex3  ST_TEAM_ID
 Critter_ParamValue3  8
 Critter_ParamIndex4  ST_NPC_ROLE
@@ -15838,7 +15547,7 @@ Critter_ParamValue0  778
 Critter_ParamIndex1  ST_AI_ID
 Critter_ParamValue1  209
 Critter_ParamIndex2  ST_BAG_ID
-Critter_ParamValue2  0
+Critter_ParamValue2  67
 Critter_ParamIndex3  ST_TEAM_ID
 Critter_ParamValue3  8
 Critter_ParamIndex4  ST_NPC_ROLE
@@ -15928,5 +15637,175 @@ MapObjType           2
 ProtoId              3853
 MapX                 108
 MapY                 55
+
+MapObjType           0
+ProtoId              501
+MapX                 20
+MapY                 50
+Dir                  3
+ScriptName           q_nr_wri_kidnap
+FuncName             _WrightInit
+Critter_Cond         1
+Critter_Anim1        0
+Critter_Anim2        0
+Critter_ParamIndex0  ST_DIALOG_ID
+Critter_ParamValue0  781
+Critter_ParamIndex1  ST_AI_ID
+Critter_ParamValue1  124
+Critter_ParamIndex2  ST_BAG_ID
+Critter_ParamValue2  0
+Critter_ParamIndex3  ST_TEAM_ID
+Critter_ParamValue3  14
+Critter_ParamIndex4  ST_NPC_ROLE
+Critter_ParamValue4  3
+Critter_ParamIndex5  ST_REPLICATION_TIME
+Critter_ParamValue5  -1
+
+MapObjType           2
+ProtoId              3852
+MapX                 26
+MapY                 50
+ScriptName           q_nr_wri_kidnap
+FuncName             t_Alarm
+
+MapObjType           2
+ProtoId              3852
+MapX                 26
+MapY                 51
+ScriptName           q_nr_wri_kidnap
+FuncName             t_Alarm
+
+MapObjType           2
+ProtoId              3852
+MapX                 26
+MapY                 52
+ScriptName           q_nr_wri_kidnap
+FuncName             t_Alarm
+
+MapObjType           2
+ProtoId              3852
+MapX                 31
+MapY                 47
+ScriptName           q_nr_wri_kidnap
+FuncName             t_CheckSneak
+
+MapObjType           2
+ProtoId              3852
+MapX                 29
+MapY                 48
+ScriptName           q_nr_wri_kidnap
+FuncName             t_CheckSneak
+
+MapObjType           2
+ProtoId              3852
+MapX                 30
+MapY                 47
+ScriptName           q_nr_wri_kidnap
+FuncName             t_CheckSneak
+
+MapObjType           2
+ProtoId              3852
+MapX                 32
+MapY                 47
+ScriptName           q_nr_wri_kidnap
+FuncName             t_CheckSneak
+
+MapObjType           2
+ProtoId              3852
+MapX                 32
+MapY                 48
+ScriptName           q_nr_wri_kidnap
+FuncName             t_CheckSneak
+
+MapObjType           2
+ProtoId              3852
+MapX                 32
+MapY                 49
+ScriptName           q_nr_wri_kidnap
+FuncName             t_CheckSneak
+
+MapObjType           2
+ProtoId              3852
+MapX                 33
+MapY                 50
+ScriptName           q_nr_wri_kidnap
+FuncName             t_CheckSneak
+
+MapObjType           2
+ProtoId              3852
+MapX                 33
+MapY                 51
+ScriptName           q_nr_wri_kidnap
+FuncName             t_CheckSneak
+
+MapObjType           2
+ProtoId              3852
+MapX                 33
+MapY                 52
+ScriptName           q_nr_wri_kidnap
+FuncName             t_CheckSneak
+
+MapObjType           2
+ProtoId              3852
+MapX                 33
+MapY                 53
+ScriptName           q_nr_wri_kidnap
+FuncName             t_CheckSneak
+
+MapObjType           2
+ProtoId              3852
+MapX                 33
+MapY                 54
+ScriptName           q_nr_wri_kidnap
+FuncName             t_CheckSneak
+
+MapObjType           2
+ProtoId              3852
+MapX                 33
+MapY                 55
+ScriptName           q_nr_wri_kidnap
+FuncName             t_CheckSneak
+
+MapObjType           2
+ProtoId              3852
+MapX                 32
+MapY                 55
+ScriptName           q_nr_wri_kidnap
+FuncName             t_CheckSneak
+
+MapObjType           2
+ProtoId              3852
+MapX                 31
+MapY                 56
+ScriptName           q_nr_wri_kidnap
+FuncName             t_CheckSneak
+
+MapObjType           2
+ProtoId              3852
+MapX                 30
+MapY                 55
+ScriptName           q_nr_wri_kidnap
+FuncName             t_CheckSneak
+
+MapObjType           2
+ProtoId              3852
+MapX                 29
+MapY                 56
+ScriptName           q_nr_wri_kidnap
+FuncName             t_CheckSneak
+
+MapObjType           2
+ProtoId              3852
+MapX                 28
+MapY                 56
+ScriptName           q_nr_wri_kidnap
+FuncName             t_CheckSneak
+
+MapObjType           2
+ProtoId              3852
+MapX                 27
+MapY                 56
+ScriptName           q_nr_wri_kidnap
+FuncName             t_CheckSneak
 
 

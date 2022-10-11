@@ -247,11 +247,29 @@ void DropDrugEffects(Critter& cr) // Export
 	//uint[] rates;
 	//uint count=cr.GetTimeEvents(DrugsIdentifiers,identifiers,null,null,rates);
 	//for(uint i=0;i<count;i++) DropDrug(cr,identifiers[i],rates[i]);
+	// Броня убирается в инвентарь, чтобы избежать эффекта снятия бонусов от armor perk
+	Item@[] items;
+	cr.GetItems(SLOT_ARMOR, items);
+	cr.GetItems(SLOT_HAND1, items);
+	cr.GetItems(SLOT_HAND2, items);
+	for(uint i=0, l=items.length();i<l;i++)
+		_CritMoveItem(cr,items[i],SLOT_INV);
+	
 	for(uint i=STAT_EXT_BEGIN;i<=STAT_EXT_END;i++) cr.StatBase[i]=0;
 	// Erase all events
 	cr.EraseTimeEvents(DrugsIdentifiers);
 	// Unset addictions perks
 	for(uint i=ADDICTION_BEGIN;i<=ADDICTION_END;i++) cr.AddictionBase[i]=0;
+	// Обратно возвращаем броню
+	for(uint i=0, l=items.length();i<l;i++)
+	{
+		Item@ item=items[i];
+		if(valid(item) && item.GetType()==ITEM_TYPE_ARMOR)
+		{
+			_CritMoveItem(cr,item,SLOT_ARMOR);
+			break; // может быть более 1 брони в руках
+		}
+	}
 }
 
 void SetDrug(Critter& cr, uint16 drugPid)

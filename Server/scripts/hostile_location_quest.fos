@@ -98,7 +98,7 @@ class HostileLocationInfo
 		Serializator load;
 		if(!load.Load(key))
 		{
-			Log("Can't load HostileLocation. Key: "+key);
+			//Log("Can't load HostileLocation. Key: "+key);
 			return;
 		}
 		load.Get(this.PlayerId);

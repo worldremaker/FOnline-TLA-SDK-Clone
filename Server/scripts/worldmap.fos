@@ -546,18 +546,21 @@ void AddTableToAllTables(CEncounterTable& globalTable)
 {
 	for(uint i=0;i<TABLE_MAX;i++)
 	{
-		CEncounterTable@ table=EncounterTables[i];
-
-		for(uint j=0;j<globalTable.LocationPids.length();j++)
+		if(i!=TABLE_Ocean1_O && i!=TABLE_Ocean2_O)
 		{
-			table.LocationPids.grow(1);
-			table.LocationPids.last()=globalTable.LocationPids[j];
-		}
+			CEncounterTable@ table=EncounterTables[i];
 
-		for(uint j=0;j<globalTable.Encounters.length();j++)
-		{
-			table.Encounters.grow(1);
-			table.Encounters.last()=globalTable.Encounters[j];
+			for(uint j=0;j<globalTable.LocationPids.length();j++)
+			{
+				table.LocationPids.grow(1);
+				table.LocationPids.last()=globalTable.LocationPids[j];
+			}
+
+			for(uint j=0;j<globalTable.Encounters.length();j++)
+			{
+				table.Encounters.grow(1);
+				table.Encounters.last()=globalTable.Encounters[j];
+			}
 		}
 	}
 }

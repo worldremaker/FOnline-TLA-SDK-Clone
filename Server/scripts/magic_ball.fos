@@ -12,7 +12,7 @@
 # > 7 luck = 3899..3935
 # > 8 luck = 3899..3941
 # > 9 luck = 3899..3943
-~getaccess admin hh
+
 #define PID_MAGIC_8_BALL                    (328)
 */
 
