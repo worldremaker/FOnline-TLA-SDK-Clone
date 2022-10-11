@@ -113,7 +113,7 @@ lang=russ engl
 0 27010 @
 55 28000 None 0 #
 0 28010 #
-56 28020 D _var p q_redd_doctor_delivery = 2 D _item p PID_FIELD_MEDIC_KIT } 2 D _item p PID_STIMPAK } 15 D _item p PID_RADAWAY } 5 R _var p loyality + 1 R _param p ST_KARMA + 5 R _param p ST_EXPERIENCE + 1000 R _var p q_redd_doctor_delivery = 3 R _param p REPUTATION_REDDING + 1 R _item p PID_FIELD_MEDIC_KIT - 2 R _item p PID_STIMPAK - 15 R _item p PID_RADAWAY - 5 R _var p redd_doc_medicals + 50 @
+56 28020 D _var p q_redd_doctor_delivery = 2 D _item p PID_FIELD_MEDIC_KIT } 2 D _item p PID_STIMPAK } 15 D _item p PID_RADAWAY } 5 R _var p loyality + 1 R _param p ST_KARMA + 5 R _param p ST_EXPERIENCE + 1000 R _var p q_redd_doctor_delivery = 3 R _param p REPUTATION_REDDING + 1 R _item p PID_FIELD_MEDIC_KIT - 2 R _item p PID_STIMPAK - 15 R _item p PID_RADAWAY - 5 R _var n redd_doc_medicals + 50 @
 56 29000 None 0 #
 0 29010 @
 57 30000 None 0 #

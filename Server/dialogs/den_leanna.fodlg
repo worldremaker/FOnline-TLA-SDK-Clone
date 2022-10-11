@@ -18,13 +18,14 @@ lang=russ engl
 7 2050 D _var p q_den_ghost = 2 R _var p q_den_ghost = 5 R _param p ST_EXPERIENCE + 25 #
 7 2060 D _var p q_den_ghost = 4 R _var p q_den_ghost = 5 R _param p ST_EXPERIENCE + 25 #
 3 2070 D _var p q_den_leanna_condom = 0 #
-4 2080 D _var p q_den_leanna_condom = 3 #
-6 2090 D _var p q_den_leanna_condom = 2 D _item p PID_RED_CONDOM > 4 R _var p q_den_leanna_condom = 3 R _item p PID_RED_CONDOM - 5 R _item p PID_BOTTLE_CAPS + 500 R _param p ST_EXPERIENCE + 1000 R _param p REPUTATION_DEN + 1 #
-20 2100 D _var p q_den_leanna_buy = 3 D _item p PID_BEER > 9 R _var p q_den_leanna_buy = 4 R _item p PID_BEER - 10 R _item n PID_BEER + 10 R _param n ST_EXPERIENCE + 200 R _item p PID_BOTTLE_CAPS + 249 R _item n PID_BOTTLE_CAPS - 249 R _param p REPUTATION_DEN + 1 #
-10 2110 D _item n PID_BEER > 0 #
-11 2120 D _item n PID_BEER = 0 #
-15 2130 #
-200 2140 D _param p ST_INTELLECT > 3 D _param p ST_LEVEL > 1 D _param p ST_KARMA > 0 D _param p SK_SPEECH > 45 @
+4 2080 D _var p q_den_leanna_condom = 3 D _script dialog@d_TimeoutOk 0  #
+26 2090 D _var p q_den_leanna_condom = 3 D _script dialog@d_NotTimeoutOk 0  #
+6 2100 D _var p q_den_leanna_condom = 2 D _item p PID_RED_CONDOM > 4 R _var p q_den_leanna_condom = 3 R _item p PID_RED_CONDOM - 5 R _item p PID_BOTTLE_CAPS + 500 R _param p ST_EXPERIENCE + 1000 R _script dialog@r_SetUniqTO 1 2880 #
+20 2110 D _var p q_den_leanna_buy = 3 D _item p PID_BEER > 9 R _var p q_den_leanna_buy = 4 R _item p PID_BEER - 10 R _item n PID_BEER + 10 R _param n ST_EXPERIENCE + 200 R _item p PID_BOTTLE_CAPS + 249 R _item n PID_BOTTLE_CAPS - 249 R _param p REPUTATION_DEN + 1 #
+10 2120 D _item n PID_BEER > 0 #
+11 2130 D _item n PID_BEER = 0 #
+15 2140 #
+200 2150 D _param p ST_INTELLECT > 3 D _param p ST_LEVEL > 1 D _param p ST_KARMA > 0 D _param p SK_SPEECH > 45 @
 3 3000 None 0 #
 4 3010 #
 15 3020 @
@@ -69,14 +70,17 @@ lang=russ engl
 0 23010 R _var p q_den_leanna_thief = 1 #
 0 23020 R _var p den_leanna_thief = 2 @
 25 24000 None 0 @
-200 25000 dialog@dlg_ForSearching 0 #
-201 25010 #
+26 25000 None 0 #
+2 25010 #
 0 25020 @
-201 26000 None 0 #
-0 26010 #
-202 26020 D _item p PID_BOTTLE_CAPS > 199 R _item p PID_BOTTLE_CAPS - 200 @
-202 27000 dialog@dlg_TrySearching 0 #
-0 27010 &
+200 26000 dialog@dlg_ForSearching 0 #
+201 26010 #
+0 26020 @
+201 27000 None 0 #
+0 27010 #
+202 27020 D _item p PID_BOTTLE_CAPS > 199 R _item p PID_BOTTLE_CAPS - 200 @
+202 28000 dialog@dlg_TrySearching 0 #
+0 28010 &
 
 [russ]
 {100}{}{Леанна}
@@ -86,7 +90,7 @@ lang=russ engl
 {1000}{}{Преддиалоговые установки}
 {1010}{}{PC's silly}
 {1020}{}{PC's not silly}
-{2000}{}{Привет.}
+{2000}{}{Чем могу помочь?}
 {2010}{}{Мне показалось что ваши крупье и охранники очень подозрительны ко всем. Что-то случилось?}
 {2020}{}{Вор найден. При себе у него было 500 монет. Что с ними делать?}
 {2030}{}{Мне удалось узнать секретный ингредиент пойла Боба.}
@@ -95,12 +99,13 @@ lang=russ engl
 {2060}{}{Твой мальчуган сказал, ты знаешь. Что-нибудь слышала о призраке в заброшенном доме?}
 {2070}{}{Привет. Есть работенка?}
 {2080}{}{Не надо ли опять доставить "кое-что"?}
-{2090}{}{Вот то, что Вы просили принести.}
-{2100}{}{Вот вам спиртное, что куплено у Боба.}
-{2110}{}{Есть что выпить?}
+{2090}{}{Не надо ли опять доставить "кое-что"?}
+{2100}{}{Вот то, что Вы просили принести.}
+{2110}{}{Вот вам спиртное, что куплено у Боба.}
 {2120}{}{Есть что выпить?}
-{2130}{}{Пока.}
-{2140}{}{Слушай, Леанна, я хотел@sex@|||а| спросить, ты не видела одного человека?@@Слушай, Леанна, я хотел@sex@|||а| спросиить, ты ничего не слышала об одном человеке?@@Я ищу одного человека, ничего не слышала о нем, Леанна?}
+{2130}{}{Есть что выпить?}
+{2140}{}{Пока.}
+{2150}{}{Слушай, Леанна, я хотел@sex@|||а| спросить, ты не видела одного человека?@@Слушай, Леанна, я хотел@sex@|||а| спросиить, ты ничего не слышала об одном человеке?@@Я ищу одного человека, ничего не слышала о нем, Леанна?}
 {3000}{}{Cделаешь для меня доброе дело?}
 {3010}{}{Конечно.}
 {3020}{}{В другой раз.}
@@ -145,14 +150,17 @@ lang=russ engl
 {23010}{}{Предоставьте это дело мне.}
 {23020}{}{Мне не очень нравится эта затея с ворами.}
 {24000}{}{Оставьте себе, пусть это будет ваша награда.}
-{25000}{}{Кто тебя интересует?..@@Назови имя...@@Кого ты ищешь?..}
-{25010}{}{Где я могу найти этого человека?}
-{25020}{}{Я лучше пойду.}
-{26000}{}{Эта информация стоит денег... за две сотни я расскажу тебе то что знаю.}
-{26010}{}{Я лучше пойду.}
-{26020}{}{По рукам, вот деньги.}
-{27000}{}{Так, кто тебя интересует?..@@Напомни имя...@@Кого ты ищешь?..}
-{27010}{}{Ну, я пойду...}
+{25000}{}{Нет, пока не надо. Но может понадобиться через пару дней.}
+{25010}{}{Позволь тогда спросить...}
+{25020}{}{Ну, я тогда пойду.}
+{26000}{}{Кто тебя интересует?..@@Назови имя...@@Кого ты ищешь?..}
+{26010}{}{Где я могу найти этого человека?}
+{26020}{}{Я лучше пойду.}
+{27000}{}{Эта информация стоит денег... за две сотни я расскажу тебе то что знаю.}
+{27010}{}{Я лучше пойду.}
+{27020}{}{По рукам, вот деньги.}
+{28000}{}{Так, кто тебя интересует?..@@Напомни имя...@@Кого ты ищешь?..}
+{28010}{}{Ну, я пойду...}
 {100000200}{}{Не знаю никакого @lex Victim@, ничего о нём не @lex BarmanGen@.}
 {100000201}{}{Эй, да ты у нас шутни@sex@|к||ца|!..@@Шутить удумал@sex@|||а|?!}
 {100000202}{}{@lex Victim@... Конечно знаю, только @lex Gender@ сейчас где-то по пустоши скитается.}
@@ -183,12 +191,13 @@ lang=russ engl
 {2060}{}{Your boy said you know. Did you hear anything about the ghost in the deserted house?}
 {2070}{}{Hello. Got a job for me?}
 {2080}{}{Do you want me to deliver "something"?}
-{2090}{}{Here's what you've asked to bring.}
-{2100}{}{Here's Bob's booze.}
-{2110}{}{Got anything to drink?}
+{2090}{}{Не надо ли опять доставить "кое-что"?}
+{2100}{}{Here's what you've asked to bring.}
+{2110}{}{Here's Bob's booze.}
 {2120}{}{Got anything to drink?}
-{2130}{}{Bye.}
-{2140}{}{Слушай, Леанна, я хотел@sex@|||а| спросить, ты не видела одного человека?@@Слушай, Леанна, я хотел@sex@|||а| спросиить, ты ничего не слышала об одном человеке?@@Я ищу одного человека, ничего не слышала о нем, Леанна?}
+{2130}{}{Got anything to drink?}
+{2140}{}{Bye.}
+{2150}{}{Слушай, Леанна, я хотел@sex@|||а| спросить, ты не видела одного человека?@@Слушай, Леанна, я хотел@sex@|||а| спросиить, ты ничего не слышала об одном человеке?@@Я ищу одного человека, ничего не слышала о нем, Леанна?}
 {3000}{}{Could you do some business for me?}
 {3010}{}{Of course.}
 {3020}{}{Another time.}
@@ -233,12 +242,15 @@ lang=russ engl
 {23010}{}{I'll cope with this.}
 {23020}{}{I don't like this idea.}
 {24000}{}{Keep it, let it be your reward.}
-{25000}{}{error}
-{25010}{}{error}
-{25020}{}{error}
+{25000}{}{Нет, пока не надо. Но может понадобиться через пару дней.}
+{25010}{}{Позволь тогда спросить...}
+{25020}{}{Ну, я тогда пойду.}
 {26000}{}{error}
 {26010}{}{error}
 {26020}{}{error}
 {27000}{}{error}
 {27010}{}{error}
+{27020}{}{error}
+{28000}{}{error}
+{28010}{}{error}
 

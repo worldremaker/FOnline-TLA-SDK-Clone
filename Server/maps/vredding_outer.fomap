@@ -2,8 +2,8 @@
 Version              4
 MaxHexX              210
 MaxHexY              190
-WorkHexX             147
-WorkHexY             101
+WorkHexX             152
+WorkHexY             98
 ScriptModule         map_redding_outer
 ScriptFunc           _MapInit
 NoLogOut             0
@@ -17167,7 +17167,7 @@ MapY                 97
 MapObjType           0
 ProtoId              54
 MapX                 149
-MapY                 97
+MapY                 98
 Dir                  3
 Critter_Cond         1
 Critter_Anim1        0
@@ -35197,7 +35197,7 @@ MapY                 95
 Dir                  2
 ScriptName           redding_common
 FuncName             _PoisonedInit
-Critter_Cond         1
+Critter_Cond         2
 Critter_Anim1        0
 Critter_Anim2        86
 Critter_ParamIndex0  ST_DIALOG_ID

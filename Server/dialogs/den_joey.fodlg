@@ -36,8 +36,8 @@ lang=russ engl
 35 6100 D _param p ST_INTELLECT > 3 D _var p q_den_joey_loan = 3 D _var p q_den_joey_knife = 0 #
 42 6110 D _var p q_den_joey_jet = 1 D _param p ST_INTELLECT > 3 #
 42 6120 D _var p q_den_joey_jet = 3 D _param p ST_INTELLECT > 3 #
-39 6130 D _var p q_den_joey_jet = 4 D _param p ST_INTELLECT > 3 D _item n PID_JET = 0 #
-58 6140 D _var p q_den_joey_jet = 4 D _param p ST_INTELLECT > 3 D _item n PID_JET > 0 #
+39 6130 D _var p q_den_joey_jet = 4 D _param p ST_INTELLECT > 3 D _script dialog@d_TimeoutCheck 0  #
+58 6140 D _var p q_den_joey_jet = 4 D _param p ST_INTELLECT > 3 D _script dialog@d_NotTimeoutCheck 0  #
 43 6150 D _var p q_den_joey_lara = 0 D _var p q_den_joey_jet > 0 D _param p ST_INTELLECT > 3 #
 47 6160 D _var p q_den_joey_lara > 0 D _var p q_den_joey_lara < 4 D _param p ST_INTELLECT > 3 #
 49 6170 D _var p q_den_joey_lara = 4 D _var p q_den_joey_steal = 0 D _param p ST_INTELLECT > 3 #
@@ -150,7 +150,7 @@ lang=russ engl
 41 41000 None 0 #
 0 41010 @
 42 42000 None 0 #
-41 42010 D _item p PID_JET > 9 D _var p q_den_joey_jet = 3 R _var p q_den_joey_jet = 4 R _param p ST_KARMA - 10 R _item p PID_JET - 10 R _item p PID_BOTTLE_CAPS + 1500 R _item n PID_JET + 10 R _param p ST_EXPERIENCE + 1500 #
+41 42010 D _item p PID_JET > 9 D _var p q_den_joey_jet = 3 R _var p q_den_joey_jet = 4 R _item p PID_JET - 10 R _item p PID_BOTTLE_CAPS + 1500 R _param p ST_EXPERIENCE + 1500 R _script dialog@r_TimeoutSet 1 48 #
 23 42020 R _var p q_den_joey_jet = 2 #
 40 42030 @
 43 43000 None 0 #

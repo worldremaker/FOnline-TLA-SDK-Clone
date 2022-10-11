@@ -38,9 +38,9 @@ lang=russ engl
 
 [russ]
 {100}{}{Джошуа}
-{200}{}{Вы видите человека в металлической броне.}
+{200}{}{Вы видите человека в моторизированной броне.}
 {210}{}{Вы видите Джошуа.}
-{210}{}{Вы видите человека в металлической броне с эмблемой молнии на ней.}
+{210}{}{Вы видите человека в моторизированной броне с эмблемой молнии на ней.}
 {1000}{}{Преддиалоговые установки}
 {1010}{}{квест Лары про БС}
 {1020}{}{не знаком}
@@ -73,8 +73,8 @@ lang=russ engl
 
 [engl]
 {100}{}{Joshua}
-{200}{}{You see a man in metal armor. }
-{210}{}{You see a man wearing metal armor with a lightning bolt insignia on it.}
+{200}{}{You see a man in powered armor. }
+{210}{}{You see a man wearing powered armor with a lightning bolt insignia on it.}
 {210}{}{You see Joshua.}
 {1000}{}{Initial preferences}
 {1010}{}{Lara's quest about BoS}
