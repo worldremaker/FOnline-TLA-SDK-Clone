@@ -1422,3 +1422,67 @@ bool player_getaccess(Critter& player, int access, string& password)
 	Log("Access changed for player "+player.Name+", from "+player.GetAccess()+" to "+access+".");
 	return true;
 }
+
+bool player_allowcommand( Critter& player, uint8 command )
+{
+	switch(command)
+	{
+	// ACCESS_CLIENT
+	case COMMAND_CHANGE_PASSWORD:
+	case COMMAND_DELETE_ACCOUNT:
+	case COMMAND_EXIT:
+	case COMMAND_GETACCESS:
+	case COMMAND_MYINFO:
+		return true;
+	// ACCESS_TESTER
+	case COMMAND_DROP_UID:
+	case COMMAND_PARAM:
+	case COMMAND_TOGLOBAL:
+		if(player.GetAccess()>=ACCESS_TESTER)
+			return true;
+		break;
+	// ACCESS_MODER
+	case COMMAND_ADDITEM:
+	case COMMAND_ADDITEM_SELF:
+	case COMMAND_ADDLOCATION:
+	case COMMAND_ADDNPC:
+	case COMMAND_BAN:
+	case COMMAND_CHECKVAR:
+	case COMMAND_CRITID:
+	case COMMAND_DISCONCRIT:
+	case COMMAND_GAMEINFO:
+	case COMMAND_KILLCRIT:
+	case COMMAND_MOVECRIT:
+	case COMMAND_RESPAWN:
+	case COMMAND_SETVAR:
+		if(player.GetAccess()>=ACCESS_MODER)
+			return true;
+		break;
+	// ACCESS_ADMIN
+	case COMMAND_LOADDIALOG:
+	case COMMAND_LOADLOCATION:
+	case COMMAND_LOADMAP:
+	case COMMAND_LOADSCRIPT:
+	case COMMAND_LOG:
+	case COMMAND_RELOAD_CLIENT_SCRIPTS:
+	case COMMAND_RELOADAI:
+	case COMMAND_RELOADDIALOGS:
+	case COMMAND_RELOADLOCATIONS:
+	case COMMAND_RELOADMAPS:
+	case COMMAND_RELOADSCRIPTS:
+	case COMMAND_RELOADTEXTS:
+	case COMMAND_REGENMAP:
+	case COMMAND_RUNSCRIPT:
+	case COMMAND_SETTIME:
+		if(player.GetAccess()==ACCESS_ADMIN)
+			return true;
+		break;
+	// Unknown command
+	default:
+		player.Say(SAY_NETMSG,"Unknown command.");
+		return false;
+	}
+
+	player.Say(SAY_NETMSG,"Access denied.");
+	return false;
+}

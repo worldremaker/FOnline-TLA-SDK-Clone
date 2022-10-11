@@ -1,0 +1,116 @@
+Starting Mapper v.1.25.32...
+Mapper initialization...
+Sprite manager initialization...
+Sprite manager initialization complete.
+DirectInput initialization...
+DirectInput initialization complete.
+Init interface.
+Init interface complete.
+Script system initialization...
+Reload scripts...
+Reload scripts complete.
+Bind reserved functions...
+Bind reserved functions complete.
+Script system initialization complete.
+Loaded<325> critter types.
+Item manager initialization...
+Item manager initialization complete.
+Loading items prototypes...
+Items prototypes successfully loaded, count<4574>.
+Critter manager initialization...
+Critter manager initialization complete.
+Loading critters prototypes...
+Loaded<528> critter protos, errors<0>.
+Hex field initialization...
+Hex field initialization complete.
+Mapper initialization complete.
+Create map from prototype.
+!!!!!!!!!!!!!!!!!!!!<hapowrAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nfmaxxAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nftrmpAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<naghulAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmlosrAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmlosrAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmbrlpAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmlosrAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmpeasAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<hmmaxxAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nftrmpAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<mahandAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<hmmetlAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<hmmetlAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmbsnpAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nfmetlAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<hmmetlAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<hmmetlAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<hmlthrAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nftrmpAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<hmmetlAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmbsnpAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmlosrAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nftrmpAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmlosrAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmbrlpAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmbsnpAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nfbrlpAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<hfmaxxAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmbsnpAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nfchldAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmbrlpAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nachldAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nftrmpAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmpeasAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmbrlpAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmpeasAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmbrlpAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nfbrlpAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<hfmaxxAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmmaxxAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<hfmetlAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nfchldAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nfchldAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<hmlthrAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nfchldAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nfchldAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nfpeasAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<naglowAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nfmaxxAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmbsnpAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmwarrAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<naghulAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nfbrlpAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmbsnpAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmlosrAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nfpeasAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<narobeAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nftrmpAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<narobeAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmbrlpAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<narobeAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nachldAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmmaxxAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmlthrAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmbpeaAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nachldAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmpeasAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<hmcmbtAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<hmcmbtAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<hmcmbtAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<harobeAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmniceAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<hmmaxxAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<hfmetlAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmlthrAA.fofrm,3>
+!!!!!!!!!!!!!!!!!!!!<nmlthrAA.fofrm,3>
+Create map from prototype complete.
+Mapper finish...
+Resource manager finish...
+Resource manager finish complete.
+Hex field finish...
+Hex field finish complete.
+Sprite manager finish...
+Sprite manager finish complete.
+Critter manager finish...
+Critter manager finish complete.
+Mapper finish complete.
+Mapper closed.

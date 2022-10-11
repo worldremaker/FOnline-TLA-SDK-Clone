@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 07.09.2011
-// Server version 450, MSVS2008
+// Last update 06.10.2011
+// Server version 454, MSVS2008
 // Default calling convention - cdecl
 //
 
@@ -223,12 +223,6 @@ EXPORT extern void (*Log)(const char* frmt, ...);
 #define FH_GAG_ITEM                  BIN8(10000000)
 #define FH_NOWAY                    BIN16(00010001,00000001)
 #define FH_NOSHOOT                  BIN16(00100000,00000010)
-
-// Game access (not same as in scripts)
-#define ACCESS_CLIENT               (0x1)
-#define ACCESS_TESTER               (0x2)
-#define ACCESS_MODER                (0x4)
-#define ACCESS_ADMIN                (0x8)
 
 // GameOptions::ChangeLang
 #define CHANGE_LANG_CTRL_SHIFT      (0)

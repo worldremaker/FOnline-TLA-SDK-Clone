@@ -2007,21 +2007,16 @@ void items_collection(int collection, ItemCl@[]& items)
 	}*/
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Called on log file saving.
+void filename_logfile( string& filename )
+{
+	filename = "messagebox\\" + filename;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Called on screenshot saving.
+void filename_screenshot( string& filename )
+{
+	filename = "screenshots\\" + filename;
+}
