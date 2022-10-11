@@ -2,8 +2,8 @@
 Version              4
 MaxHexX              368
 MaxHexY              333
-WorkHexX             161
-WorkHexY             168
+WorkHexX             229
+WorkHexY             124
 ScriptModule         map_denbus
 ScriptFunc           _DenBusInit
 NoLogOut             0
@@ -79994,7 +79994,7 @@ ProtoId              2356
 MapX                 226
 MapY                 114
 Scenery_ToMapPid     23
-Scenery_ToEntire     3
+Scenery_ToEntire     44
 
 MapObjType           2
 ProtoId              2067
@@ -83264,7 +83264,7 @@ MapObjType           2
 ProtoId              3853
 MapX                 226
 MapY                 115
-Scenery_ToEntire     3
+Scenery_ToEntire     44
 Scenery_ToDir        2
 
 MapObjType           2

@@ -2,8 +2,8 @@
 Version              4
 MaxHexX              181
 MaxHexY              175
-WorkHexX             167
-WorkHexY             114
+WorkHexX             91
+WorkHexY             110
 ScriptModule         -
 ScriptFunc           -
 NoLogOut             0
@@ -16551,8 +16551,12 @@ MapY                 120
 
 MapObjType           2
 ProtoId              2596
-MapX                 84
-MapY                 111
+MapX                 85
+MapY                 109
+ScriptName           scenery
+FuncName             s_Dialog
+Scenery_ParamsCount  1
+Scenery_Param0       243
 
 MapObjType           2
 ProtoId              2141
@@ -38923,5 +38927,11 @@ MapX                 167
 MapY                 110
 ScriptName           klam_trappers
 FuncName             t_TransitMike
+
+MapObjType           2
+ProtoId              3853
+MapX                 87
+MapY                 110
+Scenery_ToEntire     31
 
 

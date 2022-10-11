@@ -1,7 +1,7 @@
 #ifndef __VARS__
 #define __VARS__
 /*************************************************************************************
-***  VARS  *****  COUNT: 00000610  ***************************************************
+***  VARS  *****  COUNT: 00000617  ***************************************************
 *************************************************************************************/
 
 
@@ -220,6 +220,12 @@
 #define LVAR_q_klam_vaccination_b3                   (3228)
 #define LVAR_q_klam_notify_husband                   (3229)
 #define LVAR_q_klam_bugen_lure                       (3230)
+#define LVAR_klam_aldo_busy                          (3231)
+#define LVAR_klam_aldo_listen_id                     (3232)
+#define LMVAR_klam_aldo_id                           (3233)
+#define LVAR_klam_aldo_reader_id                     (3234)
+#define LVAR_bbmsg_page                              (3235)
+#define LVAR_bb_selected_msg                         (3236)
 #define LVAR_q_mod_hose                              (3300)
 #define LVAR_mod_hose_tools                          (3301)
 #define LVAR_q_mod_baltas_gecko                      (3302)
@@ -564,6 +570,7 @@
 #define LVAR_hell_pandorra1                          (7080)
 #define LVAR_hell_pandorra2                          (7081)
 #define LVAR_hell_pandorra_xp                        (7082)
+#define LVAR_purg_suppluys_taken                     (7083)
 #define GVAR_gcity_geck_sold                         (7500)
 #define LVAR_gcity_citizen                           (7501)
 #define LVAR_q_vc_charlie                            (8802)
@@ -2281,6 +2288,39 @@ $	3230	1	q_klam_bugen_lure	0	0	9	1
 макс 9
 8 - выплнен
 9 - провален
+**********
+
+$	3231	1	klam_aldo_busy	0	0	2	0
+**********
+локальна€, признак, что јльдо зан€т написанием объ€влени€
+1 - идет к доске
+2 - слушает
+0 - свободен
+**********
+
+$	3232	1	klam_aldo_listen_id	0	0	0	4
+**********
+локальна€, без границ, код игрока, который должен диктовать текст
+**********
+
+$	3233	4	klam_aldo_id	0	0	0	4
+**********
+локальна€, без границ, дл€ карты, сохран€ет Id альдо
+**********
+
+$	3234	1	klam_aldo_reader_id	0	0	0	4
+**********
+Ћокальна€, без границ. »д получател€ сообщени€.
+**********
+
+$	3235	1	bbmsg_page	0	0	0	4
+**********
+Ќомер страницы с сообщени€ми
+**********
+
+$	3236	1	bb_selected_msg	0	0	0	4
+**********
+¬ыбранное сообщение
 **********
 
 $	3300	1	q_mod_hose	0	0	6	1
@@ -5099,6 +5139,11 @@ $	7082	1	hell_pandorra_xp	0	0	2	0
 0 - нет.
 1 - да.
 2 - сломал автомат.
+**********
+
+$	7083	1	purg_suppluys_taken	0	0	1	0
+**********
+ѕризнак, игрок забрал полагаемый лут в чистилище.
 **********
 
 $	7500	0	gcity_geck_sold	0	0	1	0

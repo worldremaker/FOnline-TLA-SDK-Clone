@@ -44,6 +44,8 @@ import void OnCitterMapIn(Critter& cr, Map& map) from "nopvp_maps";
 import void DeclareEvents() from "game_event";
 import void CheckAllGameEvents() from "game_event";
 import void PlaceLoot2Container(Map& map, Critter& cr) from "game_event_caches";
+import void StartMessenger() from "bulletin_board";
+import void SaveMessengerData() from "bulletin_board";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Called before world generation.
@@ -144,6 +146,8 @@ bool start()
 	DeclareEvents();
 	CheckAllGameEvents();
 	
+	// Bulletin boards
+	StartMessenger();
 	return true;
 }
 
@@ -1242,6 +1246,7 @@ bool items_barter(Item@[]& saleItems, uint[]& saleItemsCount, Item@[]& buyItems,
 			}
 		}
 	}
+	
 	return true;
 }
 
@@ -1393,6 +1398,8 @@ void world_save(uint currentIndex, uint[]& deleteIndexes)
 		deleteIndexes.resize(1);
 		deleteIndexes[0]=currentIndex-5;
 	}
+	// bboards
+	SaveMessengerData();
 }
 
 // Call on player try register

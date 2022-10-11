@@ -136,7 +136,8 @@ $	238	klam_will
 $	239	klam_emma_post_quest
 $	240	klam_mike_post_quest
 $	241	klam_bryan_post_quest
-$	242     klam_bugen
+$	242 klam_bugen
+$	243	klam_bboard
 $	300	mod_hose
 $	301	mod_joe
 $	302	mod_citizen
@@ -846,5 +847,9 @@ $	21100	purg_executor
 $	21101   purg_gate_keeper
 $   21102   purg_replicant
 $   21103   purg_comp
+$   21104   purg_guard
+$   21105   purg_trader
+$   21106   purg_guard2
+$   21107   purg_hub1
 
 ************************************************************

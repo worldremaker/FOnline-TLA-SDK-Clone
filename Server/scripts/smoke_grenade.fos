@@ -40,7 +40,16 @@ uint e_SmokeBlast(uint[]@ values)
 	uint8 step = values[3];
 	uint16 pid = values[4];
 	uint ownerId = values[5];
-	if(step > MAX_STEP)
+	uint penaltyLowSkill = 0;
+	if(ownerId > 0)
+	{
+		Critter@ cr = GetCritter(ownerId);
+		if(valid(cr))
+		{
+			penaltyLowSkill = 4 - uint(CLAMP(cr.Skill[SK_THROWING],0,100)/25);
+		}	
+	}
+	if(step > (MAX_STEP - penaltyLowSkill))
 		return 0;
 	uint[] smokeIds;
 	map.PlaySound("gas.wav", hexX, hexY, 25);
@@ -61,7 +70,7 @@ uint e_SmokeBlast(uint[]@ values)
 		}
 	}
 	if(smokeIds.length() > 0)
-		CreateTimeEvent(__FullSecond + REAL_SECOND(Random(4,6))*(12 - step), "e_DeleteSmokes", smokeIds, true);
+		CreateTimeEvent(__FullSecond + uint(REAL_SECOND(Random(4,6))*(12 - step)*(5-penaltyLowSkill)/5), "e_DeleteSmokes", smokeIds, true);
 	values[3]++;
 	return 5;
 }

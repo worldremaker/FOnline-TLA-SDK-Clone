@@ -97,7 +97,13 @@ uint[][][] atollLoot =
 void _AtollTraderInit(Critter& cr, bool firstTime)
 {
 	cr.SkillBase[SK_BARTER] = 200;
-	cr.ModeBase[MODE_BARTER_ONLY_CASH]=1;
+	cr.ModeBase[MODE_NO_ITEM_GARBAGER] = 1;
+	cr.ModeBase[MODE_NO_BARTER]        = 0;
+	cr.ModeBase[MODE_NO_DROP]          = 1;
+	cr.ModeBase[MODE_NO_STEAL]         = 1;
+	cr.ModeBase[MODE_NO_LOOT]          = 1;
+	cr.ModeBase[MODE_NO_ENEMY_STACK]   = 1;
+	cr.ModeBase[MODE_BARTER_ONLY_CASH] = 1;
 	if(cr.GetTimeEvents(CTE_REFRESH, null, null, null) == 0)
 		cr.AddTimeEvent("cte_RefreshBag", 0, CTE_REFRESH);
 }

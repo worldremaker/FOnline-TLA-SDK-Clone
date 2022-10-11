@@ -2,8 +2,8 @@
 Version              4
 MaxHexX              103
 MaxHexY              104
-WorkHexX             50
-WorkHexY             55
+WorkHexX             52
+WorkHexY             48
 ScriptModule         -
 ScriptFunc           -
 NoLogOut             0
@@ -3211,7 +3211,7 @@ Critter_ParamValue5  0
 MapObjType           0
 ProtoId              421
 MapX                 49
-MapY                 48
+MapY                 49
 Dir                  3
 ScriptName           nr_salvatore
 FuncName             _MasonInit
@@ -3219,7 +3219,7 @@ Critter_Cond         1
 Critter_Anim1        0
 Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
-Critter_ParamValue0  0
+Critter_ParamValue0  750
 Critter_ParamIndex1  ST_AI_ID
 Critter_ParamValue1  13
 Critter_ParamIndex2  ST_BAG_ID
@@ -3262,7 +3262,7 @@ Critter_Cond         1
 Critter_Anim1        0
 Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
-Critter_ParamValue0  0
+Critter_ParamValue0  748
 Critter_ParamIndex1  ST_AI_ID
 Critter_ParamValue1  14
 Critter_ParamIndex2  ST_BAG_ID
@@ -5415,5 +5415,10 @@ ProtoId              17
 MapX                 37
 MapY                 46
 ContainerUID         3
+
+MapObjType           2
+ProtoId              2344
+MapX                 49
+MapY                 48
 
 

@@ -32,7 +32,7 @@ lang=russ
 0 7030 @
 8 8000 None 0 #
 0 8010 #
-9 8020 D _item p PID_BOTTLE_CAPS } 100 D _var p q_klam_bugen_lure = 1 R _item p PID_BOTTLE_CAPS - 100 R _param p ST_EXPERIENCE + 48 #
+9 8020 D _item p PID_BOTTLE_CAPS } 100 D _var p q_klam_bugen_lure = 1 R _item p PID_BOTTLE_CAPS - 100 R _param p ST_EXPERIENCE + 48 R _var p q_klam_bugen_lure = 2 #
 10 8030 D _item p PID_BROC_FLOWER } 1 D _var p q_klam_bugen_lure = 2 R _item p PID_BROC_FLOWER - 1 R _param p ST_EXPERIENCE + 48 R _var p q_klam_bugen_lure = 3 #
 11 8040 D _item p PID_BOOZE } 1 D _var p q_klam_bugen_lure = 3 R _item p PID_BOOZE - 1 R _param p ST_EXPERIENCE + 48 R _var p q_klam_bugen_lure = 4 #
 12 8050 D _item p PID_XANDER_ROOT } 1 D _var p q_klam_bugen_lure = 4 R _item p PID_XANDER_ROOT - 1 R _param p ST_EXPERIENCE + 48 R _var p q_klam_bugen_lure = 5 #

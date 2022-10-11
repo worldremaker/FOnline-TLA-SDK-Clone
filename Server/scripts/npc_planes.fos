@@ -22,7 +22,7 @@ bool AddWalkPlane(Critter& npc, uint entire, uint cut, bool run)
 	Map@ map = npc.GetMap();
 	if(valid(map) && map.GetEntireCoords(entire, 0, hX, hY))
 	{
-		AddWalkPlane(npc, 0, hX, hY, 6, run, cut);
+		return AddWalkPlane(npc, 0, hX, hY, 6, run, cut);
 	}
 	return false;
 }
