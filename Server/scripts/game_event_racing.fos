@@ -74,6 +74,12 @@ uint e_RunPreparePhase(uint[]@ values)
 void PrepareRacing()
 {
 	Map@ map = GetMapByPid(MAP_den_carstop,0);
+	GameVar@ status = GetGlobalVar(GVAR_racing_event);
+	status = 0;
+	GameVar@ winners = GetGlobalVar(GVAR_racing_winner);
+	winners = 0;
+	GameVar@ winnerId = GetGlobalVar(GVAR_racing_winners_found);
+	winnerId = 0;
 	if(!valid(map))
 		return;
 	int[] paramsBill = {ST_CHARISMA, 10, ST_NPC_ROLE, ROLE_BILL, MODE_INVULNERABLE, 1, ST_AI_ID, AIPACKET_TOUGH_CITIZEN,

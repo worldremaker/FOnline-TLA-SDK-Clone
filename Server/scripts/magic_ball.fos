@@ -20,7 +20,6 @@ import string ElectronicLockerCode(int varNum) from "electronic_lock";
 
 void _BallInit(Item& item, bool firstTime)
 {
-	item.SetEvent(ITEM_EVENT_SKILL, "_BallSkill");
 	item.SetEvent(ITEM_EVENT_USE, "_BallUse");
 }
 

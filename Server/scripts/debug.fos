@@ -527,11 +527,17 @@ void PatchSafe(Critter& cr, int, int, int)
 }
 
 import void RunGameEvent(uint idx) from "game_event";
+import void RunGameEvent(uint idx, uint time) from "game_event";
 import void StopGameEvent(uint idx) from "game_event";
 
 void RunGameEvent(Critter& cr, int idx, int, int)
 {
 	RunGameEvent(idx);
+}
+
+void RunGameEventTime(Critter& cr, int idx, int time, int)
+{
+	RunGameEvent(idx, uint(time));
 }
 
 void StopGameEvent(Critter& cr, int idx, int, int)
@@ -557,4 +563,31 @@ void PatchBar(Critter& cr, int, int, int)
 		int[] params = {ST_DIALOG_ID, 782, ST_TEAM_ID, 2, ST_BAG_ID, 96};
 		map.AddNpc(499, 56, 29, 1, params, null, null);
 	}
+}
+//~getaccess admin hh
+//~run debug MarkCritter2 1 41 0
+void MarkCritter2(Critter& cr, int crId, int pid, int color)
+{
+	Item@ item = cr.AddItem(pid, 1);
+	AllowSlot(17,"noini");
+	cr.MoveItem(item.Id, 1, 17);
+	item.LightIntensity=Random(30,80);
+	item.LightColor=(color!=0?color:Random(0,0xFFFFFF));
+	item.LightDistance = 5;
+	SETFLAG(item.Flags,ITEM_LIGHT);
+	item.Update();
+}
+
+void MarkCritter(Critter& cr, int crId, int pid, int color)
+{
+	
+	Item@ item = cr.AddItem(pid, 1);
+	AllowSlot(17,"");
+	cr.MoveItem(item.Id, 1, 17);
+	item.LightIntensity=Random(30,80);
+	item.LightColor=(color!=0?color:Random(0,0xFFFFFF));
+	item.LightDistance = 5;
+	SETFLAG(item.Flags,ITEM_LIGHT);
+	SETFLAG(item.Flags,ITEM_HIDDEN);
+	item.Update();
 }

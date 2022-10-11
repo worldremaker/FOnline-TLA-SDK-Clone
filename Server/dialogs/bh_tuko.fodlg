@@ -8,7 +8,7 @@ lang=russ engl
 &
 1 1000 None 1 #
 2 1010 D _var p q_bh_rocket_base ! 1 #
-2 1020 D _var p q_bh_rocket_base = 1 @
+4 1020 D _var p q_bh_rocket_base = 1 @
 2 2000 None 0 #
 3 2010 D _var p q_bh_rocket_base > 2 @
 3 3000 None 0 @

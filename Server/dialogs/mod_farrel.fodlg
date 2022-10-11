@@ -57,11 +57,11 @@ lang=russ engl
 18 18000 None 0 #
 0 18010 D _var p q_mod_farrel_ammiak = 0 R _var p q_mod_farrel_ammiak = 1 R _item p PID_BOTTLE_EMPTY + 1 #
 0 18020 @
-19 19000 None 0 #
+19 19000 map_modoc@dlg_CountBottles 0 #
 0 19010 #
-20 19020 D _var p q_mod_farrel_ammiak = 1 D _item p PID_BOTTLE_AMMIAK > 0 R _var p q_mod_farrel_ammiak = 2 R _item p PID_BOTTLE_CAPS + 400 R _param p ST_EXPERIENCE + 400 #
+20 19020 D _var p q_mod_farrel_ammiak = 1 D _item p PID_BOTTLE_AMMIAK > 0 R _var p q_mod_farrel_ammiak = 2 R _item p PID_BOTTLE_CAPS + 400 R _param p ST_EXPERIENCE + 400 R _item p PID_BOTTLE_AMMIAK - 1 #
 20 19030 D _item p PID_BOTTLE_AMMIAK > 1 D _var p q_mod_farrel_ammiak = 1 R _var p q_mod_farrel_ammiak = 2 R _script map_modoc@r_AllBottles 0  #
-20 19040 D _var p q_mod_farrel_ammiak = 2 D _item p PID_BOTTLE_AMMIAK > 0 R _item p PID_BOTTLE_CAPS + 400 R _param p ST_EXPERIENCE + 400 #
+20 19040 D _var p q_mod_farrel_ammiak = 2 D _item p PID_BOTTLE_AMMIAK > 0 R _item p PID_BOTTLE_CAPS + 400 R _param p ST_EXPERIENCE + 400 R _item p PID_BOTTLE_AMMIAK - 1 #
 20 19050 D _var p q_mod_farrel_ammiak = 2 D _item p PID_BOTTLE_AMMIAK > 1 R _script map_modoc@r_AllBottles 0  @
 20 20000 None 0 #
 0 20010 &

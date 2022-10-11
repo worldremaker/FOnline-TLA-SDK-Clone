@@ -1,7 +1,7 @@
 #ifndef __VARS__
 #define __VARS__
 /*************************************************************************************
-***  VARS  *****  COUNT: 00000597  ***************************************************
+***  VARS  *****  COUNT: 00000605  ***************************************************
 *************************************************************************************/
 
 
@@ -48,6 +48,14 @@
 #define GVAR_redd_marion_wan_location                (162)
 #define GVAR_redd_marion_wan_timeout                 (163)
 #define GVAR_enc_ocean_trader_alive                  (164)
+#define LVAR_behemoth_owner                          (200)
+#define LVAR_behemoth_radio                          (201)
+#define LVAR_behemoth_last_comand                    (202)
+#define LVAR_behemoth_order_type                     (203)
+#define LVAR_behemoth_last_order                     (204)
+#define LVAR_behemoth_param_1                        (205)
+#define LVAR_behemoth_param_2                        (206)
+#define LVAR_behemoth_last_report                    (207)
 #define LIVAR_is_quest_item                          (1000)
 #define GVAR_modoc_brahmin_escaped                   (1299)
 #define GVAR_raiders_dead                            (1600)
@@ -902,6 +910,46 @@ $	164	0	enc_ocean_trader_alive	1	0	1	0
 0 - нежив.
 
 Если мёртв, то уже нельзя встретить энкаунтер с ним.
+**********
+
+$	200	1	behemoth_owner	0	0	0	4
+**********
+
+**********
+
+$	201	1	behemoth_radio	0	0	0	4
+**********
+
+**********
+
+$	202	1	behemoth_last_comand	0	0	0	4
+**********
+
+**********
+
+$	203	1	behemoth_order_type	0	0	0	4
+**********
+
+**********
+
+$	204	1	behemoth_last_order	0	0	0	4
+**********
+
+**********
+
+$	205	1	behemoth_param_1	0	0	0	4
+**********
+
+**********
+
+$	206	1	behemoth_param_2	0	0	0	4
+**********
+
+**********
+
+$	207	1	behemoth_last_report	0	0	0	4
+**********
+
 **********
 
 $	1000	5	is_quest_item	0	0	1	0

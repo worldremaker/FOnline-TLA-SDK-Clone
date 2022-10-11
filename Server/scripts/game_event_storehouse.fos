@@ -82,7 +82,7 @@ uint e_CreateStoreHouse(uint[]@ values)
 							{
 								dir = GetDirection(entires[i].HexX, entires[i].HexY, hexX, hexY);
 								pid = Random(0,1) == 0 ? NPC_PID_JACKAL_SNIPER : NPC_PID_JACKAL_TERMINATOR;
-								int[] params = {ST_TEAM_ID, TEAM_Bandit, ST_NPC_ROLE, 17, ST_BAG_ID, (pid == NPC_PID_JACKAL_SNIPER ? BAG_Sniper1 : BAG_Term1)};
+								int[] params = {ST_TEAM_ID, TEAM_Bandit, ST_NPC_ROLE, 17, ST_BAG_ID, (pid == NPC_PID_JACKAL_SNIPER ? BAG_Sniper1 : BAG_Term1),ST_REPLICATION_TIME,-1};
 								map.AddNpc(pid, entires[i].HexX, entires[i].HexY, dir, params, null, "encounter_npc@_NpcInit");
 							}
 						}
@@ -138,12 +138,11 @@ void SaveLoot2Storehouse(uint16 WorldX, uint16 WorldY, Item@[] items)
 	}
 	if(valid(storeHouse) && storeHouse.Visible == false && valid(isStoreHouse) && isStoreHouse > 0)
 	{
-		Item@[] contItems;
 		Item@ container = GetItem(isStoreHouse.GetValue());
 		if(valid(container))
 		{
 			MoveItems(items, container, 0);
-			if(container.GetItems(0, contItems) > MAX_CONTAINER_ITEMS)
+			if(CountContainerItems(container) > MAX_CONTAINER_ITEMS)
 			{
 				storeHouse.Visible = true;
 				CreateTimeEvent(__FullSecond + REAL_HOUR(24), "e_DeleteLocation", storeHouse.Id, true);
@@ -153,6 +152,29 @@ void SaveLoot2Storehouse(uint16 WorldX, uint16 WorldY, Item@[] items)
 	
 	}	
 }
+
+uint CountContainerItems(Item& container)
+{
+	Item@ item;
+	Item@[] items;
+	uint count = 0;
+	container.GetItems(0, items);
+	for(uint i = 0, l = items.length(); i < l; i++)
+	{
+		@item = items[i];
+		if(valid(item))
+		{
+			if(item.GetType() == ITEM_TYPE_WEAPON 
+			|| item.GetType() == ITEM_TYPE_ARMOR 
+			|| item.GetType() == ITEM_TYPE_DRUG)
+				count += item.GetCount();
+			else
+				count += 1;
+		}
+	}
+	return count;
+}
+
 
 uint e_DeleteLocation(uint[]@ values)
 {
