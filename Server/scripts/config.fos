@@ -144,6 +144,18 @@ void InitializeGame() // Export
 	__ReputationHated     = -29;
 	// Other is Vilified
 
+	// Registation values
+	__StartSpecialPoints  = 40;
+	__StartTagSkillPoints = 3;
+
+	// Skill modifiers
+	__SkillMaxValue = 300;
+	__SkillModAdd2  = 100;
+	__SkillModAdd3  = 125;
+	__SkillModAdd4  = 150;
+	__SkillModAdd5  = 175;
+	__SkillModAdd6  = 200;
+
 	/// Client specific definitions
 #ifdef __CLIENT
 	__RoofAlpha             = 200;

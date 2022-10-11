@@ -257,7 +257,7 @@ bool CritterGenerateCheck(int[]& data) // Export to client_main@player_data_chec
 		}
 		special+=data[i];
 	}
-	if(special!=40)
+	if(special!=__StartSpecialPoints)
 	{
 		Message(GetMsgStr(TEXTMSG_GAME,STR_NET_WRONG_SPECIAL));
 		return false;

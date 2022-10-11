@@ -415,7 +415,7 @@
 #define SKILL_BEGIN                (__SkillBegin)
 #define SKILL_END                  (__SkillEnd)
 #define SKILL_COUNT                (SKILL_END-SKILL_BEGIN+1)
-#define MAX_SKILL_VAL              (300) // Hardcoded
+#define MAX_SKILL_VAL              (__SkillMaxValue)
 #define SK_SMALL_GUNS               (200)
 #define SK_BIG_GUNS                 (201)
 #define SK_ENERGY_WEAPONS           (202)

@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 09.04.2011
-// Server version 438, MSVS2008
+// Last update 04.05.2011
+// Server version 443, MSVS2008
 // Default calling convention - cdecl
 //
 
@@ -329,6 +329,15 @@ struct GameOptions
 	uint   DlgTalkMinTime;
 	uint   DlgBarterMinTime;
 	uint   MinimumOfflineTime;
+
+	int    StartSpecialPoints;
+	int    StartTagSkillPoints;
+	int    SkillMaxValue;
+	int    SkillModAdd2;
+	int    SkillModAdd3;
+	int    SkillModAdd4;
+	int    SkillModAdd5;
+	int    SkillModAdd6;
 
 	bool   AbsoluteOffsets;
 	uint   SkillBegin;
@@ -1815,7 +1824,7 @@ inline void static_asserts()
 	STATIC_ASSERT(sizeof(IntPair)     == 8   );
 	STATIC_ASSERT(sizeof(ProtoItem)   == 908 );
 	STATIC_ASSERT(sizeof(Mutex)       == 24  );
-	STATIC_ASSERT(sizeof(GameOptions) == 1152);
+	STATIC_ASSERT(sizeof(GameOptions) == 1184);
 	STATIC_ASSERT(sizeof(ScriptArray) == 40  );
 	STATIC_ASSERT(sizeof(SpriteInfo)  == 36  );
 	STATIC_ASSERT(sizeof(Field)       == 76  );

@@ -246,7 +246,7 @@ bool critter_stealing(Critter& cr, Critter& thief, Item& item, uint count)
 		return false;
 	}
 
-	if(cr.Mode[MODE_NO_PVP] != 0 || cr.Mode[MODE_NO_PVP] != 0)
+	if(cr.Mode[MODE_NO_PVP] != 0 || thief.Mode[MODE_NO_PVP] != 0)
 	{
 		thief.Say(SAY_NETMSG,"No PvP.");
 		return false;
@@ -784,7 +784,7 @@ void critter_init(Critter& cr, bool firstTime)
 			for(uint i=ST_STRENGTH;i<=ST_LUCK;i++) cr.StatBase[i]=CLAMP(cr.StatBase[i],1,10);
 
 			if((cr.StatBase[ST_STRENGTH]+cr.StatBase[ST_PERCEPTION]+cr.StatBase[ST_ENDURANCE]+
-				cr.StatBase[ST_CHARISMA]+cr.StatBase[ST_INTELLECT]+cr.StatBase[ST_AGILITY]+cr.StatBase[ST_LUCK])!=40)
+				cr.StatBase[ST_CHARISMA]+cr.StatBase[ST_INTELLECT]+cr.StatBase[ST_AGILITY]+cr.StatBase[ST_LUCK])!=__StartSpecialPoints)
 			{
 				for(uint i=ST_STRENGTH;i<=ST_LUCK;i++) cr.StatBase[i]=5;
 			}
@@ -1263,13 +1263,12 @@ void player_levelup(Critter& player, uint skillIndex, uint skillUp, uint perkInd
 			int skillVal=player.SkillBase[skillIndex];
 			if(skillVal>=MAX_SKILL_VAL) break;
 
-			int needPoints;
-			if(skillVal<=100) needPoints=1;
-			else if(skillVal>100 && skillVal<=125) needPoints=2;
-			else if(skillVal>125 && skillVal<=150) needPoints=3;
-			else if(skillVal>150 && skillVal<=175) needPoints=4;
-			else if(skillVal>175 && skillVal<=200) needPoints=5;
-			else needPoints=6;
+			int needPoints=1;
+			if(skillVal>__SkillModAdd6) needPoints=6;
+			else if(skillVal>__SkillModAdd5) needPoints=5;
+			else if(skillVal>__SkillModAdd4) needPoints=4;
+			else if(skillVal>__SkillModAdd3) needPoints=3;
+			else if(skillVal>__SkillModAdd2) needPoints=2;
 
 			if(player.StatBase[ST_UNSPENT_SKILL_POINTS]<needPoints) break;
 
