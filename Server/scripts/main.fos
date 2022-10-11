@@ -1209,6 +1209,14 @@ bool check_look(Map& map, Critter& cr, Critter& opponent)
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+// Call to determine visibility of items with ITEM_TRAP flag.
+// To start working set flag LOOK_CHECK_SCRIPT to __LookChecks global var.
+bool check_trap_look(Map& map, Critter& cr, Item& trap)
+{
+        return true;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
 // Call to determine cost of single item.
 // To allow function set __CustomItemCost to true.
 // Don't forgot specify this function in client script.
@@ -1414,26 +1422,3 @@ bool player_getaccess(Critter& player, int access, string& password)
 	Log("Access changed for player "+player.Name+", from "+player.GetAccess()+" to "+access+".");
 	return true;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

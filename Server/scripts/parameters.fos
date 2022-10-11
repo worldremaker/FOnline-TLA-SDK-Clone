@@ -84,6 +84,24 @@ int NextLevelNeedExp(Critter& cr) // Export
 	int level=cr.Stat[ST_LEVEL];
 	return NUMERICAL_NUMBER(level)*1000;
 }
+
+int getParamDialog_Intellect(Critter@ master, Critter@ slave, uint index)
+{
+	if(valid(master))
+		return master.Stat[ST_INTELLECT]+2*master.Perk[PE_SMOOTH_TALKER];
+	return 0;
+}
+
+int getParamDialog_Reputation(Critter@ master, Critter@ slave, uint index)
+{
+	if(valid(master))
+	{
+		if(master.ReputationBase[index]==int(0x80000000))
+			master.ReputationBase[index]=0;
+		return master.ReputationBase[index];
+	}
+	return 0;
+}
 #endif
 
 #ifdef __CLIENT

@@ -113,6 +113,7 @@ void InitializeGame() // Export
 	__LookWeight = 10; // Lost 1 sneak point per 200 gramm
 	// __LookChecks |= LOOK_CHECK_TRACE; // Tracing for wall aviablility
 	// __LookChecks |= LOOK_CHECK_SCRIPT; // Allow bool check_look(...) in main.fos, all other defines ignored
+	// __LookChecks |= LOOK_CHECK_ITEM_SCRIPT; // Allow bool check_trap_look(...) in main.fos, for items with ITEM_TRAP flag
 
 	// Range of values for client engine
 	__AbsoluteOffsets = true;
@@ -209,10 +210,10 @@ void InitializeGame() // Export
 	SetParameterGetBehaviour(ST_ARMOR_CLASS         , dllName + "getParam_Ac"             );
 	SetParameterGetBehaviour(ST_RADIATION_RESISTANCE, dllName + "getParam_RadiationResist");
 	SetParameterGetBehaviour(ST_POISON_RESISTANCE   , dllName + "getParam_PoisonResist"   );
-	for(uint i = ST_NORMAL_RESIST; i <= ST_EXPLODE_RESIST; i++) SetParameterGetBehaviour(i, dllName + "getParam_DamageResistance");
-	for(uint i = ST_NORMAL_ABSORB; i <= ST_EXPLODE_ABSORB; i++) SetParameterGetBehaviour(i, dllName + "getParam_DamageThreshold" );
-	for(uint i = TIMEOUT_BEGIN   ; i <= TIMEOUT_END      ; i++) SetParameterGetBehaviour(i, dllName + "getParam_Timeout"         );
-	//for(uint i = REPUTATION_BEGIN; i <= REPUTATION_END   ; i++) SetParameterGetBehaviour(i, dllName + "getParam_Reputation"      );
+	for(uint i = ST_NORMAL_RESIST; i <= ST_EXPLODE_RESIST; i++) SetParameterGetBehaviour(i, dllName + "getParam_DamageResistance" );
+	for(uint i = ST_NORMAL_ABSORB; i <= ST_EXPLODE_ABSORB; i++) SetParameterGetBehaviour(i, dllName + "getParam_DamageThreshold"  );
+	for(uint i = TIMEOUT_BEGIN   ; i <= TIMEOUT_END      ; i++) SetParameterGetBehaviour(i, dllName + "getParam_Timeout"          );
+	//for(uint i = REPUTATION_BEGIN; i <= REPUTATION_END   ; i++) SetParameterGetBehaviour(i, dllName + "getParam_Reputation"       );
 	//for(uint i = REPUTATION_BEGIN; i <= REPUTATION_END   ; i++) SetParameterChangeBehaviour(i, dllName + "changedParam_Reputation");
 
 #ifndef __CLIENT
@@ -221,6 +222,8 @@ void InitializeGame() // Export
 	SetParameterChangeBehaviour(MODE_HIDE      , "parameters@changedParam_Hide"      );
 	SetParameterChangeBehaviour(TRAIT_FAST_SHOT, "parameters@changedParam_FastShot"  );
 	for(uint i = PERK_BEGIN; i <= PERK_END; i++) SetParameterChangeBehaviour(i, "parameters@changedParam_Perks");
+	SetParameterDialogGetBehaviour(ST_INTELLECT, "parameters@getParamDialog_Intellect");
+	for(uint i = REPUTATION_BEGIN; i <= REPUTATION_END; i++) SetParameterDialogGetBehaviour(i, "parameters@getParamDialog_Reputation");
 #endif
 #ifdef __CLIENT
 	//for(uint i=GOOD_EVIL_LIST_BEGIN;i<=GOOD_EVIL_LIST_END;i++) SetParameterChangeBehaviour(i,"parameters@changedParam_GoodEvilList"); (not used)
