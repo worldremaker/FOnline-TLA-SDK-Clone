@@ -1,9 +1,9 @@
 [Header]
-Version              2
+Version              4
 MaxHexX              158
 MaxHexY              140
-WorkHexX             85
-WorkHexY             82
+WorkHexX             51
+WorkHexY             75
 ScriptModule         -
 ScriptFunc           -
 NoLogOut             0
@@ -5583,7 +5583,8 @@ Dir                  5
 ScriptName           replication
 FuncName             _HubologistInit
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  400
 Critter_ParamIndex1  ST_AI_ID
@@ -5605,7 +5606,8 @@ Dir                  5
 ScriptName           replication
 FuncName             _HubologistInit
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  4000
 Critter_ParamIndex1  ST_AI_ID
@@ -5627,7 +5629,8 @@ Dir                  5
 ScriptName           replication
 FuncName             _HubologistInit
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  4000
 Critter_ParamIndex1  ST_AI_ID
@@ -5719,7 +5722,8 @@ Dir                  2
 ScriptName           replication
 FuncName             _HubologistInit
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  4000
 Critter_ParamIndex1  ST_AI_ID
@@ -6037,6 +6041,8 @@ MapObjType           2
 ProtoId              2011
 MapX                 55
 MapY                 47
+ScriptName           comp_riddle
+FuncName             s_Use
 
 MapObjType           2
 ProtoId              2043
@@ -7154,7 +7160,8 @@ MapX                 86
 MapY                 101
 Dir                  3
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5043
 Critter_ParamIndex1  ST_AI_ID
@@ -7176,7 +7183,8 @@ Dir                  5
 ScriptName           replication
 FuncName             _HubologistInit
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  4000
 Critter_ParamIndex1  ST_AI_ID
@@ -7198,7 +7206,8 @@ Dir                  5
 ScriptName           replication
 FuncName             _HubologistInit
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  9000
 Critter_ParamIndex1  ST_AI_ID
@@ -8013,7 +8022,8 @@ MapX                 78
 MapY                 117
 Dir                  5
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  5043
 Critter_ParamIndex1  ST_AI_ID
@@ -8867,7 +8877,8 @@ Dir                  5
 ScriptName           replication
 FuncName             _HubologistInit
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  4000
 Critter_ParamIndex1  ST_AI_ID
@@ -12167,7 +12178,8 @@ Dir                  2
 ScriptName           trader
 FuncName             _TraderInit
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  4054
 Critter_ParamIndex1  ST_AI_ID
@@ -12334,7 +12346,8 @@ Dir                  5
 ScriptName           hell_out
 FuncName             _GuardInit2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  4466
 Critter_ParamIndex1  ST_AI_ID
@@ -12374,7 +12387,8 @@ Dir                  3
 ScriptName           hell_out
 FuncName             _PowerInit
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  4056
 Critter_ParamIndex1  ST_AI_ID
@@ -12485,7 +12499,8 @@ Dir                  2
 ScriptName           hell_out
 FuncName             _GuardInit2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  4466
 Critter_ParamIndex1  ST_AI_ID
@@ -12506,7 +12521,8 @@ MapY                 63
 ScriptName           hell_out
 FuncName             _GuardInit2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  4466
 Critter_ParamIndex1  ST_AI_ID
@@ -12528,7 +12544,8 @@ Dir                  3
 ScriptName           hell_out
 FuncName             _GuardInit2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  4466
 Critter_ParamIndex1  ST_AI_ID
@@ -12610,7 +12627,8 @@ Dir                  4
 ScriptName           hell_out
 FuncName             _GuardInit2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  4466
 Critter_ParamIndex1  ST_AI_ID
@@ -12631,7 +12649,8 @@ MapY                 98
 ScriptName           hell_out
 FuncName             _GuardInit2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  4466
 Critter_ParamIndex1  ST_AI_ID
@@ -12652,7 +12671,8 @@ MapY                 54
 ScriptName           hell_out
 FuncName             _GuardInit2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  4466
 Critter_ParamIndex1  ST_AI_ID
@@ -12674,7 +12694,8 @@ Dir                  2
 ScriptName           hell_out
 FuncName             _GuardInit2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  4466
 Critter_ParamIndex1  ST_AI_ID
@@ -12695,7 +12716,8 @@ MapY                 77
 ScriptName           hell_out
 FuncName             _GuardInit2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  4466
 Critter_ParamIndex1  ST_AI_ID
@@ -12717,7 +12739,8 @@ Dir                  3
 ScriptName           hell_out
 FuncName             _GuardInit2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  4466
 Critter_ParamIndex1  ST_AI_ID
@@ -12739,7 +12762,8 @@ Dir                  2
 ScriptName           hell_out
 FuncName             _GuardInit2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  4466
 Critter_ParamIndex1  ST_AI_ID
@@ -12761,7 +12785,8 @@ Dir                  3
 ScriptName           hell_out
 FuncName             _GuardInit2
 Critter_Cond         1
-Critter_CondExt      1
+Critter_Anim1        0
+Critter_Anim2        0
 Critter_ParamIndex0  ST_DIALOG_ID
 Critter_ParamValue0  4466
 Critter_ParamIndex1  ST_AI_ID
