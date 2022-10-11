@@ -43,6 +43,7 @@ import void OnCritterMapOut(Critter& cr, Map& map) from "nopvp_maps";
 import void OnCitterMapIn(Critter& cr, Map& map) from "nopvp_maps";
 import void DeclareEvents() from "game_event";
 import void CheckAllGameEvents() from "game_event";
+import void PlaceLoot2Container(Map& map, Critter& cr) from "game_event_caches";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Call on start server.
@@ -1134,6 +1135,8 @@ void map_critter_in(Map& map, Critter& cr)
 			if (lastCityVar is null) return;
 			lastCityVar = locPid;
 		}
+		
+		PlaceLoot2Container(map, cr);
 	}
 }
 

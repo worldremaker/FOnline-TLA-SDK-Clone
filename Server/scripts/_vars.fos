@@ -1,7 +1,7 @@
 #ifndef __VARS__
 #define __VARS__
 /*************************************************************************************
-***  VARS  *****  COUNT: 00000605  ***************************************************
+***  VARS  *****  COUNT: 00000609  ***************************************************
 *************************************************************************************/
 
 
@@ -21,6 +21,8 @@
 #define GVAR_den_ghost_is_dead                       (14)
 #define LLVAR_loc_defenders_hostile                  (15)
 #define LLVAR_storehouse_cont_id                     (16)
+#define LLVAR_cache_checked                          (17)
+#define LLVAR_is_encounter                           (18)
 #define LVAR_hell_visits                             (20)
 #define GVAR_base_sierra_rule                        (100)
 #define GVAR_base_mariposa_rule                      (101)
@@ -82,6 +84,8 @@
 #define GVAR_missiles_vladik                         (1820)
 #define GVAR_missiles_ray                            (1821)
 #define GVAR_missiles_fukusima                       (1822)
+#define GVAR_game_event_caches                       (1823)
+#define LVAR_has_not_card                            (1824)
 #define UVAR_loyality                                (2010)
 #define UVAR_steal_exp_count                         (2011)
 #define UVAR_first_aid_count                         (2012)
@@ -744,6 +748,16 @@ $	16	3	storehouse_cont_id	0	0	0	4
 указывается Id контейнера, в который складываются вещи, собранные на энкаунтерах мобами
 **********
 
+$	17	3	cache_checked	0	0	1	0
+**********
+признак, шанс появления сундука уже проверялся
+**********
+
+$	18	3	is_encounter	0	0	1	0
+**********
+признак, локация - энкаунтер на глобале
+**********
+
 $	20	1	hell_visits	0	0	0	4
 **********
 Количество посещений игроком Ада.
@@ -1082,6 +1096,16 @@ $	1821	0	missiles_ray	0	0	0	4
 $	1822	0	missiles_fukusima	0	0	0	4
 **********
 
+**********
+
+$	1823	0	game_event_caches	0	0	1	4
+**********
+номер переменной, определяющей доступность охранника с квест итемом
+**********
+
+$	1824	1	has_not_card	0	0	1	0
+**********
+номер переменной, определяющей доступность охранника с квест итемом
 **********
 
 $	2010	2	loyality	5	0	10	0

@@ -159,3 +159,19 @@ uint cte_NextMessage(Critter& cr, int identifier, uint& rate)
 	}
 	return 0;
 }
+
+// Баллада паладина БС
+bool d_MonologueRunning(Critter& player, Critter@ npc)
+{
+	return (valid(npc) && MonologueRunning(npc));
+}
+
+bool d_NotMonologueRunning(Critter& player, Critter@ npc)
+{
+	return !d_MonologueRunning(player, npc);
+}
+
+void r_RunMonologue(Critter& player, Critter@ npc, int firstStr, int lastStr, int nextMsg, int nextDialog, int sayType)
+{
+	SetMonologue(npc, firstStr, lastStr, nextMsg*__TimeMultiplier, nextDialog, sayType); 
+}

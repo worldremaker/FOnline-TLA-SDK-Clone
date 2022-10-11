@@ -43,7 +43,7 @@ bool npc_plane_begin(Critter& npc, NpcPlane& plane, int reason, Critter@ someCr,
 // REASON_NO_UNARMED
 bool npc_plane_end(Critter& npc, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem)
 {
-	//Log("npc_plane_end "+reason);
+	//Log("npc_plane_end "+reason + "npcId" + npc.Id);
 	if(reason==REASON_CANT_WALK && npc.IsNoPlanes()) npc.Wait(Random(1000,2000));
 	else if(reason==REASON_HEX_BUSY || reason==REASON_HEX_BUSY_RING || reason==REASON_POSITION_NOT_FOUND) npc.Wait(Random(1000,2000));
 	else if(reason==REASON_FIND_PATH_ERROR || reason==REASON_HEX_TOO_FAR) npc.Wait(20000);

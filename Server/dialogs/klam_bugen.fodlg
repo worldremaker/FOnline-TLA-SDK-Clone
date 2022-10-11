@@ -36,7 +36,7 @@ lang=russ
 10 8030 D _item p PID_BROC_FLOWER } 1 D _var p q_klam_bugen_lure = 2 R _item p PID_BROC_FLOWER - 1 R _param p ST_EXPERIENCE + 48 R _var p q_klam_bugen_lure = 3 #
 11 8040 D _item p PID_BOOZE } 1 D _var p q_klam_bugen_lure = 3 R _item p PID_BOOZE - 1 R _param p ST_EXPERIENCE + 48 R _var p q_klam_bugen_lure = 4 #
 12 8050 D _item p PID_XANDER_ROOT } 1 D _var p q_klam_bugen_lure = 4 R _item p PID_XANDER_ROOT - 1 R _param p ST_EXPERIENCE + 48 R _var p q_klam_bugen_lure = 5 #
-13 8060 D _item p PID_SCORPION_TAIL } 1 D _var p q_klam_bugen_lure = 5 R _item p PID_SCORPION_TAIL - 1 R _param p ST_EXPERIENCE + 48 #
+13 8060 D _item p PID_SCORPION_TAIL } 1 D _var p q_klam_bugen_lure = 5 R _item p PID_SCORPION_TAIL - 1 R _param p ST_EXPERIENCE + 48 R _var p q_klam_bugen_lure = 6 #
 14 8070 D _item p PID_GUNPOWDER } 1 D _var p q_klam_bugen_lure = 6 R _item p PID_GUNPOWDER - 1 R _param p ST_EXPERIENCE + 48 R _var p q_klam_bugen_lure = 7 #
 15 8080 D _item p PID_ANTIDOTE } 1 D _var p q_klam_bugen_lure = 7 R _item p PID_ANTIDOTE - 1 R _param p ST_EXPERIENCE + 48 R _var p q_klam_bugen_lure = 8 @
 9 9000 None 0 #

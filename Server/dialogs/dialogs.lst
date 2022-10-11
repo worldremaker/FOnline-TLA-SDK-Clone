@@ -2,6 +2,7 @@
 ***  DIALOGS  *********  COUNT: 00000000  ********************************************
 **************************************************************************************
 $	10	all_default
+$	11 	q_radio_dj_quest_giver
 $	20	all_alco
 $	21	all_alco_w
 $	22	all_merchant
@@ -828,6 +829,7 @@ $	10090	enc_geck_trader
 $	10100	enc_fran_trader
 $	10110	enc_trav_trader
 $	10120	enc_ncr_trader
+$   10121   enc_caravan_guard
 $	10130	enc_v15_trader
 $	10131	se_teleport_computer
 $	10132	se_kotw_memorial

@@ -66,9 +66,10 @@ void RememberBehemoth(Critter& cr)
 {
 	if(behemoths.find(cr.Id) < 0)
 		behemoths.insertLast(cr.Id);
-	uint channel = _GetRadioChannel(cr.Id);
+	int channel = _GetRadioChannel(cr.Id);
 	if(listenedChannels.find(channel) < 0)
 	{
+		DL("adding channel " + channel);
 		listenedChannels.insertLast(channel);
 		AddTextListener(SAY_RADIO, "КОМАНДА", channel, "behemoth@listen_Behemoth");
 		//AddTextListener(SAY_RADIO, "COMMAND", channel, "behemoth@listen_Behemoth");
@@ -77,16 +78,19 @@ void RememberBehemoth(Critter& cr)
 
 void ChangeChannel(Critter& cr, uint newChannel)
 {
+	DL("change channel");
 	GameVar@ channel = GetLocalVar(VAR_RADIO, cr.Id);
 	if(valid(channel))
 		channel = newChannel;
 	RememberBehemoth(cr);
 	bool usedChannel = true;
-	for(int i = 0, l = listenedChannels.length(); i < l && i > 0; i++)
+	for(int i = 0, l = listenedChannels.length(); i < l; i++)
 	{
+		DL("channel " + i);
 		usedChannel = false;
 		for(int j = 0, k = behemoths.length(); j<k; j++)
 		{
+			DL("_Get " + _GetRadioChannel(behemoths[j]) + "; LIST" + int(listenedChannels[i]));
 			if(_GetRadioChannel(behemoths[j]) == int(listenedChannels[i]))
 				usedChannel = true;
 		}
@@ -193,7 +197,7 @@ void BehemothCommand(uint behemothId, string cmd)
 		else if(_IsCmdPatrol(firstKeyWord))
 		{
 			// указывается радиус, но не больше 10 гексов, в пределах которого робот передает по радио ники всех игроков, кого встречает
-			int radius = CLAMP(GetIntValue(valuesStr, 2, 0), 0, 10);
+			int radius = CLAMP(GetIntValue(valuesStr, 2, 0), 0, 30);
 			SetOrder(behemothId, TYPE_ORDER_PATROL, radius, 0);	
 			RunOrder(behemothId, TYPE_ORDER_PATROL);		
 		}
@@ -279,6 +283,7 @@ void RunOrder(uint crId, uint orderType)
 			break;
 		case TYPE_ORDER_PATROL:
 			RunOrderPatrol(cr);
+			break;
 		case TYPE_ORDER_ATTACK:
 			RunOrderAttack(cr);
 		default:

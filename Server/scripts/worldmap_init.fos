@@ -258,6 +258,9 @@
 	group.AddCritter(69).Dialog(0).Script("encounter_npc@_NpcInit")
 		.AddItem(PID_10MM_PISTOL,1,1,SLOT_HAND1)
 		.AddItem(PID_BOTTLE_CAPS,0,10,SLOT_INV);
+	group.AddCritter(69).Dialog(10121).CheckGVar(GVAR_game_event_caches,'>',0).Script("encounter_npc@_NpcInit")
+		.AddItem(PID_10MM_PISTOL,1,1,SLOT_HAND1)
+		.AddItem(PID_BOTTLE_CAPS,0,10,SLOT_INV);
 
 										// KLAD_Scorpions
 	@group=@EncounterGroups[GROUP_KLAD_Scorpions];
@@ -291,6 +294,9 @@
 		.AddItem(PID_CLUB,2,5,SLOT_INV)
 		.AddItem(PID_ROPE,2,4,SLOT_INV);
 	group.AddCritter(46).Ratio(40).Dialog(0).Script("encounter_npc@_NpcInit")
+		.AddItem(PID_HUNTING_RIFLE,1,1,SLOT_HAND1)
+		.AddItem(PID_BOTTLE_CAPS,0,10,SLOT_INV);
+	group.AddCritter(46).Dialog(10121).CheckGVar(GVAR_game_event_caches,'>',0).Script("encounter_npc@_NpcInit")
 		.AddItem(PID_HUNTING_RIFLE,1,1,SLOT_HAND1)
 		.AddItem(PID_BOTTLE_CAPS,0,10,SLOT_INV);
 	group.AddCritter(17).Ratio(30).Dialog(0).Script("encounter_npc@_NpcInit")
@@ -574,6 +580,10 @@
 		.AddItem(PID_FN_FAL,1,1,SLOT_HAND1)
 		.AddItem(PID_STIMPAK,1,1,SLOT_INV)
 		.AddItem(PID_BOTTLE_CAPS,0,15,SLOT_INV);
+	group.AddCritter(47).Dialog(10121).CheckGVar(GVAR_game_event_caches,'>',0).Script("encounter_npc@_NpcInit")
+		.AddItem(PID_FN_FAL,1,1,SLOT_HAND1)
+		.AddItem(PID_STIMPAK,1,1,SLOT_INV)
+		.AddItem(PID_BOTTLE_CAPS,0,15,SLOT_INV);
 
 										// WILD1_Trader
 	@group=@EncounterGroups[GROUP_WILD1_Trader];
@@ -787,6 +797,9 @@
 	group.AddCritter(140).Ratio(50).Dialog(0).Script("encounter_npc@_NpcInit")
 		.AddItem(PID_10MM_SMG,1,1,SLOT_HAND1)
 		.AddItem(PID_BOTTLE_CAPS,0,10,SLOT_INV);
+	group.AddCritter(140).Dialog(10121).CheckGVar(GVAR_game_event_caches,'>',0).Script("encounter_npc@_NpcInit")
+		.AddItem(PID_10MM_SMG,1,1,SLOT_HAND1)
+		.AddItem(PID_BOTTLE_CAPS,0,10,SLOT_INV);
 	group.AddCritter(19).Ratio(15).Dialog(0).Script("encounter_npc@_NpcInit");
 	group.AddCritter(20).Ratio(15).Dialog(0).Script("encounter_npc@_NpcInit");
 
@@ -809,6 +822,9 @@
 		.AddItem(PID_HUNTING_RIFLE,1,1,SLOT_HAND1)
 		.AddItem(PID_BOTTLE_CAPS,0,20,SLOT_INV);
 	group.AddCritter(41).Ratio(25).Dialog(0).Script("encounter_npc@_NpcInit")
+		.AddItem(PID_10MM_PISTOL,1,1,SLOT_HAND1)
+		.AddItem(PID_BOTTLE_CAPS,0,20,SLOT_INV);
+	group.AddCritter(41).Dialog(10121).CheckGVar(GVAR_game_event_caches,'>',0).Script("encounter_npc@_NpcInit")
 		.AddItem(PID_10MM_PISTOL,1,1,SLOT_HAND1)
 		.AddItem(PID_BOTTLE_CAPS,0,20,SLOT_INV);
 	group.AddCritter(40).Ratio(25).Dialog(0).Script("encounter_npc@_NpcInit")
@@ -843,6 +859,10 @@
 		.AddItem(PID_SLEDGEHAMMER,1,1,SLOT_HAND1)
 		.AddItem(PID_BOTTLE_CAPS,0,20,SLOT_INV)
 		.AddItem(PID_STIMPAK,1,1,SLOT_INV);
+	group.AddCritter(42).Dialog(10121).CheckGVar(GVAR_game_event_caches,'>',0).Script("encounter_npc@_NpcInit")
+		.AddItem(PID_SLEDGEHAMMER,1,1,SLOT_HAND1)
+		.AddItem(PID_BOTTLE_CAPS,0,20,SLOT_INV)
+		.AddItem(PID_STIMPAK,1,1,SLOT_INV);
 	group.AddCritter(45).Ratio(25).Dialog(0).Script("encounter_npc@_NpcInit")
 		.AddItem(PID_FRAG_GRENADE,3,6,SLOT_HAND1)
 		.AddItem(PID_COMBAT_KNIFE,1,1,SLOT_INV)
@@ -861,6 +881,9 @@
 		.AddItem(PID_GOLD_NUGGET,3,20,SLOT_INV)
 		.AddItem(PID_JET,4,10,SLOT_INV);
 	group.AddCritter(46).Ratio(25).Dialog(0).Script("encounter_npc@_NpcInit")
+		.AddItem(PID_ASSAULT_RIFLE,1,1,SLOT_HAND1)
+		.AddItem(PID_BOTTLE_CAPS,0,20,SLOT_INV);
+	group.AddCritter(46).Dialog(10121).CheckGVar(GVAR_game_event_caches,'>',0).Script("encounter_npc@_NpcInit")
 		.AddItem(PID_ASSAULT_RIFLE,1,1,SLOT_HAND1)
 		.AddItem(PID_BOTTLE_CAPS,0,20,SLOT_INV);
 	group.AddCritter(48).Ratio(25).Dialog(0).Script("encounter_npc@_NpcInit")
@@ -996,6 +1019,10 @@
 		.AddItem(PID_MINIGUN,1,1,SLOT_HAND1)
 		.AddItem(PID_5MM_JHP,20,80,SLOT_INV)
 		.AddItem(PID_BOTTLE_CAPS,0,30,SLOT_INV);
+	group.AddCritter(48).Dialog(10121).CheckGVar(GVAR_game_event_caches,'>',0).Script("encounter_npc@_NpcInit")
+		.AddItem(PID_MINIGUN,1,1,SLOT_HAND1)
+		.AddItem(PID_5MM_JHP,20,80,SLOT_INV)
+		.AddItem(PID_BOTTLE_CAPS,0,30,SLOT_INV);
 	group.AddCritter(49).Ratio(50).Dialog(0).Script("encounter_npc@_NpcInit")
 		.AddItem(PID_MINIGUN,1,1,SLOT_HAND1)
 		.AddItem(PID_BOTTLE_CAPS,0,30,SLOT_INV);
@@ -1017,6 +1044,9 @@
 		.AddItem(PID_WELDING,0,1,SLOT_INV)
 		.AddItem(PID_PUMP_PARTS,2,5,SLOT_INV);
 	group.AddCritter(159).Ratio(50).Dialog(0).Script("encounter_npc@_NpcInit")
+		.AddItem(PID_HUNTING_RIFLE,1,1,SLOT_HAND1)
+		.AddItem(PID_BOTTLE_CAPS,0,20,SLOT_INV);
+	group.AddCritter(159).Dialog(10121).CheckGVar(GVAR_game_event_caches,'>',0).Script("encounter_npc@_NpcInit")
 		.AddItem(PID_HUNTING_RIFLE,1,1,SLOT_HAND1)
 		.AddItem(PID_BOTTLE_CAPS,0,20,SLOT_INV);
 	group.AddCritter(159).Ratio(50).Dialog(0).Script("encounter_npc@_NpcInit")
@@ -1208,6 +1238,9 @@
 	group.AddCritter(222).Ratio(25).Dialog(0).Script("encounter_npc@_NpcInit")
 		.AddItem(PID_LASER_RIFLE,1,1,SLOT_HAND1)
 		.AddItem(PID_BOTTLE_CAPS,0,50,SLOT_INV);
+	group.AddCritter(222).Dialog(10121).CheckGVar(GVAR_game_event_caches,'>',0).Script("encounter_npc@_NpcInit")
+		.AddItem(PID_LASER_RIFLE,1,1,SLOT_HAND1)
+		.AddItem(PID_BOTTLE_CAPS,0,50,SLOT_INV);
 	group.AddCritter(222).Ratio(25).Dialog(0).Script("encounter_npc@_NpcInit")
 		.AddItem(PID_AVENGER_MINIGUN,1,1,SLOT_HAND1)
 		.AddItem(PID_COMBAT_KNIFE,1,1,SLOT_INV)
@@ -1386,6 +1419,9 @@
 	group.AddCritter(261).Ratio(25).Dialog(0).Script("encounter_npc@_NpcInit")
 		.AddItem(PID_COMBAT_SHOTGUN,1,1,SLOT_HAND1)
 		.AddItem(PID_BOTTLE_CAPS,0,30,SLOT_INV);
+	group.AddCritter(261).Dialog(10121).CheckGVar(GVAR_game_event_caches,'>',0).Script("encounter_npc@_NpcInit")
+		.AddItem(PID_COMBAT_SHOTGUN,1,1,SLOT_HAND1)
+		.AddItem(PID_BOTTLE_CAPS,0,30,SLOT_INV);
 	group.AddCritter(261).Ratio(25).Dialog(0).Script("encounter_npc@_NpcInit")
 		.AddItem(PID_FLAMER,1,1,SLOT_HAND1)
 		.AddItem(PID_BOTTLE_CAPS,0,40,SLOT_INV);
@@ -1410,6 +1446,9 @@
 		.AddItem(PID_MEAT_JERKY,0,12,SLOT_INV)
 		.AddItem(PID_LEATHER_JACKET,0,1,SLOT_INV);
 	group.AddCritter(261).Ratio(25).Dialog(0).Script("encounter_npc@_NpcInit")
+		.AddItem(PID_COMBAT_SHOTGUN,1,1,SLOT_HAND1)
+		.AddItem(PID_BOTTLE_CAPS,0,30,SLOT_INV);
+	group.AddCritter(261).Dialog(10121).CheckGVar(GVAR_game_event_caches,'>',0).Script("encounter_npc@_NpcInit")
 		.AddItem(PID_COMBAT_SHOTGUN,1,1,SLOT_HAND1)
 		.AddItem(PID_BOTTLE_CAPS,0,30,SLOT_INV);
 	group.AddCritter(261).Ratio(25).Dialog(0).Script("encounter_npc@_NpcInit")

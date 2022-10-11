@@ -7,17 +7,19 @@ lang=russ engl
 [dialog]
 &
 1 1000 None 0 #
-11 1010 D _var p q_den_lara_bos = 1 D _var p den_lara_bos_counter > 0 #
-2 1020 D _var n name_mem_npc_player = 0 D _var p scen_fraction = 0 #
-3 1030 D _var n name_mem_npc_player = 1 D _var p scen_fraction = 0 #
-4 1040 D _var p scen_fraction = 1 #
-5 1050 D _var p scen_fraction = 2 @
+11 1010 D _var p q_den_lara_bos = 1 D _var p den_lara_bos_counter > 0 D _script monologue@d_NotMonologueRunning 0  #
+2 1020 D _var n name_mem_npc_player = 0 D _var p scen_fraction = 0 D _script monologue@d_NotMonologueRunning 0  #
+3 1030 D _var n name_mem_npc_player = 1 D _var p scen_fraction = 0 D _script monologue@d_NotMonologueRunning 0  #
+4 1040 D _var p scen_fraction = 1 D _script monologue@d_NotMonologueRunning 0  #
+5 1050 D _var p scen_fraction = 2 D _script monologue@d_NotMonologueRunning 0  @
 2 2000 None 0 #
 6 2010 R _var n name_mem_npc_player = 1 #
 0 2020 @
 3 3000 None 0 #
 7 3010 #
-0 3020 @
+0 3020 #
+12 3030 D _script dialog@d_TimeoutCheck 0  #
+13 3040 D _script dialog@d_NotTimeoutCheck 0  @
 4 4000 None 0 #
 8 4010 #
 0 4020 @
@@ -34,7 +36,11 @@ lang=russ engl
 10 10000 None 0 @
 11 11000 None 0 #
 7 11010 R _var p den_lara_bos_counter - 1 #
-0 11020 &
+0 11020 @
+12 12000 None 0 #
+0 12010 R _script dialog@r_TimeoutSet 1 10 R _script monologue@r_RunMonologue 5 630 659 8 0 6 @
+13 13000 None 0 #
+0 13010 &
 
 [russ]
 {100}{}{Джошуа}
@@ -53,6 +59,8 @@ lang=russ engl
 {3000}{}{Привет, это сновы ты?}
 {3010}{}{Так чем вы, Братство Стали, занимаетесь?}
 {3020}{}{Да это я просто здороваюсь. А сейчас до свидания!}
+{3030}{}{Говорят, ты знаешь какую-то старинную балладу, хотелось бы послушать тебя, Джошуа!}
+{3040}{}{Говорят, ты знаешь какую-то старинную балладу, хотелось бы послушать тебя, Джошуа!}
 {4000}{}{Приветствую тебя, брат. Что нового?}
 {4010}{}{Как у вас тут обстановка, все в порядке?}
 {4020}{}{Все отлично, просто проверяю.}
@@ -70,6 +78,10 @@ lang=russ engl
 {11000}{}{Привет, это сновы ты?}
 {11010}{}{Так чем вы, Братство Стали, занимаетесь?}
 {11020}{}{Да это я просто здороваюсь. А сейчас до свидания!}
+{12000}{}{Гм. Ну, что ж. Думаю, можно это устроить...}
+{12010}{}{Валяй, Джошуа!}
+{13000}{}{Нет, я уже недавно ее исполнял. В горле першит. Потом...}
+{13010}{}{Жаль! Ну, тогда как-нибудь в другой раз.}
 
 [engl]
 {100}{}{Joshua}
@@ -88,6 +100,8 @@ lang=russ engl
 {3000}{}{Hello, it's you again?}
 {3010}{}{What are you, the Brotherhood of Steel, doing?}
 {3020}{}{I just wanted to say hello and now I say goodbye!}
+{3030}{}{Говорят, ты знаешь какую-то старинную балладу, хотелось бы послушать тебя, Джошуа!}
+{3040}{}{Говорят, ты знаешь какую-то старинную балладу, хотелось бы послушать тебя, Джошуа!}
 {4000}{}{Greetings, brother. What's new?}
 {4010}{}{How are you getting on, is everything alright?}
 {4020}{}{Everything's ok, I'm just visiting you.}
@@ -105,4 +119,8 @@ lang=russ engl
 {11000}{}{Hi there, you again?}
 {11010}{}{So what does the Brotherhood of Steel do?}
 {11020}{}{Yeah, me, I just wanted to say hello and now I say goodbye!}
+{12000}{}{Гм. Ну, что ж. Думаю, можно это устроить...}
+{12010}{}{Прекрасно!}
+{13000}{}{Нет, я уже недавно ее исполнял. В горле першит. Потом...}
+{13010}{}{Жаль! Ну, тогда как-нибудь в другой раз.}
 

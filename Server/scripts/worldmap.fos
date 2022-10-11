@@ -935,7 +935,11 @@ Map@ GenerateEncounter(CFoundedEncounter@ fe, Critter@[]@ critters)
 		Log("GetLocation fail.");
 		return null;
 	}
-
+	GameVar@ isEncounter = GetLocalVar(LLVAR_is_encounter, fe.LocationId);
+	if(valid(isEncounter))
+	{
+		isEncounter = 1;
+	}
 	// Генерация итемов на всех картах энкаунтера
 	for(uint i=0,l=location.GetMapCount();i<l;i++)
 	{
