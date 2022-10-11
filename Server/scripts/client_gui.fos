@@ -564,8 +564,6 @@ void GUI_Init()
 	@KbData[DIK_SUBTRACT]=		KeybData('-','-','-','-');
 	@KbData[DIK_ADD]=			KeybData('+','+','+','+');
 	@KbData[DIK_DECIMAL]=		KeybData('.','.','.','.');
-	@KbData[DIK_NUMPADEQUALS]=	KeybData('=','=','=','=');
-	@KbData[DIK_NUMPADCOMMA]=	KeybData(',',',',',',',');
 	@KbData[DIK_DIVIDE]=		KeybData('/','/','/','/');
 	@KbData[DIK_RETURN]=		KeybData('\n','\n','\n','\n');
 	@KbData[DIK_NUMPADENTER]=	KeybData('\n','\n','\n','\n');

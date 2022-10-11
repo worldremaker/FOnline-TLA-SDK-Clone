@@ -477,8 +477,6 @@ struct GameOptions
 	int    ScrollDelay;
 	int    ScrollStep;
 	bool   ScrollCheck;
-	int    MouseSpeed;
-	bool   GlobalSound;
 	string FoDataPath;
 	int    FoDataPathRefCount;
 	int    Sleep;
@@ -1869,7 +1867,7 @@ inline void static_asserts()
 	STATIC_ASSERT(sizeof(IntPair)     == 8   );
 	STATIC_ASSERT(sizeof(ProtoItem)   == 908 );
 	STATIC_ASSERT(sizeof(Mutex)       == 24  );
-	STATIC_ASSERT(sizeof(GameOptions) == 1148);
+	STATIC_ASSERT(sizeof(GameOptions) == 1140);
 	STATIC_ASSERT(sizeof(ScriptArray) == 36  );
 	STATIC_ASSERT(sizeof(SpriteInfo)  == 36  );
 	STATIC_ASSERT(sizeof(Field)       == 76  );
