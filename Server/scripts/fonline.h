@@ -4,7 +4,7 @@
 //
 // FOnline engine structures, for native working
 // Last update 06.10.2011
-// Server version 454, MSVS2008
+// Server version 455, MSVS2008
 // Default calling convention - cdecl
 //
 
@@ -1169,7 +1169,9 @@ struct Critter
 		uint   LocationsId[MAX_STORED_LOCATIONS];
 		uint   Reserved25[40];
 		uint   PlayIp[MAX_STORED_IP]; // 0 - registration ip
-		uint   Reserved26[40];
+		uint16 PlayPort[MAX_STORED_IP];
+		uint   CurrentIp;
+		uint   Reserved26[29];
 	} *DataExt;
 
 	SyncObj Sync;
