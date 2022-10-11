@@ -7,6 +7,8 @@ import void DropDrugEffects(Critter& cr) from "drugs";
 import void DropPoison(Critter& cr) from "poison";
 import void DropRadiation(Critter& cr) from "radiation";
 import void PlayVideo(Critter& cr, string& videoName, bool canStop) from "media";
+import void FindEncounter(Critter@[]& group, Item@ car, uint x, uint y, uint& encounterDescriptor, bool& waitForAnswer, bool empty) from "worldmap";
+import void InviteToEncounter(Critter@[]& group, Item@ car, uint encounterDescriptor, int combatMode, uint& mapId, uint16& hexX, uint16& hexY, uint8& dir) from "worldmap";
 
 const uint16 HellMapPid=MAP_replication_hell;
 const uint16[] ReplicatorsMapPids={MAP_replication1,MAP_replication2,MAP_replication3,MAP_replication4};
@@ -52,10 +54,7 @@ void AddPermanentDeath(uint id)
 
 Map@ GetStartReplicatorMap()
 {
-//	uint16 replMapPid=ReplicatorsMapPids[ReplicatorPos];
-//	if(++ReplicatorPos>=ReplicatorsMapPids.length()) ReplicatorPos=0;
-//	return ::GetMapByPid(replMapPid,0);
-	return ::GetMapByPid(ReplicatorsMapPids[0],0);
+	return GetMapByPid(ReplicatorsMapPids[0],0);
 }
 
 Map@ GetNearReplicatorMap(Critter& cr)
@@ -64,7 +63,7 @@ Map@ GetNearReplicatorMap(Critter& cr)
 	int nearDist=0;
 	for(uint i=0,j=ReplicatorsMapPids.length();i<j;i++)
 	{
-		Map@ map=::GetMapByPid(ReplicatorsMapPids[i],0);
+		Map@ map=GetMapByPid(ReplicatorsMapPids[i],0);
 		if(valid(map))
 		{
 			Location@ loc=map.GetLocation();
@@ -161,6 +160,39 @@ void ReplicateCritter(Critter& cr) // Export
 	Map@ map=null;
 	uint16 hx=0,hy=0;
 
+	// Check car
+	Item@[] cars;
+	cr.GetItemsByType(ITEM_TYPE_CAR, cars);
+	if(cars.length() > 0)
+	{
+		// Transit to random encounter
+		bool transferred=false;
+		uint encounterDescriptor=uint(-1);
+		bool waitForAnswer=false;
+		FindEncounter(cr.GetGlobalGroup(), cars[0], cr.WorldX, cr.WorldY, encounterDescriptor, waitForAnswer, true);
+		if(encounterDescriptor!=uint(-1))
+		{
+			uint mapId=0;
+			uint16 hexX=0;
+			uint16 hexY=0;
+			uint8 dir=0;
+			InviteToEncounter(cr.GetGlobalGroup(), cars[0], encounterDescriptor, COMBAT_MODE_ANY, mapId, hexX, hexY, dir);
+			if(mapId!=0 && cr.TransitToMap(mapId,hexX,hexY,dir))
+				transferred=true;
+		}
+
+		// Encounter not founded or transfer fail, delete cars
+		if(!transferred)
+		{
+			for(uint i=0;i<cars.length();i++)
+				DeleteItem(cars[i]);
+		}
+
+		// Continue dead
+		cr.TimeoutBase[TO_REPLICATION]=__FullSecond+REAL_MINUTE(1);
+		return;
+	}
+
 	if(cr.IsPlayer())
 	{
 		bool dieMapIsHell=(valid(dieMap) && IsHellMap(dieMap.GetProtoId()));
@@ -249,7 +281,7 @@ void ReplicateCritter(Critter& cr) // Export
 
 		if(cr.Stat[ST_DEAD_BLOCKER_ID]!=0)
 		{
-			Item@ block=::GetItem(cr.Stat[ST_DEAD_BLOCKER_ID]);
+			Item@ block=GetItem(cr.Stat[ST_DEAD_BLOCKER_ID]);
 			if(valid(block)) DeleteItem(block);
 			cr.StatBase[ST_DEAD_BLOCKER_ID]=0;
 		}
