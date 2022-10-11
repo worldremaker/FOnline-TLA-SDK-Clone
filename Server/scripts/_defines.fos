@@ -1400,6 +1400,9 @@
 #pragma bindfield "const uint   ProtoItem::Ammo_DmgMult -> 308"
 #pragma bindfield "const uint   ProtoItem::Ammo_DmgDiv  -> 312"
 
+// Test function, DLL loaded to server and client
+#pragma bindfunc "void TestFunc(string&) -> fonline_test.dll TestFunc"
+
 #endif // SKIP_PRAGMAS
 
 #endif // __DEFINES__
