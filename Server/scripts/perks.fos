@@ -40,8 +40,8 @@ bool PerkCheck(Critter& cr, uint perk) // Export
 	PROCESS_PERK1(PE_EDUCATED,            3,  6, cr.ParamBase[ST_INTELLECT]>=6     );
 	PROCESS_PERK4(PE_HEALER,              2,  3, cr.ParamBase[ST_PERCEPTION]>=7,   cr.ParamBase[ST_AGILITY]>=6,      cr.ParamBase[ST_INTELLECT]>=5,        cr.ParamBase[SK_FIRST_AID]>=40);
 //	PROCESS_PERK3(PE_BETTER_CRITICALS,    1,  9, cr.ParamBase[ST_PERCEPTION]>=6,   cr.ParamBase[ST_LUCK]>=6,         cr.ParamBase[ST_AGILITY]>=4);
-//	PROCESS_PERK5(PE_SLAYER,              1, 24, cr.ParamBase[ST_AGILITY]>=8,      cr.ParamBase[ST_STRENGTH]>=8,     cr.ParamBase[SK_UNARMED]>=80,         cr.ParamBase[PE_SNIPER]==0,            cr.ParamBase[PE_TERMINATOR]==0);
-//	PROCESS_PERK5(PE_SNIPER,              1, 24, cr.ParamBase[ST_AGILITY]>=8,      cr.ParamBase[ST_PERCEPTION]>=8,   cr.ParamBase[SK_SMALL_GUNS]>=80,      cr.ParamBase[PE_SLAYER]==0,            cr.ParamBase[PE_TERMINATOR]==0);
+	PROCESS_PERK5(PE_SLAYER,              1, 24, cr.ParamBase[ST_AGILITY]>=8,      cr.ParamBase[ST_STRENGTH]>=8,     cr.ParamBase[SK_UNARMED]>=80,         cr.ParamBase[PE_SNIPER]==0,            cr.ParamBase[PE_TERMINATOR]==0);
+	PROCESS_PERK5(PE_SNIPER,              1, 24, cr.ParamBase[ST_AGILITY]>=8,      cr.ParamBase[ST_PERCEPTION]>=8,   cr.ParamBase[SK_SMALL_GUNS]>=80,      cr.ParamBase[PE_SLAYER]==0,            cr.ParamBase[PE_TERMINATOR]==0);
 	PROCESS_PERK3(PE_SILENT_DEATH,        1, 18, cr.ParamBase[ST_AGILITY]>=10,     cr.ParamBase[SK_SNEAK]>=80,       cr.ParamBase[SK_UNARMED]>=80);
 	PROCESS_PERK1(PE_ACTION_BOY,          2, 12, cr.ParamBase[ST_AGILITY]>=5       );
 	PROCESS_PERK1(PE_LIFEGIVER,           2, 12, cr.ParamBase[ST_ENDURANCE]>=4      );
@@ -89,7 +89,7 @@ bool PerkCheck(Critter& cr, uint perk) // Export
 	PROCESS_PERK1(PE_STONEWALL,           1,  3, cr.ParamBase[ST_STRENGTH]>=6      );
 	PROCESS_PERK0(PE_THIEF,               1,  3  );
 	PROCESS_PERK1(PE_WEAPON_HANDLING,     1, 12, cr.ParamBase[ST_AGILITY]>=5       );
-//	PROCESS_PERK5(PE_TERMINATOR,          1, 24, cr.ParamBase[ST_STRENGTH]>=8,     cr.ParamBase[ST_ENDURANCE]>=8,    cr.ParamBase[SK_DOCTOR]>=80,          cr.ParamBase[PE_SNIPER]==0,            cr.ParamBase[PE_SLAYER]==0);
+	PROCESS_PERK5(PE_TERMINATOR,          1, 24, cr.ParamBase[ST_STRENGTH]>=8,     cr.ParamBase[ST_ENDURANCE]>=8,    cr.ParamBase[SK_DOCTOR]>=80,          cr.ParamBase[PE_SNIPER]==0,            cr.ParamBase[PE_SLAYER]==0);
 	default: break;
 	}
 	return false;

@@ -4,7 +4,7 @@
 
 
 # Version info
-{1}{}{FOnline: The Life After v0.9 (No PVP test)}
+{1}{}{FOnline: The Life After v0.10}
 
 ####################################################################################################################################
 #
@@ -116,7 +116,7 @@
 #
 ####################################################################################################################################
 
-{250}{}{|4291317840 This feature is not implemented yet, use FOConfig.exe to edit game settings.}
+{250}{}{|4291317840 This feature is not implemented yet, use FOConfig.exe or Launcher.exe to edit game settings.}
 {251}{}{Screenshot saved.}
 {252}{}{Screenshot not saved.}
 {253}{}{Log saved.}
@@ -141,13 +141,13 @@
 {293}{}{Exit}
 {294}{}{Resume}
 # Login
-{300}{}{New game}     # Singleplayer
-{301}{}{Load game}    # Singleplayer
-{302}{}{Play}         # Multiplayer
-{303}{}{Registration} # Multiplayer
-{304}{}{Options}
-{305}{}{Credits}
-{306}{}{Exit}
+{300}{}{|0xAECF45 New game}     # Singleplayer
+{301}{}{|0xAECF45 Load game}    # Singleplayer
+{302}{}{|0xAECF45 Play}         # Multiplayer
+{303}{}{|0xAECF45 Registration} # Multiplayer
+{304}{}{|0xAECF45 Options}
+{305}{}{|0xAECF45 Credits}
+{306}{}{|0xAECF45 Exit}
 # Dialog box
 {310}{}{Cancel}
 {311}{}{Ok}

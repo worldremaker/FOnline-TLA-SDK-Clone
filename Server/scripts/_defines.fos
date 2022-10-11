@@ -1142,7 +1142,7 @@
 #define GLOBAL_PROCESS_STOPPED      (5)
 #define GLOBAL_PROCESS_NPC_IDLE     (6) // Called every __CritterIdleTick
 #define GLOBAL_PROCESS_KICK         (7)
-#define GLOBAL_MAP_BASE_SPEED       (2.0f) // Base speed, 2 pixels per second
+#define GLOBAL_MAP_BASE_SPEED       (2.4f) // Base speed, 2.4 pixels per second
 
 // Global map walk types
 #define GM_WALK_GROUND              (0)
