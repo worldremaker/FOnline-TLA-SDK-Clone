@@ -286,7 +286,6 @@ class GatesControl // Описание и методы охраняемых ворот
 
 	void GetGoodList() // Получение списка игроков с пропусками
 	{
-		DL("try check goodlist");
 		if(!IsAnyData( ANYDATA_GOOD_LIST_KEY(this.GatesId))) return;
 		uint[] data;
 		if(!GetAnyData( ANYDATA_GOOD_LIST_KEY(this.GatesId), data)) return;
@@ -295,21 +294,19 @@ class GatesControl // Описание и методы охраняемых ворот
 		uint idx=1;
 		for(uint i=0;i<goodPlayers;i++)
 		{
-			DL("data len "+data.length());
-			if(data.length()<=idx+2) break;
+			if(data.length()<=idx+3) 
+				break;
 			PassAccept @ pass = PassAccept();
 			pass.PlayerId = data[idx];
 			pass.PassType = data[idx+1];
 			pass.CancelTime = data[idx+2];
 			pass.GatesId = data[idx+3];
-			DL("checktime");
+			idx+=4;
 			if(pass.CancelTime*60>__FullSecond) // Время пропуска еще не прошло
 			{
-				DL("pUUUUUSH!");
 				this.goodList.insertLast(pass);
 			}
 		}
-		DL("loaded."+goodPlayers);
 		this.goodListLoaded = true;
 		this.SaveGoodList();
 	}

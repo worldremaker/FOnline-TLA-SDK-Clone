@@ -302,7 +302,7 @@ uint e_AdvancedCraft(uint[]@ values)
 	if(values.length() < 3)
 		return 0;
 	Critter@ cr = GetCritter(values[0]);
-	if(!valid(cr))
+	if(valid(cr))
 	{
 		Item@ baseItem = _CritGetItem(cr, values[1]);
 		if(valid(baseItem))
@@ -313,6 +313,7 @@ uint e_AdvancedCraft(uint[]@ values)
 			{
 				advItem.Info = values[3];
 				advItem.SetLexems("$craftername" + GetPlayerName(cr.Id));
+				advItem.Update();
 			}
 		}
 	}

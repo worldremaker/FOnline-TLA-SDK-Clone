@@ -275,7 +275,7 @@ void TransformPlayer(Map& map, Critter& player, Critter& doctor)
 	DL("TRANSFORM");
 	FlushScreen(player, COLOR_BLACK, COLOR_BLACK, 5000);
 	if(player.Stat[ST_NEXT_CRTYPE]==0)
-		player.StatBase[ST_NEXT_CRTYPE] = player.Stat[ST_BASE_CRTYPE];
+		player.StatBase[ST_NEXT_CRTYPE] = player.CrType;
 	player.ChangeCrType(CRTYPE_TACTICS_RHUMANOID);
 	player.StatBase[ST_BASE_CRTYPE] = CRTYPE_TACTICS_RHUMANOID;
 	uint16 hX = 0, hY = 0;
