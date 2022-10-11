@@ -4,7 +4,7 @@
 #define FIX_SUCCESS         (FIXBOY_DEFAULT)
 #define FIX_FAIL            (FIXBOY_DEFAULT^FIXBOY_ALLOW_CRAFT)
 
-int fix_PowerArmor(Critter& player, int state)
+int fix_PowerArmor(Critter& player, int state, CraftItem& craft)
 {
 	GameVar@ canPA=GetLocalVar(LVAR_fixboy_power_armor,player.Id);
 	if(not valid(canPA) || canPA==0) return FIX_FAIL;
@@ -46,21 +46,21 @@ int fix_PowerArmor(Critter& player, int state)
 
 /*                РЕЦЕПТЫ                 */
 
-int fix_AnyStuff(Critter& player, int state)
+int fix_AnyStuff(Critter& player, int state, CraftItem& craft)
 {
 	return fix_Something(player, SCENERY_WORKBENCH, DEFAULT_RADIUS, LVAR_fixboy_default, state, 120, 100);
 }
 
-int fix_SuperSledge(Critter& player, int state)  // Рецепт на изготовление суперкувалды. Ши.
+int fix_SuperSledge(Critter& player, int state, CraftItem& craft)  // Рецепт на изготовление суперкувалды. Ши.
 {
 	return fix_Something(player, SCENERY_SHOE_WORKBENCH, DEFAULT_RADIUS, LVAR_sf_recipe_supersledge, state, DEFAULT_TIMEOUT_MINUTES(player), DEFAULT_CHARGES);
 }
 
-int fix_ChitinArmor(Critter& player, int state) // Хитиновая броня
+int fix_ChitinArmor(Critter& player, int state, CraftItem& craft) // Хитиновая броня
 {
 	if(state == FIXBOY_LIST)
 	{
-		if(fix_ByRecipe(player, PID_CHITIN_ARMOR_RECIPE, state) == FIX_SUCCESS)
+		if(fix_ByRecipe(player, PID_CHITIN_ARMOR_RECIPE, state, craft) == FIX_SUCCESS)
 			return FIX_SUCCESS;
 		return fix_Something(player, SCENERY_STOVE, 10, LVAR_sf_chitin_armor_recipe_known, state, DEFAULT_TIMEOUT_MINUTES(player), 1);
 	}
@@ -70,7 +70,7 @@ int fix_ChitinArmor(Critter& player, int state) // Хитиновая броня
 	}
 	if(state==FIXBOY_CRAFT)
 	{
-		fix_ByRecipe(player, PID_CHITIN_ARMOR_RECIPE, state);
+		fix_ByRecipe(player, PID_CHITIN_ARMOR_RECIPE, state, craft);
 		fix_Something(player, SCENERY_STOVE, 10, LVAR_sf_chitin_armor_recipe_known, state, DEFAULT_TIMEOUT_MINUTES(player), 1);
 		if( _CritCountItem(player, PID_METAL_TRASH) > 3)
 		{
@@ -86,22 +86,22 @@ int fix_ChitinArmor(Critter& player, int state) // Хитиновая броня
 	return FIX_SUCCESS;
 }
 
-int fix_PlasmaGrenade(Critter& player, int state) // Рецепт на изготовление плазменных гранат. Хабологи.
+int fix_PlasmaGrenade(Critter& player, int state, CraftItem& craft) // Рецепт на изготовление плазменных гранат. Хабологи.
 {
 	return fix_Something(player, SCENERY_HUB_WORKBENCH, DEFAULT_RADIUS, LVAR_sf_recipe_plasmagrenades, state, DEFAULT_TIMEOUT_MINUTES(player), 50);
 }
 
-int fix_NitroExpress(Critter& player, int state) // Рецепт на изготовление винтовки .700 калибра, включен по-умолчанию.
+int fix_NitroExpress(Critter& player, int state, CraftItem& craft) // Рецепт на изготовление винтовки .700 калибра, включен по-умолчанию.
 {
 	return fix_Something(player, SCENERY_LATHE, DEFAULT_RADIUS, LVAR_fixboy_700_nitro_express, state, DEFAULT_TIMEOUT_MINUTES(player), 2);
 }
 
-int fix_NitroExpressRounds(Critter& player, int state)
+int fix_NitroExpressRounds(Critter& player, int state, CraftItem& craft)
 {
 	return fix_Something(player, SCENERY_AMMO_PRESS, DEFAULT_RADIUS, LVAR_fixboy_ammo_press_operator, state, 6000, 10);
 }
 
-int fix_AnyRounds(Critter& player, int state)
+int fix_AnyRounds(Critter& player, int state, CraftItem& craft)
 {
 	return fix_Something(player, SCENERY_AMMO_PRESS, DEFAULT_RADIUS, LVAR_fixboy_ammo_press_operator, state, 120, 10);
 }
@@ -257,7 +257,7 @@ void SetWorkbenchCharges(Critter & player, int pidWorkbench, int chargesMax)
 
 
 /* Крафт с бумажным рецептом, рецепт исчезает после крафта */
-uint fix_ByRecipe(Critter& player, int recipePid, int state)
+uint fix_ByRecipe(Critter& player, int recipePid, int state, CraftItem& craft)
 {
 	if(state==FIXBOY_LIST)
 	{
