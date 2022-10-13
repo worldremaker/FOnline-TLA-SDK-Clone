@@ -1430,8 +1430,11 @@ bool player_getaccess(Critter& player, int access, string& password)
 	return true;
 }
 
-bool player_allowcommand( Critter& player, uint8 command )
+bool player_allowcommand( Critter@ player, string@ adminPanel, uint8 command )
 {
+	if(valid(adminPanel))
+		return true;
+
 	switch(command)
 	{
 	// ACCESS_CLIENT
