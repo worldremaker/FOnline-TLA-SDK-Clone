@@ -1,7 +1,7 @@
 #include "fonline_tla.h"
 
 // Engine data
-GameOptions* Game;
+GameOptions* FOnline;
 asIScriptEngine* ASEngine;
 void (*Log)(const char* frmt, ...);
 
@@ -83,8 +83,8 @@ EXPORT void DllMainEx(bool compiler)
 	if(compiler) return;
 
 	// Register callbacks
-	Game->GetUseApCost = &GetUseApCost;
-	Game->GetAttackDistantion = &GetAttackDistantion;
+	FOnline->GetUseApCost = &GetUseApCost;
+	FOnline->GetAttackDistantion = &GetAttackDistantion;
 
 	// Register script global vars
 	memset(&GlobalVars, 0, sizeof(GlobalVars));
@@ -313,7 +313,7 @@ EXPORT int getParam_PoisonResist(CritterMutual& cr, uint)
 
 EXPORT int getParam_Timeout(CritterMutual& cr, uint index)
 {
-	return (uint)cr.Params[index] > Game->FullSecond ? (uint)cr.Params[index] - Game->FullSecond : 0;
+	return (uint)cr.Params[index] > FOnline->FullSecond ? (uint)cr.Params[index] - FOnline->FullSecond : 0;
 }
 
 EXPORT int getParam_Reputation(CritterMutual& cr, uint index)
@@ -321,7 +321,7 @@ EXPORT int getParam_Reputation(CritterMutual& cr, uint index)
 #ifdef __SERVER
 	if(cr.Params[index] == 0x80000000)
 	{
-		Game->CritterChangeParameter(cr, index);
+		FOnline->CritterChangeParameter(cr, index);
 		cr.Params[index] = 0;
 	}
 #else
@@ -420,16 +420,16 @@ uint GetUseApCost(CritterMutual& cr, Item& item, uint8 mode)
 	if(use == USE_USE)
 	{
 		if(TB_BATTLE_TIMEOUT_CHECK(getParam_Timeout(cr, TO_BATTLE)))
-			apCost = Game->TbApCostUseItem;
+			apCost = FOnline->TbApCostUseItem;
 		else
-			apCost = Game->RtApCostUseItem;
+			apCost = FOnline->RtApCostUseItem;
 	}
 	else if(use == USE_RELOAD)
 	{
 		if(TB_BATTLE_TIMEOUT_CHECK(getParam_Timeout(cr, TO_BATTLE)))
-			apCost = Game->TbApCostReloadWeapon;
+			apCost = FOnline->TbApCostReloadWeapon;
 		else
-			apCost = Game->RtApCostReloadWeapon;
+			apCost = FOnline->RtApCostReloadWeapon;
 
 		if(item.IsWeapon() && item.Proto->Weapon_Perk == WEAPON_PERK_FAST_RELOAD) apCost--;
 	}
@@ -468,9 +468,9 @@ uint GetAttackDistantion(CritterMutual& cr, Item& item, uint8 mode)
 
 int GetNightPersonBonus()
 {
-	if(Game->Hour < 6 || Game->Hour > 18) return 1;
-	if(Game->Hour == 6 && Game->Minute == 0) return 1;
-	if(Game->Hour == 18 && Game->Minute > 0) return 1;
+	if(FOnline->Hour < 6 || FOnline->Hour > 18) return 1;
+	if(FOnline->Hour == 6 && FOnline->Minute == 0) return 1;
+	if(FOnline->Hour == 18 && FOnline->Minute > 0) return 1;
 	return -1;
 }
 
@@ -478,14 +478,14 @@ uint GetAimApCost(int hitLocation)
 {
 	switch(hitLocation)
 	{
-	case HIT_LOCATION_TORSO:     return Game->ApCostAimTorso;
-	case HIT_LOCATION_EYES:      return Game->ApCostAimEyes;
-	case HIT_LOCATION_HEAD:      return Game->ApCostAimHead;
+	case HIT_LOCATION_TORSO:     return FOnline->ApCostAimTorso;
+	case HIT_LOCATION_EYES:      return FOnline->ApCostAimEyes;
+	case HIT_LOCATION_HEAD:      return FOnline->ApCostAimHead;
 	case HIT_LOCATION_LEFT_ARM:
-	case HIT_LOCATION_RIGHT_ARM: return Game->ApCostAimArms;
-	case HIT_LOCATION_GROIN:     return Game->ApCostAimGroin;
+	case HIT_LOCATION_RIGHT_ARM: return FOnline->ApCostAimArms;
+	case HIT_LOCATION_GROIN:     return FOnline->ApCostAimGroin;
 	case HIT_LOCATION_RIGHT_LEG:
-	case HIT_LOCATION_LEFT_LEG:  return Game->ApCostAimLegs;
+	case HIT_LOCATION_LEFT_LEG:  return FOnline->ApCostAimLegs;
 	case HIT_LOCATION_NONE:
 	case HIT_LOCATION_UNCALLED:
 	default: break;
@@ -515,7 +515,7 @@ uint GetAimHit(int hitLocation)
 uint GetMultihex(CritterMutual& cr)
 {
 	int mh = cr.Multihex;
-	if(mh < 0) mh = Game->CritterTypes[cr.BaseType].Multihex;
+	if(mh < 0) mh = FOnline->CritterTypes[cr.BaseType].Multihex;
 	return CLAMP(mh, 0, MAX_HEX_OFFSET);
 }
 

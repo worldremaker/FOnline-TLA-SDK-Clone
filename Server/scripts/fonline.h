@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 14.11.2011
-// Server version 468, MSVS, GCC
+// Last update 19.11.2011
+// Server version 469, MSVS, GCC
 // Default calling convention - cdecl
 //
 
@@ -56,13 +56,13 @@
 # ifdef FO_MSVC
 #  define EXPORT                 extern "C" __declspec(dllexport)
 #  define EXPORT_UNINITIALIZED   extern "C" __declspec(dllexport) extern
-# else // GCC
-#  define EXPORT                 extern "C" __attribute__ ((dllexport))
-#  define EXPORT_UNINITIALIZED   extern "C" __attribute__ ((dllexport)) extern
+# else // FO_GCC
+#  define EXPORT                 extern "C" __attribute__((dllexport))
+#  define EXPORT_UNINITIALIZED   extern "C" __attribute__((dllexport)) extern
 # endif
 #else
-# define EXPORT                  extern "C"
-# define EXPORT_UNINITIALIZED    extern "C"
+# define EXPORT                  extern "C" __attribute__((visibility("default")))
+# define EXPORT_UNINITIALIZED    extern "C" __attribute__((visibility("default")))
 #endif
 
 // STL
@@ -228,28 +228,28 @@ EXPORT_UNINITIALIZED void (*Log)(const char* frmt, ...);
 
 // Parameters
 #define MAX_PARAMS                  (1000)
-#define SKILL_OFFSET(skill)         ((skill) + (Game->AbsoluteOffsets ? 0 : SKILL_BEGIN))
-#define PERK_OFFSET(perk)           ((perk)  + (Game->AbsoluteOffsets ? 0 : PERK_BEGIN ))
+#define SKILL_OFFSET(skill)         ((skill) + (FOnline->AbsoluteOffsets ? 0 : SKILL_BEGIN))
+#define PERK_OFFSET(perk)           ((perk)  + (FOnline->AbsoluteOffsets ? 0 : PERK_BEGIN ))
 #define TB_BATTLE_TIMEOUT           (100000000)
 #define TB_BATTLE_TIMEOUT_CHECK(to) ((to)>10000000)
-#define SKILL_BEGIN                 (Game->SkillBegin)
-#define SKILL_END                   (Game->SkillEnd)
-#define TIMEOUT_BEGIN               (Game->TimeoutBegin)
-#define TIMEOUT_END                 (Game->TimeoutEnd)
-#define KILL_BEGIN                  (Game->KillBegin)
-#define KILL_END                    (Game->KillEnd)
-#define PERK_BEGIN                  (Game->PerkBegin)
-#define PERK_END                    (Game->PerkEnd)
-#define ADDICTION_BEGIN             (Game->AddictionBegin)
-#define ADDICTION_END               (Game->AddictionEnd)
-#define KARMA_BEGIN                 (Game->KarmaBegin)
-#define KARMA_END                   (Game->KarmaEnd)
-#define DAMAGE_BEGIN                (Game->DamageBegin)
-#define DAMAGE_END                  (Game->DamageEnd)
-#define TRAIT_BEGIN                 (Game->TraitBegin)
-#define TRAIT_END                   (Game->TraitEnd)
-#define REPUTATION_BEGIN            (Game->ReputationBegin)
-#define REPUTATION_END              (Game->ReputationEnd)
+#define SKILL_BEGIN                 (FOnline->SkillBegin)
+#define SKILL_END                   (FOnline->SkillEnd)
+#define TIMEOUT_BEGIN               (FOnline->TimeoutBegin)
+#define TIMEOUT_END                 (FOnline->TimeoutEnd)
+#define KILL_BEGIN                  (FOnline->KillBegin)
+#define KILL_END                    (FOnline->KillEnd)
+#define PERK_BEGIN                  (FOnline->PerkBegin)
+#define PERK_END                    (FOnline->PerkEnd)
+#define ADDICTION_BEGIN             (FOnline->AddictionBegin)
+#define ADDICTION_END               (FOnline->AddictionEnd)
+#define KARMA_BEGIN                 (FOnline->KarmaBegin)
+#define KARMA_END                   (FOnline->KarmaEnd)
+#define DAMAGE_BEGIN                (FOnline->DamageBegin)
+#define DAMAGE_END                  (FOnline->DamageEnd)
+#define TRAIT_BEGIN                 (FOnline->TraitBegin)
+#define TRAIT_END                   (FOnline->TraitEnd)
+#define REPUTATION_BEGIN            (FOnline->ReputationBegin)
+#define REPUTATION_END              (FOnline->ReputationEnd)
 
 // Events
 #define MAP_LOOP_FUNC_MAX           (5)
@@ -554,7 +554,7 @@ struct GameOptions
 	uint (*GetUseApCost)(CritterMutual& cr, Item& item, uint8 mode);
 	uint (*GetAttackDistantion)(CritterMutual& cr, Item& item, uint8 mode);
 };
-EXPORT_UNINITIALIZED GameOptions* Game;
+EXPORT_UNINITIALIZED GameOptions* FOnline;
 
 struct Mutex
 {
@@ -1761,27 +1761,27 @@ struct Sprite
 
 	SpriteInfo* GetSprInfo()
 	{
-		return Game->GetSpriteInfo(PSprId ? *PSprId : SprId);
+		return FOnline->GetSpriteInfo(PSprId ? *PSprId : SprId);
 	}
 
  	void GetPos(int& x, int& y)
  	{
  		SpriteInfo* si = GetSprInfo();
- 		x = (int)((float)(ScrX - si->Width / 2 + si->OffsX + (OffsX ? *OffsX : 0) + Game->ScrOx) / Game->SpritesZoom);
- 		y = (int)((float)(ScrY - si->Height    + si->OffsY + (OffsY ? *OffsY : 0) + Game->ScrOy) / Game->SpritesZoom);
+ 		x = (int)((float)(ScrX - si->Width / 2 + si->OffsX + (OffsX ? *OffsX : 0) + FOnline->ScrOx) / FOnline->SpritesZoom);
+ 		y = (int)((float)(ScrY - si->Height    + si->OffsY + (OffsY ? *OffsY : 0) + FOnline->ScrOy) / FOnline->SpritesZoom);
  	}
 };
 
 
 inline Field* GetField(uint hexX, uint hexY)
 {
-	if(!Game->ClientMap || hexX >= Game->ClientMapWidth || hexY >= Game->ClientMapHeight) return NULL;
-	return &Game->ClientMap[hexY * Game->ClientMapWidth + hexX];
+	if(!FOnline->ClientMap || hexX >= FOnline->ClientMapWidth || hexY >= FOnline->ClientMapHeight) return NULL;
+	return &FOnline->ClientMap[hexY * FOnline->ClientMapWidth + hexX];
 }
 
 inline int GetDirection(int x1, int y1, int x2, int y2)
 {
-	if(Game->MapHexagonal)
+	if(FOnline->MapHexagonal)
 	{
 		float hx = (float)x1;
 		float hy = (float)y1;
@@ -1815,7 +1815,7 @@ inline int GetDirection(int x1, int y1, int x2, int y2)
 
 inline int GetDistantion(int x1, int y1, int x2, int y2)
 {
-	if(Game->MapHexagonal)
+	if(FOnline->MapHexagonal)
 	{
 		int dx = (x1 > x2 ? x1 - x2 : x2 - x1);
 		if(x1%2 == 0)
